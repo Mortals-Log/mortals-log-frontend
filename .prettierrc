@@ -1,0 +1,11 @@
+configure eslint and prettier{
+	"arrowParens": "avoid",
+	"bracketSameLine": true,
+	"bracketSpacing": true,
+	"singleQuote": true,
+	"trailingComma": "all",
+	"semi": true,
+	"tabWidth": 2,
+	"useTabs": true,
+	"printWidth": 120
+}
