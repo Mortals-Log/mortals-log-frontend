@@ -84,12 +84,13 @@ export const NavList = styled.ul`
 	}
 `;
 
-export const NavItem = styled(motion.li)`
+export const NavItem = styled(motion.a)`
 	font-size: 0.75rem;
 	font-weight: 700;
 	letter-spacing: 0.15em;
 	cursor: pointer;
 	color: ${props => props.theme.COLOR.BLACK};
+	text-decoration: none; // 밑줄 제거
 
 	&:hover {
 		color: ${props => props.theme.COLOR.PRIMARY};

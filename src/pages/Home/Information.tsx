@@ -1,5 +1,5 @@
 import * as S from '@styles/pages/Information';
-import { DUMMY_SCHEDULE, DUMMY_ALBUM } from '@const/constant';
+import { DUMMY_SCHEDULE, DUMMY_ALBUM } from '@const/dummy_data';
 
 const Information = () => {
 	return (

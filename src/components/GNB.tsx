@@ -1,8 +1,9 @@
 import * as S from '@styles/components/GNB.style';
 import { Variants } from 'motion';
 import { useMemo, useState } from 'react';
-import { DUMMY_SCHEDULE } from '@const/constant';
+import { DUMMY_SCHEDULE } from '@const/dummy_data';
 import { GetDDay } from '@utils/date';
+import { ACTIVE_NAV_ITEMS, METADATA } from '@/const/contents';
 
 const GNB = () => {
 	const [isLogoHovered, setIsLogoHovered] = useState(false);
@@ -21,15 +22,6 @@ const GNB = () => {
 			x: -10,
 		},
 	};
-
-	const menuItems = [
-		{ name: 'PROFILE', path: '#profile' },
-		{ name: 'ALBUM', path: '#album' },
-		{ name: 'SCHEDULE', path: '#schedule' },
-		{ name: 'GOODS', path: '#goods' },
-		{ name: 'ABOUT', path: '#about' },
-		// { name: 'PHOTOS', path: '#photos' },
-	];
 
 	const nextEvent = useMemo(() => {
 		const upcoming = DUMMY_SCHEDULE.map(event => ({
@@ -50,18 +42,18 @@ const GNB = () => {
 		<S.GNBContainer initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
 			<S.Inner>
 				<S.LogoGroup onMouseEnter={() => setIsLogoHovered(true)} onMouseLeave={() => setIsLogoHovered(false)}>
-					<S.Logo>MORTALS LOG</S.Logo>
+					<S.Logo>{METADATA.NAME}</S.Logo>
 					<S.Tagline
 						variants={tagVariants}
 						initial={isSmallScreen ? 'visible' : 'hidden'}
 						animate={isSmallScreen ? 'visible' : isLogoHovered ? 'visible' : 'hidden'}>
-						필멸자들을 위한 비공식 팬페이지
+						{METADATA.DESCRIPTION}
 					</S.Tagline>
 				</S.LogoGroup>
 
 				<S.NavList>
-					{menuItems.map(item => (
-						<S.NavItem key={item.name} whileHover={{ y: -2 }}>
+					{ACTIVE_NAV_ITEMS.map(item => (
+						<S.NavItem key={item.id} whileHover={{ y: -2 }}>
 							{item.name}
 						</S.NavItem>
 					))}
