@@ -1,6 +1,8 @@
 import * as S from '@styles/components/GNB.style';
 import { Variants } from 'motion';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { DUMMY_SCHEDULE } from '@const/constant';
+import { GetDDay } from '@utils/date';
 
 const GNB = () => {
 	const [isLogoHovered, setIsLogoHovered] = useState(false);
@@ -29,6 +31,21 @@ const GNB = () => {
 		// { name: 'PHOTOS', path: '#photos' },
 	];
 
+	const nextEvent = useMemo(() => {
+		const upcoming = DUMMY_SCHEDULE.map(event => ({
+			...event,
+			dDay: GetDDay(event.date.split(' ~ ')[0]),
+		}))
+			.filter(event => event.dDay !== null)
+			.sort((a, b) => {
+				const dateA = new Date(a.date.replace(/\./g, '-')).getTime();
+				const dateB = new Date(b.date.replace(/\./g, '-')).getTime();
+				return dateA - dateB;
+			});
+
+		return upcoming[0] || null;
+	}, []);
+
 	return (
 		<S.GNBContainer initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
 			<S.Inner>
@@ -51,8 +68,17 @@ const GNB = () => {
 				</S.NavList>
 
 				<S.DDayGroup>
-					<span className="label">NEXT LIVE</span>
-					<span className="count">D-03</span>
+					{nextEvent ? (
+						<>
+							<span className="label">{nextEvent.title}</span>
+							<span className="count">{nextEvent.dDay}</span>
+						</>
+					) : (
+						<>
+							{/* todo: 음악 추천 혹은 스트리밍으로 연결하는 기능을 추가하면 좋을듯함 */}
+							<span className="label">공연을 기다리며</span>
+						</>
+					)}
 				</S.DDayGroup>
 			</S.Inner>
 		</S.GNBContainer>
