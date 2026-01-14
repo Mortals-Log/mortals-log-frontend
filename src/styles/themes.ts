@@ -1,5 +1,8 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable storybook/default-exports */
+
 export const COLOR = {
-  PRIMARY: '#550000',
+	PRIMARY: '#780606',
 	GRAY700: '#303239',
 	GRAY600: '#50525F',
 	GRAY500: '#7F8295',
