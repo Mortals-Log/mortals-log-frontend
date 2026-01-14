@@ -1,4 +1,5 @@
 export const COLOR = {
+  PRIMARY: '#550000',
 	GRAY700: '#303239',
 	GRAY600: '#50525F',
 	GRAY500: '#7F8295',
