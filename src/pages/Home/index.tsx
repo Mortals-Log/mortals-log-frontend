@@ -9,8 +9,8 @@ const DUMMY_SCHEDULE = [
 		date: '2026. 01. 17',
 		schedules: [
 			{ part: '1부', time: '16:00' },
-			{ part: '2부', time: '19:00' }
-		]
+			{ part: '2부', time: '19:00' },
+		],
 	},
 	{
 		id: 'event-2',
@@ -19,17 +19,16 @@ const DUMMY_SCHEDULE = [
 		date: '2026. 02. 06 ~ 07',
 		schedules: [
 			{ part: '02. 06, 토', time: '16:00' },
-            { part: '02. 07, 일', time: '16:00' }
-
-		]
-	}
+			{ part: '02. 07, 일', time: '16:00' },
+		],
+	},
 ];
 
 const DUMMY_ALBUM = {
 	title: '졸업앨범',
 	releaseDate: '2025. 11. 01',
 	type: 'Regular Album',
-    musicVideo: '#',
+	musicVideo: '#',
 	store: '#',
 };
 
@@ -43,75 +42,71 @@ const Home = () => {
 					<Category>천진우 팬페이지</Category>
 					<MainTitle>천진우</MainTitle>
 
-                    <SubTitleContainer initial={{ width: 0, opacity: 0 }} animate={{ width: '100%', opacity: 1 }} transition={{ delay: 0.8, duration: 1.5, ease: 'easeInOut' }}>
-                        <SubTitleWrapper>
-                            <SubTitle>CHUN JINWOO</SubTitle>
-                            <VerticalBar>|</VerticalBar>
-                            <SubTitle>千鎭宇</SubTitle>
-                            <VerticalBar>|</VerticalBar>
-                            <SubTitle>1000 Jinwoo</SubTitle>
-                        </SubTitleWrapper>
-                    </SubTitleContainer>
+					<SubTitleContainer
+						initial={{ width: 0, opacity: 0 }}
+						animate={{ width: '100%', opacity: 1 }}
+						transition={{ delay: 0.8, duration: 1.5, ease: 'easeInOut' }}>
+						<SubTitleWrapper>
+							<SubTitle>CHUN JINWOO</SubTitle>
+							<VerticalBar>|</VerticalBar>
+							<SubTitle>千鎭宇</SubTitle>
+							<VerticalBar>|</VerticalBar>
+							<SubTitle>1000 Jinwoo</SubTitle>
+						</SubTitleWrapper>
+					</SubTitleContainer>
 				</header>
-              
-                <InformationContainer
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.5, duration: 0.8 }}
-                >
-                
-                    <SectionWrapper>
-                        <InfoSection>
-                            <span className="section-label">공연 예정</span>
-                            <EventList>
-                                {DUMMY_SCHEDULE.map((event) => (
-                                    <ContentCard key={event.id}>
-                                        <h3 className="title">{event.title}</h3>
-                                        <div className="details">
-                                            <p className="info-text">
-                                                {event.location} | {event.date}
-                                            </p>
-                                            <TimeSlotWrapper>
-                                                {event.schedules.map((sched, idx) => (
-                                                    <TimeTag key={idx}>
-                                                        {sched.part && <span className="part">{sched.part}</span>}
-                                                        <span className="time">{sched.time}</span>
-                                                    </TimeTag>
-                                                ))}
-                                            </TimeSlotWrapper>
-                                        </div>
-                                    </ContentCard>
-                                ))}
-                            </EventList>
-                        </InfoSection>
 
-                        <InfoSection>
-                            <span className="section-label">최근 앨범</span>
-                            <ContentCard>
-                                <h3 className="title">{DUMMY_ALBUM.title}</h3>
-                                <div className="details">
-                                    <p className="info-text">
-                                        {DUMMY_ALBUM.type} | {DUMMY_ALBUM.releaseDate}
-                                    </p>
-                                    <LinkButton transition={{ duration: 0.3 }}>
-                                        앨범 구매
-                                    </LinkButton>
-                                    <LinkButton transition={{ duration: 0.3 }}>
-                                        뮤직 비디오
-                                    </LinkButton>
-                                </div>
-                            </ContentCard>
-                        </InfoSection>
-                    </SectionWrapper>
-                </InformationContainer>
+				<InformationContainer
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 1.5, duration: 0.8 }}>
+					<SectionWrapper>
+						<InfoSection>
+							<span className="section-label">공연 예정</span>
+							<EventList>
+								{DUMMY_SCHEDULE.map(event => (
+									<ContentCard key={event.id}>
+										<h3 className="title">{event.title}</h3>
+										<div className="details">
+											<p className="info-text">
+												{event.location} | {event.date}
+											</p>
+											<TimeSlotWrapper>
+												{event.schedules.map((sched, idx) => (
+													<TimeTag key={idx}>
+														{sched.part && <span className="part">{sched.part}</span>}
+														<span className="time">{sched.time}</span>
+													</TimeTag>
+												))}
+											</TimeSlotWrapper>
+										</div>
+									</ContentCard>
+								))}
+							</EventList>
+						</InfoSection>
 
-            </HeroSection>
+						<InfoSection>
+							<span className="section-label">최근 앨범</span>
+							<ContentCard>
+								<h3 className="title">{DUMMY_ALBUM.title}</h3>
+								<div className="details">
+									<p className="info-text">
+										{DUMMY_ALBUM.type} | {DUMMY_ALBUM.releaseDate}
+									</p>
+									<LinkButton transition={{ duration: 0.3 }}>앨범 구매</LinkButton>
+									<LinkButton transition={{ duration: 0.3 }}>뮤직 비디오</LinkButton>
+								</div>
+							</ContentCard>
+						</InfoSection>
+					</SectionWrapper>
+				</InformationContainer>
+			</HeroSection>
 
-            <ScrollIndicator>
-                <p>SCROLL</p>
-                <div className="line" />
-            </ScrollIndicator>
-        </MainContainer>
+			<ScrollIndicator>
+				<p>SCROLL</p>
+				<div className="line" />
+			</ScrollIndicator>
+		</MainContainer>
 	);
 };
 
@@ -163,7 +158,7 @@ const MainTitle = styled.h1`
 const SubTitleContainer = styled(motion.div)`
 	overflow: hidden;
 	white-space: nowrap;
-    margin: 1.5rem 0rem;
+	margin: 1.5rem 0rem;
 `;
 
 const SubTitleWrapper = styled(motion.div)`
@@ -206,7 +201,7 @@ const InfoSection = styled.div`
 	.section-label {
 		color: ${props => props.theme.COLOR.PRIMARY};
 		font-size: 0.8rem;
-        letter-spacing: 0.2rem;
+		letter-spacing: 0.2rem;
 		display: block;
 		margin-bottom: 1.5rem;
 	}
@@ -250,7 +245,7 @@ const ContentCard = styled.div`
 	border-left: 1px solid ${props => props.theme.COLOR.PRIMARY};
 	padding-left: 1.5rem;
 	text-align: left;
-	
+
 	.title {
 		font-size: 1.4rem;
 		font-weight: 700;
@@ -274,10 +269,10 @@ const LinkButton = styled(motion.button)`
 	cursor: pointer;
 	font-weight: 600;
 
-    &:hover {
+	&:hover {
 		background: ${props => props.theme.COLOR.PRIMARY};
 		color: ${props => props.theme.COLOR.WHITE};
-        border-color: ${props => props.theme.COLOR.PRIMARY};
+		border-color: ${props => props.theme.COLOR.PRIMARY};
 	}
 `;
 
