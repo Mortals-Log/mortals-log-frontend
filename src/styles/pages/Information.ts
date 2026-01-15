@@ -84,7 +84,7 @@ export const TimeTag = styled.div`
 `;
 
 export const LinkButton = styled(motion.button)`
-	margin: 1.5rem 1rem 0rem 0rem;
+	margin: 1rem 0rem;
 	background: transparent;
 	border: 1px solid ${props => props.theme.COLOR.BLACK};
 	color: ${props => props.theme.COLOR.BLACK};

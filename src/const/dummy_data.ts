@@ -1,9 +1,17 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
-export const DUMMY_SCHEDULE = [
+import { Album } from '@/types/album';
+import { Schedule } from '@/types/schedule';
+
+export const DUMMY_SCHEDULE: Schedule[] = [
 	{
-		id: 'event-1',
+		title: '천진우의 연말시상식',
+		location: '홍대 롤링홀',
+		date: '2025. 11. 21',
+		schedules: [{ time: '20:00' }],
+	},
+	{
 		title: '부산불바다2',
 		location: '부산 리얼라이즈',
 		date: '2026. 01. 17',
@@ -13,7 +21,6 @@ export const DUMMY_SCHEDULE = [
 		],
 	},
 	{
-		id: 'event-2',
 		title: '고독의 포크 전사 주정뱅이 딴따라',
 		location: '홍대 롤링홀',
 		date: '2026. 02. 06 ~ 07',
@@ -24,10 +31,21 @@ export const DUMMY_SCHEDULE = [
 	},
 ];
 
-export const DUMMY_ALBUM = {
-	title: '졸업앨범',
-	releaseDate: '2025. 11. 01',
-	type: 'Regular Album',
-	musicVideo: '#',
-	store: '#',
-};
+export const DUMMY_ALBUM: Album[] = [
+	{
+		title: '졸업앨범',
+		releaseDate: '2025. 11. 01',
+		type: 'Regular Album',
+		musicVideo: '#',
+		store: '#',
+		coverImage: '#',
+	},
+	{
+		title: '꽃순이',
+		releaseDate: '2025. 06. 13',
+		type: 'Regular Album',
+		musicVideo: '#',
+		store: '#',
+		coverImage: '#',
+	},
+];

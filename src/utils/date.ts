@@ -1,6 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
+import { Schedule } from '@/types/schedule';
+
 export const GetDDay = (targetDate: string): string | null => {
 	const now = new Date();
 	const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
@@ -34,4 +36,23 @@ export const FormatDateWithDay = (dateString: string) => {
 	const day = days[date.getDay()];
 
 	return `${date.getFullYear()}.${mm}.${dd} (${day})`;
+};
+
+export const GetUpcomingSchedules = (schedules: Schedule[]): Schedule[] => {
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
+	const todayTime = today.getTime();
+
+	return [...schedules]
+		.filter(event => {
+			const eventDateStr = event.date.split(' ~ ')[0].replace(/\. /g, '-').replace(/\./g, '-');
+			const eventTime = new Date(eventDateStr).getTime();
+
+			return eventTime >= todayTime;
+		})
+		.sort((a, b) => {
+			const dateA = new Date(a.date.split(' ~ ')[0].replace(/\. /g, '-')).getTime();
+			const dateB = new Date(b.date.split(' ~ ')[0].replace(/\. /g, '-')).getTime();
+			return dateA - dateB;
+		});
 };
