@@ -143,6 +143,7 @@ export const MobileMenu = styled(motion.div)`
 	z-index: 2000;
 	display: flex;
 	flex-direction: column;
+	gap: 2rem;
 `;
 
 export const MobileNavItem = styled.li`
@@ -156,6 +157,26 @@ export const MobileNavItem = styled.li`
 	}
 
 	&:active {
+		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+`;
+
+export const MobileDDayFooter = styled.div`
+	margin-top: auto;
+	padding-top: 1rem;
+	border-top: 1px solid ${props => props.theme.COLOR.GRAY200};
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	.label {
+		font-size: 0.7rem;
+		color: ${props => props.theme.COLOR.GRAY500};
+		font-weight: 500;
+	}
+	.count {
+		font-size: 1.2rem;
+		font-weight: 900;
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 `;

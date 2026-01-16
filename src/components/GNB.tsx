@@ -129,6 +129,17 @@ const GNB = () => {
 									</S.MobileNavItem>
 								))}
 							</S.MobileNavList>
+
+							<S.MobileDDayFooter>
+								{nextEvent ? (
+									<>
+										<span className="label">{nextEvent.title}</span>
+										<span className="count">{nextEvent.dDay}</span>
+									</>
+								) : (
+									<span className="label">공연을 기다리며</span>
+								)}
+							</S.MobileDDayFooter>
 						</S.MobileMenu>
 					</>
 				)}
