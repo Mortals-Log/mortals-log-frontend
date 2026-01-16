@@ -44,8 +44,10 @@ export const LogoGroup = styled.div`
 `;
 
 export const Logo = styled.div`
-	font-size: 1rem;
-	font-weight: 900;
+	font-family: ${({ theme }) => theme.FONT.SERIF};
+	font-size: ${({ theme }) => theme.FONT.SIZE.MD};
+	font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+
 	letter-spacing: -0.05em;
 	color: ${props => props.theme.COLOR.BLACK};
 	transition: opacity 0.2s ease;
@@ -54,8 +56,11 @@ export const Logo = styled.div`
 export const Tagline = styled(motion.div)`
 	display: flex;
 	align-items: center;
-	font-size: 0.65rem;
-	font-weight: 700;
+
+	font-family: ${({ theme }) => theme.FONT.SANS};
+	font-size: ${({ theme }) => theme.FONT.SIZE.XS};
+	font-weight: ${({ theme }) => theme.FONT.WEIGHT.MEDIUM};
+
 	color: ${props => props.theme.COLOR.GRAY500};
 	white-space: nowrap;
 	background-color: transparent;
@@ -68,7 +73,8 @@ export const Tagline = styled(motion.div)`
 		width: auto !important;
 		height: auto !important;
 		transform: translateY(-2px) !important;
-		font-size: 0.6rem;
+
+		font-size: ${({ theme }) => theme.FONT.SIZE.TINY};
 	}
 `;
 
@@ -93,8 +99,10 @@ export const NavGroup = styled.ul`
 `;
 
 export const NavItem = styled(motion.a)`
-	font-size: 0.75rem;
-	font-weight: 700;
+	font-family: ${({ theme }) => theme.FONT.SERIF};
+	font-size: ${({ theme }) => theme.FONT.SIZE.XS};
+	font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+
 	letter-spacing: 0.15em;
 	cursor: pointer;
 	color: ${props => props.theme.COLOR.BLACK};
@@ -119,6 +127,19 @@ export const DDayContent = styled.div`
 
 	@media (max-width: 850px) {
 		display: none;
+	}
+
+	font-size: ${({ theme }) => theme.FONT.SIZE.SM};
+
+	.label {
+		font-family: ${({ theme }) => theme.FONT.SERIF};
+		font-weight: ${({ theme }) => theme.FONT.WEIGHT.MEDIUM};
+		color: ${props => props.theme.COLOR.GRAY500};
+	}
+	.count {
+		font-family: ${({ theme }) => theme.FONT.SANS};
+		font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 `;
 
@@ -155,11 +176,14 @@ export const MobileMenu = styled(motion.div)`
 `;
 
 export const MobileNavItem = styled.li`
-	font-size: 1.2rem;
-	font-weight: 800;
+	font-family: ${({ theme }) => theme.FONT.SERIF};
+	font-size: ${({ theme }) => theme.FONT.SIZE.MD};
+	font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+
 	letter-spacing: 0.1em;
 	color: ${props => props.theme.COLOR.BLACK};
 	cursor: pointer;
+
 	&:hover {
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
@@ -170,6 +194,10 @@ export const MobileNavItem = styled.li`
 `;
 
 export const MobileDDayFooter = styled.div`
+	font-family: ${({ theme }) => theme.FONT.SERIF};
+	font-size: ${({ theme }) => theme.FONT.SIZE.MD};
+	font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+
 	margin-top: auto;
 	padding-top: 1rem;
 	border-top: 1px solid ${props => props.theme.COLOR.GRAY200};
@@ -178,13 +206,13 @@ export const MobileDDayFooter = styled.div`
 	gap: 0.5rem;
 
 	.label {
-		font-size: 0.7rem;
+		font-size: ${({ theme }) => theme.FONT.SIZE.XS};
+		font-weight: ${({ theme }) => theme.FONT.WEIGHT.MEDIUM};
 		color: ${props => props.theme.COLOR.GRAY500};
-		font-weight: 500;
 	}
 	.count {
-		font-size: 1.2rem;
-		font-weight: 900;
+		font-size: ${({ theme }) => theme.FONT.SIZE.XL};
+		font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 `;

@@ -25,8 +25,8 @@ export const DUMMY_SCHEDULE: Schedule[] = [
 		location: '홍대 롤링홀',
 		date: '2026. 02. 06 ~ 07',
 		schedules: [
-			{ part: '02. 06, 토', time: '16:00' },
-			{ part: '02. 07, 일', time: '16:00' },
+			{ part: '02. 06 (토)', time: '16:00' },
+			{ part: '02. 07 (일)', time: '16:00' },
 		],
 	},
 ];

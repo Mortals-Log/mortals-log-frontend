@@ -30,8 +30,11 @@ export const HeroSection = styled(motion.section)`
 `;
 
 export const Description = styled.span`
+	font-family: ${({ theme }) => theme.FONT.SERIF};
+	font-size: ${({ theme }) => theme.FONT.SIZE.SM};
+	font-weight: ${({ theme }) => theme.FONT.WEIGHT.REGULAR};
+
 	color: ${props => props.theme.COLOR.PRIMARY};
-	font-size: 0.9rem;
 	letter-spacing: 0.4em;
 	text-transform: uppercase;
 	display: block;
@@ -39,8 +42,10 @@ export const Description = styled.span`
 `;
 
 export const MainTitle = styled.h1`
-	font-size: clamp(3.5rem, 12vw, 9rem);
-	font-weight: 900;
+	font-family: ${({ theme }) => theme.FONT.SERIF};
+	font-size: ${({ theme }) => theme.FONT.SIZE.DISPLAY};
+	font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+
 	color: ${props => props.theme.COLOR.BLACK};
 	margin: 0;
 	letter-spacing: -0.02em;
@@ -59,8 +64,9 @@ export const SubTitleWrapper = styled.div`
 `;
 
 export const SubTitle = styled.span`
-	font-size: 1.1rem;
-	font-weight: 200;
+	font-family: ${({ theme }) => theme.FONT.SERIF};
+	font-size: ${({ theme }) => theme.FONT.SIZE.LG};
+	font-weight: ${({ theme }) => theme.FONT.WEIGHT.REGULAR};
 `;
 
 export const VerticalBar = styled.span`
@@ -75,7 +81,10 @@ export const ScrollIndicator = styled.div`
 	text-align: center;
 
 	p {
-		font-size: 0.7rem;
+		font-family: ${({ theme }) => theme.FONT.SERIF};
+		font-size: ${({ theme }) => theme.FONT.SIZE.XS};
+		font-weight: ${({ theme }) => theme.FONT.WEIGHT.MEDIUM};
+
 		letter-spacing: 0.3em;
 		color: ${props => props.theme.COLOR.GRAY600};
 		margin-bottom: 1rem;

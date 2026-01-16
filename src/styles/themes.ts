@@ -38,14 +38,27 @@ export const COLOR = {
 } as const;
 
 export const FONT = {
-	SERIF: 'Noto Serif KR',
-	SANS: 'Pretendard',
+	SERIF: "'Noto Serif KR', serif",
+	SANS: "'Pretendard', sans-serif",
 
 	SIZE: {
-		TITLE: 'clamp(2.5rem, 8vw, 6rem)',
-		SUBTITLE: '1.5rem',
-		BODY: '1rem',
-		SMALL: '0.8rem',
+		// 본문 타이틀: Hero Section
+		DISPLAY: 'clamp(3.5rem, 12vw, 9rem)',
+
+		// 페이지 제목 및 섹션 헤더
+		H1: 'clamp(2.5rem, 8vw, 6rem)',
+		H2: 'clamp(2rem, 5vw, 3.5rem)',
+		H3: 'clamp(1.5rem, 3vw, 2.5rem)',
+
+		// 본문 및 서브 텍스트
+		XL: '1.25rem', // 리스트 강조, 리드 문구
+		LG: '1.125rem', // 일반 본문 강조
+		MD: '1rem', // 기본 본문
+		SM: '0.875rem', // 부가 설명, 메타 데이터
+		XS: '0.75rem', // 캡션, 태그라인, 저작권 표시
+
+		// 디테일용 텍스트
+		TINY: '0.625rem',
 	},
 
 	WEIGHT: {
