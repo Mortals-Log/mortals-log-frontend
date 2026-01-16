@@ -34,6 +34,13 @@ export const LogoGroup = styled.div`
 	z-index: 10;
 	position: relative;
 	width: fit-content;
+	cursor: pointer;
+
+	&:hover {
+		.logo {
+			color: ${props => props.theme.COLOR.PRIMARY};
+		}
+	}
 `;
 
 export const Logo = styled.div`
@@ -41,6 +48,7 @@ export const Logo = styled.div`
 	font-weight: 900;
 	letter-spacing: -0.05em;
 	color: ${props => props.theme.COLOR.BLACK};
+	transition: opacity 0.2s ease;
 `;
 
 export const Tagline = styled(motion.div)`
@@ -52,7 +60,7 @@ export const Tagline = styled(motion.div)`
 	white-space: nowrap;
 	background-color: transparent;
 
-	@media (max-width: 1100px) {
+	@media (max-width: 1200px) {
 		position: absolute;
 		bottom: 100%;
 		left: 0;

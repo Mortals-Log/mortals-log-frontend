@@ -7,6 +7,7 @@ import { ACTIVE_NAV_ITEMS, METADATA } from '@/const/contents';
 import { AnimatePresence } from 'framer-motion';
 import MenuIcon from '@assets/icons/MenuIcon';
 import CloseIcon from '@assets/icons/CloseIcon';
+import { useNavigate } from 'react-router-dom';
 
 const GNB = () => {
 	const [isLogoHovered, setIsLogoHovered] = useState(false);
@@ -14,6 +15,7 @@ const GNB = () => {
 
 	const isSmallScreen = typeof window !== 'undefined' && window.innerWidth <= 1100;
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (isMenuOpen) {
@@ -64,11 +66,24 @@ const GNB = () => {
 		return upcoming[0] || null;
 	}, []);
 
+	const handleNavClick = (path: string) => {
+		if (path.startsWith('http')) {
+			window.open(path, '_blank', 'noopener,noreferrer');
+		} else {
+			navigate(path);
+		}
+
+		if (isMenuOpen) setIsMenuOpen(false);
+	};
+
 	return (
 		<S.GNBContainer initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
 			<S.Inner>
-				<S.LogoGroup onMouseEnter={() => setIsLogoHovered(true)} onMouseLeave={() => setIsLogoHovered(false)}>
-					<S.Logo>{METADATA.NAME}</S.Logo>
+				<S.LogoGroup
+					onClick={() => handleNavClick('/')}
+					onMouseEnter={() => setIsLogoHovered(true)}
+					onMouseLeave={() => setIsLogoHovered(false)}>
+					<S.Logo className="logo">{METADATA.NAME}</S.Logo>
 					<S.Tagline
 						variants={tagVariants}
 						initial={isSmallScreen ? 'visible' : 'hidden'}
@@ -79,7 +94,7 @@ const GNB = () => {
 
 				<S.NavGroup>
 					{ACTIVE_NAV_ITEMS.map(item => (
-						<S.NavItem key={item.id} whileHover={{ y: -2 }}>
+						<S.NavItem key={item.id} onClick={() => handleNavClick(item.path)}>
 							{item.name}
 						</S.NavItem>
 					))}
@@ -123,8 +138,10 @@ const GNB = () => {
 							</S.CloseButton>
 
 							<S.MobileNavList>
+								<S.MobileNavItem onClick={() => handleNavClick('/')}>HOME</S.MobileNavItem>
+
 								{ACTIVE_NAV_ITEMS.map(item => (
-									<S.MobileNavItem key={item.id} onClick={toggleMenu}>
+									<S.MobileNavItem key={item.id} onClick={() => handleNavClick(item.path)}>
 										{item.name}
 									</S.MobileNavItem>
 								))}
