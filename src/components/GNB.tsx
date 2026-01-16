@@ -12,6 +12,9 @@ const GNB = () => {
 	const [isLogoHovered, setIsLogoHovered] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+	const isSmallScreen = typeof window !== 'undefined' && window.innerWidth <= 1100;
+	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
 	useEffect(() => {
 		if (isMenuOpen) {
 			document.body.style.overflow = 'hidden';
@@ -31,9 +34,6 @@ const GNB = () => {
 
 		return () => window.removeEventListener('resize', handleResize);
 	}, [isMenuOpen]);
-
-	const isSmallScreen = typeof window !== 'undefined' && window.innerWidth <= 1100;
-	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
 	const tagVariants: Variants = {
 		visible: {
