@@ -1,13 +1,39 @@
 import * as S from '@styles/components/GNB.style';
 import { Variants } from 'motion';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { DUMMY_SCHEDULE } from '@const/dummy_data';
 import { GetDDay } from '@utils/date';
 import { ACTIVE_NAV_ITEMS, METADATA } from '@/const/contents';
+import { AnimatePresence } from 'framer-motion';
+import MenuIcon from '@assets/icons/MenuIcon';
+import CloseIcon from '@assets/icons/CloseIcon';
 
 const GNB = () => {
 	const [isLogoHovered, setIsLogoHovered] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	useEffect(() => {
+		if (isMenuOpen) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = 'unset';
+		}
+	}, [isMenuOpen]);
+
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth > 850 && isMenuOpen) {
+				setIsMenuOpen(false);
+			}
+		};
+
+		window.addEventListener('resize', handleResize);
+
+		return () => window.removeEventListener('resize', handleResize);
+	}, [isMenuOpen]);
+
 	const isSmallScreen = typeof window !== 'undefined' && window.innerWidth <= 1100;
+	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
 	const tagVariants: Variants = {
 		visible: {
@@ -51,28 +77,62 @@ const GNB = () => {
 					</S.Tagline>
 				</S.LogoGroup>
 
-				<S.NavList>
+				<S.NavGroup>
 					{ACTIVE_NAV_ITEMS.map(item => (
 						<S.NavItem key={item.id} whileHover={{ y: -2 }}>
 							{item.name}
 						</S.NavItem>
 					))}
-				</S.NavList>
+				</S.NavGroup>
 
-				<S.DDayGroup>
-					{nextEvent ? (
-						<>
-							<span className="label">{nextEvent.title}</span>
-							<span className="count">{nextEvent.dDay}</span>
-						</>
-					) : (
-						<>
-							{/* todo: 음악 추천 혹은 스트리밍으로 연결하는 기능을 추가하면 좋을듯함 */}
+				<S.UtilGroup>
+					<S.DDayContent className="pc-only">
+						{nextEvent ? (
+							<>
+								<span className="label">{nextEvent.title}</span>
+								<span className="count">{nextEvent.dDay}</span>
+							</>
+						) : (
 							<span className="label">공연을 기다리며</span>
-						</>
-					)}
-				</S.DDayGroup>
+						)}
+					</S.DDayContent>
+
+					<S.MenuButton onClick={toggleMenu}>
+						<MenuIcon isOpen={isMenuOpen} />
+					</S.MenuButton>
+				</S.UtilGroup>
 			</S.Inner>
+
+			<AnimatePresence>
+				{isMenuOpen && (
+					<>
+						<S.MobileOverlay
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							onClick={toggleMenu}
+						/>
+
+						<S.MobileMenu
+							initial={{ x: '100%' }}
+							animate={{ x: 0 }}
+							exit={{ x: '100%' }}
+							transition={{ type: 'spring', damping: 25, stiffness: 200 }}>
+							<S.CloseButton onClick={toggleMenu} aria-label="Close Menu">
+								<CloseIcon />
+							</S.CloseButton>
+
+							<S.MobileNavList>
+								{ACTIVE_NAV_ITEMS.map(item => (
+									<S.MobileNavItem key={item.id} onClick={toggleMenu}>
+										{item.name}
+									</S.MobileNavItem>
+								))}
+							</S.MobileNavList>
+						</S.MobileMenu>
+					</>
+				)}
+			</AnimatePresence>
 		</S.GNBContainer>
 	);
 };

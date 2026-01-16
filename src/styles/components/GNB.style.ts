@@ -64,7 +64,7 @@ export const Tagline = styled(motion.div)`
 	}
 `;
 
-export const NavList = styled.ul`
+export const NavGroup = styled.ul`
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -90,16 +90,109 @@ export const NavItem = styled(motion.a)`
 	letter-spacing: 0.15em;
 	cursor: pointer;
 	color: ${props => props.theme.COLOR.BLACK};
-	text-decoration: none; // 밑줄 제거
+	text-decoration: none;
 
 	&:hover {
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 `;
 
-export const DDayGroup = styled.div`
+export const UtilGroup = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 0.8rem;
 	z-index: 10;
+`;
+
+export const DDayContent = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 0.8rem;
+
+	@media (max-width: 850px) {
+		display: none;
+	}
+`;
+
+export const MobileNavList = styled.ul`
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+	list-style: none;
+`;
+
+export const MobileOverlay = styled(motion.div)`
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.1);
+	z-index: 1500;
+`;
+
+export const MobileMenu = styled(motion.div)`
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 70%;
+	max-width: 320px;
+	height: 100vh;
+	background-color: ${props => props.theme.COLOR.WHITE};
+	padding: 100px 2.5rem;
+	z-index: 2000;
+	display: flex;
+	flex-direction: column;
+`;
+
+export const MobileNavItem = styled.li`
+	font-size: 1.2rem;
+	font-weight: 800;
+	letter-spacing: 0.1em;
+	color: ${props => props.theme.COLOR.BLACK};
+	cursor: pointer;
+	&:hover {
+		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+
+	&:active {
+		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+`;
+
+export const MenuButton = styled.button`
+	display: none;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 10px;
+	position: relative;
+
+	@media (max-width: 850px) {
+		display: block;
+	}
+`;
+
+export const CloseButton = styled.button`
+	position: absolute;
+	top: 20px;
+	right: 2rem;
+	width: 32px;
+	height: 32px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	transition: transform 0.2s ease;
+
+	&:hover {
+		transform: scale(1.1);
+	}
+
+	&:active {
+		transform: scale(0.9);
+	}
 `;
