@@ -38,7 +38,22 @@ export const COLOR = {
 } as const;
 
 export const FONT = {
-	// 추후 추가
+	SERIF: 'Noto Serif KR',
+	SANS: 'Pretendard',
+
+	SIZE: {
+		TITLE: 'clamp(2.5rem, 8vw, 6rem)',
+		SUBTITLE: '1.5rem',
+		BODY: '1rem',
+		SMALL: '0.8rem',
+	},
+
+	WEIGHT: {
+		LIGHT: 300,
+		REGULAR: 400,
+		MEDIUM: 500,
+		SEMIBOLD: 600,
+	},
 } as const;
 
 export const theme = {
