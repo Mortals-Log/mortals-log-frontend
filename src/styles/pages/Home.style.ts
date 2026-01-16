@@ -29,7 +29,7 @@ export const HeroSection = styled(motion.section)`
 	z-index: 10;
 `;
 
-export const Category = styled.span`
+export const Description = styled.span`
 	color: ${props => props.theme.COLOR.PRIMARY};
 	font-size: 0.9rem;
 	letter-spacing: 0.4em;
@@ -86,5 +86,9 @@ export const ScrollIndicator = styled.div`
 		height: 50px;
 		background: linear-gradient(to bottom, ${props => props.theme.COLOR.PRIMARY}, transparent);
 		margin: 0 auto;
+	}
+
+	@media (max-width: 768px) {
+		display: none;
 	}
 `;

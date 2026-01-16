@@ -9,7 +9,7 @@ const Home = () => {
 
 			<S.HeroSection initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }}>
 				<header>
-					<S.Category>{METADATA.DESCRIPTION}</S.Category>
+					<S.Description>{METADATA.DESCRIPTION}</S.Description>
 					<S.MainTitle>{NAME.KOREAN}</S.MainTitle>
 
 					<S.SubTitleContainer
