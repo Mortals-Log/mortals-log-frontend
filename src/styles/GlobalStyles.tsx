@@ -6,7 +6,7 @@ const globalStyles = css`
 	${Reset}
 
 	/*Pretandard*/
-	/*Light - Pretandard*/
+	/*Light - Pretendard*/
   	@font-face {
 		font-family: 'Pretendard';
 		font-style: normal;
@@ -19,7 +19,7 @@ const globalStyles = css`
 			url(/fonts/Pretendard-Light.otf) format('opentype');
 	}
 
-	/*Regular - Pretandard*/
+	/*Regular - Pretendard*/
 	@font-face {
 		font-family: 'Pretendard';
 		font-style: normal;
@@ -32,7 +32,7 @@ const globalStyles = css`
 			url('/fonts/Pretendard-Regular.otf') format('opentype');
 	}
 
-	/*Medium - Pretandard*/
+	/*Medium - Pretendard*/
 	@font-face {
 		font-family: 'Pretendard';
 		font-style: normal;
@@ -45,7 +45,7 @@ const globalStyles = css`
 			url('/fonts/Pretendard-Medium.otf') format('opentype');
 	}
 
-	/*Semibold - Pretandard*/
+	/*Semibold - Pretendard*/
 	@font-face {
 		font-family: 'Pretendard';
 		font-style: normal;
@@ -59,7 +59,7 @@ const globalStyles = css`
 	}
 
 	/*NotoSelifKR*/
-	/*Light - NotoSelifKR*/
+	/*Light - NotoSerifKR*/
 	@font-face {
 		font-family: 'Noto Serif KR';
 		font-style: normal;
@@ -70,7 +70,7 @@ const globalStyles = css`
 			url('/fonts/NotoSerifKR-Light.ttf') format('truetype');
 	}
 
-	/*Regular - NotoSelifKR*/
+	/*Regular - NotoSerifKR*/
 	@font-face {
 		font-family: 'Noto Serif KR';
 		font-style: normal;
@@ -81,7 +81,7 @@ const globalStyles = css`
 			url('/fonts/NotoSerifKR-Regular.ttf') format('truetype');
 	}
 
-	/*Medium - NotoSelifKR*/
+	/*Medium - NotoSerifKR*/
 	@font-face {
 		font-family: 'Noto Serif KR';
 		font-style: normal;
@@ -92,7 +92,7 @@ const globalStyles = css`
 			url('/fonts/NotoSerifKR-Medium.ttf') format('truetype');
 	}
 
-	/*SemiBold - NotoSelifKR*/
+	/*SemiBold - NotoSerifKR*/
 	@font-face {
 		font-family: 'Noto Serif KR';
 		font-style: normal;
