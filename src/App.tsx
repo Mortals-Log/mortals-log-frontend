@@ -8,6 +8,11 @@ import Album from './pages/Album';
 import Schedule from './pages/Schedule';
 import About from './pages/About';
 
+/**
+ * Root application component that provides theming, global navigation, and client-side routes.
+ *
+ * @returns The root JSX element that wraps the app in a ThemeProvider, renders the global navigation bar (GNB), and configures routes for Home, Profile, Album, Schedule, and About.
+ */
 function App() {
 	return (
 		<ThemeProvider theme={theme}>
