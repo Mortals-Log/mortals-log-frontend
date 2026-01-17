@@ -12,9 +12,9 @@ import { useNavigate } from 'react-router-dom';
 const GNB = () => {
 	const [isLogoHovered, setIsLogoHovered] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-	const isSmallScreen = typeof window !== 'undefined' && window.innerWidth <= 1100;
+	const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== 'undefined' ? window.innerWidth <= 1100 : false);
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -27,13 +27,17 @@ const GNB = () => {
 
 	useEffect(() => {
 		const handleResize = () => {
-			if (window.innerWidth > 850 && isMenuOpen) {
+			const width = window.innerWidth;
+			setIsSmallScreen(width <= 1100);
+
+			if (width > 850 && isMenuOpen) {
 				setIsMenuOpen(false);
 			}
 		};
 
-		window.addEventListener('resize', handleResize);
+		handleResize();
 
+		window.addEventListener('resize', handleResize);
 		return () => window.removeEventListener('resize', handleResize);
 	}, [isMenuOpen]);
 
