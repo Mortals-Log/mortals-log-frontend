@@ -1,4 +1,4 @@
-// @src/components/pages/About.tsx
+// @src/pages/About.tsx
 
 const About = () => {
 	return (

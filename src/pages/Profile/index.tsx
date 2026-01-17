@@ -1,4 +1,4 @@
-// @src/components/pages/Profile.tsx
+// @src/pages/Profile.tsx
 
 const Profile = () => {
 	return (

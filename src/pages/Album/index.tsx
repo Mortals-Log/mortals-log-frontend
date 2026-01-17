@@ -1,4 +1,4 @@
-// @src/components/pages/Album.tsx
+// @src/pages/Album.tsx
 
 const Album = () => {
 	return (

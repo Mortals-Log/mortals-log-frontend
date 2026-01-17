@@ -1,3 +1,5 @@
+// @src/pages/Home.tsx
+
 import * as S from '@styles/pages/Home.style';
 import Information from './Information';
 import { NAME, METADATA } from '@const/contents';
