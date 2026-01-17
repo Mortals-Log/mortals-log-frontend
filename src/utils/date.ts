@@ -28,7 +28,8 @@ export const GetDDay = (targetDate: string): string | null => {
 
 export const FormatDateWithDay = (dateString: string) => {
 	const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-	const date = new Date(dateString.replace(/\./g, '-'));
+	const normalizedDate = dateString.replace(/\.\s*/g, '-');
+	const date = new Date(normalizedDate);
 	if (isNaN(date.getTime())) return dateString;
 
 	const mm = String(date.getMonth() + 1).padStart(2, '0');
