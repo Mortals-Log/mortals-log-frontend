@@ -51,8 +51,9 @@ export const GetUpcomingSchedules = (schedules: Schedule[]): Schedule[] => {
 			return eventTime >= todayTime;
 		})
 		.sort((a, b) => {
-			const dateA = new Date(a.date.split(' ~ ')[0].replace(/\. /g, '-')).getTime();
-			const dateB = new Date(b.date.split(' ~ ')[0].replace(/\. /g, '-')).getTime();
+			const dateA = new Date(a.date.split(' ~ ')[0].replace(/\. /g, '-').replace(/\./g, '-')).getTime();
+			const dateB = new Date(b.date.split(' ~ ')[0].replace(/\. /g, '-').replace(/\./g, '-')).getTime();
+
 			return dateA - dateB;
 		});
 };
