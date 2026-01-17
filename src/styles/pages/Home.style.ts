@@ -19,7 +19,7 @@ export const MainContainer = styled.main`
 export const BackgroundNoise = styled.div`
 	position: absolute;
 	inset: 0;
-	background: url('https://grainy-gradients.vercel.app/noise.svg');
+	background: url('assets/noise.svg');
 	opacity: 0.8;
 	pointer-events: none;
 `;
