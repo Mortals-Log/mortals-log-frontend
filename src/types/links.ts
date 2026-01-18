@@ -2,7 +2,6 @@
 /* eslint-disable storybook/default-exports */
 
 export interface Links {
-	[key: string]: string | undefined;
 	INSTAGRAM?: string;
 	YOUTUBE?: string;
 	SPOTIFY?: string;
