@@ -33,11 +33,6 @@ const Home = () => {
 
 				<ProfileSection />
 			</S.HeroSection>
-
-			<S.ScrollIndicator>
-				<p>SCROLL</p>
-				<div className="line" />
-			</S.ScrollIndicator>
 		</S.MainContainer>
 	);
 };

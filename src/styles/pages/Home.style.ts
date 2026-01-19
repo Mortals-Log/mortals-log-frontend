@@ -72,32 +72,3 @@ export const SubTitle = styled.span`
 export const VerticalBar = styled.span`
 	color: ${props => props.theme.COLOR.PRIMARY};
 `;
-
-export const ScrollIndicator = styled.div`
-	position: absolute;
-	bottom: 2rem;
-	left: 50%;
-	transform: translateX(-50%);
-	text-align: center;
-
-	p {
-		font-family: ${({ theme }) => theme.FONT.SERIF};
-		font-size: ${({ theme }) => theme.FONT.SIZE.XS};
-		font-weight: ${({ theme }) => theme.FONT.WEIGHT.MEDIUM};
-
-		letter-spacing: 0.3em;
-		color: ${props => props.theme.COLOR.GRAY600};
-		margin-bottom: 1rem;
-	}
-
-	.line {
-		width: 1px;
-		height: 50px;
-		background: linear-gradient(to bottom, ${props => props.theme.COLOR.PRIMARY}, transparent);
-		margin: 0 auto;
-	}
-
-	@media (max-width: 768px) {
-		display: none;
-	}
-`;
