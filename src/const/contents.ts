@@ -32,17 +32,32 @@ export const LINKS: Links = {
 	TJ_SONG_REQUEST: 'https://www.tjmedia.com/song/accompaniment_apply_agree',
 };
 
+export const SNS_PLATFORMS = {
+	INSTAGRAM: {
+		NAME: 'instagram',
+		BASE_URL: 'https://www.instagram.com/p/',
+	},
+	YOUTUBE: {
+		NAME: 'youtube',
+		BASE_URL: 'https://www.youtube.com/watch?v=',
+	},
+} as const;
+
 export const MODIFIERS: Citation[] = [
-	[
-		'여러분 인생에 브금 깔아보려고 노력 중인',
-		'instragram@nerv_mag, [에바와 음악Vol.1] 인터뷰 발췌',
-		'https://www.instagram.com/p/DMOosfnz7IV/?img_index=1',
-	],
-	[
-		'학교에서 애들을 가르치면서 음악 하고 있는',
-		'instagram@sub_riot, 🎤 𝐀𝐫𝐭𝐢𝐬𝐭 𝐈𝐧𝐭𝐞𝐫𝐯𝐢 e𝐰 𝐰𝐢𝐭𝐡 천진우 🎤 인터뷰 발췌',
-		'https://www.instagram.com/p/DTZzRsdkbSK/?img_index=1',
-	],
+	{
+		content: '여러분 인생에 브금 깔아보려고 노력 중인',
+		platform: SNS_PLATFORMS.INSTAGRAM.NAME,
+		account: 'nerv_mag',
+		contentTitle: '[에바와 음악Vol.1] 인터뷰',
+		postId: 'DMOosfnz7IV/?img_index=1',
+	},
+	{
+		content: '학교에서 애들을 가르치면서 음악 하고 있는',
+		platform: SNS_PLATFORMS.INSTAGRAM.NAME,
+		account: 'sub_riot',
+		contentTitle: '🎤 𝐀𝐫𝐭𝐢𝐬𝐭 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐰𝐢𝐭𝐡 천진우 🎤 인터뷰',
+		postId: 'DTZzRsdkbSK/?img_index=1',
+	},
 ];
 
 export const PROFILE: Profile = {
@@ -53,11 +68,13 @@ export const PROFILE: Profile = {
 
 	mainImage: '/images/profile/main.jpg',
 	modifier: MODIFIERS,
-	description: [
-		`사람과 사람 사이의 틈을 채울 생각은 없습니다.\n오히려 그 틈 자체를 낭만적으로 바라보고 노래로 옮겨적는 것 같습니다.`,
-		'nerv_mag [에바와 음악Vol.1] 인터뷰 발췌',
-		'https://www.instagram.com/p/DMOosfnz7IV/?img_index=1',
-	],
+	description: {
+		content: `사람과 사람 사이의 틈을 채울 생각은 없습니다.\n오히려 그 틈 자체를 낭만적으로 바라보고 노래로 옮겨적는 것 같습니다.`,
+		platform: SNS_PLATFORMS.INSTAGRAM.NAME,
+		account: 'nerv_mag',
+		contentTitle: '[에바와 음악Vol.1] 인터뷰',
+		postId: 'DMOosfnz7IV/?img_index=1',
+	},
 
 	birth: ['1996. 06. 13', '강원도 춘천시 (現 강원특별자치도 춘천시)'],
 	nationality: 'Korea',

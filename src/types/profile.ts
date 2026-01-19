@@ -3,7 +3,13 @@
 
 import { Links } from './links';
 
-export type Citation = [text: string, source: string, url: string];
+export interface Citation {
+	content: string;
+	platform: string;
+	account: string;
+	contentTitle: string;
+	postId: string;
+}
 
 export interface Profile {
 	id: string;

@@ -3,14 +3,18 @@
 import * as S from '@styles/pages/ProfileSection.style';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PROFILE, MODIFIERS } from '@const/contents';
+import { PROFILE, MODIFIERS, SNS_PLATFORMS } from '@const/contents';
 
 const ProfileSection = () => {
 	const navigate = useNavigate();
 	const [currentIdx, setCurrentIdx] = useState(0);
 	const [isPaused, setIsPaused] = useState(false);
-	const [text, source, url] = MODIFIERS[currentIdx];
-	const [descText, descSource, descUrl] = PROFILE.description;
+
+	const currentModifier = MODIFIERS[currentIdx];
+	const { content, platform, account, contentTitle, postId } = PROFILE.description;
+
+	const getSnsUrl = (id: string) => `${SNS_PLATFORMS.INSTAGRAM.BASE_URL}${id}`;
+	const getSnsLabel = (plat: string, acc: string, title: string) => `${plat}@${acc}, ${title}`;
 
 	useEffect(() => {
 		if (isPaused) return;
@@ -34,10 +38,10 @@ const ProfileSection = () => {
 
 				<S.TextSection>
 					<S.ModifierContainer onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
-						<S.SourceLink href={url} target="_blank" rel="noreferrer">
-							{source}
+						<S.SourceLink href={getSnsUrl(currentModifier.postId)} target="_blank" rel="noreferrer">
+							{getSnsLabel(currentModifier.platform, currentModifier.account, currentModifier.contentTitle)}
 						</S.SourceLink>
-						<S.ModifierText key={text}>{text}</S.ModifierText>
+						<S.ModifierText key={currentModifier.content}>{currentModifier.content}</S.ModifierText>
 					</S.ModifierContainer>
 
 					<S.NameSection>
@@ -46,9 +50,9 @@ const ProfileSection = () => {
 					</S.NameSection>
 
 					<S.DescriptionContainer>
-						<S.ProfileDescription>{descText}</S.ProfileDescription>
-						<S.SourceLink href={descUrl} target="_blank" rel="noreferrer">
-							{descSource}
+						<S.ProfileDescription>{content}</S.ProfileDescription>
+						<S.SourceLink href={getSnsUrl(postId)} target="_blank" rel="noreferrer">
+							{getSnsLabel(platform, account, contentTitle)}
 						</S.SourceLink>
 					</S.DescriptionContainer>
 
