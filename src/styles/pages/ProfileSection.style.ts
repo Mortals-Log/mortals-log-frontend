@@ -131,8 +131,6 @@ export const SourceLink = styled.a`
 
 	&::before {
 		content: 'REF. ';
-		font-weight: 800;
-		font-size: 0.65rem;
 		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 		letter-spacing: 0.5px;
 	}
