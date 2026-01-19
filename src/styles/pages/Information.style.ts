@@ -18,13 +18,19 @@ export const SectionWrapper = styled.div`
 	grid-template-columns: 1fr 1fr;
 	gap: 5rem;
 
-	@media (max-width: 768px) {
+	@media (max-width: 1200px) {
+		gap: 2rem;
+	}
+
+	@media (max-width: 850px) {
 		grid-template-columns: 1fr;
 		gap: 3rem;
 	}
 `;
 
 export const InfoSection = styled.div`
+	padding-top: 2rem;
+
 	.section-label {
 		font-family: ${props => props.theme.FONT.SERIF};
 		font-size: ${props => props.theme.FONT.SIZE.SM};
@@ -45,7 +51,7 @@ export const EventList = styled.div`
 
 export const ContentCard = styled.div`
 	border-left: 1.5px solid ${props => props.theme.COLOR.PRIMARY};
-	padding: 0.5rem 0 0.5rem 1.5rem;
+	padding: 0.5rem 1.5rem;
 	text-align: left;
 
 	.title {
