@@ -1,8 +1,9 @@
 // @src/pages/Home.tsx
 
 import * as S from '@styles/pages/Home.style';
-import Information from './Information';
 import { NAME, METADATA } from '@const/contents';
+import Information from './Information';
+import ProfileSection from './ProfileSection';
 
 const Home = () => {
 	return (
@@ -29,6 +30,8 @@ const Home = () => {
 				</header>
 
 				<Information />
+
+				<ProfileSection />
 			</S.HeroSection>
 
 			<S.ScrollIndicator>

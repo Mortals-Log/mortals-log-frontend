@@ -52,7 +52,7 @@ export const PROFILE: Profile = {
 	mainImage: '/images/profile/main.jpg',
 	modifier: MODIFIERS,
 	description: [
-		`사람과 사람 사이의 틈을 채울 생각은 없습니다. 오히려 그 틈 자체를 낭만적으로 바라보고 노래로 옮겨적는 것 같습니다.`,
+		`사람과 사람 사이의 틈을 채울 생각은 없습니다.\n오히려 그 틈 자체를 낭만적으로 바라보고 노래로 옮겨적는 것 같습니다.`,
 		'nerv_mag [에바와 음악Vol.1] 인터뷰 발췌',
 		'https://www.instagram.com/p/DMOosfnz7IV/?img_index=1',
 	],
