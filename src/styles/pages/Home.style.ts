@@ -13,7 +13,7 @@ export const MainContainer = styled.main`
 	max-width: 1200px;
 	min-height: calc(100vh - 60px);
 	align-items: center;
-	padding: 100px 60px;
+	padding: 100px 60px 30px 60px;
 	margin: 0 auto;
 `;
 
