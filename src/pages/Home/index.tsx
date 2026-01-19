@@ -1,4 +1,4 @@
-// @src/pages/Home.tsx
+// @src/pages/home/index
 
 import * as S from '@styles/pages/Home.style';
 import { NAME, METADATA } from '@const/contents';
@@ -8,8 +8,6 @@ import ProfileSection from './ProfileSection';
 const Home = () => {
 	return (
 		<S.MainContainer>
-			<S.BackgroundNoise />
-
 			<S.HeroSection initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }}>
 				<header>
 					<S.Description>{METADATA.DESCRIPTION}</S.Description>
@@ -30,9 +28,11 @@ const Home = () => {
 				</header>
 
 				<Information />
-
-				<ProfileSection />
 			</S.HeroSection>
+
+			<S.SectionWrapper>
+				<ProfileSection />
+			</S.SectionWrapper>
 		</S.MainContainer>
 	);
 };

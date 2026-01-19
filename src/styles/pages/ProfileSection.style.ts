@@ -1,3 +1,5 @@
+//@styles/pages/ProfileSection.style
+
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
@@ -15,19 +17,21 @@ const blink = keyframes`
 `;
 
 export const ProfileContainer = styled.section`
+	display: flex;
+	justify-content: center;
+	position: relative;
+
 	width: 100%;
-	max-width: 1000px;
-	padding: 0 2rem;
-	margin-top: 6rem;
+	margin: 0 auto;
 `;
 
 export const BackgroundText = styled.div`
 	position: absolute;
-	top: 65%;
-	left: 65%;
+	top: 50%;
+	left: 60%;
 	transform: translate(-50%, -50%) rotate(-25deg);
 
-	font-family: ${({ theme }) => theme.FONT.SANS};
+	font-family: ${props => props.theme.FONT.SANS};
 	font-size: 11vw;
 	font-weight: 900;
 	color: ${props => props.theme.COLOR.PRIMARY};
@@ -36,7 +40,7 @@ export const BackgroundText = styled.div`
 	line-height: 0.9;
 	text-align: center;
 
-	z-index: -1;
+	z-index: 0;
 	user-select: none;
 	pointer-events: none;
 `;
@@ -44,13 +48,38 @@ export const BackgroundText = styled.div`
 export const SectionWrapper = styled.div`
 	display: flex;
 	position: relative;
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+
+	align-items: center;
+	justify-content: center;
 	gap: 5rem;
-	align-items: flex-start;
+
+	@media (max-width: 1200px) {
+		gap: 3rem;
+	}
+
+	@media (max-width: 850px) {
+		flex-direction: column;
+		gap: 2rem;
+	}
 `;
 
 export const ImageSection = styled.div`
 	position: relative;
-	flex: 1;
+	flex: 0 0 380px;
+	width: 100%;
+
+	@media (max-width: 1200px) {
+		flex: 0 0 auto;
+		width: 290px;
+	}
+
+	@media (max-width: 850px) {
+		flex: 0 0 auto;
+		width: 280px;
+	}
 `;
 
 export const MainImage = styled.img`
@@ -77,6 +106,7 @@ export const HanjaBadge = styled.div`
 
 export const TextSection = styled.div`
 	display: flex;
+	max-width: 550px;
 	flex: 1;
 	flex-direction: column;
 	justify-content: center;
@@ -86,19 +116,19 @@ export const TextSection = styled.div`
 export const SourceLink = styled.a`
 	display: inline-block;
 
-	font-family: ${({ theme }) => theme.FONT.SANS};
-	font-size: ${({ theme }) => theme.FONT.SIZE.XS};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.REGULAR};
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.XS};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY400};
-	text-decoration: none;
 
+	text-decoration: none;
 	transition: all 0.3s ease;
 
 	&::before {
 		content: 'REF. ';
 		font-weight: 800;
 		font-size: 0.65rem;
-		font-weight: ${({ theme }) => theme.FONT.WEIGHT.MEDIUM};
+		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 		letter-spacing: 0.5px;
 	}
 
@@ -135,9 +165,9 @@ export const ModifierContainer = styled.div`
 `;
 
 export const ModifierText = styled.p`
-	font-family: ${({ theme }) => theme.FONT.SERIF};
-	font-size: ${({ theme }) => theme.FONT.SIZE.MD};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.BOLD};
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.BOLD};
 	line-height: 1.4;
 	animation: ${fadeInBlur} 0.8s ease-out;
 `;
@@ -156,16 +186,16 @@ export const NameSection = styled.div`
 `;
 
 export const ArtistName = styled.h2`
-	font-family: ${({ theme }) => theme.FONT.SERIF};
-	font-size: ${({ theme }) => theme.FONT.SIZE.H2};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.BOLD};
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.H2};
+	font-weight: ${props => props.theme.FONT.WEIGHT.BOLD};
 	color: ${props => props.theme.COLOR.BLACK};
 `;
 
 export const JobBadge = styled.span`
-	font-family: ${({ theme }) => theme.FONT.SANS};
-	font-size: ${({ theme }) => theme.FONT.SIZE.MD};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.REGULAR};
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY400};
 	letter-spacing: 0.1rem;
 `;
@@ -183,17 +213,17 @@ export const DescriptionContainer = styled.div`
 	}
 `;
 
-export const Description = styled.p`
-	font-family: ${({ theme }) => theme.FONT.SERIF};
-	font-size: ${({ theme }) => theme.FONT.SIZE.LG};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.MEDIUM};
+export const ProfileDescription = styled.p`
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.LG};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	color: ${props => props.theme.COLOR.GRAY600};
 	text-align: start;
 	white-space: pre-wrap;
 	line-height: 1.8;
 
 	@media (max-width: 850px) {
-		font-size: ${({ theme }) => theme.FONT.SIZE.MD};
+		font-size: ${props => props.theme.FONT.SIZE.MD};
 	}
 `;
 
@@ -202,9 +232,9 @@ export const ViewMoreBtn = styled.button`
 	background-color: ${props => props.theme.COLOR.BLACK};
 	padding: 1rem 1.5rem;
 
-	font-family: ${({ theme }) => theme.FONT.SANS};
-	font-size: ${({ theme }) => theme.FONT.SIZE.MD};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 	color: ${props => props.theme.COLOR.WHITE};
 
 	border: none;
@@ -225,6 +255,6 @@ export const ViewMoreBtn = styled.button`
 
 	@media (max-width: 850px) {
 		padding: 0.9rem 1.5rem;
-		font-size: ${({ theme }) => theme.FONT.SIZE.SM};
+		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;

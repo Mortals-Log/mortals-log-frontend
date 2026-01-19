@@ -1,3 +1,5 @@
+// @const/dummy_data
+
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 

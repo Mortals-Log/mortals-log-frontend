@@ -1,3 +1,5 @@
+//@styles/pages/Home.style
+
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
@@ -5,34 +7,48 @@ import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
 export const MainContainer = styled.main`
-	position: relative;
-	width: 100%;
-	min-height: 100vh;
-	background-color: ${props => props.theme.COLOR.WHITE};
 	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 1200px;
+	min-height: calc(100vh - 60px);
 	align-items: center;
-	justify-content: center;
-	overflow-x: hidden;
-	padding: 100px 0;
-`;
-
-export const BackgroundNoise = styled.div`
-	position: absolute;
-	inset: 0;
-	background: url('assets/noise.svg');
-	opacity: 0.8;
-	pointer-events: none;
+	padding: 100px 60px;
+	margin: 0 auto;
 `;
 
 export const HeroSection = styled(motion.section)`
+	display: flex;
+	position: relative;
+	width: 100%;
+	min-height: 60vh;
+	flex-direction: column;
+
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
 	text-align: center;
-	z-index: 10;
+
+	@media (max-width: 860px) {
+		min-height: 50vh;
+	}
+`;
+
+export const SectionWrapper = styled.section`
+	display: flex;
+	position: relative;
+	width: 100%;
+	max-width: 1200px;
+	padding: 100px 60px;
+
+	align-items: center;
+	justify-content: center;
 `;
 
 export const Description = styled.span`
-	font-family: ${({ theme }) => theme.FONT.SERIF};
-	font-size: ${({ theme }) => theme.FONT.SIZE.SM};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.REGULAR};
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 
 	color: ${props => props.theme.COLOR.PRIMARY};
 	letter-spacing: 0.4em;
@@ -42,9 +58,9 @@ export const Description = styled.span`
 `;
 
 export const MainTitle = styled.h1`
-	font-family: ${({ theme }) => theme.FONT.SERIF};
-	font-size: ${({ theme }) => theme.FONT.SIZE.DISPLAY};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.DISPLAY};
+	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 
 	color: ${props => props.theme.COLOR.BLACK};
 	margin: 0;
@@ -64,9 +80,9 @@ export const SubTitleWrapper = styled.div`
 `;
 
 export const SubTitle = styled.span`
-	font-family: ${({ theme }) => theme.FONT.SERIF};
-	font-size: ${({ theme }) => theme.FONT.SIZE.LG};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.REGULAR};
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.LG};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 `;
 
 export const VerticalBar = styled.span`

@@ -1,4 +1,6 @@
-import * as S from '@styles/pages/Information';
+// @pages/Home/Information
+
+import * as S from '@styles/pages/Information.style';
 import { DUMMY_SCHEDULE, DUMMY_ALBUM } from '@const/dummy_data';
 import { GetLatestAlbum } from '@utils/album';
 import { GetUpcomingSchedules } from '@/utils/date';

@@ -1,4 +1,4 @@
-// @src/pages/Schedule.tsx
+// @src/pages/Schedule/index
 
 const Schedule = () => {
 	return (

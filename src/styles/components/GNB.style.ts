@@ -1,3 +1,5 @@
+// @styles/componenets/GNB.style
+
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
@@ -10,15 +12,14 @@ export const GNBContainer = styled(motion.nav)`
 	left: 0;
 	width: 100%;
 	height: 60px;
-	z-index: 1000;
-	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY200};
+	z-index: 9999;
 	background-color: transparent;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(30px);
 `;
 
 export const Inner = styled.div`
 	position: relative;
-	max-width: 1600px;
+	max-width: 1200px;
 	height: 100%;
 	margin: 0 auto;
 	display: flex;

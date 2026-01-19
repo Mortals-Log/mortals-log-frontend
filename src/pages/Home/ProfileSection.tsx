@@ -1,7 +1,9 @@
+// @pages/Home/ProfileSection
+
+import * as S from '@styles/pages/ProfileSection.style';
 import { useState, useEffect } from 'react';
-import * as S from '@styles/pages/ProfileSection';
-import { PROFILE, MODIFIERS } from '@const/contents';
 import { useNavigate } from 'react-router-dom';
+import { PROFILE, MODIFIERS } from '@const/contents';
 
 const ProfileSection = () => {
 	const navigate = useNavigate();
@@ -44,7 +46,7 @@ const ProfileSection = () => {
 					</S.NameSection>
 
 					<S.DescriptionContainer>
-						<S.Description>{descText}</S.Description>
+						<S.ProfileDescription>{descText}</S.ProfileDescription>
 						<S.SourceLink href={descUrl} target="_blank" rel="noreferrer">
 							{descSource}
 						</S.SourceLink>

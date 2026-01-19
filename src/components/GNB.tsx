@@ -1,13 +1,15 @@
+// @components/GNB
+
 import * as S from '@styles/components/GNB.style';
-import { Variants } from 'motion';
 import { useEffect, useMemo, useState } from 'react';
-import { DUMMY_SCHEDULE } from '@const/dummy_data';
-import { GetDDay } from '@utils/date';
-import { ACTIVE_NAV_ITEMS, METADATA } from '@/const/contents';
+import { useNavigate } from 'react-router-dom';
+import { Variants } from 'motion';
 import { AnimatePresence } from 'framer-motion';
+import { ACTIVE_NAV_ITEMS, METADATA } from '@/const/contents';
+import { DUMMY_SCHEDULE } from '@const/dummy_data';
 import MenuIcon from '@assets/icons/MenuIcon';
 import CloseIcon from '@assets/icons/CloseIcon';
-import { useNavigate } from 'react-router-dom';
+import { GetDDay } from '@utils/date';
 
 const GNB = () => {
 	const [isLogoHovered, setIsLogoHovered] = useState(false);

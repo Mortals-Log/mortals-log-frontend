@@ -1,4 +1,4 @@
-// @src/pages/About.tsx
+// @src/pages/About/index
 
 const About = () => {
 	return (
