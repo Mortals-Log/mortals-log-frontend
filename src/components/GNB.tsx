@@ -3,8 +3,7 @@
 import * as S from '@styles/components/GNB.style';
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Variants } from 'motion';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, Variants } from 'framer-motion';
 import { ACTIVE_NAV_ITEMS, METADATA } from '@/const/contents';
 import { DUMMY_SCHEDULE } from '@const/dummy_data';
 import MenuIcon from '@assets/icons/MenuIcon';
