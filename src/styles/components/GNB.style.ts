@@ -45,12 +45,12 @@ export const LogoGroup = styled.div`
 `;
 
 export const Logo = styled.div`
-	font-family: ${({ theme }) => theme.FONT.SERIF};
-	font-size: ${({ theme }) => theme.FONT.SIZE.MD};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
+	color: ${props => props.theme.COLOR.BLACK};
 
 	letter-spacing: -0.05em;
-	color: ${props => props.theme.COLOR.BLACK};
 	transition: opacity 0.2s ease;
 `;
 
@@ -58,11 +58,11 @@ export const Tagline = styled(motion.div)`
 	display: flex;
 	align-items: center;
 
-	font-family: ${({ theme }) => theme.FONT.SANS};
-	font-size: ${({ theme }) => theme.FONT.SIZE.XS};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.MEDIUM};
-
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.XS};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	color: ${props => props.theme.COLOR.GRAY500};
+
 	white-space: nowrap;
 	background-color: transparent;
 
@@ -75,7 +75,7 @@ export const Tagline = styled(motion.div)`
 		height: auto !important;
 		transform: translateY(-2px) !important;
 
-		font-size: ${({ theme }) => theme.FONT.SIZE.TINY};
+		font-size: ${props => props.theme.FONT.WEIGHT.TINY};
 	}
 `;
 

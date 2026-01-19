@@ -49,8 +49,8 @@ export const Description = styled.span`
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.SM};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-
 	color: ${props => props.theme.COLOR.PRIMARY};
+
 	letter-spacing: 0.4em;
 	text-transform: uppercase;
 	display: block;
@@ -61,8 +61,8 @@ export const MainTitle = styled.h1`
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.DISPLAY};
 	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
-
 	color: ${props => props.theme.COLOR.BLACK};
+
 	margin: 0;
 	letter-spacing: -0.02em;
 `;
@@ -83,6 +83,7 @@ export const SubTitle = styled.span`
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.LG};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.GRAY600};
 `;
 
 export const VerticalBar = styled.span`

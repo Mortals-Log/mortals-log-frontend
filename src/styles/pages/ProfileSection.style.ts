@@ -98,6 +98,7 @@ export const HanjaBadge = styled.div`
 
 	font-family: serif;
 	font-size: 1.7rem;
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.WHITE};
 
 	writing-mode: vertical-rl;
@@ -133,6 +134,7 @@ export const SourceLink = styled.a`
 		font-weight: 800;
 		font-size: 0.65rem;
 		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+		color: ${props => props.theme.COLOR.GRAY400};
 		letter-spacing: 0.5px;
 	}
 
@@ -173,6 +175,8 @@ export const ModifierText = styled.p`
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.BOLD};
+	color: ${props => props.theme.COLOR.GRAY600};
+
 	line-height: 1.4;
 	animation: ${fadeInBlur} 0.8s ease-out;
 `;
