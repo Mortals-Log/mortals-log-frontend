@@ -72,13 +72,13 @@ export const ImageSection = styled.div`
 	width: 100%;
 
 	@media (max-width: 1200px) {
-		flex: 0 0 auto;
-		width: 290px;
+		width: 100%;
+		max-width: 290px;
 	}
 
 	@media (max-width: 850px) {
-		flex: 0 0 auto;
-		width: 280px;
+		width: 100%;
+		max-width: 280px;
 	}
 `;
 
@@ -115,6 +115,10 @@ export const TextSection = styled.div`
 
 export const SourceLink = styled.a`
 	display: inline-block;
+	width: 80%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.XS};
@@ -145,6 +149,7 @@ export const ModifierContainer = styled.div`
 	align-items: flex-start;
 	margin-bottom: 0.8rem;
 	gap: 0.5rem;
+	will-change: transform, opacity, filter;
 
 	a {
 		opacity: 0;
