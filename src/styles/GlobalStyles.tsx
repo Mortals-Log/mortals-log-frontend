@@ -1,3 +1,5 @@
+// GlobalStyles.tsx
+
 import { Global, css } from '@emotion/react';
 
 import Reset from './reset';
@@ -144,6 +146,19 @@ const globalStyles = css`
 
 		@supports (-webkit-touch-callout: none) {
 			min-height: -webkit-fill-available;
+		}
+
+		&::before {
+			content: '';
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-image: url('/assets/noise.svg');
+			opacity: 0.6;
+			pointer-events: none;
+			z-index: 9999;
 		}
 	}
 

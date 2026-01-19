@@ -1,4 +1,4 @@
-// @src/pages/Profile.tsx
+// @src/pages/Profile/index
 
 const Profile = () => {
 	return (

@@ -1,3 +1,5 @@
+// @styles/componenets/GNB.style
+
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
@@ -10,15 +12,14 @@ export const GNBContainer = styled(motion.nav)`
 	left: 0;
 	width: 100%;
 	height: 60px;
-	z-index: 1000;
-	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY200};
+	z-index: 9999;
 	background-color: transparent;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(30px);
 `;
 
 export const Inner = styled.div`
 	position: relative;
-	max-width: 1600px;
+	max-width: 1200px;
 	height: 100%;
 	margin: 0 auto;
 	display: flex;
@@ -44,12 +45,12 @@ export const LogoGroup = styled.div`
 `;
 
 export const Logo = styled.div`
-	font-family: ${({ theme }) => theme.FONT.SERIF};
-	font-size: ${({ theme }) => theme.FONT.SIZE.MD};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
+	color: ${props => props.theme.COLOR.BLACK};
 
 	letter-spacing: -0.05em;
-	color: ${props => props.theme.COLOR.BLACK};
 	transition: opacity 0.2s ease;
 `;
 
@@ -57,11 +58,11 @@ export const Tagline = styled(motion.div)`
 	display: flex;
 	align-items: center;
 
-	font-family: ${({ theme }) => theme.FONT.SANS};
-	font-size: ${({ theme }) => theme.FONT.SIZE.XS};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.MEDIUM};
-
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.XS};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	color: ${props => props.theme.COLOR.GRAY500};
+
 	white-space: nowrap;
 	background-color: transparent;
 
@@ -74,7 +75,7 @@ export const Tagline = styled(motion.div)`
 		height: auto !important;
 		transform: translateY(-2px) !important;
 
-		font-size: ${({ theme }) => theme.FONT.SIZE.TINY};
+		font-size: ${props => props.theme.FONT.SIZE.TINY};
 	}
 `;
 
@@ -99,9 +100,9 @@ export const NavGroup = styled.ul`
 `;
 
 export const NavItem = styled(motion.a)`
-	font-family: ${({ theme }) => theme.FONT.SERIF};
-	font-size: ${({ theme }) => theme.FONT.SIZE.XS};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.XS};
+	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 
 	letter-spacing: 0.15em;
 	cursor: pointer;
@@ -129,16 +130,16 @@ export const DDayContent = styled.div`
 		display: none;
 	}
 
-	font-size: ${({ theme }) => theme.FONT.SIZE.SM};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
 
 	.label {
-		font-family: ${({ theme }) => theme.FONT.SERIF};
-		font-weight: ${({ theme }) => theme.FONT.WEIGHT.MEDIUM};
+		font-family: ${props => props.theme.FONT.SERIF};
+		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 		color: ${props => props.theme.COLOR.GRAY500};
 	}
 	.count {
-		font-family: ${({ theme }) => theme.FONT.SANS};
-		font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+		font-family: ${props => props.theme.FONT.SANS};
+		font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 `;
@@ -176,9 +177,9 @@ export const MobileMenu = styled(motion.div)`
 `;
 
 export const MobileNavItem = styled.li`
-	font-family: ${({ theme }) => theme.FONT.SERIF};
-	font-size: ${({ theme }) => theme.FONT.SIZE.MD};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 
 	letter-spacing: 0.1em;
 	color: ${props => props.theme.COLOR.BLACK};
@@ -194,9 +195,9 @@ export const MobileNavItem = styled.li`
 `;
 
 export const MobileDDayFooter = styled.div`
-	font-family: ${({ theme }) => theme.FONT.SERIF};
-	font-size: ${({ theme }) => theme.FONT.SIZE.MD};
-	font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 
 	margin-top: auto;
 	padding-top: 1rem;
@@ -206,13 +207,13 @@ export const MobileDDayFooter = styled.div`
 	gap: 0.5rem;
 
 	.label {
-		font-size: ${({ theme }) => theme.FONT.SIZE.XS};
-		font-weight: ${({ theme }) => theme.FONT.WEIGHT.MEDIUM};
+		font-size: ${props => props.theme.FONT.SIZE.XS};
+		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 		color: ${props => props.theme.COLOR.GRAY500};
 	}
 	.count {
-		font-size: ${({ theme }) => theme.FONT.SIZE.XL};
-		font-weight: ${({ theme }) => theme.FONT.WEIGHT.SEMIBOLD};
+		font-size: ${props => props.theme.FONT.SIZE.XL};
+		font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 `;

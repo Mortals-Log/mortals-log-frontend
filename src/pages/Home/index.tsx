@@ -1,14 +1,13 @@
-// @src/pages/Home.tsx
+// @src/pages/home/index
 
 import * as S from '@styles/pages/Home.style';
-import Information from './Information';
 import { NAME, METADATA } from '@const/contents';
+import Information from './Information';
+import ProfileSection from './ProfileSection';
 
 const Home = () => {
 	return (
 		<S.MainContainer>
-			<S.BackgroundNoise />
-
 			<S.HeroSection initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }}>
 				<header>
 					<S.Description>{METADATA.DESCRIPTION}</S.Description>
@@ -31,10 +30,9 @@ const Home = () => {
 				<Information />
 			</S.HeroSection>
 
-			<S.ScrollIndicator>
-				<p>SCROLL</p>
-				<div className="line" />
-			</S.ScrollIndicator>
+			<S.SectionWrapper>
+				<ProfileSection />
+			</S.SectionWrapper>
 		</S.MainContainer>
 	);
 };
