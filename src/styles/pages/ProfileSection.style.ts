@@ -159,7 +159,7 @@ export const ModifierContainer = styled.div`
 			opacity: 1;
 		}
 		h3 {
-			animation: paused;
++			animation-play-state: paused;
 		}
 	}
 
