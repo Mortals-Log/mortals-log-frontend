@@ -10,7 +10,8 @@ const ProfileSection = () => {
 	const [currentIdx, setCurrentIdx] = useState(0);
 	const [isPaused, setIsPaused] = useState(false);
 
-	const currentModifier = MODIFIERS[currentIdx];
+	const hasModifiers = MODIFIERS.length > 0;
+	const currentModifier = hasModifiers ? MODIFIERS[currentIdx] : null;
 	const { content, platform, account, contentTitle, postId } = PROFILE.description;
 
 	const getSnsUrl = (id: string) => `${SNS_PLATFORMS.INSTAGRAM.BASE_URL}${id}`;
@@ -24,7 +25,7 @@ const ProfileSection = () => {
 		}, 4000);
 
 		return () => clearInterval(timer);
-	}, [isPaused]);
+	}, [isPaused, hasModifiers]);
 
 	return (
 		<S.ProfileContainer>
@@ -37,12 +38,14 @@ const ProfileSection = () => {
 				</S.ImageSection>
 
 				<S.TextSection>
-					<S.ModifierContainer onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
-						<S.SourceLink href={getSnsUrl(currentModifier.postId)} target="_blank" rel="noreferrer">
-							{getSnsLabel(currentModifier.platform, currentModifier.account, currentModifier.contentTitle)}
-						</S.SourceLink>
-						<S.ModifierText key={currentModifier.content}>{currentModifier.content}</S.ModifierText>
-					</S.ModifierContainer>
+					{currentModifier && (
+						<S.ModifierContainer onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
+							<S.SourceLink href={getSnsUrl(currentModifier.postId)} target="_blank" rel="noreferrer">
+								{getSnsLabel(currentModifier.platform, currentModifier.account, currentModifier.contentTitle)}
+							</S.SourceLink>
+							<S.ModifierText key={currentModifier.content}>{currentModifier.content}</S.ModifierText>
+						</S.ModifierContainer>
+					)}
 
 					<S.NameSection>
 						<S.ArtistName>{PROFILE.name}</S.ArtistName>
