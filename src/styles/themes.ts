@@ -46,9 +46,9 @@ export const FONT = {
 		DISPLAY: 'clamp(3.5rem, 12vw, 9rem)',
 
 		// 페이지 제목 및 섹션 헤더
-		H1: 'clamp(2.5rem, 8vw, 6rem)',
-		H2: 'clamp(2rem, 5vw, 3.5rem)',
-		H3: 'clamp(1.5rem, 3vw, 2.5rem)',
+		H1: 'clamp(1.75rem, 4vw, 3rem)',
+		H2: 'clamp(1.375rem, 3vw, 2rem)',
+		H3: 'clamp(1.125rem, 2vw, 1.5rem)',
 
 		// 본문 및 서브 텍스트
 		XL: '1.25rem', // 리스트 강조, 리드 문구
