@@ -77,7 +77,7 @@ export const PROFILE: Profile = {
 	},
 
 	birth: ['1996. 06. 13', '강원도 춘천시 (現 강원특별자치도 춘천시)'],
-	nationality: 'Korea',
+	nationality: '대한민국',
 
 	education: '강원대학교 사범대학 (일반사회교육학 / 학사)',
 
@@ -86,7 +86,7 @@ export const PROFILE: Profile = {
 
 	debut: ['2022. 08. 20', 'EP 굴다리'],
 	job: ['싱어송라이터', '교사'],
-	alias: ['어둠의 김광석', '음악 공장장'],
+	alias: ['어둠의 김광석', '(음악)공장장'],
 	fandom: '필멸자',
 
 	officialLinks: LINKS,

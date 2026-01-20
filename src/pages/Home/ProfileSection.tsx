@@ -1,9 +1,11 @@
 // @pages/Home/ProfileSection
 
 import * as S from '@styles/pages/ProfileSection.style';
-import { useState, useEffect, useCallback } from 'react';
+import * as SLink from '@styles/components/SourceLink.style';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PROFILE, MODIFIERS, SNS_PLATFORMS } from '@const/contents';
+import { PROFILE, MODIFIERS } from '@const/contents';
+import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
 
 const ProfileSection = () => {
 	const navigate = useNavigate();
@@ -13,18 +15,6 @@ const ProfileSection = () => {
 	const hasModifiers = MODIFIERS.length > 0;
 	const currentModifier = hasModifiers ? MODIFIERS[currentIdx] : null;
 	const { content, platform, account, contentTitle, postId } = PROFILE.description;
-
-	const getSnsUrl = useCallback((plat: string, id: string | undefined) => {
-		if (!id) return '#';
-		const platformConfig = Object.values(SNS_PLATFORMS).find(p => p.NAME.toLowerCase() === plat.toLowerCase());
-		return platformConfig ? `${platformConfig.BASE_URL}${id}` : '#';
-	}, []);
-
-	const getSnsLabel = useCallback((plat: string, acc: string, title: string) => {
-		const platformName = plat.charAt(0).toUpperCase() + plat.slice(1).toLowerCase();
-		if (!acc) return `${platformName} - ${title}`;
-		return `${platformName}@${acc} - ${title}`;
-	}, []);
 
 	useEffect(() => {
 		if (isPaused || !hasModifiers) return;
@@ -49,12 +39,12 @@ const ProfileSection = () => {
 				<S.TextSection>
 					{currentModifier && (
 						<S.ModifierContainer onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
-							<S.SourceLink
-								href={getSnsUrl(currentModifier.platform, currentModifier.postId)}
+							<SLink.SourceLink
+								href={GetSnsUrl(currentModifier.platform, currentModifier.postId)}
 								target="_blank"
 								rel="noreferrer">
-								{getSnsLabel(currentModifier.platform, currentModifier.account, currentModifier.contentTitle)}
-							</S.SourceLink>
+								{GetSnsLabel(currentModifier.platform, currentModifier.account, currentModifier.contentTitle)}
+							</SLink.SourceLink>
 							<S.ModifierText key={currentModifier.content}>{currentModifier.content}</S.ModifierText>
 						</S.ModifierContainer>
 					)}
@@ -66,9 +56,9 @@ const ProfileSection = () => {
 
 					<S.DescriptionContainer>
 						<S.ProfileDescription>{content}</S.ProfileDescription>
-						<S.SourceLink href={getSnsUrl(platform, postId)} target="_blank" rel="noreferrer">
-							{getSnsLabel(platform, account, contentTitle)}
-						</S.SourceLink>
+						<SLink.SourceLink href={GetSnsUrl(platform, postId)} target="_blank" rel="noreferrer">
+							{GetSnsLabel(platform, account, contentTitle)}
+						</SLink.SourceLink>
 					</S.DescriptionContainer>
 
 					<S.ViewMoreBtn onClick={() => navigate('/profile')}>READ PROFILE LOG</S.ViewMoreBtn>
