@@ -65,7 +65,7 @@ export const Description = styled.blockquote`
 	margin: 0.8rem 0;
 `;
 
-export const ProfileSection = styled.section`
+export const ContentSection = styled.section`
 	margin-top: 5rem;
 `;
 
@@ -89,7 +89,7 @@ export const SectionTitle = styled.h3`
 	}
 `;
 
-export const InfoTable = styled.table`
+export const ProfileTable = styled.table`
 	width: 100%;
 	border-collapse: collapse;
 	font-family: ${props => props.theme.FONT.SANS};
@@ -134,4 +134,35 @@ export const RowSeparator = styled.hr`
 	border: none;
 	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY200};
 	margin: 0;
+`;
+
+export const LinkWrapper = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+`;
+
+export const LinkButton = styled.a`
+	display: inline-flex;
+	align-items: center;
+	padding: 0.8rem 1rem;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.GRAY700};
+
+	background: ${props => props.theme.COLOR.WHITE};
+	border: 1px solid ${props => props.theme.COLOR.GRAY200};
+	border-radius: 5px;
+
+	text-decoration: none;
+	transition: all 0.2s ease;
+
+	&:hover {
+		background: ${props => props.theme.COLOR.PRIMARY};
+		border-color: ${props => props.theme.COLOR.PRIMARY};
+		color: ${props => props.theme.COLOR.WHITE};
+		transform: translateY(-1px);
+	}
 `;

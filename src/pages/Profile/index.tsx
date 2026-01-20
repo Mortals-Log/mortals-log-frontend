@@ -2,7 +2,8 @@
 import * as S from '@styles/pages/Profile.style';
 import * as SLink from '@styles/components/SourceLink.style';
 import * as SVerticalBar from '@styles/components/VerticalBar.style';
-import { PROFILE } from '@const/contents';
+import { LINKS, PROFILE } from '@const/contents';
+import { LinkGroup } from '@/types/links';
 import { JSX } from 'react';
 import { ParseDate, CalculateKorAge, CalculateIntAge, CalculateElapsedDays, CalculateElapsedYears } from '@utils/date';
 import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
@@ -11,6 +12,10 @@ const SECTION_TITLE = {
 	PROFILE: {
 		KR: '프로필',
 		EN: 'Profile',
+	},
+	LINK: {
+		KR: '공식 링크',
+		EN: 'Official Links',
 	},
 } as const;
 
@@ -48,6 +53,27 @@ const Profile = () => {
 
 	const { content, platform, account, contentTitle, postId } = PROFILE.description;
 
+	const profileData = [
+		{ key: 'BIRTH', values: [`${PROFILE.birth[0]} (${korAge}세, 만 ${intAge}세)`, PROFILE.birth[1]] },
+		{ key: 'NATIONALITY', values: [PROFILE.nationality] },
+		{ key: 'EDUCATION', values: [PROFILE.education] },
+		{ key: 'JOB', values: [PROFILE.job.join(' / ')] },
+		{ key: 'MBTI_BLOOD', values: [`${PROFILE.mbti} / ${PROFILE.bloodType}`] },
+		{ key: 'ALIAS', values: [PROFILE.alias.join(', ')] },
+		{
+			key: 'DEBUT',
+			values: [
+				`${PROFILE.debut[0]} (${PROFILE.debut[1]})`,
+				<span>
+					데뷔일로부터 <b>D+{debutDays}일</b>
+					<SVerticalBar.VerticalBar> | </SVerticalBar.VerticalBar>
+					<b>{debutYears}주년</b>
+				</span>,
+			],
+		},
+		{ key: 'FANDOM', values: [PROFILE.fandom] },
+	] as const;
+
 	return (
 		<S.MainContainer>
 			<S.ProfileHeader>
@@ -68,38 +94,49 @@ const Profile = () => {
 				</S.InfoSummary>
 			</S.ProfileHeader>
 
-			<S.ProfileSection>
+			<S.ContentSection>
 				<S.SectionTitle>
 					{SECTION_TITLE.PROFILE.KR} <span>{SECTION_TITLE.PROFILE.EN}</span>
 				</S.SectionTitle>
-				<S.InfoTable>
+
+				<S.ProfileTable>
 					<tbody>
-						<InfoRow
-							label={PROFILE_LABELS.BIRTH}
-							values={[`${PROFILE.birth[0]} (${korAge}세, 만 ${intAge}세)`, PROFILE.birth[1]]}
-						/>
-						<InfoRow label={PROFILE_LABELS.NATIONALITY} values={[PROFILE.nationality]} />
-						<InfoRow label={PROFILE_LABELS.EDUCATION} values={[PROFILE.education]} />
-						<InfoRow label={PROFILE_LABELS.JOB} values={[PROFILE.job.join(' / ')]} />
-						<InfoRow label={PROFILE_LABELS.MBTI_BLOOD} values={[`${PROFILE.mbti} / ${PROFILE.bloodType}`]} />
-
-						<InfoRow label={PROFILE_LABELS.ALIAS} values={[PROFILE.alias.join(', ')]} />
-
-						<InfoRow
-							label={PROFILE_LABELS.DEBUT}
-							values={[
-								`${PROFILE.debut[0]} (${PROFILE.debut[1]})`,
-								<span>
-									데뷔일로부터 <b>D+{debutDays}일</b>
-									<SVerticalBar.VerticalBar> | </SVerticalBar.VerticalBar>
-									<b>{debutYears}주년</b>
-								</span>,
-							]}
-						/>
-						<InfoRow label={PROFILE_LABELS.FANDOM} values={[PROFILE.fandom]} />
+						{profileData.map(({ key, values }) => (
+							<InfoRow
+								key={key}
+								label={PROFILE_LABELS[key as keyof typeof PROFILE_LABELS]}
+								values={values as unknown as (string | number | JSX.Element)[]}
+							/>
+						))}
 					</tbody>
-				</S.InfoTable>
-			</S.ProfileSection>
+				</S.ProfileTable>
+			</S.ContentSection>
+
+			<S.ContentSection>
+				<S.SectionTitle>
+					{SECTION_TITLE.LINK.KR} <span>{SECTION_TITLE.LINK.EN}</span>
+				</S.SectionTitle>
+
+				<S.ProfileTable>
+					<tbody>
+						{LINKS.map((group: LinkGroup) => (
+							<InfoRow
+								key={group.category}
+								label={group.category}
+								values={[
+									<S.LinkWrapper key={group.category}>
+										{group.items.map(item => (
+											<S.LinkButton key={item.label} href={item.url} target="_blank" rel="noreferrer">
+												{item.label}
+											</S.LinkButton>
+										))}
+									</S.LinkWrapper>,
+								]}
+							/>
+						))}
+					</tbody>
+				</S.ProfileTable>
+			</S.ContentSection>
 		</S.MainContainer>
 	);
 };

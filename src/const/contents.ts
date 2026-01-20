@@ -19,18 +19,44 @@ export const NAME = {
 	SOCIALID: '1000_jinwoo',
 };
 
-export const LINKS: Links = {
-	INSTAGRAM: 'https://www.instagram.com/1000_jinwoo',
-	YOUTUBE: 'https://www.youtube.com/channel/UCnjNCmBszWrgEO0NvfAbbVQ',
-	SPOTIFY: 'https://open.spotify.com/artist/5OEgs7d2znP7y50pp8y7bK',
-	APPLE_MUSIC: 'https://music.apple.com/kr/artist/천진우/1641616138?ls',
-	GOODS_CD:
-		'https://gimbabrecords.com/product/search.html?view_type=&supplier_code=&category_no=&keyword=천진우&x=0&y=0',
-	GOODS_LP: 'https://smartstore.naver.com/irrelevant/products/10239470111',
-	GOODS_SHOP: 'https://marpple.shop/kr/1000_jinwoo',
-	OPEN_CHAT: 'https://open.kakao.com/o/gj0SK2Qe',
-	TJ_SONG_REQUEST: 'https://www.tjmedia.com/song/accompaniment_apply_agree',
-};
+export const LINKS: Links = [
+	{
+		category: 'SNS',
+		items: [
+			{ label: '인스타그램', url: 'https://www.instagram.com/1000_jinwoo' },
+			{ label: '카카오톡 오픈채팅', url: 'https://open.kakao.com/o/gj0SK2Qe' },
+		],
+	},
+	{
+		category: 'MUSIC',
+		items: [
+			{ label: 'Apple Music', url: 'https://music.apple.com/kr/artist/...' },
+			{ label: 'Spotify', url: 'https://open.spotify.com/artist/5OEgs7d2znP7y50pp8y7bK' },
+			{ label: 'YouTube', url: 'https://www.youtube.com/channel/UCnjNCmBszWrgEO0NvfAbbVQ' },
+		],
+	},
+	{
+		category: 'SHOP',
+		items: [
+			{
+				label: 'CD 앨범',
+				url: 'https://gimbabrecords.com/product/search.html?view_type=&supplier_code=&category_no=&keyword=천진우&x=0&y=0',
+			},
+			{ label: 'LP 바이닐', url: 'https://smartstore.naver.com/irrelevant/products/10239470111' },
+			{ label: '굿즈', url: 'https://marpple.shop/kr/1000_jinwoo' },
+		],
+	},
+	{
+		category: 'ETC',
+		items: [
+			{
+				label: '링크 트리',
+				url: 'https://linktr.ee/1000jinwoo?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn9XKUd5Bfg5-nWM88QQh643PrJrleX7QfjSieYPTZeUJc6nT11qYg3vGO8So_aem_3Du4C9eWuHq6MrdFtTKmDA',
+			},
+			{ label: '노래방 신청', url: 'https://www.tjmedia.com/song/accompaniment_apply_agree' },
+		],
+	},
+];
 
 export const SNS_PLATFORMS = {
 	INSTAGRAM: {
@@ -92,11 +118,14 @@ export const PROFILE: Profile = {
 	officialLinks: LINKS,
 };
 
+const shopGroup = LINKS.find(g => g.category === 'SHOP');
+const goodsUrl = shopGroup?.items.find(i => i.label === 'Goods Shop')?.url || '';
+
 export const NAV_ITEMS = [
 	{ id: 1, name: 'PROFILE', path: '/profile', isEnabled: true },
 	{ id: 2, name: 'ALBUM', path: '/album', isEnabled: true },
 	{ id: 3, name: 'SCHEDULE', path: '/schedule', isEnabled: true },
-	{ id: 4, name: 'GOODS', path: LINKS.GOODS_SHOP, isEnabled: true },
+	{ id: 4, name: 'GOODS', path: goodsUrl, isEnabled: true },
 	{ id: 5, name: 'ABOUT', path: '/about', isEnabled: true },
 	// { id: 6, name: 'PHOTOS', path: '#photos', isEnabled: false },
 ] as const;
