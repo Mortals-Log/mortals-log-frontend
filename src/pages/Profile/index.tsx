@@ -1,15 +1,14 @@
 // @src/pages/Profile/index
 
 import * as S from '@styles/pages/Profile.style';
-import * as SLink from '@styles/components/SourceLink.style';
 import * as SVerticalBar from '@styles/components/VerticalBar.style';
 import { LINKS, PROFILE } from '@const/contents';
 import { LinkGroup } from '@/types/links';
 import { JSX } from 'react';
 import { ParseDate, CalculateKorAge, CalculateIntAge, CalculateElapsedDays, CalculateElapsedYears } from '@utils/date';
-import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
 import { ICON_CONFIG } from '@const/icons';
 import { IconKey } from '@/types/icon';
+import { ProfileHeader } from '@pages/Profile/ProfileHeader';
 
 const SECTION_TITLE = {
 	PROFILE: {
@@ -54,8 +53,6 @@ const Profile = () => {
 	const debutYears = CalculateElapsedYears(PROFILE.debut[0]);
 	const debutDays = CalculateElapsedDays(PROFILE.debut[0]);
 
-	const { content, platform, account, contentTitle, postId } = PROFILE.description;
-
 	const profileData = [
 		{ key: 'BIRTH', values: [`${PROFILE.birth[0]} (${korAge}세, 만 ${intAge}세)`, PROFILE.birth[1]] },
 		{ key: 'NATIONALITY', values: [PROFILE.nationality] },
@@ -79,23 +76,7 @@ const Profile = () => {
 
 	return (
 		<S.MainContainer>
-			<S.ProfileHeader>
-				<S.MainImage src={PROFILE.mainImage} alt={PROFILE.name} />
-				<S.InfoSummary>
-					<S.NameGroup>
-						<h1>{PROFILE.name}</h1>
-						{PROFILE.enName} <SVerticalBar.VerticalBar>|</SVerticalBar.VerticalBar> {PROFILE.hanjaName}
-					</S.NameGroup>
-
-					<S.Description>
-						{content}
-						<br />
-						<SLink.SourceLink href={GetSnsUrl(platform, postId)} target="_blank" rel="noreferrer">
-							{GetSnsLabel(platform, account, contentTitle)}
-						</SLink.SourceLink>
-					</S.Description>
-				</S.InfoSummary>
-			</S.ProfileHeader>
+			<ProfileHeader />
 
 			<S.ContentSection>
 				<S.SectionTitle>
