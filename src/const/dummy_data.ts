@@ -3,7 +3,6 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
-import { Album } from '@/types/album';
 import { Schedule } from '@/types/schedule';
 
 export const DUMMY_SCHEDULE: Schedule[] = [
@@ -30,24 +29,5 @@ export const DUMMY_SCHEDULE: Schedule[] = [
 			{ part: '02. 06 (토)', time: '16:00' },
 			{ part: '02. 07 (일)', time: '16:00' },
 		],
-	},
-];
-
-export const DUMMY_ALBUM: Album[] = [
-	{
-		title: '졸업앨범',
-		releaseDate: '2025. 11. 01',
-		type: 'Regular Album',
-		musicVideo: '#',
-		store: '#',
-		coverImage: '#',
-	},
-	{
-		title: '꽃순이',
-		releaseDate: '2025. 06. 13',
-		type: 'Regular Album',
-		musicVideo: '#',
-		store: '#',
-		coverImage: '#',
 	},
 ];

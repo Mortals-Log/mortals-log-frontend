@@ -119,6 +119,9 @@ export const PROFILE: Profile = {
 	officialLinks: LINKS,
 };
 
+// todo: 정규 앨범, EP, 콘서트 등을 따로 분리한 뒤 CAREER_HISTORY로 통합하는 형태로 수정 필요
+// 통합 형태는 각 파트별 데이터를 관리하고 유지보수하기 위함
+// 현재는 페이지의 출력 형태를 위하여 데이터를 합쳐서 이용중
 export const CAREER_HISTORY = [
 	{
 		year: '2026',

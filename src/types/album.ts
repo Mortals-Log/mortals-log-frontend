@@ -1,11 +1,18 @@
-/* eslint-disable react-refresh/only-export-components */
+// @types/alubm
+
 /* eslint-disable storybook/default-exports */
 
 export interface Album {
 	title: string;
 	releaseDate: string;
-	type: 'Regular Album' | 'EP' | 'Single' | 'Live';
-	musicVideo?: string;
-	store?: string;
+	type: 'LP' | 'EP' | 'SP' | 'LV' | 'VN';
 	coverImage?: string;
+	store?: string;
+	musicVideo?: string;
 }
+
+// LP(Long Play): 정규 앨범 (음원/CD 중심)
+// EP(Extended Play): 미니 앨범
+// SP(Single Play): 싱글 앨범
+// LV(Live): 라이브/공연 실황 앨범
+// VN(Vinyl): LP 바이닐

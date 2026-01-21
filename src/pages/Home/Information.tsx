@@ -1,12 +1,13 @@
 // @pages/Home/Information
 
 import * as S from '@styles/pages/Information.style';
-import { DUMMY_SCHEDULE, DUMMY_ALBUM } from '@const/dummy_data';
+import { DUMMY_SCHEDULE } from '@const/dummy_data';
+import { ALL_ALBUMS } from '@/const/albums';
 import { GetLatestAlbum } from '@utils/album';
 import { GetUpcomingSchedules } from '@/utils/date';
 
 const upcomingEvents = GetUpcomingSchedules(DUMMY_SCHEDULE);
-const latestAlbum = GetLatestAlbum(DUMMY_ALBUM);
+const latestAlbum = GetLatestAlbum(ALL_ALBUMS);
 
 const Information = () => {
 	return (

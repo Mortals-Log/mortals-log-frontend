@@ -1,6 +1,5 @@
 // @styles/pages/Profile.style.ts
 
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
@@ -170,7 +169,7 @@ export const TimelineContainer = styled.div<{ $isExpanded: boolean }>`
 		left: 0;
 		width: 100%;
 		height: 100px;
-		background: linear-gradient(to bottom, transparent, ${({ theme }) => theme.COLOR.WHITE});
+		background: linear-gradient(to bottom, transparent, ${props => props.theme.COLOR.WHITE};
 		pointer-events: none;
 		opacity: ${({ $isExpanded }) => ($isExpanded ? 0 : 1)};
 		transition: opacity 0.3s ease;
@@ -244,40 +243,79 @@ export const TimelineText = styled.span`
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 `;
 
-export const ExpandButton = styled.button<{ $isExpanded: boolean }>`
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
-	padding: 12px;
-	margin-top: ${({ $isExpanded }) => ($isExpanded ? '0rem' : '-1.1rem')};
-
-	background-color: transparent;
-	border: 1px solid ${props => props.theme.COLOR.PRIMARY};
-	border-radius: 8px;
-
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
-	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-	color: ${props => props.theme.COLOR.GRAY700};
-	cursor: pointer;
-
-	position: relative;
-	z-index: 10;
-
-	transition: all 0.2s ease;
-
-	&:hover {
-		border: 1px solid ${props => props.theme.COLOR.PRIMARY};
-		background-color: ${props => props.theme.COLOR.PRIMARY};
-		color: ${props => props.theme.COLOR.WHITE};
-	}
-`;
-
 export const ArrowIcon = styled.span<{ $isExpanded: boolean }>`
 	display: inline-block;
 	font-size: ${props => props.theme.FONT.SIZE.XS};
 	transition: transform 0.3s ease;
 	transform: ${({ $isExpanded }) => ($isExpanded ? 'rotate(180deg)' : 'rotate(0deg)')};
+`;
+
+export const AlbumSliderContainer = styled.div`
+	position: relative;
+	width: 100%;
+	margin-top: 20px;
+	padding: 1rem;
+`;
+
+export const AlbumSlider = styled.div`
+	display: flex;
+	overflow-x: auto;
+	gap: 20px;
+
+	scroll-snap-type: x mandatory;
+	-webkit-overflow-scrolling: touch;
+`;
+
+export const AlbumCard = styled.div`
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 180px;
+	scroll-snap-align: start;
+	cursor: pointer;
+	margin-bottom: 8px;
+
+	&:hover img {
+		transform: scale(1.05);
+	}
+`;
+
+export const AlbumCover = styled.div`
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
+	border-radius: 10px;
+	background-color: ${props => props.theme.COLOR.WHITE};
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
+`;
+
+export const AlbumInfo = styled.div`
+	margin-top: 12px;
+	font-family: ${props => props.theme.FONT.SANS};
+
+	.title {
+		display: block;
+		margin-bottom: 4px;
+
+		font-size: ${props => props.theme.FONT.SIZE.MD};
+		font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
+		color: ${props => props.theme.COLOR.GRAY600};
+	}
+
+	.info {
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+		color: ${props => props.theme.COLOR.GRAY500};
+	}
+`;
+
+export const ExternalIcon = styled.span`
+	font-size: 1rem;
+	margin-bottom: 2px;
 `;

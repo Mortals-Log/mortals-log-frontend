@@ -3,6 +3,7 @@
 import * as S from '@styles/pages/Profile.style';
 import { CAREER_HISTORY } from '@const/contents';
 import { useState } from 'react';
+import { ExpandButton } from '@/styles/components/buttons.style';
 
 const ProfileCareerSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const [isExpanded, setIsExpanded] = useState(false);
@@ -62,10 +63,10 @@ const ProfileCareerSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_
 				))}
 			</S.TimelineContainer>
 
-			<S.ExpandButton $isExpanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
+			<ExpandButton $isExpanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
 				{isExpanded ? '활동 이력 접기' : '전체 활동 이력 보기'}
 				<S.ArrowIcon $isExpanded={isExpanded}>▼</S.ArrowIcon>
-			</S.ExpandButton>
+			</ExpandButton>
 		</S.ContentSection>
 	);
 };

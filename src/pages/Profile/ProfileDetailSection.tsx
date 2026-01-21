@@ -1,7 +1,7 @@
 // @src/pages/Profile/components/ProfileDetailSection.tsx
 
 import * as S from '@styles/pages/Profile.style';
-import * as SVerticalBar from '@styles/components/VerticalBar.style';
+import { VerticalBar } from '@styles/components/VerticalBar.style';
 import { PROFILE } from '@const/contents';
 import { ParseDate, CalculateKorAge, CalculateIntAge, CalculateElapsedDays, CalculateElapsedYears } from '@utils/date';
 import { Table } from '@/components/table';
@@ -38,7 +38,7 @@ export const ProfileDetailSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string;
 				`${PROFILE.debut[0]} (${PROFILE.debut[1]})`,
 				<span>
 					데뷔일로부터 <b>D+{debutDays}일</b>
-					<SVerticalBar.VerticalBar> | </SVerticalBar.VerticalBar>
+					<VerticalBar> | </VerticalBar>
 					<b>{debutYears}주년</b>
 				</span>,
 			],
