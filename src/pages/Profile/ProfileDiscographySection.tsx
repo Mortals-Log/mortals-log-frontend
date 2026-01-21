@@ -30,7 +30,7 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 				</S.AlbumSlider>
 			</S.AlbumSliderContainer>
 
-			<MoreButton href="/album" target="_self" rel="noreferrer">
+			<MoreButton to="/album" target="_self" rel="noreferrer">
 				전체 앨범 보러가기
 				<S.ExternalIcon>↗</S.ExternalIcon>
 			</MoreButton>

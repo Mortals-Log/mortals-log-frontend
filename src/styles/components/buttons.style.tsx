@@ -3,6 +3,7 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 const BaseButton = styled.button`
 	width: 100%;
@@ -37,7 +38,7 @@ export const ExpandButton = styled(BaseButton)<{ $isExpanded: boolean }>`
 	z-index: 10;
 `;
 
-export const MoreButton = styled(BaseButton.withComponent('a'))`
+export const MoreButton = styled(BaseButton.withComponent(Link))`
 	margin-top: 10px;
 	text-decoration: none;
 `;
