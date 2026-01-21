@@ -145,6 +145,7 @@ export const LinkWrapper = styled.div`
 export const LinkButton = styled.a`
 	display: inline-flex;
 	align-items: center;
+	gap: 8px;
 	padding: 0.8rem 1rem;
 
 	font-family: ${props => props.theme.FONT.SANS};
@@ -158,6 +159,12 @@ export const LinkButton = styled.a`
 
 	text-decoration: none;
 	transition: all 0.2s ease;
+
+	svg {
+		width: 16px;
+		height: 16px;
+		flex-shrink: 0;
+	}
 
 	&:hover {
 		background: ${props => props.theme.COLOR.PRIMARY};

@@ -1,4 +1,5 @@
 // @src/pages/Profile/index
+
 import * as S from '@styles/pages/Profile.style';
 import * as SLink from '@styles/components/SourceLink.style';
 import * as SVerticalBar from '@styles/components/VerticalBar.style';
@@ -7,6 +8,8 @@ import { LinkGroup } from '@/types/links';
 import { JSX } from 'react';
 import { ParseDate, CalculateKorAge, CalculateIntAge, CalculateElapsedDays, CalculateElapsedYears } from '@utils/date';
 import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
+import { ICON_CONFIG } from '@const/icons';
+import { IconKey } from '@/types/icon';
 
 const SECTION_TITLE = {
 	PROFILE: {
@@ -125,11 +128,18 @@ const Profile = () => {
 								label={group.category}
 								values={[
 									<S.LinkWrapper key={group.category}>
-										{group.items.map(item => (
-											<S.LinkButton key={item.label} href={item.url} target="_blank" rel="noreferrer">
-												{item.label}
-											</S.LinkButton>
-										))}
+										{group.items.map(item => {
+											const key = item.label.toLowerCase().replace(/\s+/g, '') as IconKey;
+											const config = ICON_CONFIG[key] || { icon: null, label: item.label };
+											const Icon = config.icon;
+
+											return (
+												<S.LinkButton key={item.label} href={item.url} target="_blank" rel="noreferrer">
+													<Icon width={16} height={16} />
+													{config.label}
+												</S.LinkButton>
+											);
+										})}
 									</S.LinkWrapper>,
 								]}
 							/>

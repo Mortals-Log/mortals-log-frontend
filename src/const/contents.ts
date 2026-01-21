@@ -23,8 +23,8 @@ export const LINKS: Links = [
 	{
 		category: 'SNS',
 		items: [
-			{ label: '인스타그램', url: 'https://www.instagram.com/1000_jinwoo' },
-			{ label: '카카오톡 오픈채팅', url: 'https://open.kakao.com/o/gj0SK2Qe' },
+			{ label: 'Instagram', url: 'https://www.instagram.com/1000_jinwoo' },
+			{ label: 'Kakaotalk', url: 'https://open.kakao.com/o/gj0SK2Qe' },
 		],
 	},
 	{
@@ -39,21 +39,21 @@ export const LINKS: Links = [
 		category: 'SHOP',
 		items: [
 			{
-				label: 'CD 앨범',
+				label: 'CD',
 				url: 'https://gimbabrecords.com/product/search.html?view_type=&supplier_code=&category_no=&keyword=천진우&x=0&y=0',
 			},
-			{ label: 'LP 바이닐', url: 'https://smartstore.naver.com/irrelevant/products/10239470111' },
-			{ label: '굿즈', url: 'https://marpple.shop/kr/1000_jinwoo' },
+			{ label: 'LP', url: 'https://smartstore.naver.com/irrelevant/products/10239470111' },
+			{ label: 'Goods', url: 'https://marpple.shop/kr/1000_jinwoo' },
 		],
 	},
 	{
 		category: 'ETC',
 		items: [
 			{
-				label: '링크 트리',
+				label: 'Link Tree',
 				url: 'https://linktr.ee/1000jinwoo?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn9XKUd5Bfg5-nWM88QQh643PrJrleX7QfjSieYPTZeUJc6nT11qYg3vGO8So_aem_3Du4C9eWuHq6MrdFtTKmDA',
 			},
-			{ label: '노래방 신청', url: 'https://www.tjmedia.com/song/accompaniment_apply_agree' },
+			{ label: 'Sing', url: 'https://www.tjmedia.com/song/accompaniment_apply_agree' },
 		],
 	},
 ];

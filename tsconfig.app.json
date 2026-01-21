@@ -36,7 +36,9 @@
 			"@styles/*": ["src/styles/*"],
 			"@types/*": ["src/types/*"],
 			"@utils/*": ["src/utils/*"]
-		}
+		},
+
+		"types": ["vite/client", "vite-plugin-svgr/client"]
 	},
 	"include": ["src"]
 }
