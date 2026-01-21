@@ -3,6 +3,7 @@
 import * as S from '@styles/pages/Profile.style';
 import { ALBUM_TYPE_LABEL, LP_ALBUMS } from '@const/albums';
 import { MoreButton } from '@/styles/components/buttons.style';
+import { GetAlbumCoverPath } from '@/utils/album';
 
 const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	return (
@@ -15,9 +16,7 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 				<S.AlbumSlider>
 					{LP_ALBUMS.map(album => (
 						<S.AlbumCard>
-							<S.AlbumCover>
-								<img src={album.coverImage} alt={album.title} />
-							</S.AlbumCover>
+							<img src={GetAlbumCoverPath(album)} alt={album.title} />
 
 							<S.AlbumInfo>
 								<span className="title">{album.title}</span>

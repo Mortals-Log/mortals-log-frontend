@@ -6,7 +6,7 @@ export interface Album {
 	title: string;
 	releaseDate: string;
 	type: 'LP' | 'EP' | 'SP' | 'LV' | 'VN';
-	coverImage?: string;
+	fileName?: string;
 	store?: string;
 	musicVideo?: string;
 }

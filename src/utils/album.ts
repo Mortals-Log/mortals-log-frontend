@@ -11,3 +11,9 @@ export const GetLatestAlbum = (albumList: Album[]): Album | undefined => {
 			new Date(a.releaseDate.replace(/\.\s*/g, '-')).getTime(),
 	)[0];
 };
+
+export const GetAlbumCoverPath = (album: Album) => {
+	if (!album.fileName) return '/assets/albums/LP_2022_zombie.webp';
+	const year = album.releaseDate.split('.')[0].trim();
+	return `/images/albums/${album.type}_${year}_${album.fileName}.webp`;
+};
