@@ -1,6 +1,5 @@
 // @const/sns_icon.ts
 
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
 import * as Icons from '@assets/icons';
@@ -12,6 +11,7 @@ export const ICON_CONFIG: Record<IconKey, { icon: React.FC<React.SVGProps<SVGSVG
 	youtube: { icon: Icons.youtube, label: 'YouTube' },
 	applemusic: { icon: Icons.applemusic, label: 'Apple Music' },
 	spotify: { icon: Icons.spotify, label: 'Spotify' },
+	soundcloud: { icon: Icons.soundcloud, label: 'Sound Cloud' },
 	linktree: { icon: Icons.linktree, label: 'Linktree' },
 	cd: { icon: Icons.cd, label: 'CD 구매하기' },
 	lp: { icon: Icons.lp, label: 'LP 바이닐 구매하기' },

@@ -1,6 +1,5 @@
 // @/types/icon.ts
 
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
 export const SUPPORTED_SERVICES = [
@@ -9,6 +8,7 @@ export const SUPPORTED_SERVICES = [
 	'youtube',
 	'applemusic',
 	'spotify',
+	'soundcloud',
 	'linktree',
 	'cd',
 	'lp',

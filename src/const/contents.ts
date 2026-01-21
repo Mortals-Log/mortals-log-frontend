@@ -1,6 +1,5 @@
 // @const/contents
 
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
 import { Citation, Profile } from '@/types/profile';
@@ -24,6 +23,7 @@ export const LINKS: Links = [
 		category: 'SNS',
 		items: [
 			{ label: 'Instagram', url: 'https://www.instagram.com/1000_jinwoo' },
+
 			{ label: 'Kakaotalk', url: 'https://open.kakao.com/o/gj0SK2Qe' },
 		],
 	},
@@ -33,6 +33,7 @@ export const LINKS: Links = [
 			{ label: 'Apple Music', url: 'https://music.apple.com/kr/artist/...' },
 			{ label: 'Spotify', url: 'https://open.spotify.com/artist/5OEgs7d2znP7y50pp8y7bK' },
 			{ label: 'YouTube', url: 'https://www.youtube.com/channel/UCnjNCmBszWrgEO0NvfAbbVQ' },
+			{ label: 'Sound Cloud', url: 'https://soundcloud.com/1000_jinwoo' },
 		],
 	},
 	{

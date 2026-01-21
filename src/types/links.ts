@@ -1,4 +1,5 @@
-/* eslint-disable react-refresh/only-export-components */
+// @/types/links
+
 /* eslint-disable storybook/default-exports */
 
 export interface LinkItem {
