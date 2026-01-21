@@ -159,9 +159,22 @@ export const LinkButton = styled.a`
 	}
 `;
 
-export const TimelineContainer = styled.div`
+export const TimelineContainer = styled.div<{ $isExpanded: boolean }>`
 	position: relative;
-	padding: 2rem;
+	padding: 2rem 1rem 0rem 1rem;
+
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100px;
+		background: linear-gradient(to bottom, transparent, ${({ theme }) => theme.COLOR.WHITE});
+		pointer-events: none;
+		opacity: ${({ $isExpanded }) => ($isExpanded ? 0 : 1)};
+		transition: opacity 0.3s ease;
+	}
 `;
 
 export const TimelineYearGroup = styled.div`
@@ -229,4 +242,42 @@ export const TimelineDate = styled.span`
 
 export const TimelineText = styled.span`
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+`;
+
+export const ExpandButton = styled.button<{ $isExpanded: boolean }>`
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 12px;
+	margin-top: ${({ $isExpanded }) => ($isExpanded ? '0rem' : '-1.1rem')};
+
+	background-color: transparent;
+	border: 1px solid ${props => props.theme.COLOR.PRIMARY};
+	border-radius: 8px;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	color: ${props => props.theme.COLOR.GRAY700};
+	cursor: pointer;
+
+	position: relative;
+	z-index: 10;
+
+	transition: all 0.2s ease;
+
+	&:hover {
+		border: 1px solid ${props => props.theme.COLOR.PRIMARY};
+		background-color: ${props => props.theme.COLOR.PRIMARY};
+		color: ${props => props.theme.COLOR.WHITE};
+	}
+`;
+
+export const ArrowIcon = styled.span<{ $isExpanded: boolean }>`
+	display: inline-block;
+	font-size: ${props => props.theme.FONT.SIZE.XS};
+	transition: transform 0.3s ease;
+	transform: ${({ $isExpanded }) => ($isExpanded ? 'rotate(180deg)' : 'rotate(0deg)')};
 `;

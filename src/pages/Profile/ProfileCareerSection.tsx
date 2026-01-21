@@ -2,8 +2,37 @@
 
 import * as S from '@styles/pages/Profile.style';
 import { CAREER_HISTORY } from '@const/contents';
+import { useState } from 'react';
 
 const ProfileCareerSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
+	const [isExpanded, setIsExpanded] = useState(false);
+	const ITEM_LIMIT = 6;
+
+	const getVisibleHistory = () => {
+		if (isExpanded) return CAREER_HISTORY;
+
+		let count = 0;
+		const filtered: typeof CAREER_HISTORY = [];
+
+		for (const group of CAREER_HISTORY) {
+			if (count >= ITEM_LIMIT) break;
+
+			const remainingSlots = ITEM_LIMIT - count;
+			const itemsToInclude = group.items.slice(0, remainingSlots);
+
+			if (itemsToInclude.length > 0) {
+				filtered.push({
+					...group,
+					items: itemsToInclude,
+				});
+				count += itemsToInclude.length;
+			}
+		}
+		return filtered;
+	};
+
+	const visibleHistory = getVisibleHistory();
+
 	return (
 		<S.ContentSection>
 			<S.SectionTitle>
@@ -12,8 +41,8 @@ const ProfileCareerSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_
 					* 현재 주요 활동은 정규 앨범, EP, 단독 콘서트만 확인할 수 있습니다.
 				</span>
 			</S.SectionTitle>
-			<S.TimelineContainer>
-				{CAREER_HISTORY.map(group => (
+			<S.TimelineContainer $isExpanded={isExpanded}>
+				{visibleHistory.map(group => (
 					<S.TimelineYearGroup key={group.year}>
 						<S.TimelineYearLabel>{group.year}</S.TimelineYearLabel>
 
@@ -32,6 +61,11 @@ const ProfileCareerSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_
 					</S.TimelineYearGroup>
 				))}
 			</S.TimelineContainer>
+
+			<S.ExpandButton $isExpanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
+				{isExpanded ? '활동 이력 접기' : '전체 활동 이력 보기'}
+				<S.ArrowIcon $isExpanded={isExpanded}>▼</S.ArrowIcon>
+			</S.ExpandButton>
 		</S.ContentSection>
 	);
 };
