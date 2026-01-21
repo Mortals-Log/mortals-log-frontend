@@ -180,7 +180,7 @@ export const CAREER_HISTORY = [
 ];
 
 const shopGroup = LINKS.find(g => g.category === 'SHOP');
-const goodsUrl = shopGroup?.items.find(i => i.label === 'Goods Shop')?.url || '';
+const goodsUrl = shopGroup?.items.find(i => i.label === 'Goods')?.url || '';
 
 export const NAV_ITEMS = [
 	{ id: 1, name: 'PROFILE', path: '/profile', isEnabled: true },
