@@ -64,27 +64,119 @@ const LP_ALBUMS: Album[] = [
 ];
 
 const EP_ALBUMS: Album[] = [
-	// EP 추가 예정
 	{
 		type: 'EP',
 		title: '굴다리',
+		fileName: 'underpass',
 		releaseDate: '2022. 08. 20',
-		coverImage: '#',
+		store: '#',
+		musicVideo: '#',
+	},
+	{
+		type: 'EP',
+		title: '일기장',
+		fileName: 'diary',
+		releaseDate: '2023. 07. 07',
+		store: '#',
+		musicVideo: '#',
+	},
+	{
+		type: 'EP',
+		title: '귀천',
+		fileName: 'back-to-haeven',
+		releaseDate: '2024. 09. 09',
 		store: '#',
 		musicVideo: '#',
 	},
 ];
 
 const SP_ALBUMS: Album[] = [
-	// 싱글 앨범 추가 예정
+	{
+		type: 'SP',
+		title: '속편',
+		fileName: 'sequel',
+		releaseDate: '2023. 01. 25',
+		store: '#',
+		musicVideo: '#',
+	},
+	{
+		type: 'SP',
+		title: '인간쓰레기',
+		fileName: 'human-trash',
+		releaseDate: '2024. 03. 03',
+		store: '#',
+		musicVideo: '#',
+	},
+	{
+		type: 'SP',
+		title: '고백',
+		fileName: 'confession',
+		releaseDate: '2024. 04. 04',
+		store: '#',
+		musicVideo: '#',
+	},
+	{
+		type: 'SP',
+		title: '세모 네모 동그라미',
+		fileName: 'shapes',
+		releaseDate: '2024. 05. 05',
+		store: '#',
+		musicVideo: '#',
+	},
+	{
+		type: 'SP',
+		title: '이별이 그대는 쉽나요',
+		fileName: 'parting',
+		releaseDate: '2024. 06. 13',
+		store: '#',
+		musicVideo: '#',
+	},
 ];
 
 const LV_ALBUMS: Album[] = [
-	// 라이브 앨범 추가 예정
+	{
+		type: 'LV',
+		title: '천진우 라이브',
+		fileName: 'live-v1',
+		releaseDate: '2024. 01. 11',
+		store: '#',
+		musicVideo: '#',
+	},
+	{
+		type: 'LV',
+		title: '천진우 라이브2',
+		fileName: 'live-v2',
+		releaseDate: '2025. 02. 09',
+		store: '#',
+		musicVideo: '#',
+	},
+	{
+		type: 'LV',
+		title: '구토유발자들',
+		fileName: 'nauseators',
+		releaseDate: '2025. 04. 18',
+		store: '#',
+		musicVideo: '#',
+	},
 ];
 
 const VN_ALBUMS: Album[] = [
-	// 바이닐 추가 예정
+	{
+		type: 'VN',
+		title: '[네이버] 천진우 [굴다리] 바이닐 (LP 앨범)',
+		fileName: 'underpass',
+		releaseDate: '2024. 04. 24',
+		store: '#',
+		musicVideo: '#',
+	},
+	{
+		type: 'VN',
+		title: '[김밥레코즈] 천진우 / 굴다리 (12" Marble Colored Vinyl)',
+		fileName: 'underpass',
+		releaseDate: '2024. 04. 24',
+		store: '#',
+		musicVideo: '#',
+	},
 ];
 
 export const ALL_ALBUMS = [...LP_ALBUMS, ...EP_ALBUMS, ...SP_ALBUMS, ...LV_ALBUMS, ...VN_ALBUMS].sort(

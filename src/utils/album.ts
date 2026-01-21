@@ -13,7 +13,7 @@ export const GetLatestAlbum = (albumList: Album[]): Album | undefined => {
 };
 
 export const GetAlbumCoverPath = (album: Album) => {
-	if (!album.fileName) return '/assets/albums/LP_2022_zombie.webp';
+	if (!album.fileName) return '/images/albums/default.webp';
 	const year = album.releaseDate.split('.')[0].trim();
 	return `/images/albums/${album.type}_${year}_${album.fileName}.webp`;
 };

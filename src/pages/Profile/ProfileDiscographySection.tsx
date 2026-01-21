@@ -16,7 +16,15 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 				<S.AlbumSlider>
 					{LP_ALBUMS.map(album => (
 						<S.AlbumCard>
-							<img src={GetAlbumCoverPath(album)} alt={album.title} />
+							<img
+								src={GetAlbumCoverPath(album)}
+								alt={album.title}
+								onError={e => {
+									const target = e.currentTarget;
+									target.src = '/images/albums/default.webp';
+									target.onerror = null;
+								}}
+							/>
 
 							<S.AlbumInfo>
 								<span className="title">{album.title}</span>
