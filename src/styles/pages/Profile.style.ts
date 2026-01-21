@@ -121,21 +121,6 @@ export const ProfileTable = styled.table`
 	}
 `;
 
-export const ValueItem = styled.div`
-	padding: 16px 20px;
-
-	b {
-		font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
-	}
-`;
-
-export const RowSeparator = styled.hr`
-	width: 100%;
-	border: none;
-	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY200};
-	margin: 0;
-`;
-
 export const LinkWrapper = styled.div`
 	display: flex;
 	flex-wrap: wrap;
