@@ -1,7 +1,7 @@
 // @src/pages/Profile/CareerTimelineSection.tsx
 
 import * as S from '@styles/pages/Profile.style';
-import { CAREER_HISTORY } from '@const/contents';
+import { FULL_CAREER_HISTORY } from '@const/career';
 import { useState } from 'react';
 import { ExpandButton } from '@/styles/components/buttons.style';
 
@@ -10,12 +10,12 @@ const ProfileCareerSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_
 	const ITEM_LIMIT = 6;
 
 	const getVisibleHistory = () => {
-		if (isExpanded) return CAREER_HISTORY;
+		if (isExpanded) return FULL_CAREER_HISTORY;
 
 		let count = 0;
-		const filtered: typeof CAREER_HISTORY = [];
+		const filtered: typeof FULL_CAREER_HISTORY = [];
 
-		for (const group of CAREER_HISTORY) {
+		for (const group of FULL_CAREER_HISTORY) {
 			if (count >= ITEM_LIMIT) break;
 
 			const remainingSlots = ITEM_LIMIT - count;

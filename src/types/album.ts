@@ -11,6 +11,13 @@ export interface Album {
 	musicVideo?: string;
 }
 
+export interface AlbumGroup {
+	year: string;
+	items: Album[];
+}
+
+export type AlbumList = AlbumGroup[];
+
 // LP(Long Play): 정규 앨범 (음원/CD 중심)
 // EP(Extended Play): 미니 앨범
 // SP(Single Play): 싱글 앨범

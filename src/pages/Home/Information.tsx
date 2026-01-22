@@ -2,12 +2,12 @@
 
 import * as S from '@styles/pages/Information.style';
 import { DUMMY_SCHEDULE } from '@const/dummy_data';
-import { ALL_ALBUMS } from '@/const/albums';
+import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import { GetLatestAlbum } from '@utils/album';
 import { GetUpcomingSchedules } from '@/utils/date';
 
 const upcomingEvents = GetUpcomingSchedules(DUMMY_SCHEDULE);
-const latestAlbum = GetLatestAlbum(ALL_ALBUMS);
+const latestAlbum = GetLatestAlbum(FULL_ALBUMS);
 
 const Information = () => {
 	return (
@@ -52,7 +52,7 @@ const Information = () => {
 							<h3 className="title">{latestAlbum.title}</h3>
 							<div className="details">
 								<p className="info-text">
-									{latestAlbum.type} | {latestAlbum.releaseDate}
+									{ALBUM_TYPE_LABEL[latestAlbum.type]} | {latestAlbum.releaseDate}
 								</p>
 								<div style={{ display: 'flex', gap: '0.5rem' }}>
 									<S.LinkButton whileHover={{ scale: 1.05 }}>앨범 구매</S.LinkButton>
