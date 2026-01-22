@@ -38,9 +38,6 @@ const ProfileCareerSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_
 		<S.ContentSection>
 			<S.SectionTitle>
 				{TITLE_KR} <span>{TITLE_EN}</span>
-				<span style={{ marginLeft: '20px', fontSize: '0.8rem' }}>
-					* 현재 주요 활동은 정규 앨범, EP, 단독 콘서트만 확인할 수 있습니다.
-				</span>
 			</S.SectionTitle>
 			<S.TimelineContainer $isExpanded={isExpanded}>
 				{visibleHistory.map(group => (

@@ -70,7 +70,11 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 							<S.AlbumInfo>
 								<span className="title">{album.title}</span>
 								<span className="info">
-									{ALBUM_TYPE_LABEL[album.type] || album.type} • {album.releaseDate.split('.')[0]}
+									{album.type === 'LP'
+										? `${ALBUM_TYPE_LABEL[album.type]} ${album.volume}집`
+										: ALBUM_TYPE_LABEL[album.type]}
+									{' | '}
+									{album.releaseDate.split('.')[0]}년
 								</span>
 							</S.AlbumInfo>
 						</S.AlbumCard>

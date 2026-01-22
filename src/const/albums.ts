@@ -15,6 +15,7 @@ export const ALBUM_TYPE_LABEL: Record<string, string> = {
 export const LP_ALBUMS: Album[] = [
 	{
 		type: 'LP',
+		volume: 6,
 		title: '졸업앨범',
 		fileName: 'graduation',
 		releaseDate: '2025.11.21',
@@ -23,6 +24,7 @@ export const LP_ALBUMS: Album[] = [
 	},
 	{
 		type: 'LP',
+		volume: 5,
 		title: '꽃순이',
 		fileName: 'flower',
 		releaseDate: '2025.06.13',
@@ -31,6 +33,7 @@ export const LP_ALBUMS: Album[] = [
 	},
 	{
 		type: 'LP',
+		volume: 4,
 		title: '나는 기계가 싫어요',
 		fileName: 'machine',
 		releaseDate: '2024.11.11',
@@ -39,6 +42,7 @@ export const LP_ALBUMS: Album[] = [
 	},
 	{
 		type: 'LP',
+		volume: 3,
 		title: '천진우 캐롤 모음집',
 		fileName: 'carols',
 		releaseDate: '2023.12.01',
@@ -47,6 +51,7 @@ export const LP_ALBUMS: Album[] = [
 	},
 	{
 		type: 'LP',
+		volume: 2,
 		title: '푸줏간',
 		fileName: 'butcher',
 		releaseDate: '2023.04.01',
@@ -55,6 +60,7 @@ export const LP_ALBUMS: Album[] = [
 	},
 	{
 		type: 'LP',
+		volume: 1,
 		title: '명상좀비',
 		fileName: 'zombie',
 		releaseDate: '2022.11.21',

@@ -6,6 +6,7 @@ export interface Album {
 	title: string;
 	releaseDate: string;
 	type: 'LP' | 'EP' | 'SP' | 'LV' | 'VN';
+	volume?: number;
 	fileName?: string;
 	store?: string;
 	musicVideo?: string;

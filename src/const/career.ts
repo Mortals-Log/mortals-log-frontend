@@ -31,7 +31,9 @@ export const GET_FULL_HISTORY = () => {
 			historyMap[group.year].push({
 				date: date,
 				displayDate: date,
-				content: `${ALBUM_TYPE_LABEL[item.type]} [${item.title}] 발매`,
+				content: `${ALBUM_TYPE_LABEL[item.type]}${
+					item.type === 'LP' && item.volume ? ` ${item.volume}집` : ''
+				} [${item.title}] 발매`,
 				fullDate: item.releaseDate,
 			});
 		});
