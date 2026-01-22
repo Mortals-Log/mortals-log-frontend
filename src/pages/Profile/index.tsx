@@ -34,9 +34,9 @@ const Profile = () => {
 
 			<ProfileDetailSection {...SECTION_TITLE.PROFILE} />
 
-			<ProfileLinkSection {...SECTION_TITLE.LINK} />
-
 			<ProfileDiscographySection {...SECTION_TITLE.DISCOGRAPHY} />
+
+			<ProfileLinkSection {...SECTION_TITLE.LINK} />
 
 			<ProfileCareerSection {...SECTION_TITLE.CAREER} />
 		</S.MainContainer>
