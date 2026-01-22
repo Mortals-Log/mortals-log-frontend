@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
-import { Schedule } from '@/types/schedule';
+import { Concert, ConcertItem } from '@/types/concert';
 
 const MS_PER_DAY = 1000 * 60 * 60 * 24;
 
@@ -28,24 +28,25 @@ export const GetDDay = (targetDate: string): string | null => {
 	}
 };
 
-export const GetUpcomingSchedules = (schedules: Schedule[]): Schedule[] => {
-	const today = new Date();
-	today.setHours(0, 0, 0, 0);
-	const todayTime = today.getTime();
+export const GetUpcomingSchedules = (fullConcerts: Concert[], limit?: number): (ConcertItem & { year: string })[] => {
+	const now = new Date();
+	const todayNum = Number(
+		`${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`,
+	);
 
-	return [...schedules]
-		.filter(event => {
-			const eventDateStr = event.date.split(' ~ ')[0].replace(/\. /g, '-').replace(/\./g, '-');
-			const eventTime = new Date(eventDateStr).getTime();
+	const upcoming = fullConcerts
+		.flatMap(group =>
+			group.items
+				.map(item => ({
+					...item,
+					year: group.year,
+					startDateNum: Number(`${group.year}${item.date.split('~')[0].replace(/[^0-9]/g, '')}`),
+				}))
+				.filter(item => item.startDateNum >= todayNum),
+		)
+		.sort((a, b) => a.startDateNum - b.startDateNum);
 
-			return eventTime >= todayTime;
-		})
-		.sort((a, b) => {
-			const dateA = new Date(a.date.split(' ~ ')[0].replace(/\. /g, '-').replace(/\./g, '-')).getTime();
-			const dateB = new Date(b.date.split(' ~ ')[0].replace(/\. /g, '-').replace(/\./g, '-')).getTime();
-
-			return dateA - dateB;
-		});
+	return limit ? upcoming.slice(0, limit) : upcoming;
 };
 
 export const ParseDate = (dateStr: string) => {
