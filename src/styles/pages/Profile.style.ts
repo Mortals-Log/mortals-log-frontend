@@ -169,7 +169,7 @@ export const TimelineContainer = styled.div<{ $isExpanded: boolean }>`
 		left: 0;
 		width: 100%;
 		height: 100px;
-		background: linear-gradient(to bottom, transparent, ${props => props.theme.COLOR.WHITE};
+		background: linear-gradient(to bottom, transparent, ${props => props.theme.COLOR.WHITE});
 		pointer-events: none;
 		opacity: ${({ $isExpanded }) => ($isExpanded ? 0 : 1)};
 		transition: opacity 0.3s ease;
