@@ -1,6 +1,5 @@
-// @styles/components/Table.style.ts
+// @styles/components/Table.style
 
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
