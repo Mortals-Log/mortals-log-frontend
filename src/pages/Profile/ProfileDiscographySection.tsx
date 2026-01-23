@@ -1,6 +1,6 @@
 // @pages/Profile/ProfileDiscographySection
 
-import * as S from '@styles/pages/Profile.style';
+import * as S from '@styles/pages/Profile';
 import { ALBUM_TYPE_LABEL, LP_ALBUMS } from '@const/albums';
 import { MoreButton } from '@/styles/components/buttons.style';
 import { GetAlbumCoverPath } from '@/utils/album';

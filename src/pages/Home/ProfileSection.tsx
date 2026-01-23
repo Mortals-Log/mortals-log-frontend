@@ -1,6 +1,6 @@
 // @pages/Home/ProfileSection
 
-import * as S from '@styles/pages/ProfileSection.style';
+import * as S from '@/styles/pages/Home/ProfileSection.style';
 import * as SLink from '@styles/components/SourceLink.style';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';

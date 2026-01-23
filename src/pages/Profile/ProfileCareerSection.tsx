@@ -1,6 +1,6 @@
 // @src/pages/Profile/ProfileCareerSection.tsx
 
-import * as S from '@styles/pages/Profile.style';
+import * as S from '@styles/pages/Profile';
 import { FULL_CAREER_HISTORY } from '@const/career';
 import { useState } from 'react';
 import { ExpandButton } from '@/styles/components/buttons.style';

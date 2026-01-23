@@ -1,6 +1,6 @@
 // @src/pages/Profile/components/ProfileHeader.tsx
 
-import * as S from '@styles/pages/Profile.style';
+import * as S from '@styles/pages/Profile';
 import * as SLink from '@styles/components/SourceLink.style';
 import * as SVerticalBar from '@styles/components/VerticalBar.style';
 import { PROFILE } from '@const/contents';

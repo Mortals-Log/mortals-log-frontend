@@ -1,6 +1,6 @@
 // @src/pages/Profile/components/ProfileLinkSection.tsx
 
-import * as S from '@styles/pages/Profile.style';
+import * as S from '@styles/pages/Profile';
 import { Table } from '@/components/Table';
 import { LINKS } from '@const/contents';
 import { LinkGroup } from '@/types/links';
