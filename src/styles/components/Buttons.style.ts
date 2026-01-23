@@ -3,7 +3,14 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
+import { keyframes } from '@emotion/react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
+const blink = keyframes`
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+`;
 
 const BaseButton = styled.button`
 	width: 100%;
@@ -43,6 +50,26 @@ export const MoreButton = styled(BaseButton.withComponent(Link))`
 	text-decoration: none;
 `;
 
+export const ActionButton = styled(motion.button)`
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.BLACK};
+
+	margin: 1rem 0rem;
+	background: transparent;
+	border: 1px solid ${props => props.theme.COLOR.BLACK};
+	padding: 0.6rem 1.5rem;
+	letter-spacing: 0.2em;
+	cursor: pointer;
+
+	&:hover {
+		background: ${props => props.theme.COLOR.PRIMARY};
+		color: ${props => props.theme.COLOR.WHITE};
+		border-color: ${props => props.theme.COLOR.PRIMARY};
+	}
+`;
+
 export const LinkButton = styled.a`
 	display: inline-flex;
 	align-items: center;
@@ -72,5 +99,37 @@ export const LinkButton = styled.a`
 		border-color: ${props => props.theme.COLOR.PRIMARY};
 		color: ${props => props.theme.COLOR.WHITE};
 		transform: translateY(-1px);
+	}
+`;
+
+export const ViewMoreBtn = styled.button`
+	width: fit-content;
+	background-color: ${props => props.theme.COLOR.BLACK};
+	padding: 1rem 1.5rem;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
+	color: ${props => props.theme.COLOR.WHITE};
+
+	border: none;
+	cursor: pointer;
+	transition: all 0.3s;
+
+	&::after {
+		content: '|';
+		margin-left: 2px;
+		color: ${props => props.theme.COLOR.WHITE};
+		animation: ${blink} 1s step-end infinite;
+	}
+
+	&:hover {
+		background-color: ${props => props.theme.COLOR.PRIMARY};
+		color: ${props => props.theme.COLOR.WHITE};
+	}
+
+	@media (max-width: 850px) {
+		padding: 0.9rem 1.5rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;

@@ -6,14 +6,11 @@
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
 
+export * from '@styles/components/Buttons.style';
+
 const fadeInBlur = keyframes`
   from { opacity: 0; filter: blur(10px); transform: translateY(10px); }
   to { opacity: 1; filter: blur(0); transform: translateY(0); }
-`;
-
-const blink = keyframes`
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
 `;
 
 export const ProfileContainer = styled.section`
@@ -203,37 +200,5 @@ export const ProfileDescription = styled.p`
 
 	@media (max-width: 850px) {
 		font-size: ${props => props.theme.FONT.SIZE.MD};
-	}
-`;
-
-export const ViewMoreBtn = styled.button`
-	width: fit-content;
-	background-color: ${props => props.theme.COLOR.BLACK};
-	padding: 1rem 1.5rem;
-
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.MD};
-	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
-	color: ${props => props.theme.COLOR.WHITE};
-
-	border: none;
-	cursor: pointer;
-	transition: all 0.3s;
-
-	&::after {
-		content: '|';
-		margin-left: 2px;
-		color: ${props => props.theme.COLOR.WHITE};
-		animation: ${blink} 1s step-end infinite;
-	}
-
-	&:hover {
-		background-color: ${props => props.theme.COLOR.PRIMARY};
-		color: ${props => props.theme.COLOR.WHITE};
-	}
-
-	@media (max-width: 850px) {
-		padding: 0.9rem 1.5rem;
-		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;

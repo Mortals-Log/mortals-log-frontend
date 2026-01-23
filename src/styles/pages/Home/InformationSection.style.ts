@@ -6,6 +6,8 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
+export * from '@styles/components/Buttons.style';
+
 export const InformationContainer = styled(motion.div)`
 	width: 100%;
 	max-width: 1000px;
@@ -101,25 +103,5 @@ export const TimeTag = styled.div`
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 		color: ${props => props.theme.COLOR.GRAY600};
-	}
-`;
-
-export const LinkButton = styled(motion.button)`
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
-	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-	color: ${props => props.theme.COLOR.BLACK};
-
-	margin: 1rem 0rem;
-	background: transparent;
-	border: 1px solid ${props => props.theme.COLOR.BLACK};
-	padding: 0.6rem 1.5rem;
-	letter-spacing: 0.2em;
-	cursor: pointer;
-
-	&:hover {
-		background: ${props => props.theme.COLOR.PRIMARY};
-		color: ${props => props.theme.COLOR.WHITE};
-		border-color: ${props => props.theme.COLOR.PRIMARY};
 	}
 `;
