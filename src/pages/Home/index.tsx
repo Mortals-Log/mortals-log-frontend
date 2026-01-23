@@ -1,10 +1,9 @@
 // @src/pages/home/index
 
 import * as S from '@/styles/pages/Home/Home.style';
-import { VerticalBar } from '@styles/common/VerticalBar.style';
+import Information from '@pages/Home/InformationSection';
+import ProfileSection from '@pages/Home/ProfileSection';
 import { NAME, METADATA } from '@const/contents';
-import Information from './InformationSection';
-import ProfileSection from './ProfileSection';
 
 const Home = () => {
 	return (
@@ -20,9 +19,9 @@ const Home = () => {
 						transition={{ delay: 0.8, duration: 1.5, ease: 'easeInOut' }}>
 						<S.SubTitleWrapper>
 							<S.SubTitle>{NAME.ENGLISH}</S.SubTitle>
-							<VerticalBar>|</VerticalBar>
+							<S.VerticalBar>|</S.VerticalBar>
 							<S.SubTitle>{NAME.HANJA}</S.SubTitle>
-							<VerticalBar>|</VerticalBar>
+							<S.VerticalBar>|</S.VerticalBar>
 							<S.SubTitle>{NAME.SOCIALID}</S.SubTitle>
 						</S.SubTitleWrapper>
 					</S.SubTitleContainer>

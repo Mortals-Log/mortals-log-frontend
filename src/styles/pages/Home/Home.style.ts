@@ -1,10 +1,11 @@
 //@styles/pages/Home.style
 
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+
+export { VerticalBar } from '@styles/common/VerticalBar.style';
 
 export const MainContainer = styled.main`
 	display: flex;

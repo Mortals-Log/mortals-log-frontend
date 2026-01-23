@@ -2,9 +2,9 @@
 
 import * as S from '@/styles/pages/Home/InformationSection.style';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
+import { FULL_CONCERTS } from '@/const/concert';
 import { GetLatestAlbum } from '@utils/album';
 import { GetUpcomingSchedules } from '@/utils/date';
-import { FULL_CONCERTS } from '@/const/concert';
 
 const upcomingEvents = GetUpcomingSchedules(FULL_CONCERTS);
 const latestAlbum = GetLatestAlbum(FULL_ALBUMS);
