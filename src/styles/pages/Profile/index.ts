@@ -5,3 +5,5 @@
 export * from '@styles/components/Buttons.style';
 export * from '@styles/pages/Profile/Profile.style';
 export * from '@styles/common/SectionTitle';
+
+export * from '@styles/common/ArrowIcon';

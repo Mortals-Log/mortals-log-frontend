@@ -191,13 +191,6 @@ export const TimelineText = styled.span`
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 `;
 
-export const ArrowIcon = styled.span<{ $isExpanded: boolean }>`
-	display: inline-block;
-	font-size: ${props => props.theme.FONT.SIZE.XS};
-	transition: transform 0.3s ease;
-	transform: ${({ $isExpanded }) => ($isExpanded ? 'rotate(180deg)' : 'rotate(0deg)')};
-`;
-
 export const AlbumSliderContainer = styled.div`
 	width: 100%;
 	position: relative;
