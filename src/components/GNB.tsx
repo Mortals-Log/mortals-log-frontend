@@ -62,12 +62,12 @@ const GNB = () => {
 		if (upcomingEvents.length === 0) return null;
 		const nearestEvent = upcomingEvents[0];
 
-		const targetDate = nearestEvent.date.split(' ~ ')[0];
-		const currentYear = new Date().getFullYear();
+		const targetDate = nearestEvent.date.split('~')[0].trim();
+		const eventYear = nearestEvent.year;
 
 		return {
 			...nearestEvent,
-			dDay: GetDDay(`${currentYear}.${targetDate}`),
+			dDay: GetDDay(`${eventYear}.${targetDate}`),
 		};
 	}, [upcomingEvents]);
 
