@@ -7,3 +7,4 @@ export * from '@styles/pages/Profile/Profile.style';
 export * from '@styles/common/SectionTitle';
 
 export * from '@styles/common/ArrowIcon';
+export * from '@styles/common/ExternalIcon';

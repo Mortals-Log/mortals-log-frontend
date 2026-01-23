@@ -1,7 +1,7 @@
 // @src/pages/home/index
 
 import * as S from '@/styles/pages/Home/Home.style';
-import { VerticalBar } from '@styles/components/VerticalBar.style';
+import { VerticalBar } from '@styles/common/VerticalBar.style';
 import { NAME, METADATA } from '@const/contents';
 import Information from './InformationSection';
 import ProfileSection from './ProfileSection';

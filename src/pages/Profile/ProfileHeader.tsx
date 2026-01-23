@@ -2,7 +2,7 @@
 
 import * as S from '@styles/pages/Profile';
 import * as SLink from '@styles/components/SourceLink.style';
-import * as SVerticalBar from '@styles/components/VerticalBar.style';
+import * as SVerticalBar from '@styles/common/VerticalBar.style';
 import { PROFILE } from '@const/contents';
 import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
 

@@ -1,7 +1,7 @@
 // @src/pages/Profile/ProfileDetailSection.tsx
 
 import * as S from '@styles/pages/Profile';
-import { VerticalBar } from '@styles/components/VerticalBar.style';
+import { VerticalBar } from '@styles/common/VerticalBar.style';
 import { PROFILE } from '@const/contents';
 import { ParseDate, CalculateKorAge, CalculateIntAge, CalculateElapsedDays, CalculateElapsedYears } from '@utils/date';
 import { Table } from '@/components/Table';

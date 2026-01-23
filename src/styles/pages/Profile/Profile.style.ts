@@ -234,8 +234,3 @@ export const AlbumInfo = styled.div`
 		color: ${props => props.theme.COLOR.GRAY500};
 	}
 `;
-
-export const ExternalIcon = styled.span`
-	font-size: 1rem;
-	margin-bottom: 2px;
-`;
