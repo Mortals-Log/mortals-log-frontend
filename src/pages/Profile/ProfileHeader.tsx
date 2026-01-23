@@ -1,6 +1,7 @@
 // @src/pages/Profile/components/ProfileHeader.tsx
 
 import * as S from '@styles/pages/Profile';
+import * as H from '@styles/pages/Profile/ProfileHeader.style';
 import * as SLink from '@styles/components/SourceLink.style';
 import * as SVerticalBar from '@styles/common/VerticalBar.style';
 import { PROFILE } from '@const/contents';
@@ -10,7 +11,7 @@ export const ProfileHeader = () => {
 	const { content, platform, account, contentTitle, postId } = PROFILE.description;
 
 	return (
-		<S.ProfileHeader>
+		<H.ProfileHeader>
 			<S.MainImage src={PROFILE.mainImage} alt={PROFILE.name} />
 			<S.InfoSummary>
 				<S.NameGroup>
@@ -32,7 +33,7 @@ export const ProfileHeader = () => {
 					</SLink.SourceLink>
 				</S.Description>
 			</S.InfoSummary>
-		</S.ProfileHeader>
+		</H.ProfileHeader>
 	);
 };
 

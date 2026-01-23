@@ -10,17 +10,8 @@ export const MainContainer = styled.main`
 	padding: 100px 20px;
 `;
 
-export const ProfileHeader = styled.section`
-	display: flex;
-	gap: 40px;
-	align-items: flex-end;
-	margin-bottom: 60px;
-
-	@media (max-width: 800px) {
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-	}
+export const ContentSection = styled.section`
+	margin-top: 5rem;
 `;
 
 export const MainImage = styled.img`
@@ -62,10 +53,6 @@ export const Description = styled.blockquote`
 	border-left: 3px solid ${props => props.theme.COLOR.PRIMARY};
 	padding-left: 1rem;
 	margin: 0.8rem 0;
-`;
-
-export const ContentSection = styled.section`
-	margin-top: 5rem;
 `;
 
 export const ProfileTable = styled.table`
