@@ -24,13 +24,13 @@ export const ProfileLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; T
 								<S.LinkWrapper key={group.category}>
 									{group.items.map(item => {
 										const key = item.label.toLowerCase().replace(/\s+/g, '') as IconKey;
-										const config = ICON_CONFIG[key] || { icon: null, label: item.label };
-										const Icon = config.icon;
+										const config = ICON_CONFIG[key];
+										const Icon = config?.icon;
 
 										return (
 											<S.LinkButton key={item.label} href={item.url} target="_blank" rel="noreferrer">
-												<Icon width={16} height={16} />
-												{config.label}
+												{Icon && <Icon width={16} height={16} />}
+												{config?.label ?? item.label}
 											</S.LinkButton>
 										);
 									})}
