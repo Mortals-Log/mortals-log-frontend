@@ -2,7 +2,6 @@
 
 import * as S from '@styles/pages/Profile';
 import { ALBUM_TYPE_LABEL, LP_ALBUMS } from '@const/albums';
-import { MoreButton } from '@/styles/components/buttons.style';
 import { GetAlbumCoverPath } from '@/utils/album';
 import { useEffect, useRef, useState } from 'react';
 
@@ -88,10 +87,10 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 				)}
 			</S.AlbumSliderContainer>
 
-			<MoreButton to="/album" target="_self" rel="noreferrer">
+			<S.MoreButton to="/album" target="_self" rel="noreferrer">
 				전체 앨범 보러가기
 				<S.ExternalIcon>↗</S.ExternalIcon>
-			</MoreButton>
+			</S.MoreButton>
 		</S.ContentSection>
 	);
 };

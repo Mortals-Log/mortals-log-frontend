@@ -1,4 +1,7 @@
 // @styles/pages/profile/index.ts
 
-export * from './Profile.style';
+/* eslint-disable storybook/default-exports */
+
+export * from '@styles/components/Buttons.style';
+export * from '@styles/pages/Profile/Profile.style';
 export * from '@styles/common/SectionTitle';
