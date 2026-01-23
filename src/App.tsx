@@ -6,6 +6,7 @@ import Home from '@pages/Home';
 import Profile from '@pages/Profile';
 import Album from '@pages/Album';
 import Schedule from '@pages/Schedule';
+import Goods from '@pages/Goods';
 import About from '@pages/About';
 import ScrollToTop from '@const/ScrollToTop';
 
@@ -24,6 +25,7 @@ function App() {
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/album" element={<Album />} />
 				<Route path="/schedule" element={<Schedule />} />
+				<Route path="/goods" element={<Goods />} />
 				<Route path="/about" element={<About />} />
 			</Routes>
 		</ThemeProvider>
