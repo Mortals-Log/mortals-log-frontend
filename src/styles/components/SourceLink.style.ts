@@ -5,7 +5,7 @@
 
 import styled from '@emotion/styled';
 
-export const SourceLink = styled.a`
+export const SourceLink = styled.a<{ $disabled?: boolean }>`
 	display: inline-block;
 	width: 80%;
 	white-space: nowrap;
@@ -30,4 +30,13 @@ export const SourceLink = styled.a`
 		color: ${props => props.theme.COLOR.PRIMARY};
 		transform: translateX(3px);
 	}
+
+	${({ $disabled }) =>
+		$disabled &&
+		`
+			opacity: 0.5;
+			cursor: not-allowed;
+			pointer-events: none;
+			filter: grayscale(1);
+		`}
 `;

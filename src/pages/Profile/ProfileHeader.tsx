@@ -23,7 +23,11 @@ export const ProfileHeader = () => {
 				<S.Description>
 					{content}
 					<br />
-					<SLink.SourceLink href={GetSnsUrl(platform, postId)} target="_blank" rel="noreferrer">
+					<SLink.SourceLink
+						href={GetSnsUrl(platform, postId) ?? undefined}
+						$disabled={!GetSnsUrl(platform, postId)}
+						target="_blank"
+						rel="noreferrer">
 						{GetSnsLabel(platform, account, contentTitle)}
 					</SLink.SourceLink>
 				</S.Description>

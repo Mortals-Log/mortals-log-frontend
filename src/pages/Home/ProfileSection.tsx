@@ -40,7 +40,8 @@ const ProfileSection = () => {
 					{currentModifier && (
 						<S.ModifierContainer onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
 							<SLink.SourceLink
-								href={GetSnsUrl(currentModifier.platform, currentModifier.postId)}
+								href={GetSnsUrl(currentModifier.platform, currentModifier.postId) ?? undefined}
+								$disabled={!GetSnsUrl(currentModifier.platform, currentModifier.postId)}
 								target="_blank"
 								rel="noreferrer">
 								{GetSnsLabel(currentModifier.platform, currentModifier.account, currentModifier.contentTitle)}
@@ -56,7 +57,11 @@ const ProfileSection = () => {
 
 					<S.DescriptionContainer>
 						<S.ProfileDescription>{content}</S.ProfileDescription>
-						<SLink.SourceLink href={GetSnsUrl(platform, postId)} target="_blank" rel="noreferrer">
+						<SLink.SourceLink
+							href={GetSnsUrl(platform, postId) ?? undefined}
+							$disabled={!GetSnsUrl(platform, postId)}
+							target="_blank"
+							rel="noreferrer">
 							{GetSnsLabel(platform, account, contentTitle)}
 						</SLink.SourceLink>
 					</S.DescriptionContainer>
