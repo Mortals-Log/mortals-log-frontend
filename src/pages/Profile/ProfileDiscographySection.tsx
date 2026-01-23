@@ -1,9 +1,9 @@
 // @pages/Profile/ProfileDiscographySection
 
-import * as S from '@styles/pages/Profile';
+import * as S from '@styles/pages/Profile/ProfileDiscographySection.style';
+import { useEffect, useRef, useState } from 'react';
 import { ALBUM_TYPE_LABEL, LP_ALBUMS } from '@const/albums';
 import { GetAlbumCoverPath } from '@/utils/album';
-import { useEffect, useRef, useState } from 'react';
 
 const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const sliderRef = useRef<HTMLDivElement>(null);

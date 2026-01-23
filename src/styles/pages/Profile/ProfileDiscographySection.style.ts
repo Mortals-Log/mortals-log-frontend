@@ -9,5 +9,4 @@ export * from '@styles/components/AlbumCard.style';
 export * from '@styles/components/Slider.style';
 
 export * from '@styles/common/SectionTitle.style';
-export * from '@styles/common/ArrowIcon.style';
 export * from '@styles/common/ExternalIcon.style';

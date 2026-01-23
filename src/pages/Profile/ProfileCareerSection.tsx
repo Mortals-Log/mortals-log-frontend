@@ -1,9 +1,8 @@
 // @src/pages/Profile/ProfileCareerSection.tsx
 
-import * as S from '@styles/pages/Profile';
-import * as T from '@styles/components/TimeLine.style';
-import { FULL_CAREER_HISTORY } from '@const/career';
+import * as S from '@styles/pages/Profile/ProfileCareerSection.style';
 import { useState } from 'react';
+import { FULL_CAREER_HISTORY } from '@const/career';
 
 const ProfileCareerSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const [isExpanded, setIsExpanded] = useState(false);
@@ -39,26 +38,26 @@ const ProfileCareerSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_
 			<S.SectionTitle>
 				{TITLE_KR} <span>{TITLE_EN}</span>
 			</S.SectionTitle>
-			<T.TimelineContainer $isExpanded={isExpanded}>
+			<S.TimelineContainer $isExpanded={isExpanded}>
 				{visibleHistory.map(group => (
-					<T.TimelineYearGroup key={group.year}>
-						<T.TimelineYearLabel>{group.year}</T.TimelineYearLabel>
+					<S.TimelineYearGroup key={group.year}>
+						<S.TimelineYearLabel>{group.year}</S.TimelineYearLabel>
 
-						<T.TimelineItemList>
+						<S.TimelineItemList>
 							{group.items.map(item => (
-								<T.TimelineItem key={`${group.year}-${item.date}-${item.content}`}>
-									<T.TimelineMarker />
+								<S.TimelineItem key={`${group.year}-${item.date}-${item.content}`}>
+									<S.TimelineMarker />
 
-									<T.TimelineContent>
-										<T.TimelineDate>{item.date}</T.TimelineDate>
-										<T.TimelineText>{item.content}</T.TimelineText>
-									</T.TimelineContent>
-								</T.TimelineItem>
+									<S.TimelineContent>
+										<S.TimelineDate>{item.date}</S.TimelineDate>
+										<S.TimelineText>{item.content}</S.TimelineText>
+									</S.TimelineContent>
+								</S.TimelineItem>
 							))}
-						</T.TimelineItemList>
-					</T.TimelineYearGroup>
+						</S.TimelineItemList>
+					</S.TimelineYearGroup>
 				))}
-			</T.TimelineContainer>
+			</S.TimelineContainer>
 
 			<S.ExpandButton $isExpanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
 				{isExpanded ? '활동 이력 접기' : '전체 활동 이력 보기'}

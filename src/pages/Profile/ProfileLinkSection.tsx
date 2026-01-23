@@ -1,10 +1,10 @@
 // @src/pages/Profile/components/ProfileLinkSection.tsx
 
-import * as S from '@styles/pages/Profile';
+import * as S from '@styles/pages/Profile/ProfileLinkSection.style';
 import { Table } from '@/components/Table';
 import { LINKS } from '@const/contents';
-import { LinkGroup } from '@/types/links';
 import { ICON_CONFIG } from '@const/icons';
+import { LinkGroup } from '@/types/links';
 import { IconKey } from '@/types/icon';
 
 export const ProfileLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
@@ -14,7 +14,7 @@ export const ProfileLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; T
 				{TITLE_KR} <span>{TITLE_EN}</span>
 			</S.SectionTitle>
 
-			<S.ProfileTable>
+			<S.Table>
 				<tbody>
 					{LINKS.map((group: LinkGroup) => (
 						<Table
@@ -39,7 +39,7 @@ export const ProfileLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; T
 						/>
 					))}
 				</tbody>
-			</S.ProfileTable>
+			</S.Table>
 		</S.ContentSection>
 	);
 };
