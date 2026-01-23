@@ -128,7 +128,7 @@ const globalStyles = css`
 		font-family: 'Pretendard', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	}
 
-	button:focus {
+	button:focus:not(:focus-visible) {
 		outline: none;
 	}
 
