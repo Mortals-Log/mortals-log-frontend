@@ -5,9 +5,9 @@
 export * from '@styles/pages/Profile/Profile.style';
 
 export * from '@styles/components/Buttons.style';
-export * from '@styles/components/AlbumCard';
-export * from '@styles/components/Slider';
+export * from '@styles/components/AlbumCard.style';
+export * from '@styles/components/Slider.style';
 
-export * from '@styles/common/SectionTitle';
-export * from '@styles/common/ArrowIcon';
-export * from '@styles/common/ExternalIcon';
+export * from '@styles/common/SectionTitle.style';
+export * from '@styles/common/ArrowIcon.style';
+export * from '@styles/common/ExternalIcon.style';
