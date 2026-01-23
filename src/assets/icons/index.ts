@@ -1,4 +1,4 @@
-// @sassets/icons/index.ts
+// @assets/icons/index.ts
 
 /* eslint-disable storybook/default-exports */
 

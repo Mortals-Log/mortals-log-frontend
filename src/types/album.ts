@@ -1,4 +1,4 @@
-// @types/alubm
+// @types/album
 
 /* eslint-disable storybook/default-exports */
 

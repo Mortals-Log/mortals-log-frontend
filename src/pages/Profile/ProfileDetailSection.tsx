@@ -1,10 +1,10 @@
-// @src/pages/Profile/components/ProfileDetailSection.tsx
+// @src/pages/Profile/ProfileDetailSection.tsx
 
 import * as S from '@styles/pages/Profile.style';
 import { VerticalBar } from '@styles/components/VerticalBar.style';
 import { PROFILE } from '@const/contents';
 import { ParseDate, CalculateKorAge, CalculateIntAge, CalculateElapsedDays, CalculateElapsedYears } from '@utils/date';
-import { Table } from '@/components/table';
+import { Table } from '@/components/Table';
 import { JSX } from 'react';
 
 export const ProfileDetailSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {

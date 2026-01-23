@@ -1,4 +1,4 @@
-// @styles/components/table.style.ts
+// @styles/components/Table.style.ts
 
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */

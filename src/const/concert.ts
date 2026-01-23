@@ -377,13 +377,13 @@ export const GET_FULL_CONCERTS = () => {
 		}
 
 		const enrichedItems = group.items.map(item => {
-			const pedingTimes = item.times || ['미정'];
+			const pendingTimes = item.times || ['미정'];
 			const pendingLocation = item.location || '미정';
 
 			return {
 				...item,
 				location: pendingLocation,
-				schedules: item.schedules || GenerateSchedules(item.date, group.year, pedingTimes),
+				schedules: item.schedules || GenerateSchedules(item.date, group.year, pendingTimes),
 			};
 		});
 

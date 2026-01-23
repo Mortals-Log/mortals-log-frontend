@@ -1,4 +1,4 @@
-// @src/pages/Profile/CareerTimelineSection.tsx
+// @src/pages/Profile/ProfileCareerSection.tsx
 
 import * as S from '@styles/pages/Profile.style';
 import { FULL_CAREER_HISTORY } from '@const/career';

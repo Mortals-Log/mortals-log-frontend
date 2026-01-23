@@ -1,4 +1,4 @@
-// @types/alubm
+// @types/concert
 
 /* eslint-disable storybook/default-exports */
 

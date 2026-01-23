@@ -30,7 +30,7 @@ export const LINKS: Links = [
 	{
 		category: 'MUSIC',
 		items: [
-			{ label: 'Apple Music', url: 'https://music.apple.com/kr/artist/...' },
+			{ label: 'Apple Music', url: 'https://music.apple.com/kr/artist/%EC%B2%9C%EC%A7%84%EC%9A%B0/1641616138?ls' },
 			{ label: 'Spotify', url: 'https://open.spotify.com/artist/5OEgs7d2znP7y50pp8y7bK' },
 			{ label: 'YouTube', url: 'https://www.youtube.com/channel/UCnjNCmBszWrgEO0NvfAbbVQ' },
 			{ label: 'Sound Cloud', url: 'https://soundcloud.com/1000_jinwoo' },
