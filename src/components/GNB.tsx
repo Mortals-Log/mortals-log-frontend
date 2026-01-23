@@ -5,12 +5,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, Variants } from 'framer-motion';
 import { ACTIVE_NAV_ITEMS, METADATA } from '@/const/contents';
-import { DUMMY_SCHEDULE } from '@const/dummy_data';
 import MenuIcon from '@assets/icons/MenuIcon';
 import CloseIcon from '@assets/icons/CloseIcon';
-import { GetDDay } from '@utils/date';
+import { GetDDay, GetUpcomingSchedules } from '@utils/date';
+import { FULL_CONCERTS } from '@/const/concert';
 
 const GNB = () => {
+	const upcomingEvents = GetUpcomingSchedules(FULL_CONCERTS);
+
 	const [isLogoHovered, setIsLogoHovered] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== 'undefined' ? window.innerWidth <= 1100 : false);
@@ -57,19 +59,17 @@ const GNB = () => {
 	};
 
 	const nextEvent = useMemo(() => {
-		const upcoming = DUMMY_SCHEDULE.map(event => ({
-			...event,
-			dDay: GetDDay(event.date.split(' ~ ')[0]),
-		}))
-			.filter(event => event.dDay !== null)
-			.sort((a, b) => {
-				const dateA = new Date(a.date.replace(/\./g, '-')).getTime();
-				const dateB = new Date(b.date.replace(/\./g, '-')).getTime();
-				return dateA - dateB;
-			});
+		if (upcomingEvents.length === 0) return null;
+		const nearestEvent = upcomingEvents[0];
 
-		return upcoming[0] || null;
-	}, []);
+		const targetDate = nearestEvent.date.split('~')[0].trim();
+		const eventYear = nearestEvent.year;
+
+		return {
+			...nearestEvent,
+			dDay: GetDDay(`${eventYear}.${targetDate}`),
+		};
+	}, [upcomingEvents]);
 
 	const handleNavClick = (path: string) => {
 		if (path.startsWith('http')) {
@@ -109,7 +109,7 @@ const GNB = () => {
 					<S.DDayContent className="pc-only">
 						{nextEvent ? (
 							<>
-								<span className="label">{nextEvent.title}</span>
+								<span className="label">{nextEvent.content}</span>
 								<span className="count">{nextEvent.dDay}</span>
 							</>
 						) : (
@@ -155,7 +155,7 @@ const GNB = () => {
 							<S.MobileDDayFooter>
 								{nextEvent ? (
 									<>
-										<span className="label">{nextEvent.title}</span>
+										<span className="label">{nextEvent.content}</span>
 										<span className="count">{nextEvent.dDay}</span>
 									</>
 								) : (

@@ -3,10 +3,11 @@ import { theme } from '@styles/themes';
 import { Route, Routes } from 'react-router-dom';
 import GNB from '@components/GNB';
 import Home from '@pages/Home';
-import Profile from './pages/Profile';
-import Album from './pages/Album';
-import Schedule from './pages/Schedule';
-import About from './pages/About';
+import Profile from '@pages/Profile';
+import Album from '@pages/Album';
+import Schedule from '@pages/Schedule';
+import About from '@pages/About';
+import ScrollToTop from '@const/ScrollToTop';
 
 /**
  * Root application component that provides theming, global navigation, and client-side routes.
@@ -16,6 +17,7 @@ import About from './pages/About';
 function App() {
 	return (
 		<ThemeProvider theme={theme}>
+			<ScrollToTop />
 			<GNB />
 			<Routes>
 				<Route path="/" element={<Home />} />

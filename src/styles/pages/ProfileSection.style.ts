@@ -114,33 +114,6 @@ export const TextSection = styled.div`
 	align-items: flex-start;
 `;
 
-export const SourceLink = styled.a`
-	display: inline-block;
-	width: 80%;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.XS};
-	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-	color: ${props => props.theme.COLOR.GRAY400};
-
-	text-decoration: none;
-	transition: all 0.3s ease;
-
-	&::before {
-		content: 'REF. ';
-		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-		letter-spacing: 0.5px;
-	}
-
-	&:hover {
-		color: ${props => props.theme.COLOR.PRIMARY};
-		transform: translateX(3px);
-	}
-`;
-
 export const ModifierContainer = styled.div`
 	width: 100%;
 	display: flex;

@@ -1,7 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
-import { Schedule } from '@/types/schedule';
+import { Concert, ConcertItem } from '@/types/concert';
+
+const MS_PER_DAY = 1000 * 60 * 60 * 24;
 
 export const GetDDay = (targetDate: string): string | null => {
 	const now = new Date();
@@ -26,35 +28,66 @@ export const GetDDay = (targetDate: string): string | null => {
 	}
 };
 
-export const FormatDateWithDay = (dateString: string) => {
-	const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-	const normalizedDate = dateString.replace(/\.\s*/g, '-');
-	const date = new Date(normalizedDate);
-	if (isNaN(date.getTime())) return dateString;
+export const GetUpcomingSchedules = (fullConcerts: Concert[], limit?: number): (ConcertItem & { year: string })[] => {
+	const now = new Date();
+	const todayNum = Number(
+		`${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`,
+	);
 
-	const mm = String(date.getMonth() + 1).padStart(2, '0');
-	const dd = String(date.getDate()).padStart(2, '0');
-	const day = days[date.getDay()];
+	const upcoming = fullConcerts
+		.flatMap(group =>
+			group.items
+				.map(item => ({
+					...item,
+					year: group.year,
+					startDateNum: Number(`${group.year}${item.date.split('~')[0].replace(/[^0-9]/g, '')}`),
+				}))
+				.filter(item => item.startDateNum >= todayNum),
+		)
+		.sort((a, b) => a.startDateNum - b.startDateNum);
 
-	return `${date.getFullYear()}.${mm}.${dd} (${day})`;
+	return limit ? upcoming.slice(0, limit) : upcoming;
 };
 
-export const GetUpcomingSchedules = (schedules: Schedule[]): Schedule[] => {
+export const ParseDate = (dateStr: string) => {
+	const [year, month, day] = dateStr.split('.').map(Number);
+	return new Date(year, month - 1, day);
+};
+
+export const CalculateKorAge = (birth: Date) => {
 	const today = new Date();
-	today.setHours(0, 0, 0, 0);
-	const todayTime = today.getTime();
+	return today.getFullYear() - birth.getFullYear() + 1;
+};
 
-	return [...schedules]
-		.filter(event => {
-			const eventDateStr = event.date.split(' ~ ')[0].replace(/\. /g, '-').replace(/\./g, '-');
-			const eventTime = new Date(eventDateStr).getTime();
+export const CalculateIntAge = (birth: Date) => {
+	const today = new Date();
+	let age = today.getFullYear() - birth.getFullYear();
 
-			return eventTime >= todayTime;
-		})
-		.sort((a, b) => {
-			const dateA = new Date(a.date.split(' ~ ')[0].replace(/\. /g, '-').replace(/\./g, '-')).getTime();
-			const dateB = new Date(b.date.split(' ~ ')[0].replace(/\. /g, '-').replace(/\./g, '-')).getTime();
+	if (
+		today.getMonth() < birth.getMonth() ||
+		(today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate())
+	) {
+		age--;
+	}
 
-			return dateA - dateB;
-		});
+	return age;
+};
+
+export const CalculateElapsedYears = (dateStr: string) => {
+	const startDate = ParseDate(dateStr);
+	const endDate = new Date();
+
+	return endDate.getFullYear() - startDate.getFullYear();
+};
+
+export const CalculateElapsedDays = (dateStr: string) => {
+	const startDate = ParseDate(dateStr);
+	const endDate = new Date();
+
+	startDate.setHours(0, 0, 0, 0);
+	endDate.setHours(0, 0, 0, 0);
+
+	const diffTime = endDate.getTime() - startDate.getTime();
+
+	return Math.floor(diffTime / MS_PER_DAY) + 1;
 };

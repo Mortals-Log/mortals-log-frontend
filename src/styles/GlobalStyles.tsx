@@ -128,6 +128,10 @@ const globalStyles = css`
 		font-family: 'Pretendard', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	}
 
+	button:focus:not(:focus-visible) {
+		outline: none;
+	}
+
 	body {
 		font-family: 'Pretendard';
 		overflow-x: hidden;

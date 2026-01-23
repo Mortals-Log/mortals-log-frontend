@@ -1,12 +1,13 @@
 // @pages/Home/Information
 
 import * as S from '@styles/pages/Information.style';
-import { DUMMY_SCHEDULE, DUMMY_ALBUM } from '@const/dummy_data';
+import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import { GetLatestAlbum } from '@utils/album';
 import { GetUpcomingSchedules } from '@/utils/date';
+import { FULL_CONCERTS } from '@/const/concert';
 
-const upcomingEvents = GetUpcomingSchedules(DUMMY_SCHEDULE);
-const latestAlbum = GetLatestAlbum(DUMMY_ALBUM);
+const upcomingEvents = GetUpcomingSchedules(FULL_CONCERTS);
+const latestAlbum = GetLatestAlbum(FULL_ALBUMS);
 
 const Information = () => {
 	return (
@@ -21,17 +22,17 @@ const Information = () => {
 					<S.EventList>
 						{upcomingEvents.length > 0 ? (
 							upcomingEvents.map(event => (
-								<S.ContentCard key={event.title}>
-									<h3 className="title">{event.title}</h3>
+								<S.ContentCard key={event.content}>
+									<h3 className="title">{event.content}</h3>
 									<div className="details">
 										<p className="info-text">
 											{event.location} | {event.date}
 										</p>
 										<S.TimeSlotWrapper>
-											{event.schedules.map((sched, idx) => (
-												<S.TimeTag key={idx}>
-													{sched.part && <span className="part">{sched.part}</span>}
-													<span className="time">{sched.time}</span>
+											{event.schedules?.map(schedule => (
+												<S.TimeTag key={`${schedule.part}-${schedule.time}`}>
+													{schedule.part && <span className="part">{schedule.part}</span>}
+													<span className="time">{schedule.time}</span>
 												</S.TimeTag>
 											))}
 										</S.TimeSlotWrapper>
@@ -51,7 +52,7 @@ const Information = () => {
 							<h3 className="title">{latestAlbum.title}</h3>
 							<div className="details">
 								<p className="info-text">
-									{latestAlbum.type} | {latestAlbum.releaseDate}
+									{ALBUM_TYPE_LABEL[latestAlbum.type]} | {latestAlbum.releaseDate}
 								</p>
 								<div style={{ display: 'flex', gap: '0.5rem' }}>
 									<S.LinkButton whileHover={{ scale: 1.05 }}>앨범 구매</S.LinkButton>

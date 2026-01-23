@@ -1,6 +1,5 @@
 // @const/contents
 
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
 import { Citation, Profile } from '@/types/profile';
@@ -19,18 +18,46 @@ export const NAME = {
 	SOCIALID: '1000_jinwoo',
 };
 
-export const LINKS: Links = {
-	INSTAGRAM: 'https://www.instagram.com/1000_jinwoo',
-	YOUTUBE: 'https://www.youtube.com/channel/UCnjNCmBszWrgEO0NvfAbbVQ',
-	SPOTIFY: 'https://open.spotify.com/artist/5OEgs7d2znP7y50pp8y7bK',
-	APPLE_MUSIC: 'https://music.apple.com/kr/artist/천진우/1641616138?ls',
-	GOODS_CD:
-		'https://gimbabrecords.com/product/search.html?view_type=&supplier_code=&category_no=&keyword=천진우&x=0&y=0',
-	GOODS_LP: 'https://smartstore.naver.com/irrelevant/products/10239470111',
-	GOODS_SHOP: 'https://marpple.shop/kr/1000_jinwoo',
-	OPEN_CHAT: 'https://open.kakao.com/o/gj0SK2Qe',
-	TJ_SONG_REQUEST: 'https://www.tjmedia.com/song/accompaniment_apply_agree',
-};
+export const LINKS: Links = [
+	{
+		category: 'SNS',
+		items: [
+			{ label: 'Instagram', url: 'https://www.instagram.com/1000_jinwoo' },
+
+			{ label: 'Kakaotalk', url: 'https://open.kakao.com/o/gj0SK2Qe' },
+		],
+	},
+	{
+		category: 'MUSIC',
+		items: [
+			{ label: 'Apple Music', url: 'https://music.apple.com/kr/artist/%EC%B2%9C%EC%A7%84%EC%9A%B0/1641616138?ls' },
+			{ label: 'Spotify', url: 'https://open.spotify.com/artist/5OEgs7d2znP7y50pp8y7bK' },
+			{ label: 'YouTube', url: 'https://www.youtube.com/channel/UCnjNCmBszWrgEO0NvfAbbVQ' },
+			{ label: 'Sound Cloud', url: 'https://soundcloud.com/1000_jinwoo' },
+		],
+	},
+	{
+		category: 'SHOP',
+		items: [
+			{
+				label: 'CD',
+				url: 'https://gimbabrecords.com/product/search.html?view_type=&supplier_code=&category_no=&keyword=천진우&x=0&y=0',
+			},
+			{ label: 'LP', url: 'https://smartstore.naver.com/irrelevant/products/10239470111' },
+			{ label: 'Goods', url: 'https://marpple.shop/kr/1000_jinwoo' },
+		],
+	},
+	{
+		category: 'ETC',
+		items: [
+			{
+				label: 'Link Tree',
+				url: 'https://linktr.ee/1000jinwoo?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn9XKUd5Bfg5-nWM88QQh643PrJrleX7QfjSieYPTZeUJc6nT11qYg3vGO8So_aem_3Du4C9eWuHq6MrdFtTKmDA',
+			},
+			{ label: 'Sing', url: 'https://www.tjmedia.com/song/accompaniment_apply_agree' },
+		],
+	},
+];
 
 export const SNS_PLATFORMS = {
 	INSTAGRAM: {
@@ -77,7 +104,7 @@ export const PROFILE: Profile = {
 	},
 
 	birth: ['1996. 06. 13', '강원도 춘천시 (現 강원특별자치도 춘천시)'],
-	nationality: 'Korea',
+	nationality: '대한민국',
 
 	education: '강원대학교 사범대학 (일반사회교육학 / 학사)',
 
@@ -86,17 +113,20 @@ export const PROFILE: Profile = {
 
 	debut: ['2022. 08. 20', 'EP 굴다리'],
 	job: ['싱어송라이터', '교사'],
-	alias: ['어둠의 김광석', '음악 공장장'],
+	alias: ['어둠의 김광석', '(음악)공장장'],
 	fandom: '필멸자',
 
 	officialLinks: LINKS,
 };
 
+const shopGroup = LINKS.find(g => g.category === 'SHOP');
+const goodsUrl = shopGroup?.items.find(i => i.label === 'Goods')?.url || '';
+
 export const NAV_ITEMS = [
 	{ id: 1, name: 'PROFILE', path: '/profile', isEnabled: true },
 	{ id: 2, name: 'ALBUM', path: '/album', isEnabled: true },
 	{ id: 3, name: 'SCHEDULE', path: '/schedule', isEnabled: true },
-	{ id: 4, name: 'GOODS', path: LINKS.GOODS_SHOP, isEnabled: true },
+	{ id: 4, name: 'GOODS', path: goodsUrl, isEnabled: true },
 	{ id: 5, name: 'ABOUT', path: '/about', isEnabled: true },
 	// { id: 6, name: 'PHOTOS', path: '#photos', isEnabled: false },
 ] as const;

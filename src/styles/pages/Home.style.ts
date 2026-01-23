@@ -85,7 +85,3 @@ export const SubTitle = styled.span`
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY600};
 `;
-
-export const VerticalBar = styled.span`
-	color: ${props => props.theme.COLOR.PRIMARY};
-`;
