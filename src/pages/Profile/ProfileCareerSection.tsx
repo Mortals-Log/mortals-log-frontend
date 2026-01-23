@@ -1,6 +1,7 @@
 // @src/pages/Profile/ProfileCareerSection.tsx
 
 import * as S from '@styles/pages/Profile';
+import * as T from '@styles/components/TimeLine.style';
 import { FULL_CAREER_HISTORY } from '@const/career';
 import { useState } from 'react';
 
@@ -38,26 +39,26 @@ const ProfileCareerSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_
 			<S.SectionTitle>
 				{TITLE_KR} <span>{TITLE_EN}</span>
 			</S.SectionTitle>
-			<S.TimelineContainer $isExpanded={isExpanded}>
+			<T.TimelineContainer $isExpanded={isExpanded}>
 				{visibleHistory.map(group => (
-					<S.TimelineYearGroup key={group.year}>
-						<S.TimelineYearLabel>{group.year}</S.TimelineYearLabel>
+					<T.TimelineYearGroup key={group.year}>
+						<T.TimelineYearLabel>{group.year}</T.TimelineYearLabel>
 
-						<S.TimelineItemList>
+						<T.TimelineItemList>
 							{group.items.map(item => (
-								<S.TimelineItem key={`${group.year}-${item.date}-${item.content}`}>
-									<S.TimelineMarker />
+								<T.TimelineItem key={`${group.year}-${item.date}-${item.content}`}>
+									<T.TimelineMarker />
 
-									<S.TimelineContent>
-										<S.TimelineDate>{item.date}</S.TimelineDate>
-										<S.TimelineText>{item.content}</S.TimelineText>
-									</S.TimelineContent>
-								</S.TimelineItem>
+									<T.TimelineContent>
+										<T.TimelineDate>{item.date}</T.TimelineDate>
+										<T.TimelineText>{item.content}</T.TimelineText>
+									</T.TimelineContent>
+								</T.TimelineItem>
 							))}
-						</S.TimelineItemList>
-					</S.TimelineYearGroup>
+						</T.TimelineItemList>
+					</T.TimelineYearGroup>
 				))}
-			</S.TimelineContainer>
+			</T.TimelineContainer>
 
 			<S.ExpandButton $isExpanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
 				{isExpanded ? '활동 이력 접기' : '전체 활동 이력 보기'}
