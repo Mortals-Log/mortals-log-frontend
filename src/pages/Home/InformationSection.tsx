@@ -1,6 +1,6 @@
 // @pages/Home/Information
 
-import * as S from '@styles/pages/Information.style';
+import * as S from '@styles/pages/InformationSection.style';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import { GetLatestAlbum } from '@utils/album';
 import { GetUpcomingSchedules } from '@/utils/date';

@@ -3,7 +3,7 @@
 import * as S from '@styles/pages/Home.style';
 import { VerticalBar } from '@styles/components/VerticalBar.style';
 import { NAME, METADATA } from '@const/contents';
-import Information from './Information';
+import Information from './InformationSection';
 import ProfileSection from './ProfileSection';
 
 const Home = () => {
