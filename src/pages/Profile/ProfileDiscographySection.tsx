@@ -47,13 +47,13 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 				{TITLE_KR} <span>{TITLE_EN}</span>
 			</S.SectionTitle>
 
-			<S.AlbumSliderContainer>
+			<S.SliderContainer>
 				{!isAtStart && (
 					<S.SliderNavButton $direction="left" onClick={() => handleScroll('left')}>
 						<span>‹</span>
 					</S.SliderNavButton>
 				)}
-				<S.AlbumSlider ref={sliderRef} onScroll={checkScrollPosition}>
+				<S.Slider ref={sliderRef} onScroll={checkScrollPosition}>
 					{LP_ALBUMS.map(album => (
 						<S.AlbumCard key={`${album.type}-${album.title}`}>
 							<img
@@ -78,14 +78,14 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 							</S.AlbumInfo>
 						</S.AlbumCard>
 					))}
-				</S.AlbumSlider>
+				</S.Slider>
 
 				{!isAtEnd && (
 					<S.SliderNavButton $direction="right" onClick={() => handleScroll('right')}>
 						<span>›</span>
 					</S.SliderNavButton>
 				)}
-			</S.AlbumSliderContainer>
+			</S.SliderContainer>
 
 			<S.MoreButton to="/album" target="_self" rel="noreferrer">
 				전체 앨범 보러가기
