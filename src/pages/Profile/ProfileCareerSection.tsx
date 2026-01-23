@@ -46,7 +46,7 @@ const ProfileCareerSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_
 
 						<S.TimelineItemList>
 							{group.items.map(item => (
-								<S.TimelineItem>
+								<S.TimelineItem key={`${group.year}-${item.date}-${item.content}`}>
 									<S.TimelineMarker />
 
 									<S.TimelineContent>

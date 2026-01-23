@@ -56,7 +56,7 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 				)}
 				<S.AlbumSlider ref={sliderRef} onScroll={checkScrollPosition}>
 					{LP_ALBUMS.map(album => (
-						<S.AlbumCard>
+						<S.AlbumCard key={`${album.type}-${album.title}`}>
 							<img
 								src={GetAlbumCoverPath(album)}
 								alt={album.title}

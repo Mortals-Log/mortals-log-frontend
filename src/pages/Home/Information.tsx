@@ -30,7 +30,7 @@ const Information = () => {
 										</p>
 										<S.TimeSlotWrapper>
 											{event.schedules?.map(schedule => (
-												<S.TimeTag>
+												<S.TimeTag key={`${schedule.part}-${schedule.time}`}>
 													{schedule.part && <span className="part">{schedule.part}</span>}
 													<span className="time">{schedule.time}</span>
 												</S.TimeTag>
