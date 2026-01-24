@@ -8,7 +8,7 @@ import { LINKS } from '@const/contents';
 const snsCategory = LINKS.find(link => link.category === 'SNS');
 const instagramUrl = snsCategory?.items.find(item => item.label === 'Instagram')?.url || 'https://instagram.com';
 
-export const CONNACT = {
+export const CONTACT = {
 	KAKAO: 'https://open.kakao.com/o/sIllL2Qe',
 	DM: instagramUrl,
 } as const;
@@ -27,12 +27,12 @@ export const FAN_GOODS_GUIDE = {
 	CONTACT_CHANNELS: [
 		{
 			label: '카카오톡 오픈채팅',
-			url: CONNACT.KAKAO,
+			url: CONTACT.KAKAO,
 			icon: kakaotalk,
 		},
 		{
 			label: '인스타그램 디엠',
-			url: CONNACT.DM,
+			url: CONTACT.DM,
 			icon: instagram,
 		},
 	],
