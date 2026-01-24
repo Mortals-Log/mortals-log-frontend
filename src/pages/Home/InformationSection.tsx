@@ -1,10 +1,10 @@
 // @pages/Home/Information
 
-import * as S from '@styles/pages/Information.style';
+import * as S from '@/styles/pages/Home/InformationSection.style';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
+import { FULL_CONCERTS } from '@/const/concert';
 import { GetLatestAlbum } from '@utils/album';
 import { GetUpcomingSchedules } from '@/utils/date';
-import { FULL_CONCERTS } from '@/const/concert';
 
 const upcomingEvents = GetUpcomingSchedules(FULL_CONCERTS);
 const latestAlbum = GetLatestAlbum(FULL_ALBUMS);
@@ -55,8 +55,8 @@ const Information = () => {
 									{ALBUM_TYPE_LABEL[latestAlbum.type]} | {latestAlbum.releaseDate}
 								</p>
 								<div style={{ display: 'flex', gap: '0.5rem' }}>
-									<S.LinkButton whileHover={{ scale: 1.05 }}>앨범 구매</S.LinkButton>
-									<S.LinkButton whileHover={{ scale: 1.05 }}>뮤직 비디오</S.LinkButton>
+									<S.ActionButton whileHover={{ scale: 1.05 }}>앨범 구매</S.ActionButton>
+									<S.ActionButton whileHover={{ scale: 1.05 }}>뮤직 비디오</S.ActionButton>
 								</div>
 							</div>
 						</S.ContentCard>

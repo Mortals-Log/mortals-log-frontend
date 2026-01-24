@@ -1,6 +1,6 @@
 // @components/GNB
 
-import * as S from '@styles/components/GNB.style';
+import * as S from '@/styles/components/GNB.style';
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, Variants } from 'framer-motion';

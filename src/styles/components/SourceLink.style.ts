@@ -1,6 +1,5 @@
-// @styles/SourceLink.ts
+// @styles/components/SourceLink
 
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';

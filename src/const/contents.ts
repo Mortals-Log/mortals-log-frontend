@@ -119,14 +119,11 @@ export const PROFILE: Profile = {
 	officialLinks: LINKS,
 };
 
-const shopGroup = LINKS.find(g => g.category === 'SHOP');
-const goodsUrl = shopGroup?.items.find(i => i.label === 'Goods')?.url || '';
-
 export const NAV_ITEMS = [
 	{ id: 1, name: 'PROFILE', path: '/profile', isEnabled: true },
 	{ id: 2, name: 'ALBUM', path: '/album', isEnabled: true },
 	{ id: 3, name: 'SCHEDULE', path: '/schedule', isEnabled: true },
-	{ id: 4, name: 'GOODS', path: goodsUrl, isEnabled: true },
+	{ id: 4, name: 'GOODS', path: '/goods', isEnabled: true },
 	{ id: 5, name: 'ABOUT', path: '/about', isEnabled: true },
 	// { id: 6, name: 'PHOTOS', path: '#photos', isEnabled: false },
 ] as const;

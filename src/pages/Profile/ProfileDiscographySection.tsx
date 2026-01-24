@@ -1,10 +1,9 @@
 // @pages/Profile/ProfileDiscographySection
 
-import * as S from '@styles/pages/Profile.style';
-import { ALBUM_TYPE_LABEL, LP_ALBUMS } from '@const/albums';
-import { MoreButton } from '@/styles/components/buttons.style';
-import { GetAlbumCoverPath } from '@/utils/album';
+import * as S from '@styles/pages/Profile/ProfileDiscographySection.style';
 import { useEffect, useRef, useState } from 'react';
+import { ALBUM_TYPE_LABEL, LP_ALBUMS } from '@const/albums';
+import { GetAlbumCoverPath } from '@/utils/album';
 
 const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const sliderRef = useRef<HTMLDivElement>(null);
@@ -48,13 +47,13 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 				{TITLE_KR} <span>{TITLE_EN}</span>
 			</S.SectionTitle>
 
-			<S.AlbumSliderContainer>
+			<S.SliderContainer>
 				{!isAtStart && (
 					<S.SliderNavButton $direction="left" onClick={() => handleScroll('left')}>
 						<span>‹</span>
 					</S.SliderNavButton>
 				)}
-				<S.AlbumSlider ref={sliderRef} onScroll={checkScrollPosition}>
+				<S.Slider ref={sliderRef} onScroll={checkScrollPosition}>
 					{LP_ALBUMS.map(album => (
 						<S.AlbumCard key={`${album.type}-${album.title}`}>
 							<img
@@ -79,19 +78,19 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 							</S.AlbumInfo>
 						</S.AlbumCard>
 					))}
-				</S.AlbumSlider>
+				</S.Slider>
 
 				{!isAtEnd && (
 					<S.SliderNavButton $direction="right" onClick={() => handleScroll('right')}>
 						<span>›</span>
 					</S.SliderNavButton>
 				)}
-			</S.AlbumSliderContainer>
+			</S.SliderContainer>
 
-			<MoreButton to="/album" target="_self" rel="noreferrer">
+			<S.MoreButton to="/album" target="_self" rel="noreferrer">
 				전체 앨범 보러가기
 				<S.ExternalIcon>↗</S.ExternalIcon>
-			</MoreButton>
+			</S.MoreButton>
 		</S.ContentSection>
 	);
 };

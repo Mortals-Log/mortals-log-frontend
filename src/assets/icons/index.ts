@@ -2,14 +2,14 @@
 
 /* eslint-disable storybook/default-exports */
 
-export { default as instagram } from './instagram.svg?react';
-export { default as kakaotalk } from './kakaotalk.svg?react';
-export { default as applemusic } from './applemusic.svg?react';
-export { default as spotify } from './spotify.svg?react';
-export { default as youtube } from './youtube.svg?react';
-export { default as soundcloud } from './soundcloud.svg?react';
-export { default as cd } from './cd.svg?react';
-export { default as lp } from './lp.svg?react';
-export { default as goods } from './goods.svg?react';
-export { default as linktree } from './linktree.svg?react';
-export { default as sing } from './sing.svg?react';
+export { default as instagram } from './instagramIcon.svg?react';
+export { default as kakaotalk } from './kakaotalkIcon.svg?react';
+export { default as applemusic } from './applemusicIcon.svg?react';
+export { default as spotify } from './spotifyIcon.svg?react';
+export { default as youtube } from './youtubeIcon.svg?react';
+export { default as soundcloud } from './soundcloudIcon.svg?react';
+export { default as cd } from './cdIcon.svg?react';
+export { default as lp } from './lpIcon.svg?react';
+export { default as goods } from './goodsIcon.svg?react';
+export { default as linktree } from './linktreeIcon.svg?react';
+export { default as sing } from './singIcon.svg?react';

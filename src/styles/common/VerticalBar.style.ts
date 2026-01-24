@@ -1,6 +1,5 @@
-// @styles/SVerticalBar.ts
+// @styles/common/VerticalBar.style
 
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';

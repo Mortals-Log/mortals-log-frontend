@@ -1,11 +1,10 @@
 // @src/pages/Profile/ProfileDetailSection.tsx
 
-import * as S from '@styles/pages/Profile.style';
-import { VerticalBar } from '@styles/components/VerticalBar.style';
+import * as S from '@styles/pages/Profile/ProfileDetailSection.style';
+import { JSX } from 'react';
+import { Table } from '@components/Table';
 import { PROFILE } from '@const/contents';
 import { ParseDate, CalculateKorAge, CalculateIntAge, CalculateElapsedDays, CalculateElapsedYears } from '@utils/date';
-import { Table } from '@/components/Table';
-import { JSX } from 'react';
 
 export const ProfileDetailSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const birthDate = ParseDate(PROFILE.birth[0]);
@@ -38,7 +37,7 @@ export const ProfileDetailSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string;
 				`${PROFILE.debut[0]} (${PROFILE.debut[1]})`,
 				<span>
 					데뷔일로부터 <b>D+{debutDays}일</b>
-					<VerticalBar> | </VerticalBar>
+					<S.VerticalBar> | </S.VerticalBar>
 					<b>{debutYears}주년</b>
 				</span>,
 			],
@@ -53,7 +52,7 @@ export const ProfileDetailSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string;
 				<span>{TITLE_EN}</span>
 			</S.SectionTitle>
 
-			<S.ProfileTable>
+			<S.Table>
 				<tbody>
 					{profileData.map(({ key, values }) => (
 						<Table
@@ -63,7 +62,7 @@ export const ProfileDetailSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string;
 						/>
 					))}
 				</tbody>
-			</S.ProfileTable>
+			</S.Table>
 		</S.ContentSection>
 	);
 };
