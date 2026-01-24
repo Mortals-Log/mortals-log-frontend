@@ -1,12 +1,12 @@
-//@styles/pages/ProfileSection.style
+//@styles/pages/Home/ProfileSection.style
 
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
 
-export * from '@styles/components/Buttons.style';
-export * from '@styles/components/SourceLink.style';
+export * from '@/styles/components/Buttons.style';
+export * from '@/styles/components/SourceLink.style';
 
 const fadeInBlur = keyframes`
   from { opacity: 0; filter: blur(10px); transform: translateY(10px); }

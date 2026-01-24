@@ -1,4 +1,4 @@
-// @styles/common/SectionTitle.style.ts
+// @styles/common/ArrowIcon.style
 
 /* eslint-disable storybook/default-exports */
 

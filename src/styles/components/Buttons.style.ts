@@ -1,4 +1,4 @@
-// @styles/components/Buttons.style.ts
+// @styles/components/Buttons.style
 
 /* eslint-disable storybook/default-exports */
 

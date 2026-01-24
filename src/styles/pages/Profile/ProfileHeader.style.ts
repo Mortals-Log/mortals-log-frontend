@@ -1,11 +1,11 @@
-// @styles/pages/Profile.style.ts
+// @styles/pages/Profile/ProfileHeader.style
 
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
 
-export * from '@styles/components/SourceLink.style';
-export * from '@styles/common/VerticalBar.style';
+export * from '@/styles/components/SourceLink.style';
+export * from '@/styles/common/VerticalBar.style';
 
 export const ProfileHeader = styled.section`
 	display: flex;

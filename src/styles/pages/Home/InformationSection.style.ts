@@ -1,12 +1,11 @@
-//@styles/pages/Information.style
+//@styles/pages/Home/InformationSection.style
 
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
-export * from '@styles/components/Buttons.style';
+export * from '@/styles/components/Buttons.style';
 
 export const InformationContainer = styled(motion.div)`
 	width: 100%;

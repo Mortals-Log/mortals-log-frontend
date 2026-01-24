@@ -1,4 +1,4 @@
-// @styles/SourceLink.ts
+// @styles/components/SourceLink
 
 /* eslint-disable storybook/default-exports */
 

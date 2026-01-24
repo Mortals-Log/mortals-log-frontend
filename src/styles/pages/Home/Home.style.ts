@@ -1,11 +1,11 @@
-//@styles/pages/Home.style
+//@styles/pages/Home/Home.style
 
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
-export { VerticalBar } from '@styles/common/VerticalBar.style';
+export { VerticalBar } from '@/styles/common/VerticalBar.style';
 
 export const MainContainer = styled.main`
 	display: flex;

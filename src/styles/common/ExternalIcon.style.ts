@@ -1,4 +1,4 @@
-// @styles/pages/Profile.style.ts
+// @styles/common/ExternalIcon.style
 
 /* eslint-disable storybook/default-exports */
 
