@@ -5,12 +5,16 @@
 import { instagram, kakaotalk } from '@/assets/icons';
 import { LINKS } from '@const/contents';
 
-const snsCategory = LINKS.find(link => link.category === 'SNS');
-const instagramUrl = snsCategory?.items.find(item => item.label === 'Instagram')?.url || 'https://instagram.com';
+export const GetSafeLink = (category: string, label: string, fallback: string = '#'): string => {
+	const targetCategory = LINKS.find(link => link.category === category);
+	const targetItem = targetCategory?.items.find(item => item.label === label);
+
+	return targetItem?.url || fallback;
+};
 
 export const CONTACT = {
 	KAKAO: 'https://open.kakao.com/o/sIllL2Qe',
-	DM: instagramUrl,
+	DM: GetSafeLink('SNS', 'Instagram', 'https://www.instagram.com/1000_jinwoo'),
 } as const;
 
 export const FAN_GOODS_GUIDE = {
