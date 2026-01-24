@@ -34,14 +34,18 @@ const GoodsLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 			</S.SectionTitle>
 
 			<S.Grid>
-				{shopItems.map(item => (
-					<S.CardButton key={item.label} href={item.url} target="_blank">
-						<S.CategoryLabel>
-							{item.label} - {LINK_CONTENT[item.label].CATEGORY_KR || item.label}
-						</S.CategoryLabel>
-						<S.ItemLabel>{LINK_CONTENT[item.label].STORE || item.label}</S.ItemLabel>
-					</S.CardButton>
-				))}
+				{shopItems.map(item => {
+					const label = LINK_CONTENT[item.label];
+
+					return (
+						<S.CardButton key={item.label} href={item.url} target="_blank" rel="noopener noreferrer">
+							<S.CategoryLabel>
+								{item.label} - {label.CATEGORY_KR ?? item.label}
+							</S.CategoryLabel>
+							<S.ItemLabel>{label.STORE ?? item.label}</S.ItemLabel>
+						</S.CardButton>
+					);
+				})}
 			</S.Grid>
 		</S.ContentSection>
 	);
