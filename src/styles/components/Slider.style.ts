@@ -11,10 +11,6 @@ export const SliderContainer = styled.div`
 	align-items: center;
 	margin-top: 20px;
 	padding: 1rem;
-
-	&:hover button {
-		opacity: 1;
-	}
 `;
 
 export const Slider = styled.div`
