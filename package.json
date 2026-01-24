@@ -20,7 +20,7 @@
     "emotion": "^11.0.0",
     "motion": "^12.26.2",
     "react": "^19.2.3",
-    "react-dom": "^19.2.0",
+    "react-dom": "^19.2.3",
     "react-router-dom": "^7.12.0",
     "storyboard": "^3.3.2"
   },
