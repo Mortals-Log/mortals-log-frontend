@@ -102,7 +102,7 @@ export const LinkButton = styled.a`
 	}
 `;
 
-export const ViewMoreBtn = styled.button`
+export const ViewMoreButton = styled.button`
 	width: fit-content;
 	background-color: ${props => props.theme.COLOR.BLACK};
 	padding: 1rem 1.5rem;

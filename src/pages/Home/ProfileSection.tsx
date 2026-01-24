@@ -65,7 +65,7 @@ const ProfileSection = () => {
 						</S.SourceLink>
 					</S.DescriptionContainer>
 
-					<S.ViewMoreBtn onClick={() => navigate('/profile')}>READ PROFILE LOG</S.ViewMoreBtn>
+					<S.ViewMoreButton onClick={() => navigate('/profile')}>READ PROFILE LOG</S.ViewMoreButton>
 				</S.TextSection>
 			</S.SectionWrapper>
 		</S.ProfileContainer>
