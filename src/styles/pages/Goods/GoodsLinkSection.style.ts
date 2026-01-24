@@ -5,7 +5,6 @@
 export * from '@styles/pages/Goods/Goods.style';
 export * from '@/styles/components/Buttons.style';
 export * from '@styles/common/SectionTitle.style';
-export * from '@styles/components/Buttons.style';
 
 import styled from '@emotion/styled';
 
