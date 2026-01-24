@@ -133,3 +133,27 @@ export const ViewMoreButton = styled.button`
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;
+
+export const CardButton = styled(motion.a)`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 2.5rem 1.5rem;
+
+	background: ${props => props.theme.COLOR.WHITE};
+	border: 1px solid ${props => props.theme.COLOR.GRAY200};
+	border-radius: 10px;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
+	color: ${props => props.theme.COLOR.WHITE};
+	text-decoration: none;
+
+	overflow: hidden;
+	cursor: pointer;
+
+	&:hover {
+		border-color: ${props => props.theme.COLOR.PRIMARY};
+	}
+`;

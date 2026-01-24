@@ -58,7 +58,7 @@ export const FONT = {
 		XS: '0.75rem', // 캡션, 태그라인, 저작권 표시
 
 		// 디테일용 텍스트
-		TINY: '0.625rem',
+		TINY: '0.65rem',
 	},
 
 	WEIGHT: {

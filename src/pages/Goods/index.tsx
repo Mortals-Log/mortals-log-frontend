@@ -1,17 +1,39 @@
-// @src/pages/Goods/about
+// @src/pages/Goods/index
+
+import * as S from '@styles/pages/Goods/Goods.style';
+import GoodsLinkSection from '@pages/Goods/GoodsLinkSection';
+import GoodsGuideSection from '@pages/Goods/GoodsGuideSection';
+import { FAN_GOODS_GUIDE } from '@const/goods';
+
+const PAGE_TITLE = {
+	MAIN: '굿즈 구매 및 제작 설명',
+	SUB: 'GOODS & GUIDE',
+} as const;
+
+const SECTION_TITLE = {
+	LINK: {
+		TITLE_KR: '공식 굿즈',
+		TITLE_EN: 'Official Goods',
+	},
+	GUIDE: {
+		TITLE_KR: '굿즈 제작 안내',
+		TITLE_EN: 'Fan Goods Guide',
+	},
+} as const;
+
+const { DESCRIPTION } = FAN_GOODS_GUIDE;
 
 const Goods = () => {
 	return (
-		<div>
-			<h1>goods page</h1>
-			<h1>goods page</h1>
-			<h1>goods page</h1>
-			<h1>goods page</h1>
-			<h1>goods page</h1>
-			<h1>goods page</h1>
-			<h1>goods page</h1>
-			<h1>goods page</h1>
-		</div>
+		<S.MainContainer>
+			<S.SubTitle>{PAGE_TITLE.SUB}</S.SubTitle>
+			<S.MainTitle>{PAGE_TITLE.MAIN}</S.MainTitle>
+
+			<S.Description>{DESCRIPTION}</S.Description>
+
+			<GoodsLinkSection {...SECTION_TITLE.LINK} />
+			<GoodsGuideSection {...SECTION_TITLE.GUIDE} />
+		</S.MainContainer>
 	);
 };
 
