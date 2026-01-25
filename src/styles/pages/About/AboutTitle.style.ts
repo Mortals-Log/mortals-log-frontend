@@ -4,7 +4,7 @@
 
 import styled from '@emotion/styled';
 
-export const StorySection = styled.section`
+export const ContentSection = styled.section`
 	display: flex;
 	width: 100%;
 	flex-direction: column;

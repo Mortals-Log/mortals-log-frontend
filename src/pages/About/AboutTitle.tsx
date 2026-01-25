@@ -9,7 +9,7 @@ const AboutStory = () => {
 	const subTitles = ABOUT_STORY.SUBTITLE.split('\n');
 
 	return (
-		<S.StorySection>
+		<S.ContentSection>
 			<S.Title>
 				{mainTitle}
 				<br />
@@ -34,7 +34,7 @@ const AboutStory = () => {
 				</p>{' '}
 				<p className="sub-text">{ABOUT_STORY.DESCRIPTION.SUB}</p>
 			</S.DescriptionBox>
-		</S.StorySection>
+		</S.ContentSection>
 	);
 };
 
