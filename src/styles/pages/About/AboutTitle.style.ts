@@ -21,7 +21,7 @@ export const ContentSection = styled.section`
 `;
 
 export const Title = styled.div`
-	font-family: ${props => props.theme.FONT.SANS};
+	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.DISPLAY};
 	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 	color: ${props => props.theme.COLOR.GRAY600};
