@@ -1,4 +1,4 @@
-// @src/pages/About/components/AboutStory.tsx
+// @src/pages/About/AboutTitle.tsx
 
 import * as S from '@styles/pages/About/AboutTitle.style';
 import { ABOUT_STORY } from '@const/about';

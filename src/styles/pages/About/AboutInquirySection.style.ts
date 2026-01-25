@@ -1,4 +1,4 @@
-// @AboutPolicySection.style
+// @styles/pages/About/AboutInquirySection.style
 
 /* eslint-disable storybook/default-exports */
 
