@@ -10,5 +10,8 @@ export const MainContainer = styled.main`
 `;
 
 export const ContentSection = styled.section`
-	margin-top: 5rem;
+	width: 100%;
+	max-width: 800px;
+	margin: 5rem auto 0;
+	padding: 0 20px;
 `;
