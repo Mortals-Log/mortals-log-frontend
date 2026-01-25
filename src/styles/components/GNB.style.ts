@@ -99,6 +99,9 @@ export const NavGroup = styled.ul`
 `;
 
 export const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
+	position: relative;
+	width: fit-content;
+
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.XS};
 	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
@@ -117,8 +120,6 @@ export const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
             width: 3px;
             height: 3px;
             border-radius: 50%;
-			margin-left: 1px;
-			margin-top: -1px;
             background-color: ${props.theme.COLOR.PRIMARY};
         }
     `}
@@ -191,6 +192,9 @@ export const MobileMenu = styled(motion.div)`
 `;
 
 export const MobileNavItem = styled.li<{ $isActive?: boolean }>`
+	position: relative;
+	width: fit-content;
+
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
@@ -208,8 +212,6 @@ export const MobileNavItem = styled.li<{ $isActive?: boolean }>`
             width: 4px;
             height: 4px;
             border-radius: 50%;
-			margin-left: 1px;
-			margin-top: -1px;
             background-color: ${props.theme.COLOR.PRIMARY};
         }
     `}
