@@ -1,17 +1,13 @@
 // @src/pages/About/index
 
+import * as S from '@styles/pages/About/About.style';
+import AboutStory from '@pages/About/AboutTitle';
+
 const About = () => {
 	return (
-		<div>
-			<h1>About page</h1>
-			<h1>About page</h1>
-			<h1>About page</h1>
-			<h1>About page</h1>
-			<h1>About page</h1>
-			<h1>About page</h1>
-			<h1>About page</h1>
-			<h1>About page</h1>
-		</div>
+		<S.MainContainer>
+			<AboutStory />
+		</S.MainContainer>
 	);
 };
 export default About;
