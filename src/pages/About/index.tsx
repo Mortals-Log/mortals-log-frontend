@@ -2,7 +2,7 @@
 
 import * as S from '@styles/pages/About/About.style';
 import AboutTitle from '@pages/About/AboutTitle';
-import AboutPolicy from '@pages/About/AboutPolicy';
+import AboutPolicySection from '@pages/About/AboutPolicySection';
 
 const SECTION_TITLE = {
 	POLICY: {
@@ -15,7 +15,7 @@ const About = () => {
 	return (
 		<S.MainContainer>
 			<AboutTitle />
-			<AboutPolicy {...SECTION_TITLE.POLICY} />
+			<AboutPolicySection {...SECTION_TITLE.POLICY} />
 		</S.MainContainer>
 	);
 };

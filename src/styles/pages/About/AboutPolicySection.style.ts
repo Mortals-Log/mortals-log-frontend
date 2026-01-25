@@ -1,4 +1,4 @@
-// @AboutPolicy.style
+// @AboutPolicySection.style
 
 /* eslint-disable storybook/default-exports */
 

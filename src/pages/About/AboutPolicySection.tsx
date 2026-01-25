@@ -1,6 +1,6 @@
-// @pages/About/AboutPolicy
+// @pages/About/AboutPolicySection
 
-import * as S from '@styles/pages/About/AboutPolicy.style';
+import * as S from '@styles/pages/About/AboutPolicySection.style';
 import { ABOUT_POLICY } from '@const/about';
 
 const AboutPolicy = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
