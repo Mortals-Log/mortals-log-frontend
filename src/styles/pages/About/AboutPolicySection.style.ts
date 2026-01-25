@@ -5,7 +5,10 @@
 import styled from '@emotion/styled';
 export * from '@styles/common/SectionTitle.style';
 export * from '@styles/pages/About/About.style';
-export * from '@styles/components/Table.style';
+
+export const PolicyList = styled.div`
+	width: 100%;
+`;
 
 export const PolicyItem = styled.div`
 	display: flex;

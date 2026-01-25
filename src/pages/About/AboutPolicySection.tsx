@@ -11,18 +11,14 @@ const AboutPolicy = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: strin
 				<span>{TITLE_EN}</span>
 			</S.SectionTitle>
 
-			<S.Table>
-				<tbody>
-					{ABOUT_POLICY.SECTIONS.map((item, index) => (
-						<S.PolicyItem key={index}>
-							<td className="label">{item.label}</td>
-							<td className="content-cell">
-								<p className="content">{item.content}</p>
-							</td>
-						</S.PolicyItem>
-					))}
-				</tbody>
-			</S.Table>
+			<S.PolicyList>
+				{ABOUT_POLICY.SECTIONS.map((item, index) => (
+					<S.PolicyItem key={index}>
+						<div className="label">{item.label}</div>
+						<div className="content">{item.content}</div>
+					</S.PolicyItem>
+				))}
+			</S.PolicyList>
 		</S.ContentSection>
 	);
 };
