@@ -1,4 +1,4 @@
-// @pages/About/AboutPolicySection
+// @pages/About/AboutInquirySection
 
 import * as S from '@styles/pages/About/AboutInquirySection.style';
 import { ABOUT_INQUIRY, ABOUT_INQUIRY_SUFFIX } from '@const/about';
