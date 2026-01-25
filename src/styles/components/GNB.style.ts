@@ -98,15 +98,31 @@ export const NavGroup = styled.ul`
 	}
 `;
 
-export const NavItem = styled(motion.a)`
+export const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
+	position: relative;
+	width: fit-content;
+
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.XS};
 	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 
 	letter-spacing: 0.15em;
 	cursor: pointer;
-	color: ${props => props.theme.COLOR.BLACK};
+	color: ${props => (props.$isActive ? props.theme.COLOR.PRIMARY : props.theme.COLOR.BLACK)};
 	text-decoration: none;
+
+	${props =>
+		props.$isActive &&
+		`
+        &::after {
+			content: '';
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background-color: ${props.theme.COLOR.PRIMARY};
+        }
+    `}
 
 	&:hover {
 		color: ${props => props.theme.COLOR.PRIMARY};
@@ -175,14 +191,30 @@ export const MobileMenu = styled(motion.div)`
 	gap: 2rem;
 `;
 
-export const MobileNavItem = styled.li`
+export const MobileNavItem = styled.li<{ $isActive?: boolean }>`
+	position: relative;
+	width: fit-content;
+
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 
 	letter-spacing: 0.1em;
-	color: ${props => props.theme.COLOR.BLACK};
+	color: ${props => (props.$isActive ? props.theme.COLOR.PRIMARY : props.theme.COLOR.BLACK)};
 	cursor: pointer;
+
+	${props =>
+		props.$isActive &&
+		`
+        &::after {
+			content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: ${props.theme.COLOR.PRIMARY};
+        }
+    `}
 
 	&:hover {
 		color: ${props => props.theme.COLOR.PRIMARY};

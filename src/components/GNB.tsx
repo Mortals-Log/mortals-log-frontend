@@ -2,7 +2,7 @@
 
 import * as S from '@/styles/components/GNB.style';
 import { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, Variants } from 'framer-motion';
 import { ACTIVE_NAV_ITEMS, METADATA } from '@/const/contents';
 import MenuIcon from '@assets/icons/MenuIcon';
@@ -11,6 +11,9 @@ import { GetDDay, GetUpcomingSchedules } from '@utils/date';
 import { FULL_CONCERTS } from '@/const/concert';
 
 const GNB = () => {
+	const location = useLocation();
+	const currentPath = location.pathname;
+
 	const upcomingEvents = GetUpcomingSchedules(FULL_CONCERTS);
 
 	const [isLogoHovered, setIsLogoHovered] = useState(false);
@@ -99,7 +102,7 @@ const GNB = () => {
 
 				<S.NavGroup>
 					{ACTIVE_NAV_ITEMS.map(item => (
-						<S.NavItem key={item.id} onClick={() => handleNavClick(item.path)}>
+						<S.NavItem key={item.id} onClick={() => handleNavClick(item.path)} $isActive={currentPath === item.path}>
 							{item.name}
 						</S.NavItem>
 					))}
@@ -143,10 +146,15 @@ const GNB = () => {
 							</S.CloseButton>
 
 							<S.MobileNavList>
-								<S.MobileNavItem onClick={() => handleNavClick('/')}>HOME</S.MobileNavItem>
+								<S.MobileNavItem onClick={() => handleNavClick('/')} $isActive={currentPath === '/'}>
+									HOME
+								</S.MobileNavItem>
 
 								{ACTIVE_NAV_ITEMS.map(item => (
-									<S.MobileNavItem key={item.id} onClick={() => handleNavClick(item.path)}>
+									<S.MobileNavItem
+										key={item.id}
+										onClick={() => handleNavClick(item.path)}
+										$isActive={currentPath === item.path}>
 										{item.name}
 									</S.MobileNavItem>
 								))}
