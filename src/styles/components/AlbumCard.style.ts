@@ -3,8 +3,9 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
-export const AlbumCard = styled.div`
+export const AlbumCard = styled(Link)`
 	cursor: pointer;
 
 	&:hover .overlay {

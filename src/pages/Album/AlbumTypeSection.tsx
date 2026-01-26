@@ -66,8 +66,11 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 					const year = album.releaseDate.split('.')[0];
 					const key = `${album.type}_${year}_${album.fileName}`;
 
+					const slug = album.title.replace(/\s/g, '-');
+					const url = `/album/${encodeURIComponent(slug)}`;
+
 					return (
-						<S.AlbumCard key={key}>
+						<S.AlbumCard key={key} to={`${url}`}>
 							<S.CoverWrapper>
 								<img
 									src={`/images/albums/${key}.webp`}
