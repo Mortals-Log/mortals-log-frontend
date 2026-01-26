@@ -22,6 +22,8 @@ const ALBUM_MAP: Record<string, any> = {
 
 const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const [activeTab, setActiveTab] = useState('ALL');
+	const [isClosed, setIsClosed] = useState(false);
+
 	const tabs = ['ALL', ...Object.keys(ALBUM_TYPE_LABEL)];
 
 	const allAlbums = GET_FULL_ALBUMS().flatMap(group => group.items);
@@ -46,6 +48,11 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 		}
 	}, [activeTab]);
 
+	const handleTabClick = (tab: string) => {
+		setActiveTab(tab);
+		if (isClosed) setIsClosed(false);
+	};
+
 	return (
 		<S.ContentSection ref={sectionRef}>
 			<S.SectionTitle>
@@ -54,48 +61,56 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 			</S.SectionTitle>
 
 			<S.TabList>
-				{tabs.map(tab => (
-					<S.TabItem key={tab} $isActive={activeTab === tab} onClick={() => setActiveTab(tab)}>
-						{tab === 'ALL' ? '전체' : ALBUM_TYPE_LABEL[tab]}
-					</S.TabItem>
-				))}
+				<S.TabGroup>
+					{tabs.map(tab => (
+						<S.TabItem key={tab} $isActive={activeTab === tab} onClick={() => handleTabClick(tab)}>
+							{tab === 'ALL' ? '전체' : ALBUM_TYPE_LABEL[tab]}
+						</S.TabItem>
+					))}
+				</S.TabGroup>
+
+				<S.ToggleButton onClick={() => setIsClosed(!isClosed)}>
+					{isClosed ? '앨범 목록 펼치기 ↓' : '앨범 목록 접기 ↑'}
+				</S.ToggleButton>
 			</S.TabList>
 
-			<S.AlbumGrid>
-				{filteredData?.map((album: any) => {
-					const year = album.releaseDate.split('.')[0];
-					const key = `${album.type}_${year}_${album.fileName}`;
+			{!isClosed && (
+				<S.AlbumGrid>
+					{filteredData?.map((album: any) => {
+						const year = album.releaseDate.split('.')[0];
+						const key = `${album.type}_${year}_${album.fileName}`;
 
-					const slug = album.title.replace(/\s/g, '-');
-					const url = `/album/${encodeURIComponent(slug)}`;
+						const slug = album.title.replace(/\s/g, '-');
+						const url = `/album/${encodeURIComponent(slug)}`;
 
-					return (
-						<S.AlbumCard key={key} to={`${url}`}>
-							<S.CoverWrapper>
-								<img
-									src={`/images/albums/${key}.webp`}
-									alt={album.title}
-									onError={e => {
-										e.currentTarget.src = '/images/albums/default.webp';
-									}}
-								/>
-								<S.Overlay className="overlay">
-									<span>VIEW TRACKS →</span>
-								</S.Overlay>
-							</S.CoverWrapper>
+						return (
+							<S.AlbumCard key={key} to={`${url}`}>
+								<S.CoverWrapper>
+									<img
+										src={`/images/albums/${key}.webp`}
+										alt={album.title}
+										onError={e => {
+											e.currentTarget.src = '/images/albums/default.webp';
+										}}
+									/>
+									<S.Overlay className="overlay">
+										<span>VIEW TRACKS →</span>
+									</S.Overlay>
+								</S.CoverWrapper>
 
-							<S.AlbumInfo>
-								<div className="type-wrap">
-									<span className="type">{ALBUM_TYPE_LABEL[album.type]}</span>
-									{album.volume && <span className="vol">정규 {album.volume}집</span>}
-								</div>
-								<h3 className="title">{album.title}</h3>
-								<span className="date">{album.releaseDate}</span>
-							</S.AlbumInfo>
-						</S.AlbumCard>
-					);
-				})}
-			</S.AlbumGrid>
+								<S.AlbumInfo>
+									<div className="type-wrap">
+										<span className="type">{ALBUM_TYPE_LABEL[album.type]}</span>
+										{album.volume && <span className="vol">정규 {album.volume}집</span>}
+									</div>
+									<h3 className="title">{album.title}</h3>
+									<span className="date">{album.releaseDate}</span>
+								</S.AlbumInfo>
+							</S.AlbumCard>
+						);
+					})}
+				</S.AlbumGrid>
+			)}
 		</S.ContentSection>
 	);
 };

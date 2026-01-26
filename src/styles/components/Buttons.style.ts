@@ -176,3 +176,19 @@ export const BackButton = styled.button`
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 `;
+
+export const ToggleButton = styled.button`
+	background: none;
+	border: none;
+	cursor: pointer;
+	white-space: nowrap;
+	margin-left: 1rem;
+
+	font-size: ${props => props.theme.FONT.SIZE.XS};
+	color: ${props => props.theme.COLOR.GRAY400};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+
+	&:hover {
+		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+`;
