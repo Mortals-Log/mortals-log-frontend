@@ -1,8 +1,9 @@
 // @src/pages/Album/index
 
 import * as S from '@styles/pages/Album/Album.style';
-import AlbumReleaseSection from '@pages/Album/AlbumReleaseSection';
 import { NAME } from '@/const/contents';
+import AlbumReleaseSection from '@pages/Album/AlbumReleaseSection';
+import AlbumTypeSection from '@pages/Album/AlbumTypeSection';
 
 const PAGE_TITLE = {
 	MAIN: '앨범',
@@ -11,7 +12,11 @@ const PAGE_TITLE = {
 } as const;
 
 const SECTION_TITLE = {
-	YEAR: {
+	TYPE: {
+		TITLE_KR: '타입별로 보기',
+		TITLE_EN: 'Sort by Type',
+	},
+	RELEASE: {
 		TITLE_KR: '발매순으로 보기',
 		TITLE_EN: 'Sort by Release',
 	},
@@ -25,7 +30,8 @@ const Album = () => {
 
 			<S.Description>{PAGE_TITLE.DESCRIPTION}</S.Description>
 
-			<AlbumReleaseSection {...SECTION_TITLE.YEAR} />
+			<AlbumTypeSection {...SECTION_TITLE.TYPE} />
+			<AlbumReleaseSection {...SECTION_TITLE.RELEASE} />
 		</S.MainContainer>
 	);
 };
