@@ -18,7 +18,7 @@ const AlbumDetail = () => {
 	if (!albumData) {
 		return (
 			<S.MainContainer>
-				<S.BackButton onClick={() => navigate('/album')}>Go to List</S.BackButton>
+				<S.BackButton onClick={() => navigate('/album')}>GO TO ALBUM LIST</S.BackButton>
 				<S.MainTitle>Album Not Found</S.MainTitle>
 
 				<S.Placeholder>
@@ -30,7 +30,7 @@ const AlbumDetail = () => {
 
 	return (
 		<S.MainContainer>
-			<S.BackButton onClick={() => navigate(-1)}>BACK TO LIST</S.BackButton>
+			<S.BackButton onClick={() => navigate(-1)}>BACK TO PAGE</S.BackButton>
 
 			<S.TitleSection>
 				<S.TypeWrap>
