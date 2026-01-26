@@ -111,6 +111,12 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 					})}
 				</S.AlbumGrid>
 			)}
+
+			{isClosed && (
+				<S.Placeholder>
+					<p>타입별 앨범 보기가 닫혀있습니다.</p>
+				</S.Placeholder>
+			)}
 		</S.ContentSection>
 	);
 };

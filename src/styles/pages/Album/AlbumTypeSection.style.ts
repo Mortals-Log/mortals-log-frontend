@@ -88,3 +88,13 @@ export const AlbumGrid = styled.div`
 		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 	}
 `;
+
+export const Placeholder = styled.div`
+	margin-top: 2rem;
+	text-align: center;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.GRAY300};
+`;
