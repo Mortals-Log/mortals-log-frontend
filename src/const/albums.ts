@@ -12,6 +12,10 @@ export const ALBUM_TYPE_LABEL: Record<string, string> = {
 	VN: 'LP',
 };
 
+/* [todo] track 구조 개편
+   라이브 앨범, 싱글 앨범 등으로 앨범 별로 중복 되는 곡이 있기에 tracks 구조 개편이 필요합니다.
+   해당 tracks는 앨범 페이지의 "최근에 발행된 앨범" 홍복 섹션(AlbumPromotionSection)을 위해 임시로 추가한 데이터입니다.
+   앨범 상세 페이지를 구현 때 트랙 구조를 개선 할 예정입니다. */
 export const LP_ALBUMS: Album[] = [
 	{
 		type: 'LP',
@@ -19,6 +23,19 @@ export const LP_ALBUMS: Album[] = [
 		title: '졸업앨범',
 		fileName: 'graduation',
 		releaseDate: '2025.11.21',
+		tracks: [
+			'아이들',
+			'이번 방학엔 공부 좀 해라',
+			'성장통',
+			'스카',
+			'사춘기',
+			'여드름',
+			'장래희망',
+			'졸업',
+			'퇴근',
+			'비둘기들의 도시',
+			'휴식행 티켓',
+		],
 		store: '#',
 		musicVideo: '#',
 	},

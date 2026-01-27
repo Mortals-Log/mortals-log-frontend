@@ -8,6 +8,7 @@ export interface Album {
 	type: 'LP' | 'EP' | 'SP' | 'LV' | 'VN';
 	volume?: number;
 	fileName?: string;
+	tracks?: string[];
 	store?: string;
 	musicVideo?: string;
 }

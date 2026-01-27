@@ -4,6 +4,7 @@ import * as S from '@styles/pages/Album/Album.style';
 import { NAME } from '@/const/contents';
 import AlbumReleaseSection from '@pages/Album/AlbumReleaseSection';
 import AlbumTypeSection from '@pages/Album/AlbumTypeSection';
+import AlbumPromotionSection from './AlbumPromotionSection';
 
 const PAGE_TITLE = {
 	MAIN: '앨범',
@@ -30,6 +31,7 @@ const Album = () => {
 
 			<S.Description>{PAGE_TITLE.DESCRIPTION}</S.Description>
 
+			<AlbumPromotionSection />
 			<AlbumTypeSection {...SECTION_TITLE.TYPE} />
 			<AlbumReleaseSection {...SECTION_TITLE.RELEASE} />
 		</S.MainContainer>
