@@ -21,7 +21,7 @@ export const YearSection = styled.section`
 		flex-direction: column;
 		gap: 1rem;
 
-		margin: 3rem 0rem;
+		margin: 0.5rem 0rem;
 	}
 `;
 
@@ -34,6 +34,19 @@ export const YearTitle = styled.h2`
 	font-size: ${props => props.theme.FONT.SIZE.H2};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	color: ${props => props.theme.COLOR.PRIMARY};
+
+	@media (max-width: 850px) {
+		top: 50px;
+		width: 100%;
+		z-index: 10;
+		padding: 1.2rem;
+		margin: 0;
+
+		background-color: ${props => props.theme.COLOR.WHITE}cc;
+		backdrop-filter: blur(15px);
+		-webkit-backdrop-filter: blur(15px);
+		border-bottom: 1px solid ${props => props.theme.COLOR.GRAY100}44;
+	}
 `;
 
 export const AlbumGrid = styled.div`
