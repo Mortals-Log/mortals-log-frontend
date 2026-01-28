@@ -9,7 +9,7 @@ const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_E
 	const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
 	const toggleSection = (year: string) => {
-		const isCurrentOpen = openSections[year] == true;
+		const isCurrentOpen = openSections[year] !== false;
 
 		setOpenSections(prev => ({
 			...prev,
@@ -34,7 +34,7 @@ const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_E
 			</S.SectionTitle>
 
 			{FULL_ALBUMS.map(({ year, items }) => {
-				const isSectionOpen = openSections[year] == true;
+				const isSectionOpen = openSections[year] !== false;
 
 				return (
 					<S.YearSection
