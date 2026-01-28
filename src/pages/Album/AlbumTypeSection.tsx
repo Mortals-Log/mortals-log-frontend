@@ -22,7 +22,7 @@ const ALBUM_MAP: Record<string, any> = {
 
 const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const [activeTab, setActiveTab] = useState('ALL');
-	const [isClosed, setIsClosed] = useState(false);
+	const [isOpen, setIsOpen] = useState(true);
 
 	const tabs = ['ALL', ...Object.keys(ALBUM_TYPE_LABEL)];
 
@@ -50,7 +50,7 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 
 	const handleTabClick = (tab: string) => {
 		setActiveTab(tab);
-		if (isClosed) setIsClosed(false);
+		if (!isOpen) setIsOpen(true);
 	};
 
 	return (
@@ -69,12 +69,12 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 					))}
 				</S.TabGroup>
 
-				<S.ToggleButton onClick={() => setIsClosed(!isClosed)}>
-					{isClosed ? '앨범 목록 펼치기 ↓' : '앨범 목록 접기 ↑'}
+				<S.ToggleButton onClick={() => setIsOpen(!isOpen)}>
+					{isOpen ? '앨범 목록 접기 ↑' : '앨범 목록 펼치기 ↓'}
 				</S.ToggleButton>
 			</S.TabList>
 
-			{!isClosed && (
+			{isOpen && (
 				<S.AlbumGrid>
 					{filteredData?.map((album: any) => {
 						const year = album.releaseDate.split('.')[0];
@@ -112,7 +112,7 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 				</S.AlbumGrid>
 			)}
 
-			{isClosed && (
+			{!isOpen && (
 				<S.Placeholder>
 					<p>타입별 앨범 보기가 닫혀있습니다.</p>
 				</S.Placeholder>
