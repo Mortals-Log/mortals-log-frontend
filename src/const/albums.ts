@@ -4,6 +4,12 @@
 
 import { Album, AlbumList } from '@/types/album';
 
+const getReleaseTime = (date: string) => Number(date.replace(/[^0-9]/g, ''));
+
+const sortAlbumsLatest = (albums: Album[]) => {
+	return [...albums].sort((a, b) => getReleaseTime(b.releaseDate) - getReleaseTime(a.releaseDate));
+};
+
 export const ALBUM_TYPE_LABEL: Record<string, string> = {
 	LP: '정규 앨범',
 	EP: 'EP',
@@ -194,33 +200,23 @@ const VN_ALBUMS: Album[] = [
 	},
 ];
 
-const GetAlbumsSorted = (albums: Album[]) => {
-	return [...albums].sort((a, b) => {
-		const dateA = Number(a.releaseDate.replace(/[^0-9]/g, ''));
-		const dateB = Number(b.releaseDate.replace(/[^0-9]/g, ''));
-		return dateB - dateA;
-	});
-};
+export const GET_LP_ALBUMS = sortAlbumsLatest(LP_ALBUMS);
 
-export const GET_LP_ALBUMS = GetAlbumsSorted(LP_ALBUMS);
+export const GET_EP_ALBUMS = sortAlbumsLatest(EP_ALBUMS);
 
-export const GET_EP_ALBUMS = GetAlbumsSorted(EP_ALBUMS);
+export const GET_SP_ALBUMS = sortAlbumsLatest(SP_ALBUMS);
 
-export const GET_SP_ALBUMS = GetAlbumsSorted(SP_ALBUMS);
+export const GET_LV_ALBUMS = sortAlbumsLatest(LV_ALBUMS);
 
-export const GET_LV_ALBUMS = GetAlbumsSorted(LV_ALBUMS);
-
-export const GET_VN_ALBUMS = GetAlbumsSorted(VN_ALBUMS);
+export const GET_VN_ALBUMS = sortAlbumsLatest(VN_ALBUMS);
 
 export const GET_FULL_ALBUMS = () => {
+	const allAlbums = [...LP_ALBUMS, ...EP_ALBUMS, ...SP_ALBUMS, ...LV_ALBUMS, ...VN_ALBUMS];
 	const combinedMap: Record<string, Album[]> = {};
 
-	[...LP_ALBUMS, ...EP_ALBUMS, ...SP_ALBUMS, ...LV_ALBUMS, ...VN_ALBUMS].forEach(album => {
+	allAlbums.forEach(album => {
 		const year = album.releaseDate.split('.')[0].trim();
-
-		if (!combinedMap[year]) {
-			combinedMap[year] = [];
-		}
+		if (!combinedMap[year]) combinedMap[year] = [];
 		combinedMap[year].push(album);
 	});
 
@@ -228,11 +224,7 @@ export const GET_FULL_ALBUMS = () => {
 		.sort((a, b) => Number(b) - Number(a))
 		.map(year => ({
 			year,
-			items: combinedMap[year].sort((a, b) => {
-				const dateA = Number(a.releaseDate.replace(/[^0-9]/g, ''));
-				const dateB = Number(b.releaseDate.replace(/[^0-9]/g, ''));
-				return dateB - dateA;
-			}),
+			items: sortAlbumsLatest(combinedMap[year]),
 		}));
 };
 
