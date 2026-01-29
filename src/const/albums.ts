@@ -86,7 +86,7 @@ export const LP_ALBUMS: Album[] = [
 	},
 ];
 
-export const EP_ALBUMS: Album[] = [
+const EP_ALBUMS: Album[] = [
 	{
 		type: 'EP',
 		title: '굴다리',
@@ -113,7 +113,7 @@ export const EP_ALBUMS: Album[] = [
 	},
 ];
 
-export const SP_ALBUMS: Album[] = [
+const SP_ALBUMS: Album[] = [
 	{
 		type: 'SP',
 		title: '속편',
@@ -156,7 +156,7 @@ export const SP_ALBUMS: Album[] = [
 	},
 ];
 
-export const LV_ALBUMS: Album[] = [
+const LV_ALBUMS: Album[] = [
 	{
 		type: 'LV',
 		title: '천진우 라이브',
@@ -183,7 +183,7 @@ export const LV_ALBUMS: Album[] = [
 	},
 ];
 
-export const VN_ALBUMS: Album[] = [
+const VN_ALBUMS: Album[] = [
 	{
 		type: 'VN',
 		title: '굴다리 LP 앨범',
@@ -193,6 +193,24 @@ export const VN_ALBUMS: Album[] = [
 		musicVideo: '#',
 	},
 ];
+
+const GetAlbumsSorted = (albums: Album[]) => {
+	return [...albums].sort((a, b) => {
+		const dateA = Number(a.releaseDate.replace(/[^0-9]/g, ''));
+		const dateB = Number(b.releaseDate.replace(/[^0-9]/g, ''));
+		return dateB - dateA;
+	});
+};
+
+export const GET_LP_ALBUMS = GetAlbumsSorted(LP_ALBUMS);
+
+export const GET_EP_ALBUMS = GetAlbumsSorted(EP_ALBUMS);
+
+export const GET_SP_ALBUMS = GetAlbumsSorted(SP_ALBUMS);
+
+export const GET_LV_ALBUMS = GetAlbumsSorted(LV_ALBUMS);
+
+export const GET_VN_ALBUMS = GetAlbumsSorted(VN_ALBUMS);
 
 export const GET_FULL_ALBUMS = () => {
 	const combinedMap: Record<string, Album[]> = {};

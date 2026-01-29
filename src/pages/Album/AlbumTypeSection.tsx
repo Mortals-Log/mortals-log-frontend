@@ -5,19 +5,19 @@ import * as S from '@styles/pages/Album/AlbumTypeSection.style';
 import {
 	ALBUM_TYPE_LABEL,
 	GET_FULL_ALBUMS,
-	LP_ALBUMS,
-	EP_ALBUMS,
-	SP_ALBUMS,
-	LV_ALBUMS,
-	VN_ALBUMS,
+	GET_LP_ALBUMS,
+	GET_EP_ALBUMS,
+	GET_SP_ALBUMS,
+	GET_LV_ALBUMS,
+	GET_VN_ALBUMS,
 } from '@const/albums';
 
 const ALBUM_MAP: Record<string, any> = {
-	LP: LP_ALBUMS,
-	EP: EP_ALBUMS,
-	SP: SP_ALBUMS,
-	LV: LV_ALBUMS,
-	VN: VN_ALBUMS,
+	LP: GET_LP_ALBUMS,
+	EP: GET_EP_ALBUMS,
+	SP: GET_SP_ALBUMS,
+	LV: GET_LV_ALBUMS,
+	VN: GET_VN_ALBUMS,
 };
 
 const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
