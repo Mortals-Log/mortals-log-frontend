@@ -4,6 +4,12 @@
 
 import { Album, AlbumList } from '@/types/album';
 
+const getReleaseTime = (date: string) => Number(date.replace(/[^0-9]/g, ''));
+
+const sortAlbumsLatest = (albums: Album[]) => {
+	return [...albums].sort((a, b) => getReleaseTime(b.releaseDate) - getReleaseTime(a.releaseDate));
+};
+
 export const ALBUM_TYPE_LABEL: Record<string, string> = {
 	LP: '정규 앨범',
 	EP: 'EP',
@@ -12,6 +18,10 @@ export const ALBUM_TYPE_LABEL: Record<string, string> = {
 	VN: 'LP',
 };
 
+/* [todo] track 구조 개편
+   라이브 앨범, 싱글 앨범 등으로 앨범 별로 중복 되는 곡이 있기에 tracks 구조 개편이 필요합니다.
+   해당 tracks는 앨범 페이지의 "최근에 발행된 앨범" 홍복 섹션(AlbumPromotionSection)을 위해 임시로 추가한 데이터입니다.
+   앨범 상세 페이지를 구현 때 트랙 구조를 개선 할 예정입니다. */
 export const LP_ALBUMS: Album[] = [
 	{
 		type: 'LP',
@@ -19,6 +29,19 @@ export const LP_ALBUMS: Album[] = [
 		title: '졸업앨범',
 		fileName: 'graduation',
 		releaseDate: '2025.11.21',
+		tracks: [
+			'아이들',
+			'이번 방학엔 공부 좀 해라',
+			'성장통',
+			'스카',
+			'사춘기',
+			'여드름',
+			'장래희망',
+			'졸업',
+			'퇴근',
+			'비둘기들의 도시',
+			'휴식행 티켓',
+		],
 		store: '#',
 		musicVideo: '#',
 	},
@@ -69,7 +92,7 @@ export const LP_ALBUMS: Album[] = [
 	},
 ];
 
-export const EP_ALBUMS: Album[] = [
+const EP_ALBUMS: Album[] = [
 	{
 		type: 'EP',
 		title: '굴다리',
@@ -96,7 +119,7 @@ export const EP_ALBUMS: Album[] = [
 	},
 ];
 
-export const SP_ALBUMS: Album[] = [
+const SP_ALBUMS: Album[] = [
 	{
 		type: 'SP',
 		title: '속편',
@@ -139,7 +162,7 @@ export const SP_ALBUMS: Album[] = [
 	},
 ];
 
-export const LV_ALBUMS: Album[] = [
+const LV_ALBUMS: Album[] = [
 	{
 		type: 'LV',
 		title: '천진우 라이브',
@@ -166,7 +189,7 @@ export const LV_ALBUMS: Album[] = [
 	},
 ];
 
-export const VN_ALBUMS: Album[] = [
+const VN_ALBUMS: Album[] = [
 	{
 		type: 'VN',
 		title: '굴다리 LP 앨범',
@@ -177,15 +200,23 @@ export const VN_ALBUMS: Album[] = [
 	},
 ];
 
+export const GET_LP_ALBUMS = sortAlbumsLatest(LP_ALBUMS);
+
+export const GET_EP_ALBUMS = sortAlbumsLatest(EP_ALBUMS);
+
+export const GET_SP_ALBUMS = sortAlbumsLatest(SP_ALBUMS);
+
+export const GET_LV_ALBUMS = sortAlbumsLatest(LV_ALBUMS);
+
+export const GET_VN_ALBUMS = sortAlbumsLatest(VN_ALBUMS);
+
 export const GET_FULL_ALBUMS = () => {
+	const allAlbums = [...LP_ALBUMS, ...EP_ALBUMS, ...SP_ALBUMS, ...LV_ALBUMS, ...VN_ALBUMS];
 	const combinedMap: Record<string, Album[]> = {};
 
-	[...LP_ALBUMS, ...EP_ALBUMS, ...SP_ALBUMS, ...LV_ALBUMS, ...VN_ALBUMS].forEach(album => {
+	allAlbums.forEach(album => {
 		const year = album.releaseDate.split('.')[0].trim();
-
-		if (!combinedMap[year]) {
-			combinedMap[year] = [];
-		}
+		if (!combinedMap[year]) combinedMap[year] = [];
 		combinedMap[year].push(album);
 	});
 
@@ -193,11 +224,7 @@ export const GET_FULL_ALBUMS = () => {
 		.sort((a, b) => Number(b) - Number(a))
 		.map(year => ({
 			year,
-			items: combinedMap[year].sort((a, b) => {
-				const dateA = Number(a.releaseDate.replace(/[^0-9]/g, ''));
-				const dateB = Number(b.releaseDate.replace(/[^0-9]/g, ''));
-				return dateB - dateA;
-			}),
+			items: sortAlbumsLatest(combinedMap[year]),
 		}));
 };
 

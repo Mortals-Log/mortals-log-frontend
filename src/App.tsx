@@ -5,6 +5,7 @@ import GNB from '@components/GNB';
 import Home from '@pages/Home';
 import Profile from '@pages/Profile';
 import Album from '@pages/Album';
+import AlbumDetail from '@pages/Album/AlbumDetail';
 import Schedule from '@pages/Schedule';
 import Goods from '@pages/Goods';
 import About from '@pages/About';
@@ -24,6 +25,7 @@ function App() {
 				<Route path="/" element={<Home />} />
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/album" element={<Album />} />
+				<Route path="/album/:id" element={<AlbumDetail />} />
 				<Route path="/schedule" element={<Schedule />} />
 				<Route path="/goods" element={<Goods />} />
 				<Route path="/about" element={<About />} />

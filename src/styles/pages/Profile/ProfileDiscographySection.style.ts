@@ -5,7 +5,7 @@
 export * from '@/styles/pages/Profile/Profile.style';
 
 export * from '@/styles/components/Buttons.style';
-export * from '@/styles/components/AlbumCard.style';
+export * from '@/styles/components/AlbumPreviewCard.style';
 export * from '@/styles/components/Slider.style';
 
 export * from '@styles/common/SectionTitle.style';

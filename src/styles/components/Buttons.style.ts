@@ -157,3 +157,38 @@ export const CardButton = styled(motion.a)`
 		border-color: ${props => props.theme.COLOR.PRIMARY};
 	}
 `;
+
+export const BackButton = styled.button`
+	background: none;
+	border: none;
+	cursor: pointer;
+	margin-bottom: 1.2rem;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	color: ${props => props.theme.COLOR.GRAY400};
+
+	:before {
+		content: '← ';
+	}
+	&:hover {
+		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+`;
+
+export const ToggleButton = styled.button`
+	background: none;
+	border: none;
+	cursor: pointer;
+	white-space: nowrap;
+	margin-left: 1rem;
+
+	font-size: ${props => props.theme.FONT.SIZE.XS};
+	color: ${props => props.theme.COLOR.GRAY400};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+
+	&:hover {
+		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+`;

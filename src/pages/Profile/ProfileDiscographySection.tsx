@@ -2,8 +2,7 @@
 
 import * as S from '@styles/pages/Profile/ProfileDiscographySection.style';
 import { useEffect, useRef, useState } from 'react';
-import { ALBUM_TYPE_LABEL, LP_ALBUMS } from '@const/albums';
-import { GetAlbumCoverPath } from '@/utils/album';
+import { ALBUM_TYPE_LABEL, GET_LP_ALBUMS } from '@const/albums';
 
 const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const sliderRef = useRef<HTMLDivElement>(null);
@@ -54,30 +53,42 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 					</S.SliderNavButton>
 				)}
 				<S.Slider ref={sliderRef} onScroll={checkScrollPosition}>
-					{LP_ALBUMS.map(album => (
-						<S.AlbumCard key={`${album.type}-${album.title}`}>
-							<img
-								src={GetAlbumCoverPath(album)}
-								alt={album.title}
-								onError={e => {
-									const target = e.currentTarget;
-									target.src = '/images/albums/default.webp';
-									target.onerror = null;
-								}}
-							/>
+					{GET_LP_ALBUMS.map(album => {
+						const year = album.releaseDate.split('.')[0];
+						const key = `${album.type}_${year}_${album.fileName}`;
 
-							<S.AlbumInfo>
-								<span className="title">{album.title}</span>
-								<span className="info">
-									{album.type === 'LP'
-										? `${ALBUM_TYPE_LABEL[album.type]} ${album.volume}집`
-										: ALBUM_TYPE_LABEL[album.type]}
-									{' | '}
-									{album.releaseDate.split('.')[0]}년
-								</span>
-							</S.AlbumInfo>
-						</S.AlbumCard>
-					))}
+						const slug = album.title.replace(/\s/g, '-');
+						const url = `/album/${encodeURIComponent(slug)}`;
+
+						return (
+							<S.AlbumCard key={key} to={`${url}`}>
+								<S.CoverWrapper>
+									<img
+										src={`/images/albums/${key}.webp`}
+										alt={album.title}
+										onError={e => {
+											e.currentTarget.src = '/images/albums/default.webp';
+										}}
+									/>
+
+									<S.Overlay className="overlay">
+										<span>VIEW TRACKS →</span>
+									</S.Overlay>
+								</S.CoverWrapper>
+
+								<S.AlbumInfo>
+									<span className="title">{album.title}</span>
+									<span className="info">
+										{album.type === 'LP'
+											? `${ALBUM_TYPE_LABEL[album.type]} ${album.volume}집`
+											: ALBUM_TYPE_LABEL[album.type]}
+										{' | '}
+										{album.releaseDate.split('.')[0]}년
+									</span>
+								</S.AlbumInfo>
+							</S.AlbumCard>
+						);
+					})}
 				</S.Slider>
 
 				{!isAtEnd && (
