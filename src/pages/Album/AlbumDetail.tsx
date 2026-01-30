@@ -3,6 +3,7 @@
 import * as S from '@styles/pages/Album/AlbumDetail.style';
 import { useParams, useNavigate } from 'react-router-dom';
 import { GET_FULL_ALBUMS, ALBUM_TYPE_LABEL } from '@const/albums';
+import AlbumDetailTracks from './AlbumDetailTracks';
 
 const AlbumDetail = () => {
 	const navigate = useNavigate();
@@ -41,8 +42,9 @@ const AlbumDetail = () => {
 				<S.DateText>{albumData.releaseDate}</S.DateText>
 			</S.TitleSection>
 
+			{/* 임시로 기존에 만든 PlaceHolder에 입력 */}
 			<S.Placeholder>
-				<p>수록곡 리스트와 가사 등의 정보는 데이터 준비 후 업데이트될 예정입니다.</p>
+				<AlbumDetailTracks albumData={albumData} />
 			</S.Placeholder>
 		</S.MainContainer>
 	);

@@ -2,16 +2,21 @@
 
 import * as S from '@styles/pages/Album/AlbumPromotionSection.style';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@const/albums';
-import { GetLatestAlbum } from '@/utils/album';
+import { MASTER_TRACKS } from '@const/tracks';
+import { GetLatestAlbum } from '@utils/album';
+import { GetTracks } from '@utils/track';
 
 const album = GetLatestAlbum(FULL_ALBUMS);
 
 const AlbumPromotionSection = () => {
 	if (!album) return null;
+
 	const year = album.releaseDate.split('.')[0];
 	const key = `${album.type}_${year}_${album.fileName}`;
 	const slug = album.title.replace(/\s/g, '-');
-	const previewTracks = album.tracks?.slice(0, 3) || [];
+
+	const allTrackIds = GetTracks(album.tracks || []);
+	const previewTrackIds = allTrackIds.slice(0, 3);
 
 	return (
 		<S.ContentSection>
@@ -28,17 +33,22 @@ const AlbumPromotionSection = () => {
 					</S.Info>
 					<S.Description>새로운 이야기가 담긴 {album.title}을 지금 만나보세요.</S.Description>
 
-					{previewTracks.length > 0 && (
+					{previewTrackIds.length > 0 && (
 						<S.TrackPreviewList>
-							{previewTracks.map((track, index) => (
-								<S.TrackItem key={index}>
-									<span className="number">{String(index + 1).padStart(2, '0')}</span>
-									<span className="name">{track}</span>
-								</S.TrackItem>
-							))}
-							{album.tracks && album.tracks.length > previewTracks.length && (
-								<S.MoreText>외 {album.tracks.length - previewTracks.length}곡을 만나보세요.</S.MoreText>
-							)}{' '}
+							{previewTrackIds.map((trackId, index) => {
+								const track = MASTER_TRACKS[trackId];
+
+								return (
+									<S.TrackItem key={trackId}>
+										<span className="number">{String(index + 1).padStart(2, '0')}</span>
+										<span className="name">{track.title}</span>
+									</S.TrackItem>
+								);
+							})}
+
+							{allTrackIds.length > previewTrackIds.length && (
+								<S.MoreText>외 {allTrackIds.length - previewTrackIds.length}곡을 만나보세요.</S.MoreText>
+							)}
 						</S.TrackPreviewList>
 					)}
 
