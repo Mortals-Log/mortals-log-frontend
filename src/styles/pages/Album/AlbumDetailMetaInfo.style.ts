@@ -16,6 +16,7 @@ export const ContentSection = styled.section`
 		flex-direction: column;
 		align-items: center;
 		gap: 2rem;
+		padding: 0.5rem;
 	}
 `;
 

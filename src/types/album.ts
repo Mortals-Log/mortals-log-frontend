@@ -11,7 +11,7 @@ export interface Album {
 	tracks?: string[] | { [section: string]: string[] };
 
 	genre?: string[];
-	style?: string;
+	style?: string[];
 	distributor?: string;
 	totalDuration?: string;
 	agency?: string;

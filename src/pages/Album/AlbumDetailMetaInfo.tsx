@@ -39,7 +39,7 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 				<S.MetaList>
 					<MetaRow label="유형" value={ALBUM_TYPE_LABEL[album.type]} />
 					<MetaRow label="장르" value={album.genre?.join(', ')} />
-					<MetaRow label="스타일" value={album.style} />
+					<MetaRow label="스타일" value={album.style?.join(', ')} />
 					<MetaRow label="발매일" value={album.releaseDate} />
 					<MetaRow label="재생시간" value={album.totalDuration} />
 					<MetaRow label="유통 / 기획" value={distributorInfo} />
