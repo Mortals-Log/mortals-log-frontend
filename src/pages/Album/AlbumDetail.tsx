@@ -2,8 +2,9 @@
 
 import * as S from '@styles/pages/Album/AlbumDetail.style';
 import { useParams, useNavigate } from 'react-router-dom';
-import { GET_FULL_ALBUMS, ALBUM_TYPE_LABEL } from '@const/albums';
+import { GET_FULL_ALBUMS } from '@const/albums';
 import AlbumDetailTracks from './AlbumDetailTracks';
+import AlbumDetailMetaInfo from './AlbumDetailMetaInfo';
 
 const AlbumDetail = () => {
 	const navigate = useNavigate();
@@ -33,14 +34,7 @@ const AlbumDetail = () => {
 		<S.MainContainer>
 			<S.BackButton onClick={() => navigate(-1)}>BACK TO PAGE</S.BackButton>
 
-			<S.TitleSection>
-				<S.TypeWrap>
-					<S.AlbumId>{ALBUM_TYPE_LABEL[albumData.type]}</S.AlbumId>
-					{albumData.volume && <S.VolText>정규 {albumData.volume}집</S.VolText>}
-				</S.TypeWrap>
-				<S.MainTitle>{albumData.title}</S.MainTitle>
-				<S.DateText>{albumData.releaseDate}</S.DateText>
-			</S.TitleSection>
+			<AlbumDetailMetaInfo album={albumData} />
 
 			{/* 임시로 기존에 만든 PlaceHolder에 입력 */}
 			<S.Placeholder>

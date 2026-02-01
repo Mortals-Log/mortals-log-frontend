@@ -66,6 +66,12 @@ export const LP_ALBUMS: Album[] = [
 		fileName: 'graduation',
 		releaseDate: '2025.11.21',
 		tracks: ['TRK_LP06_*'],
+		genre: ['인디', '락/메탈'],
+		style: '인디 락',
+		distributor: '아토엔터테인먼트',
+		totalDuration: '28:40',
+		agency: '천진우',
+		store: 'https://gimbabrecords.com/product/천진우-졸업앨범-cd/30244/category/29/display/1/',
 	},
 ];
 

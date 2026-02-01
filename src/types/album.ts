@@ -3,12 +3,19 @@
 /* eslint-disable storybook/default-exports */
 
 export interface Album {
-	title: string;
-	releaseDate: string;
 	type: 'LP' | 'EP' | 'SP' | 'LV' | 'VN';
+	title: string;
 	volume?: number;
 	fileName?: string;
+	releaseDate: string;
 	tracks?: string[] | { [section: string]: string[] };
+
+	genre?: string[];
+	style?: string;
+	distributor?: string;
+	totalDuration?: string;
+	agency?: string;
+
 	store?: string;
 	musicVideo?: string;
 }
