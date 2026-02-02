@@ -13,3 +13,8 @@ export interface LinkGroup {
 }
 
 export type Links = LinkGroup[];
+
+export interface LinkDetail {
+	CATEGORY_KR: string;
+	STORE: string;
+}

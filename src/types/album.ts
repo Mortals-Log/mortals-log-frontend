@@ -17,7 +17,7 @@ export interface Album {
 	agency?: string;
 	intro?: string;
 
-	store?: string;
+	store?: string | Record<string, string>;
 	musicVideo?: string;
 }
 

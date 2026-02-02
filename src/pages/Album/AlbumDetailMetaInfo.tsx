@@ -3,6 +3,7 @@
 import * as S from '@styles/pages/Album/AlbumDetailMetaInfo.style';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { Album } from '@/types/album';
+import { SHOP_LINK_CONTENT } from '@/const/links';
 
 const MetaRow = ({ label, value }: { label: string; value?: string }) => {
 	if (!value) value = '-';
@@ -46,9 +47,30 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 				</S.MetaList>
 
 				{album.store && (
-					<S.MoreButton to={album.store} target="_blank">
-						{ALBUM_TYPE_LABEL[album.type]} 구매하기
-					</S.MoreButton>
+					<>
+						{typeof album.store === 'string' ? (
+							<S.MoreButton to={album.store} target="_blank" rel="noopener noreferrer">
+								<span className="category">{ALBUM_TYPE_LABEL[album.type]}</span>
+								<span className="store">구매하기</span>
+							</S.MoreButton>
+						) : (
+							Object.entries(album.store).map(([key, url]) => {
+								const detail = SHOP_LINK_CONTENT[key];
+
+								return (
+									<S.MoreButton key={key} to={url} target="_blank" rel="noopener noreferrer">
+										{detail ? (
+											<>
+												{ALBUM_TYPE_LABEL[album.type]} 구매하기 - {detail.STORE}
+											</>
+										) : (
+											<>{key}</>
+										)}
+									</S.MoreButton>
+								);
+							})
+						)}
+					</>
 				)}
 			</S.InfoWrapper>
 		</S.ContentSection>
