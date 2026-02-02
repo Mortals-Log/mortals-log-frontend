@@ -18,7 +18,6 @@ export interface Album {
 	intro?: string;
 
 	store?: string | Record<string, string>;
-	musicVideo?: string;
 }
 
 export interface AlbumGroup {
