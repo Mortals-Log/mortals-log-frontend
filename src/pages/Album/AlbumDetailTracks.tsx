@@ -54,7 +54,7 @@ const AlbumDetailTracks = ({
 											<S.TrackWrapper key={trackId}>
 												<S.TrackNumber>{String(trackIndex).padStart(2, '0')}</S.TrackNumber>
 												<S.TrackTitle $isLead={track.isLead || false}>
-													{track.title}
+													{track.title} {track.version && track.version}
 													{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
 												</S.TrackTitle>
 											</S.TrackWrapper>
@@ -70,7 +70,7 @@ const AlbumDetailTracks = ({
 									<S.TrackWrapper key={trackId}>
 										<S.TrackNumber>{String(index + 1).padStart(2, '0')}</S.TrackNumber>
 										<S.TrackTitle $isLead={track.isLead || false}>
-											{track.title}
+											{track.title} {track.version && `(${track.version})`}
 											{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
 										</S.TrackTitle>
 									</S.TrackWrapper>

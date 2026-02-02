@@ -212,24 +212,23 @@ export const MASTER_TRACKS: Record<string, Track> = {
 	},
 
 	// [LV 3집] 구토유발자들 (2025.04.18)
-	TRK_LV03_001: { id: 'TRK_LV03_001', title: '좋은 친구들', version: 'Live', originalTrackId: 'TRK_LP04_004' },
-	TRK_LV03_002: { id: 'TRK_LP03_002', title: '노인을 위한 나라', version: 'Live', originalTrackId: 'TRK_LP04_002' },
-	TRK_LV03_003: { id: 'TRK_LV03_003', title: '시궁쥐', version: 'Live', originalTrackId: 'TRK_EP01_004' },
-	TRK_LV03_004: { id: 'TRK_LV03_004', title: '다리에서요', version: 'Live', originalTrackId: 'TRK_EP01_006' },
-	TRK_LV03_005: { id: 'TRK_LV03_005', title: '여름좀비', version: 'Live', originalTrackId: 'TRK_LP01_006' },
-	TRK_LV03_006: { id: 'TRK_LV03_006', title: '아이스크림', version: 'Live', originalTrackId: 'TRK_LP03_007' },
+	TRK_LV03_001: { id: 'TRK_LV03_001', title: '좋은 친구들', originalTrackId: 'TRK_LP04_004' },
+	TRK_LV03_002: { id: 'TRK_LP03_002', title: '노인을 위한 나라', originalTrackId: 'TRK_LP04_002' },
+	TRK_LV03_003: { id: 'TRK_LV03_003', title: '시궁쥐', originalTrackId: 'TRK_EP01_004' },
+	TRK_LV03_004: { id: 'TRK_LV03_004', title: '다리에서요', originalTrackId: 'TRK_EP01_006' },
+	TRK_LV03_005: { id: 'TRK_LV03_005', title: '여름좀비', originalTrackId: 'TRK_LP01_006' },
+	TRK_LV03_006: { id: 'TRK_LV03_006', title: '아이스크림', originalTrackId: 'TRK_LP03_007' },
 	TRK_LV03_007: {
 		id: 'TRK_LV03_007',
 		title: '세모 네모 동그라미',
 		isLead: true,
-		version: 'Live',
 		originalTrackId: 'TRK_SP04_001',
 	},
-	TRK_LV03_008: { id: 'TRK_LV03_008', title: '대가리총', version: 'Live', originalTrackId: 'TRK_LP04_008' },
-	TRK_LV03_009: { id: 'TRK_LV03_009', title: '좆됐다 좆됐어', version: 'Live', originalTrackId: 'TRK_LP02_001' },
-	TRK_LV03_010: { id: 'TRK_LV03_010', title: '멸망', version: 'Live', originalTrackId: 'TRK_EP01_005' },
-	TRK_LV03_011: { id: 'TRK_LV03_011', title: '청춘', version: 'Live', originalTrackId: 'TRK_EP01_001' },
-	TRK_LV03_012: { id: 'TRK_LV03_012', title: '집에 가자', version: 'Live', originalTrackId: 'TRK_LP02_009' },
+	TRK_LV03_008: { id: 'TRK_LV03_008', title: '대가리총', originalTrackId: 'TRK_LP04_008' },
+	TRK_LV03_009: { id: 'TRK_LV03_009', title: '좆됐다 좆됐어', originalTrackId: 'TRK_LP02_001' },
+	TRK_LV03_010: { id: 'TRK_LV03_010', title: '멸망', originalTrackId: 'TRK_EP01_005' },
+	TRK_LV03_011: { id: 'TRK_LV03_011', title: '청춘', originalTrackId: 'TRK_EP01_001' },
+	TRK_LV03_012: { id: 'TRK_LV03_012', title: '집에 가자', originalTrackId: 'TRK_LP02_009' },
 
 	// [VN 1집] 굴다리 (Vinyl)
 	// Side A
