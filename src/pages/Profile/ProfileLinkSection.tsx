@@ -2,7 +2,7 @@
 
 import * as S from '@styles/pages/Profile/ProfileLinkSection.style';
 import { Table } from '@components/Table';
-import { LINKS } from '@const/contents';
+import { LINKS } from '@const/links';
 import { ICON_CONFIG } from '@const/icons';
 import { LinkGroup } from '@/types/links';
 import { IconKey } from '@/types/icon';

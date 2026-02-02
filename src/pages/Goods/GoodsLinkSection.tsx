@@ -1,7 +1,7 @@
 // @src/pages/Goods/GoodsLinkSection
 
 import * as S from '@styles/pages/Goods/GoodsLinkSection.style';
-import { LINKS } from '@const/contents';
+import { LINKS } from '@const/links';
 import { SHOP_LINK_CONTENT } from '@/const/links';
 
 const GoodsLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {

@@ -3,7 +3,7 @@
 /* eslint-disable storybook/default-exports */
 
 import { Citation, Profile } from '@/types/profile';
-import { LINKS, SNS_PLATFORMS } from './contents';
+import { LINKS, SNS_PLATFORMS } from '@const/links';
 
 export const NAME = {
 	KOREAN: '천진우',

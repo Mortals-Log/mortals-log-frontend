@@ -3,7 +3,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
-import { SNS_PLATFORMS } from '@const/contents';
+import { SNS_PLATFORMS } from '@const/links';
 
 const GetPlatformConfig = (plat: string) => {
 	return Object.values(SNS_PLATFORMS).find(p => p.NAME.toLowerCase() === plat.toLowerCase());

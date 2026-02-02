@@ -3,7 +3,7 @@
 /* eslint-disable storybook/default-exports */
 
 import { instagram, kakaotalk } from '@/assets/icons';
-import { LINKS } from '@const/contents';
+import { LINKS } from '@const/links';
 
 export const GetSafeLink = (category: string, label: string, fallback: string = '#'): string => {
 	const targetCategory = LINKS.find(link => link.category === category);
