@@ -3,7 +3,7 @@
 import * as S from '@styles/pages/Profile/ProfileDetailSection.style';
 import { JSX } from 'react';
 import { Table } from '@components/Table';
-import { PROFILE } from '@const/contents';
+import { PROFILE } from '@const/profile';
 import { ParseDate, CalculateKorAge, CalculateIntAge, CalculateElapsedDays, CalculateElapsedYears } from '@utils/date';
 
 export const ProfileDetailSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
