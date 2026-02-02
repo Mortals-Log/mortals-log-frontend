@@ -2,15 +2,21 @@
 
 import * as S from '@styles/pages/Album/AlbumDetail.style';
 import { useParams, useNavigate } from 'react-router-dom';
-import { GET_FULL_ALBUMS } from '@const/albums';
-import AlbumDetailTracks from './AlbumDetailTracks';
-import AlbumDetailMetaInfo from './AlbumDetailMetaInfo';
 import { useMemo } from 'react';
+import { GET_FULL_ALBUMS } from '@const/albums';
+import AlbumDetailTracks from '@pages/Album/AlbumDetailTracks';
+import AlbumDetailMetaInfo from '@pages/Album//AlbumDetailMetaInfo';
+import AlbumDetailIntro from '@pages/Album/AlbumDetailIntro';
 
 const SECTION_TITLE = {
 	TRACKS: {
 		TITLE_KR: '수록곡',
 		TITLE_EN: 'Tracks',
+	},
+
+	INTRO: {
+		TITLE_KR: '앨범 소개',
+		TITLE_EN: 'Album Introduction ',
 	},
 } as const;
 
@@ -29,25 +35,13 @@ const AlbumDetail = () => {
 			.find(album => album.title.toLowerCase() === slugWithSpaces);
 	}, [id]);
 
-	const hasTracks = useMemo(() => {
-		if (!albumData?.tracks) return false;
-
-		if (Array.isArray(albumData.tracks)) {
-			return albumData.tracks.length > 0;
-		}
-
-		return Object.keys(albumData.tracks).length > 0;
-	}, [albumData]);
-
 	if (!albumData) {
 		return (
 			<S.MainContainer>
 				<S.BackButton onClick={() => navigate('/album')}>GO TO ALBUM LIST</S.BackButton>
 				<S.MainTitle>Album Not Found</S.MainTitle>
 
-				<S.Placeholder>
-					<p>앨범을 찾을 수 없습니다.</p>
-				</S.Placeholder>
+				<S.Placeholder>앨범을 찾을 수 없습니다.</S.Placeholder>
 			</S.MainContainer>
 		);
 	}
@@ -58,11 +52,8 @@ const AlbumDetail = () => {
 
 			<AlbumDetailMetaInfo album={albumData} />
 
-			{hasTracks ? (
-				<AlbumDetailTracks {...SECTION_TITLE.TRACKS} albumData={albumData} />
-			) : (
-				<S.Placeholder>수록곡 리스트와 가사 등의 정보가 업데이트될 예정입니다.</S.Placeholder>
-			)}
+			<AlbumDetailTracks {...SECTION_TITLE.TRACKS} albumData={albumData} />
+			<AlbumDetailIntro {...SECTION_TITLE.INTRO} albumData={albumData} />
 		</S.MainContainer>
 	);
 };

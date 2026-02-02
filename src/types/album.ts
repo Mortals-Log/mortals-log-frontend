@@ -15,6 +15,7 @@ export interface Album {
 	distributor?: string;
 	totalDuration?: string;
 	agency?: string;
+	intro?: string;
 
 	store?: string;
 	musicVideo?: string;
