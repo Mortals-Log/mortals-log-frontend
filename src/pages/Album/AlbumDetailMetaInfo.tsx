@@ -3,7 +3,7 @@
 import * as S from '@styles/pages/Album/AlbumDetailMetaInfo.style';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { Album } from '@/types/album';
-import { SHOP_LINK_CONTENT } from '@/const/links';
+import { LINK_SHOP } from '@/const/links';
 
 const MetaRow = ({ label, value }: { label: string; value?: string }) => {
 	if (!value) value = '-';
@@ -55,7 +55,7 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 							</S.MoreButton>
 						) : (
 							Object.entries(album.store).map(([key, url]) => {
-								const detail = SHOP_LINK_CONTENT[key];
+								const detail = LINK_SHOP[key];
 
 								return (
 									<S.MoreButton key={key} to={url} target="_blank" rel="noopener noreferrer">

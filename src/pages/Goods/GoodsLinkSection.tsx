@@ -1,11 +1,10 @@
 // @src/pages/Goods/GoodsLinkSection
 
 import * as S from '@styles/pages/Goods/GoodsLinkSection.style';
-import { LINKS } from '@const/links';
-import { SHOP_LINK_CONTENT } from '@/const/links';
+import { LINK_LIST, LINK_SHOP } from '@const/links';
 
 const GoodsLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
-	const shopItems = LINKS.find(link => link.category === 'SHOP')?.items || [];
+	const shopItems = LINK_LIST.find(link => link.category === 'SHOP')?.items || [];
 
 	return (
 		<S.ContentSection>
@@ -16,7 +15,7 @@ const GoodsLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 
 			<S.Grid>
 				{shopItems.map(item => {
-					const label = SHOP_LINK_CONTENT[item.label];
+					const label = LINK_SHOP[item.label];
 
 					return (
 						<S.CardButton key={item.label} href={item.url} target="_blank" rel="noopener noreferrer">

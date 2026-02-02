@@ -4,7 +4,33 @@
 
 import { Links, LinkDetail } from '@/types/links';
 
-export const LINKS: Links = [
+export const LINK_PLATFORM = {
+	INSTAGRAM: {
+		NAME: 'instagram',
+		BASE_URL: 'https://www.instagram.com/p/',
+	},
+	YOUTUBE: {
+		NAME: 'youtube',
+		BASE_URL: 'https://www.youtube.com/watch?v=',
+	},
+} as const;
+
+export const LINK_SHOP: Record<string, LinkDetail> = {
+	CD: {
+		CATEGORY_KR: '앨범',
+		STORE: '김밥레코즈',
+	},
+	LP: {
+		CATEGORY_KR: 'LP(바이닐)',
+		STORE: '레이블 이릴레반트',
+	},
+	Goods: {
+		CATEGORY_KR: '천진우 공식 굿즈샵',
+		STORE: '마플샵',
+	},
+};
+
+export const LINK_LIST: Links = [
 	{
 		category: 'SNS',
 		items: [
@@ -44,29 +70,3 @@ export const LINKS: Links = [
 		],
 	},
 ];
-
-export const SNS_PLATFORMS = {
-	INSTAGRAM: {
-		NAME: 'instagram',
-		BASE_URL: 'https://www.instagram.com/p/',
-	},
-	YOUTUBE: {
-		NAME: 'youtube',
-		BASE_URL: 'https://www.youtube.com/watch?v=',
-	},
-} as const;
-
-export const SHOP_LINK_CONTENT: Record<string, LinkDetail> = {
-	CD: {
-		CATEGORY_KR: '앨범',
-		STORE: '김밥레코즈',
-	},
-	LP: {
-		CATEGORY_KR: 'LP(바이닐)',
-		STORE: '레이블 이릴레반트',
-	},
-	Goods: {
-		CATEGORY_KR: '천진우 공식 굿즈샵',
-		STORE: '마플샵',
-	},
-};

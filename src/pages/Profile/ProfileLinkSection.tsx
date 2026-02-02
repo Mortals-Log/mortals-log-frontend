@@ -2,7 +2,7 @@
 
 import * as S from '@styles/pages/Profile/ProfileLinkSection.style';
 import { Table } from '@components/Table';
-import { LINKS } from '@const/links';
+import { LINK_LIST } from '@const/links';
 import { ICON_CONFIG } from '@const/icons';
 import { LinkGroup } from '@/types/links';
 import { IconKey } from '@/types/icon';
@@ -16,7 +16,7 @@ export const ProfileLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; T
 
 			<S.Table>
 				<tbody>
-					{LINKS.map((group: LinkGroup) => (
+					{LINK_LIST.map((group: LinkGroup) => (
 						<Table
 							key={group.category}
 							label={group.category}

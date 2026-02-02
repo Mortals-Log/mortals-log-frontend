@@ -3,7 +3,7 @@
 /* eslint-disable storybook/default-exports */
 
 import { Citation, Profile } from '@/types/profile';
-import { LINKS, SNS_PLATFORMS } from '@const/links';
+import { LINK_LIST, LINK_PLATFORM } from '@const/links';
 
 export const NAME = {
 	KOREAN: '천진우',
@@ -15,14 +15,14 @@ export const NAME = {
 export const MODIFIERS: Citation[] = [
 	{
 		content: '여러분 인생에 브금 깔아보려고 노력 중인',
-		platform: SNS_PLATFORMS.INSTAGRAM.NAME,
+		platform: LINK_PLATFORM.INSTAGRAM.NAME,
 		account: 'nerv_mag',
 		contentTitle: '[에바와 음악Vol.1] 인터뷰',
 		postId: 'DMOosfnz7IV/?img_index=1',
 	},
 	{
 		content: '학교에서 애들을 가르치면서 음악 하고 있는',
-		platform: SNS_PLATFORMS.INSTAGRAM.NAME,
+		platform: LINK_PLATFORM.INSTAGRAM.NAME,
 		account: 'sub_riot',
 		contentTitle: '🎤 𝐀𝐫𝐭𝐢𝐬𝐭 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐰𝐢𝐭𝐡 천진우 🎤 인터뷰',
 		postId: 'DTZzRsdkbSK/?img_index=1',
@@ -39,7 +39,7 @@ export const PROFILE: Profile = {
 	modifier: MODIFIERS,
 	description: {
 		content: `사람과 사람 사이의 틈을 채울 생각은 없습니다.\n오히려 그 틈 자체를 낭만적으로 바라보고 노래로 옮겨적는 것 같습니다.`,
-		platform: SNS_PLATFORMS.INSTAGRAM.NAME,
+		platform: LINK_PLATFORM.INSTAGRAM.NAME,
 		account: 'nerv_mag',
 		contentTitle: '[에바와 음악Vol.1] 인터뷰',
 		postId: 'DMOosfnz7IV/?img_index=1',
@@ -58,5 +58,5 @@ export const PROFILE: Profile = {
 	alias: ['어둠의 김광석', '(음악)공장장'],
 	fandom: '필멸자',
 
-	officialLinks: LINKS,
+	officialLinks: LINK_LIST,
 };
