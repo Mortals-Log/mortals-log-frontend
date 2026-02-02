@@ -69,7 +69,6 @@ export const MusicBadge = styled.a`
 
 	span {
 		display: none;
-		margin-left: 1rem;
 
 		font-family: ${props => props.theme.FONT.SANS};
 		font-size: ${props => props.theme.FONT.SIZE.SM};
@@ -80,6 +79,7 @@ export const MusicBadge = styled.a`
 	@media (max-width: 850px) {
 		width: 100%;
 		height: 2.8rem;
+		margin-left: 1rem;
 
 		span {
 			display: inline;
@@ -87,10 +87,18 @@ export const MusicBadge = styled.a`
 	}
 
 	&:hover {
+		width: auto;
+		padding: 0 0.5rem;
+
 		background: ${props => props.theme.COLOR.PRIMARY};
 		border-color: ${props => props.theme.COLOR.PRIMARY};
 		color: ${props => props.theme.COLOR.WHITE};
 		transform: translateY(-1px);
+
+		span {
+			display: inline;
+			margin-left: 0.5rem;
+		}
 	}
 `;
 
