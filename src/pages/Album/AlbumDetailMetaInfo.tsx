@@ -4,6 +4,8 @@ import * as S from '@styles/pages/Album/AlbumDetailMetaInfo.style';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { Album } from '@/types/album';
 import { LINK_SHOP } from '@/const/links';
+import { ICON_CONFIG } from '@/const/icons';
+import { IconKey } from '@/types/icon';
 
 const MetaRow = ({ label, value }: { label: string; value?: string }) => {
 	if (!value) value = '-';
@@ -30,6 +32,25 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 			<S.CoverImage hasStore={!!album.store} src={`/images/albums/${key}.webp`} alt={album.title} />
 
 			<S.InfoWrapper>
+				{album.streaming && (
+					<S.BadgeGroup>
+						{Object.entries(album.streaming).map(([label, url]) => {
+							const key = label.toLowerCase().replace(/\s+/g, '') as IconKey;
+							const config = ICON_CONFIG[key];
+							const Icon = config?.icon;
+
+							if (!Icon) return null;
+
+							return (
+								<S.MusicBadge key={label} href={url} target="_blank" rel="noreferrer" title={config.label || label}>
+									<Icon />
+									<span>{label}</span>
+								</S.MusicBadge>
+							);
+						})}
+					</S.BadgeGroup>
+				)}
+
 				<S.TypeWrap>
 					<S.AlbumId>{ALBUM_TYPE_LABEL[album.type]}</S.AlbumId>
 					{album.volume && <S.VolText>정규 {album.volume}집</S.VolText>}
