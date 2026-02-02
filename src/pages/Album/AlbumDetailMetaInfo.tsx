@@ -39,7 +39,7 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 							const config = ICON_CONFIG[key];
 							const Icon = config?.icon;
 
-							if (!Icon) return null;
+							if (!Icon || !url) return null;
 
 							return (
 								<S.MusicBadge key={label} href={url} target="_blank" rel="noreferrer" title={config.label || label}>
