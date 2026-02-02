@@ -5,9 +5,12 @@
 import { Links, LinkDetail } from '@/types/links';
 
 export const MUSIC_PLATFORM = {
-	APPLE_MUSIC: 'Apple Music',
-	SPOTIFY: 'Spotify',
 	YOUTUBE: 'YouTube',
+	MELON: 'Melon',
+	SPOTIFY: 'Spotify',
+	APPLE_MUSIC: 'Apple Music',
+	BUGS: 'BUGS',
+	GENIE: 'genie',
 	SOUNDCLOUD: 'Sound Cloud',
 } as const;
 
@@ -24,6 +27,7 @@ export const STORE_PLATFORM = {
 
 export const ETC_PLATFORM = {
 	LINK_TREE: 'Link Tree',
+	SING: 'Sing',
 } as const;
 
 export const LINK_PLATFORM = {
@@ -64,12 +68,15 @@ export const LINK_LIST: Links = [
 	{
 		category: 'MUSIC',
 		items: [
+			{ label: MUSIC_PLATFORM.YOUTUBE, url: 'https://www.youtube.com/channel/UCnjNCmBszWrgEO0NvfAbbVQ' },
+			{ label: MUSIC_PLATFORM.MELON, url: 'https://www.melon.com/artist/timeline.htm?artistId=2741804' },
+			{ label: MUSIC_PLATFORM.SPOTIFY, url: 'https://open.spotify.com/artist/5OEgs7d2znP7y50pp8y7bK' },
 			{
 				label: MUSIC_PLATFORM.APPLE_MUSIC,
 				url: 'https://music.apple.com/kr/artist/%EC%B2%9C%EC%A7%84%EC%9A%B0/1641616138?ls',
 			},
-			{ label: MUSIC_PLATFORM.SPOTIFY, url: 'https://open.spotify.com/artist/5OEgs7d2znP7y50pp8y7bK' },
-			{ label: MUSIC_PLATFORM.YOUTUBE, url: 'https://www.youtube.com/channel/UCnjNCmBszWrgEO0NvfAbbVQ' },
+			{ label: MUSIC_PLATFORM.BUGS, url: 'https://music.bugs.co.kr/artist/20166429?wl_ref=S_ab_01_02' },
+			{ label: MUSIC_PLATFORM.GENIE, url: 'https://www.genie.co.kr/detail/artistInfo?xxnm=80740157' },
 			{ label: MUSIC_PLATFORM.SOUNDCLOUD, url: 'https://soundcloud.com/1000_jinwoo' },
 		],
 	},
@@ -91,7 +98,7 @@ export const LINK_LIST: Links = [
 				label: ETC_PLATFORM.LINK_TREE,
 				url: 'https://linktr.ee/1000jinwoo?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn9XKUd5Bfg5-nWM88QQh643PrJrleX7QfjSieYPTZeUJc6nT11qYg3vGO8So_aem_3Du4C9eWuHq6MrdFtTKmDA',
 			},
-			{ label: 'Sing', url: 'https://www.tjmedia.com/song/accompaniment_apply_agree' },
+			{ label: ETC_PLATFORM.SING, url: 'https://www.tjmedia.com/song/accompaniment_apply_agree' },
 		],
 	},
 ];
