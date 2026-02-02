@@ -3,6 +3,7 @@
 /* eslint-disable storybook/default-exports */
 
 import { Album, AlbumList } from '@/types/album';
+import { STORE_PLATFORM } from '@const/links';
 
 const getReleaseTime = (date: string) => Number(date.replace(/[^0-9]/g, ''));
 
@@ -795,8 +796,9 @@ const VN_ALBUMS: Album[] = [
 		style: ['포크 팝'],
 		agency: '천진우',
 		store: {
-			LP: 'https://smartstore.naver.com/irrelevant/products/10239470111',
-			CD: 'https://gimbabrecords.com/product/천진우-굴다리-12-marble-colored-vinyl/25217/category/25/display/1/',
+			[STORE_PLATFORM.LP]: 'https://smartstore.naver.com/irrelevant/products/10239470111',
+			[STORE_PLATFORM.CD]:
+				'https://gimbabrecords.com/product/천진우-굴다리-12-marble-colored-vinyl/25217/category/25/display/1/',
 		},
 	},
 ];

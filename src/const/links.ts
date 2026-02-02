@@ -16,7 +16,7 @@ export const SNS_PLATFORM = {
 	KAKAOTALK: 'Kakaotalk',
 } as const;
 
-export const SHOP_PLATFORM = {
+export const STORE_PLATFORM = {
 	CD: 'CD',
 	LP: 'LP',
 	GOODS: 'Goods',
@@ -77,11 +77,11 @@ export const LINK_LIST: Links = [
 		category: 'SHOP',
 		items: [
 			{
-				label: SHOP_PLATFORM.CD,
+				label: STORE_PLATFORM.CD,
 				url: 'https://gimbabrecords.com/product/search.html?view_type=&supplier_code=&category_no=&keyword=천진우&x=0&y=0',
 			},
-			{ label: SHOP_PLATFORM.LP, url: 'https://smartstore.naver.com/irrelevant/products/10239470111' },
-			{ label: SHOP_PLATFORM.GOODS, url: 'https://marpple.shop/kr/1000_jinwoo' },
+			{ label: STORE_PLATFORM.LP, url: 'https://smartstore.naver.com/irrelevant/products/10239470111' },
+			{ label: STORE_PLATFORM.GOODS, url: 'https://marpple.shop/kr/1000_jinwoo' },
 		],
 	},
 	{
