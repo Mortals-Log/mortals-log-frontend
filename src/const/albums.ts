@@ -3,7 +3,7 @@
 /* eslint-disable storybook/default-exports */
 
 import { Album, AlbumList } from '@/types/album';
-import { STORE_PLATFORM } from '@const/links';
+import { STORE_PLATFORM, MUSIC_PLATFORM } from '@const/links';
 
 const getReleaseTime = (date: string) => Number(date.replace(/[^0-9]/g, ''));
 
@@ -69,6 +69,12 @@ Special thanks to 안성훈(Ash)
 		distributor: '아토엔터테인먼트',
 		totalDuration: '26:08',
 		agency: '천진우',
+
+		streaming: {
+			[MUSIC_PLATFORM.YOUTUBE]: 'https://www.youtube.com/watch?v=uS8StuNj12Q&list=RDuS8StuNj12Q&start_radio=1',
+			[MUSIC_PLATFORM.SPOTIFY]: 'https://open.spotify.com/album/76kVKnEUb6SPtu4R0skfBp',
+			[MUSIC_PLATFORM.APPLE_MUSIC]: 'https://music.apple.com/kr/album/meditation-zombie/1657083277',
+		},
 	},
 	{
 		type: 'LP',

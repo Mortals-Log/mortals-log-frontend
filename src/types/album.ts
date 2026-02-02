@@ -18,6 +18,7 @@ export interface Album {
 	intro?: string;
 
 	store?: string | Record<string, string>;
+	streaming?: Record<string, string>;
 }
 
 export interface AlbumGroup {
