@@ -24,7 +24,7 @@ export const LP_ALBUMS: Album[] = [
 		type: 'LP',
 		volume: 1,
 		title: '명상좀비',
-		fileName: 'zombie',
+		fileName: 'meditation-zombie',
 		releaseDate: '2022.11.21',
 		intro: `앨범 제목 '명상좀비(Meditation Zombie)'는 가장 이질적인 두 단어를 조합해 만들었습니다.
 요즘 젊은이들이 끊임없이 느끼는 막연한 불안감과 경쟁심, 쉴 때 쉬지 못하는 피곤함 - 이 모든 것들이 어쩌면 외부 자극에서 비롯된다는 생각이 들었습니다.
@@ -83,7 +83,7 @@ Special thanks to 안성훈(Ash)
 		type: 'LP',
 		volume: 2,
 		title: '푸줏간',
-		fileName: 'butcher',
+		fileName: 'butcher-shop',
 		releaseDate: '2023.04.01',
 		intro: `친구와 술을 마시다가, 그런 얘길 들었습니다. 가수는 원래 2집으로 자기 음악을 증명해야 한다고. 친구는 술에 취해 한 말이었지만, 저는 왠지 그 말이 좋았습니다.
 독립음악을 하는 인디뮤지션으로서 어떤 앨범을 만들어야 할까 고민했고, 결국 지금 제가 꽂혀있는 음악 장르를 소화해야겠다고 결심했습니다.
@@ -153,7 +153,7 @@ Special thanks to 안성훈(Ash)`,
 		type: 'LP',
 		volume: 3,
 		title: '천진우 캐롤 모음집',
-		fileName: 'carols',
+		fileName: 'korean-carol',
 		releaseDate: '2023.12.01',
 		intro: `처음엔 분명 '크리스마스야 미안해' 한 곡만 싱글로 내려고 했습니다. 그런데 찾아 보니 옛날 캐롤 저작권이 대부분 만료되었더라구요.
 아뿔싸... 마음속 작은 고블린이 또 채찍을 들었죠. 그리하여 4곡의 창작곡과 4곡의 번안곡으로 이루어진 정규 3집을 만들게 되었습니다.
@@ -214,7 +214,7 @@ Special thanks to 안성훈(Ash)`,
 		type: 'LP',
 		volume: 4,
 		title: '나는 기계가 싫어요',
-		fileName: 'machine',
+		fileName: 'luddite',
 		releaseDate: '2024.11.11',
 		intro: `좀 더 영혼이 담긴 앨범을 만들 순 없을까? 물론 최선을 다하지 않은 앨범은 없었지만.
 미디, 가상악기, 홈레코딩, 혼자 작사, 작곡, 편곡. 어쩌면 골방에 틀어박혀서 하는 내 작업 방식이 조금은 틀에 박힌지도 모르겠다. 거기서 벗어나보고 싶었다. 이번에 만든 10곡의 노래는 멋진 뮤지션들과 함께 편곡했고, 단독공연을 진행하는 공연장에서 현장 녹음해 만들었다. 모험이었고, 다행히 결과물은 무척 마음에 든다.
@@ -270,7 +270,7 @@ Special Thanks to 안성훈(ASH)`,
 		type: 'LP',
 		volume: 5,
 		title: '꽃순이',
-		fileName: 'flower',
+		fileName: 'her',
 		releaseDate: '2025.06.13',
 		intro: `꽃순이의 일대기를 앨범으로 기록해보았습니다. 꽃순이의 입이 아닌 꽃순이 주변사람들의 입을 통해서요. 초반에는 꽃순이 아비의 이야기로, 중반부터는 성장한 꽃순이와 혼인하는 노총각 김씨의 이야기로 진행됩니다.
 꽃순이는 어떤 사람이었을까요? 깡조밥만 먹던 어린 시절엔, 어미는 집나가고 아비도 죽어 혼자 남았을 땐, 애정 넘치는 김씨와 혼인한 뒤엔, 꽃순이는 무슨 생각을 하고 있었을까요?
@@ -318,7 +318,7 @@ Special Thanks to 애쉬`,
 		type: 'LP',
 		volume: 6,
 		title: '졸업앨범',
-		fileName: 'graduation',
+		fileName: 'yearbook',
 		releaseDate: '2025.11.21',
 		intro: `데뷔 3년 차에 정규 6집을 발매하는 천진우는 사실 중학교 기간제 교사로도 일하고 있습니다.
 앨범이 발매된 2025년에는 서울의 금옥중학교 1학년 11반 담임이자 생활상담부 소속 사회 선생님이였습니다.
@@ -449,7 +449,7 @@ const EP_ALBUMS: Album[] = [
 	{
 		type: 'EP',
 		title: '굴다리',
-		fileName: 'underpass',
+		fileName: 'tunnel',
 		releaseDate: '2022.08.20',
 		intro: `굴다리 앞을 지나는데, 문득 제가 사는 반지하 방이 떠오르더랍니다.
 파릇파릇해야 할 청춘인데, 굴다리에 깔린 이끼처럼 푸르딩딩하게 썩고 있네요.
@@ -546,7 +546,7 @@ Album Cover by 이시헌
 	{
 		type: 'EP',
 		title: '귀천',
-		fileName: 'back-to-haeven',
+		fileName: 'up',
 		releaseDate: '2024.09.09',
 		intro: `일기장2라고 보아도 좋을 것 같습니다. 사용된 5가지 악기를 모두 직접 연주해서 녹음했습니다.
 앨범은 전체적으로 한 호흡입니다. 6곡이 1곡으로 느껴지길 바랐습니다. 그렇게 들어주셨으면 좋겠습니다.
@@ -626,7 +626,7 @@ Special thanks to 안성훈(Ash)`,
 	{
 		type: 'SP',
 		title: '인간쓰레기',
-		fileName: 'human-trash',
+		fileName: 'trashman',
 		releaseDate: '2024.03.03',
 		intro: `천진우 느와르 3부작 중 첫번째 '인간쓰레기'
 우리의 무능력함과 게으름은, 오로지 젊기에 역겹다.
@@ -660,7 +660,7 @@ Album Photo by KimYeyeon`,
 	{
 		type: 'SP',
 		title: '고백',
-		fileName: 'confession',
+		fileName: 'ufo',
 		releaseDate: '2024.04.04',
 		intro: `천진우 느와르 3부작 중 두번째 '고백'
 인간의 삶은 멀리서 바라볼 땐 희극이지만, 직접 살아보면 비극이다.
@@ -694,7 +694,7 @@ Album Photo by KimYeyeon`,
 	{
 		type: 'SP',
 		title: '세모 네모 동그라미',
-		fileName: 'shapes',
+		fileName: 'triangle-square-circle',
 		releaseDate: '2024.05.05',
 		intro: `천진우의 음악은 어딘가 구슬픕니다. 멜로디는 서정적인데, 가사가 마냥 밝지만은 않습니다. 마치 블랙 코미디 영화처럼, 웃기지만 우습지는 않은 이야기를 노래로 풀어냅니다.
 정형화된 따듯한 위로에 조금 질린 분들, 뒤틀린 미소와 씁쓸한 애착에 끌리시는 분들께 천진우의 음악을 추천합니다.
@@ -730,7 +730,7 @@ Instagram : 1000_jinwoo
 	{
 		type: 'SP',
 		title: '이별이 그대는 쉽나요',
-		fileName: 'parting',
+		fileName: 'dont-leave-me',
 		releaseDate: '2024.06.13',
 		intro: `천진우가 50번째로 발매하는 노래는 그의 첫번째 공식 사랑노래이다. 대학 시절 첫사랑에 실패하던 기억을 떠올리며 가사를 썼다.
 사랑은 결코 이성적일 수 없고, 이별엔 피해자도 가해자도 없다. 하지만 그걸 알면서도 억울한 건 어쩔 수 없다.
@@ -767,7 +767,7 @@ const LV_ALBUMS: Album[] = [
 	{
 		type: 'LV',
 		title: '천진우 라이브',
-		fileName: 'live-v1',
+		fileName: '1000-jinwoo-live',
 		releaseDate: '2024.01.11',
 		intro: `2023.12.16. 연말 단독공연 '앗-! 겁나게 뜨거! 여러분의사랑' Live in Hongdae
 
@@ -821,7 +821,7 @@ Album Photo by 가은율`,
 	{
 		type: 'LV',
 		title: '천진우 라이브2',
-		fileName: 'live-v2',
+		fileName: '1000-jinwoo-live2',
 		releaseDate: '2025.02.09',
 		intro: `2024.04.06. 중식이밴드와 합동공연 '와따리 가따리' Live in Hongdae
 2024.05.15. 천진우 10번째 단독공연 '여름이었다' Live in Hongdae
@@ -879,7 +879,7 @@ Album Photo by 이준영`,
 	{
 		type: 'LV',
 		title: '구토유발자들',
-		fileName: 'nauseators',
+		fileName: 'gutoyubalzas',
 		releaseDate: '2025.04.18',
 		intro: `2025.01.25. 단독공연 '천진우와 무법자들' Live in Hongdae
 2025.03.03. 단독공연 '구토유발자들' Live in Hongdae
@@ -939,7 +939,7 @@ const VN_ALBUMS: Album[] = [
 	{
 		type: 'VN',
 		title: '굴다리 LP 앨범',
-		fileName: 'underpass',
+		fileName: 'tunnel',
 		releaseDate: '2024.04.24',
 		tracks: {
 			'Side A': ['TRK_VN01_001', 'TRK_VN01_002', 'TRK_VN01_003'],
