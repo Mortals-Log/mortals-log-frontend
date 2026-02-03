@@ -1,7 +1,7 @@
 // @src/pages/Profile/components/ProfileHeader.tsx
 
 import * as S from '@styles/pages/Profile/ProfileHeader.style';
-import { PROFILE } from '@const/contents';
+import { PROFILE } from '@const/profile';
 import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
 
 export const ProfileHeader = () => {

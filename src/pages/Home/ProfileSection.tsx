@@ -3,7 +3,7 @@
 import * as S from '@/styles/pages/Home/ProfileSection.style';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PROFILE, MODIFIERS } from '@const/contents';
+import { MODIFIERS, PROFILE } from '@/const/profile';
 import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
 
 const ProfileSection = () => {

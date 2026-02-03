@@ -1,7 +1,7 @@
 // @src/pages/Album/index
 
 import * as S from '@styles/pages/Album/Album.style';
-import { NAME } from '@/const/contents';
+import { NAME } from '@/const/profile';
 import AlbumReleaseSection from '@pages/Album/AlbumReleaseSection';
 import AlbumTypeSection from '@pages/Album/AlbumTypeSection';
 import AlbumPromotionSection from './AlbumPromotionSection';

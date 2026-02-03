@@ -14,6 +14,11 @@ const GNB = () => {
 	const location = useLocation();
 	const currentPath = location.pathname;
 
+	const checkActive = (path: string) => {
+		if (path === '/') return currentPath === '/';
+		return currentPath.startsWith(path);
+	};
+
 	const upcomingEvents = GetUpcomingSchedules(FULL_CONCERTS);
 
 	const [isLogoHovered, setIsLogoHovered] = useState(false);
@@ -102,7 +107,7 @@ const GNB = () => {
 
 				<S.NavGroup>
 					{ACTIVE_NAV_ITEMS.map(item => (
-						<S.NavItem key={item.id} onClick={() => handleNavClick(item.path)} $isActive={currentPath === item.path}>
+						<S.NavItem key={item.id} onClick={() => handleNavClick(item.path)} $isActive={checkActive(item.path)}>
 							{item.name}
 						</S.NavItem>
 					))}
@@ -154,7 +159,7 @@ const GNB = () => {
 									<S.MobileNavItem
 										key={item.id}
 										onClick={() => handleNavClick(item.path)}
-										$isActive={currentPath === item.path}>
+										$isActive={checkActive(item.path)}>
 										{item.name}
 									</S.MobileNavItem>
 								))}

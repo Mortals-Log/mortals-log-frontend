@@ -6,13 +6,16 @@ export const SUPPORTED_SERVICES = [
 	'instagram',
 	'kakaotalk',
 	'youtube',
-	'applemusic',
+	'melon',
 	'spotify',
+	'applemusic',
+	'bugs',
+	'genie',
 	'soundcloud',
-	'linktree',
 	'cd',
 	'lp',
 	'goods',
+	'linktree',
 	'sing',
 ] as const;
 

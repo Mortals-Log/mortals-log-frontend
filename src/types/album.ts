@@ -3,14 +3,22 @@
 /* eslint-disable storybook/default-exports */
 
 export interface Album {
-	title: string;
-	releaseDate: string;
 	type: 'LP' | 'EP' | 'SP' | 'LV' | 'VN';
+	title: string;
 	volume?: number;
 	fileName?: string;
-	tracks?: string[];
-	store?: string;
-	musicVideo?: string;
+	releaseDate: string;
+	tracks?: string[] | { [section: string]: string[] };
+
+	genre?: string[];
+	style?: string[];
+	distributor?: string;
+	totalDuration?: string;
+	agency?: string;
+	intro?: string;
+
+	store?: string | Record<string, string>;
+	streaming?: Record<string, string>;
 }
 
 export interface AlbumGroup {
@@ -20,6 +28,7 @@ export interface AlbumGroup {
 
 export type AlbumList = AlbumGroup[];
 
+// filename: 앨범 공식 영어 이름 변형 - 모든 글자는 영어 소문자, 공백은 -, 문장기호는 제거
 // LP(Long Play): 정규 앨범 (음원/CD 중심)
 // EP(Extended Play): 미니 앨범
 // SP(Single Play): 싱글 앨범

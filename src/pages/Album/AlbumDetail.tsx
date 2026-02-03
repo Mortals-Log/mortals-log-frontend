@@ -2,18 +2,38 @@
 
 import * as S from '@styles/pages/Album/AlbumDetail.style';
 import { useParams, useNavigate } from 'react-router-dom';
-import { GET_FULL_ALBUMS, ALBUM_TYPE_LABEL } from '@const/albums';
+import { useMemo } from 'react';
+import { GET_FULL_ALBUMS } from '@const/albums';
+import AlbumDetailTracks from '@pages/Album/AlbumDetailTracks';
+import AlbumDetailMetaInfo from '@pages/Album//AlbumDetailMetaInfo';
+import AlbumDetailIntro from '@pages/Album/AlbumDetailIntro';
+
+const SECTION_TITLE = {
+	TRACKS: {
+		TITLE_KR: '수록곡',
+		TITLE_EN: 'Tracks',
+	},
+
+	INTRO: {
+		TITLE_KR: '앨범 소개',
+		TITLE_EN: 'Album Introduction ',
+	},
+} as const;
 
 const AlbumDetail = () => {
 	const navigate = useNavigate();
 	const { id } = useParams<{ id: string }>();
-	const decodedSlug = decodeURIComponent(id || '');
 
-	const allAlbums = GET_FULL_ALBUMS().flatMap(group => group.items);
-	const albumData = allAlbums.find(album => {
-		const slugWithSpaces = decodedSlug.replace(/-/g, ' ');
-		return album.title === slugWithSpaces;
-	});
+	const albumData = useMemo(() => {
+		if (!id) return null;
+
+		const decodedSlug = decodeURIComponent(id);
+		const slugWithSpaces = decodedSlug.replace(/-/g, ' ').toLowerCase();
+
+		return GET_FULL_ALBUMS()
+			.flatMap(group => group.items)
+			.find(album => album.title.toLowerCase() === slugWithSpaces);
+	}, [id]);
 
 	if (!albumData) {
 		return (
@@ -21,9 +41,7 @@ const AlbumDetail = () => {
 				<S.BackButton onClick={() => navigate('/album')}>GO TO ALBUM LIST</S.BackButton>
 				<S.MainTitle>Album Not Found</S.MainTitle>
 
-				<S.Placeholder>
-					<p>앨범을 찾을 수 없습니다.</p>
-				</S.Placeholder>
+				<S.Placeholder>앨범을 찾을 수 없습니다.</S.Placeholder>
 			</S.MainContainer>
 		);
 	}
@@ -32,18 +50,10 @@ const AlbumDetail = () => {
 		<S.MainContainer>
 			<S.BackButton onClick={() => navigate(-1)}>BACK TO PAGE</S.BackButton>
 
-			<S.TitleSection>
-				<S.TypeWrap>
-					<S.AlbumId>{ALBUM_TYPE_LABEL[albumData.type]}</S.AlbumId>
-					{albumData.volume && <S.VolText>정규 {albumData.volume}집</S.VolText>}
-				</S.TypeWrap>
-				<S.MainTitle>{albumData.title}</S.MainTitle>
-				<S.DateText>{albumData.releaseDate}</S.DateText>
-			</S.TitleSection>
+			<AlbumDetailMetaInfo album={albumData} />
 
-			<S.Placeholder>
-				<p>수록곡 리스트와 가사 등의 정보는 데이터 준비 후 업데이트될 예정입니다.</p>
-			</S.Placeholder>
+			<AlbumDetailTracks {...SECTION_TITLE.TRACKS} albumData={albumData} />
+			<AlbumDetailIntro {...SECTION_TITLE.INTRO} albumData={albumData} />
 		</S.MainContainer>
 	);
 };

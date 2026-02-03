@@ -3,10 +3,10 @@
 /* eslint-disable storybook/default-exports */
 
 import { instagram, kakaotalk } from '@/assets/icons';
-import { LINKS } from '@const/contents';
+import { LINK_LIST } from '@const/links';
 
 export const GetSafeLink = (category: string, label: string, fallback: string = '#'): string => {
-	const targetCategory = LINKS.find(link => link.category === category);
+	const targetCategory = LINK_LIST.find(link => link.category === category);
 	const targetItem = targetCategory?.items.find(item => item.label === label);
 
 	return targetItem?.url || fallback;

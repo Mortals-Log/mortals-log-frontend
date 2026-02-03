@@ -3,7 +3,8 @@
 import * as S from '@/styles/pages/Home/Home.style';
 import Information from '@pages/Home/InformationSection';
 import ProfileSection from '@pages/Home/ProfileSection';
-import { NAME, METADATA } from '@const/contents';
+import { METADATA } from '@const/contents';
+import { NAME } from '@const/profile';
 
 const Home = () => {
 	return (
