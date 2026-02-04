@@ -5,6 +5,7 @@ import { useCallback, useState } from 'react';
 import Calendar from 'react-calendar';
 import ScheduleCalandarAgenda from '@pages/Schedule/ScheduleCalandarAgenda';
 import { CALENDAR_SCHEDULES, FormatDate } from '@utils/schedule';
+import { Schedule, SCHEDULE_TYPE_COLORS } from '@/types/schedule';
 
 const ScheduleCalendar = () => {
 	const today = new Date();
@@ -38,9 +39,30 @@ const ScheduleCalendar = () => {
 
 	return (
 		<S.StyledCalendarWrapper>
-			<S.TodayButtonContainer>
+			<S.CalendarToolbarContainer>
+				<S.LabelContainer>
+					<S.LabelList>
+						{(Object.keys(SCHEDULE_TYPE_COLORS) as Schedule['type'][]).map(eventType => {
+							const labelMap = {
+								ALBUM: '앨범',
+								CONCERT: '공연/음악감상회',
+								ANNIVERSARY: '기념일',
+								BIRTHDAY: '생일',
+								EVENT: '이벤트',
+							};
+
+							return (
+								<S.LabelItem eventType={eventType} key={eventType}>
+									<S.LabelBadge eventType={eventType} />
+									{labelMap[eventType]}
+								</S.LabelItem>
+							);
+						})}
+					</S.LabelList>
+				</S.LabelContainer>
+
 				<S.TodayButton onClick={handleGoToday}>TODAY</S.TodayButton>
-			</S.TodayButtonContainer>
+			</S.CalendarToolbarContainer>
 
 			<Calendar
 				calendarType="gregory"

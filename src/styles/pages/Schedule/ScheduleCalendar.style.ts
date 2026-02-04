@@ -150,9 +150,10 @@ export const EventItem = styled.div<{ eventType: Schedule['type'] }>`
 	}
 `;
 
-export const TodayButtonContainer = styled.div`
+export const CalendarToolbarContainer = styled.div`
 	display: flex;
 	justify-content: flex-end;
+	gap: 20px;
 	margin-bottom: 0.3rem;
 `;
 
@@ -178,4 +179,41 @@ export const TodayButton = styled.button`
 	&:active {
 		transform: scale(0.95);
 	}
+`;
+
+export const LabelContainer = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 0 1rem;
+
+	background-color: ${props => props.theme.COLOR.WHITE};
+	border: 0.8px solid ${props => props.theme.COLOR.GRAY100};
+	border-radius: 10px;
+`;
+
+export const LabelList = styled.ul`
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+`;
+
+export const LabelItem = styled.li<{ eventType: Schedule['type'] }>`
+	display: flex;
+	align-items: center;
+	gap: 6px;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.XS};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	color: ${props => SCHEDULE_TYPE_COLORS[props.eventType].text};
+	white-space: nowrap;
+`;
+
+export const LabelBadge = styled.div<{ eventType: Schedule['type'] }>`
+	width: 10px;
+	height: 10px;
+	border-radius: 2px;
+	flex-shrink: 0;
+	background-color: ${props => SCHEDULE_TYPE_COLORS[props.eventType].bg};
 `;
