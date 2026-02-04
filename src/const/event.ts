@@ -9,7 +9,7 @@ export const EVENT_TYPE_LABEL: Record<string, string> = {
 	RADIO: '라디오',
 } as const;
 
-export const EVENT_INTERVIEW: EventList = [
+export const EVENT_RADIO: EventList = [
 	{
 		year: '2023',
 		items: [
@@ -24,7 +24,7 @@ export const EVENT_INTERVIEW: EventList = [
 	},
 ];
 
-export const EVENT_RADIO: EventList = [
+export const EVENT_INTERVIEW: EventList = [
 	{
 		year: '2026',
 		items: [
