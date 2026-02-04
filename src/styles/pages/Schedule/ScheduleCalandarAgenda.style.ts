@@ -44,7 +44,7 @@ export const AgendaItem = styled.div<{ eventType: Schedule['type'] }>`
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-	color: ${props => props.theme.COLOR.GRAY700};
+	color: ${props => props.theme.COLOR.GRAY600};
 
 	background-color: ${props => SCHEDULE_TYPE_COLORS[props.eventType].bg};
 	border-radius: 10px;
