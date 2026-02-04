@@ -3,6 +3,7 @@
 /* eslint-disable storybook/default-exports */
 
 import { EventItem, EventList } from '@/types/event';
+import { LINK_PLATFORM } from './links';
 
 export const EVENT_TYPE_LABEL: Record<string, string> = {
 	INTERVIEW: '인터뷰',
@@ -33,7 +34,33 @@ export const EVENT_INTERVIEW: EventList = [
 				date: '02.03',
 				host: '피디씨 by PDC',
 				content: '[누구세요?] EP.01 학생이 먼저 듣고 부모가 빠진 가수',
-				link: 'https://www.youtube.com/watch?v=u5vdrzXzbeA',
+				platform: LINK_PLATFORM.YOUTUBE.NAME,
+				link: 'u5vdrzXzbeA',
+				quote: '중학교 기간제 교사로도 일하고 있고 싱어송라이터로서도 활동하고 있는 인디가수',
+			},
+			{
+				type: 'INTERVIEW',
+				date: '01.12',
+				host: 'sub_riot',
+				content: '🎤 𝐀𝐫𝐭𝐢𝐬𝐭 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐰𝐢𝐭𝐡 천진우 🎤',
+				link: 'DTZzRsdkbSK/?img_index=1',
+				platform: LINK_PLATFORM.INSTAGRAM.NAME,
+				quote: '학교에서 애들을 가르치면서 음악 하고 있는',
+			},
+		],
+	},
+	{
+		year: '2025',
+		items: [
+			{
+				type: 'INTERVIEW',
+				date: '10.25', // 게시글 삭제로 인해 임시로 삽입했습니다.
+				host: 'nerv_mag',
+				content: '[에바와 음악Vol.1]',
+				link: 'DMOosfnz7IV/?img_index=1',
+				platform: LINK_PLATFORM.INSTAGRAM.NAME,
+				quote: '여러분 인생에 브금 깔아보려고 노력 중인',
+				descriptionContent: `사람과 사람 사이의 틈을 채울 생각은 없습니다.\n오히려 그 틈 자체를 낭만적으로 바라보고 노래로 옮겨적는 것 같습니다.`,
 			},
 		],
 	},

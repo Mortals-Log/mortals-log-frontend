@@ -16,9 +16,8 @@ export interface Profile {
 	name: string;
 	enName: string;
 	hanjaName: string;
-	mainImage: string;
 
-	modifier: Citation[];
+	mainImage: string;
 	description: Citation;
 
 	birth: [day: string, location: string];

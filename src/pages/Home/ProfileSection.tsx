@@ -1,29 +1,34 @@
 // @pages/Home/ProfileSection
 
 import * as S from '@/styles/pages/Home/ProfileSection.style';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MODIFIERS, PROFILE } from '@/const/profile';
+import { PROFILE } from '@/const/profile';
 import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
+import { EVENT_INTERVIEW } from '@/const/event';
 
 const ProfileSection = () => {
 	const navigate = useNavigate();
 	const [currentIdx, setCurrentIdx] = useState(0);
 	const [isPaused, setIsPaused] = useState(false);
 
-	const hasModifiers = MODIFIERS.length > 0;
-	const currentModifier = hasModifiers ? MODIFIERS[currentIdx] : null;
+	const interviewQuotes = useMemo(() => {
+		return EVENT_INTERVIEW.flatMap(yearGroup => yearGroup.items.filter(item => item.quote));
+	}, []);
+	const hasQuotes = interviewQuotes.length > 0;
+	const currentItem = hasQuotes ? interviewQuotes[currentIdx] : null;
+
 	const { content, platform, account, contentTitle, postId } = PROFILE.description;
 
 	useEffect(() => {
-		if (isPaused || !hasModifiers) return;
+		if (isPaused || !hasQuotes) return;
 
 		const timer = setInterval(() => {
-			setCurrentIdx(prev => (prev + 1) % MODIFIERS.length);
+			setCurrentIdx(prev => (prev + 1) % interviewQuotes.length);
 		}, 4000);
 
 		return () => clearInterval(timer);
-	}, [isPaused, hasModifiers]);
+	}, [isPaused, hasQuotes, interviewQuotes.length]);
 
 	return (
 		<S.ProfileContainer>
@@ -36,16 +41,15 @@ const ProfileSection = () => {
 				</S.ImageSection>
 
 				<S.TextSection>
-					{currentModifier && (
+					{currentItem && (
 						<S.ModifierContainer onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
 							<S.SourceLink
-								href={GetSnsUrl(currentModifier.platform, currentModifier.postId) ?? undefined}
-								$disabled={!GetSnsUrl(currentModifier.platform, currentModifier.postId)}
+								href={GetSnsUrl(currentItem.platform ?? '', currentItem.link) ?? undefined}
 								target="_blank"
 								rel="noreferrer">
-								{GetSnsLabel(currentModifier.platform, currentModifier.account, currentModifier.contentTitle)}
+								{GetSnsLabel(currentItem.platform || '', currentItem.host, currentItem.content)}{' '}
 							</S.SourceLink>
-							<S.ModifierText key={currentModifier.content}>{currentModifier.content}</S.ModifierText>
+							<S.ModifierText key={currentItem.quote}>{currentItem.quote}</S.ModifierText>
 						</S.ModifierContainer>
 					)}
 

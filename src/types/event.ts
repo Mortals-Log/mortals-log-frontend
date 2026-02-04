@@ -8,6 +8,9 @@ export interface EventItem {
 	content: string;
 	host?: string;
 	link?: string;
+	platform?: string;
+	quote?: string;
+	descriptionContent?: string;
 }
 
 export interface Event {
