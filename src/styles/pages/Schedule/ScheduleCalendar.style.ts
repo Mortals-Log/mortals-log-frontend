@@ -183,12 +183,17 @@ export const TodayButton = styled.button`
 
 export const LabelContainer = styled.div`
 	display: flex;
+	width: fit-content;
 	align-items: center;
+	padding: 0.5rem 1rem;
+	margin-top: 0.5rem;
+	margin-left: auto;
+
 	gap: 12px;
-	padding: 0 1rem;
+	flex-wrap: wrap;
 
 	background-color: ${props => props.theme.COLOR.WHITE};
-	border: 0.8px solid ${props => props.theme.COLOR.GRAY100};
+	border: 1px solid ${props => props.theme.COLOR.GRAY100};
 	border-radius: 10px;
 `;
 
@@ -216,4 +221,71 @@ export const LabelBadge = styled.div<{ eventType: Schedule['type'] }>`
 	border-radius: 2px;
 	flex-shrink: 0;
 	background-color: ${props => SCHEDULE_TYPE_COLORS[props.eventType].bg};
+`;
+
+export const ViewSwitcher = styled.div`
+	display: flex;
+	padding: 2px;
+	border-radius: 6px;
+	gap: 2px;
+	border: 1px solid ${props => props.theme.COLOR.GRAY100};
+	border-radius: 10px;
+
+	button {
+		padding: 4px 12px;
+		font-family: ${props => props.theme.FONT.SANS};
+		font-size: ${props => props.theme.FONT.SIZE.XS};
+		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+		color: ${props => props.theme.COLOR.GRAY700};
+		border-radius: 4px;
+		transition: all 0.2s;
+
+		&.active {
+			background-color: ${props => props.theme.COLOR.PRIMARY};
+			color: ${props => props.theme.COLOR.WHITE};
+		}
+
+		&:hover:not(.active) {
+			color: ${props => props.theme.COLOR.GRAY600};
+		}
+	}
+`;
+
+export const WeekNav = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-right: auto;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.LG};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+
+	button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		width: 28px;
+		height: 28px;
+		border-radius: 50%;
+
+		color: ${props => props.theme.COLOR.GRAY700};
+
+		transition: all 0.2s ease;
+
+		&:hover {
+			background-color: ${props => props.theme.COLOR.GRAY100};
+		}
+
+		&:active {
+			transform: scale(0.9);
+		}
+	}
+
+	span {
+		min-width: 85px;
+		text-align: center;
+		color: ${props => props.theme.COLOR.GRAY700};
+	}
 `;
