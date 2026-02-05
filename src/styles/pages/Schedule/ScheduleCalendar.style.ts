@@ -7,7 +7,7 @@ import styled from '@emotion/styled';
 
 export * from '@styles/pages/Schedule/Schedule.style';
 
-export const StyledCalendarWrapper = styled.div`
+export const ScheduleWrapper = styled.div`
 	display: block;
 	margin-top: 3.5rem;
 
@@ -104,14 +104,14 @@ export const StyledCalendarWrapper = styled.div`
 	}
 `;
 
-export const EventListContainer = styled.div`
+export const ScheduleList = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	gap: 0.3rem;
 `;
 
-export const EventItem = styled.div<{ eventType: Schedule['type'] }>`
+export const ScheduleItem = styled.div<{ eventType: Schedule['type'] }>`
 	display: block;
 	width: 100%;
 	min-width: 0;
@@ -150,7 +150,7 @@ export const EventItem = styled.div<{ eventType: Schedule['type'] }>`
 	}
 `;
 
-export const CalendarToolbarContainer = styled.div`
+export const ScheduleToolbar = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	gap: 20px;
@@ -179,48 +179,6 @@ export const TodayButton = styled.button`
 	&:active {
 		transform: scale(0.95);
 	}
-`;
-
-export const LabelContainer = styled.div`
-	display: flex;
-	width: fit-content;
-	align-items: center;
-	padding: 0.5rem 1rem;
-	margin-top: 0.5rem;
-	margin-left: auto;
-
-	gap: 12px;
-	flex-wrap: wrap;
-
-	background-color: ${props => props.theme.COLOR.WHITE};
-	border: 1px solid ${props => props.theme.COLOR.GRAY100};
-	border-radius: 10px;
-`;
-
-export const LabelList = styled.ul`
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-`;
-
-export const LabelItem = styled.li<{ eventType: Schedule['type'] }>`
-	display: flex;
-	align-items: center;
-	gap: 6px;
-
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.XS};
-	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-	color: ${props => SCHEDULE_TYPE_COLORS[props.eventType].text};
-	white-space: nowrap;
-`;
-
-export const LabelBadge = styled.div<{ eventType: Schedule['type'] }>`
-	width: 10px;
-	height: 10px;
-	border-radius: 2px;
-	flex-shrink: 0;
-	background-color: ${props => SCHEDULE_TYPE_COLORS[props.eventType].bg};
 `;
 
 export const ViewSwitcher = styled.div`

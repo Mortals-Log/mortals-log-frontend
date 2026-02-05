@@ -4,9 +4,9 @@ import * as S from '@styles/pages/Schedule/ScheduleCalendar.style';
 import { useCallback, useState } from 'react';
 import Calendar from 'react-calendar';
 import ScheduleCalandarAgenda from '@pages/Schedule/ScheduleCalandarAgenda';
+import ScheduleWeekView from '@pages/Schedule/ScheduleWeekView';
+import ScheduleLabel from '@pages/Schedule/ScheduleLabel';
 import { CALENDAR_SCHEDULES, FormatDate } from '@utils/schedule';
-import { Schedule, SCHEDULE_TYPE_COLORS } from '@/types/schedule';
-import ScheduleWeekView from './ScheduleWeekView';
 
 const ScheduleCalendar = () => {
 	const today = new Date();
@@ -29,13 +29,13 @@ const ScheduleCalendar = () => {
 		if (!dayEvents) return null;
 
 		return (
-			<S.EventListContainer>
+			<S.ScheduleList>
 				{dayEvents.map((event, i) => (
-					<S.EventItem key={i} eventType={event.type}>
+					<S.ScheduleItem key={i} eventType={event.type}>
 						{event.content}
-					</S.EventItem>
+					</S.ScheduleItem>
 				))}
-			</S.EventListContainer>
+			</S.ScheduleList>
 		);
 	}, []);
 
@@ -59,8 +59,8 @@ const ScheduleCalendar = () => {
 	}, []);
 
 	return (
-		<S.StyledCalendarWrapper>
-			<S.CalendarToolbarContainer>
+		<S.ScheduleWrapper>
+			<S.ScheduleToolbar>
 				<S.ViewSwitcher>
 					<button className={viewType === 'month' ? 'active' : ''} onClick={() => handleChangeViewType('month')}>
 						Month
@@ -70,18 +70,21 @@ const ScheduleCalendar = () => {
 					</button>
 				</S.ViewSwitcher>
 				<S.TodayButton onClick={handleGoToday}>TODAY</S.TodayButton>
-			</S.CalendarToolbarContainer>
+			</S.ScheduleToolbar>
 
 			{viewType === 'month' ? (
-				<Calendar
-					calendarType="gregory"
-					onChange={val => setSelectedDate(val as Date)}
-					value={selectedDate}
-					activeStartDate={viewDate}
-					onActiveStartDateChange={({ activeStartDate }) => setViewDate(activeStartDate as Date)}
-					formatDay={(_, date) => date.getDate().toString()}
-					tileContent={renderTileContent}
-				/>
+				<>
+					<ScheduleLabel />
+					<Calendar
+						calendarType="gregory"
+						onChange={val => setSelectedDate(val as Date)}
+						value={selectedDate}
+						activeStartDate={viewDate}
+						onActiveStartDateChange={({ activeStartDate }) => setViewDate(activeStartDate as Date)}
+						formatDay={(_, date) => date.getDate().toString()}
+						tileContent={renderTileContent}
+					/>
+				</>
 			) : (
 				<>
 					<S.WeekNav>
@@ -98,32 +101,12 @@ const ScheduleCalendar = () => {
 						onSelectDate={setSelectedDate}
 						schedules={CALENDAR_SCHEDULES}
 					/>
+					<ScheduleLabel />
 				</>
 			)}
 
-			<S.LabelContainer>
-				<S.LabelList>
-					{(Object.keys(SCHEDULE_TYPE_COLORS) as Schedule['type'][]).map(eventType => {
-						const labelMap = {
-							ALBUM: '앨범',
-							CONCERT: '공연/음악감상회',
-							ANNIVERSARY: '기념일',
-							BIRTHDAY: '생일',
-							EVENT: '이벤트',
-						};
-
-						return (
-							<S.LabelItem eventType={eventType} key={eventType}>
-								<S.LabelBadge eventType={eventType} />
-								{labelMap[eventType]}
-							</S.LabelItem>
-						);
-					})}
-				</S.LabelList>
-			</S.LabelContainer>
-
 			<ScheduleCalandarAgenda selectedDate={selectedDate} />
-		</S.StyledCalendarWrapper>
+		</S.ScheduleWrapper>
 	);
 };
 
