@@ -3,7 +3,8 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
-import { Schedule, SCHEDULE_TYPE_COLORS } from '@/types/schedule';
+import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
+import { Schedule } from '@/types/schedule';
 
 export const WeekContainer = styled.div`
 	display: grid;

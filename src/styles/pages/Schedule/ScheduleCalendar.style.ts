@@ -2,8 +2,9 @@
 
 /* eslint-disable storybook/default-exports */
 
-import { SCHEDULE_TYPE_COLORS, Schedule } from '@/types/schedule';
 import styled from '@emotion/styled';
+import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
+import { Schedule } from '@/types/schedule';
 
 export * from '@styles/pages/Schedule/Schedule.style';
 

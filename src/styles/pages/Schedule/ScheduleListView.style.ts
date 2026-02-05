@@ -2,8 +2,9 @@
 
 /* eslint-disable storybook/default-exports */
 
-import { Schedule, SCHEDULE_TYPE_COLORS } from '@/types/schedule';
 import styled from '@emotion/styled';
+import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
+import { Schedule } from '@/types/schedule';
 
 export const ListWrapper = styled.div`
 	display: flex;
