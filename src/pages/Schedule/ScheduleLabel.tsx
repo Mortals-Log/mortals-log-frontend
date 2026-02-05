@@ -13,7 +13,7 @@ const ScheduleLabel = () => {
 						CONCERT: '공연/음악감상회',
 						ANNIVERSARY: '기념일',
 						BIRTHDAY: '생일',
-						EVENT: '이벤트',
+						EVENT: '그 외',
 					};
 
 					return (
