@@ -71,20 +71,18 @@ const ScheduleCalendar = () => {
 				</S.ViewSwitcher>
 				<S.TodayButton onClick={handleGoToday}>TODAY</S.TodayButton>
 			</S.ScheduleToolbar>
+			<ScheduleLabel />
 
 			{viewType === 'month' ? (
-				<>
-					<ScheduleLabel />
-					<Calendar
-						calendarType="gregory"
-						onChange={val => setSelectedDate(val as Date)}
-						value={selectedDate}
-						activeStartDate={viewDate}
-						onActiveStartDateChange={({ activeStartDate }) => setViewDate(activeStartDate as Date)}
-						formatDay={(_, date) => date.getDate().toString()}
-						tileContent={renderTileContent}
-					/>
-				</>
+				<Calendar
+					calendarType="gregory"
+					onChange={val => setSelectedDate(val as Date)}
+					value={selectedDate}
+					activeStartDate={viewDate}
+					onActiveStartDateChange={({ activeStartDate }) => setViewDate(activeStartDate as Date)}
+					formatDay={(_, date) => date.getDate().toString()}
+					tileContent={renderTileContent}
+				/>
 			) : (
 				<>
 					<S.WeekNav>
@@ -101,7 +99,6 @@ const ScheduleCalendar = () => {
 						onSelectDate={setSelectedDate}
 						schedules={CALENDAR_SCHEDULES}
 					/>
-					<ScheduleLabel />
 				</>
 			)}
 
