@@ -8,7 +8,6 @@ import { Schedule, SCHEDULE_TYPE_COLORS } from '@/types/schedule';
 export const WeekContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(7, minmax(0, 1fr));
-	border-radius: 12px;
 	overflow: hidden;
 	margin-top: 10px;
 	background-color: transparent;
@@ -27,7 +26,7 @@ export const DayContainer = styled.div<{ isToday: boolean; isSelected: boolean }
 
 	&:hover {
 		background-color: ${props => !props.isSelected && props.theme.COLOR.GRAY100};
-		border-radius: 8px;
+		border-radius: 10px;
 	}
 `;
 

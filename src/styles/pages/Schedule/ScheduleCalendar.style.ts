@@ -184,7 +184,6 @@ export const TodayButton = styled.button`
 export const ViewSwitcher = styled.div`
 	display: flex;
 	padding: 2px;
-	border-radius: 6px;
 	gap: 2px;
 	border: 1px solid ${props => props.theme.COLOR.GRAY100};
 	border-radius: 10px;

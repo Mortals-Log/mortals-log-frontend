@@ -20,12 +20,12 @@ export const DayContainer = styled.div<{ isToday: boolean; isSelected: boolean }
 	gap: 1rem;
 	background-color: ${props =>
 		props.isSelected ? props.theme.COLOR.PRIMARY : props.isToday ? props.theme.COLOR.GRAY50 : 'transparent'};
-	border-radius: 8px;
+	border-radius: 10px;
 	cursor: pointer;
 
 	&:hover {
 		background-color: ${props => !props.isSelected && props.theme.COLOR.GRAY100};
-		border-radius: 8px;
+		border-radius: 10px;
 	}
 `;
 
@@ -68,7 +68,7 @@ export const ScheduleItem = styled.div<{ eventType: Schedule['type']; isSelected
 
 	width: fit-content;
 	padding: 5px 8px;
-	border-radius: 5px;
+	border-radius: 4px;
 
 	background-color: ${props => (props.isSelected ? props.theme.COLOR.WHITE + 33 : 'transparent')};
 
