@@ -209,7 +209,7 @@ export const ViewSwitcher = styled.div`
 	}
 `;
 
-export const WeekNav = styled.div`
+export const ScheduleNav = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 12px;

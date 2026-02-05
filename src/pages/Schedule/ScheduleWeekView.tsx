@@ -32,7 +32,7 @@ const ScheduleWeekView = ({ viewDate, selectedDate, onSelectDate, schedules }: W
 
 						<S.ScheduleList>
 							{daySchedules.map((sch, idx) => (
-								<S.ScheduleItem key={idx} eventType={sch.type} title={sch.content}>
+								<S.ScheduleItem key={idx} eventType={sch.type} isSelected={isSelected} title={sch.content}>
 									<span className="content">{sch.content}</span>
 								</S.ScheduleItem>
 							))}

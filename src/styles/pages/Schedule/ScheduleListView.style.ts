@@ -1,28 +1,26 @@
-// @styles/pages/Schedule/ScheduleCalendar.style
+// @styles/pages/Schedule/ScheduleListView.style.ts
 
 /* eslint-disable storybook/default-exports */
 
-import styled from '@emotion/styled';
 import { Schedule, SCHEDULE_TYPE_COLORS } from '@/types/schedule';
+import styled from '@emotion/styled';
 
-export const WeekContainer = styled.div`
-	display: grid;
-	grid-template-columns: repeat(7, minmax(0, 1fr));
-	border-radius: 12px;
+export const ListWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	min-height: 13rem;
+	gap: 2px;
 	overflow: hidden;
-	margin-top: 10px;
-	background-color: transparent;
+	margin-top: 1rem;
 `;
 
 export const DayContainer = styled.div<{ isToday: boolean; isSelected: boolean }>`
 	display: flex;
-	flex-direction: column;
-	min-width: 0;
-	min-height: 300px;
-
+	padding: 1.2rem 1rem;
+	gap: 1rem;
 	background-color: ${props =>
 		props.isSelected ? props.theme.COLOR.PRIMARY : props.isToday ? props.theme.COLOR.GRAY50 : 'transparent'};
-	border-radius: 10px;
+	border-radius: 8px;
 	cursor: pointer;
 
 	&:hover {
@@ -35,8 +33,8 @@ export const DayHeader = styled.div<{ isToday: boolean; isSelected: boolean }>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 12px;
-	gap: 4px;
+	gap: 3px;
+	min-width: 40px;
 
 	.day_name {
 		font-size: 10px;
@@ -45,7 +43,7 @@ export const DayHeader = styled.div<{ isToday: boolean; isSelected: boolean }>`
 	}
 
 	.day_number {
-		font-size: ${props => props.theme.FONT.SIZE.SM};
+		font-size: ${props => props.theme.FONT.SIZE.LG};
 		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 		color: ${props =>
 			props.isSelected
@@ -57,26 +55,26 @@ export const DayHeader = styled.div<{ isToday: boolean; isSelected: boolean }>`
 `;
 
 export const ScheduleList = styled.div`
-	padding: 8px;
+	flex: 1;
 	display: flex;
 	flex-direction: column;
-	gap: 4px;
+	gap: 1rem;
 `;
 
 export const ScheduleItem = styled.div<{ eventType: Schedule['type']; isSelected: boolean }>`
-	display: block;
-	width: 100%;
-	min-width: 0;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 
-	padding: 0.3rem 0.4rem;
-	border-radius: 4px;
-	margin-bottom: 2px;
+	width: fit-content;
+	padding: 5px 8px;
+	border-radius: 5px;
 
-	background-color: ${props =>
-		props.isSelected ? props.theme.COLOR.WHITE + 33 : SCHEDULE_TYPE_COLORS[props.eventType].bg};
-	font-size: ${props => props.theme.FONT.SIZE.XS};
-	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-	color: ${props => (props.isSelected ? props.theme.COLOR.WHITE : SCHEDULE_TYPE_COLORS[props.eventType].text)};
+	background-color: ${props => (props.isSelected ? props.theme.COLOR.WHITE + 33 : 'transparent')};
+
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => (props.isSelected ? props.theme.COLOR.WHITE : props.theme.COLOR.GRAY700)};
 
 	white-space: nowrap;
 	overflow: hidden;
@@ -85,15 +83,12 @@ export const ScheduleItem = styled.div<{ eventType: Schedule['type']; isSelected
 	&::before {
 		content: '';
 		display: inline-block;
-
-		width: 4px;
-		height: 4px;
-		margin-right: 4px;
 		flex-shrink: 0;
 
-		background-color: currentColor;
-		border-radius: 50%;
-		vertical-align: middle;
-		margin-top: -2px;
+		width: 4px;
+		height: 16px;
+		border-radius: 2px;
+		background-color: ${props =>
+			props.isSelected ? props.theme.COLOR.WHITE : SCHEDULE_TYPE_COLORS[props.eventType].text};
 	}
 `;
