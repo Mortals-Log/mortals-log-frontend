@@ -1,19 +1,40 @@
 // @pages/Schedule/ScheduleCalendar
 
 import * as S from '@styles/pages/Schedule/ScheduleCalendar.style';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import Calendar from 'react-calendar';
 import ScheduleCalandarAgenda from '@pages/Schedule/ScheduleCalandarAgenda';
 import ScheduleWeekView from '@pages/Schedule/ScheduleWeekView';
 import ScheduleListView from '@pages/Schedule/ScheduleListView';
 import ScheduleLabel from '@pages/Schedule/ScheduleLabel';
 import { CALENDAR_SCHEDULES, FormatDate } from '@utils/schedule';
+import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
+
+const ALL_TYPES = Object.keys(SCHEDULE_TYPE_COLORS);
 
 const ScheduleCalendar = () => {
 	const today = new Date();
 	const [selectedDate, setSelectedDate] = useState<Date>(today);
 	const [viewDate, setViewDate] = useState<Date>(today);
 	const [viewType, setViewType] = useState<'month' | 'week' | 'list'>('month');
+	const [activeFilters, setActiveFilters] = useState<string[]>(ALL_TYPES);
+
+	const handleToggleFilter = useCallback((type: string) => {
+		setActiveFilters(prev => (prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]));
+	}, []);
+
+	const filteredSchedules = useMemo(() => {
+		if (activeFilters.length === 0) return {};
+
+		const filtered: Record<string, any[]> = {};
+		Object.entries(CALENDAR_SCHEDULES).forEach(([date, events]) => {
+			const matchedEvents = events.filter(event => activeFilters.includes(event.type));
+			if (matchedEvents.length > 0) {
+				filtered[date] = matchedEvents;
+			}
+		});
+		return filtered;
+	}, [activeFilters]);
 
 	const handleGoToday = useCallback(() => {
 		const now = new Date();
@@ -21,24 +42,27 @@ const ScheduleCalendar = () => {
 		setViewDate(now);
 	}, []);
 
-	const renderTileContent = useCallback(({ date, view }: { date: Date; view: string }) => {
-		if (view !== 'month') return null;
+	const renderTileContent = useCallback(
+		({ date, view }: { date: Date; view: string }) => {
+			if (view !== 'month') return null;
 
-		const dateStr = FormatDate(date);
-		const dayEvents = CALENDAR_SCHEDULES[dateStr];
+			const dateStr = FormatDate(date);
+			const dayEvents = filteredSchedules[dateStr];
 
-		if (!dayEvents) return null;
+			if (!dayEvents) return null;
 
-		return (
-			<S.ScheduleList>
-				{dayEvents.map((event, i) => (
-					<S.ScheduleItem key={i} eventType={event.type}>
-						{event.content}
-					</S.ScheduleItem>
-				))}
-			</S.ScheduleList>
-		);
-	}, []);
+			return (
+				<S.ScheduleList>
+					{dayEvents.map((event, i) => (
+						<S.ScheduleItem key={i} eventType={event.type}>
+							{event.content}
+						</S.ScheduleItem>
+					))}
+				</S.ScheduleList>
+			);
+		},
+		[filteredSchedules],
+	);
 
 	const handleChangeViewType = useCallback(
 		(type: 'month' | 'week' | 'list') => {
@@ -81,7 +105,8 @@ const ScheduleCalendar = () => {
 				</S.ViewSwitcher>
 				<S.TodayButton onClick={handleGoToday}>TODAY</S.TodayButton>
 			</S.ScheduleToolbar>
-			<ScheduleLabel />
+
+			<ScheduleLabel activeFilters={activeFilters} onToggleFilter={handleToggleFilter} />
 
 			{viewType === 'month' && (
 				<Calendar
@@ -109,7 +134,7 @@ const ScheduleCalendar = () => {
 						viewDate={viewDate}
 						selectedDate={selectedDate}
 						onSelectDate={setSelectedDate}
-						schedules={CALENDAR_SCHEDULES}
+						schedules={filteredSchedules}
 					/>
 				</>
 			)}
@@ -128,12 +153,12 @@ const ScheduleCalendar = () => {
 						viewDate={viewDate}
 						selectedDate={selectedDate}
 						onSelectDate={setSelectedDate}
-						schedules={CALENDAR_SCHEDULES}
+						schedules={filteredSchedules}
 					/>
 				</>
 			)}
 
-			<ScheduleCalandarAgenda selectedDate={selectedDate} />
+			<ScheduleCalandarAgenda selectedDate={selectedDate} schedules={filteredSchedules} />
 		</S.ScheduleWrapper>
 	);
 };

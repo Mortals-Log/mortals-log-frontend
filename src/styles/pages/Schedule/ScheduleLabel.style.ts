@@ -28,10 +28,13 @@ export const LabelList = styled.ul`
 	gap: 1rem;
 `;
 
-export const LabelItem = styled.li<{ eventType: Schedule['type'] }>`
+export const LabelItem = styled.li<{ eventType: Schedule['type']; isActive: boolean }>`
 	display: flex;
 	align-items: center;
 	gap: 6px;
+	opacity: ${props => (props.isActive ? 1 : 0.3)};
+	filter: ${props => (props.isActive ? 'none' : 'grayscale(100%)')};
+	cursor: pointer;
 
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.XS};
