@@ -52,6 +52,9 @@ export const AgendaItem = styled.div<{ eventType: Schedule['type'] }>`
 	transition: transform 0.2s;
 	cursor: pointer;
 
+	line-height: 1.4;
+	letter-spacing: -0.01em;
+
 	&::before {
 		content: '';
 		display: inline-block;
