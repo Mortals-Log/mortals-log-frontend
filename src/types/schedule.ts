@@ -1,15 +1,13 @@
-/* eslint-disable react-refresh/only-export-components */
+// @types/schedule
+
 /* eslint-disable storybook/default-exports */
 
-export interface TimeSlot {
-	part?: string;
-	time: string;
-}
-
 export interface Schedule {
-	title: string;
-	location: string;
-	date: string;
-	schedules: TimeSlot[];
+	type: 'ALBUM' | 'CONCERT' | 'EVENT' | 'ANNIVERSARY' | 'BIRTHDAY';
+	content: string;
+	isPeriod?: boolean;
+	time?: string | null;
 	link?: string;
 }
+
+export type CalendarSchedules = Record<string, Schedule[]>;

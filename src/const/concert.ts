@@ -1,6 +1,6 @@
 // @const/concert.ts
 
-import { Concert, ConcertItem } from '@/types/concert';
+import { ConcertItem, ConcertList } from '@/types/concert';
 import { GenerateSchedules } from '@/utils/concert';
 
 /* eslint-disable storybook/default-exports */
@@ -58,7 +58,7 @@ export const DALDAL_TRIO = [MEMBERS.CJW, MEMBERS.KTH, MEMBERS.LJD];
 /** 5. 중식이 콜라보 (천진우, 중식이) */
 export const WITH_JS = [MEMBERS.CJW, MEMBERS.JS];
 
-export const SOLO_CONCERT: Concert[] = [
+export const SOLO_CONCERT: ConcertList = [
 	{
 		year: '2026',
 		items: [
@@ -275,7 +275,7 @@ export const SOLO_CONCERT: Concert[] = [
 	},
 ];
 
-export const JOIN_CONCERT: Concert[] = [
+export const JOIN_CONCERT: ConcertList = [
 	{
 		year: '2025',
 		items: [
@@ -312,7 +312,7 @@ export const JOIN_CONCERT: Concert[] = [
 	},
 ];
 
-export const TOUR_CONCERT: Concert[] = [
+export const TOUR_CONCERT: ConcertList = [
 	{
 		year: '2023',
 		items: [
@@ -344,7 +344,7 @@ export const TOUR_CONCERT: Concert[] = [
 	},
 ];
 
-export const LISTENING: Concert[] = [
+export const LISTENING: ConcertList = [
 	{
 		year: '2025',
 		items: [
@@ -409,4 +409,4 @@ export const GET_FULL_CONCERTS = () => {
 		}));
 };
 
-export const FULL_CONCERTS: Concert[] = GET_FULL_CONCERTS();
+export const FULL_CONCERTS: ConcertList = GET_FULL_CONCERTS();
