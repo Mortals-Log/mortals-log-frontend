@@ -20,6 +20,13 @@ export const LabelContainer = styled.div`
 	background-color: ${props => props.theme.COLOR.WHITE};
 	border: 1px solid ${props => props.theme.COLOR.GRAY100};
 	border-radius: 10px;
+
+	span {
+		font-family: ${props => props.theme.FONT.SANS};
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+		color: ${props => props.theme.COLOR.GRAY600};
+	}
 `;
 
 export const LabelList = styled.ul`
@@ -28,7 +35,7 @@ export const LabelList = styled.ul`
 	gap: 1rem;
 `;
 
-export const LabelItem = styled.li<{ eventType: Schedule['type']; isActive: boolean }>`
+export const LabelItem = styled.li<{ eventType?: Schedule['type']; isActive: boolean }>`
 	display: flex;
 	align-items: center;
 	gap: 6px;
@@ -39,14 +46,16 @@ export const LabelItem = styled.li<{ eventType: Schedule['type']; isActive: bool
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.XS};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-	color: ${props => SCHEDULE_TYPE_COLORS[props.eventType].text};
+	color: ${props => (props.eventType ? SCHEDULE_TYPE_COLORS[props.eventType].text : props.theme.COLOR.PRIMARY)};
 	white-space: nowrap;
-`;
 
-export const LabelBadge = styled.div<{ eventType: Schedule['type'] }>`
-	width: 10px;
-	height: 10px;
-	border-radius: 2px;
-	flex-shrink: 0;
-	background-color: ${props => SCHEDULE_TYPE_COLORS[props.eventType].bg};
+	&::before {
+		content: '';
+		width: 10px;
+		height: 10px;
+		border-radius: 2px;
+		flex-shrink: 0;
+		background-color: ${props =>
+			props.eventType ? SCHEDULE_TYPE_COLORS[props.eventType].bg : props.theme.COLOR.PRIMARY};
+	}
 `;

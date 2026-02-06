@@ -7,14 +7,22 @@ import { SCHEDULE_LABEL_MAP, SCHEDULE_TYPE_COLORS } from '@/const/schedule';
 interface ScheduleLabelProps {
 	activeFilters: string[];
 	onToggleFilter: (type: string) => void;
+	onToggleAllFilters: () => void;
+	totalCount: number;
 }
 
-const ScheduleLabel = ({ activeFilters, onToggleFilter }: ScheduleLabelProps) => {
+const ScheduleLabel = ({ activeFilters, onToggleFilter, onToggleAllFilters, totalCount }: ScheduleLabelProps) => {
 	const labels = Object.keys(SCHEDULE_TYPE_COLORS) as Schedule['type'][];
+	const isAllActive = activeFilters.length === totalCount;
 
 	return (
 		<S.LabelContainer>
+			<span>필터</span>
 			<S.LabelList>
+				<S.LabelItem isActive={isAllActive} onClick={onToggleAllFilters}>
+					ALL
+				</S.LabelItem>
+
 				{labels.map(eventType => {
 					const isActive = activeFilters.includes(eventType);
 
@@ -24,7 +32,6 @@ const ScheduleLabel = ({ activeFilters, onToggleFilter }: ScheduleLabelProps) =>
 							eventType={eventType}
 							isActive={isActive}
 							onClick={() => onToggleFilter(eventType)}>
-							<S.LabelBadge eventType={eventType} />
 							{SCHEDULE_LABEL_MAP[eventType]}
 						</S.LabelItem>
 					);

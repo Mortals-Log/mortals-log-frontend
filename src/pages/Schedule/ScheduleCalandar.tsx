@@ -19,6 +19,10 @@ const ScheduleCalendar = () => {
 	const [viewType, setViewType] = useState<'month' | 'week' | 'list'>('month');
 	const [activeFilters, setActiveFilters] = useState<string[]>(ALL_TYPES);
 
+	const handleToggleAllFilters = useCallback(() => {
+		setActiveFilters(prev => (prev.length === ALL_TYPES.length ? [] : [...ALL_TYPES]));
+	}, []);
+
 	const handleToggleFilter = useCallback((type: string) => {
 		setActiveFilters(prev => (prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]));
 	}, []);
@@ -106,7 +110,12 @@ const ScheduleCalendar = () => {
 				<S.TodayButton onClick={handleGoToday}>TODAY</S.TodayButton>
 			</S.ScheduleToolbar>
 
-			<ScheduleLabel activeFilters={activeFilters} onToggleFilter={handleToggleFilter} />
+			<ScheduleLabel
+				activeFilters={activeFilters}
+				onToggleFilter={handleToggleFilter}
+				onToggleAllFilters={handleToggleAllFilters}
+				totalCount={ALL_TYPES.length}
+			/>
 
 			{viewType === 'month' && (
 				<Calendar
