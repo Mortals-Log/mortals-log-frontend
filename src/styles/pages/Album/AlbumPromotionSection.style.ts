@@ -144,3 +144,18 @@ export const PromotionLinkButton = styled(ViewMoreButton.withComponent(Link))`
 		animation: none;
 	}
 `;
+
+export const DDayBadge = styled.div`
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	padding: 0.8rem;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	background: ${props => props.theme.COLOR.PRIMARY};
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	color: ${props => props.theme.COLOR.WHITE};
+`;

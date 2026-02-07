@@ -1,7 +1,10 @@
 // @src/pages/Album/AlbumTypeSection
 
-import { useEffect, useRef, useState } from 'react';
 import * as S from '@styles/pages/Album/AlbumTypeSection.style';
+
+import { useEffect, useRef, useState } from 'react';
+import useImageFallback from '@/hooks/useImageFallback';
+
 import {
 	ALBUM_TYPE_LABEL,
 	GET_FULL_ALBUMS,
@@ -11,6 +14,7 @@ import {
 	GET_LV_ALBUMS,
 	GET_VN_ALBUMS,
 } from '@const/albums';
+import { GetAlbumPaths } from '@/utils/album';
 
 const ALBUM_MAP: Record<string, any> = {
 	LP: GET_LP_ALBUMS,
@@ -21,6 +25,8 @@ const ALBUM_MAP: Record<string, any> = {
 };
 
 const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
+	const handleImgError = useImageFallback();
+
 	const [activeTab, setActiveTab] = useState('ALL');
 	const [isOpen, setIsOpen] = useState(true);
 
@@ -77,22 +83,12 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 			{isOpen && (
 				<S.AlbumGrid>
 					{filteredData?.map((album: any) => {
-						const year = album.releaseDate.split('.')[0];
-						const key = `${album.type}_${year}_${album.fileName}`;
-
-						const slug = album.title.replace(/\s/g, '-');
-						const url = `/album/${encodeURIComponent(slug)}`;
+						const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 
 						return (
-							<S.AlbumCard key={key} to={`${url}`}>
+							<S.AlbumCard key={key} to={detailUrl}>
 								<S.CoverWrapper>
-									<img
-										src={`/images/albums/${key}.webp`}
-										alt={album.title}
-										onError={e => {
-											e.currentTarget.src = '/images/albums/default.webp';
-										}}
-									/>
+									<img src={imageSrc} alt={album.title} onError={handleImgError} />
 									<S.Overlay className="overlay">
 										<span>VIEW TRACKS →</span>
 									</S.Overlay>

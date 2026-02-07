@@ -933,6 +933,14 @@ Special Thanks to 애쉬`,
 			[MUSIC_PLATFORM.SOUNDCLOUD]: '',
 		},
 	},
+	{
+		type: 'LV',
+		title: '부산불바다 - 라이브',
+		fileName: 'busan', // fileName은 공식 영어 이름을 사용하나 사진만 업로드되고 제목은 업로드 되지 않아 임시로 'busan'을 사용합니다.
+		releaseDate: '2026.02.20',
+		distributor: '아토엔터테인먼트',
+		agency: '천진우',
+	},
 ];
 
 const VN_ALBUMS: Album[] = [

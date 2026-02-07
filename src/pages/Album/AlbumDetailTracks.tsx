@@ -6,6 +6,7 @@ import { MASTER_TRACKS } from '@/const/tracks';
 import { Album } from '@/types/album';
 import { GetTracks } from '@/utils/track';
 import Placeholder from '@/components/placeholder';
+import { differenceInDays, parse, startOfDay } from 'date-fns';
 
 const AlbumDetailTracks = ({
 	TITLE_KR,
@@ -19,6 +20,12 @@ const AlbumDetailTracks = ({
 	const rawTracks = albumData?.tracks || [];
 	const trackIds = GetTracks(rawTracks);
 	const isVinyl = !Array.isArray(rawTracks);
+
+	const isReleased = useMemo(() => {
+		if (!albumData?.releaseDate) return true;
+		const releaseDate = parse(albumData.releaseDate, 'yyyy.MM.dd', new Date());
+		return differenceInDays(releaseDate, startOfDay(new Date())) <= 0;
+	}, [albumData]);
 
 	const hasTracks = useMemo(() => {
 		if (!albumData?.tracks) return false;
@@ -38,8 +45,9 @@ const AlbumDetailTracks = ({
 					{TITLE_EN} ({trackIds.length})
 				</span>
 			</S.SectionTitle>
-
-			{hasTracks ? (
+			{!isReleased ? (
+				<Placeholder message="트랙리스트는 발매일에 공개됩니다." />
+			) : hasTracks ? (
 				<>
 					{isVinyl
 						? Object.entries(rawTracks as Record<string, string[]>).map(([sideName, tracks]) => (

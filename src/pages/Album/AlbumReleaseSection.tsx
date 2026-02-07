@@ -3,8 +3,12 @@
 import * as S from '@styles/pages/Album/AlbumReleaseSection.style';
 import { FULL_ALBUMS, ALBUM_TYPE_LABEL } from '@const/albums';
 import { useState, useRef } from 'react';
+import { GetAlbumPaths } from '@/utils/album';
+import useImageFallback from '@/hooks/useImageFallback';
 
 const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
+	const handleImgError = useImageFallback();
+
 	const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
 	const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
@@ -53,18 +57,12 @@ const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_E
 						{isSectionOpen && (
 							<S.AlbumGrid>
 								{items.map(album => {
-									const key = `${album.type}_${year}_${album.fileName}`;
-									const slug = album.title.replace(/\s/g, '-');
-									const url = `/album/${encodeURIComponent(slug)}`;
+									const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 
 									return (
-										<S.AlbumCard key={key} to={url}>
+										<S.AlbumCard key={key} to={detailUrl}>
 											<S.CoverWrapper>
-												<img
-													src={`/images/albums/${key}.webp`}
-													alt={album.title}
-													onError={e => (e.currentTarget.src = '/images/albums/default.webp')}
-												/>
+												<img src={imageSrc} alt={album.title} onError={handleImgError} />
 												<S.Overlay className="overlay">
 													<span>VIEW TRACKS →</span>
 												</S.Overlay>
