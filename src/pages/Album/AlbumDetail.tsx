@@ -7,6 +7,7 @@ import { GET_FULL_ALBUMS } from '@const/albums';
 import AlbumDetailTracks from '@pages/Album/AlbumDetailTracks';
 import AlbumDetailMetaInfo from '@pages/Album//AlbumDetailMetaInfo';
 import AlbumDetailIntro from '@pages/Album/AlbumDetailIntro';
+import { IsAlbumMatch } from '@/utils/album';
 
 const SECTION_TITLE = {
 	TRACKS: {
@@ -27,16 +28,9 @@ const AlbumDetail = () => {
 	const albumData = useMemo(() => {
 		if (!id) return null;
 
-		const decodedSlug = decodeURIComponent(id).toLowerCase();
-
 		return GET_FULL_ALBUMS()
 			.flatMap(group => group.items)
-			.find(album => {
-				const targetTitle = album.title.toLowerCase().replace(/[\s-]/g, '');
-				const urlSlug = decodedSlug.replace(/[\s-]/g, '');
-
-				return targetTitle === urlSlug;
-			});
+			.find(album => IsAlbumMatch(album, id));
 	}, [id]);
 
 	if (!albumData) {

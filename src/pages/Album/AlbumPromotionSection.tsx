@@ -3,22 +3,19 @@
 import * as S from '@styles/pages/Album/AlbumPromotionSection.style';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@const/albums';
 import { MASTER_TRACKS } from '@const/tracks';
-import { GetLatestAlbum } from '@utils/album';
+import { GetAlbumPaths, GetLatestAlbum } from '@utils/album';
 import { GetTracks } from '@utils/track';
-import useImageFallback from '@/hooks/useImageFallback';
 import { differenceInDays, format, parse, startOfDay } from 'date-fns';
+import useImageFallback from '@/hooks/useImageFallback';
 
 const today = startOfDay(new Date());
 const album = GetLatestAlbum(FULL_ALBUMS);
 
 const AlbumPromotionSection = () => {
 	const handleImgError = useImageFallback();
-
 	if (!album) return null;
 
-	const year = album.releaseDate.split('.')[0];
-	const key = `${album.type}_${year}_${album.fileName}`;
-	const slug = album.title.replace(/\s/g, '-');
+	const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 
 	const allTrackIds = GetTracks(album.tracks || []);
 	const previewTrackIds = allTrackIds.slice(0, 3);
@@ -34,7 +31,7 @@ const AlbumPromotionSection = () => {
 				{!isReleased && <S.DDayBadge>{diff === 0 ? 'D-Day' : `D-${diff}`}</S.DDayBadge>}
 
 				<S.ImageArea>
-					<S.CoverImage src={`/images/albums/${key}.webp`} alt={album.title} onError={handleImgError} />
+					<S.CoverImage src={imageSrc} alt={album.title} onError={handleImgError} />
 				</S.ImageArea>
 
 				<S.InfoArea>
@@ -57,7 +54,7 @@ const AlbumPromotionSection = () => {
 									{previewTrackIds.map((trackId, index) => {
 										const track = MASTER_TRACKS[trackId];
 										return (
-											<S.TrackItem key={trackId}>
+											<S.TrackItem key={key}>
 												<span className="number">{String(index + 1).padStart(2, '0')}</span>
 												<span className="name">{track?.title}</span>
 											</S.TrackItem>
@@ -78,11 +75,7 @@ const AlbumPromotionSection = () => {
 						)}
 					</S.TrackPreviewList>
 
-					{isReleased ? (
-						<S.PromotionLinkButton to={`/album/${encodeURIComponent(slug)}`}>VIEW TRACKS</S.PromotionLinkButton>
-					) : (
-						<S.PromotionLinkButton to={`/album/${encodeURIComponent(slug)}`}>MOVE TO PAGE</S.PromotionLinkButton>
-					)}
+					<S.PromotionLinkButton to={detailUrl}>{isReleased ? 'VIEW TRACKS' : 'MOVE TO PAGE'}</S.PromotionLinkButton>
 				</S.InfoArea>
 			</S.ContentWrapper>
 		</S.ContentSection>
