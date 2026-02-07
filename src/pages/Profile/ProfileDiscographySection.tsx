@@ -3,8 +3,12 @@
 import * as S from '@styles/pages/Profile/ProfileDiscographySection.style';
 import { useEffect, useRef, useState } from 'react';
 import { ALBUM_TYPE_LABEL, GET_LP_ALBUMS } from '@const/albums';
+import { GetAlbumPaths } from '@/utils/album';
+import useImageFallback from '@/hooks/useImageFallback';
 
 const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
+	const handleImgError = useImageFallback();
+
 	const sliderRef = useRef<HTMLDivElement>(null);
 	const [isAtStart, setIsAtStart] = useState(true);
 	const [isAtEnd, setIsAtEnd] = useState(false);
@@ -54,22 +58,12 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 				)}
 				<S.Slider ref={sliderRef} onScroll={checkScrollPosition}>
 					{GET_LP_ALBUMS.map(album => {
-						const year = album.releaseDate.split('.')[0];
-						const key = `${album.type}_${year}_${album.fileName}`;
-
-						const slug = album.title.replace(/\s/g, '-');
-						const url = `/album/${encodeURIComponent(slug)}`;
+						const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 
 						return (
-							<S.AlbumCard key={key} to={`${url}`}>
+							<S.AlbumCard key={key} to={detailUrl}>
 								<S.CoverWrapper>
-									<img
-										src={`/images/albums/${key}.webp`}
-										alt={album.title}
-										onError={e => {
-											e.currentTarget.src = '/images/albums/default.webp';
-										}}
-									/>
+									<img src={imageSrc} alt={album.title} onError={handleImgError} />
 
 									<S.Overlay className="overlay">
 										<span>VIEW TRACKS →</span>
