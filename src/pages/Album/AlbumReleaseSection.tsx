@@ -3,8 +3,11 @@
 import * as S from '@styles/pages/Album/AlbumReleaseSection.style';
 import { FULL_ALBUMS, ALBUM_TYPE_LABEL } from '@const/albums';
 import { useState, useRef } from 'react';
+import useImageFallback from '@/hooks/useImageFallback';
 
 const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
+	const handleImgError = useImageFallback();
+
 	const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
 	const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
@@ -60,11 +63,7 @@ const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_E
 									return (
 										<S.AlbumCard key={key} to={url}>
 											<S.CoverWrapper>
-												<img
-													src={`/images/albums/${key}.webp`}
-													alt={album.title}
-													onError={e => (e.currentTarget.src = '/images/albums/default.webp')}
-												/>
+												<img src={`/images/albums/${key}.webp`} alt={album.title} onError={handleImgError} />
 												<S.Overlay className="overlay">
 													<span>VIEW TRACKS →</span>
 												</S.Overlay>

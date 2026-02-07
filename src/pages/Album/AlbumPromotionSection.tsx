@@ -5,12 +5,15 @@ import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@const/albums';
 import { MASTER_TRACKS } from '@const/tracks';
 import { GetLatestAlbum } from '@utils/album';
 import { GetTracks } from '@utils/track';
+import useImageFallback from '@/hooks/useImageFallback';
 import { differenceInDays, format, parse, startOfDay } from 'date-fns';
 
 const today = startOfDay(new Date());
 const album = GetLatestAlbum(FULL_ALBUMS);
 
 const AlbumPromotionSection = () => {
+	const handleImgError = useImageFallback();
+
 	if (!album) return null;
 
 	const year = album.releaseDate.split('.')[0];
@@ -24,10 +27,6 @@ const AlbumPromotionSection = () => {
 	const releaseDate = format(parseDate, 'yyyy.MM.dd');
 	const diff = differenceInDays(parseDate, today);
 	const isReleased = diff < 0;
-
-	const handleImgError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-		e.currentTarget.src = '/images/albums/default.webp';
-	};
 
 	return (
 		<S.ContentSection>

@@ -6,6 +6,7 @@ import { Album } from '@/types/album';
 import { LINK_SHOP } from '@/const/links';
 import { ICON_CONFIG } from '@/const/icons';
 import { IconKey } from '@/types/icon';
+import useImageFallback from '@/hooks/useImageFallback';
 
 const MetaRow = ({ label, value }: { label: string; value?: string }) => {
 	if (!value) value = '-';
@@ -18,6 +19,7 @@ const MetaRow = ({ label, value }: { label: string; value?: string }) => {
 };
 
 const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
+	const handleImgError = useImageFallback();
 	if (!album) return null;
 
 	const year = album.releaseDate.split('.')[0];
@@ -29,7 +31,12 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 
 	return (
 		<S.ContentSection>
-			<S.CoverImage hasStore={!!album.store} src={`/images/albums/${key}.webp`} alt={album.title} />
+			<S.CoverImage
+				hasStore={!!album.store}
+				src={`/images/albums/${key}.webp`}
+				alt={album.title}
+				onError={handleImgError}
+			/>
 
 			<S.InfoWrapper>
 				{album.streaming && (
