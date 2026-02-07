@@ -933,6 +933,13 @@ Special Thanks to 애쉬`,
 			[MUSIC_PLATFORM.SOUNDCLOUD]: '',
 		},
 	},
+	{
+		type: 'LV',
+		title: '부산불바다 - 라이브',
+		releaseDate: '2026.02.20',
+		distributor: '아토엔터테인먼트',
+		agency: '천진우',
+	},
 ];
 
 const VN_ALBUMS: Album[] = [
