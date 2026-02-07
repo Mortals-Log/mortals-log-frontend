@@ -27,12 +27,16 @@ const AlbumDetail = () => {
 	const albumData = useMemo(() => {
 		if (!id) return null;
 
-		const decodedSlug = decodeURIComponent(id);
-		const slugWithSpaces = decodedSlug.replace(/-/g, ' ').toLowerCase();
+		const decodedSlug = decodeURIComponent(id).toLowerCase();
 
 		return GET_FULL_ALBUMS()
 			.flatMap(group => group.items)
-			.find(album => album.title.toLowerCase() === slugWithSpaces);
+			.find(album => {
+				const targetTitle = album.title.toLowerCase().replace(/[\s-]/g, '');
+				const urlSlug = decodedSlug.replace(/[\s-]/g, '');
+
+				return targetTitle === urlSlug;
+			});
 	}, [id]);
 
 	if (!albumData) {
