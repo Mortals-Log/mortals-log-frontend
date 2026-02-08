@@ -2,6 +2,7 @@
 /* eslint-disable storybook/default-exports */
 
 import { Album, AlbumList } from '@/types/album';
+import { GetSlug } from '@utils/urlSlug';
 
 export const GetLatestAlbum = (fullAlbums: AlbumList): Album | undefined => {
 	if (!fullAlbums?.[0]?.items?.length) return undefined;
@@ -13,17 +14,13 @@ const GetAlbumImageKey = (album: Album) => {
 	return `${album.type}_${year}_${album.fileName}`;
 };
 
-const GetAlbumSlug = (album: Album) => {
-	return encodeURIComponent(album.title.replace(/\s/g, '-'));
-};
-
 export const GetAlbumPaths = (album: Album) => {
 	const key = GetAlbumImageKey(album);
-	const slug = GetAlbumSlug(album);
+	const slug = GetSlug(album.title);
 
 	return {
 		key,
-		imageSrc: album.fileName ? `/images/albums/${key}.webp` : '/images/albums/default.webp',
+		imageSrc: album.fileName ? `/images/albums/${key}.webp` : '/images/default.webp',
 		detailUrl: `/album/${slug}`,
 	};
 };

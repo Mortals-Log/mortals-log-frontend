@@ -36,11 +36,8 @@ const ScheduleDetail = () => {
 	return (
 		<S.MainContainer>
 			<BackButton />
-
 			<S.HeaderSection>
-				<S.CategoryBadge $type={scheduleData.type}>
-					{SCHEDULE_LABEL_MAP[scheduleData.type as keyof typeof SCHEDULE_LABEL_MAP]}
-				</S.CategoryBadge>
+				<S.CategoryBadge>{SCHEDULE_LABEL_MAP[scheduleData.type as keyof typeof SCHEDULE_LABEL_MAP]}</S.CategoryBadge>
 
 				<S.MainTitle>{scheduleData.content}</S.MainTitle>
 
@@ -49,6 +46,18 @@ const ScheduleDetail = () => {
 					{scheduleData.time && <span className="time">{scheduleData.time}</span>}
 				</S.DateInfo>
 			</S.HeaderSection>
+
+			<S.MainSection>
+				{scheduleData.imageUrl && (
+					<S.ImageWrapper type={scheduleData.type}>
+						<img
+							src={scheduleData.imageUrl}
+							alt={scheduleData.content}
+							onError={e => (e.currentTarget.src = '/images/default.webp')}
+						/>
+					</S.ImageWrapper>
+				)}
+			</S.MainSection>
 		</S.MainContainer>
 	);
 };

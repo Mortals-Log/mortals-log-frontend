@@ -8,11 +8,11 @@ export * from '@styles/pages/Schedule/Schedule.style';
 
 export const HeaderSection = styled.header`
 	margin-bottom: 48px;
-	border-bottom: 1px solid ${({ theme }) => theme.COLOR.border || '#eee'};
-	padding-bottom: 32px;
+	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY200};
+	padding-bottom: 2rem;
 `;
 
-export const CategoryBadge = styled.span<{ $type?: string }>`
+export const CategoryBadge = styled.span`
 	display: inline-block;
 	margin-bottom: 0.5rem;
 
@@ -57,5 +57,31 @@ export const DateInfo = styled.div`
 			background: ${props => props.theme.COLOR.GRAY400};
 			margin-right: 12px;
 		}
+	}
+`;
+
+export const MainSection = styled.section`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+`;
+
+export const ImageWrapper = styled.div<{ type: string }>`
+	width: 100%;
+	max-width: 400px;
+	border-radius: 10px;
+	margin: 0 auto;
+	overflow: hidden;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+
+	aspect-ratio: ${props => (props.type === 'ALBUM' ? '1 / 1' : '3 / 4')};
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
 	}
 `;

@@ -1,5 +1,8 @@
 // @utils/concert.ts
 
+import { ConcertItem } from '@/types/concert';
+import { GetSlug } from '@utils/urlSlug';
+
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
@@ -27,4 +30,21 @@ export const GenerateSchedules = (dateRange: string, year: string, times: string
 			time,
 		}));
 	});
+};
+
+const GetConcertImageKey = (concert: ConcertItem, year: string) => {
+	const startDate = concert.date.split('~')[0].trim();
+	const cleanMD = startDate.replace(/\./g, '');
+	return `${concert.type}_${year}${cleanMD}`;
+};
+
+export const GetConcertPaths = (concert: ConcertItem, year: string) => {
+	const key = GetConcertImageKey(concert, year);
+	const slug = GetSlug(concert.content);
+
+	return {
+		key,
+		imageSrc: concert.fileName ? `/images/concerts/${key}.webp` : '/images/default.webp',
+		detailUrl: `/concert/${slug}`,
+	};
 };

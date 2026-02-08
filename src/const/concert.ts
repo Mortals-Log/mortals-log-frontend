@@ -68,8 +68,9 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '고독의 포크 전사 주정뱅이 딴따라',
 				location: '홍대 롤링홀',
 				times: ['16:00'],
-				price: { regular: '55,000' },
+				price: { regular: '55,000', onSpot: '66,000' },
 				lineUp: SOLO_LINEUP,
+				fileName: 'SOLO_20260207',
 			},
 			{
 				type: 'SOLO',

@@ -16,6 +16,7 @@ export interface ConcertItem {
 	schedules?: Schedule[];
 	lineUp?: string[];
 	price?: Price;
+	fileName?: string;
 }
 
 export interface Concert {

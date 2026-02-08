@@ -7,6 +7,8 @@ import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@const/albums';
 import { CONCERT_TYPE_LABEL, FULL_CONCERTS } from '@const/concert';
 import { EVENT_TYPE_LABEL, FULL_EVENTS } from '@const/event';
 import { PROFILE } from '@const/profile';
+import { GetAlbumPaths } from './album';
+import { GetConcertPaths } from './concert';
 
 export const FormatDate = (date: Date) =>
 	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
@@ -34,9 +36,12 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 		group.items.forEach(item => {
 			const formattedDate = item.releaseDate.replace(/\./g, '-');
 			const albumTag = `[${ALBUM_TYPE_LABEL[item.type]}${item.type === 'LP' && item.volume ? ` ${item.volume}집` : ''}]`;
+			const { imageSrc } = GetAlbumPaths(item);
+
 			addSchedule(formattedDate, {
 				type: 'ALBUM',
 				content: `${albumTag} ${item.title} 발매`,
+				imageUrl: imageSrc,
 			});
 		}),
 	);
@@ -54,6 +59,8 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 				const baseContent = `[${CONCERT_TYPE_LABEL[item.type]}] ${item.content}`;
 				const isPeriod = !!endMD;
 
+				const { imageSrc } = GetConcertPaths(item, group.year);
+
 				if (item.times && item.times.length > 1) {
 					item.times.forEach((time, index) =>
 						addSchedule(dateKey, {
@@ -61,6 +68,7 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 							content: `${baseContent} - ${index + 1}부`,
 							time: time,
 							isPeriod: isPeriod,
+							imageUrl: imageSrc,
 						}),
 					);
 				} else {
@@ -69,6 +77,7 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 						content: `${baseContent}`,
 						time: item.times ? item.times[0] : null,
 						isPeriod: isPeriod,
+						imageUrl: imageSrc,
 					});
 				}
 			}

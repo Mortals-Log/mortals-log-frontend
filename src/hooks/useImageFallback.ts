@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 
-const useImageFallback = (fallbackSrc: string = '/images/albums/default.webp') => {
+const useImageFallback = (fallbackSrc: string = '/images/default.webp') => {
 	const handleImgError = useCallback(
 		(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
 			const target = e.currentTarget;

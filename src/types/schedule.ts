@@ -7,6 +7,7 @@ export interface Schedule {
 	date: string;
 	type: 'ALBUM' | 'CONCERT' | 'EVENT' | 'ANNIVERSARY' | 'BIRTHDAY';
 	content: string;
+	imageUrl?: string;
 	isPeriod?: boolean;
 	time?: string | null;
 	link?: string;
