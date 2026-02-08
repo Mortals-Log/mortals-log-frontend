@@ -16,12 +16,14 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 
 	const addSchedule = (dateKey: string, data: Omit<Schedule, 'id' | 'date'>) => {
 		const key = dateKey.replace(/\s/g, '');
+
 		if (!schedules[key]) schedules[key] = [];
+		const idSource = `${data.type}-${key}-${data.content}`;
 
 		const schedule: Schedule = {
 			...data,
 			date: dateKey.replace(/-/g, '.'),
-			id: btoa(encodeURIComponent(`${dateKey}-${data.content}`)).slice(0, 12),
+			id: btoa(encodeURIComponent(idSource)).replace(/[=/+]/g, '').slice(0, 20),
 		};
 
 		schedules[key].push(schedule);
