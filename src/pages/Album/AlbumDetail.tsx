@@ -1,13 +1,15 @@
 // @src/pages/Album/AlbumDetail
 
 import * as S from '@styles/pages/Album/AlbumDetail.style';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useMemo } from 'react';
 import { GET_FULL_ALBUMS } from '@const/albums';
 import AlbumDetailTracks from '@pages/Album/AlbumDetailTracks';
 import AlbumDetailMetaInfo from '@pages/Album//AlbumDetailMetaInfo';
 import AlbumDetailIntro from '@pages/Album/AlbumDetailIntro';
 import { IsAlbumMatch } from '@/utils/album';
+import BackButton from '@/components/BackButton';
+import Placeholder from '@/components/placeholder';
 
 const SECTION_TITLE = {
 	TRACKS: {
@@ -22,7 +24,6 @@ const SECTION_TITLE = {
 } as const;
 
 const AlbumDetail = () => {
-	const navigate = useNavigate();
 	const { id } = useParams<{ id: string }>();
 
 	const albumData = useMemo(() => {
@@ -36,17 +37,17 @@ const AlbumDetail = () => {
 	if (!albumData) {
 		return (
 			<S.MainContainer>
-				<S.BackButton onClick={() => navigate('/album')}>GO TO ALBUM LIST</S.BackButton>
+				<BackButton to="/album" />
 				<S.MainTitle>Album Not Found</S.MainTitle>
 
-				<S.Placeholder>앨범을 찾을 수 없습니다.</S.Placeholder>
+				<Placeholder message="앨범을 찾을 수 없습니다." />
 			</S.MainContainer>
 		);
 	}
 
 	return (
 		<S.MainContainer>
-			<S.BackButton onClick={() => navigate(-1)}>BACK TO PAGE</S.BackButton>
+			<BackButton />
 
 			<AlbumDetailMetaInfo album={albumData} />
 

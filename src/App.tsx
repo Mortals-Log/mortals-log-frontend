@@ -7,6 +7,7 @@ import Profile from '@pages/Profile';
 import Album from '@pages/Album';
 import AlbumDetail from '@pages/Album/AlbumDetail';
 import Schedule from '@pages/Schedule';
+import ScheduleDetail from '@pages/Schedule/ScheduleDetail';
 import Goods from '@pages/Goods';
 import About from '@pages/About';
 import ScrollToTop from '@const/ScrollToTop';
@@ -27,6 +28,7 @@ function App() {
 				<Route path="/album" element={<Album />} />
 				<Route path="/album/:id" element={<AlbumDetail />} />
 				<Route path="/schedule" element={<Schedule />} />
+				<Route path="/schedule/:id" element={<ScheduleDetail />} />
 				<Route path="/goods" element={<Goods />} />
 				<Route path="/about" element={<About />} />
 			</Routes>

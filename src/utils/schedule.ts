@@ -14,10 +14,17 @@ export const FormatDate = (date: Date) =>
 export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 	const schedules: CalendarSchedules = {};
 
-	const addSchedule = (dateKey: string, data: Schedule) => {
+	const addSchedule = (dateKey: string, data: Omit<Schedule, 'id' | 'date'>) => {
 		const key = dateKey.replace(/\s/g, '');
 		if (!schedules[key]) schedules[key] = [];
-		schedules[key].push(data);
+
+		const schedule: Schedule = {
+			...data,
+			date: dateKey.replace(/-/g, '.'),
+			id: btoa(encodeURIComponent(`${dateKey}-${data.content}`)).slice(0, 12),
+		};
+
+		schedules[key].push(schedule);
 	};
 
 	// 1. 앨범
@@ -49,7 +56,7 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 					item.times.forEach((time, index) =>
 						addSchedule(dateKey, {
 							type: 'CONCERT',
-							content: `${baseContent} - ${index + 1}부 (${time})`,
+							content: `${baseContent} - ${index + 1}부`,
 							time: time,
 							isPeriod: isPeriod,
 						}),
@@ -57,7 +64,7 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 				} else {
 					addSchedule(dateKey, {
 						type: 'CONCERT',
-						content: `${baseContent}${item.times ? ` (${item.times[0]})` : ''}`,
+						content: `${baseContent}`,
 						time: item.times ? item.times[0] : null,
 						isPeriod: isPeriod,
 					});
@@ -120,3 +127,4 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 };
 
 export const CALENDAR_SCHEDULES = GET_CALENDAR_SCHEDULES();
+export const ALL_SCHEDULE_LIST = Object.values(CALENDAR_SCHEDULES).flat();
