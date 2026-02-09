@@ -2,6 +2,7 @@
 
 import { ConcertItem, ConcertList } from '@/types/concert';
 import { GenerateSchedules } from '@/utils/concert';
+import { GenerateTargetId } from '@/utils/id';
 
 /* eslint-disable storybook/default-exports */
 
@@ -63,7 +64,6 @@ export const SOLO_CONCERT: ConcertList = [
 		year: '2026',
 		items: [
 			{
-				id: 'SOLO_20260207',
 				type: 'SOLO',
 				date: '02.07 ~ 02.08',
 				content: '고독의 포크 전사 주정뱅이 딴따라',
@@ -75,7 +75,6 @@ export const SOLO_CONCERT: ConcertList = [
 				reservationLink: 'https://ticket.melon.com/performance/index.htm?prodId=212599',
 			},
 			{
-				id: 'SOLO_20260117',
 				type: 'SOLO',
 				date: '01.17',
 				content: '부산불바다2',
@@ -386,6 +385,7 @@ export const GET_FULL_CONCERTS = () => {
 
 			return {
 				...item,
+				id: GenerateTargetId(item.type, group.year, item.date),
 				location: pendingLocation,
 				schedules: item.schedules || GenerateSchedules(item.date, group.year, pendingTimes),
 			};
