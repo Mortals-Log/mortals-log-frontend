@@ -69,6 +69,10 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 							time: time,
 							isPeriod: isPeriod,
 							imageUrl: imageSrc,
+							location: item.location,
+							lineUp: item.lineUp,
+							reservationLink: item.reservationLink,
+							price: item.price,
 						}),
 					);
 				} else {
@@ -78,6 +82,10 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 						time: item.times ? item.times[0] : null,
 						isPeriod: isPeriod,
 						imageUrl: imageSrc,
+						location: item.location,
+						lineUp: item.lineUp,
+						reservationLink: item.reservationLink,
+						price: item.price,
 					});
 				}
 			}

@@ -5,6 +5,7 @@
 import styled from '@emotion/styled';
 
 export * from '@styles/pages/Schedule/Schedule.style';
+export * from '@styles/components/Buttons.style';
 
 export const HeaderSection = styled.header`
 	margin-bottom: 48px;
@@ -60,21 +61,25 @@ export const DateInfo = styled.div`
 	}
 `;
 
-export const MainSection = styled.section`
+export const MainSection = styled.div`
 	display: flex;
-	flex-direction: column;
+	gap: 60px;
 	align-items: center;
-	width: 100%;
+
+	@media (max-width: 850px) {
+		flex-direction: column;
+		align-items: center;
+		gap: 40px;
+	}
 `;
 
 export const ImageWrapper = styled.div<{ type: string }>`
-	width: 100%;
-	max-width: 400px;
-	border-radius: 10px;
-	margin: 0 auto;
+	flex: 0 0 400px;
 	overflow: hidden;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	margin: 0 auto;
 	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
 	aspect-ratio: ${props => (props.type === 'ALBUM' ? '1 / 1' : '3 / 4')};
 
@@ -84,4 +89,66 @@ export const ImageWrapper = styled.div<{ type: string }>`
 		object-fit: cover;
 		display: block;
 	}
+
+	@media (max-width: 850px) {
+		flex: 1;
+		max-width: 400px;
+	}
+`;
+
+export const ContentSection = styled.div`
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 0 1rem;
+	gap: 2.5rem;
+`;
+
+export const InfoGroup = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+	align-items: center;
+`;
+
+export const PriceList = styled.div`
+	text-align: center;
+`;
+
+export const InfoTitle = styled.div`
+	margin: 0;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	color: ${props => props.theme.COLOR.PRIMARY};
+`;
+
+export const LineUpWrapper = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.5rem;
+`;
+
+export const ArtistTag = styled.span`
+	padding: 0.8rem 1rem;
+	border: 1px solid ${props => props.theme.COLOR.PRIMARY + '77'};
+	border-radius: 20px;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.GRAY700};
+`;
+
+export const InfoItem = styled.div`
+	margin: 0.5rem 0;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.GRAY700};
 `;

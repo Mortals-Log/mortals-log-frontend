@@ -192,3 +192,29 @@ export const ToggleButton = styled.button`
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 `;
+
+export const PrimaryButton = styled.a`
+	display: block;
+	width: 100%;
+	max-width: 400px;
+	margin: 20px auto 0;
+	padding: 1.5rem;
+
+	background-color: ${props => props.theme.COLOR.BLACK};
+	border-radius: 8px;
+
+	text-align: center;
+	text-decoration: none;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	color: ${props => props.theme.COLOR.WHITE};
+
+	transition: all 0.2s ease;
+
+	&:hover {
+		background-color: ${props => props.theme.COLOR.PRIMARY};
+		color: ${props => props.theme.COLOR.WHITE};
+	}
+`;

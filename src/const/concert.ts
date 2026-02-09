@@ -71,6 +71,7 @@ export const SOLO_CONCERT: ConcertList = [
 				price: { regular: '55,000', onSpot: '66,000' },
 				lineUp: SOLO_LINEUP,
 				fileName: 'SOLO_20260207',
+				reservationLink: 'https://ticket.melon.com/performance/index.htm?prodId=212599',
 			},
 			{
 				type: 'SOLO',
