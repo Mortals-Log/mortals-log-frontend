@@ -9,6 +9,7 @@ import { EVENT_TYPE_LABEL, FULL_EVENTS } from '@const/event';
 import { PROFILE } from '@const/profile';
 import { GetAlbumPaths } from './album';
 import { GetConcertPaths } from './concert';
+import { GenerateScheduleId, GenerateTargetId } from './id';
 
 export const FormatDate = (date: Date) =>
 	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
@@ -18,14 +19,17 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 
 	const addSchedule = (dateKey: string, data: Omit<Schedule, 'id' | 'date'>) => {
 		const key = dateKey.replace(/\s/g, '');
-
 		if (!schedules[key]) schedules[key] = [];
-		const idSource = `${data.type}-${key}-${data.content}`;
+
+		const year = dateKey.split('-')[0];
+
+		const targetId = data.targetId || GenerateTargetId(data.type, year, dateKey);
 
 		const schedule: Schedule = {
 			...data,
+			targetId,
 			date: dateKey.replace(/-/g, '.'),
-			id: btoa(encodeURIComponent(idSource)).replace(/[=/+]/g, '').slice(0, 20),
+			id: GenerateScheduleId(data.type, dateKey, data.content),
 		};
 
 		schedules[key].push(schedule);
