@@ -26,6 +26,13 @@ const ScheduleDetail = () => {
 		return isValid(date) ? format(date, 'yyyy.MM.dd (eee)', { locale: ko }) : scheduleData.date;
 	}, [scheduleData]);
 
+	const mapUrl = useMemo(() => {
+		if (!scheduleData?.location) return null;
+		const encodedLocation = encodeURIComponent(scheduleData.location);
+
+		return `https://maps.google.com/maps?q=${encodedLocation}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+	}, [scheduleData]);
+
 	if (!scheduleData) {
 		return (
 			<S.MainContainer>
@@ -113,6 +120,18 @@ const ScheduleDetail = () => {
 					)}
 				</S.ContentSection>
 			</S.MainSection>
+
+			{mapUrl && (
+				<S.MapSection>
+					<S.SectionTitle>
+						공연장 오시는 길<span>Directions to the concert hall</span>
+					</S.SectionTitle>
+
+					<S.MapFrameWrapper>
+						<iframe title="공연장 지도" src={mapUrl} />
+					</S.MapFrameWrapper>
+				</S.MapSection>
+			)}
 		</S.MainContainer>
 	);
 };

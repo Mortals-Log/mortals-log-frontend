@@ -152,3 +152,32 @@ export const InfoItem = styled.div`
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
 `;
+
+export const MapSection = styled.section`
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding-top: 2rem;
+	margin-top: 4rem;
+	border-top: 1px solid ${props => props.theme.COLOR.GRAY200};
+	gap: 2rem;
+`;
+
+export const MapFrameWrapper = styled.div`
+	width: 100%;
+	height: 400px;
+	border-radius: 12px;
+	overflow: hidden;
+	filter: grayscale(0.2);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+	iframe {
+		width: 100%;
+		height: 100%;
+		border: none;
+	}
+
+	@media (max-width: 850px) {
+		height: 300px;
+	}
+`;
