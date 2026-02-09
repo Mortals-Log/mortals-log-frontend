@@ -57,35 +57,27 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 			for (let curr = new Date(startDate); curr.getTime() <= endDate.getTime(); curr.setDate(curr.getDate() + 1)) {
 				const dateKey = FormatDate(curr);
 				const baseContent = `[${CONCERT_TYPE_LABEL[item.type]}] ${item.content}`;
-				const isPeriod = !!endMD;
 
 				const { imageSrc } = GetConcertPaths(item, group.year);
+				const cleanDate = item.date.split('~')[0].replace(/[^0-9]/g, '');
+				const generatedId = item.id || `${item.type}_${group.year}${cleanDate}`;
 
 				if (item.times && item.times.length > 1) {
 					item.times.forEach((time, index) =>
 						addSchedule(dateKey, {
+							targetId: generatedId,
 							type: 'CONCERT',
 							content: `${baseContent} - ${index + 1}부`,
 							time: time,
-							isPeriod: isPeriod,
-							imageUrl: imageSrc,
-							location: item.location,
-							lineUp: item.lineUp,
-							reservationLink: item.reservationLink,
-							price: item.price,
 						}),
 					);
 				} else {
 					addSchedule(dateKey, {
+						targetId: generatedId,
 						type: 'CONCERT',
 						content: `${baseContent}`,
 						time: item.times ? item.times[0] : null,
-						isPeriod: isPeriod,
 						imageUrl: imageSrc,
-						location: item.location,
-						lineUp: item.lineUp,
-						reservationLink: item.reservationLink,
-						price: item.price,
 					});
 				}
 			}
@@ -100,7 +92,6 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 			addSchedule(dateKey, {
 				type: 'EVENT',
 				content: `[${EVENT_TYPE_LABEL[item.type]} - ${item.host}] ${item.content}`,
-				link: item.link,
 			});
 		}),
 	);

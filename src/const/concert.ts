@@ -63,6 +63,7 @@ export const SOLO_CONCERT: ConcertList = [
 		year: '2026',
 		items: [
 			{
+				id: 'SOLO_20260207',
 				type: 'SOLO',
 				date: '02.07 ~ 02.08',
 				content: '고독의 포크 전사 주정뱅이 딴따라',
@@ -74,6 +75,7 @@ export const SOLO_CONCERT: ConcertList = [
 				reservationLink: 'https://ticket.melon.com/performance/index.htm?prodId=212599',
 			},
 			{
+				id: 'SOLO_20260117',
 				type: 'SOLO',
 				date: '01.17',
 				content: '부산불바다2',

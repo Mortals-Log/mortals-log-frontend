@@ -8,6 +8,7 @@ export interface Schedule {
 }
 
 export interface ConcertItem {
+	id?: string;
 	type: 'SOLO' | 'JOIN' | 'TOUR' | 'LISTENING';
 	date: string;
 	content: string;
