@@ -60,12 +60,10 @@ export const ImageWrapper = styled.div<{ type: string }>`
 	border-radius: 10px;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
-	aspect-ratio: ${props => (props.type === 'ALBUM' ? '1 / 1' : '3 / 4')};
-
 	img {
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
+		object-fit: fit;
 		display: block;
 	}
 
