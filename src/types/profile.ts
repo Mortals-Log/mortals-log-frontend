@@ -1,4 +1,5 @@
-/* eslint-disable react-refresh/only-export-components */
+// @types/profile
+
 /* eslint-disable storybook/default-exports */
 
 import { Links } from './links';

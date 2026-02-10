@@ -1,6 +1,5 @@
 // @utils/snsUrl.ts
 
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable storybook/default-exports */
 
 import { LINK_PLATFORM } from '@const/links';

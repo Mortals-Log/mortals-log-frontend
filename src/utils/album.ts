@@ -1,4 +1,5 @@
 // @utils/album
+
 /* eslint-disable storybook/default-exports */
 
 import { Album, AlbumList } from '@/types/album';
