@@ -71,7 +71,6 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '55,000', onSpot: '66,000' },
 				lineUp: SOLO_LINEUP,
-				fileName: 'SOLO_20260207',
 				reservationLink: 'https://ticket.melon.com/performance/index.htm?prodId=212599',
 			},
 			{
@@ -82,6 +81,7 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00', '19:00'],
 				price: { regular: '50,000', army: '40,000' },
 				lineUp: [...BULBADA_LINEUP, MEMBERS.BY],
+				fileName: 'SOLO_20260117',
 			},
 		],
 	},
@@ -323,7 +323,7 @@ export const TOUR_CONCERT: ConcertList = [
 				type: 'TOUR',
 				date: '07.29',
 				content: '여름좀비 - 춘천',
-				location: '춘천 22(투투)',
+				location: '춘천 클럽투투',
 				price: { regular: '30,000' },
 				lineUp: [...SOLO_LINEUP],
 			},
@@ -334,6 +334,7 @@ export const TOUR_CONCERT: ConcertList = [
 				location: '부산 오방가르드',
 				price: { regular: '30,000' },
 				lineUp: [...SOLO_LINEUP],
+				fileName: 'TOUR_20230729',
 			},
 			{
 				type: 'TOUR',
@@ -342,6 +343,7 @@ export const TOUR_CONCERT: ConcertList = [
 				location: '홍대 언플러그드',
 				price: { regular: '30,000' },
 				lineUp: [...SOLO_LINEUP],
+				fileName: 'TOUR_20230729',
 			},
 		],
 	},
@@ -383,11 +385,14 @@ export const GET_FULL_CONCERTS = () => {
 			const pendingTimes = item.times || ['미정'];
 			const pendingLocation = item.location || '미정';
 
+			const id = item.id || GenerateTargetId(item.type, group.year, item.date);
+
 			return {
 				...item,
-				id: GenerateTargetId(item.type, group.year, item.date),
+				id: id,
 				location: pendingLocation,
 				schedules: item.schedules || GenerateSchedules(item.date, group.year, pendingTimes),
+				fileName: item.fileName || id,
 			};
 		});
 

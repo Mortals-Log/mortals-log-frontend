@@ -35,16 +35,18 @@ export const GenerateSchedules = (dateRange: string, year: string, times: string
 const GetConcertImageKey = (concert: ConcertItem, year: string) => {
 	const startDate = concert.date.split('~')[0].trim();
 	const cleanMD = startDate.replace(/\./g, '');
+
 	return `${concert.type}_${year}${cleanMD}`;
 };
 
 export const GetConcertPaths = (concert: ConcertItem, year: string) => {
 	const key = GetConcertImageKey(concert, year);
 	const slug = GetSlug(concert.content);
+	const fileName = concert.fileName || key || '/images/default.webp';
 
 	return {
 		key,
-		imageSrc: concert.fileName ? `/images/concerts/${key}.webp` : '/images/default.webp',
+		imageSrc: `/images/concerts/${fileName}.webp`,
 		detailUrl: `/concert/${slug}`,
 	};
 };

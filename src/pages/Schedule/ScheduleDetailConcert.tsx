@@ -5,13 +5,13 @@ import { ConcertItem } from '@/types/concert';
 import { useMemo } from 'react';
 import useImageFallback from '@/hooks/useImageFallback';
 
-interface Props {
+interface ScheduleDetailConcertProps {
 	schedule: ConcertItem;
 	imageUrl?: string;
 	content: string;
 }
 
-const ScheduleDetailConcert = ({ schedule, imageUrl, content }: Props) => {
+const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailConcertProps) => {
 	const handleImgError = useImageFallback();
 	const DEFAULT_IMAGE = '/images/default-poster.png';
 

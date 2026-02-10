@@ -73,6 +73,7 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 							type: 'CONCERT',
 							content: `${baseContent} - ${index + 1}부`,
 							time: time,
+							imageUrl: imageSrc,
 						}),
 					);
 				} else {
