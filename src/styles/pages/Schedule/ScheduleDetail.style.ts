@@ -40,31 +40,6 @@ export const MainTitle = styled.h2<{ ageLimit: boolean }>`
 	}
 `;
 
-export const DateInfo = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 12px;
-
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.MD};
-	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-	color: ${props => props.theme.COLOR.GRAY600};
-
-	.time {
-		display: flex;
-		align-items: center;
-
-		&::before {
-			content: '';
-			display: inline-block;
-			width: 1.2px;
-			height: ${props => props.theme.FONT.SIZE.MD};
-			background: ${props => props.theme.COLOR.GRAY400};
-			margin-right: 12px;
-		}
-	}
-`;
-
 export const MainSection = styled.div`
 	display: flex;
 	gap: 60px;
@@ -149,12 +124,31 @@ export const ArtistTag = styled.span`
 `;
 
 export const InfoItem = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 	margin: 0.5rem 0;
+	gap: 12px;
 
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
+
+	.time {
+		display: flex;
+		align-items: center;
+
+		&::before {
+			content: '';
+			display: inline-block;
+			width: 1.2px;
+			height: ${props => props.theme.FONT.SIZE.MD};
+			background: ${props => props.theme.COLOR.GRAY400};
+			margin-right: 12px;
+		}
+	}
 `;
 
 export const MapSection = styled.section`

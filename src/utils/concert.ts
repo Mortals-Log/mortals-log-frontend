@@ -1,10 +1,9 @@
 // @utils/concert.ts
 
+/* eslint-disable storybook/default-exports */
+
 import { ConcertItem } from '@/types/concert';
 import { GetSlug } from '@utils/urlSlug';
-
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable storybook/default-exports */
 
 const getDay = (year: string, dateStr: string) => {
 	const days = ['일', '월', '화', '수', '목', '금', '토'];

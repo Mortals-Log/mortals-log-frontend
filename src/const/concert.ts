@@ -1,10 +1,9 @@
 // @const/concert.ts
 
+/* eslint-disable storybook/default-exports */
+
 import { ConcertItem, ConcertList } from '@/types/concert';
 import { GenerateSchedules } from '@/utils/concert';
-import { GenerateTargetId } from '@/utils/id';
-
-/* eslint-disable storybook/default-exports */
 
 export const CONCERT_TYPE_LABEL: Record<string, string> = {
 	SOLO: '단독 콘서트',
@@ -386,14 +385,11 @@ export const GET_FULL_CONCERTS = () => {
 			const pendingTimes = item.times || ['미정'];
 			const pendingLocation = item.location || '미정';
 
-			const id = item.id || GenerateTargetId(item.type, group.year, item.date);
-
 			return {
 				...item,
-				id: id,
 				location: pendingLocation,
 				schedules: item.schedules || GenerateSchedules(item.date, group.year, pendingTimes),
-				fileName: item.fileName || id,
+				fileName: item.fileName,
 			};
 		});
 

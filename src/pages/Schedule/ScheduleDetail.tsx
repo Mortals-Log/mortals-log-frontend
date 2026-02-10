@@ -7,7 +7,6 @@ import { ALL_SCHEDULE_LIST } from '@/utils/schedule';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/placeholder';
 import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
-import { ConcertItem } from '@/types/concert';
 import ScheduleDetailConcert from '@pages/Schedule/ScheduleDetailConcert';
 import { FULL_CONCERTS } from '@/const/concert';
 
@@ -18,14 +17,10 @@ const ScheduleDetail = () => {
 		return ALL_SCHEDULE_LIST.find(item => String(item.id) === id);
 	}, [id]);
 
-	const scheduleDetail = useMemo(() => {
-		if (!scheduleBase?.targetId) return null;
+	const concertData = useMemo(() => {
+		if (!scheduleBase || scheduleBase.type !== 'CONCERT') return null;
 
-		if (scheduleBase.type === 'CONCERT') {
-			return FULL_CONCERTS.flatMap(g => g.items).find(i => i.id === scheduleBase.targetId);
-		}
-
-		return null;
+		return FULL_CONCERTS.flatMap(g => g.items).find(i => scheduleBase.content.includes(i.content));
 	}, [scheduleBase]);
 
 	if (!scheduleBase)
@@ -36,7 +31,7 @@ const ScheduleDetail = () => {
 			</S.MainContainer>
 		);
 
-	const concertData = scheduleBase.type === 'CONCERT' ? (scheduleDetail as ConcertItem) : null;
+	const year = scheduleBase.date.split('.')[0];
 
 	return (
 		<S.MainContainer>
@@ -48,15 +43,18 @@ const ScheduleDetail = () => {
 					{SCHEDULE_LABEL_MAP[scheduleBase.type]}
 				</S.CategoryBadge>
 				<S.MainTitle ageLimit={scheduleBase.ageLimit || false}>{scheduleBase.content}</S.MainTitle>
-				<S.DateInfo>
-					{scheduleBase.date}
-
-					{concertData?.times && concertData.times.length > 0 && <span className="time">{scheduleBase.time}</span>}
-				</S.DateInfo>
 			</S.HeaderSection>
 
 			{scheduleBase.type === 'CONCERT' && concertData && (
-				<ScheduleDetailConcert schedule={concertData} imageUrl={scheduleBase.imageUrl} content={scheduleBase.content} />
+				<ScheduleDetailConcert
+					schedule={{
+						...concertData,
+						date: `${year}.${concertData.date}`,
+						times: scheduleBase.time ? [scheduleBase.time] : concertData.times,
+					}}
+					imageUrl={scheduleBase.imageUrl}
+					content={scheduleBase.content}
+				/>
 			)}
 		</S.MainContainer>
 	);

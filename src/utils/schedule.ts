@@ -9,7 +9,7 @@ import { EVENT_TYPE_LABEL, FULL_EVENTS } from '@const/event';
 import { PROFILE } from '@const/profile';
 import { GetAlbumPaths } from './album';
 import { GetConcertPaths } from './concert';
-import { GenerateScheduleId, GenerateTargetId } from './id';
+import { GenerateScheduleId } from './id';
 
 export const FormatDate = (date: Date) =>
 	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
@@ -21,15 +21,10 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 		const key = dateKey.replace(/\s/g, '');
 		if (!schedules[key]) schedules[key] = [];
 
-		const year = dateKey.split('-')[0];
-
-		const targetId = data.targetId || GenerateTargetId(data.type, year, dateKey);
-
 		const schedule: Schedule = {
 			...data,
-			targetId,
 			date: dateKey.replace(/-/g, '.'),
-			id: GenerateScheduleId(data.type, dateKey, data.content),
+			id: GenerateScheduleId(data.type, dateKey, data.content, data.time),
 		};
 
 		schedules[key].push(schedule);
@@ -63,13 +58,10 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 				const baseContent = `[${CONCERT_TYPE_LABEL[item.type]}] ${item.content}`;
 
 				const { imageSrc } = GetConcertPaths(item, group.year);
-				const cleanDate = item.date.split('~')[0].replace(/[^0-9]/g, '');
-				const generatedId = item.id || `${item.type}_${group.year}${cleanDate}`;
 
 				if (item.times && item.times.length > 1) {
 					item.times.forEach((time, index) =>
 						addSchedule(dateKey, {
-							targetId: generatedId,
 							type: 'CONCERT',
 							content: `${baseContent} - ${index + 1}부`,
 							time: time,
@@ -79,7 +71,6 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 					);
 				} else {
 					addSchedule(dateKey, {
-						targetId: generatedId,
 						type: 'CONCERT',
 						content: `${baseContent}`,
 						time: item.times ? item.times[0] : null,

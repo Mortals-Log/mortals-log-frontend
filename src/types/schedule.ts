@@ -4,7 +4,6 @@
 
 export interface Schedule {
 	id: string;
-	targetId?: string;
 	date: string;
 	type: 'ALBUM' | 'CONCERT' | 'EVENT' | 'ANNIVERSARY' | 'BIRTHDAY';
 	content: string;

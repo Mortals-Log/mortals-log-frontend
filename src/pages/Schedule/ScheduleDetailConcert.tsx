@@ -44,6 +44,21 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 				</S.ImageWrapper>
 
 				<S.ContentSection>
+					<S.InfoGroup>
+						<S.InfoTitle>Date & time</S.InfoTitle>
+						<S.InfoItem>
+							{schedule.date}
+							<span className="time">{schedule.times}</span>
+						</S.InfoItem>
+					</S.InfoGroup>
+
+					{schedule.location && (
+						<S.InfoGroup>
+							<S.InfoTitle>LOCATION</S.InfoTitle>
+							<S.InfoItem>{schedule.location}</S.InfoItem>
+						</S.InfoGroup>
+					)}
+
 					{schedule.lineUp && (
 						<S.InfoGroup>
 							<S.InfoTitle>LINE UP</S.InfoTitle>
@@ -75,13 +90,6 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 									);
 								})}
 							</S.PriceList>
-						</S.InfoGroup>
-					)}
-
-					{schedule.location && (
-						<S.InfoGroup>
-							<S.InfoTitle>LOCATION</S.InfoTitle>
-							<S.InfoItem>{schedule.location}</S.InfoItem>
 						</S.InfoGroup>
 					)}
 
