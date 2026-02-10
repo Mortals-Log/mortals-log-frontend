@@ -19,6 +19,7 @@ export interface ConcertItem {
 	price?: Price;
 	fileName?: string;
 	reservationLink?: string;
+	ageLimit?: boolean;
 }
 
 export interface Concert {

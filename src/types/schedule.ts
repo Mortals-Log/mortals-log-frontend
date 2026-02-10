@@ -11,6 +11,7 @@ export interface Schedule {
 	imageUrl?: string;
 
 	// concert
+	ageLimit?: boolean;
 	time?: string | null;
 }
 

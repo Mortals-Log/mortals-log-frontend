@@ -43,8 +43,11 @@ const ScheduleDetail = () => {
 			<BackButton />
 
 			<S.HeaderSection>
-				<S.CategoryBadge>{SCHEDULE_LABEL_MAP[scheduleBase.type]}</S.CategoryBadge>
-				<S.MainTitle>{scheduleBase.content}</S.MainTitle>
+				<S.CategoryBadge>
+					{scheduleBase.ageLimit ? '미성년자 관람 불가 | ' : ''}
+					{SCHEDULE_LABEL_MAP[scheduleBase.type]}
+				</S.CategoryBadge>
+				<S.MainTitle ageLimit={scheduleBase.ageLimit || false}>{scheduleBase.content}</S.MainTitle>
 				<S.DateInfo>
 					{scheduleBase.date}
 

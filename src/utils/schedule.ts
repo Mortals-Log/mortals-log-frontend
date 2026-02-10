@@ -74,6 +74,7 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 							content: `${baseContent} - ${index + 1}부`,
 							time: time,
 							imageUrl: imageSrc,
+							ageLimit: item.ageLimit || false,
 						}),
 					);
 				} else {
@@ -83,6 +84,7 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 						content: `${baseContent}`,
 						time: item.times ? item.times[0] : null,
 						imageUrl: imageSrc,
+						ageLimit: item.ageLimit || false,
 					});
 				}
 			}

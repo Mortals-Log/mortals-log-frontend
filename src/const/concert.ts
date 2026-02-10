@@ -303,6 +303,7 @@ export const JOIN_CONCERT: ConcertList = [
 				times: ['20:00'],
 				price: { regular: '40,000' },
 				lineUp: [MEMBERS.CJW, MEMBERS.KIH, MEMBERS.PSG, MEMBERS.LJM, MEMBERS.OS],
+				ageLimit: true,
 			},
 			{
 				type: 'JOIN',

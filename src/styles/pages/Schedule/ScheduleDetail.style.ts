@@ -23,7 +23,7 @@ export const CategoryBadge = styled.span`
 	color: ${props => props.theme.COLOR.PRIMARY};
 `;
 
-export const MainTitle = styled.h2`
+export const MainTitle = styled.h2<{ ageLimit: boolean }>`
 	margin-bottom: 8px;
 
 	font-family: ${props => props.theme.FONT.SERIF};
@@ -34,6 +34,10 @@ export const MainTitle = styled.h2`
 	line-height: 1.5;
 	white-space: pre-wrap;
 	word-break: keep-all;
+
+	&::before {
+		content: ${props => (props.ageLimit ? '"🔞"' : '""')};
+	}
 `;
 
 export const DateInfo = styled.div`

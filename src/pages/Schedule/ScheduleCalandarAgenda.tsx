@@ -30,6 +30,7 @@ const ScheduleCalandarAgenda = ({ selectedDate, schedules }: AgendaProps) => {
 			{dayEvents && dayEvents.length > 0 ? (
 				dayEvents.map(event => (
 					<S.AgendaItem key={event.id} eventType={event.type} onClick={() => handleItemClick(event.id)}>
+						{event.ageLimit && <S.AdultBadge>🔞 미성년자 관람불가</S.AdultBadge>}
 						{event.content}
 					</S.AgendaItem>
 				))
