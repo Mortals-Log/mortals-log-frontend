@@ -90,10 +90,6 @@ export const InfoGroup = styled.div`
 	align-items: center;
 `;
 
-export const PriceList = styled.div`
-	text-align: center;
-`;
-
 export const InfoTitle = styled.div`
 	margin: 0;
 	letter-spacing: 0.1em;
@@ -128,13 +124,19 @@ export const InfoItem = styled.div`
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	margin: 0.5rem 0;
 	gap: 12px;
 
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
+
+	.round {
+		font-family: ${props => props.theme.FONT.SERIF};
+		font-size: ${props => props.theme.FONT.SIZE.MD};
+		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+		color: ${props => props.theme.COLOR.PRIMARY};
+	}
 
 	.time {
 		display: flex;
@@ -143,7 +145,7 @@ export const InfoItem = styled.div`
 		&::before {
 			content: '';
 			display: inline-block;
-			width: 1.2px;
+			width: 1px;
 			height: ${props => props.theme.FONT.SIZE.MD};
 			background: ${props => props.theme.COLOR.GRAY400};
 			margin-right: 12px;

@@ -24,7 +24,7 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 		const schedule: Schedule = {
 			...data,
 			date: dateKey.replace(/-/g, '.'),
-			id: GenerateScheduleId(data.type, dateKey, data.content, data.time),
+			id: GenerateScheduleId(data.type, dateKey, data.content),
 		};
 
 		schedules[key].push(schedule);
@@ -60,19 +60,21 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 				const { imageSrc } = GetConcertPaths(item, group.year);
 
 				if (item.times && item.times.length > 1) {
-					item.times.forEach((time, index) =>
+					item.times.forEach((time, index) => {
+						const displayContent = `${baseContent} - ${index + 1}부`;
+
 						addSchedule(dateKey, {
 							type: 'CONCERT',
-							content: `${baseContent} - ${index + 1}부`,
+							content: displayContent,
 							time: time,
 							imageUrl: imageSrc,
 							ageLimit: item.ageLimit || false,
-						}),
-					);
+						});
+					});
 				} else {
 					addSchedule(dateKey, {
 						type: 'CONCERT',
-						content: `${baseContent}`,
+						content: baseContent,
 						time: item.times ? item.times[0] : null,
 						imageUrl: imageSrc,
 						ageLimit: item.ageLimit || false,

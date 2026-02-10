@@ -15,6 +15,9 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 	const handleImgError = useImageFallback();
 	const DEFAULT_IMAGE = '/images/default-poster.png';
 
+	const year = schedule.date.split('.')[0];
+	const cleanDate = schedule.date.replace(`${year}.`, '').trim();
+
 	const mapUrl = useMemo(() => {
 		if (!schedule.location || schedule.location === '미정') return null;
 
@@ -37,7 +40,6 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 					</S.InfoItem>
 				</S.InfoGroup>
 			)}
-
 			<S.MainSection>
 				<S.ImageWrapper type="CONCERT">
 					<img src={imageUrl || DEFAULT_IMAGE} alt={content} onError={handleImgError} />
@@ -46,10 +48,30 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 				<S.ContentSection>
 					<S.InfoGroup>
 						<S.InfoTitle>Date & time</S.InfoTitle>
-						<S.InfoItem>
-							{schedule.date}
-							<span className="time">{schedule.times}</span>
-						</S.InfoItem>
+
+						{cleanDate.includes('~')
+							? cleanDate.split('~').map((date, idx) => (
+									<S.InfoItem key={`range-${idx}`}>
+										<span key={idx} className="round">
+											{idx + 1}일차.
+										</span>
+										{year}.{date.trim()}
+										{schedule.times?.map((time, tIdx) => (
+											<span key={tIdx} className="time">
+												{time}
+											</span>
+										))}
+									</S.InfoItem>
+								))
+							: schedule.times?.map((time, idx) => (
+									<S.InfoItem key={`single-${idx}`}>
+										<span key={idx} className="round">
+											{idx + 1}부.
+										</span>
+										{year}.{cleanDate}
+										<span className="time">{time}</span>
+									</S.InfoItem>
+								))}
 					</S.InfoGroup>
 
 					{schedule.location && (
@@ -73,23 +95,21 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 					{schedule.price && (
 						<S.InfoGroup>
 							<S.InfoTitle>TICKET</S.InfoTitle>
-							<S.PriceList>
-								<S.InfoItem>일반: {schedule.price.regular}원</S.InfoItem>
-								{Object.entries(schedule.price).map(([key, value]) => {
-									if (key === 'regular' || !value) return null;
-									const labels: Record<string, string> = {
-										onSpot: '현장 판매',
-										army: '군인 할인',
-										student: '학생 할인',
-										alien: '외계인 할인',
-									};
-									return (
-										<S.InfoItem key={key}>
-											{labels[key] || key}: {value}원
-										</S.InfoItem>
-									);
-								})}
-							</S.PriceList>
+							<S.InfoItem>일반: {schedule.price.regular}원</S.InfoItem>
+							{Object.entries(schedule.price).map(([key, value]) => {
+								if (key === 'regular' || !value) return null;
+								const labels: Record<string, string> = {
+									onSpot: '현장 판매',
+									army: '군인 할인',
+									student: '학생 할인',
+									alien: '외계인 할인',
+								};
+								return (
+									<S.InfoItem key={key}>
+										{labels[key] || key}: {value}원
+									</S.InfoItem>
+								);
+							})}
 						</S.InfoGroup>
 					)}
 
@@ -100,7 +120,6 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 					)}
 				</S.ContentSection>
 			</S.MainSection>
-
 			{mapUrl && (
 				<S.MapSection>
 					<S.SectionTitle>

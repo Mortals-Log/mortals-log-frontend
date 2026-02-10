@@ -42,7 +42,10 @@ const ScheduleDetail = () => {
 					{scheduleBase.ageLimit ? '미성년자 관람 불가 | ' : ''}
 					{SCHEDULE_LABEL_MAP[scheduleBase.type]}
 				</S.CategoryBadge>
-				<S.MainTitle ageLimit={scheduleBase.ageLimit || false}>{scheduleBase.content}</S.MainTitle>
+
+				<S.MainTitle ageLimit={scheduleBase.ageLimit || false}>
+					{scheduleBase.type === 'CONCERT' && concertData ? concertData.content : scheduleBase.content}
+				</S.MainTitle>
 			</S.HeaderSection>
 
 			{scheduleBase.type === 'CONCERT' && concertData && (
@@ -50,7 +53,7 @@ const ScheduleDetail = () => {
 					schedule={{
 						...concertData,
 						date: `${year}.${concertData.date}`,
-						times: scheduleBase.time ? [scheduleBase.time] : concertData.times,
+						times: concertData.times,
 					}}
 					imageUrl={scheduleBase.imageUrl}
 					content={scheduleBase.content}
