@@ -131,7 +131,7 @@ export const InfoItem = styled.div`
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
 
-	.round {
+	.part {
 		font-family: ${props => props.theme.FONT.SERIF};
 		font-size: ${props => props.theme.FONT.SIZE.MD};
 		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};

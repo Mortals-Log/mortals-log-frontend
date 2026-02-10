@@ -388,7 +388,7 @@ export const GET_FULL_CONCERTS = () => {
 			return {
 				...item,
 				location: pendingLocation,
-				schedules: item.schedules || GenerateSchedules(item.date, group.year, pendingTimes),
+				times: pendingTimes,
 				fileName: item.fileName,
 			};
 		});

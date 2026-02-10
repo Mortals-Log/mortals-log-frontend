@@ -2,11 +2,6 @@
 
 /* eslint-disable storybook/default-exports */
 
-export interface Schedule {
-	part: string;
-	time: string;
-}
-
 export interface ConcertItem {
 	id?: string;
 	type: 'SOLO' | 'JOIN' | 'TOUR' | 'LISTENING';
@@ -14,7 +9,6 @@ export interface ConcertItem {
 	content: string;
 	location?: string;
 	times?: string[];
-	schedules?: Schedule[];
 	lineUp?: string[];
 	price?: Price;
 	fileName?: string;

@@ -48,13 +48,10 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 				<S.ContentSection>
 					<S.InfoGroup>
 						<S.InfoTitle>Date & time</S.InfoTitle>
-
 						{cleanDate.includes('~')
 							? cleanDate.split('~').map((date, idx) => (
 									<S.InfoItem key={`range-${idx}`}>
-										<span key={idx} className="round">
-											{idx + 1}일차.
-										</span>
+										<span className="part">{idx + 1}일차.</span>
 										{year}.{date.trim()}
 										{schedule.times?.map((time, tIdx) => (
 											<span key={tIdx} className="time">
@@ -65,9 +62,7 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 								))
 							: schedule.times?.map((time, idx) => (
 									<S.InfoItem key={`single-${idx}`}>
-										<span key={idx} className="round">
-											{idx + 1}부.
-										</span>
+										{schedule.times && schedule.times.length > 1 && <span className="part">{idx + 1}부.</span>}
 										{year}.{cleanDate}
 										<span className="time">{time}</span>
 									</S.InfoItem>
