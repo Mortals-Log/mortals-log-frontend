@@ -27,18 +27,18 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 	return (
 		<>
 			{schedule.ageLimit && (
-				<S.InfoGroup>
-					<S.InfoTitle>CAUTION</S.InfoTitle>
-
-					<S.InfoItem>
+				<>
+					<S.InfoGroup>
+						<S.InfoTitle>CAUTION</S.InfoTitle>
 						{[
 							'본 공연은 성인 인증이 필요하며, 미성년자는 보호자 동반 시에도 입장이 불가합니다.',
 							'현장에서 신분증 확인이 진행되오니 반드시 지참해 주세요.',
 						].map(text => (
 							<S.InfoItem>* {text}</S.InfoItem>
 						))}
-					</S.InfoItem>
-				</S.InfoGroup>
+					</S.InfoGroup>
+					<br />
+				</>
 			)}
 			<S.MainSection>
 				<S.ImageWrapper type="CONCERT">
