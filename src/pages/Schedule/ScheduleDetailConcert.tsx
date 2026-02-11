@@ -4,6 +4,7 @@ import * as S from '@styles/pages/Schedule/ScheduleDetail.style';
 import { ConcertItem } from '@/types/concert';
 import { useMemo } from 'react';
 import useImageFallback from '@/hooks/useImageFallback';
+import { GetDay } from '@/utils/schedule';
 
 interface ScheduleDetailConcertProps {
 	schedule: ConcertItem;
@@ -52,7 +53,7 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 							? cleanDate.split('~').map((date, idx) => (
 									<S.InfoItem key={`range-${idx}`}>
 										<span className="part">{idx + 1}일차.</span>
-										{year}.{date.trim()}
+										{year}.{date.trim()} ({GetDay(year, date)})
 										{schedule.times?.map((time, tIdx) => (
 											<span key={tIdx} className="time">
 												{time}
@@ -63,8 +64,7 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 							: schedule.times?.map((time, idx) => (
 									<S.InfoItem key={`single-${idx}`}>
 										{schedule.times && schedule.times.length > 1 && <span className="part">{idx + 1}부.</span>}
-										{year}.{cleanDate}
-										<span className="time">{time}</span>
+										{year}.{cleanDate} ({GetDay(year, cleanDate)})<span className="time">{time}</span>
 									</S.InfoItem>
 								))}
 					</S.InfoGroup>
