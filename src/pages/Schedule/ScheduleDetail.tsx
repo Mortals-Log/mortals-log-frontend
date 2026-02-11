@@ -14,6 +14,7 @@ import ScheduleDetailConcert from '@pages/Schedule/ScheduleDetailConcert';
 import ScheduleDetailAlbum from '@pages/Schedule/ScheduleDetailAlbum';
 import ScheduleDetailEvent from '@pages/Schedule/ScheduleDetailEvent';
 import ScheduleDetailBirthday from '@pages/Schedule/ScheduleDetailBirthday';
+import ScheduleDetailAnniversary from '@pages/Schedule/ScheduleDetailAnniversary';
 
 const ScheduleDetail = () => {
 	const { id } = useParams<{ id: string }>();
@@ -84,6 +85,8 @@ const ScheduleDetail = () => {
 			)}
 
 			{scheduleBase.type === 'BIRTHDAY' && <ScheduleDetailBirthday schedule={scheduleBase} />}
+
+			{scheduleBase.type === 'ANNIVERSARY' && <ScheduleDetailAnniversary schedule={scheduleBase} />}
 		</S.MainContainer>
 	);
 };
