@@ -9,8 +9,10 @@ import Placeholder from '@/components/placeholder';
 import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
 import { FULL_CONCERTS } from '@/const/concert';
 import { FULL_ALBUMS } from '@/const/albums';
+import { FULL_EVENTS } from '@/const/event';
 import ScheduleDetailConcert from '@pages/Schedule/ScheduleDetailConcert';
 import ScheduleDetailAlbum from '@pages/Schedule/ScheduleDetailAlbum';
+import ScheduleDetailEvent from '@pages/Schedule/ScheduleDetailEvent';
 
 const ScheduleDetail = () => {
 	const { id } = useParams<{ id: string }>();
@@ -29,6 +31,12 @@ const ScheduleDetail = () => {
 		if (!scheduleBase || scheduleBase.type !== 'ALBUM') return null;
 
 		return FULL_ALBUMS.flatMap(g => g.items).find(i => scheduleBase.content.includes(i.title));
+	}, [scheduleBase]);
+
+	const eventData = useMemo(() => {
+		if (!scheduleBase || scheduleBase.type !== 'EVENT') return null;
+
+		return FULL_EVENTS.flatMap(g => g.items).find(i => scheduleBase.content.includes(i.content));
 	}, [scheduleBase]);
 
 	if (!scheduleBase)
@@ -69,6 +77,10 @@ const ScheduleDetail = () => {
 			)}
 
 			{scheduleBase.type === 'ALBUM' && albumData && <ScheduleDetailAlbum album={albumData} />}
+
+			{scheduleBase.type === 'EVENT' && eventData && (
+				<ScheduleDetailEvent event={{ ...eventData, date: `${year}.${eventData.date}` }} />
+			)}
 		</S.MainContainer>
 	);
 };

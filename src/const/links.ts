@@ -34,10 +34,12 @@ export const LINK_PLATFORM = {
 	INSTAGRAM: {
 		NAME: SNS_PLATFORM.INSTAGRAM,
 		BASE_URL: 'https://www.instagram.com/p/',
+		EMBED_URL: null,
 	},
 	YOUTUBE: {
 		NAME: MUSIC_PLATFORM.YOUTUBE,
 		BASE_URL: 'https://www.youtube.com/watch?v=',
+		EMBED_URL: 'https://www.youtube.com/embed/',
 	},
 } as const;
 
