@@ -52,7 +52,7 @@ export const MainSection = styled.div`
 	}
 `;
 
-export const ImageWrapper = styled.div<{ type: string }>`
+export const ImageWrapper = styled.div`
 	flex: 0 0 400px;
 	overflow: hidden;
 	margin: 0 auto;

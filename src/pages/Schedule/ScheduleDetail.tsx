@@ -7,8 +7,10 @@ import { ALL_SCHEDULE_LIST } from '@/utils/schedule';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/placeholder';
 import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
-import ScheduleDetailConcert from '@pages/Schedule/ScheduleDetailConcert';
 import { FULL_CONCERTS } from '@/const/concert';
+import { FULL_ALBUMS } from '@/const/albums';
+import ScheduleDetailConcert from '@pages/Schedule/ScheduleDetailConcert';
+import ScheduleDetailAlbum from '@pages/Schedule/ScheduleDetailAlbum';
 
 const ScheduleDetail = () => {
 	const { id } = useParams<{ id: string }>();
@@ -21,6 +23,12 @@ const ScheduleDetail = () => {
 		if (!scheduleBase || scheduleBase.type !== 'CONCERT') return null;
 
 		return FULL_CONCERTS.flatMap(g => g.items).find(i => scheduleBase.content.includes(i.content));
+	}, [scheduleBase]);
+
+	const albumData = useMemo(() => {
+		if (!scheduleBase || scheduleBase.type !== 'ALBUM') return null;
+
+		return FULL_ALBUMS.flatMap(g => g.items).find(i => scheduleBase.content.includes(i.title));
 	}, [scheduleBase]);
 
 	if (!scheduleBase)
@@ -59,6 +67,8 @@ const ScheduleDetail = () => {
 					content={scheduleBase.content}
 				/>
 			)}
+
+			{scheduleBase.type === 'ALBUM' && albumData && <ScheduleDetailAlbum album={albumData} />}
 		</S.MainContainer>
 	);
 };

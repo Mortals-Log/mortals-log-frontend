@@ -42,7 +42,7 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 				</>
 			)}
 			<S.MainSection>
-				<S.ImageWrapper type="CONCERT">
+				<S.ImageWrapper>
 					<img src={imageUrl || DEFAULT_IMAGE} alt={content} onError={handleImgError} />
 				</S.ImageWrapper>
 
