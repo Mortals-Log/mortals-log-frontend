@@ -5,6 +5,7 @@ import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import { FULL_CONCERTS } from '@/const/concert';
 import { GetLatestAlbum } from '@utils/album';
 import { GetUpcomingSchedules } from '@/utils/date';
+import Placeholder from '@/components/placeholder';
 
 const upcomingEvents = GetUpcomingSchedules(FULL_CONCERTS);
 const latestAlbum = GetLatestAlbum(FULL_ALBUMS);
@@ -21,49 +22,38 @@ const Information = () => {
 
 					<S.EventList>
 						{upcomingEvents.length > 0 ? (
-							upcomingEvents.map(event => {
-								return (
-									<S.ContentCard key={event.content}>
-										<h3 className="title">{event.content}</h3>
-										<div className="details">
-											<p className="info-text">
-												{event.location} | {event.date}
-											</p>
-											{event.times && (
-												<S.TimeSlotWrapper>
-													{event.date.includes('~') || event.times.length > 1 ? (
-														<>
-															{event.date.includes('~')
-																? event.date.split('~').map((date, idx) => (
-																		<S.TimeTag key={`range-${date}-${idx}`}>
-																			<span className="part">{idx + 1}일차</span>
-																			{event.times?.map((time, tIdx) => (
-																				<span key={tIdx} className="time">
-																					{time}
-																				</span>
-																			))}
-																		</S.TimeTag>
-																	))
-																: event.times?.map((time, idx) => (
-																		<S.TimeTag key={`single-${time}-${idx}`}>
-																			<span className="part">{idx + 1}부</span>
-																			<span className="time">{time}</span>
-																		</S.TimeTag>
-																	))}
-														</>
-													) : (
-														<S.TimeTag key={`{time}`}>
-															<span className="time">{event.times}</span>
+							upcomingEvents.map(event => (
+								<S.ContentCard key={event.content}>
+									<h3 className="title">{event.content}</h3>
+									<div className="details">
+										<p className="info-text">
+											{event.location} | {event.date}
+										</p>
+
+										<S.TimeSlotWrapper>
+											{event.date.includes('~')
+												? event.date.split('~').map((date, idx) => (
+														<S.TimeTag key={`range-${date}-${idx}`}>
+															<span className="part">{idx + 1}일차</span>
+															{event.times?.map((time, tIdx) => (
+																<span key={tIdx} className="time">
+																	{time}
+																</span>
+															))}
 														</S.TimeTag>
-													)}
-												</S.TimeSlotWrapper>
-											)}
-										</div>
-									</S.ContentCard>
-								);
-							})
+													))
+												: event.times?.map((time, idx) => (
+														<S.TimeTag key={`single-${time}-${idx}`}>
+															{event.times && event.times.length > 1 && <span className="part">{idx + 1}부.</span>}
+															<span className="time">{time}</span>
+														</S.TimeTag>
+													))}
+										</S.TimeSlotWrapper>
+									</div>
+								</S.ContentCard>
+							))
 						) : (
-							<p>현재 예정된 공연이 없습니다.</p>
+							<Placeholder message="현재 예정된 공연이 없습니다." />
 						)}
 					</S.EventList>
 				</S.InfoSection>
