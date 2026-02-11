@@ -10,6 +10,7 @@ import { PROFILE } from '@const/profile';
 import { GetAlbumPaths } from '@utils/album';
 import { GetConcertPaths } from '@utils/concert';
 import { GenerateScheduleId } from '@utils/id';
+import { CalculateKorAge } from '@utils/date';
 
 export const FormatDate = (date: Date) =>
 	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
@@ -114,6 +115,8 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 	const birthMD = FormatDate(birthDate).slice(5);
 
 	for (let year = debutDate.getFullYear(); year <= debutYear + 10; year++) {
+		const nthBirthday = CalculateKorAge(birthDate, year);
+
 		addSchedule(`${year}-${debutMD}`, {
 			type: 'ANNIVERSARY',
 			content:
@@ -121,9 +124,17 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 					? `🎉 데뷔 - ${PROFILE.debut[1]}`
 					: `🎉 데뷔 ${year - debutDate.getFullYear()}주년`,
 		});
+
 		addSchedule(`${year}-${birthMD}`, {
 			type: 'BIRTHDAY',
-			content: `🎂 ${PROFILE.name}님 생일`,
+			content: `🎂 ${PROFILE.name} ${nthBirthday}번째 생일`,
+			message: `천진우의 ${nthBirthday}번째 생일을 축하합니다!`,
+			hashtags: [
+				'#천진우_생일축하해',
+				`#천진우_${nthBirthday}번째_생일`,
+				'#생일존나축하하고_일단한잔해',
+				'#아무쪼록_건강해라',
+			],
 		});
 	}
 

@@ -12,6 +12,10 @@ export interface Schedule {
 	// concert
 	ageLimit?: boolean;
 	time?: string | null;
+
+	// birthday
+	message?: string;
+	hashtags?: string[];
 }
 
 export type CalendarSchedules = Record<string, Schedule[]>;

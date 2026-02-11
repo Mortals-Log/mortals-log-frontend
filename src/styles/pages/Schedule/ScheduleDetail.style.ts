@@ -86,6 +86,13 @@ export const InfoGroup = styled.div`
 	flex-direction: column;
 	gap: 0.8rem;
 	align-items: center;
+
+	span {
+		font-family: ${props => props.theme.FONT.SANS};
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+		color: ${props => props.theme.COLOR.GRAY500};
+	}
 `;
 
 export const InfoTitle = styled.div`
@@ -201,5 +208,26 @@ export const VideoWrapper = styled.div`
 
 	@media (max-width: 850px) {
 		margin-bottom: 2rem;
+	}
+`;
+
+export const TagWrapper = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+`;
+
+export const HashTag = styled.button`
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	color: ${props => props.theme.COLOR.GRAY700};
+
+	padding: 0.5rem;
+	cursor: pointer;
+	transition: all 0.2s;
+
+	&:hover {
+		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 `;

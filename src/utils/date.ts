@@ -54,9 +54,10 @@ export const ParseDate = (dateStr: string) => {
 	return new Date(year, month - 1, day);
 };
 
-export const CalculateKorAge = (birth: Date) => {
-	const today = new Date();
-	return today.getFullYear() - birth.getFullYear() + 1;
+export const CalculateKorAge = (birth: Date, targetYear?: number) => {
+	const yearToCalculate = targetYear || new Date().getFullYear();
+
+	return yearToCalculate - birth.getFullYear() + 1;
 };
 
 export const CalculateIntAge = (birth: Date) => {

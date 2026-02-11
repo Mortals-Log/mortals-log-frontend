@@ -13,6 +13,7 @@ import { FULL_EVENTS } from '@/const/event';
 import ScheduleDetailConcert from '@pages/Schedule/ScheduleDetailConcert';
 import ScheduleDetailAlbum from '@pages/Schedule/ScheduleDetailAlbum';
 import ScheduleDetailEvent from '@pages/Schedule/ScheduleDetailEvent';
+import ScheduleDetailBirthday from '@pages/Schedule/ScheduleDetailBirthday';
 
 const ScheduleDetail = () => {
 	const { id } = useParams<{ id: string }>();
@@ -81,6 +82,8 @@ const ScheduleDetail = () => {
 			{scheduleBase.type === 'EVENT' && eventData && (
 				<ScheduleDetailEvent event={{ ...eventData, date: `${year}.${eventData.date}` }} />
 			)}
+
+			{scheduleBase.type === 'BIRTHDAY' && <ScheduleDetailBirthday schedule={scheduleBase} />}
 		</S.MainContainer>
 	);
 };
