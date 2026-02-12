@@ -11,6 +11,7 @@ import ScheduleDetail from '@pages/Schedule/ScheduleDetail';
 import Goods from '@pages/Goods';
 import About from '@pages/About';
 import ScrollToTop from '@const/ScrollToTop';
+import { Toaster } from 'react-hot-toast';
 
 /**
  * Root application component that provides theming, global navigation, and client-side routes.
@@ -22,6 +23,7 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<ScrollToTop />
 			<GNB />
+			<Toaster position="bottom-center" reverseOrder={false} />
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/profile" element={<Profile />} />

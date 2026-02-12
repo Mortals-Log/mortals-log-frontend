@@ -3,6 +3,7 @@
 import * as S from '@styles/pages/Schedule/ScheduleDetail.style';
 import { GetDay } from '@/utils/date';
 import { Schedule } from '@/types/schedule';
+import handleCopy from '@/hooks/handlecopy';
 
 interface AnniversaryProps {
 	schedule: Schedule;
@@ -17,7 +18,10 @@ const ScheduleDetailAnniversary = ({ schedule }: AnniversaryProps) => {
 			<S.VideoWrapper>
 				<iframe
 					src={debutSong}
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+					title="Debut Song"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					allowFullScreen
+				/>
 			</S.VideoWrapper>
 
 			<S.MainSection>
@@ -42,7 +46,7 @@ const ScheduleDetailAnniversary = ({ schedule }: AnniversaryProps) => {
 
 							<S.TagWrapper>
 								{schedule.hashtags.map(tag => (
-									<S.HashTag key={tag} onClick={() => navigator.clipboard.writeText(tag)}>
+									<S.HashTag key={tag} onClick={() => handleCopy(tag)}>
 										{tag}
 									</S.HashTag>
 								))}
