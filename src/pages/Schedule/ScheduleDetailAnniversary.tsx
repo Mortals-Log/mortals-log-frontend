@@ -15,15 +15,17 @@ const ScheduleDetailAnniversary = ({ schedule }: AnniversaryProps) => {
 		item => item.label === SNS_PLATFORM.INSTAGRAM,
 	)?.url;
 
-	// todo: song 데이터들을 추가 후 '굴다리 EP'를 불러오는 방식으로 수정 필요
-	const debutSong = 'https://www.youtube.com/embed/K9aIiynSPU4?si=Hk2joxHVnKDnis3C';
-
+	// todo: song 데이터들을 추가 후 불러오는 방식으로 수정 필요
+	const videoUrl =
+		schedule.type === 'BIRTHDAY'
+			? 'https://www.youtube.com/embed/wHe8ntDlOco?si=q8jBY6HVplU9kTye' // 생일 축하 노래
+			: 'https://www.youtube.com/embed/K9aIiynSPU4?si=Hk2joxHVnKDnis3C'; // 데뷔곡 (굴다리)
 	return (
 		<>
 			<S.VideoWrapper>
 				<iframe
-					src={debutSong}
-					title="Debut Song"
+					src={videoUrl}
+					title={schedule.type === 'BIRTHDAY' ? 'Birthday Song' : 'Debut Song'}
 					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 					allowFullScreen
 				/>
@@ -48,7 +50,6 @@ const ScheduleDetailAnniversary = ({ schedule }: AnniversaryProps) => {
 					{schedule.hashtags && (
 						<S.InfoGroup>
 							<S.InfoTitle>HASHTAGS</S.InfoTitle>
-
 							<S.TagWrapper>
 								{schedule.hashtags.map(tag => (
 									<S.HashTag key={tag} onClick={() => handleCopy(tag)}>
@@ -56,7 +57,6 @@ const ScheduleDetailAnniversary = ({ schedule }: AnniversaryProps) => {
 									</S.HashTag>
 								))}
 							</S.TagWrapper>
-
 							<span>* 태그를 클릭하면 복사됩니다.</span>
 						</S.InfoGroup>
 					)}

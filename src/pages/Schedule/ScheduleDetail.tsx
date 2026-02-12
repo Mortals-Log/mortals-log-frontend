@@ -13,7 +13,6 @@ import { FULL_EVENTS } from '@/const/event';
 import ScheduleDetailConcert from '@pages/Schedule/ScheduleDetailConcert';
 import ScheduleDetailAlbum from '@pages/Schedule/ScheduleDetailAlbum';
 import ScheduleDetailEvent from '@pages/Schedule/ScheduleDetailEvent';
-import ScheduleDetailBirthday from '@pages/Schedule/ScheduleDetailBirthday';
 import ScheduleDetailAnniversary from '@pages/Schedule/ScheduleDetailAnniversary';
 
 const ScheduleDetail = () => {
@@ -54,7 +53,6 @@ const ScheduleDetail = () => {
 	return (
 		<S.MainContainer>
 			<BackButton />
-
 			<S.HeaderSection>
 				<S.CategoryBadge>
 					{scheduleBase.ageLimit ? '미성년자 관람 불가 | ' : ''}
@@ -77,16 +75,13 @@ const ScheduleDetail = () => {
 					content={scheduleBase.content}
 				/>
 			)}
-
 			{scheduleBase.type === 'ALBUM' && albumData && <ScheduleDetailAlbum album={albumData} />}
 
 			{scheduleBase.type === 'EVENT' && eventData && (
 				<ScheduleDetailEvent schedule={{ ...eventData, date: `${year}.${eventData.date}` }} />
 			)}
 
-			{scheduleBase.type === 'BIRTHDAY' && <ScheduleDetailBirthday schedule={scheduleBase} />}
-
-			{scheduleBase.type === 'ANNIVERSARY' && <ScheduleDetailAnniversary schedule={scheduleBase} />}
+			{['BIRTHDAY', 'ANNIVERSARY'].includes(scheduleBase.type) && <ScheduleDetailAnniversary schedule={scheduleBase} />}
 		</S.MainContainer>
 	);
 };
