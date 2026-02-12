@@ -4,12 +4,17 @@ import * as S from '@styles/pages/Schedule/ScheduleDetail.style';
 import { GetDay } from '@/utils/date';
 import { Schedule } from '@/types/schedule';
 import handleCopy from '@/hooks/handlecopy';
+import { LINK_LIST, SNS_PLATFORM } from '@/const/links';
 
 interface BirthdayProps {
 	schedule: Schedule;
 }
 
 const ScheduleDetailBirthday = ({ schedule }: BirthdayProps) => {
+	const instagramUrl = LINK_LIST.find(links => links.category === 'SNS')?.items.find(
+		item => item.label === SNS_PLATFORM.INSTAGRAM,
+	)?.url;
+
 	// todo: song 데이터들을 추가 후 '생일축하해'를 불러오는 방식으로 수정 필요
 	const birthdaySong = 'https://www.youtube.com/embed/wHe8ntDlOco?si=q8jBY6HVplU9kTye';
 
@@ -53,6 +58,14 @@ const ScheduleDetailBirthday = ({ schedule }: BirthdayProps) => {
 							</S.TagWrapper>
 
 							<span>* 태그를 클릭하면 복사됩니다.</span>
+						</S.InfoGroup>
+					)}
+
+					{instagramUrl && (
+						<S.InfoGroup>
+							<S.PrimaryButton href={instagramUrl} target="_blank" rel="noopener noreferrer">
+								{schedule.content} 축하하러 가기
+							</S.PrimaryButton>
 						</S.InfoGroup>
 					)}
 				</S.ContentSection>
