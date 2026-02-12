@@ -27,6 +27,15 @@ const ScheduleDetailEvent = ({ schedule }: ScheduleEtcConcertProps) => {
 
 			<S.MainSection>
 				<S.ContentSection>
+					{schedule.date && (
+						<S.InfoGroup>
+							<S.InfoTitle>DATE</S.InfoTitle>
+							<S.InfoItem>
+								{schedule.date} ({GetDay(schedule.date)})
+							</S.InfoItem>
+						</S.InfoGroup>
+					)}
+
 					{schedule.host && (
 						<S.InfoGroup>
 							<S.InfoTitle>HOST</S.InfoTitle>
@@ -34,19 +43,17 @@ const ScheduleDetailEvent = ({ schedule }: ScheduleEtcConcertProps) => {
 						</S.InfoGroup>
 					)}
 
+					{schedule.platform && (
+						<S.InfoGroup>
+							<S.InfoTitle>PLATFORM</S.InfoTitle>
+							<S.InfoItem>{schedule.platform}</S.InfoItem>
+						</S.InfoGroup>
+					)}
+
 					{schedule.type && (
 						<S.InfoGroup>
 							<S.InfoTitle>TYPE</S.InfoTitle>
 							<S.InfoItem>{EVENT_TYPE_LABEL[schedule.type]}</S.InfoItem>
-						</S.InfoGroup>
-					)}
-
-					{schedule.date && (
-						<S.InfoGroup>
-							<S.InfoTitle>DATE</S.InfoTitle>
-							<S.InfoItem>
-								{schedule.date} ({GetDay(schedule.date)})
-							</S.InfoItem>
 						</S.InfoGroup>
 					)}
 

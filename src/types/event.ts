@@ -3,7 +3,7 @@
 /* eslint-disable storybook/default-exports */
 
 export interface EventItem {
-	type: 'INTERVIEW' | 'RADIO';
+	type: 'INTERVIEW' | 'RADIO' | 'MAGAZINE';
 	date: string;
 	content: string;
 	host?: string;

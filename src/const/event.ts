@@ -8,6 +8,7 @@ import { LINK_PLATFORM } from './links';
 export const EVENT_TYPE_LABEL: Record<string, string> = {
 	INTERVIEW: '인터뷰',
 	RADIO: '라디오',
+	MAGAZINE: '매거진/잡지',
 } as const;
 
 export const EVENT_RADIO: EventList = [
@@ -69,10 +70,26 @@ export const EVENT_INTERVIEW: EventList = [
 	},
 ];
 
+export const EVENT_MAGAZINE: EventList = [
+	{
+		year: '2026',
+		items: [
+			{
+				type: 'MAGAZINE',
+				date: '02.11',
+				host: 'BUV (버브)',
+				content: '어둠의 김광석이라 불리는 뮤지션 천진우(@1000_jinwoo)를 아시나요?',
+				platform: LINK_PLATFORM.INSTAGRAM.NAME,
+				link: 'DUnPbd6DxtU/?img_index=1',
+			},
+		],
+	},
+];
+
 export const GET_FULL_EVENT = () => {
 	const combinedMap: Record<string, EventItem[]> = {};
 
-	[...EVENT_RADIO, ...EVENT_INTERVIEW].forEach(group => {
+	[...EVENT_RADIO, ...EVENT_INTERVIEW, ...EVENT_MAGAZINE].forEach(group => {
 		if (!combinedMap[group.year]) {
 			combinedMap[group.year] = [];
 		}
