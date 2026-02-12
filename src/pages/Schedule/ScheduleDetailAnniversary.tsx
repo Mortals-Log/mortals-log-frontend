@@ -28,6 +28,29 @@ const ScheduleDetailAnniversary = ({ schedule }: AnniversaryProps) => {
 							{schedule.date} ({GetDay(schedule.date)})
 						</S.InfoItem>
 					</S.InfoGroup>
+
+					{schedule.message && (
+						<S.InfoGroup>
+							<S.InfoTitle>MESSAGE</S.InfoTitle>
+							<S.InfoItem>{schedule.message}</S.InfoItem>
+						</S.InfoGroup>
+					)}
+
+					{schedule.hashtags && (
+						<S.InfoGroup>
+							<S.InfoTitle>HASHTAGS</S.InfoTitle>
+
+							<S.TagWrapper>
+								{schedule.hashtags.map(tag => (
+									<S.HashTag key={tag} onClick={() => navigator.clipboard.writeText(tag)}>
+										{tag}
+									</S.HashTag>
+								))}
+							</S.TagWrapper>
+
+							<span>* 태그를 클릭하면 복사됩니다.</span>
+						</S.InfoGroup>
+					)}
 				</S.ContentSection>
 			</S.MainSection>
 		</>

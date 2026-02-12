@@ -107,13 +107,19 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 
 	for (let year = debutDate.getFullYear(); year <= debutYear + 10; year++) {
 		const nthBirthday = CalculateKorAge(birthDate, year);
+		const nthDebut = year - debutDate.getFullYear();
 
 		addSchedule(`${year}-${debutMD}`, {
 			type: 'ANNIVERSARY',
-			content:
+			content: year === debutDate.getFullYear() ? `🎉 데뷔 - ${PROFILE.debut[1]}` : `🎉 데뷔 ${nthDebut}주년`,
+			message:
 				year === debutDate.getFullYear()
-					? `🎉 데뷔 - ${PROFILE.debut[1]}`
-					: `🎉 데뷔 ${year - debutDate.getFullYear()}주년`,
+					? `천진우의 데뷔를 축하합니다!`
+					: `천진우의 데뷔 ${nthDebut}주년을 축하합니다!`,
+			hashtags:
+				year === debutDate.getFullYear()
+					? ['#천진우_데뷔', `#굴다리`, '#데뷔일']
+					: ['#천진우_데뷔', `#굴다리`, `#데뷔_${nthDebut}주년`],
 		});
 
 		addSchedule(`${year}-${birthMD}`, {
@@ -138,6 +144,8 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 		addSchedule(dateKey, {
 			type: 'ANNIVERSARY',
 			content: `🎉 데뷔 ${days}일`,
+			message: `천진우의 데뷔 ${days}일을 축하합니다!`,
+			hashtags: ['#천진우_데뷔', `#굴다리`, `#데뷔_${days}일`],
 		});
 	});
 
