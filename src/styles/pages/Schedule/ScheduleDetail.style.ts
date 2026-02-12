@@ -215,6 +215,9 @@ export const TagWrapper = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	gap: 4px;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 `;
 
 export const HashTag = styled.button`
