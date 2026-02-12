@@ -97,13 +97,19 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 	// 4. 기념일
 	const dayMilestones = [100, 200, 300, 400, 500, 1000, 2000, 3000, 4000, 5000];
 
-	const debutDate = new Date(PROFILE.debut[0].replace(/\./g, '-'));
-	const birthDate = new Date(PROFILE.birth[0].replace(/\./g, '-'));
+	const [dYear, dMonth, dDay] = PROFILE.debut[0].split('.').map(Number);
+	const debutDate = new Date(dYear, dMonth - 1, dDay);
+
+	const [bYear, bMonth, bDay] = PROFILE.birth[0].split('.').map(Number);
+	const birthDate = new Date(bYear, bMonth - 1, bDay);
 
 	const debutYear = debutDate.getFullYear();
 
-	const debutMD = FormatDate(debutDate).slice(5);
-	const birthMD = FormatDate(birthDate).slice(5);
+	const getMonthDay = (date: Date) =>
+		`${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+	const debutMD = getMonthDay(debutDate);
+	const birthMD = getMonthDay(birthDate);
 
 	for (let year = debutDate.getFullYear(); year <= debutYear + 10; year++) {
 		const nthBirthday = CalculateKorAge(birthDate, year);
