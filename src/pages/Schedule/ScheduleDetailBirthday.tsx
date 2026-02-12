@@ -1,7 +1,7 @@
 // @pages/Schedule/ScheduleDetailBirthday.tsx
 
 import * as S from '@styles/pages/Schedule/ScheduleDetail.style';
-import { GetDay } from '@/utils/schedule';
+import { GetDay } from '@/utils/date';
 import { Schedule } from '@/types/schedule';
 
 interface BirthdayProps {
@@ -9,9 +9,6 @@ interface BirthdayProps {
 }
 
 const ScheduleDetailBirthday = ({ schedule }: BirthdayProps) => {
-	const year = schedule.date.split('.')[0];
-	const cleanDate = schedule.date.replace(`${year}.`, '').trim();
-
 	// todo: song 데이터들을 추가 후 '생일축하해'를 불러오는 방식으로 수정 필요
 	const birthdaySong = 'https://www.youtube.com/embed/wHe8ntDlOco?si=q8jBY6HVplU9kTye';
 
@@ -28,7 +25,7 @@ const ScheduleDetailBirthday = ({ schedule }: BirthdayProps) => {
 					<S.InfoGroup>
 						<S.InfoTitle>DATE</S.InfoTitle>
 						<S.InfoItem>
-							{schedule.date} ({GetDay(year, cleanDate)})
+							{schedule.date} ({GetDay(schedule.date)})
 						</S.InfoItem>
 					</S.InfoGroup>
 

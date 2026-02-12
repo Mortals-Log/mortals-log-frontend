@@ -4,15 +4,16 @@ import * as S from '@styles/pages/Schedule/ScheduleDetail.style';
 import { EventItem } from '@/types/event';
 import { LINK_PLATFORM } from '@/const/links';
 import { EVENT_TYPE_LABEL } from '@/const/event';
+import { GetDay } from '@/utils/date';
 
 interface ScheduleEtcConcertProps {
-	event: EventItem;
+	schedule: EventItem;
 }
 
-const ScheduleDetailEvent = ({ event }: ScheduleEtcConcertProps) => {
-	const platformInfo = Object.values(LINK_PLATFORM).find(p => p.NAME === event.platform);
-	const linkUrl = platformInfo ? `${platformInfo.BASE_URL}${event.link}` : event.link;
-	const embedUrl = platformInfo?.EMBED_URL && event.embed ? `${platformInfo.EMBED_URL}${event.embed}` : null;
+const ScheduleDetailEvent = ({ schedule }: ScheduleEtcConcertProps) => {
+	const platformInfo = Object.values(LINK_PLATFORM).find(p => p.NAME === schedule.platform);
+	const linkUrl = platformInfo ? `${platformInfo.BASE_URL}${schedule.link}` : schedule.link;
+	const embedUrl = platformInfo?.EMBED_URL && schedule.embed ? `${platformInfo.EMBED_URL}${schedule.embed}` : null;
 
 	return (
 		<>
@@ -26,32 +27,34 @@ const ScheduleDetailEvent = ({ event }: ScheduleEtcConcertProps) => {
 
 			<S.MainSection>
 				<S.ContentSection>
-					{event.host && (
+					{schedule.host && (
 						<S.InfoGroup>
 							<S.InfoTitle>HOST</S.InfoTitle>
-							<S.InfoItem>{event.host}</S.InfoItem>
+							<S.InfoItem>{schedule.host}</S.InfoItem>
 						</S.InfoGroup>
 					)}
 
-					{event.type && (
+					{schedule.type && (
 						<S.InfoGroup>
 							<S.InfoTitle>TYPE</S.InfoTitle>
-							<S.InfoItem>{EVENT_TYPE_LABEL[event.type]}</S.InfoItem>
+							<S.InfoItem>{EVENT_TYPE_LABEL[schedule.type]}</S.InfoItem>
 						</S.InfoGroup>
 					)}
 
-					{event.date && (
+					{schedule.date && (
 						<S.InfoGroup>
 							<S.InfoTitle>DATE</S.InfoTitle>
-							<S.InfoItem>{event.date}</S.InfoItem>
+							<S.InfoItem>
+								{schedule.date} ({GetDay(schedule.date)})
+							</S.InfoItem>
 						</S.InfoGroup>
 					)}
 
-					{event.link && linkUrl && (
+					{schedule.link && linkUrl && (
 						<S.InfoGroup>
 							<S.InfoTitle>WATCH / LISTEN</S.InfoTitle>
 							<S.PrimaryButton href={linkUrl} target="_blank" rel="noopener noreferrer">
-								{event.platform}로 보러가기
+								{schedule.platform}로 보러가기
 							</S.PrimaryButton>
 						</S.InfoGroup>
 					)}

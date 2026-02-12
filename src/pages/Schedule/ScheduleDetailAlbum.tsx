@@ -5,8 +5,8 @@ import { Album } from '@/types/album';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { LINK_SHOP } from '@/const/links';
 import useImageFallback from '@/hooks/useImageFallback';
-import { GetDay } from '@/utils/schedule';
 import { GetAlbumPaths } from '@/utils/album';
+import { GetDay } from '@/utils/date';
 
 interface ScheduleDetailConcertProps {
 	album: Album;
@@ -15,9 +15,6 @@ interface ScheduleDetailConcertProps {
 const ScheduleDetailAlbum = ({ album }: ScheduleDetailConcertProps) => {
 	const handleImgError = useImageFallback();
 	const { imageSrc, detailUrl } = GetAlbumPaths(album);
-
-	const year = album.releaseDate.split('.')[0];
-	const cleanDate = album.releaseDate.replace(`${year}.`, '').trim();
 
 	return (
 		<S.MainSection>
@@ -34,7 +31,7 @@ const ScheduleDetailAlbum = ({ album }: ScheduleDetailConcertProps) => {
 				<S.InfoGroup>
 					<S.InfoTitle>Release Date</S.InfoTitle>
 					<S.InfoItem>
-						{album.releaseDate} ({GetDay(year, cleanDate)})
+						{album.releaseDate} ({GetDay(album.releaseDate)})
 					</S.InfoItem>
 				</S.InfoGroup>
 

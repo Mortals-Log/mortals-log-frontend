@@ -81,7 +81,7 @@ const ScheduleDetail = () => {
 			{scheduleBase.type === 'ALBUM' && albumData && <ScheduleDetailAlbum album={albumData} />}
 
 			{scheduleBase.type === 'EVENT' && eventData && (
-				<ScheduleDetailEvent event={{ ...eventData, date: `${year}.${eventData.date}` }} />
+				<ScheduleDetailEvent schedule={{ ...eventData, date: `${year}.${eventData.date}` }} />
 			)}
 
 			{scheduleBase.type === 'BIRTHDAY' && <ScheduleDetailBirthday schedule={scheduleBase} />}

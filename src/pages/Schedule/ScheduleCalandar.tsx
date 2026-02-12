@@ -7,7 +7,8 @@ import ScheduleCalandarAgenda from '@pages/Schedule/ScheduleCalandarAgenda';
 import ScheduleWeekView from '@pages/Schedule/ScheduleWeekView';
 import ScheduleListView from '@pages/Schedule/ScheduleListView';
 import ScheduleLabel from '@pages/Schedule/ScheduleLabel';
-import { CALENDAR_SCHEDULES, FormatDate } from '@utils/schedule';
+import { CALENDAR_SCHEDULES } from '@utils/schedule';
+import { FormatDate } from '@/utils/date';
 import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
 
 const ALL_TYPES = Object.keys(SCHEDULE_TYPE_COLORS);

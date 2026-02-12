@@ -10,16 +10,7 @@ import { PROFILE } from '@const/profile';
 import { GetAlbumPaths } from '@utils/album';
 import { GetConcertPaths } from '@utils/concert';
 import { GenerateScheduleId } from '@utils/id';
-import { CalculateKorAge } from '@utils/date';
-
-export const FormatDate = (date: Date) =>
-	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-
-export const GetDay = (year: string, dateStr: string) => {
-	const days = ['일', '월', '화', '수', '목', '금', '토'];
-	const [month, day] = dateStr.split('.').map(Number);
-	return days[new Date(Number(year), month - 1, day).getDay()];
-};
+import { CalculateKorAge, FormatDate } from '@utils/date';
 
 export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 	const schedules: CalendarSchedules = {};
