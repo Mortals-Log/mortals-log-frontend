@@ -3,6 +3,7 @@
 import * as S from '@styles/pages/Goods/Goods.style';
 import GoodsLinkSection from '@pages/Goods/GoodsLinkSection';
 import GoodsGuideSection from '@pages/Goods/GoodsGuideSection';
+import GoodsEtiquetteSection from '@pages/Goods/GoddsEtiquetteSection';
 import { FAN_GOODS_GUIDE } from '@const/goods';
 
 const PAGE_TITLE = {
@@ -19,6 +20,10 @@ const SECTION_TITLE = {
 		TITLE_KR: '굿즈 제작 안내',
 		TITLE_EN: 'Fan Goods Guide',
 	},
+	ETIQUETTE: {
+		TITLE_KR: '나눔 및 수령 에티켓',
+		TITLE_EN: 'Fan Etiquette',
+	},
 } as const;
 
 const { DESCRIPTION } = FAN_GOODS_GUIDE;
@@ -33,6 +38,7 @@ const Goods = () => {
 
 			<GoodsLinkSection {...SECTION_TITLE.LINK} />
 			<GoodsGuideSection {...SECTION_TITLE.GUIDE} />
+			<GoodsEtiquetteSection {...SECTION_TITLE.ETIQUETTE} />
 		</S.MainContainer>
 	);
 };

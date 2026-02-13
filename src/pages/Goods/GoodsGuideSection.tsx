@@ -4,7 +4,7 @@ import * as S from '@styles/pages/Goods/GoodsGuideSection.style';
 import { FAN_GOODS_GUIDE } from '@/const/goods';
 
 const GoodsGuideSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
-	const { RULES_TITLE, rules, CONTACT_TITLE, CONTACT_CHANNELS } = FAN_GOODS_GUIDE;
+	const { GOODS_MADE_TITLE, GOODS_MADE_RULES, CONTACT_TITLE, CONTACT_CHANNELS } = FAN_GOODS_GUIDE;
 
 	return (
 		<S.ContentSection>
@@ -14,9 +14,9 @@ const GoodsGuideSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN:
 			</S.SectionTitle>
 
 			<S.GuideSection>
-				<S.GuideTitle>{RULES_TITLE}</S.GuideTitle>
+				<S.GuideTitle>{GOODS_MADE_TITLE}</S.GuideTitle>
 				<S.GuideList>
-					{rules.map((rule, index) => (
+					{GOODS_MADE_RULES.map((rule, index) => (
 						<S.GuideItem key={index}>{rule}</S.GuideItem>
 					))}
 				</S.GuideList>
