@@ -14,7 +14,6 @@ interface ScheduleDetailConcertProps {
 
 const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailConcertProps) => {
 	const handleImgError = useImageFallback();
-	const DEFAULT_IMAGE = '/images/default-poster.png';
 
 	const year = schedule.date.split('.')[0];
 	const cleanDate = schedule.date.replace(`${year}.`, '').trim();
@@ -43,7 +42,7 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 			)}
 			<S.MainSection>
 				<S.ImageWrapper>
-					<img src={imageUrl || DEFAULT_IMAGE} alt={content} onError={handleImgError} />
+					<img src={imageUrl} alt={content} onError={handleImgError} />
 				</S.ImageWrapper>
 
 				<S.ContentSection>
