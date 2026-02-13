@@ -55,3 +55,19 @@ export const ButtonGroup = styled.div`
 	gap: 10px;
 	margin-top: 2rem;
 `;
+
+export const GuideSlogan = styled.div`
+	padding: 2rem;
+	margin: 2rem 0;
+	border-radius: 10px;
+	border: 1px dashed ${props => props.theme.COLOR.PRIMARY};
+
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
+	color: ${props => props.theme.COLOR.GRAY800};
+
+	text-align: center;
+	line-height: 1.6;
+	word-break: keep-all;
+`;
