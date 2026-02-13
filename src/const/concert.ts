@@ -1,9 +1,9 @@
 // @const/concert.ts
 
+/* eslint-disable storybook/default-exports */
+
 import { ConcertItem, ConcertList } from '@/types/concert';
 import { GenerateSchedules } from '@/utils/concert';
-
-/* eslint-disable storybook/default-exports */
 
 export const CONCERT_TYPE_LABEL: Record<string, string> = {
 	SOLO: '단독 콘서트',
@@ -68,8 +68,9 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '고독의 포크 전사 주정뱅이 딴따라',
 				location: '홍대 롤링홀',
 				times: ['16:00'],
-				price: { regular: '55,000' },
+				price: { regular: '55,000', onSpot: '66,000' },
 				lineUp: SOLO_LINEUP,
+				reservationLink: 'https://ticket.melon.com/performance/index.htm?prodId=212599',
 			},
 			{
 				type: 'SOLO',
@@ -79,6 +80,7 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00', '19:00'],
 				price: { regular: '50,000', army: '40,000' },
 				lineUp: [...BULBADA_LINEUP, MEMBERS.BY],
+				fileName: 'SOLO_20260117',
 			},
 		],
 	},
@@ -300,6 +302,7 @@ export const JOIN_CONCERT: ConcertList = [
 				times: ['20:00'],
 				price: { regular: '40,000' },
 				lineUp: [MEMBERS.CJW, MEMBERS.KIH, MEMBERS.PSG, MEMBERS.LJM, MEMBERS.OS],
+				ageLimit: true,
 			},
 			{
 				type: 'JOIN',
@@ -320,7 +323,7 @@ export const TOUR_CONCERT: ConcertList = [
 				type: 'TOUR',
 				date: '07.29',
 				content: '여름좀비 - 춘천',
-				location: '춘천 22(투투)',
+				location: '춘천 클럽투투',
 				price: { regular: '30,000' },
 				lineUp: [...SOLO_LINEUP],
 			},
@@ -331,6 +334,7 @@ export const TOUR_CONCERT: ConcertList = [
 				location: '부산 오방가르드',
 				price: { regular: '30,000' },
 				lineUp: [...SOLO_LINEUP],
+				fileName: 'TOUR_20230729',
 			},
 			{
 				type: 'TOUR',
@@ -339,6 +343,7 @@ export const TOUR_CONCERT: ConcertList = [
 				location: '홍대 언플러그드',
 				price: { regular: '30,000' },
 				lineUp: [...SOLO_LINEUP],
+				fileName: 'TOUR_20230729',
 			},
 		],
 	},
@@ -383,7 +388,8 @@ export const GET_FULL_CONCERTS = () => {
 			return {
 				...item,
 				location: pendingLocation,
-				schedules: item.schedules || GenerateSchedules(item.date, group.year, pendingTimes),
+				times: pendingTimes,
+				fileName: item.fileName,
 			};
 		});
 

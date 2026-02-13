@@ -54,9 +54,10 @@ export const ParseDate = (dateStr: string) => {
 	return new Date(year, month - 1, day);
 };
 
-export const CalculateKorAge = (birth: Date) => {
-	const today = new Date();
-	return today.getFullYear() - birth.getFullYear() + 1;
+export const CalculateKorAge = (birth: Date, targetYear?: number) => {
+	const yearToCalculate = targetYear || new Date().getFullYear();
+
+	return yearToCalculate - birth.getFullYear() + 1;
 };
 
 export const CalculateIntAge = (birth: Date) => {
@@ -90,4 +91,28 @@ export const CalculateElapsedDays = (dateStr: string) => {
 	const diffTime = endDate.getTime() - startDate.getTime();
 
 	return Math.floor(diffTime / MS_PER_DAY) + 1;
+};
+
+export const FormatDate = (date: Date) =>
+	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+export const GetDay = (date: string, year?: string) => {
+	const days = ['일', '월', '화', '수', '목', '금', '토'];
+
+	const parts = date.split('.').map(Number);
+
+	let y: number;
+	let m: number;
+	let d: number;
+
+	if (parts.length === 3) {
+		[y, m, d] = parts;
+	} else {
+		y = Number(year);
+		[m, d] = parts;
+	}
+
+	const dateObj = new Date(y, m - 1, d);
+
+	return days[dateObj.getDay()];
 };

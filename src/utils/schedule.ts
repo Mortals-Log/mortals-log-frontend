@@ -7,17 +7,25 @@ import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@const/albums';
 import { CONCERT_TYPE_LABEL, FULL_CONCERTS } from '@const/concert';
 import { EVENT_TYPE_LABEL, FULL_EVENTS } from '@const/event';
 import { PROFILE } from '@const/profile';
-
-export const FormatDate = (date: Date) =>
-	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+import { GetAlbumPaths } from '@utils/album';
+import { GetConcertPaths } from '@utils/concert';
+import { GenerateScheduleId } from '@utils/id';
+import { CalculateKorAge, FormatDate } from '@utils/date';
 
 export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 	const schedules: CalendarSchedules = {};
 
-	const addSchedule = (dateKey: string, data: Schedule) => {
+	const addSchedule = (dateKey: string, data: Omit<Schedule, 'id' | 'date'>) => {
 		const key = dateKey.replace(/\s/g, '');
 		if (!schedules[key]) schedules[key] = [];
-		schedules[key].push(data);
+
+		const schedule: Schedule = {
+			...data,
+			date: dateKey.replace(/-/g, '.'),
+			id: GenerateScheduleId(data.type, dateKey, data.content),
+		};
+
+		schedules[key].push(schedule);
 	};
 
 	// 1. 앨범
@@ -25,9 +33,12 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 		group.items.forEach(item => {
 			const formattedDate = item.releaseDate.replace(/\./g, '-');
 			const albumTag = `[${ALBUM_TYPE_LABEL[item.type]}${item.type === 'LP' && item.volume ? ` ${item.volume}집` : ''}]`;
+			const { imageSrc } = GetAlbumPaths(item);
+
 			addSchedule(formattedDate, {
 				type: 'ALBUM',
 				content: `${albumTag} ${item.title} 발매`,
+				imageUrl: imageSrc,
 			});
 		}),
 	);
@@ -43,23 +54,28 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 			for (let curr = new Date(startDate); curr.getTime() <= endDate.getTime(); curr.setDate(curr.getDate() + 1)) {
 				const dateKey = FormatDate(curr);
 				const baseContent = `[${CONCERT_TYPE_LABEL[item.type]}] ${item.content}`;
-				const isPeriod = !!endMD;
+
+				const { imageSrc } = GetConcertPaths(item, group.year);
 
 				if (item.times && item.times.length > 1) {
-					item.times.forEach((time, index) =>
+					item.times.forEach((time, index) => {
+						const displayContent = `${baseContent} - ${index + 1}부`;
+
 						addSchedule(dateKey, {
 							type: 'CONCERT',
-							content: `${baseContent} - ${index + 1}부 (${time})`,
+							content: displayContent,
 							time: time,
-							isPeriod: isPeriod,
-						}),
-					);
+							imageUrl: imageSrc,
+							ageLimit: item.ageLimit || false,
+						});
+					});
 				} else {
 					addSchedule(dateKey, {
 						type: 'CONCERT',
-						content: `${baseContent}${item.times ? ` (${item.times[0]})` : ''}`,
+						content: baseContent,
 						time: item.times ? item.times[0] : null,
-						isPeriod: isPeriod,
+						imageUrl: imageSrc,
+						ageLimit: item.ageLimit || false,
 					});
 				}
 			}
@@ -74,7 +90,6 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 			addSchedule(dateKey, {
 				type: 'EVENT',
 				content: `[${EVENT_TYPE_LABEL[item.type]} - ${item.host}] ${item.content}`,
-				link: item.link,
 			});
 		}),
 	);
@@ -82,25 +97,47 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 	// 4. 기념일
 	const dayMilestones = [100, 200, 300, 400, 500, 1000, 2000, 3000, 4000, 5000];
 
-	const debutDate = new Date(PROFILE.debut[0].replace(/\./g, '-'));
-	const birthDate = new Date(PROFILE.birth[0].replace(/\./g, '-'));
+	const [dYear, dMonth, dDay] = PROFILE.debut[0].split('.').map(Number);
+	const debutDate = new Date(dYear, dMonth - 1, dDay);
+
+	const [bYear, bMonth, bDay] = PROFILE.birth[0].split('.').map(Number);
+	const birthDate = new Date(bYear, bMonth - 1, bDay);
 
 	const debutYear = debutDate.getFullYear();
 
-	const debutMD = FormatDate(debutDate).slice(5);
-	const birthMD = FormatDate(birthDate).slice(5);
+	const getMonthDay = (date: Date) =>
+		`${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+	const debutMD = getMonthDay(debutDate);
+	const birthMD = getMonthDay(birthDate);
 
 	for (let year = debutDate.getFullYear(); year <= debutYear + 10; year++) {
+		const nthBirthday = CalculateKorAge(birthDate, year);
+		const nthDebut = year - debutDate.getFullYear();
+
 		addSchedule(`${year}-${debutMD}`, {
 			type: 'ANNIVERSARY',
-			content:
+			content: year === debutDate.getFullYear() ? `🎉 데뷔 - ${PROFILE.debut[1]}` : `🎉 데뷔 ${nthDebut}주년`,
+			message:
 				year === debutDate.getFullYear()
-					? `🎉 데뷔 - ${PROFILE.debut[1]}`
-					: `🎉 데뷔 ${year - debutDate.getFullYear()}주년`,
+					? `천진우의 데뷔를 축하합니다!`
+					: `천진우의 데뷔 ${nthDebut}주년을 축하합니다!`,
+			hashtags:
+				year === debutDate.getFullYear()
+					? ['#천진우_데뷔', `#굴다리`, '#데뷔일']
+					: ['#천진우_데뷔', `#굴다리`, `#데뷔_${nthDebut}주년`],
 		});
+
 		addSchedule(`${year}-${birthMD}`, {
 			type: 'BIRTHDAY',
-			content: `🎂 ${PROFILE.name}님 생일`,
+			content: `🎂 ${PROFILE.name} ${nthBirthday}번째 생일`,
+			message: `천진우의 ${nthBirthday}번째 생일을 축하합니다!`,
+			hashtags: [
+				'#천진우_생일축하해',
+				`#천진우_${nthBirthday}번째_생일`,
+				'#생일존나축하하고_일단한잔해',
+				'#아무쪼록_건강해라',
+			],
 		});
 	}
 
@@ -113,6 +150,8 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 		addSchedule(dateKey, {
 			type: 'ANNIVERSARY',
 			content: `🎉 데뷔 ${days}일`,
+			message: `천진우의 데뷔 ${days}일을 축하합니다!`,
+			hashtags: ['#천진우_데뷔', `#굴다리`, `#데뷔_${days}일`],
 		});
 	});
 
@@ -120,3 +159,4 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 };
 
 export const CALENDAR_SCHEDULES = GET_CALENDAR_SCHEDULES();
+export const ALL_SCHEDULE_LIST = Object.values(CALENDAR_SCHEDULES).flat();
