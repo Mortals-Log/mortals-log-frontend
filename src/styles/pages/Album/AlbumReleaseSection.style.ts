@@ -12,7 +12,7 @@ export { ToggleButton } from '@styles/components/Buttons.style';
 export const YearSection = styled.section<{ isOpen: boolean }>`
 	display: flex;
 	gap: 2rem;
-	margin: ${props => (props.isOpen ? '5rem 0' : '1rem 0')};
+	margin: ${props => (props.isOpen ? '3rem 0' : '1.5rem 0')};
 	scroll-margin-top: 4rem;
 
 	&:first-of-type {

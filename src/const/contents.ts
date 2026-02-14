@@ -10,7 +10,7 @@ export const METADATA = {
 
 export const NAV_ITEMS = [
 	{ id: 1, name: 'PROFILE', path: '/profile', isEnabled: true },
-	{ id: 2, name: 'ALBUM', path: '/album', isEnabled: true },
+	{ id: 2, name: 'MUSIC', path: '/music', isEnabled: true },
 	{ id: 3, name: 'SCHEDULE', path: '/schedule', isEnabled: true },
 	{ id: 4, name: 'GOODS', path: '/goods', isEnabled: true },
 	{ id: 5, name: 'ABOUT', path: '/about', isEnabled: true },

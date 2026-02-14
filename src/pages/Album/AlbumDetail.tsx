@@ -37,7 +37,7 @@ const AlbumDetail = () => {
 	if (!albumData) {
 		return (
 			<S.MainContainer>
-				<BackButton to="/album" />
+				<BackButton to="/music" />
 				<S.MainTitle>Album Not Found</S.MainTitle>
 
 				<Placeholder message="앨범을 찾을 수 없습니다." />

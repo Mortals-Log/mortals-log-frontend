@@ -26,59 +26,57 @@ const AlbumPromotionSection = () => {
 	const isReleased = diff < 0;
 
 	return (
-		<S.ContentSection>
-			<S.ContentWrapper>
-				{!isReleased && <S.DDayBadge>{diff === 0 ? 'D-Day' : `D-${diff}`}</S.DDayBadge>}
+		<S.ContentWrapper>
+			{!isReleased && <S.DDayBadge>{diff === 0 ? 'D-Day' : `D-${diff}`}</S.DDayBadge>}
 
-				<S.ImageArea>
-					<S.CoverImage src={imageSrc} alt={album.title} onError={handleImgError} />
-				</S.ImageArea>
+			<S.ImageArea>
+				<S.CoverImage src={imageSrc} alt={album.title} onError={handleImgError} />
+			</S.ImageArea>
 
-				<S.InfoArea>
-					<S.Tag>{isReleased ? '⊹ LATEST RELEASE ⊹' : '⊹ UPCOMING RELEASE ⊹'}</S.Tag>
-					<S.Title>{album.title}</S.Title>
-					<S.Info>
-						{ALBUM_TYPE_LABEL[album.type]} • {releaseDate}
-					</S.Info>
+			<S.InfoArea>
+				<S.Tag>{isReleased ? '⊹ LATEST RELEASE ⊹' : '⊹ UPCOMING RELEASE ⊹'}</S.Tag>
+				<S.Title>{album.title}</S.Title>
+				<S.Info>
+					{ALBUM_TYPE_LABEL[album.type]} • {releaseDate}
+				</S.Info>
 
-					<S.Description>
-						{isReleased
-							? `새로운 이야기가 담긴 ${album.title}을 지금 만나보세요.`
-							: `${album.title}의 새로운 시작을 준비하세요.`}
-					</S.Description>
+				<S.Description>
+					{isReleased
+						? `새로운 이야기가 담긴 ${album.title}을 지금 만나보세요.`
+						: `${album.title}의 새로운 시작을 준비하세요.`}
+				</S.Description>
 
-					<S.TrackPreviewList>
-						{isReleased ? (
-							previewTrackIds.length > 0 ? (
-								<>
-									{previewTrackIds.map((trackId, index) => {
-										const track = MASTER_TRACKS[trackId];
-										return (
-											<S.TrackItem key={key}>
-												<span className="number">{String(index + 1).padStart(2, '0')}</span>
-												<span className="name">{track?.title}</span>
-											</S.TrackItem>
-										);
-									})}
-
-									{allTrackIds.length > previewTrackIds.length && (
-										<S.MoreText>외 {allTrackIds.length - previewTrackIds.length}곡을 만나보세요.</S.MoreText>
-									)}
-								</>
-							) : (
-								<S.TrackItem>트랙 정보가 없습니다.</S.TrackItem>
-							)
-						) : (
+				<S.TrackPreviewList>
+					{isReleased ? (
+						previewTrackIds.length > 0 ? (
 							<>
-								<S.TrackItem>Coming Soon ...</S.TrackItem>
-							</>
-						)}
-					</S.TrackPreviewList>
+								{previewTrackIds.map((trackId, index) => {
+									const track = MASTER_TRACKS[trackId];
+									return (
+										<S.TrackItem key={key}>
+											<span className="number">{String(index + 1).padStart(2, '0')}</span>
+											<span className="name">{track?.title}</span>
+										</S.TrackItem>
+									);
+								})}
 
-					<S.PromotionLinkButton to={detailUrl}>{isReleased ? 'VIEW TRACKS' : 'MOVE TO PAGE'}</S.PromotionLinkButton>
-				</S.InfoArea>
-			</S.ContentWrapper>
-		</S.ContentSection>
+								{allTrackIds.length > previewTrackIds.length && (
+									<S.MoreText>외 {allTrackIds.length - previewTrackIds.length}곡을 만나보세요.</S.MoreText>
+								)}
+							</>
+						) : (
+							<S.TrackItem>트랙 정보가 없습니다.</S.TrackItem>
+						)
+					) : (
+						<>
+							<S.TrackItem>Coming Soon ...</S.TrackItem>
+						</>
+					)}
+				</S.TrackPreviewList>
+
+				<S.PromotionLinkButton to={detailUrl}>{isReleased ? 'VIEW TRACKS' : 'MOVE TO PAGE'}</S.PromotionLinkButton>
+			</S.InfoArea>
+		</S.ContentWrapper>
 	);
 };
 

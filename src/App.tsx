@@ -4,8 +4,10 @@ import { Route, Routes } from 'react-router-dom';
 import GNB from '@components/GNB';
 import Home from '@pages/Home';
 import Profile from '@pages/Profile';
+import Music from '@pages/Music';
 import Album from '@pages/Album';
 import AlbumDetail from '@pages/Album/AlbumDetail';
+import Song from '@pages/Song';
 import Schedule from '@pages/Schedule';
 import ScheduleDetail from '@pages/Schedule/ScheduleDetail';
 import Goods from '@pages/Goods';
@@ -27,8 +29,10 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/profile" element={<Profile />} />
+				<Route path="/music" element={<Music />} />
 				<Route path="/album" element={<Album />} />
 				<Route path="/album/:id" element={<AlbumDetail />} />
+				<Route path="/song" element={<Song />} />
 				<Route path="/schedule" element={<Schedule />} />
 				<Route path="/schedule/:id" element={<ScheduleDetail />} />
 				<Route path="/goods" element={<Goods />} />
