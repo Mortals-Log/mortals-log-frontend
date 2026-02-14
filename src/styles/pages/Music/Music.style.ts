@@ -12,8 +12,8 @@ export const MainContainer = styled.main`
 	padding: 100px 20px;
 `;
 
-export const ContentSection = styled.section<{ noMargin?: boolean }>`
-	margin-top: ${props => (props.noMargin ? '0' : '5rem')};
+export const ContentSection = styled.section`
+	margin-top: 5rem;
 `;
 
 export const Description = styled.div`
@@ -49,10 +49,6 @@ export const TabList = styled.nav`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-
-	position: sticky;
-	top: 50px;
-	z-index: 10;
 
 	padding: 1.5rem 0;
 	margin: 0;
