@@ -60,7 +60,7 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 	};
 
 	return (
-		<S.ContentSection ref={sectionRef} noMargin={true}>
+		<S.ContentSection ref={sectionRef}>
 			<S.SectionTitle>
 				{TITLE_KR}
 				<span>{TITLE_EN}</span>

@@ -2,10 +2,9 @@
 
 import * as S from '@styles/pages/Music/Music.style';
 import { useState } from 'react';
-import Album from '../Album';
-import Song from '../Song';
+import Album from '@pages/Album';
+import Song from '@pages/Song';
 import { NAME } from '@/const/profile';
-import AlbumPromotionSection from '../Album/AlbumPromotionSection';
 
 const Music = () => {
 	const PAGE_TITLE = {
@@ -29,17 +28,13 @@ const Music = () => {
 
 			<S.Description>{PAGE_TITLE.DESCRIPTION}</S.Description>
 
-			<AlbumPromotionSection />
-
-			<S.TabList>
-				<S.TabGroup>
-					{tabs.map(tab => (
-						<S.TabItem key={tab} $isActive={activeTab === tab} onClick={() => handleTabClick(tab)}>
-							{tab}
-						</S.TabItem>
-					))}
-				</S.TabGroup>
-			</S.TabList>
+			<S.TabGroup>
+				{tabs.map(tab => (
+					<S.TabItem key={tab} $isActive={activeTab === tab} onClick={() => handleTabClick(tab)}>
+						{tab}
+					</S.TabItem>
+				))}
+			</S.TabGroup>
 
 			{activeTab === '앨범' ? <Album /> : <Song />}
 		</S.MainContainer>

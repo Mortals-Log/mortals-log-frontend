@@ -1,5 +1,6 @@
 // @src/pages/Album/index
 
+import AlbumPromotionSection from '@pages/Album/AlbumPromotionSection';
 import AlbumReleaseSection from '@pages/Album/AlbumReleaseSection';
 import AlbumTypeSection from '@pages/Album/AlbumTypeSection';
 
@@ -17,6 +18,8 @@ const SECTION_TITLE = {
 const Album = () => {
 	return (
 		<>
+			<AlbumPromotionSection />
+
 			<AlbumTypeSection {...SECTION_TITLE.TYPE} />
 			<AlbumReleaseSection {...SECTION_TITLE.RELEASE} />
 		</>
