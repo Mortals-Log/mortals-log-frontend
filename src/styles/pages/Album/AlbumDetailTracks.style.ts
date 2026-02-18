@@ -30,6 +30,7 @@ export const TrackWrapper = styled.div`
 	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY100};
 	transition: background 0.2s ease;
 	align-items: baseline;
+	cursor: pointer;
 
 	&:hover {
 		background-color: ${props => props.theme.COLOR.GRAY50};

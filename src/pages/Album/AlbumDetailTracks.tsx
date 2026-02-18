@@ -2,6 +2,7 @@
 
 import * as S from '@styles/pages/Album/AlbumDetailTracks.style';
 import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { Album } from '@/types/album';
 import { GetTracks } from '@/utils/track';
@@ -17,6 +18,8 @@ const AlbumDetailTracks = ({
 	TITLE_EN: string;
 	albumData: Album | undefined;
 }) => {
+	const navigate = useNavigate();
+
 	const rawTracks = albumData?.tracks || [];
 	const trackIds = GetTracks(rawTracks);
 	const isVinyl = !Array.isArray(rawTracks);
@@ -59,7 +62,7 @@ const AlbumDetailTracks = ({
 										const trackIndex = trackIds.indexOf(trackId) + 1;
 
 										return (
-											<S.TrackWrapper key={trackId}>
+											<S.TrackWrapper key={trackId} onClick={() => navigate(`/song/${track.id}`)}>
 												<S.TrackNumber>{String(trackIndex).padStart(2, '0')}</S.TrackNumber>
 												<S.TrackTitle $isLead={track.isLead || false}>
 													{track.title} {track.version && track.version}
@@ -75,7 +78,7 @@ const AlbumDetailTracks = ({
 								if (!track) return null;
 
 								return (
-									<S.TrackWrapper key={trackId}>
+									<S.TrackWrapper key={trackId} onClick={() => navigate(`/song/${track.id}`)}>
 										<S.TrackNumber>{String(index + 1).padStart(2, '0')}</S.TrackNumber>
 										<S.TrackTitle $isLead={track.isLead || false}>
 											{track.title} {track.version && `(${track.version})`}
