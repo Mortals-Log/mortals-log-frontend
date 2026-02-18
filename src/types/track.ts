@@ -5,6 +5,8 @@
 export interface Track {
 	id: string;
 	title: string;
+	enTitle?: string;
+	ageLimit?: boolean;
 	version?: string;
 	originalTrackId?: string | string[];
 	isLead?: boolean;

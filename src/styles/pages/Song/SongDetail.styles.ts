@@ -3,13 +3,35 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
+import { LeadBadge as BaseLeadBadge } from '@styles/components/LeadBadge.style';
+import { AdultBadge as BaseAdultBadge } from '@styles/components/AdultBadge.style';
 
 export * from '@styles/common/SectionTitle.style';
+
+export const LeadBadge = styled(BaseLeadBadge)`
+	margin-left: 0px;
+	margin-right: 5px;
+`;
+
+export const AdultBadge = styled(BaseAdultBadge)`
+	margin-left: 0px;
+	margin-right: 5px;
+`;
 
 export const MainContainer = styled.main`
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 100px 20px;
+`;
+
+export const HeaderSection = styled.section`
+	margin-top: 0.5rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY200};
+`;
+
+export const ContentSection = styled.section`
+	margin-top: 5rem;
 `;
 
 export const MainTitle = styled.h2`
@@ -30,7 +52,6 @@ export const SubTitle = styled.span`
 
 export const Description = styled.div`
 	margin-top: 1rem;
-	margin-bottom: -2rem;
 
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.SM};
@@ -39,4 +60,19 @@ export const Description = styled.div`
 
 	line-height: 1.5;
 	white-space: pre-wrap;
+
+	.type {
+		&::after {
+			content: ' | ';
+			color: ${props => props.theme.COLOR.PRIMARY};
+		}
+	}
+
+	.title {
+		cursor: pointer;
+
+		:hover {
+			text-decoration: underline;
+		}
+	}
 `;
