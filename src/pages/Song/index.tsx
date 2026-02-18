@@ -77,6 +77,7 @@ const Song = () => {
 								{track.title}
 								{track.version && ` ${track.version}`}
 								{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
+								{track.ageLimit && <S.AdultBadge>🔞 미성년자 청취불가</S.AdultBadge>}
 							</S.TrackTitle>
 
 							<S.AlbumName>{track.albumTitle}</S.AlbumName>

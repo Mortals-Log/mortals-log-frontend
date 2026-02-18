@@ -9,7 +9,7 @@ export const AdultBadge = styled.span`
 	padding: 1px 5px;
 
 	border: 1px solid ${props => props.theme.COLOR.PRIMARY};
-	border-radius: 3px;
+	border-radius: 4px;
 	background-color: ${props => props.theme.COLOR.PRIMARY + '33'};
 
 	font-family: ${props => props.theme.FONT.SANS};

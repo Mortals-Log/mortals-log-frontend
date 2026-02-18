@@ -8,6 +8,7 @@ export const LeadBadge = styled.span`
 	margin-left: 10px;
 	padding: 4px 6px;
 	border-radius: 4px;
+
 	background-color: ${props => props.theme.COLOR.PRIMARY};
 
 	font-family: ${props => props.theme.FONT.SANS};

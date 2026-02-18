@@ -44,8 +44,8 @@ const SongDetail = () => {
 
 			<S.HeaderSection>
 				<S.SubTitle>
-					{track.ageLimit && <S.AdultBadge>🔞 미성년자 청취불가</S.AdultBadge>}
 					{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
+					{track.ageLimit && <S.AdultBadge>🔞 미성년자 청취불가</S.AdultBadge>}
 					{track.enTitle}
 				</S.SubTitle>
 				<S.MainTitle>{track.title} </S.MainTitle>
