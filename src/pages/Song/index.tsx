@@ -4,10 +4,12 @@ import * as S from '@styles/pages/Song/Song.styles';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { FULL_ALBUMS } from '@/const/albums';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type SortType = 'latest' | 'release' | 'alphabet';
 
 const Song = () => {
+	const navigate = useNavigate();
 	const [sortType, setSortType] = useState<SortType>('latest');
 
 	const allTracks = Object.values(MASTER_TRACKS).map(track => {
@@ -68,7 +70,7 @@ const Song = () => {
 
 			<S.TrackContainer>
 				{sortedTracks.map((track, index) => (
-					<S.TrackItem key={`${track.id}-${index}`}>
+					<S.TrackItem key={`${track.id}-${index}`} onClick={() => navigate(`/song/${track.id}`)}>
 						<S.TrackNumber>{String(index + 1).padStart(2, '0')}</S.TrackNumber>
 						<S.TrackInfo>
 							<S.TrackTitle>
