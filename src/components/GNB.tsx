@@ -16,6 +16,11 @@ const GNB = () => {
 
 	const checkActive = (path: string) => {
 		if (path === '/') return currentPath === '/';
+
+		if (path === '/music') {
+			return currentPath.startsWith('/music') || currentPath.startsWith('/album') || currentPath.startsWith('/song');
+		}
+
 		return currentPath.startsWith(path);
 	};
 
