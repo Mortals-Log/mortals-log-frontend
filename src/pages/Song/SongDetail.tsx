@@ -102,10 +102,10 @@ const SongDetail = () => {
 					</S.CreditItem>
 				</S.CreditList>
 
-				<S.StreamingSection>
-					<S.ItemLabel>스트리밍</S.ItemLabel>
-					{/* 앨범 streaming으로 임시 사용 */}
-					{albumInfo?.streaming && (
+				{/* 앨범 streaming으로 임시 사용 */}
+				{albumInfo?.streaming && (
+					<S.StreamingSection>
+						<S.ItemLabel>스트리밍</S.ItemLabel>
 						<S.BadgeGroup>
 							{Object.entries(albumInfo.streaming).map(([label, url]) => {
 								const key = label.toLowerCase().replace(/\s+/g, '') as IconKey;
@@ -122,16 +122,15 @@ const SongDetail = () => {
 								);
 							})}
 						</S.BadgeGroup>
-					)}
-				</S.StreamingSection>
+					</S.StreamingSection>
+				)}
 			</S.MetaSection>
 
-			{track.lyrics && (
-				<S.LyricsContainer>
-					<S.ContentTitle>가사</S.ContentTitle>
-					<S.LyricsText>{track.lyrics}</S.LyricsText>
-				</S.LyricsContainer>
-			)}
+			<S.LyricsContainer>
+				<S.ContentTitle>가사</S.ContentTitle>
+
+				{track.lyrics ? <S.LyricsText>{track.lyrics}</S.LyricsText> : <Placeholder contentName="가사" />}
+			</S.LyricsContainer>
 		</S.MainContainer>
 	);
 };

@@ -83,13 +83,17 @@ export const MetaSection = styled.section`
 	flex-direction: column;
 	gap: 1rem;
 	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY200};
+	padding: 1rem 0rem;
+
+	@media (max-width: 850px) {
+		padding-bottom: 0rem;
+	}
 `;
 
 export const CreditList = styled.div`
 	display: flex;
 	align-items: flex-start;
 	flex-wrap: wrap;
-	padding-top: 1rem;
 	gap: 1.5rem;
 `;
 
