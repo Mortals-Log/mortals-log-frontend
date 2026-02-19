@@ -95,6 +95,7 @@ export const CreditList = styled.div`
 
 export const ItemLabel = styled.div`
 	display: block;
+	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.SM};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY500};
@@ -111,4 +112,29 @@ export const CreditItem = styled.div`
 
 export const StreamingSection = styled.div`
 	display: block;
+`;
+
+export const LyricsContainer = styled.section`
+	margin-top: 1rem;
+`;
+
+export const ContentTitle = styled.div`
+	display: block;
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.LG};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.GRAY500};
+	margin: 1rem 0rem;
+`;
+
+export const LyricsText = styled.div`
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.GRAY700};
+
+	line-height: 2;
+	color: ${props => props.theme.COLOR.GRAY800};
+	white-space: pre-wrap;
+	word-break: break-all;
 `;

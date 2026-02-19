@@ -125,6 +125,13 @@ const SongDetail = () => {
 					)}
 				</S.StreamingSection>
 			</S.MetaSection>
+
+			{track.lyrics && (
+				<S.LyricsContainer>
+					<S.ContentTitle>가사</S.ContentTitle>
+					<S.LyricsText>{track.lyrics}</S.LyricsText>
+				</S.LyricsContainer>
+			)}
 		</S.MainContainer>
 	);
 };
