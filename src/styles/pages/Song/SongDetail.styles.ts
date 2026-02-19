@@ -7,6 +7,7 @@ import { LeadBadge as BaseLeadBadge } from '@styles/components/LeadBadge.style';
 import { AdultBadge as BaseAdultBadge } from '@styles/components/AdultBadge.style';
 
 export * from '@styles/common/SectionTitle.style';
+export * from '@styles/components/MusicBadge.style';
 
 export const LeadBadge = styled(BaseLeadBadge)`
 	margin-left: 0px;
@@ -77,26 +78,37 @@ export const Description = styled.div`
 	}
 `;
 
+export const MetaSection = styled.section`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY200};
+`;
+
 export const CreditList = styled.div`
 	display: flex;
 	align-items: flex-start;
 	flex-wrap: wrap;
 	padding-top: 1rem;
 	gap: 1.5rem;
+`;
 
-	.item {
-		font-family: ${props => props.theme.FONT.SANS};
-		font-size: ${props => props.theme.FONT.SIZE.MD};
-		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-		color: ${props => props.theme.COLOR.GRAY700};
-		letter-spacing: 0.05rem;
+export const ItemLabel = styled.div`
+	display: block;
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.GRAY500};
+	margin-bottom: 0.5rem;
+`;
 
-		span {
-			display: block;
-			font-size: ${props => props.theme.FONT.SIZE.SM};
-			font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-			color: ${props => props.theme.COLOR.GRAY500};
-			margin-bottom: 0.3rem;
-		}
-	}
+export const CreditItem = styled.div`
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.GRAY700};
+	letter-spacing: 0.05rem;
+`;
+
+export const StreamingSection = styled.div`
+	display: block;
 `;

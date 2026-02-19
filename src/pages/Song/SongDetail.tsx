@@ -7,6 +7,8 @@ import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/placeholder';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import { NAME } from '@/const/profile';
+import { IconKey } from '@/types/icon';
+import { ICON_CONFIG } from '@/const/icons';
 
 const SongDetail = () => {
 	const navigate = useNavigate();
@@ -84,20 +86,45 @@ const SongDetail = () => {
 				</S.Description>
 			</S.HeaderSection>
 
-			<S.CreditList>
-				<div className="item">
-					<span>재생시간</span> {formatDuration(track.duration)}
-				</div>
-				<div className="item">
-					<span>작사</span> {formatCredit(track.lyricist)}
-				</div>
-				<div className="item">
-					<span>작곡</span> {formatCredit(track.composer)}
-				</div>
-				<div className="item">
-					<span>편곡</span> {formatCredit(track.arranger)}
-				</div>
-			</S.CreditList>
+			<S.MetaSection>
+				<S.CreditList>
+					<S.CreditItem>
+						<S.ItemLabel>재생시간</S.ItemLabel> {formatDuration(track.duration)}
+					</S.CreditItem>
+					<S.CreditItem>
+						<S.ItemLabel>작사</S.ItemLabel> {formatCredit(track.lyricist)}
+					</S.CreditItem>
+					<S.CreditItem>
+						<S.ItemLabel>작곡</S.ItemLabel> {formatCredit(track.composer)}
+					</S.CreditItem>
+					<S.CreditItem>
+						<S.ItemLabel>편곡</S.ItemLabel> {formatCredit(track.arranger)}
+					</S.CreditItem>
+				</S.CreditList>
+
+				<S.StreamingSection>
+					<S.ItemLabel>스트리밍</S.ItemLabel>
+					{/* 앨범 streaming으로 임시 사용 */}
+					{albumInfo?.streaming && (
+						<S.BadgeGroup>
+							{Object.entries(albumInfo.streaming).map(([label, url]) => {
+								const key = label.toLowerCase().replace(/\s+/g, '') as IconKey;
+								const config = ICON_CONFIG[key];
+								const Icon = config?.icon;
+
+								if (!Icon || !url) return null;
+
+								return (
+									<S.MusicBadge key={label} href={url} target="_blank" rel="noreferrer" title={config.label || label}>
+										<Icon />
+										<span>{label}</span>
+									</S.MusicBadge>
+								);
+							})}
+						</S.BadgeGroup>
+					)}
+				</S.StreamingSection>
+			</S.MetaSection>
 		</S.MainContainer>
 	);
 };
