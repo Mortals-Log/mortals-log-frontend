@@ -126,11 +126,25 @@ const SongDetail = () => {
 				)}
 			</S.MetaSection>
 
-			<S.LyricsContainer>
+			<S.ContentSection>
 				<S.ContentTitle>가사</S.ContentTitle>
 
 				{track.lyrics ? <S.LyricsText>{track.lyrics}</S.LyricsText> : <Placeholder contentName="가사" />}
-			</S.LyricsContainer>
+			</S.ContentSection>
+
+			{track.chords && (
+				<S.ContentSection>
+					<S.ContentTitle>기타 코드</S.ContentTitle>
+					{(track.tuning || track.provider) && (
+						<S.ChordHeader>
+							{track.tuning && <div className="guide-item">튜닝 {track.tuning}</div>}
+							{track.provider && <div className="guide-item">제공 {track.provider}</div>}
+						</S.ChordHeader>
+					)}
+
+					<S.Chord>{track.chords}</S.Chord>
+				</S.ContentSection>
+			)}
 		</S.MainContainer>
 	);
 };

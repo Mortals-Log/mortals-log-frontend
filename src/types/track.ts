@@ -21,6 +21,10 @@ export interface Track {
 	lyricist?: string[];
 	composer?: string[];
 	arranger?: string[];
+
+	chords?: string;
+	tuning?: string;
+	provider?: string;
 }
 
 /*

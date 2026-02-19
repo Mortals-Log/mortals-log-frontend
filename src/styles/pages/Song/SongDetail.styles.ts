@@ -32,7 +32,7 @@ export const HeaderSection = styled.section`
 `;
 
 export const ContentSection = styled.section`
-	margin-top: 5rem;
+	margin-top: 1rem;
 `;
 
 export const MainTitle = styled.h2`
@@ -118,10 +118,6 @@ export const StreamingSection = styled.div`
 	display: block;
 `;
 
-export const LyricsContainer = styled.section`
-	margin-top: 1rem;
-`;
-
 export const ContentTitle = styled.div`
 	display: block;
 	font-family: ${props => props.theme.FONT.SANS};
@@ -136,9 +132,34 @@ export const LyricsText = styled.div`
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
-
 	line-height: 2;
-	color: ${props => props.theme.COLOR.GRAY800};
+	white-space: pre-wrap;
+	word-break: break-all;
+`;
+
+export const ChordHeader = styled.div`
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 1.5rem;
+
+	.guide-item {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+
+		font-family: ${props => props.theme.FONT.SANS};
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+		color: ${props => props.theme.COLOR.GRAY500};
+	}
+`;
+
+export const Chord = styled.pre`
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.GRAY700};
+	line-height: 1.5;
 	white-space: pre-wrap;
 	word-break: break-all;
 `;
