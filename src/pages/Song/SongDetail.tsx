@@ -69,8 +69,11 @@ const SongDetail = () => {
 					{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
 					{track.ageLimit && <S.AdultBadge>🔞 미성년자 청취불가</S.AdultBadge>}
 					{track.enTitle}
+					{track.version && ` (${track.version})`}
 				</S.SubTitle>
-				<S.MainTitle>{track.title} </S.MainTitle>
+				<S.MainTitle>
+					{track.title} {track.version && `(${track.version})`}
+				</S.MainTitle>
 				<S.Description>
 					<span className="type">
 						{ALBUM_TYPE_LABEL[albumInfo?.type || '']} {albumInfo?.type == 'LP' && `${albumInfo?.volume}집`}
