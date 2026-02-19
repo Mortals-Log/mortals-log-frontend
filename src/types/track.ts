@@ -4,17 +4,23 @@
 
 export interface Track {
 	id: string;
-	title: string;
-	enTitle?: string;
-	ageLimit?: boolean;
-	version?: string;
 	originalTrackId?: string | string[];
+
+	title: string;
+	enTitle: string;
+	version?: string;
+	ageLimit?: boolean;
 	isLead?: boolean;
+
 	duration?: string;
 	youtube?: string;
 	musicvideo?: string;
 	lyrics?: string;
 	singingroom?: string;
+
+	lyricist?: string[];
+	composer?: string[];
+	arranger?: string[];
 }
 
 /*
