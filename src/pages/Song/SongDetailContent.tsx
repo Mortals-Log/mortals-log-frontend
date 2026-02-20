@@ -1,6 +1,6 @@
 // @pages/Song/SongDetail
 
-import * as S from '@styles/pages/Song/SongDetail.styles';
+import * as S from '@styles/pages/Song/SongDetailContent.styles';
 import { useState } from 'react';
 import Placeholder from '@/components/placeholder';
 import { LINK_PLATFORM, MUSIC_PLATFORM } from '@/const/links';

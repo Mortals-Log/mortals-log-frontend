@@ -1,6 +1,6 @@
 // @pages/Song/SongDetail
 
-import * as S from '@styles/pages/Song/SongDetail.styles';
+import * as S from '@styles/pages/Song/SongDetailHeader.styles';
 import { useNavigate } from 'react-router-dom';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { Track } from '@/types/track';
@@ -22,9 +22,11 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 				{track.enTitle}
 				{track.version && ` (${track.version})`}
 			</S.SubTitle>
+
 			<S.MainTitle>
 				{track.title} {track.version && `(${track.version})`}
 			</S.MainTitle>
+
 			<S.Description>
 				<span className="type">
 					{ALBUM_TYPE_LABEL[albumInfo?.type || '']} {albumInfo?.type == 'LP' && `${albumInfo?.volume}집`}

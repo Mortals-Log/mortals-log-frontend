@@ -1,6 +1,6 @@
 // @pages/Song/SongDetail
 
-import * as S from '@styles/pages/Song/SongDetail.styles';
+import * as S from '@styles/pages/Song/SongDetailMeta.styles';
 import { IconKey } from '@/types/icon';
 import { NAME } from '@/const/profile';
 import { ICON_CONFIG } from '@/const/icons';
