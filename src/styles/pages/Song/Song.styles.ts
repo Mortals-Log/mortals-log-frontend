@@ -6,6 +6,8 @@ import styled from '@emotion/styled';
 import { LeadBadge as BaseLeadBadge } from '@styles/components/LeadBadge.style';
 import { AdultBadge as BaseAdultBadge } from '@styles/components/AdultBadge.style';
 
+export * from '@styles/components/LeadBadge.style';
+
 export const LeadBadge = styled(BaseLeadBadge)`
 	margin-left: 5px;
 `;

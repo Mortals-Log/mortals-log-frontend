@@ -83,7 +83,14 @@ const AlbumDetailTracks = ({
 										<S.TrackTitle $isLead={track.isLead || false}>
 											{track.title} {track.version && `(${track.version})`}
 											{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
+											{track.chords && <S.GuitarBadge>CHORDS</S.GuitarBadge>}
 											{track.ageLimit && <S.AdultBadge>🔞 미성년자 청취불가</S.AdultBadge>}
+											{track.singing && (
+												<>
+													{track.singing.tj && <S.SingingBadge brand="TJ">TJ #{track.singing.tj}</S.SingingBadge>}
+													{track.singing.ky && <S.SingingBadge brand="KY">KY #{track.singing.ky}</S.SingingBadge>}
+												</>
+											)}
 										</S.TrackTitle>
 									</S.TrackWrapper>
 								);

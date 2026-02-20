@@ -17,3 +17,13 @@ export const LeadBadge = styled.span`
 	color: ${props => props.theme.COLOR.WHITE};
 	letter-spacing: 0.05em;
 `;
+
+export const GuitarBadge = styled(LeadBadge)`
+	margin-left: 5px;
+	background-color: ${props => props.theme.COLOR.GRAY700};
+`;
+
+export const SingingBadge = styled(LeadBadge)<{ brand: 'TJ' | 'KY' }>`
+	margin-left: 5px;
+	background-color: ${props => props.theme.COLOR[props.brand]};
+`;
