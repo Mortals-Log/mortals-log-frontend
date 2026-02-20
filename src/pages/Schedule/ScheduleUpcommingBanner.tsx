@@ -1,14 +1,22 @@
 // @components/Schedule/UpcomingBanner.tsx
 
-import { useMemo } from 'react';
 import * as S from '@styles/pages/Schedule/ScheduleUpcommingBanner.style';
-import { CALENDAR_SCHEDULES } from '@utils/schedule';
+import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { addDays, differenceInDays, format, isWithinInterval, parseISO, startOfDay } from 'date-fns';
+import { CALENDAR_SCHEDULES } from '@utils/schedule';
 import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
 
 const ScheduleUpcommingBacnner = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
+	const navigate = useNavigate();
 	const today = startOfDay(new Date());
 	const limitDay = addDays(today, 7);
+
+	const handleItemClick = (id?: string) => {
+		if (id) {
+			navigate(`/schedule/${id}`);
+		}
+	};
 
 	const upcomingEvents = useMemo(() => {
 		return Object.entries(CALENDAR_SCHEDULES)
@@ -38,7 +46,7 @@ const ScheduleUpcommingBacnner = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TI
 
 			<S.SliderContainer>
 				{upcomingEvents.map((event, idx) => (
-					<S.BannerItem key={idx} eventType={event.type} dDay={event.diff}>
+					<S.BannerItem key={idx} eventType={event.type} dDay={event.diff} onClick={() => handleItemClick(event.id)}>
 						<div className="info">
 							<span className="dDay">{event.dDayLabel}</span>
 							<span className="date">{format(parseISO(event.date), 'MM.dd')}</span>
