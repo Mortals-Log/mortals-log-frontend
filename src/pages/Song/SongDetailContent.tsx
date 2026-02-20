@@ -12,6 +12,7 @@ interface SongDetailContentProps {
 
 const SongDetailContent = ({ track }: SongDetailContentProps) => {
 	const [activeTab, setActiveTab] = useState<'lyrics' | 'chords' | 'mv'>('lyrics');
+	const { chords, tuning, provider } = track.chords || {};
 
 	return (
 		<S.ContentSection>
@@ -38,14 +39,14 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 					<S.ContentTitle>가사</S.ContentTitle>
 				)}
 
-				{activeTab === 'chords' && (track.tuning || track.provider) && (
+				{activeTab === 'chords' && (tuning || provider) && (
 					<S.GuideWrapper>
-						{track.tuning ? (
-							<div className="guide-item">튜닝 | {track.tuning}</div>
+						{tuning ? (
+							<div className="guide-item">튜닝 | {tuning}</div>
 						) : (
 							<div className="guide-item">튜닝 | 정튜닝</div>
 						)}
-						{track.provider && <div className="guide-item">제공 | {track.provider}님</div>}
+						{provider && <div className="guide-item">제공 | {provider}님</div>}
 					</S.GuideWrapper>
 				)}
 			</S.ContentHeader>
@@ -53,7 +54,7 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 			{activeTab === 'lyrics' &&
 				(track.lyrics ? <S.Content isChord={false}>{track.lyrics}</S.Content> : <Placeholder contentName="가사" />)}
 
-			{activeTab === 'chords' && <S.Content isChord={true}>{track.chords}</S.Content>}
+			{activeTab === 'chords' && <S.Content isChord={true}>{chords}</S.Content>}
 
 			{activeTab === 'mv' && track.mvLink && (
 				<>

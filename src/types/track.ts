@@ -7,6 +7,12 @@ interface SingingInfo {
 	ky?: string;
 }
 
+interface Chords {
+	chords: string;
+	tuning?: string;
+	provider?: string;
+}
+
 export interface Track {
 	id: string;
 	originalTrackId?: string | string[];
@@ -23,9 +29,7 @@ export interface Track {
 	composer?: string[];
 	arranger?: string[];
 
-	chords?: string;
-	tuning?: string;
-	provider?: string;
+	chords?: Chords;
 
 	mvLink?: string;
 
