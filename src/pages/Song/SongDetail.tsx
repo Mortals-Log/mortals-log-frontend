@@ -147,8 +147,12 @@ const SongDetail = () => {
 
 					{isChordMode && (track.tuning || track.provider) && (
 						<S.GuideWrapper>
-							{track.tuning && <div className="guide-item">튜닝 {track.tuning}</div>}
-							{track.provider && <div className="guide-item">제공 {track.provider}님</div>}
+							{track.tuning ? (
+								<div className="guide-item">튜닝 | {track.tuning}</div>
+							) : (
+								<div className="guide-item">튜닝 | 정튜닝</div>
+							)}
+							{track.provider && <div className="guide-item">제공 | {track.provider}님</div>}
 						</S.GuideWrapper>
 					)}
 				</S.ContentHeader>
