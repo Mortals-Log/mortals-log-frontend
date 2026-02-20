@@ -11,6 +11,7 @@ interface Chords {
 	chords: string;
 	tuning?: string;
 	provider?: string;
+	chordModeType: 'integrated' | 'separated';
 }
 
 export interface Track {

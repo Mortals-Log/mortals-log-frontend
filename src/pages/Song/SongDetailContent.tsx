@@ -13,6 +13,7 @@ interface SongDetailContentProps {
 const SongDetailContent = ({ track }: SongDetailContentProps) => {
 	const [activeTab, setActiveTab] = useState<'lyrics' | 'chords' | 'mv'>('lyrics');
 	const { chords, tuning, provider } = track.chords || {};
+	const isSeparated = track.chords?.chordModeType === 'separated' && track.lyrics && track.chords;
 
 	return (
 		<S.ContentSection>
@@ -54,7 +55,17 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 			{activeTab === 'lyrics' &&
 				(track.lyrics ? <S.Content isChord={false}>{track.lyrics}</S.Content> : <Placeholder contentName="가사" />)}
 
-			{activeTab === 'chords' && <S.Content isChord={true}>{chords}</S.Content>}
+			{activeTab === 'chords' && (
+				<>
+					{isSeparated && (
+						<S.StickyChordBar>
+							<S.ChordText>{chords}</S.ChordText>
+						</S.StickyChordBar>
+					)}
+
+					<S.Content isChord={!isSeparated}>{isSeparated ? track.lyrics : chords}</S.Content>
+				</>
+			)}
 
 			{activeTab === 'mv' && track.mvLink && (
 				<>

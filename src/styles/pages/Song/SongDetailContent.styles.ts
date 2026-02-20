@@ -87,3 +87,28 @@ export const Content = styled.div<{ isChord: boolean }>`
 	white-space: pre-wrap;
 	word-break: break-all;
 `;
+
+export const StickyChordBar = styled.div`
+	position: sticky;
+	top: 65px;
+	z-index: 10;
+
+	padding: 1rem 1.5rem;
+	margin: 2rem 0;
+
+	background-color: ${props => props.theme.COLOR.WHITE}cc;
+	backdrop-filter: blur(15px);
+
+	border: 1px solid ${props => props.theme.COLOR.GRAY200};
+	border-radius: 8px;
+`;
+
+export const ChordText = styled.div`
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
+	color: ${props => props.theme.COLOR.PRIMARY};
+
+	letter-spacing: 0.1rem;
+	white-space: pre-wrap;
+`;
