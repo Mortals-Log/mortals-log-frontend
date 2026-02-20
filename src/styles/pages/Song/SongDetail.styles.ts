@@ -31,10 +31,6 @@ export const HeaderSection = styled.section`
 	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY200};
 `;
 
-export const ContentSection = styled.section`
-	margin-top: 1rem;
-`;
-
 export const MainTitle = styled.h2`
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.H2};
@@ -118,48 +114,83 @@ export const StreamingSection = styled.div`
 	display: block;
 `;
 
+export const ContentSection = styled.section`
+	margin-top: 2rem;
+`;
+
+export const ContentHeader = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+`;
+
 export const ContentTitle = styled.div`
-	display: block;
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.LG};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-	color: ${props => props.theme.COLOR.GRAY500};
-	margin: 1rem 0rem;
-`;
-
-export const LyricsText = styled.div`
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.MD};
-	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
-	line-height: 2;
-	white-space: pre-wrap;
-	word-break: break-all;
 `;
 
-export const ChordHeader = styled.div`
+export const TabGroup = styled.div`
 	display: flex;
-	gap: 1rem;
-	margin-bottom: 1.5rem;
+	gap: 1.5rem;
+	margin: 1rem 0;
+`;
 
-	.guide-item {
-		display: flex;
-		align-items: center;
-		gap: 0.4rem;
+export const TabButton = styled.button<{ isActive: boolean }>`
+	position: relative;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	transition: color 0.2s ease;
 
-		font-family: ${props => props.theme.FONT.SANS};
-		font-size: ${props => props.theme.FONT.SIZE.SM};
-		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-		color: ${props => props.theme.COLOR.GRAY500};
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.LG};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => (props.isActive ? props.theme.COLOR.GRAY700 : props.theme.COLOR.GRAY300)};
+
+	&:hover {
+		color: ${props => props.theme.COLOR.GRAY700};
+	}
+
+	&::after {
+		content: '';
+		display: ${props => (props.isActive ? 'block' : 'none')};
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		left: 0;
+		bottom: -4px;
+		background-color: ${props => props.theme.COLOR.GRAY700};
 	}
 `;
 
-export const Chord = styled.pre`
+export const GuideWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 0.5rem;
+
+	.guide-item {
+		font-family: ${props => props.theme.FONT.SANS};
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+		color: ${props => props.theme.COLOR.GRAY500};
+		line-height: 1.2;
+		white-space: nowrap;
+
+		&::before {
+			content: '* ';
+			color: ${props => props.theme.COLOR.PRIMARY};
+		}
+	}
+`;
+
+export const Content = styled.div<{ isActive: boolean }>`
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
-	line-height: 1.5;
+	line-height: ${props => (props.isActive ? '2' : '1.8')};
 	white-space: pre-wrap;
 	word-break: break-all;
 `;

@@ -9,9 +9,11 @@ import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import { NAME } from '@/const/profile';
 import { IconKey } from '@/types/icon';
 import { ICON_CONFIG } from '@/const/icons';
+import { useState } from 'react';
 
 const SongDetail = () => {
 	const navigate = useNavigate();
+	const [isChordMode, setIsChordMode] = useState(false);
 	const { id } = useParams<{ id: string }>();
 
 	const track = id ? MASTER_TRACKS[id as keyof typeof MASTER_TRACKS] : null;
@@ -127,24 +129,38 @@ const SongDetail = () => {
 			</S.MetaSection>
 
 			<S.ContentSection>
-				<S.ContentTitle>가사</S.ContentTitle>
-
-				{track.lyrics ? <S.LyricsText>{track.lyrics}</S.LyricsText> : <Placeholder contentName="가사" />}
-			</S.ContentSection>
-
-			{track.chords && (
-				<S.ContentSection>
-					<S.ContentTitle>기타 코드</S.ContentTitle>
-					{(track.tuning || track.provider) && (
-						<S.ChordHeader>
-							{track.tuning && <div className="guide-item">튜닝 {track.tuning}</div>}
-							{track.provider && <div className="guide-item">제공 {track.provider}</div>}
-						</S.ChordHeader>
+				<S.ContentHeader>
+					{!track.lyrics && !track.chords ? (
+						<S.ContentTitle>가사</S.ContentTitle>
+					) : track.lyrics && track.chords ? (
+						<S.TabGroup>
+							<S.TabButton isActive={!isChordMode} onClick={() => setIsChordMode(false)}>
+								가사
+							</S.TabButton>
+							<S.TabButton isActive={isChordMode} onClick={() => setIsChordMode(true)}>
+								코드
+							</S.TabButton>
+						</S.TabGroup>
+					) : (
+						<S.ContentTitle>가사</S.ContentTitle>
 					)}
 
-					<S.Chord>{track.chords}</S.Chord>
-				</S.ContentSection>
-			)}
+					{isChordMode && (track.tuning || track.provider) && (
+						<S.GuideWrapper>
+							{track.tuning && <div className="guide-item">튜닝 {track.tuning}</div>}
+							{track.provider && <div className="guide-item">제공 {track.provider}님</div>}
+						</S.GuideWrapper>
+					)}
+				</S.ContentHeader>
+
+				{isChordMode ? (
+					<S.Content isActive={isChordMode}>{track.chords}</S.Content>
+				) : track.lyrics ? (
+					<S.Content isActive={isChordMode}>{track.lyrics}</S.Content>
+				) : (
+					<Placeholder contentName="가사" />
+				)}
+			</S.ContentSection>
 		</S.MainContainer>
 	);
 };
