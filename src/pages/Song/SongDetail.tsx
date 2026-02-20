@@ -103,6 +103,26 @@ const SongDetail = () => {
 					<S.CreditItem>
 						<S.ItemLabel>편곡</S.ItemLabel> {formatCredit(track.arranger)}
 					</S.CreditItem>
+
+					{track.singing && (
+						<S.CreditItem>
+							<S.ItemLabel>노래방</S.ItemLabel>
+							<S.SingingWrapper>
+								{track.singing.tj && (
+									<S.SingingBadge brand="TJ">
+										<span className="brand">TJ</span>
+										<span className="number">{track.singing.tj}</span>
+									</S.SingingBadge>
+								)}
+								{track.singing.ky && (
+									<S.SingingBadge brand="KY">
+										<span className="brand">KY</span>
+										<span className="number">{track.singing.ky}</span>
+									</S.SingingBadge>
+								)}
+							</S.SingingWrapper>
+						</S.CreditItem>
+					)}
 				</S.CreditList>
 
 				{/* 앨범 streaming으로 임시 사용 */}
