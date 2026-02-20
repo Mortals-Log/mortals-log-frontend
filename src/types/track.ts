@@ -22,7 +22,6 @@ export interface Track {
 	tuning?: string;
 	provider?: string;
 
-	mvEmbedded?: string;
 	mvLink?: string;
 }
 

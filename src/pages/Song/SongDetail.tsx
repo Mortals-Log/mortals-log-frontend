@@ -10,7 +10,7 @@ import { ICON_CONFIG } from '@/const/icons';
 import { MASTER_TRACKS } from '@/const/tracks';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/placeholder';
-import { MUSIC_PLATFORM } from '@/const/links';
+import { LINK_PLATFORM, MUSIC_PLATFORM } from '@/const/links';
 
 const SongDetail = () => {
 	const navigate = useNavigate();
@@ -131,7 +131,7 @@ const SongDetail = () => {
 
 			<S.ContentSection>
 				<S.ContentHeader>
-					{track.lyrics && (track.chords || track.mvEmbedded || track.mvLink) ? (
+					{track.lyrics && (track.chords || track.mvLink) ? (
 						<S.TabGroup>
 							<S.TabButton isActive={activeTab === 'lyrics'} onClick={() => setActiveTab('lyrics')}>
 								가사
@@ -143,7 +143,7 @@ const SongDetail = () => {
 								</S.TabButton>
 							)}
 
-							{(track.mvLink || track.mvEmbedded) && (
+							{track.mvLink && (
 								<S.TabButton isActive={activeTab === 'mv'} onClick={() => setActiveTab('mv')}>
 									뮤직비디오
 								</S.TabButton>
@@ -170,19 +170,18 @@ const SongDetail = () => {
 
 				{activeTab === 'chords' && <S.Content isChord={true}>{track.chords}</S.Content>}
 
-				{activeTab === 'mv' && (
+				{activeTab === 'mv' && track.mvLink && (
 					<>
-						{track.mvEmbedded && (
-							<S.VideoWrapper>
-								<iframe src={`https://www.youtube.com/embed/${track.mvEmbedded}?rel=0&showinfo=0`} allowFullScreen />
-							</S.VideoWrapper>
-						)}
+						<S.VideoWrapper>
+							<iframe src={`${LINK_PLATFORM.YOUTUBE.EMBED_URL}${track.mvLink}`} allowFullScreen />
+						</S.VideoWrapper>
 
-						{track.mvLink && (
-							<S.PrimaryButton href={track.mvLink} target="_blank" rel="noopener noreferrer">
-								{MUSIC_PLATFORM.YOUTUBE}로 보러가기
-							</S.PrimaryButton>
-						)}
+						<S.PrimaryButton
+							href={`${LINK_PLATFORM.YOUTUBE.BASE_URL}${track.mvLink}`}
+							target="_blank"
+							rel="noopener noreferrer">
+							{MUSIC_PLATFORM.YOUTUBE}로 보러가기
+						</S.PrimaryButton>
 					</>
 				)}
 			</S.ContentSection>
