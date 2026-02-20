@@ -32,6 +32,30 @@ export const SubTitle = styled.span`
 	text-transform: uppercase;
 `;
 
+export const OriginalLink = styled.button`
+	display: inline;
+	margin: 0 0.5rem;
+	padding: 0.4rem 0.8rem;
+
+	background: ${props => props.theme.COLOR.GRAY50};
+	border: 1px solid ${props => props.theme.COLOR.GRAY300};
+	border-radius: 4px;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.GRAY500};
+
+	cursor: pointer;
+	transition: all 0.2s ease;
+
+	&:hover {
+		background: ${props => props.theme.COLOR.PRIMARY};
+		border-color: ${props => props.theme.COLOR.PRIMARY};
+		color: ${props => props.theme.COLOR.WHITE};
+	}
+`;
+
 export const Description = styled.div`
 	margin-top: 1rem;
 

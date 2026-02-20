@@ -34,6 +34,10 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 				<span className="title" onClick={() => navigate(`/album/${albumInfo?.title}`)}>
 					{albumInfo?.title}
 				</span>
+
+				{track.originalTrackId && (
+					<S.OriginalLink onClick={() => navigate(`/song/${track.originalTrackId}`)}>원곡 보기</S.OriginalLink>
+				)}
 			</S.Description>
 		</S.HeaderSection>
 	);
