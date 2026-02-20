@@ -178,6 +178,7 @@ Dm                   G
 국물 색깔만 보면 꼭 매운맛일 것 같아
 `,
 		provider: '돗새',
+		singing: { tj: '52621' },
 	},
 	TRK_LP01_005: {
 		id: 'TRK_LP01_005',
@@ -1136,6 +1137,7 @@ C        E7         Am       Am   F       G           C            C
 		`,
 		tuning: 'DGCFAD 다운튜닝',
 		provider: '권사장',
+		singing: { tj: '88087', ky: '50166' },
 	},
 	TRK_LP04_009: {
 		id: 'TRK_LP04_009',
@@ -1883,6 +1885,7 @@ C        E7         Am       Am   F       G           C            C
 굳이 눈물을 챙겨가니까
 미안하단 말 한마디도
 못 하고선 이제와서 왜`,
+		singing: { tj: '83659', ky: '93346' },
 	},
 	TRK_EP01_006: {
 		id: 'TRK_EP01_006',
@@ -2213,6 +2216,7 @@ C        E7         Am       Am   F       G           C            C
 젋다는 건 너무도 끔찍해
 아름다운 땐가요
 이젠 슬슬 한계가 보여요`,
+		singing: { tj: '50050' },
 	},
 
 	// [SP 3집] 고백

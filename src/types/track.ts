@@ -2,6 +2,11 @@
 
 /* eslint-disable storybook/default-exports */
 
+interface SingingInfo {
+	tj?: string;
+	ky?: string;
+}
+
 export interface Track {
 	id: string;
 	originalTrackId?: string | string[];
@@ -23,6 +28,8 @@ export interface Track {
 	provider?: string;
 
 	mvLink?: string;
+
+	singing?: SingingInfo;
 }
 
 /*
