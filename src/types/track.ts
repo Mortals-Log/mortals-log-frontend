@@ -11,12 +11,8 @@ export interface Track {
 	version?: string;
 	ageLimit?: boolean;
 	isLead?: boolean;
-
 	duration?: string;
-	youtube?: string;
-	musicvideo?: string;
 	lyrics?: string;
-	singingroom?: string;
 
 	lyricist?: string[];
 	composer?: string[];
@@ -25,6 +21,9 @@ export interface Track {
 	chords?: string;
 	tuning?: string;
 	provider?: string;
+
+	mvEmbedded?: string;
+	mvLink?: string;
 }
 
 /*

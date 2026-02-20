@@ -1,19 +1,20 @@
 // @pages/Song/SongDetail
 
 import * as S from '@styles/pages/Song/SongDetail.styles';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { IconKey } from '@/types/icon';
+import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
+import { NAME } from '@/const/profile';
+import { ICON_CONFIG } from '@/const/icons';
 import { MASTER_TRACKS } from '@/const/tracks';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/placeholder';
-import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
-import { NAME } from '@/const/profile';
-import { IconKey } from '@/types/icon';
-import { ICON_CONFIG } from '@/const/icons';
-import { useState } from 'react';
+import { MUSIC_PLATFORM } from '@/const/links';
 
 const SongDetail = () => {
 	const navigate = useNavigate();
-	const [isChordMode, setIsChordMode] = useState(false);
+	const [activeTab, setActiveTab] = useState<'lyrics' | 'chords' | 'mv'>('lyrics');
 	const { id } = useParams<{ id: string }>();
 
 	const track = id ? MASTER_TRACKS[id as keyof typeof MASTER_TRACKS] : null;
@@ -130,22 +131,29 @@ const SongDetail = () => {
 
 			<S.ContentSection>
 				<S.ContentHeader>
-					{!track.lyrics && !track.chords ? (
-						<S.ContentTitle>가사</S.ContentTitle>
-					) : track.lyrics && track.chords ? (
+					{track.lyrics && (track.chords || track.mvEmbedded || track.mvLink) ? (
 						<S.TabGroup>
-							<S.TabButton isActive={!isChordMode} onClick={() => setIsChordMode(false)}>
+							<S.TabButton isActive={activeTab === 'lyrics'} onClick={() => setActiveTab('lyrics')}>
 								가사
 							</S.TabButton>
-							<S.TabButton isActive={isChordMode} onClick={() => setIsChordMode(true)}>
-								코드
-							</S.TabButton>
+
+							{track.chords && (
+								<S.TabButton isActive={activeTab === 'chords'} onClick={() => setActiveTab('chords')}>
+									코드
+								</S.TabButton>
+							)}
+
+							{(track.mvLink || track.mvEmbedded) && (
+								<S.TabButton isActive={activeTab === 'mv'} onClick={() => setActiveTab('mv')}>
+									뮤직비디오
+								</S.TabButton>
+							)}
 						</S.TabGroup>
 					) : (
 						<S.ContentTitle>가사</S.ContentTitle>
 					)}
 
-					{isChordMode && (track.tuning || track.provider) && (
+					{activeTab === 'chords' && (track.tuning || track.provider) && (
 						<S.GuideWrapper>
 							{track.tuning ? (
 								<div className="guide-item">튜닝 | {track.tuning}</div>
@@ -157,12 +165,25 @@ const SongDetail = () => {
 					)}
 				</S.ContentHeader>
 
-				{isChordMode ? (
-					<S.Content isActive={isChordMode}>{track.chords}</S.Content>
-				) : track.lyrics ? (
-					<S.Content isActive={isChordMode}>{track.lyrics}</S.Content>
-				) : (
-					<Placeholder contentName="가사" />
+				{activeTab === 'lyrics' &&
+					(track.lyrics ? <S.Content isChord={false}>{track.lyrics}</S.Content> : <Placeholder contentName="가사" />)}
+
+				{activeTab === 'chords' && <S.Content isChord={true}>{track.chords}</S.Content>}
+
+				{activeTab === 'mv' && (
+					<>
+						{track.mvEmbedded && (
+							<S.VideoWrapper>
+								<iframe src={`https://www.youtube.com/embed/${track.mvEmbedded}?rel=0&showinfo=0`} allowFullScreen />
+							</S.VideoWrapper>
+						)}
+
+						{track.mvLink && (
+							<S.PrimaryButton href={track.mvLink} target="_blank" rel="noopener noreferrer">
+								{MUSIC_PLATFORM.YOUTUBE}로 보러가기
+							</S.PrimaryButton>
+						)}
+					</>
 				)}
 			</S.ContentSection>
 		</S.MainContainer>

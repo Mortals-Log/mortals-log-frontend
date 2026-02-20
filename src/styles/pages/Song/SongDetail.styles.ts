@@ -7,7 +7,9 @@ import { LeadBadge as BaseLeadBadge } from '@styles/components/LeadBadge.style';
 import { AdultBadge as BaseAdultBadge } from '@styles/components/AdultBadge.style';
 
 export * from '@styles/common/SectionTitle.style';
+export * from '@styles/common/VideoWrapper.style';
 export * from '@styles/components/MusicBadge.style';
+export { PrimaryButton } from '@styles/components/Buttons.style';
 
 export const LeadBadge = styled(BaseLeadBadge)`
 	margin-left: 0px;
@@ -185,12 +187,32 @@ export const GuideWrapper = styled.div`
 	}
 `;
 
-export const Content = styled.div<{ isActive: boolean }>`
+export const Content = styled.div<{ isChord: boolean }>`
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
-	line-height: ${props => (props.isActive ? '2' : '1.8')};
+	line-height: ${props => (props.isChord ? '2' : '1.8')};
 	white-space: pre-wrap;
 	word-break: break-all;
+`;
+
+export const VideoContainer = styled.div`
+	position: relative;
+	width: 100%;
+	padding-bottom: 56.25%;
+	height: 0;
+	margin-top: 1rem;
+	background: ${props => props.theme.COLOR.BLACK};
+	border-radius: 8px;
+	overflow: hidden;
+
+	iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
 `;
