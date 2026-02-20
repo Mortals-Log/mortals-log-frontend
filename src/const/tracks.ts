@@ -998,6 +998,7 @@ B7                                Em
 `,
 		tuning: '다운튜닝',
 		provider: '권사장',
+		mvLink: '7uhXtEZ2IA8',
 	},
 	TRK_LP04_005: {
 		id: 'TRK_LP04_005',
@@ -1433,6 +1434,7 @@ C        E7         Am       Am   F       G           C            C
 자라는 와중에도 아파야하나
 가만히 쉴 수 있음 좋은데
 가망이 없어 실수투성이니까`,
+		mvLink: 'B8SMnHTB0VQ',
 	},
 	TRK_LP06_004: {
 		id: 'TRK_LP06_004',
@@ -1483,6 +1485,7 @@ C        E7         Am       Am   F       G           C            C
 
 어쩌면 나는 필요없는 그런 사람이 이미 되었나봐
 아니면 나는 도대체 왜 끊임이 없이 외로워야하나`,
+		mvLink: 'em4fOINPvDY',
 	},
 	TRK_LP06_006: {
 		id: 'TRK_LP06_006',
@@ -1711,6 +1714,7 @@ C        E7         Am       Am   F       G           C            C
 내 방에선 안 보이지만
 헤이호 헤이호 아름답기는 개뿔
 아프니까 그만 때려 개새끼들아`,
+		mvLink: 'LZC3tqP0jAw',
 	},
 	TRK_EP01_002: {
 		id: 'TRK_EP01_002',
@@ -2347,6 +2351,7 @@ Dm           G
 근데 우린 이 모양 이 꼴이죠
 이도 저도 아니긴 한가 봐요
 외로운건 참으면 참아지죠`,
+		mvLink: 'lws9WpyKXus',
 	},
 
 	// [SP 5집] 이별이 그대는 쉽나요
