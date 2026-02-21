@@ -76,6 +76,22 @@ export const EVENT_MAGAZINE: EventList = [
 		items: [
 			{
 				type: 'MAGAZINE',
+				date: '02.16',
+				host: '인디 뮤직 라이프',
+				content: '<롤링홀 31주년 천진우 단독 콘서트 ‘고독의 포크 전사 주정뱅이 딴따라’>',
+				platform: LINK_PLATFORM.INSTAGRAM.NAME,
+				link: 'DUxXC1AAVGI/?img_index=1',
+			},
+			{
+				type: 'MAGAZINE',
+				date: '02.15',
+				host: '인디 뮤직 라이프',
+				content: '롤링홀 31주년 천진우 단독 콘서트 ‘고독의 포크 전사 주정뱅이 딴따라’',
+				platform: LINK_PLATFORM.INSTAGRAM.NAME,
+				link: 'DUuxhMwAWTA/?img_index=1',
+			},
+			{
+				type: 'MAGAZINE',
 				date: '02.11',
 				host: 'BUV (버브)',
 				content: '어둠의 김광석이라 불리는 뮤지션 천진우(@1000_jinwoo)를 아시나요?',
