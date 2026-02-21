@@ -3,7 +3,6 @@
 /* eslint-disable storybook/default-exports */
 
 import { ConcertItem, ConcertList } from '@/types/concert';
-import { GenerateSchedules } from '@/utils/concert';
 
 export const CONCERT_TYPE_LABEL: Record<string, string> = {
 	SOLO: '단독 콘서트',
@@ -62,6 +61,15 @@ export const SOLO_CONCERT: ConcertList = [
 	{
 		year: '2026',
 		items: [
+			{
+				type: 'SOLO',
+				date: '03.28 ~ 03.29',
+				content: '예정',
+				location: '금천구 수상한창고',
+				times: ['17:00 (예정)'],
+				price: { regular: '(예정) 50,000' },
+				lineUp: SOLO_LINEUP,
+			},
 			{
 				type: 'SOLO',
 				date: '02.07 ~ 02.08',
