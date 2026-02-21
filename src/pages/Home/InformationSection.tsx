@@ -14,7 +14,7 @@ const InformationSection = () => {
 	const latestAlbum = useMemo(() => GetLatestAlbum(FULL_ALBUMS), []);
 
 	return (
-		<S.InformationContainer
+		<S.InformationSection
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ delay: 1.5, duration: 0.8 }}>
@@ -71,7 +71,7 @@ const InformationSection = () => {
 					)}
 				</S.InfoSection>
 			</S.SectionWrapper>
-		</S.InformationContainer>
+		</S.InformationSection>
 	);
 };
 

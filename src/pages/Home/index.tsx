@@ -30,9 +30,7 @@ const Home = () => {
 				<InformationSection />
 			</S.HeroSection>
 
-			<S.SectionWrapper>
-				<ProfileSection />
-			</S.SectionWrapper>
+			<ProfileSection />
 		</S.MainContainer>
 	);
 };

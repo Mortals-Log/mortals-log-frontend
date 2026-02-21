@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-export const InformationContainer = styled(motion.div)`
+export const InformationSection = styled(motion.div)`
 	width: 100%;
 	max-width: 1000px;
 	margin: 0 auto;

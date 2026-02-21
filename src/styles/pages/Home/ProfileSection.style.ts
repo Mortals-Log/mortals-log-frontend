@@ -5,21 +5,26 @@
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
 
-export * from '@/styles/components/Buttons.style';
-export * from '@/styles/components/SourceLink.style';
+export * from '@styles/components/Buttons.style';
+export * from '@styles/components/SourceLink.style';
 
 const fadeInBlur = keyframes`
   from { opacity: 0; filter: blur(10px); transform: translateY(10px); }
   to { opacity: 1; filter: blur(0); transform: translateY(0); }
 `;
 
-export const ProfileContainer = styled.section`
+export const ProfileSection = styled.section`
+	width: 100%;
+	padding: 100px 60px;
 	display: flex;
 	justify-content: center;
 	position: relative;
-
 	width: 100%;
 	margin: 0 auto;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 5rem 1rem;
+	}
 `;
 
 export const BackgroundText = styled.div`
@@ -30,7 +35,7 @@ export const BackgroundText = styled.div`
 
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: 11vw;
-	font-weight: 900;
+	font-weight: ${props => props.theme.FONT.WEIGHT.BOLD};
 	color: ${props => props.theme.COLOR.PRIMARY};
 	opacity: 0.05;
 
@@ -40,6 +45,12 @@ export const BackgroundText = styled.div`
 	z-index: 0;
 	user-select: none;
 	pointer-events: none;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: 30vw;
+		top: 55%;
+		left: 30%;
+	}
 `;
 
 export const SectionWrapper = styled.div`
@@ -61,6 +72,11 @@ export const SectionWrapper = styled.div`
 		flex-direction: column;
 		gap: 2rem;
 	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		flex-direction: column;
+		gap: 1.5rem;
+	}
 `;
 
 export const ImageSection = styled.div`
@@ -76,6 +92,11 @@ export const ImageSection = styled.div`
 	@media (max-width: 850px) {
 		width: 100%;
 		max-width: 280px;
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		flex: none;
+		max-width: 250px;
 	}
 `;
 
@@ -100,6 +121,14 @@ export const HanjaBadge = styled.div`
 
 	writing-mode: vertical-rl;
 	letter-spacing: 0.7rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		top: -10px;
+		right: -10px;
+		padding: 13px 8px;
+		font-size: 1.4rem;
+		letter-spacing: 0.4rem;
+	}
 `;
 
 export const TextSection = styled.div`
@@ -109,6 +138,12 @@ export const TextSection = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		width: 100%;
+		align-items: center;
+		text-align: center;
+	}
 `;
 
 export const ModifierContainer = styled.div`
@@ -129,11 +164,15 @@ export const ModifierContainer = styled.div`
 			opacity: 1;
 		}
 		h3 {
-+			animation-play-state: paused;
+			animation-play-state: paused;
 		}
 	}
 
 	@media (max-width: 850px) {
+		display: none;
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		display: none;
 	}
 `;
@@ -159,6 +198,13 @@ export const NameSection = styled.div`
 		flex-direction: column;
 		margin-bottom: 1rem;
 	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 1.5rem;
+		gap: 0.4rem;
+	}
 `;
 
 export const ArtistName = styled.h2`
@@ -166,6 +212,10 @@ export const ArtistName = styled.h2`
 	font-size: ${props => props.theme.FONT.SIZE.H2};
 	font-weight: ${props => props.theme.FONT.WEIGHT.BOLD};
 	color: ${props => props.theme.COLOR.BLACK};
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.XL};
+	}
 `;
 
 export const JobBadge = styled.span`
@@ -174,6 +224,10 @@ export const JobBadge = styled.span`
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY400};
 	letter-spacing: 0.1rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+	}
 `;
 
 export const DescriptionContainer = styled.div`
@@ -185,6 +239,11 @@ export const DescriptionContainer = styled.div`
 
 	@media (max-width: 850px) {
 		gap: 0.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		align-items: center;
 		margin-bottom: 1.5rem;
 	}
 `;
@@ -200,5 +259,11 @@ export const ProfileDescription = styled.p`
 
 	@media (max-width: 850px) {
 		font-size: ${props => props.theme.FONT.SIZE.MD};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+		text-align: center;
+		line-height: 1.6;
 	}
 `;

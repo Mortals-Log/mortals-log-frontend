@@ -50,7 +50,7 @@ const ProfileSection = () => {
 	}, [isPaused, hasQuotes, interviewQuotes.length]);
 
 	return (
-		<S.ProfileContainer>
+		<S.ProfileSection>
 			<S.BackgroundText>{PROFILE.enName}</S.BackgroundText>
 
 			<S.SectionWrapper>
@@ -88,7 +88,7 @@ const ProfileSection = () => {
 					<S.ViewMoreButton onClick={() => navigate('/profile')}>READ PROFILE LOG</S.ViewMoreButton>
 				</S.TextSection>
 			</S.SectionWrapper>
-		</S.ProfileContainer>
+		</S.ProfileSection>
 	);
 };
 

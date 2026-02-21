@@ -35,23 +35,6 @@ export const HeroSection = styled(motion.section)`
 	text-align: center;
 `;
 
-export const SectionWrapper = styled.section`
-	display: flex;
-	position: relative;
-	width: 100%;
-	max-width: 1200px;
-	padding: 100px 60px;
-
-	align-items: center;
-	justify-content: center;
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		flex-direction: column;
-		padding: 5rem 1rem;
-		gap: 1rem;
-	}
-`;
-
 export const Description = styled.span`
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.SM};
