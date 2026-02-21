@@ -2,6 +2,7 @@
 
 import * as S from '@styles/pages/Album/AlbumDetailTracks.style';
 import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { Album } from '@/types/album';
 import { GetTracks } from '@/utils/track';
@@ -17,6 +18,8 @@ const AlbumDetailTracks = ({
 	TITLE_EN: string;
 	albumData: Album | undefined;
 }) => {
+	const navigate = useNavigate();
+
 	const rawTracks = albumData?.tracks || [];
 	const trackIds = GetTracks(rawTracks);
 	const isVinyl = !Array.isArray(rawTracks);
@@ -59,7 +62,7 @@ const AlbumDetailTracks = ({
 										const trackIndex = trackIds.indexOf(trackId) + 1;
 
 										return (
-											<S.TrackWrapper key={trackId}>
+											<S.TrackWrapper key={trackId} onClick={() => navigate(`/song/${track.id}`)}>
 												<S.TrackNumber>{String(trackIndex).padStart(2, '0')}</S.TrackNumber>
 												<S.TrackTitle $isLead={track.isLead || false}>
 													{track.title} {track.version && track.version}
@@ -75,11 +78,20 @@ const AlbumDetailTracks = ({
 								if (!track) return null;
 
 								return (
-									<S.TrackWrapper key={trackId}>
+									<S.TrackWrapper key={trackId} onClick={() => navigate(`/song/${track.id}`)}>
 										<S.TrackNumber>{String(index + 1).padStart(2, '0')}</S.TrackNumber>
 										<S.TrackTitle $isLead={track.isLead || false}>
 											{track.title} {track.version && `(${track.version})`}
 											{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
+											{track.chordsList && track.chordsList.length > 0 && <S.GuitarBadge>CHORDS</S.GuitarBadge>}
+											{track.mvLink && <S.MVBadge>뮤직 비디오</S.MVBadge>}
+											{track.ageLimit && <S.AdultBadge>🔞 미성년자 청취불가</S.AdultBadge>}
+											{track.singing && (
+												<>
+													{track.singing.tj && <S.SingingBadge brand="TJ">TJ #{track.singing.tj}</S.SingingBadge>}
+													{track.singing.ky && <S.SingingBadge brand="KY">KY #{track.singing.ky}</S.SingingBadge>}
+												</>
+											)}
 										</S.TrackTitle>
 									</S.TrackWrapper>
 								);

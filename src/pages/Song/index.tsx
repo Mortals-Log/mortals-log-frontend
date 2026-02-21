@@ -4,10 +4,12 @@ import * as S from '@styles/pages/Song/Song.styles';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { FULL_ALBUMS } from '@/const/albums';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type SortType = 'latest' | 'release' | 'alphabet';
 
 const Song = () => {
+	const navigate = useNavigate();
 	const [sortType, setSortType] = useState<SortType>('latest');
 
 	const allTracks = Object.values(MASTER_TRACKS).map(track => {
@@ -68,13 +70,22 @@ const Song = () => {
 
 			<S.TrackContainer>
 				{sortedTracks.map((track, index) => (
-					<S.TrackItem key={`${track.id}-${index}`}>
+					<S.TrackItem key={`${track.id}-${index}`} onClick={() => navigate(`/song/${track.id}`)}>
 						<S.TrackNumber>{String(index + 1).padStart(2, '0')}</S.TrackNumber>
 						<S.TrackInfo>
 							<S.TrackTitle>
 								{track.title}
 								{track.version && ` ${track.version}`}
 								{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
+								{track.chordsList && track.chordsList.length > 0 && <S.GuitarBadge>CHORDS</S.GuitarBadge>}
+								{track.mvLink && <S.MVBadge>뮤직 비디오</S.MVBadge>}
+								{track.ageLimit && <S.AdultBadge>🔞 미성년자 청취불가</S.AdultBadge>}
+								{track.singing && (
+									<>
+										{track.singing.tj && <S.SingingBadge brand="TJ">TJ #{track.singing.tj}</S.SingingBadge>}
+										{track.singing.ky && <S.SingingBadge brand="KY">KY #{track.singing.ky}</S.SingingBadge>}
+									</>
+								)}
 							</S.TrackTitle>
 
 							<S.AlbumName>{track.albumTitle}</S.AlbumName>

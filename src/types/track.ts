@@ -2,17 +2,39 @@
 
 /* eslint-disable storybook/default-exports */
 
+interface SingingInfo {
+	tj?: string;
+	ky?: string;
+}
+
+interface Chords {
+	chords: string;
+	tuning?: string;
+	provider?: string;
+	chordModeType: 'integrated' | 'separated';
+}
+
 export interface Track {
 	id: string;
+	originalTrackIds?: string[];
+
 	title: string;
+	enTitle: string;
 	version?: string;
-	originalTrackId?: string | string[];
+	ageLimit?: boolean;
 	isLead?: boolean;
 	duration?: string;
-	youtube?: string;
-	musicvideo?: string;
 	lyrics?: string;
-	singingroom?: string;
+
+	lyricist?: string[];
+	composer?: string[];
+	arranger?: string[];
+
+	chordsList?: Chords[];
+
+	mvLink?: string;
+
+	singing?: SingingInfo;
 }
 
 /*

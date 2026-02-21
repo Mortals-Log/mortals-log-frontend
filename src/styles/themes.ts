@@ -45,6 +45,9 @@ export const COLOR = {
 	PURPLE100: '#EDE9FE',
 	FILTER: 'rgba(127, 130, 149, 0.30)',
 	TOAST: 'rgba(0, 0, 0, 0.80)',
+
+	TJ: '#00AFEC',
+	KY: '#8270DB',
 } as const;
 
 export const FONT = {

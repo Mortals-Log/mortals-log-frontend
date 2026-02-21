@@ -7,6 +7,7 @@ import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
 import { Schedule } from '@/types/schedule';
 
 export * from '@styles/pages/Schedule/Schedule.style';
+export * from '@styles/components/AdultBadge.style';
 
 export const AgendaSection = styled.div`
 	margin-top: 1rem;
@@ -65,18 +66,4 @@ export const AgendaItem = styled.div<{ eventType: Schedule['type'] }>`
 		border-radius: 50%;
 		vertical-align: middle;
 	}
-`;
-
-export const AdultBadge = styled.span`
-	flex-shrink: 0;
-	padding: 1px 5px;
-
-	border: 1px solid ${props => props.theme.COLOR.PRIMARY};
-	border-radius: 3px;
-	background-color: ${props => props.theme.COLOR.PRIMARY + '33'};
-
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
-	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-	color: ${props => props.theme.COLOR.PRIMARY};
 `;
