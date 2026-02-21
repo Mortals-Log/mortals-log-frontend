@@ -283,6 +283,14 @@ Dm                     G
 아주 먼 우주 바깥에서도
 분명 별은
 우릴 내려다보고 있을 텐데`,
+		chordsList: [
+			{
+				chords: 'Dm, Gm, A | 우주 바깥에서도: Bb, F, C',
+				tuning: '정튜닝 | 우주 바깥에서도: 2번 프렛 카포',
+				provider: '김서땡',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_LP01_008: {
 		id: 'TRK_LP01_008',
@@ -1320,6 +1328,11 @@ C      Am     Dm         G
 				provider: '권사장',
 				chordModeType: 'integrated',
 			},
+			{
+				chords: 'E , F# , A , B , C#m , F#m',
+				provider: '김서땡',
+				chordModeType: 'separated',
+			},
 		],
 	},
 	TRK_LP04_008: {
@@ -1960,6 +1973,14 @@ Am     F             C             G
 졸업 후엔 새로운 졸업이 기다린다
 그래도 뭐 이미 한 번 넘어본 고비는
 아무래도 조금은 더 쉽지 않으려나`,
+		chordsList: [
+			{
+				chords: `F, C, Dm, Bb`,
+				tuning: '다운튜닝',
+				provider: '김서땡',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_LP06_009: {
 		id: 'TRK_LP06_009',
