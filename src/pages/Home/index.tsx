@@ -2,7 +2,7 @@
 
 import * as S from '@styles/pages/Home/Home.style';
 
-import Information from '@pages/Home/InformationSection';
+import InformationSection from '@pages/Home/InformationSection';
 import ProfileSection from '@pages/Home/ProfileSection';
 import { METADATA } from '@const/contents';
 import { NAME } from '@const/profile';
@@ -27,7 +27,7 @@ const Home = () => {
 					</S.SubTitleContainer>
 				</header>
 
-				<Information />
+				<InformationSection />
 			</S.HeroSection>
 
 			<S.SectionWrapper>

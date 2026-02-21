@@ -2,16 +2,17 @@
 
 import * as S from '@styles/pages/Home/InformationSection.style';
 
+import { useMemo } from 'react';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@const/albums';
 import { FULL_CONCERTS } from '@const/concert';
 import { GetLatestAlbum } from '@utils/album';
 import { GetUpcomingSchedules } from '@utils/date';
 import Placeholder from '@components/placeholder';
 
-const upcomingEvents = GetUpcomingSchedules(FULL_CONCERTS);
-const latestAlbum = GetLatestAlbum(FULL_ALBUMS);
+const InformationSection = () => {
+	const upcomingEvents = useMemo(() => GetUpcomingSchedules(FULL_CONCERTS), []);
+	const latestAlbum = useMemo(() => GetLatestAlbum(FULL_ALBUMS), []);
 
-const Information = () => {
 	return (
 		<S.InformationContainer
 			initial={{ opacity: 0, y: 20 }}
@@ -33,7 +34,7 @@ const Information = () => {
 									<S.TimeSlotWrapper>
 										{event.date.includes('~')
 											? event.date.split('~').map((date, idx) => (
-													<S.TimeTag key={`range-${date}-${idx}`}>
+													<S.TimeTag key={`range-${date.trim()}-${idx}`}>
 														<span className="part">{idx + 1}일차</span>
 														{event.times?.map((time, tIdx) => (
 															<span key={tIdx} className="time">
@@ -65,7 +66,7 @@ const Information = () => {
 							<p className="info-text">
 								{ALBUM_TYPE_LABEL[latestAlbum.type]} | {latestAlbum.releaseDate}
 							</p>
-							<S.ActionLink to={`album/${latestAlbum.title}`}>앨범 더보기 →</S.ActionLink>{' '}
+							<S.ActionLink to={`album/${latestAlbum.title}`}>앨범 더보기 →</S.ActionLink>
 						</S.ContentCard>
 					)}
 				</S.InfoSection>
@@ -74,4 +75,4 @@ const Information = () => {
 	);
 };
 
-export default Information;
+export default InformationSection;
