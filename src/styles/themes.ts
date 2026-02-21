@@ -83,7 +83,7 @@ export const FONT = {
 	},
 } as const;
 
-export const theme = {
+export const Theme = {
 	COLOR,
 	FONT,
 } as const;

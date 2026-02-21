@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@emotion/react';
-import { theme } from '@styles/themes';
+import { Theme } from '@styles/themes';
 import { Route, Routes } from 'react-router-dom';
 import GNB from '@components/GNB';
 import Home from '@pages/Home';
@@ -23,7 +23,7 @@ import { Toaster } from 'react-hot-toast';
  */
 function App() {
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={Theme}>
 			<ScrollToTop />
 			<GNB />
 			<Toaster position="bottom-center" reverseOrder={false} />
