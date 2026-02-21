@@ -51,6 +51,25 @@ export const MASTER_TRACKS: Record<string, Track> = {
 준시나가 아이 아이아우아우
 에어으링 액엄 와여아이아우
 아이에이 아우어이 아이어우어우어우`,
+		chordsList: [
+			{
+				chords: '카포 Am - Dm - E',
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+
+			{
+				chords: `Am Dm Am Dm E7
+
+Dm Am Dm Am Dm Am Dm E7
+
+Am Dm Am Dm Am E7
+Am Dm Am Dm Am E7 Am`,
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_LP01_002: {
 		id: 'TRK_LP01_002',
@@ -76,6 +95,29 @@ export const MASTER_TRACKS: Record<string, Track> = {
 발자국에 그림자가 걸려 넘어지네
 이야 밤이야 가로등은 망가졌는지
 시야 밖이야 불나방도 이제 쉬러 가야지`,
+		chordsList: [
+			{
+				chords: 'G - C - D',
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+			{
+				chords: `G C G C G D
+G C G C G D G 
+
+C G C G C G D 
+
+G C G C G D
+G C G C G D G 
+
+G C G C G D
+G C G C G D G`,
+				tuning: '정튜닝 | 1카포',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_LP01_003: {
 		id: 'TRK_LP01_003',
@@ -182,6 +224,12 @@ Dm                     G
 				provider: '권사장',
 				chordModeType: 'integrated',
 			},
+			{
+				chords: 'C - G - Am - F - Dm',
+				tuning: '다운튜닝 | 2카포',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
 		],
 		singing: { tj: '52621' },
 	},
@@ -216,6 +264,14 @@ Dm                     G
 곰팡인 구우면 괜찮아
 소고기는 유통기한 한 달까진
 괜찮아 숙성했다고 봐도 괜찮아`,
+		chordsList: [
+			{
+				chords: 'E - A - B7',
+				tuning: '다운튜닝 | 1카포',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_LP01_006: {
 		id: 'TRK_LP01_006',
@@ -252,6 +308,21 @@ Dm                     G
 더운 여름날에는 그런 노랠 부를래
 조금 변주 주다가 다시 평범해지는
 너도 나도 조금씩 머릴 비울 이 노래`,
+		chordsList: [
+			{
+				chords: 'C - E - Am - F - G - Dm',
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+			{
+				chords: `C E7 Am F
+Dm G C E7 Am
+Dm G`,
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_LP01_007: {
 		id: 'TRK_LP01_007',
@@ -309,6 +380,17 @@ Dm                     G
 흉터는 그 크기로 자랑이 되었네
 이 또한 지나가리 혹은 영원하리
 젊은 후에 나 역시 지금을 추억하리`,
+		chordsList: [
+			{
+				chords: `G C D G C D G
+C D B7 Em C D G
+B7 Em Am Em
+B7 Em Am B7
+G Em C D`,
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 
 	// [LP 2집] 푸줏간
@@ -343,6 +425,28 @@ Dm                     G
 좆됐다 좆됐어 내 맘대로 되는 일이 없구나
 좆됐다 좆됐어 풀리는 일 하나 없이 꼬였네
 좆됐다 좆됐어 내 맘대로 되는 일이 없구나`,
+		chordsList: [
+			{
+				chords: 'C - F - G - Am | Am은 처음 간주와 중간 간주에서 사용',
+				tuning: '다운튜닝 | 1카포',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+			{
+				chords: `C F C F C G
+C F C F C G C 
+
+C G Am F C G CGC 
+
+C F C G CGC
+C F C G CGC 
+
+Am G F G
+Am G F G`,
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_LP02_002: {
 		id: 'TRK_LP02_002',
@@ -406,6 +510,17 @@ C
 				provider: '권사장',
 				chordModeType: 'integrated',
 			},
+			{
+				chords: 'C G Am F C G C G C',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+			{
+				chords: 'C - G - F - Am | 마지막 후렴 D - G - A',
+				tuning: '다운튜닝 | 1카포 + 후반 마지막에 2카포로 기본코드 한번',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
 		],
 	},
 	TRK_LP02_004: {
@@ -442,6 +557,14 @@ C
 동물들로 넘쳐납니다
 동물들로 넘쳐납니다
 동물들로 넘쳐납니다`,
+		chordsList: [
+			{
+				chords: 'E - A - B7',
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_LP02_005: {
 		id: 'TRK_LP02_005',
@@ -459,6 +582,14 @@ C
 가지말라 말을 한다면 그냥 여기 남겠어
 하지만 하지 않았어
 하지만 가시 못했어`,
+		chordsList: [
+			{
+				chords: 'Am - F - E',
+				tuning: '다운튜닝 | 2카포',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_LP02_006: {
 		id: 'TRK_LP02_006',
@@ -519,6 +650,12 @@ C     E             F           G
 				provider: '권사장',
 				chordModeType: 'integrated',
 			},
+			{
+				chords: 'C - E - F - G',
+				tuning: '다운튜닝 | 4카포',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
 		],
 	},
 	TRK_LP02_007: {
@@ -554,6 +691,14 @@ C     E             F           G
 벽을 타고서 올라와 벽지를 물들였네
 방바닥에서 올라온 습기를 먹은 곰팡이
 벽을 타고서 올라와 벽지를 물들였네`,
+		chordsList: [
+			{
+				chords: 'E - A - B7',
+				tuning: '다운튜닝 | 4카포',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_LP02_008: {
 		id: 'TRK_LP02_008',
@@ -622,6 +767,12 @@ F         C         E      Am
 				provider: '권사장',
 				chordModeType: 'integrated',
 			},
+			{
+				chords: 'Dm - Am - E - C - F',
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
 		],
 	},
 	TRK_LP02_009: {
@@ -688,6 +839,12 @@ E                             D                         A E
 				provider: '권사장',
 				chordModeType: 'integrated',
 			},
+			{
+				chords: 'A - E - B7',
+				tuning: '다운튜닝 | 2카포',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
 		],
 	},
 	TRK_LP02_010: {
@@ -719,6 +876,14 @@ E                             D                         A E
 많이 외롭긴 하지만
 감히 누구한테 전활 걸겠어
 자면 꿈에서 보지 뭐`,
+		chordsList: [
+			{
+				chords: 'Am - E - F - Dm',
+				tuning: '다운튜닝 | 1카포',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_LP02_011: {
 		id: 'TRK_LP02_011',
@@ -753,6 +918,14 @@ E                             D                         A E
 크게 걱정하진 마세요 다 괜찮습니다
 괜히 제정신에 투덜거렸다
 그냥 흘려들어 주세요 나 괜찮습니다`,
+		chordsList: [
+			{
+				chords: 'C - F - G - Am',
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 
 	// [LP 3집] 천진우 캐롤 모음집
@@ -793,6 +966,17 @@ E                             D                         A E
 		chordsList: [
 			{
 				chords: `G - D - C - Bm`,
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+			{
+				chords: 'G - D - C - Bm',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+			{
+				chords: 'A E D A D A E E',
 				tuning: '다운튜닝',
 				provider: '돗새',
 				chordModeType: 'separated',
@@ -1048,6 +1232,12 @@ G               B7        C            D
 				tuning: '다운튜닝',
 				provider: '권사장',
 				chordModeType: 'integrated',
+			},
+			{
+				chords: 'G - B7 - C - D - Dsus4',
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
 			},
 		],
 	},
@@ -2205,6 +2395,20 @@ C             G             C
 				provider: '권사장',
 				chordModeType: 'integrated',
 			},
+			{
+				chords: 'C - F - G',
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+			{
+				chords: `CFCG CFCGC
+FCGAm FCG
+CFCG CFCGC`,
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
 		],
 	},
 	TRK_EP01_002: {
@@ -2237,6 +2441,14 @@ C             G             C
 흉이 지지 않게 회복하기엔 늙어
 가슴 속엔 무엇인가 곪아있는데
 약을 꽂은 가로수처럼 죽지 못해`,
+		chordsList: [
+			{
+				chords: 'Am - E - Dm',
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_EP01_003: {
 		id: 'TRK_EP01_003',
@@ -2285,6 +2497,14 @@ C             G             C
 술에 취한 시한부 인생
 주정뱅이 딴따라 미친년과 빚쟁이
 술에 취한 시한부 인생`,
+		chordsList: [
+			{
+				chords: 'Em - Am - B7',
+				tuning: '다운튜닝 | 4카포',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_EP01_004: {
 		id: 'TRK_EP01_004',
@@ -2324,6 +2544,28 @@ C             G             C
 모두 자기들 집으로 돌아가는데
 길을 잃은 나는 시궁창에서
 엄마를 부르고 있네`,
+		chordsList: [
+			{
+				chords: 'C - G - Am - F - Em',
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+			{
+				chords: `C G Am F C G Am
+
+C G Am F C G Am 
+
+Em Am Em Am Em Am F G 
+
+C G Am F C G Am F 
+
+C G Am F C G Am F `,
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_EP01_005: {
 		id: 'TRK_EP01_005',
@@ -2415,6 +2657,19 @@ Am  Dm  G        C-G/B < 코드 바뀔때마다 5,6번줄 한번 튕긴 다음 �
 				provider: '권사장',
 				chordModeType: 'integrated',
 			},
+			{
+				chords: 'Am - Dm - G - C - E',
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+			{
+				chords: `Am Dm G C E7
+브릿지 E7 Am Dm G`,
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
 		],
 	},
 	TRK_EP01_006: {
@@ -2451,6 +2706,14 @@ Am  Dm  G        C-G/B < 코드 바뀔때마다 5,6번줄 한번 튕긴 다음 �
 많이 속상한가 봐요
 잃어버린 신발 땜에
 많이 속상한가 봐요`,
+		chordsList: [
+			{
+				chords: 'G - C - D',
+				tuning: '표준튜닝 | 다운튜닝 + 2카포',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 
 	// [EP 2집] 일기장
@@ -2473,6 +2736,14 @@ Am  Dm  G        C-G/B < 코드 바뀔때마다 5,6번줄 한번 튕긴 다음 �
 
 쉬는 꼴 못 보는 내 마음속의 악덕 고블린
 영원히 못 갚을 영혼의 빚을 닦달해 대는 내 사채업자`,
+		chordsList: [
+			{
+				chords: 'E - A - B7',
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_EP02_002: {
 		id: 'TRK_EP02_002',
@@ -2540,6 +2811,12 @@ F G C Am FG C
 				provider: '권사장',
 				chordModeType: 'integrated',
 			},
+			{
+				chords: 'Dm - G - C - Am - F - E',
+				tuning: '다운튜닝 | 2카포',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
 		],
 	},
 	TRK_EP02_003: {
@@ -2572,6 +2849,14 @@ F G C Am FG C
 비슷비슷한 고장을
 안고 살아가죠 나눠주려는 사람은 없죠
 `,
+		chordsList: [
+			{
+				chords: 'C - F - G - Em - Am',
+				tuning: '다운튜닝 | 3카포',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_EP02_004: {
 		id: 'TRK_EP02_004',
@@ -2626,6 +2911,12 @@ C                     Am         Dm         G
 				tuning: '다운튜닝',
 				provider: '권사장',
 				chordModeType: 'integrated',
+			},
+			{
+				chords: 'G - Em - Am - D',
+				tuning: '다운튜닝 | 5카포',
+				provider: '돗새',
+				chordModeType: 'separated',
 			},
 		],
 	},
@@ -2806,6 +3097,12 @@ C       Am   E             F
 				provider: '권사장',
 				chordModeType: 'integrated',
 			},
+			{
+				chords: 'C - Am - E - F - G - Dm',
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
 		],
 	},
 
@@ -2858,6 +3155,17 @@ C       Am   E             F
 아름다운 땐가요
 이젠 슬슬 한계가 보여요`,
 		singing: { tj: '50050' },
+		chordsList: [
+			{
+				chords: `C - E7 - Am - F - G
+벌스. C - E7 - Am
+프리코러스. F - C - G - Am
+코러스. C - E7 - Am - F`,
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 
 	// [SP 3집] 고백
