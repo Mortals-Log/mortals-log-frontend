@@ -1,7 +1,7 @@
 // @src/pages/Profile/components/ProfileLinkSection.tsx
 
 import * as S from '@styles/pages/Profile/ProfileLinkSection.style';
-import { Table } from '@components/Table';
+import { Table } from '@/components/Table';
 import { LINK_LIST } from '@const/links';
 import { ICON_CONFIG } from '@const/icons';
 import { LinkGroup } from '@/types/links';
