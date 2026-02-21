@@ -12,19 +12,23 @@ interface SongDetailContentProps {
 
 const SongDetailContent = ({ track }: SongDetailContentProps) => {
 	const [activeTab, setActiveTab] = useState<'lyrics' | 'chords' | 'mv'>('lyrics');
-	const { chords, tuning, provider } = track.chords || {};
-	const isSeparated = track.chords?.chordModeType === 'separated' && track.lyrics && track.chords;
+	const [activeVersionIdx, setActiveVersionIdx] = useState(0);
+
+	const hasChords = track.chordsList && track.chordsList.length > 0;
+	const currentChordVersion = hasChords ? track.chordsList![activeVersionIdx] : null;
+
+	const isSeparated = currentChordVersion?.chordModeType === 'separated' && track.lyrics;
 
 	return (
 		<S.ContentSection>
 			<S.ContentHeader>
-				{track.lyrics && (track.chords || track.mvLink) ? (
+				{track.lyrics && (hasChords || track.mvLink) ? (
 					<S.TabGroup>
 						<S.TabButton isActive={activeTab === 'lyrics'} onClick={() => setActiveTab('lyrics')}>
 							가사
 						</S.TabButton>
 
-						{track.chords && (
+						{hasChords && (
 							<S.TabButton isActive={activeTab === 'chords'} onClick={() => setActiveTab('chords')}>
 								코드
 							</S.TabButton>
@@ -40,30 +44,42 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 					<S.ContentTitle>가사</S.ContentTitle>
 				)}
 
-				{activeTab === 'chords' && (tuning || provider) && (
-					<S.GuideWrapper>
-						{tuning ? (
-							<div className="guide-item">튜닝 | {tuning}</div>
-						) : (
-							<div className="guide-item">튜닝 | 정튜닝</div>
+				{activeTab === 'chords' && currentChordVersion && (
+					<S.ChordSubHeader>
+						{track.chordsList!.length > 1 && (
+							<S.VersionSelector>
+								{track.chordsList!.map((_, idx) => (
+									<S.VersionChip
+										key={idx}
+										$isActive={activeVersionIdx === idx}
+										onClick={() => setActiveVersionIdx(idx)}>
+										Ver.{idx + 1}
+									</S.VersionChip>
+								))}
+							</S.VersionSelector>
 						)}
-						{provider && <div className="guide-item">제공 | {provider}님</div>}
-					</S.GuideWrapper>
+
+						<S.GuideWrapper>
+							<div className="guide-item">튜닝 | {currentChordVersion.tuning || '정튜닝'}</div>
+							{currentChordVersion.provider && (
+								<div className="guide-item">제공 | {currentChordVersion.provider}님</div>
+							)}
+						</S.GuideWrapper>
+					</S.ChordSubHeader>
 				)}
 			</S.ContentHeader>
 
 			{activeTab === 'lyrics' &&
 				(track.lyrics ? <S.Content isChord={false}>{track.lyrics}</S.Content> : <Placeholder contentName="가사" />)}
 
-			{activeTab === 'chords' && (
+			{activeTab === 'chords' && currentChordVersion && (
 				<>
 					{isSeparated && (
 						<S.StickyChordBar>
-							<S.ChordText>{chords}</S.ChordText>
+							<S.ChordText>{currentChordVersion.chords}</S.ChordText>
 						</S.StickyChordBar>
 					)}
-
-					<S.Content isChord={!isSeparated}>{isSeparated ? track.lyrics : chords}</S.Content>
+					<S.Content isChord={!isSeparated}>{isSeparated ? track.lyrics : currentChordVersion.chords}</S.Content>
 				</>
 			)}
 

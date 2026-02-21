@@ -30,7 +30,7 @@ export interface Track {
 	composer?: string[];
 	arranger?: string[];
 
-	chords?: Chords;
+	chordsList?: Chords[];
 
 	mvLink?: string;
 

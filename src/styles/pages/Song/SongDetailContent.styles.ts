@@ -58,10 +58,56 @@ export const TabButton = styled.button<{ isActive: boolean }>`
 	}
 `;
 
+export const ChordSubHeader = styled.div`
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 1rem;
+	gap: 1rem;
+	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY100};
+`;
+
+export const VersionSelector = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+`;
+
+export const VersionChip = styled.button<{ $isActive: boolean }>`
+	position: relative;
+	cursor: pointer;
+	white-space: nowrap;
+	margin-right: 1.5rem;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
+
+	color: ${props => props.theme.COLOR.GRAY300};
+
+	${props =>
+		props.$isActive &&
+		`
+			color: ${props.theme.COLOR.GRAY700};
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: -6px;
+
+                width: 4px;
+                height: 4px;
+                border-radius: 50%;
+                background-color: ${props.theme.COLOR.GRAY700};
+                transition: opacity 0.3s ease;
+            }
+        
+    `}
+`;
+
 export const GuideWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: flex-end;
 	gap: 0.5rem;
 
 	.guide-item {

@@ -157,8 +157,9 @@ export const MASTER_TRACKS: Record<string, Track> = {
 내 피 빨간색이야
 국물 색깔만 보면
 꼭 매운맛일 것 같아`,
-		chords: {
-			chords: `C        G           Am
+		chordsList: [
+			{
+				chords: `C        G           Am
 사람에 맛이 있다면
 난 좀 싱거운 맛이다
 레시피 대로 했는데
@@ -178,9 +179,10 @@ Dm                     G
 내 피 빨간색이야
 국물 색깔만 보면 꼭 매운맛일 것 같아
 `,
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 		singing: { tj: '52621' },
 	},
 	TRK_LP01_005: {
@@ -374,8 +376,9 @@ Dm                     G
 생일 존나 축하하고 일단 한 잔 해
 아무쪼록 건강해라
 내년에 또 한 잔 해`,
-		chords: {
-			chords: `    C          G                      Am       F
+		chordsList: [
+			{
+				chords: `    C          G                      Am       F
 또 한 해를 잘 보내고 너의 생일이구나
     C            G         F             G    C
 축하한다 어김없이 한살 더 먹었구나
@@ -392,9 +395,10 @@ C
     G                  C
 아무쪼록 건강해라
 	`,
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_LP02_004: {
 		id: 'TRK_LP02_004',
@@ -473,8 +477,9 @@ C
 칼에 한 번 맞았다고 울지마라
 사람들은 약한 모습을 원한다
 눈을 뜨고 적들을 향해 소릴 질러봐`,
-		chords: {
-			chords: `C     E             F           G
+		chordsList: [
+			{
+				chords: `C     E             F           G
 그래 뭐가 됐든 결국 지나간다
 칼에 맞은 데도 새살이 또 난다
 과몰입하면은 결국 니가 진다
@@ -502,10 +507,11 @@ C     E             F           G
 사람들은 약한 모습을 원한다
 눈을 뜨고 적들을 향해 소릴 질러봐
 	`,
-			tuning: '정튜닝기준 2카포',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '정튜닝기준 2카포',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_LP02_007: {
 		id: 'TRK_LP02_007',
@@ -564,8 +570,9 @@ C     E             F           G
 대출도 이자도 갚을래 나도
 돈벌래 돈벌래 돈벌래 나도
 청춘도 자유도 누릴래 다`,
-		chords: {
-			chords: `Am*8
+		chordsList: [
+			{
+				chords: `Am*8
 Dm     Am      E         Am
 이렇게 벌어서 어떻게 사노
 F         C         E      Am
@@ -603,10 +610,11 @@ Dm     Am      E         Am
 돈벌래 돈벌래 돈벌래 나도
 F         C         E      Am
 청춘도 자유도 누릴래 다`,
-			tuning: '다운튜닝',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '다운튜닝',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_LP02_009: {
 		id: 'TRK_LP02_009',
@@ -638,8 +646,9 @@ F         C         E      Am
 슈디두밥바 슈비두밥바
 슈비두밥바 슈비두밥바
 집에 가는 길은 너무 즐거우니까`,
-		chords: {
-			chords: `A
+		chordsList: [
+			{
+				chords: `A
   A                           A
 이정도면 됐다 이제 집에 가자
   A                           A
@@ -668,9 +677,10 @@ A
 E                             D                         A E
 매일 같이 다짐한다 돈 벌어서 택시타자
 `,
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_LP02_010: {
 		id: 'TRK_LP02_010',
@@ -772,12 +782,14 @@ E                             D                         A E
 화려하게 빛날 너의 크리스마스는 나랑은 썩 안 어울리네
 괜히 나와 돌아다녀 미안해 맥주만 사서 들어갈게
 눈빛으로 보채지들 마`,
-		chords: {
-			chords: `G - D - C - Bm`,
-			tuning: '다운튜닝',
-			provider: '돗새',
-			chordModeType: 'separated',
-		},
+		chordsList: [
+			{
+				chords: `G - D - C - Bm`,
+				tuning: '다운튜닝',
+				provider: '돗새',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_LP03_002: {
 		id: 'TRK_LP03_002',
@@ -947,8 +959,9 @@ Oh what fun it is to ride in a one horse open slay`,
 언제쯤 완벽해지려나
 유통기한은 찍혔는데
 제조는 아직도 진행 중`,
-		chords: {
-			chords: `E
+		chordsList: [
+			{
+				chords: `E
 E                     A 
 나이를 한두살 더먹고
 B7                  E
@@ -959,9 +972,10 @@ B7                            E
 자라지 못하고 멈췄네
 E A B7
 `,
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_LP03_008: {
 		id: 'TRK_LP03_008',
@@ -992,8 +1006,9 @@ E A B7
 뭐 후회해도 이젠 연말인데 어쩌겠어요
 새 달력에는 공휴일들이 주말을 비켜가나요
 설렘이 무뎌지지 않도록 꼭 확인하세요`,
-		chords: {
-			chords: `G  B7  C  D
+		chordsList: [
+			{
+				chords: `G  B7  C  D
 G    B7        C            D
 내년에는 더 밝게 살아야지
 내 맘대로 되는 건 아니지만
@@ -1022,10 +1037,11 @@ G               B7        C            D
 뭐 후회해도 이젠 연말인데 어쩌겠어요
 새 달력에는 공휴일들이 주말을 비켜가나요
 설렘이 무뎌지지 않도록 꼭 확인하세요`,
-			tuning: '다운튜닝',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '다운튜닝',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 
 	// [LP 4집] 나는 기계가 싫어요
@@ -1080,8 +1096,9 @@ G               B7        C            D
 연금은 팔십살부터 서바이벌로 지급이 돼
 길에서 젊은일 보면 알아서 빌빌 기어야 돼
 빈집은 자꾸만 늘어 마치 내 이빨 빠지듯이`,
-		chords: {
-			chords: `Em A Em A Em A Em A
+		chordsList: [
+			{
+				chords: `Em A Em A Em A Em A
 Em Em A Em A Em A Em A
 
 Em     A              Em         A
@@ -1096,10 +1113,11 @@ Em A Em A Em A Em A
 
 C                        G B7                           Em
 노인의 노인을 위한 노인에 의한 나라가 돼`,
-			tuning: '다운튜닝',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '다운튜닝',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_LP04_003: {
 		id: 'TRK_LP04_003',
@@ -1146,8 +1164,9 @@ C                        G B7                           Em
 
 우리는 술먹고 토하는 친구들 세상에게 버림받은 악성 종양들
 알코올을 상처입은 가슴에 붓는 효과 빠른 상처소독법`,
-		chords: {
-			chords: `           Em     B7       Em
+		chordsList: [
+			{
+				chords: `           Em     B7       Em
 우리는 술먹고 토하는 친구들
 Am                      Em 
 세상에게 버림받은 악성종양들
@@ -1185,10 +1204,11 @@ Am                      Em
 B7                        Em
 효과빠른 상처소독법
 `,
-			tuning: '다운튜닝',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '다운튜닝',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 		mvLink: '7uhXtEZ2IA8',
 	},
 	TRK_LP04_005: {
@@ -1265,8 +1285,9 @@ B7                        Em
 쇠사슬을 감아주세요
 쇠사슬을 감아주세요
 쇠사슬을 감아주세요`,
-		chords: {
-			chords: `
+		chordsList: [
+			{
+				chords: `
 C                            D                             F                G           C
 신경써야 할 것들이 너무 많은 탓에 나는 여행길을 미루고 미루네
 정처없이 떠돌다가 발길 멈추는 곳에서 일몰을 지켜보고 싶네
@@ -1295,10 +1316,11 @@ C      Am     Dm         G
 쇠사슬을 감아주세요
 쇠사슬을 감아주세요
 쇠사슬을 감아주세요`,
-			tuning: '정튜닝 기준 4카포 | 다운튜닝시 6카포',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '정튜닝 기준 4카포 | 다운튜닝시 6카포',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_LP04_008: {
 		id: 'TRK_LP04_008',
@@ -1325,8 +1347,9 @@ C      Am     Dm         G
 인생은 죽어야만 끝이 나는데 조금은 즐길 수도 있지 않을까
 당장에 화낼 일이 너무 많아서 조금의 행복마저 저축을 했나
 우울한 날을 계속 끌어다 쓰면 노인이 됐을 때는 꽃밭이려나`,
-		chords: {
-			chords: `Am           Em         F           C E7
+		chordsList: [
+			{
+				chords: `Am           Em         F           C E7
  별 거 아닌 일에도 쉽게 화를 낸다
 Am           Em         F           C E7
  진짜 큰일에는 더 건조해지면서
@@ -1360,10 +1383,11 @@ C          E7          Am       Am    F        G              C                C
  당장에 화낼 일이 너무 많아서   조금의 행복마저 저축을 했나
  우울한 날을 계속 끌어다 쓰면   노인이 됐을 때는 꽃밭이려나
 		`,
-			tuning: '다운튜닝',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '다운튜닝',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 		singing: { tj: '88087', ky: '50166' },
 	},
 	TRK_LP04_009: {
@@ -1394,8 +1418,9 @@ C          E7          Am       Am    F        G              C                C
 
 주정뱅이 딴따라 미친년과 빚쟁이 술에 취한 시한부 인생
 주정뱅이 딴따라 미친년과 빚쟁이 술에 취한 시한부 인생`,
-		chords: {
-			chords: `Em                           Am
+		chordsList: [
+			{
+				chords: `Em                           Am
 잔을 채워 독한 걸로 가득 부어줘
 B7                           Em
 이거 먹고 죽으려면 다섯 잔은 줘
@@ -1427,10 +1452,11 @@ Em                     Am
 주정뱅이 딴따라 미친년과 빚쟁이
 B7                          Em
 술에 취한 시한부 인생`,
-			tuning: '다운튜닝',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '다운튜닝',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_LP04_010: {
 		id: 'TRK_LP04_010',
@@ -1664,8 +1690,9 @@ B7                          Em
 
 이번 방학엔 공부 좀 해라 이 썩을 놈의 쉐끼들 언제쯤 철이들까
 정신 차려라 한 번에 훅가 이미 엎질러진 물에다 코박고 죽고 싶냐`,
-		chords: {
-			chords: `F C Dm Am
+		chordsList: [
+			{
+				chords: `F C Dm Am
 Bb F Bb C
 F C Dm Am
 Bb F Bb C F
@@ -1694,9 +1721,21 @@ F             C    Dm          Am
 정신 차려라 한 번에 훅가
 Bb              F              Bb      C     F
 이미 엎질러진 물에다 코박고 죽고 싶냐`,
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+			{
+				chords: 'F, Bb, C, Dm, A',
+				provider: '김서땡',
+				chordModeType: 'separated',
+			},
+			{
+				chords: 'C , G , Am , E , F',
+				tuning: '정튜닝 기준 기타 5번 프렛에 카포',
+				provider: '김서땡',
+				chordModeType: 'separated',
+			},
+		],
 	},
 	TRK_LP06_003: {
 		id: 'TRK_LP06_003',
@@ -1785,8 +1824,9 @@ Bb              F              Bb      C     F
 어쩌면 나는 필요없는 그런 사람이 이미 되었나봐
 아니면 나는 도대체 왜 끊임이 없이 외로워야하나`,
 		mvLink: 'em4fOINPvDY',
-		chords: {
-			chords: `C                                Em            Bb                  G
+		chordsList: [
+			{
+				chords: `C                                Em            Bb                  G
    어쩌면 나는 쓸모 없는 그런 사람이 되어가는가 봐
    아니면 나는 도대체 왜 끊임이 없이 나를 미워할까
 
@@ -1800,10 +1840,11 @@ F             G
 C                              Em              Bb               G
 어쩌면 나는 필요없는 그런 사람이 이미 되었나 봐
 아니면 나는 도대체 왜 끊임이 없이 외로워야 하나`,
-			tuning: '1카포 C Em Bb GF G C Am | 다운튜닝시 3카포',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '1카포 C Em Bb GF G C Am | 다운튜닝시 3카포',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_LP06_006: {
 		id: 'TRK_LP06_006',
@@ -1864,8 +1905,9 @@ C                              Em              Bb               G
 우리는 확실히 아이를 잘못 키우고 있어
 장례식에 오신 걸 환영해요 죽은 사람은
 대한민국 청소년들의 아이다움 그리고 낭만 방황 예술 청춘`,
-		chords: {
-			chords: `인트로
+		chordsList: [
+			{
+				chords: `인트로
 솔--파레-도레-파레-도레---솔파-솔
 
 Am     F             C            G
@@ -1884,10 +1926,11 @@ Am     F             C             G
 우리는 확실히 아이를 잘못 키우고 있어
 장례식에 오신 걸 환영해요 죽은 사람은  Am   F     C     G
 대한민국 청소년들의 아이다움 그리고    낭만 방황 예술 청춘`,
-			tuning: '다운튜닝',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '다운튜닝',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_LP06_008: {
 		id: 'TRK_LP06_008',
@@ -1974,8 +2017,9 @@ Am     F             C             G
 비둘기는 어딜가나 있고
 내 사소한 존재 가칠 위해 싸워
 그 마저도 싸우지 않으면 없어`,
-		chords: {
-			chords: `C            A         Dm          G
+		chordsList: [
+			{
+				chords: `C            A         Dm          G
 무던하게 난 묻어가는게 좋아
 튀면은 괜히 뒤에서 욕할까봐
 난 무리에 섞여서 티도 안 났음 해
@@ -2014,10 +2058,11 @@ C          A     Dm          G
 비둘기는 어딜가나 있고
 내 사소한 존재 가칠 위해 싸워
 그 마저도 싸우지 않으면 없어`,
-			tuning: '정튜닝 4카포 | 비둘기~ 다음 뚱땅띵: 2번줄 7 g 10 9 10 11 12프렛',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '정튜닝 4카포 | 비둘기~ 다음 뚱땅띵: 2번줄 7 g 10 9 10 11 12프렛',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_LP06_011: {
 		id: 'TRK_LP06_011',
@@ -2101,8 +2146,9 @@ C          A     Dm          G
 헤이호 헤이호 아름답기는 개뿔
 아프니까 그만 때려 개새끼들아`,
 		mvLink: 'LZC3tqP0jAw',
-		chords: {
-			chords: `
+		chordsList: [
+			{
+				chords: `
 C                                F
 믿어버렸어 친구놈을 한 번 더
 C                           G
@@ -2134,10 +2180,11 @@ C                             G
 C             G             C
 아프니까 그만 때려 개새끼들아
 			`,
-			tuning: '다운튜닝',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '다운튜닝',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_EP01_002: {
 		id: 'TRK_EP01_002',
@@ -2307,8 +2354,9 @@ C             G             C
 미안하단 말 한마디도
 못 하고선 이제와서 왜`,
 		singing: { tj: '83659', ky: '93346' },
-		chords: {
-			chords: `[Am   Dm    G       C-G/B] <팜뮤트
+		chordsList: [
+			{
+				chords: `[Am   Dm    G       C-G/B] <팜뮤트
     결국에 세상은 망하고
     우린 모두 죽고 말겠지
     수많은 고통과 기쁨도
@@ -2342,10 +2390,11 @@ Am  Dm  G        C-G/B < 코드 바뀔때마다 5,6번줄 한번 튕긴 다음 �
 미안하단 말 한마디도
 못 하고선, 이제 와서 왜?
 			`,
-			tuning: '다운튜닝',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '다운튜닝',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_EP01_006: {
 		id: 'TRK_EP01_006',
@@ -2430,8 +2479,9 @@ Am  Dm  G        C-G/B < 코드 바뀔때마다 5,6번줄 한번 튕긴 다음 �
 
 설명 할 수 없는 어떤 그리움 노스텔지어는
 설령 오래되어 빛이 바래도 파스텔톤이죠`,
-		chords: {
-			chords: `Dm  G            C            Am
+		chordsList: [
+			{
+				chords: `Dm  G            C            Am
 기분 좋은 바람이 불어오면
 콧잔등이 시큰해지곤 하죠
 오랜 기억들은 냄새를 타고
@@ -2465,10 +2515,11 @@ F G C Am FG C
 설명 할 수 없는 어떤 그리움 노스텔지어는
 설령 오래되어 빛이 바래도 파스텔톤이죠
 	`,
-			tuning: '정튜닝 (EADGEB)',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '정튜닝 (EADGEB)',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 	TRK_EP02_003: {
 		id: 'TRK_EP02_003',
@@ -2523,8 +2574,9 @@ F G C Am FG C
 그래서일까요 오늘따라 잠이 무섭죠
 정해진 죽음을 따라가는 연습 같아서
 시간도 어느새 꽤 늦었죠 나도 자고 싶죠`,
-		chords: {
-			chords: `            C               Am          Dm         G
+		chordsList: [
+			{
+				chords: `            C               Am          Dm         G
 이젠 더 할 일도 또 쉴 것도 다 해치웠군요
 내일도 일하러 또 가려면 일찍 자야겠죠
 
@@ -2550,10 +2602,11 @@ C                     Am         Dm         G
 정해진 죽음을 따라가는 연습 같아서
 시간도 어느새 꽤 늦었죠 나도 자고 싶죠
 			`,
-			tuning: '다운튜닝',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '다운튜닝',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 
 	// [EP 3집] 귀천
@@ -2696,8 +2749,9 @@ C                     Am         Dm         G
 그저그런 뻔한 속편이야
 아아 아아 아아 아아
 아아 아아 아아 아아`,
-		chords: {
-			chords: `C      Am     E     F
+		chordsList: [
+			{
+				chords: `C      Am     E     F
 한 편으로 끝나는게
 어땠을까 싶은 영화
 끝에가서 미련을 남기고
@@ -2727,10 +2781,11 @@ C       Am   E             F
 그저그런 뻔한 속편이야
 아아 아아 아아 아아
 아아 아아 아아 아아`,
-			tuning: '다운튜닝',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '다운튜닝',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 
 	// [SP 2집] 인간 쓰레기
@@ -2835,8 +2890,9 @@ UFO 타고 떠나면은
 인간으로는 못살겠어요
 이젠 안녕
 트라우마는 간직할게요`,
-		chords: {
-			chords: `C           Am  Dm           G
+		chordsList: [
+			{
+				chords: `C           Am  Dm           G
 사실 나는요 인간이 아닙니다
 아주 멀리서 온 외계인이지요
 너무나 재밌어 보이길래                C
@@ -2867,9 +2923,10 @@ C        Am
 Dm             G
 트라우마는 간직할게요
 		`,
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 
 	// [SP 4집] 세모 네모 동그라미
@@ -2981,8 +3038,9 @@ Dm             G
 나만 여기두고
 어딜 가시나요
 오늘 밤만 같이 있어주세요`,
-		chords: {
-			chords: `C         G        Am       Em
+		chordsList: [
+			{
+				chords: `C         G        Am       Em
 낯선 표정 딱딱한 말투도
      F             G             C
 그댄 오늘 날 처음 봤나요
@@ -3012,10 +3070,11 @@ Em      Am
         F              G   C
 오늘 밤만 같이 있어주세요
 			`,
-			tuning: '하프다운튜닝',
-			provider: '권사장',
-			chordModeType: 'integrated',
-		},
+				tuning: '하프다운튜닝',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 
 	// [LV 1집] 천진우 라이브 (2024.01.11)
