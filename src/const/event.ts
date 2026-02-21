@@ -13,6 +13,20 @@ export const EVENT_TYPE_LABEL: Record<string, string> = {
 
 export const EVENT_RADIO: EventList = [
 	{
+		year: '2024',
+		items: [
+			{
+				type: 'RADIO',
+				date: '11.28',
+				host: '노래하는덕이형',
+				content:
+					"어둠의 김광석 '천진우' 노래 모음 l 인간쓰레기, 일어나, 헐크호건 존시나가 같이 삽니다, 중독자, 좋은친구들, 생일축하해, 멸망",
+				platform: LINK_PLATFORM.YOUTUBE.NAME,
+				link: 'DddqM_Zb4PQ',
+			},
+		],
+	},
+	{
 		year: '2023',
 		items: [
 			{
@@ -22,7 +36,6 @@ export const EVENT_RADIO: EventList = [
 				content: "[정오의희망곡] 7/25(화) 건강한 나를 지키는 법 / 나만 알고 싶다,,, 싱어송라이터 '천진우' | 광주mbc",
 				platform: LINK_PLATFORM.YOUTUBE.NAME,
 				link: 'YOJis-vq0sA',
-				embed: 'YOJis-vq0sA?si=cP4hEwkMAxMjtSUj',
 			},
 		],
 	},
@@ -40,7 +53,6 @@ export const EVENT_INTERVIEW: EventList = [
 				platform: LINK_PLATFORM.YOUTUBE.NAME,
 				link: 'u5vdrzXzbeA',
 				quote: '중학교 기간제 교사로도 일하고 있고 싱어송라이터로서도 활동하고 있는 인디가수',
-				embed: 'u5vdrzXzbeA?si=69SoIjt4SOBNIqiR',
 			},
 			{
 				type: 'INTERVIEW',
@@ -68,6 +80,19 @@ export const EVENT_INTERVIEW: EventList = [
 			},
 		],
 	},
+	{
+		year: '2023',
+		items: [
+			{
+				type: 'INTERVIEW',
+				date: '12.02',
+				host: '시빅뉴스',
+				content: "노래하는 인스타그램 스타 교사... 그만의 방식으로 세상 '위로'",
+				link: 'https://www.civicnews.com/news/articleView.html?idxno=36167',
+				quote: '음악하고 있는',
+			},
+		],
+	},
 ];
 
 export const EVENT_MAGAZINE: EventList = [
@@ -76,11 +101,51 @@ export const EVENT_MAGAZINE: EventList = [
 		items: [
 			{
 				type: 'MAGAZINE',
+				date: '02.16',
+				host: '인디 뮤직 라이프',
+				content: '<롤링홀 31주년 천진우 단독 콘서트 ‘고독의 포크 전사 주정뱅이 딴따라’>',
+				platform: LINK_PLATFORM.INSTAGRAM.NAME,
+				link: 'DUxXC1AAVGI',
+			},
+			{
+				type: 'MAGAZINE',
+				date: '02.15',
+				host: '인디 뮤직 라이프',
+				content: '롤링홀 31주년 천진우 단독 콘서트 ‘고독의 포크 전사 주정뱅이 딴따라’',
+				platform: LINK_PLATFORM.INSTAGRAM.NAME,
+				link: 'DUuxhMwAWTA',
+			},
+			{
+				type: 'MAGAZINE',
 				date: '02.11',
 				host: 'BUV (버브)',
 				content: '어둠의 김광석이라 불리는 뮤지션 천진우(@1000_jinwoo)를 아시나요?',
 				platform: LINK_PLATFORM.INSTAGRAM.NAME,
-				link: 'DUnPbd6DxtU/?img_index=1',
+				link: 'DUnPbd6DxtU',
+			},
+		],
+	},
+	{
+		year: '2025',
+		items: [
+			{
+				type: 'MAGAZINE',
+				date: '01.08',
+				host: '강원도민일보',
+				content: '춘천출신 싱어송라이터 천진우 ‘멸망’ 유튜브 120만 조회수 인기몰이',
+				link: 'https://www.kado.net/news/articleView.html?idxno=1287377',
+			},
+		],
+	},
+	{
+		year: '2024',
+		items: [
+			{
+				type: 'MAGAZINE',
+				date: '09.16',
+				host: '강원도민일보',
+				content: '28세 춘천 음악공장장이 만든 첫 사랑노래',
+				link: 'https://www.kado.net/news/articleView.html?idxno=1265898',
 			},
 		],
 	},

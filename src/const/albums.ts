@@ -935,11 +935,48 @@ Special Thanks to 애쉬`,
 	},
 	{
 		type: 'LV',
-		title: '부산불바다 - 라이브',
-		fileName: 'busan', // fileName은 공식 영어 이름을 사용하나 사진만 업로드되고 제목은 업로드 되지 않아 임시로 'busan'을 사용합니다.
+		title: '부산불바다',
+		fileName: 'Busan Bullbada',
 		releaseDate: '2026.02.20',
+		intro: `2026년 1월 17일, 부산에서 진행된 천진우의 단독공연을 기록하였습니다.
+육군, 공군, 해병대, 예비역으로 뿔뿔이 흩어졌던 친구들이 모여 2년 만에 펼친 이 공연은 아드레날린과 땀냄새, 절규의 총집합이였습니다.
+천진우의 노래들을 강한 록 사운드로 즐길 수 있는 이 앨범은 급히 도파민 분비가 필요한 상황에 안성맞춤입니다.
+
+[TRACK]
+01. 그래 뭐가 됐든 결국 지나간다
+02. 장래희망
+03. 스카
+04. 이번 방학엔 공부 좀 해라
+
+[CREDIT]
+Vocal 천진우, 양동훈
+Acoustic Guitar 천진우
+Electric Guitar 기토, 법영이
+Bass 양동훈
+Drum 리장단
+Saxophone 기토
+Composed by 천진우
+Lyrics by 천진우
+Arranged by 천진우, 기토, 리장단, 법영이, 양동훈
+Mixed by 천진우
+Masterd by 천진우
+Album Photo by 양건희
+Special Thanks to 애쉬`,
+		tracks: ['TRK_LV04_*'],
+		genre: ['인디', '락/메탈'],
+		style: ['인디 락'],
 		distributor: '아토엔터테인먼트',
+		totalDuration: '10:06',
 		agency: '천진우',
+		streaming: {
+			[MUSIC_PLATFORM.YOUTUBE]: 'https://www.youtube.com/watch?v=dSMQHo6C1HQ',
+			[MUSIC_PLATFORM.MELON]: 'https://www.melon.com/album/detail.htm?albumId=12869466',
+			[MUSIC_PLATFORM.SPOTIFY]: 'https://open.spotify.com/album/255ixVUVJm8puJJUFxJslJ',
+			[MUSIC_PLATFORM.APPLE_MUSIC]: 'https://music.apple.com/kr/album/busan-bullbada-live-version-ep/1876142920',
+			[MUSIC_PLATFORM.BUGS]: 'https://music.bugs.co.kr/album/20790994?wl_ref=list_ab_01',
+			[MUSIC_PLATFORM.GENIE]: 'https://www.genie.co.kr/detail/albumInfo?axnm=87251273',
+			[MUSIC_PLATFORM.SOUNDCLOUD]: '',
+		},
 	},
 ];
 
