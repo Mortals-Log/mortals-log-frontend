@@ -8,7 +8,6 @@ export interface EventItem {
 	content: string;
 	host?: string;
 	link?: string;
-	embed?: string;
 	platform?: string;
 	quote?: string;
 	descriptionContent?: string;

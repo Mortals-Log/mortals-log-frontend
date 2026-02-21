@@ -13,7 +13,7 @@ interface ScheduleEtcConcertProps {
 const ScheduleDetailEvent = ({ schedule }: ScheduleEtcConcertProps) => {
 	const platformInfo = Object.values(LINK_PLATFORM).find(p => p.NAME === schedule.platform);
 	const linkUrl = platformInfo ? `${platformInfo.BASE_URL}${schedule.link}` : schedule.link;
-	const embedUrl = platformInfo?.EMBED_URL && schedule.embed ? `${platformInfo.EMBED_URL}${schedule.embed}` : null;
+	const embedUrl = platformInfo?.EMBED_URL && schedule.link ? `${platformInfo.EMBED_URL}${schedule.link}` : null;
 
 	return (
 		<>
@@ -61,7 +61,7 @@ const ScheduleDetailEvent = ({ schedule }: ScheduleEtcConcertProps) => {
 						<S.InfoGroup>
 							<S.InfoTitle>WATCH / LISTEN</S.InfoTitle>
 							<S.PrimaryButton href={linkUrl} target="_blank" rel="noopener noreferrer">
-								{schedule.platform}로 보러가기
+								{schedule.platform ? schedule.platform : schedule.host}로 보러가기
 							</S.PrimaryButton>
 						</S.InfoGroup>
 					)}
