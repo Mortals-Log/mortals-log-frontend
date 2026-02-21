@@ -83,9 +83,15 @@ export const FONT = {
 	},
 } as const;
 
+export const WINDOW_SIZE = {
+	mobile: `(max-width: 480px)`,
+	tablet: `(max-width: 768px)`,
+	laptop: `(max-width: 1024px)`,
+};
 export const Theme = {
 	COLOR,
 	FONT,
+	WINDOW_SIZE,
 } as const;
 
 export type ColorType = typeof COLOR;
