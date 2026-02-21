@@ -27,3 +27,9 @@ export const SingingBadge = styled(LeadBadge)<{ brand: 'TJ' | 'KY' }>`
 	margin-left: 5px;
 	background-color: ${props => props.theme.COLOR[props.brand]};
 `;
+
+export const MVBadge = styled(LeadBadge)`
+	margin-left: 5px;
+	background-color: ${props => props.theme.COLOR.YELLOW600};
+	color: ${props => props.theme.COLOR.GRAY700};
+`;
