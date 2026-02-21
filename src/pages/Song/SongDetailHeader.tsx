@@ -3,6 +3,7 @@
 import * as S from '@styles/pages/Song/SongDetailHeader.styles';
 import { useNavigate } from 'react-router-dom';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
+import { MASTER_TRACKS } from '@/const/tracks';
 import { Track } from '@/types/track';
 import { Album } from '@/types/album';
 
@@ -34,9 +35,20 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 				<span className="title" onClick={() => navigate(`/album/${albumInfo?.title}`)}>
 					{albumInfo?.title}
 				</span>
+				{track.originalTrackIds && (
+					<S.OriginalLinkGroup>
+						{track.originalTrackIds.map(id => {
+							const originalTrack = MASTER_TRACKS[id as keyof typeof MASTER_TRACKS];
 
-				{track.originalTrackId && (
-					<S.OriginalLink onClick={() => navigate(`/song/${track.originalTrackId}`)}>원곡 보기</S.OriginalLink>
+							const displayTitle = originalTrack ? originalTrack.title : id;
+
+							return (
+								<S.OriginalLink key={id} onClick={() => navigate(`/song/${id}`)}>
+									원곡보기 #{displayTitle}
+								</S.OriginalLink>
+							);
+						})}
+					</S.OriginalLinkGroup>
 				)}
 			</S.Description>
 		</S.HeaderSection>

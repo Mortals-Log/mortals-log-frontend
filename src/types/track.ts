@@ -16,7 +16,7 @@ interface Chords {
 
 export interface Track {
 	id: string;
-	originalTrackId?: string | string[];
+	originalTrackIds?: string[];
 
 	title: string;
 	enTitle: string;

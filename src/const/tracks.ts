@@ -3413,7 +3413,7 @@ Em      Am
 		enTitle: 'Spicy Man+Youth',
 		version: 'Live-2023.12.16.',
 		duration: '6:06',
-		originalTrackId: ['TRK_LP01_004', 'TRK_EP01_001'],
+		originalTrackIds: ['TRK_LP01_004', 'TRK_EP01_001'],
 		lyrics: `사람에 맛이 있다면
 난 좀 싱거운 맛이다
 레시피 대로 했는데
@@ -3480,7 +3480,7 @@ Em      Am
 		enTitle: 'Drunk',
 		version: 'Live-2023.12.16.',
 		duration: '4:38',
-		originalTrackId: 'TRK_LP04_009',
+		originalTrackIds: ['TRK_LP04_009'],
 		lyrics: `잔을 채워 독한 걸로 가득 부어줘, 이거 먹고 죽으려면 다섯 잔은 줘
 길바닥에 드러누워 노랠 불러 줘, 집 나갔던 마누라도 춤추며 돌아올 거야
 달이 밝은 언덕 위에 줄지어 서서, 손을 잡고 빙빙 돌며 함께 있어 줘
@@ -3512,7 +3512,7 @@ Em      Am
 		enTitle: 'Farm',
 		version: 'Live-2023.12.16.',
 		duration: '2:40',
-		originalTrackId: 'TRK_LP02_004',
+		originalTrackIds: ['TRK_LP02_004'],
 		lyrics: `외로운 마음이란 개같습니다
 지칠 줄을 모르거든요
 고마운 마음은 고양이 같네요
@@ -3555,7 +3555,7 @@ Em      Am
 		enTitle: 'Rat',
 		version: 'Live-2023.12.16.',
 		duration: '3:11',
-		originalTrackId: 'TRK_EP01_004',
+		originalTrackIds: ['TRK_EP01_004'],
 		lyrics: `시골쥐와 도시쥐 얘기처럼, 나도 도시로 가고 싶었어
 알바부터 시작해 노력했지, 갚을 빚이 조금 있었거든
 
@@ -3593,7 +3593,7 @@ Em      Am
 		enTitle: 'Icecream',
 		version: 'Live-2023.12.16.',
 		duration: '5:03',
-		originalTrackId: 'TRK_LP03_007',
+		originalTrackIds: ['TRK_LP03_007'],
 		lyrics: `나이를 한두 살 더 먹고
 앞자리 숫자가 바뀌어도
 내 마음속의 한구석은
@@ -3626,7 +3626,7 @@ Em      Am
 		enTitle: 'Happy Birthday',
 		version: 'Live-2023.12.16.',
 		duration: '2:44',
-		originalTrackId: 'TRK_LP02_003',
+		originalTrackIds: ['TRK_LP02_003'],
 		lyrics: `또 한 해를 잘 보내고 너의 생일이구나
 축하한다 어김없이 한 살 더 먹었구나
 호들갑은 떨지 말자 뭐 대수라더냐
@@ -3656,7 +3656,7 @@ Em      Am
 		enTitle: 'Going Home',
 		version: 'Live-2023.12.16.',
 		duration: '3:27',
-		originalTrackId: 'TRK_LP02_009',
+		originalTrackIds: ['TRK_LP02_009'],
 		lyrics: `이정도면 됐다 이제 집에 가자
 집에 가서 샤워하고 잠 좀 자자
 오 너무 많은 일이 있었어
@@ -3687,7 +3687,7 @@ Em      Am
 		enTitle: 'Fucked Up',
 		version: 'Live-2024.05.15. with 김한수,설규리',
 		duration: '2:42',
-		originalTrackId: 'TRK_LP02_001',
+		originalTrackIds: ['TRK_LP02_001'],
 		arranger: ['김한수', '설규리'],
 		lyrics: `좆됐다 좆됐어 풀리는 일 하나 없이 꼬였네
 좆됐다 좆됐어 내 맘대로 되는 일이 없구나
@@ -3730,7 +3730,7 @@ Em      Am
 		enTitle: 'Fall',
 		version: 'Live-2024.05.15. with 김한수,설규리',
 		duration: '4:13',
-		originalTrackId: 'TRK_EP01_005',
+		originalTrackIds: ['TRK_EP01_005'],
 		arranger: ['김한수', '설규리'],
 		lyrics: `결국에 세상은 망하고 우린 모두 죽고 말겠지
 수많은 고통과 기쁨도 한 줌의 가루가 되겠지
@@ -3773,7 +3773,7 @@ Em      Am
 		enTitle: 'Youth',
 		version: 'Live-2024.05.15. with 김한수,설규리',
 		duration: '2:58',
-		originalTrackId: 'TRK_EP01_001',
+		originalTrackIds: ['TRK_EP01_001'],
 		arranger: ['김한수', '설규리'],
 		lyrics: `믿어버렸어 친구놈을 한 번 더
 믿을만한 정보라더니
@@ -3822,7 +3822,7 @@ Em      Am
 		enTitle: 'Sober',
 		version: 'Live-2024.05.15. with 김한수,설규리',
 		duration: '3:29',
-		originalTrackId: 'TRK_LP02_010',
+		originalTrackIds: ['TRK_LP02_010'],
 		arranger: ['김한수', '설규리'],
 		lyrics: `괜히 또 술을 마셨다 분명 또 후회할 텐데
 잠이 안 온다고 핑곌 대다가 옳지 이 때다 싶은겨
@@ -3852,7 +3852,7 @@ Em      Am
 		enTitle: 'Whatever',
 		version: 'Live-2024.05.15. with 오쉽',
 		duration: '2:19',
-		originalTrackId: 'TRK_LP02_006',
+		originalTrackIds: ['TRK_LP02_006'],
 		arranger: ['김재인', '신재성', '이은서', '문든', '리장단'],
 		lyrics: `그래 뭐가 됐든 결국 지나간다
 칼에 맞은 데도 새살이 또 난다
@@ -3885,7 +3885,7 @@ Em      Am
 		enTitle: 'Drunk',
 		version: 'Live-2024.05.15. with 오쉽',
 		duration: '3:58',
-		originalTrackId: 'TRK_LP02_002',
+		originalTrackIds: ['TRK_LP02_002'],
 		arranger: ['김재인', '신재성', '이은서', '문든', '리장단'],
 		lyrics: `지하철은 다 끊기고
 마을버스도 끊기고
@@ -3903,7 +3903,7 @@ Em      Am
 		enTitle: 'Hurt',
 		version: 'Live-2024.05.15. with 오쉽',
 		duration: '3:13',
-		originalTrackId: 'TRK_LP01_007',
+		originalTrackIds: ['TRK_LP01_007'],
 		arranger: ['김재인', '신재성', '이은서', '문든', '리장단'],
 		lyrics: `바로 누워도 잠이 오질 않아요
 뒤척여봐도 답이 없는가 봐요
@@ -3924,7 +3924,7 @@ Em      Am
 		enTitle: 'Hulk',
 		version: 'Live-2024.04.06. with 중식이밴드',
 		duration: '2:23',
-		originalTrackId: 'TRK_LP01_001',
+		originalTrackIds: ['TRK_LP01_001'],
 		arranger: ['샘사무엘', '우자', '한우'],
 		lyrics: `거지새끼 두 명이서 싸운다 누가 이기나 누가 이기나
 한 녀석이 짱돌 들고 뎀빈다 누가 이기나 쟤가 이기나
@@ -3968,7 +3968,7 @@ Em      Am
 		enTitle: 'Trashman',
 		version: 'Live-2024.04.06. with 중식이밴드',
 		duration: '3:00',
-		originalTrackId: 'TRK_SP02_001',
+		originalTrackIds: ['TRK_SP02_001'],
 		arranger: ['샘사무엘', '우자', '한우'],
 		lyrics: `빨리 늙고 싶어요 젊다는 건 너무도 가혹해
 아름다운 땐가요 이젠 정말 못버티겠어요
@@ -4010,7 +4010,7 @@ Em      Am
 		enTitle: 'Fucked',
 		version: 'Live-2024.04.06. with 중식이밴드',
 		duration: '2:40',
-		originalTrackId: 'TRK_LP02_001',
+		originalTrackIds: ['TRK_LP02_001'],
 		arranger: ['샘사무엘', '우자', '한우'],
 		lyrics: `좆됐다 좆됐어 풀리는 일 하나 없이 꼬였네
 좆됐다 좆됐어 내 맘대로 되는 일이 없구나
@@ -4052,7 +4052,7 @@ Em      Am
 		enTitle: 'Happy New Year',
 		version: 'Live-2024.04.06. with 중식이밴드',
 		duration: '2:43',
-		originalTrackId: 'TRK_LP03_008',
+		originalTrackIds: ['TRK_LP03_008'],
 		arranger: ['샘사무엘', '우자', '한우'],
 		lyrics: `내년에는 더 밝게 살아야지 내 맘대로 되는 건 아니지만
 내년에는 실수도 줄여야지 내 곁을 떠나는 사람이 많지 않게
@@ -4082,7 +4082,7 @@ Em      Am
 		title: '좋은 친구들',
 		enTitle: 'Goodfellas Live',
 		duration: '2:39',
-		originalTrackId: 'TRK_LP04_004',
+		originalTrackIds: ['TRK_LP04_004'],
 		arranger: ['강주은', '김한수', '리장단', '법영이'],
 		lyrics: `우리는 술먹고 토하는 친구들 세상에게 버림받은 악성 종양들
 알코올을 상처입은 가슴에 붓는 효과 빠른 상처소독법
@@ -4111,7 +4111,7 @@ Em      Am
 		title: '노인을 위한 나라',
 		enTitle: 'Country For Old Men Live',
 		duration: '3:42',
-		originalTrackId: 'TRK_LP04_002',
+		originalTrackIds: ['TRK_LP04_002'],
 		arranger: ['강주은', '김한수', '리장단', '법영이'],
 		lyrics: `새로운 피는 이제 말라버렸고
 누구의 탓이라고 할 수도 없고
@@ -4138,7 +4138,7 @@ Em      Am
 		title: '시궁쥐',
 		enTitle: 'Rat Live',
 		duration: '5:19',
-		originalTrackId: 'TRK_EP01_004',
+		originalTrackIds: ['TRK_EP01_004'],
 		arranger: ['강주은', '김한수', '리장단', '법영이'],
 		lyrics: `시골쥐와 도시쥐 얘기처럼 나도 도시로 가고 싶었어
 알바부터 시작해 노력했지 갚을 빚이 조금 있었거든
@@ -4175,7 +4175,7 @@ Em      Am
 		title: '다리에서요',
 		enTitle: 'On The Bridge Live',
 		duration: '4:45',
-		originalTrackId: 'TRK_EP01_006',
+		originalTrackIds: ['TRK_EP01_006'],
 		arranger: ['강주은', '김한수', '리장단', '법영이'],
 		lyrics: `비가 오려는지 어둡네요
 우산 들고 산책갈까 했죠
@@ -4211,7 +4211,7 @@ Em      Am
 		title: '여름좀비',
 		enTitle: 'Summer Zombie Live',
 		duration: '4:02',
-		originalTrackId: 'TRK_LP01_006',
+		originalTrackIds: ['TRK_LP01_006'],
 		arranger: ['강주은', '김한수', '리장단', '법영이'],
 		lyrics: `푹푹 찌는 열기에 정신은 흐릿하고 턱턱 막히는 숨에 시계만 바라보네
 이미 지난 일들에 묶인 어느밤처럼 시시껄렁하지만 우린 사뭇 진지해
@@ -4248,7 +4248,7 @@ Em      Am
 		title: '아이스크림',
 		enTitle: 'Ice Cream Live',
 		duration: '3:07',
-		originalTrackId: 'TRK_LP03_007',
+		originalTrackIds: ['TRK_LP03_007'],
 		arranger: ['강주은', '김한수', '리장단', '법영이'],
 		lyrics: `끝날 때까지 계속 불러주세요
 `,
@@ -4259,7 +4259,7 @@ Em      Am
 		title: '세모 네모 동그라미',
 		enTitle: 'Triangle Square Circle Live',
 		duration: '3:15',
-		originalTrackId: 'TRK_SP04_001',
+		originalTrackIds: ['TRK_SP04_001'],
 		arranger: ['강주은', '김한수', '리장단', '법영이'],
 		lyrics: `시간이 지나면 그저
 막연하게 뭐가 돼도 됐겠지
@@ -4317,7 +4317,7 @@ Em      Am
 		title: '대가리총',
 		enTitle: 'HEadshot Live',
 		duration: '2:48',
-		originalTrackId: 'TRK_LP04_008',
+		originalTrackIds: ['TRK_LP04_008'],
 		arranger: ['강주은', '김한수', '리장단', '법영이'],
 		lyrics: `별 거 아닌 일에도 쉽게 화를 낸다
 진짜 큰일에는 더 건조해지면서
@@ -4345,7 +4345,7 @@ Em      Am
 		title: '좆됐다 좆됐어',
 		enTitle: 'Fucked Up Live',
 		duration: '2:06',
-		originalTrackId: 'TRK_LP02_001',
+		originalTrackIds: ['TRK_LP02_001'],
 		arranger: ['강주은', '김한수', '리장단', '법영이'],
 		lyrics: `좆됐다 좆됐어 풀리는 일 하나 없이 꼬였네
 좆됐다 좆됐어 내 맘대로 되는 일이 없구나
@@ -4386,7 +4386,7 @@ Em      Am
 		title: '멸망',
 		enTitle: 'Fall Live',
 		duration: '3:58',
-		originalTrackId: 'TRK_EP01_005',
+		originalTrackIds: ['TRK_EP01_005'],
 		arranger: ['강주은', '김한수', '리장단', '법영이'],
 		lyrics: `결국에 세상은 망하고 우린 모두 죽고 말겠지
 수많은 고통과 기쁨도 한 줌의 가루가 되겠지
@@ -4428,7 +4428,7 @@ Em      Am
 		title: '청춘',
 		enTitle: 'Youth Live',
 		duration: '3:01',
-		originalTrackId: 'TRK_EP01_001',
+		originalTrackIds: ['TRK_EP01_001'],
 		arranger: ['강주은', '김한수', '리장단', '법영이'],
 		lyrics: `믿어버렸어 친구놈을 한 번 더
 믿을만한 정보라더니
@@ -4476,7 +4476,7 @@ Em      Am
 		title: '집에 가자',
 		enTitle: 'Going Home Live',
 		duration: '3:45',
-		originalTrackId: 'TRK_LP02_009',
+		originalTrackIds: ['TRK_LP02_009'],
 		arranger: ['강주은', '김한수', '리장단', '법영이'],
 		lyrics: `이정도면 됐다 이제 집에 가자
 집에 가서 샤워하고 잠 좀 자자
@@ -4514,7 +4514,7 @@ Em      Am
 		enTitle: 'Youth',
 		duration: '2:53',
 		version: 'Vinyl Side-A',
-		originalTrackId: 'TRK_EP01_001',
+		originalTrackIds: ['TRK_EP01_001'],
 		lyrics: `믿어버렸어 친구놈을 한 번 더
 믿을만한 정보라더니
 모아놨던 돈 수업료로 날리고
@@ -4563,7 +4563,7 @@ Em      Am
 		enTitle: 'Coffee',
 		duration: '3:51',
 		version: 'Vinyl Side-A',
-		originalTrackId: 'TRK_EP01_002',
+		originalTrackIds: ['TRK_EP01_002'],
 		lyrics: `어젯밤에 다 못 잔 잠에
 아직까지 취해있으니
 다시 또 마실 수 밖에
@@ -4596,7 +4596,7 @@ Em      Am
 		enTitle: 'Drunk',
 		duration: '4:05',
 		version: 'Vinyl Side-A',
-		originalTrackId: 'TRK_EP01_003',
+		originalTrackIds: ['TRK_EP01_003'],
 		lyrics: `잔을 채워 독한 걸로 가득 부어줘
 이거 먹고 죽으려면 다섯 잔은 줘
 길바닥에 드러누워 노랠 불러 줘
@@ -4647,7 +4647,7 @@ Em      Am
 		enTitle: 'Rat',
 		duration: '3:17',
 		version: 'Vinyl Side-B',
-		originalTrackId: 'TRK_EP01_004',
+		originalTrackIds: ['TRK_EP01_004'],
 		lyrics: `시골쥐와 도시쥐 얘기처럼
 나도 도시로 가고 싶었어
 알바부터 시작해 노력했지
@@ -4688,7 +4688,7 @@ Em      Am
 		enTitle: 'Fall',
 		duration: '4:07',
 		version: 'Vinyl Side-B',
-		originalTrackId: 'TRK_EP01_005',
+		originalTrackIds: ['TRK_EP01_005'],
 		lyrics: `결국에 세상은 망하고
 우린 모두 죽고 말겠지
 수많은 고통과 기쁨도
@@ -4740,7 +4740,7 @@ Em      Am
 		enTitle: 'On The Bridge',
 		duration: '3:29',
 		version: 'Vinyl Side-B',
-		originalTrackId: 'TRK_EP01_006',
+		originalTrackIds: ['TRK_EP01_006'],
 		lyrics: `비가 오려는지 어둡네요
 우산 들고 산책갈까 했죠
 집에만 있다가는

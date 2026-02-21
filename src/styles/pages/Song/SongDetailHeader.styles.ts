@@ -32,9 +32,16 @@ export const SubTitle = styled.span`
 	text-transform: uppercase;
 `;
 
+export const OriginalLinkGroup = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-top: 0.8rem;
+	margin-bottom: 0.4rem;
+`;
+
 export const OriginalLink = styled.button`
 	display: inline;
-	margin: 0 0.5rem;
 	padding: 0.4rem 0.8rem;
 
 	background: ${props => props.theme.COLOR.GRAY50};
