@@ -1,10 +1,12 @@
+/* eslint-disable storybook/default-exports */
+
 import '@emotion/react';
-import { ColorType, FontType } from './theme';
+import { ColorType, FontType, WindowType } from '@styles/themes';
 
 declare module '@emotion/react' {
-  export interface Theme {
-    COLOR: ColorType;
-    FONT: FontType;
-    UTILITY: UtilityType;
-  }
+	export interface Theme {
+		COLOR: ColorType;
+		FONT: FontType;
+		WINDOW: WindowType;
+	}
 }

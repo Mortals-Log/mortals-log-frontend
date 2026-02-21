@@ -1,3 +1,5 @@
+// @styles/themes
+
 /* eslint-disable storybook/default-exports */
 
 export const COLOR = {
@@ -95,3 +97,4 @@ export const Theme = {
 
 export type ColorType = typeof COLOR;
 export type FontType = typeof FONT;
+export type WindowType = typeof WINDOW_SIZE;
