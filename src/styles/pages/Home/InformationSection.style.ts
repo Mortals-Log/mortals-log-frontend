@@ -4,8 +4,7 @@
 
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-
-export { ActionButton } from '@/styles/components/Buttons.style';
+import { Link } from 'react-router-dom';
 
 export const InformationContainer = styled(motion.div)`
 	width: 100%;
@@ -144,5 +143,27 @@ export const TimeTag = styled.div`
 		@media ${props => props.theme.WINDOW_SIZE.mobile} {
 			font-size: ${props => props.theme.FONT.SIZE.XS};
 		}
+	}
+`;
+
+export const ActionLink = styled(Link)`
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 1rem;
+	cursor: pointer;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.LIGHT};
+	color: ${props => props.theme.COLOR.GRAY700};
+	text-decoration: none;
+
+	&:hover {
+		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		margin-top: 0.8rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;

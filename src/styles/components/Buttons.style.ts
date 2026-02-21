@@ -50,39 +50,6 @@ export const MoreButton = styled(BaseButton.withComponent(Link))`
 	text-decoration: none;
 `;
 
-export const ActionButton = styled(motion.button)`
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
-	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-	color: ${props => props.theme.COLOR.BLACK};
-
-	margin: 1rem 0rem;
-	background: transparent;
-	border: 1px solid ${props => props.theme.COLOR.BLACK};
-	padding: 0.6rem 1.5rem;
-	letter-spacing: 0.2em;
-	cursor: pointer;
-
-	&:hover {
-		background: ${props => props.theme.COLOR.PRIMARY};
-		color: ${props => props.theme.COLOR.WHITE};
-		border-color: ${props => props.theme.COLOR.PRIMARY};
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		width: 100%;
-		padding: 0.5rem 0.8rem;
-		font-size: ${props => props.theme.FONT.SIZE.XS};
-		letter-spacing: 0.1em;
-		margin: 0.5rem 0;
-
-		&:active {
-			background: ${props => props.theme.COLOR.PRIMARY};
-			color: ${props => props.theme.COLOR.WHITE};
-		}
-	}
-`;
-
 export const LinkButton = styled.a`
 	display: inline-flex;
 	align-items: center;
