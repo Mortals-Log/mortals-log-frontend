@@ -5,13 +5,17 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
-export * from '@/styles/components/Buttons.style';
+export { ActionButton } from '@/styles/components/Buttons.style';
 
 export const InformationContainer = styled(motion.div)`
 	width: 100%;
 	max-width: 1000px;
 	margin: 0 auto;
 	padding: 0 24px;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 0 16px;
+	}
 `;
 
 export const SectionWrapper = styled.div`
@@ -27,6 +31,11 @@ export const SectionWrapper = styled.div`
 		grid-template-columns: 1fr;
 		gap: 3rem;
 	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		gap: 1rem;
+		padding: 0;
+	}
 `;
 
 export const InfoSection = styled.div`
@@ -41,6 +50,11 @@ export const InfoSection = styled.div`
 		letter-spacing: 0.2rem;
 		display: block;
 		margin-bottom: 1.5rem;
+
+		@media ${props => props.theme.WINDOW_SIZE.mobile} {
+			margin-bottom: 1rem;
+			letter-spacing: 0.15rem;
+		}
 	}
 `;
 
@@ -48,6 +62,11 @@ export const EventList = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 2.5rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		width: 100%;
+		gap: 1.5rem;
+	}
 `;
 
 export const ContentCard = styled.div`
@@ -55,13 +74,22 @@ export const ContentCard = styled.div`
 	padding: 0.5rem 1.5rem;
 	text-align: left;
 
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 0.3rem 1rem;
+	}
+
 	.title {
 		font-family: ${props => props.theme.FONT.SERIF};
 		font-size: ${props => props.theme.FONT.SIZE.LG};
 		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 		color: ${props => props.theme.COLOR.BLACK};
 		margin: 0 0 0.5rem 0;
+
+		@media ${props => props.theme.WINDOW_SIZE.mobile} {
+			font-size: ${props => props.theme.FONT.SIZE.MD};
+		}
 	}
+
 	.info-text {
 		font-family: ${props => props.theme.FONT.SANS};
 		font-size: ${props => props.theme.FONT.SIZE.SM};
@@ -70,14 +98,23 @@ export const ContentCard = styled.div`
 
 		opacity: 0.7;
 		margin: 0;
+
+		@media ${props => props.theme.WINDOW_SIZE.mobile} {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
 	}
 `;
 
 export const TimeSlotWrapper = styled.div`
 	display: flex;
+	justify-content: flex-start;
 	gap: 0.6rem;
 	margin-top: 1rem;
 	flex-wrap: wrap;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		gap: 0.4rem;
+	}
 `;
 
 export const TimeTag = styled.div`
@@ -97,10 +134,15 @@ export const TimeTag = styled.div`
 		margin-bottom: 0.1rem;
 		text-transform: uppercase;
 	}
+
 	.time {
 		font-family: ${props => props.theme.FONT.SANS};
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 		color: ${props => props.theme.COLOR.GRAY600};
+
+		@media ${props => props.theme.WINDOW_SIZE.mobile} {
+			font-size: ${props => props.theme.FONT.SIZE.XS};
+		}
 	}
 `;

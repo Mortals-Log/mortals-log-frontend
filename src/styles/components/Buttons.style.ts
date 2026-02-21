@@ -68,6 +68,19 @@ export const ActionButton = styled(motion.button)`
 		color: ${props => props.theme.COLOR.WHITE};
 		border-color: ${props => props.theme.COLOR.PRIMARY};
 	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		width: 100%;
+		padding: 0.5rem 0.8rem;
+		font-size: ${props => props.theme.FONT.SIZE.XS};
+		letter-spacing: 0.1em;
+		margin: 0.5rem 0;
+
+		&:active {
+			background: ${props => props.theme.COLOR.PRIMARY};
+			color: ${props => props.theme.COLOR.WHITE};
+		}
+	}
 `;
 
 export const LinkButton = styled.a`
