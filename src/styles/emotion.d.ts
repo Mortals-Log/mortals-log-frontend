@@ -7,6 +7,6 @@ declare module '@emotion/react' {
 	export interface Theme {
 		COLOR: ColorType;
 		FONT: FontType;
-		WINDOW: WindowType;
+		WINDOW_SIZE: WindowType;
 	}
 }

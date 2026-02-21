@@ -20,9 +20,7 @@ const Home = () => {
 						transition={{ delay: 0.8, duration: 1.5, ease: 'easeInOut' }}>
 						<S.SubTitleWrapper>
 							<S.SubTitle>{NAME.ENGLISH}</S.SubTitle>
-							<S.VerticalBar>|</S.VerticalBar>
 							<S.SubTitle>{NAME.HANJA}</S.SubTitle>
-							<S.VerticalBar>|</S.VerticalBar>
 							<S.SubTitle>{NAME.SOCIALID}</S.SubTitle>
 						</S.SubTitleWrapper>
 					</S.SubTitleContainer>
