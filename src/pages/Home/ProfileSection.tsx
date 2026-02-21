@@ -1,11 +1,12 @@
 // @pages/Home/ProfileSection
 
-import * as S from '@/styles/pages/Home/ProfileSection.style';
+import * as S from '@styles/pages/Home/ProfileSection.style';
+
 import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PROFILE } from '@/const/profile';
-import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
-import { EVENT_INTERVIEW } from '@/const/event';
+import { PROFILE } from '@const/profile';
+import { EVENT_INTERVIEW } from '@const/event';
+import { GetSnsLabel, GetSnsUrl } from '@utils/snsUrl';
 
 const ProfileSection = () => {
 	const navigate = useNavigate();
@@ -19,6 +20,24 @@ const ProfileSection = () => {
 	const currentItem = hasQuotes ? interviewQuotes[currentIdx] : null;
 
 	const { content, platform, account, contentTitle, postId } = PROFILE.description;
+
+	const descriptionSnsInfo = useMemo(
+		() => ({
+			url: GetSnsUrl(platform, postId) ?? undefined,
+			label: GetSnsLabel(platform, account, contentTitle),
+		}),
+		[platform, postId, account, contentTitle],
+	);
+
+	const jobDisplay = useMemo(() => PROFILE.job.join(' & '), []);
+
+	const currentItemSnsInfo = useMemo(() => {
+		if (!currentItem) return null;
+		return {
+			url: GetSnsUrl(currentItem.platform ?? '', currentItem.link) ?? undefined,
+			label: GetSnsLabel(currentItem.platform || '', currentItem.host, currentItem.content),
+		};
+	}, [currentItem]);
 
 	useEffect(() => {
 		if (isPaused || !hasQuotes) return;
@@ -41,13 +60,10 @@ const ProfileSection = () => {
 				</S.ImageSection>
 
 				<S.TextSection>
-					{currentItem && (
+					{currentItem && currentItemSnsInfo && (
 						<S.ModifierContainer onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
-							<S.SourceLink
-								href={GetSnsUrl(currentItem.platform ?? '', currentItem.link) ?? undefined}
-								target="_blank"
-								rel="noreferrer">
-								{GetSnsLabel(currentItem.platform || '', currentItem.host, currentItem.content)}{' '}
+							<S.SourceLink href={currentItemSnsInfo.url} target="_blank" rel="noreferrer">
+								{currentItemSnsInfo.label}
 							</S.SourceLink>
 							<S.ModifierText key={currentItem.quote}>{currentItem.quote}</S.ModifierText>
 						</S.ModifierContainer>
@@ -55,17 +71,17 @@ const ProfileSection = () => {
 
 					<S.NameSection>
 						<S.ArtistName>{PROFILE.name}</S.ArtistName>
-						<S.JobBadge>{PROFILE.job.join(' & ')}</S.JobBadge>
+						<S.JobBadge>{jobDisplay}</S.JobBadge>
 					</S.NameSection>
 
 					<S.DescriptionContainer>
 						<S.ProfileDescription>{content}</S.ProfileDescription>
 						<S.SourceLink
-							href={GetSnsUrl(platform, postId) ?? undefined}
-							$disabled={!GetSnsUrl(platform, postId)}
+							href={descriptionSnsInfo.url}
+							$disabled={!descriptionSnsInfo.url}
 							target="_blank"
 							rel="noreferrer">
-							{GetSnsLabel(platform, account, contentTitle)}
+							{descriptionSnsInfo.label}
 						</S.SourceLink>
 					</S.DescriptionContainer>
 

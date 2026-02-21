@@ -1,6 +1,7 @@
 // @src/pages/home/index
 
 import * as S from '@styles/pages/Home/Home.style';
+
 import Information from '@pages/Home/InformationSection';
 import ProfileSection from '@pages/Home/ProfileSection';
 import { METADATA } from '@const/contents';
