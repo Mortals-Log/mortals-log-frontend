@@ -77,7 +77,7 @@ const Song = () => {
 								{track.title}
 								{track.version && ` ${track.version}`}
 								{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
-								{track.chords && <S.GuitarBadge>CHORDS</S.GuitarBadge>}
+								{track.chordsList && track.chordsList.length > 0 && <S.GuitarBadge>CHORDS</S.GuitarBadge>}
 								{track.ageLimit && <S.AdultBadge>🔞 미성년자 청취불가</S.AdultBadge>}
 								{track.singing && (
 									<>
