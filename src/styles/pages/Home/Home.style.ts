@@ -5,8 +5,6 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
-export { VerticalBar } from '@/styles/common/VerticalBar.style';
-
 export const MainContainer = styled.main`
 	display: flex;
 	flex-direction: column;
