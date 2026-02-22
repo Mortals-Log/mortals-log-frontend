@@ -12,7 +12,9 @@ export const GetLatestAlbum = (fullAlbums: AlbumList): Album | undefined => {
 
 const GetAlbumImageKey = (album: Album) => {
 	const year = album.releaseDate.split('.')[0].trim();
-	return `${album.type}_${year}_${album.fileName}`;
+	const safeFileName = album.fileName?.trim() || 'default';
+
+	return `${album.type}_${year}_${safeFileName}`;
 };
 
 export const GetAlbumPaths = (album: Album) => {

@@ -1,10 +1,12 @@
 // @pages/Profile/ProfileDiscographySection
 
+/* eslint-disable react-hooks/set-state-in-effect */
+
 import * as S from '@styles/pages/Profile/ProfileDiscographySection.style';
 import { useEffect, useRef, useState } from 'react';
 import { ALBUM_TYPE_LABEL, GET_LP_ALBUMS } from '@const/albums';
-import { GetAlbumPaths } from '@/utils/album';
-import useImageFallback from '@/hooks/useImageFallback';
+import { GetAlbumPaths } from '@utils/album';
+import useImageFallback from '@hooks/useImageFallback';
 
 const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const handleImgError = useImageFallback();
@@ -17,8 +19,13 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 		if (sliderRef.current) {
 			const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
 
-			setIsAtStart(scrollLeft <= 1);
+			if (scrollWidth <= clientWidth) {
+				setIsAtStart(true);
+				setIsAtEnd(true);
+				return;
+			}
 
+			setIsAtStart(scrollLeft <= 1);
 			setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 2);
 		}
 	};
@@ -56,6 +63,7 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 						<span>‹</span>
 					</S.SliderNavButton>
 				)}
+
 				<S.Slider ref={sliderRef} onScroll={checkScrollPosition}>
 					{GET_LP_ALBUMS.map(album => {
 						const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
