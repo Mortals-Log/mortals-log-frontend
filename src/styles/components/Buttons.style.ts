@@ -80,6 +80,20 @@ export const LinkButton = styled.a`
 		color: ${props => props.theme.COLOR.WHITE};
 		transform: translateY(-1px);
 	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 0.7rem 0.9rem;
+		font-size: ${props => props.theme.FONT.SIZE.XS};
+
+		&:hover {
+			transform: none;
+		}
+
+		svg {
+			width: 14px;
+			height: 14px;
+		}
+	}
 `;
 
 export const ViewMoreButton = styled.button`

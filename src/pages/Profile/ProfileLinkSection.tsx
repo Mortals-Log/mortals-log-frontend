@@ -16,30 +16,28 @@ export const ProfileLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; T
 			</S.SectionTitle>
 
 			<S.Table>
-				<tbody>
-					{LINK_LIST.map((group: LinkGroup) => (
-						<Table
-							key={group.category}
-							label={group.category}
-							values={[
-								<S.LinkWrapper key={group.category}>
-									{group.items.map(item => {
-										const key = item.label.toLowerCase().replace(/\s+/g, '') as IconKey;
-										const config = ICON_CONFIG[key];
-										const Icon = config?.icon;
+				{LINK_LIST.map((group: LinkGroup) => (
+					<Table
+						key={group.category}
+						label={group.category}
+						values={[
+							<S.LinkWrapper key={group.category}>
+								{group.items.map(item => {
+									const key = item.label.toLowerCase().replace(/\s+/g, '') as IconKey;
+									const config = ICON_CONFIG[key];
+									const Icon = config?.icon;
 
-										return (
-											<S.LinkButton key={item.label} href={item.url} target="_blank" rel="noreferrer">
-												{Icon && <Icon width={16} height={16} />}
-												{config?.label ?? item.label}
-											</S.LinkButton>
-										);
-									})}
-								</S.LinkWrapper>,
-							]}
-						/>
-					))}
-				</tbody>
+									return (
+										<S.LinkButton key={item.label} href={item.url} target="_blank" rel="noreferrer">
+											{Icon && <Icon width={16} height={16} />}
+											{config?.label ?? item.label}
+										</S.LinkButton>
+									);
+								})}
+							</S.LinkWrapper>,
+						]}
+					/>
+				))}
 			</S.Table>
 		</S.ContentSection>
 	);
