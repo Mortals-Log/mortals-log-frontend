@@ -9,3 +9,7 @@ export * from '@/styles/components/TimeLine.style';
 
 export * from '@styles/common/SectionTitle.style';
 export * from '@styles/common/ArrowIcon.style';
+
+import styled from '@emotion/styled';
+import * as L from '@styles/common/Layout.style';
+export const ContentSection = styled(L.ContentSection)``;

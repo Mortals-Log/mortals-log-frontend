@@ -10,3 +10,7 @@ export * from '@/styles/components/Slider.style';
 
 export * from '@styles/common/SectionTitle.style';
 export * from '@styles/common/ExternalIcon.style';
+
+import styled from '@emotion/styled';
+import * as L from '@styles/common/Layout.style';
+export const ContentSection = styled(L.ContentSection)``;

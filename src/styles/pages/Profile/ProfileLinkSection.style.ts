@@ -4,6 +4,8 @@
 
 import styled from '@emotion/styled';
 
+import * as L from '@styles/common/Layout.style';
+
 export * from '@/styles/pages/Profile/Profile.style';
 export * from '@/styles/components/Buttons.style';
 export * from '@/styles/components/Table.style';
@@ -14,3 +16,5 @@ export const LinkWrapper = styled.div`
 	flex-wrap: wrap;
 	gap: 0.5rem;
 `;
+
+export const ContentSection = styled(L.ContentSection)``;
