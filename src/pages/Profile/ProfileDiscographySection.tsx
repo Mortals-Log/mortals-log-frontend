@@ -1,7 +1,5 @@
 // @pages/Profile/ProfileDiscographySection
 
-/* eslint-disable react-hooks/set-state-in-effect */
-
 import * as S from '@styles/pages/Profile/ProfileDiscographySection.style';
 import { useEffect, useRef, useState } from 'react';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@const/albums';
