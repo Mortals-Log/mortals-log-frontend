@@ -38,4 +38,8 @@ export const SourceLink = styled.a<{ $disabled?: boolean }>`
 			pointer-events: none;
 			filter: grayscale(1);
 		`}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		width: 100%;
+	}
 `;
