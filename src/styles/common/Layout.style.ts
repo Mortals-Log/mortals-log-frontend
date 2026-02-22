@@ -16,6 +16,7 @@ export const MainContainer = styled.main`
 `;
 
 export const ContentSection = styled.section`
+	width: 100%;
 	margin-top: 5rem;
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

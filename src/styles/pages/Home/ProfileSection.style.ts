@@ -8,18 +8,18 @@ import { keyframes } from '@emotion/react';
 export * from '@styles/components/Buttons.style';
 export * from '@styles/components/SourceLink.style';
 
+import * as L from '@styles/common/Layout.style';
+
 const fadeInBlur = keyframes`
   from { opacity: 0; filter: blur(10px); transform: translateY(10px); }
   to { opacity: 1; filter: blur(0); transform: translateY(0); }
 `;
 
-export const ProfileSection = styled.section`
-	width: 100%;
-	padding: 100px 60px;
+export const ProfileSection = styled(L.ContentSection)`
 	display: flex;
-	justify-content: center;
 	position: relative;
-	width: 100%;
+	padding: 100px 60px;
+	justify-content: center;
 	margin: 0 auto;
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

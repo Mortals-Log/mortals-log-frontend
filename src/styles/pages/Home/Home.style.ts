@@ -5,11 +5,11 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
-export const MainContainer = styled.main`
+import * as L from '@styles/common/Layout.style';
+
+export const MainContainer = styled(L.MainContainer)`
 	display: flex;
 	flex-direction: column;
-	width: 100%;
-	max-width: 1200px;
 	min-height: calc(100vh - 60px);
 	align-items: center;
 	padding: 100px 60px 30px 60px;
