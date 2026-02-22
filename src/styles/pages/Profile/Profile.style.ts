@@ -3,13 +3,10 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
+import * as L from '@styles/common/Layout.style';
 
-export const MainContainer = styled.main`
+export const MainContainer = styled(L.MainContainer)`
 	max-width: 800px;
-	margin: 0 auto;
-	padding: 100px 20px;
 `;
 
-export const ContentSection = styled.section`
-	margin-top: 5rem;
-`;
+export const ContentSection = styled(L.ContentSection)``;
