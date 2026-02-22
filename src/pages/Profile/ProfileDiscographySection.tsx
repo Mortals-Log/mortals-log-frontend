@@ -1,6 +1,7 @@
 // @pages/Profile/ProfileDiscographySection
 
 import * as S from '@styles/pages/Profile/ProfileDiscographySection.style';
+
 import { useEffect, useRef, useState } from 'react';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@const/albums';
 import { GetAlbumPaths } from '@utils/album';
