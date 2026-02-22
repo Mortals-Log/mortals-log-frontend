@@ -3,14 +3,10 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
-import * as L from '@styles/common/Layout.style';
 import { Link } from 'react-router-dom';
+export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
 
-export * from '@/styles/components/Buttons.style';
-export * from '@styles/common/ExternalIcon.style';
-
-export const ContentSection = styled(L.ContentSection)``;
-export const SectionTitle = styled(L.SectionTitle)``;
+export { MoreButton } from '@/styles/components/Buttons.style';
 
 // Slider
 export const SliderContainer = styled.div`

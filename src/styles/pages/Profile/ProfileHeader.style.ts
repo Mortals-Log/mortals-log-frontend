@@ -4,7 +4,7 @@
 
 import styled from '@emotion/styled';
 
-export * from '@/styles/components/SourceLink.style';
+export { SourceLink } from '@/styles/components/SourceLink.style';
 
 export const ProfileHeader = styled.section`
 	display: flex;

@@ -1,12 +1,12 @@
 // @pages/Home/ProfileSection
 
-import * as S from '@styles/pages/Home/ProfileSection.style';
+import * as S from '@/styles/pages/Home/ProfileSection.style';
 
 import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PROFILE } from '@const/profile';
-import { EVENT_INTERVIEW } from '@const/event';
-import { GetSnsLabel, GetSnsUrl } from '@utils/snsUrl';
+import { PROFILE } from '@/const/profile';
+import { EVENT_INTERVIEW } from '@/const/event';
+import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
 
 const ProfileSection = () => {
 	const navigate = useNavigate();

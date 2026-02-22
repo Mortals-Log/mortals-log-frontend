@@ -1,6 +1,6 @@
 // @components/placeholder.tsx
 
-import * as S from '@styles/components/Placeholder.style';
+import * as S from '@/styles/components/Placeholder.style';
 
 interface PlaceholderProps {
 	contentName?: string;

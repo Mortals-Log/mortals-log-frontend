@@ -3,13 +3,10 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
-import * as L from '@styles/common/Layout.style';
-export { SectionTitle } from '@styles/common/Layout.style';
+export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
 
-export * from '@/styles/components/Table.style';
-export * from '@/styles/components/SourceLink.style';
-
-export const ContentSection = styled(L.ContentSection)``;
+export { Table } from '@/styles/components/Table.style';
+export { SourceLink } from '@/styles/components/SourceLink.style';
 
 export const DebutInfo = styled.span`
 	display: inline-flex;

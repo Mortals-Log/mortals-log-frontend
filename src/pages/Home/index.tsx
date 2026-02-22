@@ -1,11 +1,11 @@
 // @src/pages/home/index
 
-import * as S from '@styles/pages/Home/Home.style';
+import * as S from '@/styles/pages/Home/Home.style';
 
-import InformationSection from '@pages/Home/InformationSection';
-import ProfileSection from '@pages/Home/ProfileSection';
-import { METADATA } from '@const/contents';
-import { NAME } from '@const/profile';
+import InformationSection from '@/pages/Home/InformationSection';
+import ProfileSection from '@/pages/Home/ProfileSection';
+import { METADATA } from '@/const/contents';
+import { NAME } from '@/const/profile';
 
 const Home = () => {
 	return (

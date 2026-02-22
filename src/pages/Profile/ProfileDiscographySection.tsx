@@ -1,11 +1,11 @@
 // @pages/Profile/ProfileDiscographySection
 
-import * as S from '@styles/pages/Profile/ProfileDiscographySection.style';
+import * as S from '@/styles/pages/Profile/ProfileDiscographySection.style';
 
 import { useEffect, useRef, useState } from 'react';
-import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@const/albums';
-import { GetAlbumPaths } from '@utils/album';
-import useImageFallback from '@hooks/useImageFallback';
+import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
+import { GetAlbumPaths } from '@/utils/album';
+import useImageFallback from '@/hooks/useImageFallback';
 
 const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const handleImgError = useImageFallback();
@@ -107,8 +107,7 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 			</S.SliderContainer>
 
 			<S.MoreButton to="/album" target="_self" rel="noreferrer">
-				전체 앨범 보러가기
-				<S.ExternalIcon>↗</S.ExternalIcon>
+				전체 앨범 보러가기 ↗
 			</S.MoreButton>
 		</S.ContentSection>
 	);

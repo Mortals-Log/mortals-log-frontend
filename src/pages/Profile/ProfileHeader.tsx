@@ -1,9 +1,9 @@
 // @src/pages/Profile/components/ProfileHeader.tsx
 
-import * as S from '@styles/pages/Profile/ProfileHeader.style';
+import * as S from '@/styles/pages/Profile/ProfileHeader.style';
 
-import { PROFILE } from '@const/profile';
-import { GetSnsLabel, GetSnsUrl } from '@utils/snsUrl';
+import { PROFILE } from '@/const/profile';
+import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
 
 export const ProfileHeader = () => {
 	const { content, platform, account, contentTitle, postId } = PROFILE.description;

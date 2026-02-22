@@ -4,8 +4,7 @@
 
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-
-import * as L from '@styles/common/Layout.style';
+import * as L from '@/styles/common/Layout.style';
 
 export const MainContainer = styled(L.MainContainer)`
 	display: flex;

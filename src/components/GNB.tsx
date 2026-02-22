@@ -1,15 +1,15 @@
 // @components/GNB
 
-import * as S from '@styles/components/GNB.style';
+import * as S from '@/styles/components/GNB.style';
 
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, Variants } from 'framer-motion';
-import { ACTIVE_NAV_ITEMS, METADATA } from '@const/contents';
-import { FULL_CONCERTS } from '@const/concert';
-import MenuIcon from '@assets/icons/MenuIcon';
-import CloseIcon from '@assets/icons/CloseIcon';
-import { GetDDay, GetUpcomingSchedules } from '@utils/date';
+import { ACTIVE_NAV_ITEMS, METADATA } from '@/const/contents';
+import { FULL_CONCERTS } from '@/const/concert';
+import MenuIcon from '@/assets/icons/MenuIcon';
+import CloseIcon from '@/assets/icons/CloseIcon';
+import { GetDDay, GetUpcomingSchedules } from '@/utils/date';
 
 const GNB = () => {
 	const navigate = useNavigate();

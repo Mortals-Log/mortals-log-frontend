@@ -3,7 +3,7 @@
 /* eslint-disable storybook/default-exports */
 
 import { JSX } from 'react';
-import * as S from '@styles/components/Table.style';
+import * as S from '@/styles/components/Table.style';
 
 interface TableProps {
 	label: string;

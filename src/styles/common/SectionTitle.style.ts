@@ -1,5 +1,6 @@
 // @styles/common/SectionTitle.style
 
+// 제거 예정
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
