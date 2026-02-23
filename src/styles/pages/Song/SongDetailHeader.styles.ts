@@ -4,7 +4,7 @@
 
 import styled from '@emotion/styled';
 
-export * from '@styles/components/Badge.style';
+export * from '@/styles/components/Badge.style';
 export { MainTitle, SubTitle } from '@/styles/common/Layout.style';
 
 import * as B from '@/styles/components/Badge.style';

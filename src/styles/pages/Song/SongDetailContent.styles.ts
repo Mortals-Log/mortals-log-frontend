@@ -4,9 +4,9 @@
 
 import styled from '@emotion/styled';
 
-export * from '@styles/common/VideoWrapper.style';
+export * from '@/styles/common/VideoWrapper.style';
 
-export { PrimaryButton } from '@styles/components/Buttons.style';
+export { PrimaryButton } from '@/styles/components/Buttons.style';
 
 export const ContentSection = styled.section`
 	margin-top: 2rem;

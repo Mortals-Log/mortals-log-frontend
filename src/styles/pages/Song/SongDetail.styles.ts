@@ -4,4 +4,4 @@
 
 export { MainContainer, MainTitle } from '@/styles/common/Layout.style';
 
-export { PrimaryButton } from '@styles/components/Buttons.style';
+export { PrimaryButton } from '@/styles/components/Buttons.style';
