@@ -311,8 +311,26 @@ export const ToggleButton = styled.button`
 	color: ${props => props.theme.COLOR.GRAY400};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 
+	.text-desktop {
+		display: inline;
+		margin-right: 4px;
+	}
+
 	&:hover {
 		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+
+	&:active {
+		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		margin-left: 0.5rem;
+		padding-top: 0.2rem;
+
+		.text-desktop {
+			display: none;
+		}
 	}
 `;
 

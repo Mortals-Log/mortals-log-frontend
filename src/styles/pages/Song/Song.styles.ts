@@ -48,8 +48,8 @@ export const SortTabItem = styled.li<{ $isActive: boolean }>`
 	}
 
 	&:hover {
-		color: ${props => props.theme.COLOR.PRIMARY};
-		opacity: 0.8;
+		color: ${props => !props.$isActive && props.theme.COLOR.PRIMARY};
+		opacity: ${props => !props.$isActive && 0.8};
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

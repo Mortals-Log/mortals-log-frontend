@@ -80,7 +80,15 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 				</S.TabGroup>
 
 				<S.ToggleButton onClick={() => setIsOpen(!isOpen)}>
-					{isOpen ? '앨범 목록 접기 ↑' : '앨범 목록 펼치기 ↓'}
+					{isOpen ? (
+						<>
+							<span className="text-desktop">앨범 목록 </span>접기 ↑
+						</>
+					) : (
+						<>
+							<span className="text-desktop">앨범 목록 </span>펼치기 ↓
+						</>
+					)}
 				</S.ToggleButton>
 			</S.TabList>
 

@@ -50,7 +50,8 @@ export const TabButton = styled.button<{ $isActive: boolean }>`
 	color: ${props => (props.$isActive ? props.theme.COLOR.GRAY700 : props.theme.COLOR.GRAY300)};
 
 	&:hover {
-		color: ${props => props.theme.COLOR.GRAY700};
+		color: ${props => !props.$isActive && props.theme.COLOR.GRAY700};
+		opacity: ${props => !props.$isActive && 0.8};
 	}
 
 	&::after {
