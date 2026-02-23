@@ -1,6 +1,8 @@
-// @pages/Song/SongDetail
+//@pages/Song/SongDetailHeader
 
-import * as S from '@styles/pages/Song/SongDetailHeader.styles';
+import * as S from '@/styles/pages/Song/SongDetailHeader.styles';
+
+import { useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { MASTER_TRACKS } from '@/const/tracks';
@@ -10,19 +12,43 @@ import { BADGE_LABEL } from '@/components/BadgeList';
 
 interface SongDetailHeaderProps {
 	track: Track;
-	albumInfo: Album | null | undefined;
+	albumInfo: Album | any;
 }
+
 const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 	const navigate = useNavigate();
 
-	const albumType = albumInfo?.type ? ALBUM_TYPE_LABEL[albumInfo.type as keyof typeof ALBUM_TYPE_LABEL] : '';
-	const isLP = albumInfo?.type === 'LP';
+	const albumLabel = useMemo(() => {
+		if (!albumInfo?.type) return '';
+		const type = ALBUM_TYPE_LABEL[albumInfo.type as keyof typeof ALBUM_TYPE_LABEL] || '';
+		const volume = albumInfo.type === 'LP' && albumInfo.volume ? `${albumInfo.volume}집` : '';
+		return `${type}${volume}`;
+	}, [albumInfo?.type, albumInfo?.volume]);
 
-	const handleAlbumClick = () => {
+	const originalTracks = useMemo(() => {
+		if (!track.originalTrackIds || track.originalTrackIds.length === 0) return [];
+
+		return track.originalTrackIds.map(id => {
+			const originalTrack = MASTER_TRACKS[id as keyof typeof MASTER_TRACKS];
+			return {
+				id,
+				displayTitle: originalTrack ? originalTrack.title : id,
+			};
+		});
+	}, [track.originalTrackIds]);
+
+	const handleAlbumClick = useCallback(() => {
 		if (albumInfo?.title && albumInfo.title !== 'Unknown Album') {
-			navigate(`/album/${albumInfo.title}`);
+			navigate(`/album/${encodeURIComponent(albumInfo.title)}`);
 		}
-	};
+	}, [navigate, albumInfo]);
+
+	const handleSongClick = useCallback(
+		(id: string) => {
+			navigate(`/song/${id}`);
+		},
+		[navigate],
+	);
 
 	return (
 		<S.HeaderSection>
@@ -40,29 +66,19 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 			</S.MainTitle>
 
 			<S.Description>
-				{(albumType || isLP) && (
-					<span className="type">
-						{albumType}
-						{isLP && albumInfo?.volume && `${albumInfo.volume}집`}
-					</span>
-				)}
+				{albumLabel && <span className="type">{albumLabel}</span>}
 
 				<span className="album" onClick={handleAlbumClick}>
-					{albumInfo?.title}
+					{albumInfo?.title || 'Unknown Album'}
 				</span>
 
-				{track.originalTrackIds && track.originalTrackIds.length > 0 && (
+				{originalTracks.length > 0 && (
 					<S.OriginalLinkGroup>
-						{track.originalTrackIds.map(id => {
-							const originalTrack = MASTER_TRACKS[id as keyof typeof MASTER_TRACKS];
-							const displayTitle = originalTrack ? originalTrack.title : id;
-
-							return (
-								<S.OriginalLink key={id} onClick={() => navigate(`/song/${id}`)}>
-									원곡보기 #{displayTitle}
-								</S.OriginalLink>
-							);
-						})}
+						{originalTracks.map(({ id, displayTitle }) => (
+							<S.OriginalLink key={id} onClick={() => handleSongClick(id)}>
+								원곡보기 #{displayTitle}
+							</S.OriginalLink>
+						))}
 					</S.OriginalLinkGroup>
 				)}
 			</S.Description>
