@@ -4,10 +4,9 @@
 
 import styled from '@emotion/styled';
 
-export * from '@styles/pages/Album/Album.style';
-export * from '@styles/common/SectionTitle.style';
-export * from '@styles/components/AlbumCard.style';
-export { ToggleButton } from '@styles/components/Buttons.style';
+export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
+export * from '@/styles/components/AlbumCard.style';
+export { ToggleButton } from '@/styles/components/Buttons.style';
 
 export const YearSection = styled.section<{ isOpen: boolean }>`
 	display: flex;

@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { ViewMoreButton } from '@/styles/components/Buttons.style';
 
-export * from '@styles/pages/Album/Album.style';
+export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
 
 export const ContentWrapper = styled.div`
 	position: relative;

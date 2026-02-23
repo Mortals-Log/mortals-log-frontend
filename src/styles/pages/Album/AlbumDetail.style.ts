@@ -4,8 +4,8 @@
 
 import styled from '@emotion/styled';
 
-export * from '@styles/pages/Album/Album.style';
-export * from '@styles/components/Buttons.style';
+export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
+export * from '@/styles/components/Buttons.style';
 
 export const MainContainer = styled.main`
 	max-width: 800px;

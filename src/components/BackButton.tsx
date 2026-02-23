@@ -1,8 +1,9 @@
 // @components/BackButton.tsx
 
+import * as S from '@/styles/components/Buttons.style';
+
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useCallback, useMemo } from 'react';
-import * as S from '@/styles/components/Buttons.style';
 
 interface BackButtonProps {
 	to?: string;

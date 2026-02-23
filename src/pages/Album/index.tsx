@@ -1,8 +1,8 @@
 // @src/pages/Album/index
 
-import AlbumPromotionSection from '@pages/Album/AlbumPromotionSection';
-import AlbumReleaseSection from '@pages/Album/AlbumReleaseSection';
-import AlbumTypeSection from '@pages/Album/AlbumTypeSection';
+import AlbumPromotionSection from '@/pages/Album/AlbumPromotionSection';
+import AlbumReleaseSection from '@/pages/Album/AlbumReleaseSection';
+import AlbumTypeSection from '@/pages/Album/AlbumTypeSection';
 
 const SECTION_TITLE = {
 	TYPE: {
