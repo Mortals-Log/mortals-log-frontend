@@ -5,7 +5,7 @@
 import styled from '@emotion/styled';
 
 export const MainContainer = styled.main`
-	max-width: 1200px;
+	max-width: 800px;
 	margin: 0 auto;
 	padding: 100px 60px;
 	min-height: 100vh;
@@ -69,6 +69,7 @@ export const Description = styled.div`
 
 export const SectionTitle = styled.h3`
 	display: flex;
+	width: 100%;
 	align-items: baseline;
 	gap: 0.5rem;
 
