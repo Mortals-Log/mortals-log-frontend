@@ -6,6 +6,7 @@ import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { FULL_ALBUMS } from '@/const/albums';
+import TrackBadgeList from '@/components/BadgeList';
 
 type SortType = 'latest' | 'release' | 'alphabet';
 
@@ -82,33 +83,21 @@ const Song = () => {
 
 			<S.TrackContainer>
 				{sortedTracks.map((track, index) => (
-					<S.TrackItem key={`${track.id}-${index}`} onClick={() => navigate(`/song/${track.id}`)}>
+					<S.TrackItem
+						key={track.id}
+						onClick={() => navigate(`/song/${track.id}`)}
+						role="button"
+						tabIndex={0}
+						onKeyDown={e => e.key === 'Enter' && navigate(`/song/${track.id}`)}>
 						<S.TrackNumber>{String(index + 1).padStart(2, '0')}</S.TrackNumber>
 						<S.TrackInfo>
 							<S.TrackTitle>
 								<span className="title-text">
 									{track.title}
-									{track.version && ` (${track.version})`}
+									{track.version && <span className="version"> ({track.version})</span>}
 								</span>
 
-								<S.BadgeGroup>
-									{track.isLead && <S.LeadBadge>{S.BADGE_LABEL.TITLE}</S.LeadBadge>}
-									{track.mvLink && <S.MVBadge>{S.BADGE_LABEL.MV}</S.MVBadge>}
-									{track.chordsList && track.chordsList.length > 0 && (
-										<S.ChordBadge>{S.BADGE_LABEL.CHORDS}</S.ChordBadge>
-									)}
-									{track.ageLimit && <S.AdultBadge>{S.BADGE_LABEL.ADULT}</S.AdultBadge>}
-									{track.singing?.tj && (
-										<S.SingingBadge brand="TJ">
-											{S.BADGE_LABEL.TJ} {track.singing.tj}
-										</S.SingingBadge>
-									)}
-									{track.singing?.ky && (
-										<S.SingingBadge brand="KY">
-											{S.BADGE_LABEL.KY} {track.singing.ky}
-										</S.SingingBadge>
-									)}
-								</S.BadgeGroup>
+								<TrackBadgeList track={track} />
 							</S.TrackTitle>
 
 							<S.AlbumName>{track.albumTitle}</S.AlbumName>

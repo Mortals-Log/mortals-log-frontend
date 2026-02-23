@@ -4,19 +4,10 @@
 
 import styled from '@emotion/styled';
 
-export const BADGE_LABEL = {
-	TITLE: 'TITLE',
-	CHORDS: 'CRORDS',
-	MV: 'MV',
-	ADULT: '🔞 미성년자 청취불가',
-	TJ: 'TJ',
-	KY: 'KY',
-} as const;
-
 export const BadgeGroup = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.5rem;
+	gap: 0.3rem;
 	margin-bottom: 1rem;
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

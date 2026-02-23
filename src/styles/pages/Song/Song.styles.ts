@@ -4,8 +4,6 @@
 
 import styled from '@emotion/styled';
 
-export * from '@styles/components/Badge.style';
-
 export const SortTabGroup = styled.ul`
 	display: flex;
 	list-style: none;
