@@ -41,6 +41,12 @@ export const LogoGroup = styled.div`
 			color: ${props => props.theme.COLOR.PRIMARY};
 		}
 	}
+
+	&:active {
+		.logo {
+			color: ${props => props.theme.COLOR.PRIMARY};
+		}
+	}
 `;
 
 export const Logo = styled.div`
@@ -125,6 +131,10 @@ export const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
 	&:hover {
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
+
+	&:active {
+		color: ${props => props.theme.COLOR.PRIMARY};
+	}
 `;
 
 export const UtilGroup = styled.div`
@@ -162,6 +172,10 @@ export const MobileNavList = styled.ul`
 	flex-direction: column;
 	gap: 2.5rem;
 	list-style: none;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		gap: 2rem;
+	}
 `;
 
 export const MobileOverlay = styled(motion.div)`
@@ -219,6 +233,10 @@ export const MobileNavItem = styled.li<{ $isActive?: boolean }>`
 
 	&:active {
 		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	}
 `;
 
