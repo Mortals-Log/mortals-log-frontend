@@ -2,107 +2,79 @@
 
 import * as S from '@styles/pages/Song/Song.styles';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MASTER_TRACKS } from '@/const/tracks';
-import { FULL_ALBUMS } from '@/const/albums';
-import TrackBadgeList from '@/components/BadgeList';
+import { GetTrackToAlbumMap } from '@/utils/track';
+import TrackRow from './TrackRow';
+
+const trackToAlbumMap = GetTrackToAlbumMap();
 
 type SortType = 'latest' | 'release' | 'alphabet';
 
-const trackToAlbumMap = new Map();
-const allMasterTrackIds = Object.keys(MASTER_TRACKS);
+const SORT_OPTIONS: { type: SortType; label: string }[] = [
+	{ type: 'latest', label: '최신순' },
+	{ type: 'release', label: '발매순' },
+	{ type: 'alphabet', label: '가나다순' },
+];
 
-FULL_ALBUMS.forEach(category => {
-	category.items.forEach(album => {
-		const { tracks: tracksData, title, releaseDate } = album;
-		const albumInfo = { albumTitle: title, releaseDate };
-
-		if (Array.isArray(tracksData)) {
-			tracksData.forEach(t => {
-				if (t.includes('*')) {
-					const pattern = t.replace('*', '');
-					allMasterTrackIds
-						.filter(id => id.startsWith(pattern))
-						.forEach(id => {
-							if (!trackToAlbumMap.has(id)) trackToAlbumMap.set(id, albumInfo);
-						});
-				} else {
-					if (!trackToAlbumMap.has(t)) trackToAlbumMap.set(t, albumInfo);
-				}
-			});
-		} else if (tracksData && typeof tracksData === 'object') {
-			const allVinylTracks = Object.values(tracksData).flat() as string[];
-			allVinylTracks.forEach(id => {
-				if (!trackToAlbumMap.has(id)) trackToAlbumMap.set(id, albumInfo);
-			});
-		}
-	});
-});
+const SORT_STRATEGY = {
+	latest: (a: any, b: any) => (b.releaseDate > a.releaseDate ? 1 : -1),
+	release: (a: any, b: any) => (a.releaseDate > b.releaseDate ? 1 : -1),
+	alphabet: (a: any, b: any) => a.title.localeCompare(b.title, 'ko'),
+};
 
 const Song = () => {
 	const navigate = useNavigate();
 	const [sortType, setSortType] = useState<SortType>('latest');
 
-	const sortedTracks = useMemo(() => {
-		const allTracks = Object.values(MASTER_TRACKS).map(track => {
-			const albumInfo = trackToAlbumMap.get(track.id) || {
+	const allTracksWithAlbum = useMemo(() => {
+		return Object.values(MASTER_TRACKS).map(track => ({
+			...track,
+			...(trackToAlbumMap.get(track.id) ?? {
 				albumTitle: 'Unknown Album',
 				releaseDate: '0000.00.00',
-			};
-			return { ...track, ...albumInfo };
-		});
+			}),
+		}));
+	}, []);
 
-		return allTracks.sort((a, b) => {
-			switch (sortType) {
-				case 'latest':
-					return b.releaseDate.localeCompare(a.releaseDate);
-				case 'release':
-					return a.releaseDate.localeCompare(b.releaseDate);
-				case 'alphabet':
-					return a.title.localeCompare(b.title, 'ko');
-				default:
-					return 0;
-			}
-		});
-	}, [sortType]);
+	const sortedTracks = useMemo(() => {
+		return [...allTracksWithAlbum].sort(SORT_STRATEGY[sortType]);
+	}, [allTracksWithAlbum, sortType]);
+
+	const handleItemClick = useCallback(
+		(id: string) => {
+			navigate(`/song/${id}`);
+		},
+		[navigate],
+	);
+
+	const handleKeyDown = useCallback(
+		(e: React.KeyboardEvent, id: string) => {
+			if (e.key === 'Enter') navigate(`/song/${id}`);
+		},
+		[navigate],
+	);
 
 	return (
 		<>
-			<S.SortTabGroup>
-				<S.SortTabItem $isActive={sortType === 'latest'} onClick={() => setSortType('latest')}>
-					최신순
-				</S.SortTabItem>
-				<S.SortTabItem $isActive={sortType === 'release'} onClick={() => setSortType('release')}>
-					발매순
-				</S.SortTabItem>
-				<S.SortTabItem $isActive={sortType === 'alphabet'} onClick={() => setSortType('alphabet')}>
-					가나다순
-				</S.SortTabItem>
+			<S.SortTabGroup role="tablist">
+				{SORT_OPTIONS.map(({ type, label }) => (
+					<S.SortTabItem
+						key={type}
+						$isActive={sortType === type}
+						onClick={() => setSortType(type)}
+						role="tab"
+						aria-selected={sortType === type}
+						tabIndex={0}>
+						{label}
+					</S.SortTabItem>
+				))}
 			</S.SortTabGroup>
 
 			<S.TrackContainer>
 				{sortedTracks.map((track, index) => (
-					<S.TrackItem
-						key={track.id}
-						onClick={() => navigate(`/song/${track.id}`)}
-						role="button"
-						tabIndex={0}
-						onKeyDown={e => e.key === 'Enter' && navigate(`/song/${track.id}`)}>
-						<S.TrackNumber>{String(index + 1).padStart(2, '0')}</S.TrackNumber>
-						<S.TrackInfo>
-							<S.TrackTitle>
-								<span className="title-text">
-									{track.title}
-									{track.version && <span className="version"> ({track.version})</span>}
-								</span>
-
-								<TrackBadgeList track={track} />
-							</S.TrackTitle>
-
-							<S.AlbumName>{track.albumTitle}</S.AlbumName>
-						</S.TrackInfo>
-					</S.TrackItem>
+					<TrackRow key={track.id} track={track} index={index} onClick={handleItemClick} onKeyDown={handleKeyDown} />
 				))}
 			</S.TrackContainer>
 		</>
