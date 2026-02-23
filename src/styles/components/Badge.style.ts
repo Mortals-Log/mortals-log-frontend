@@ -29,6 +29,10 @@ const BaseBadge = styled.span`
 	font-size: ${props => props.theme.FONT.SIZE.TINY};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	letter-spacing: 0.02em;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 2px 4px;
+	}
 `;
 
 export const LeadBadge = styled(BaseBadge)`
