@@ -12,7 +12,7 @@ const blink = keyframes`
   50% { opacity: 0; }
 `;
 
-const BaseButton = styled.button`
+export const ExpandButton = styled.button<{ $isExpanded: boolean }>`
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -37,20 +37,46 @@ const BaseButton = styled.button`
 		background-color: ${props => props.theme.COLOR.PRIMARY};
 		color: ${props => props.theme.COLOR.WHITE};
 	}
-`;
-
-export const ExpandButton = styled(BaseButton)<{ $isExpanded: boolean }>`
 	margin-top: ${({ $isExpanded }) => ($isExpanded ? '0rem' : '-1.1rem')};
 	position: relative;
 	z-index: 10;
 `;
 
-export const MoreButton = styled(BaseButton.withComponent(Link))`
-	margin-top: 10px;
+export const MoreButton = styled(Link)`
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+
+	gap: 8px;
+	margin-top: 1rem;
+	padding: 14px;
+
 	text-decoration: none;
+	background-color: transparent;
+	border: 1px solid ${props => props.theme.COLOR.PRIMARY};
+	border-radius: 10px;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	color: ${props => props.theme.COLOR.GRAY700};
+	cursor: pointer;
+
+	transition: all 0.2s ease;
+
+	&:hover {
+		background-color: ${props => props.theme.COLOR.PRIMARY};
+		color: ${props => props.theme.COLOR.WHITE};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 12px;
+		font-size: ${props => props.theme.FONT.SIZE.XS};
+	}
 `;
 
-export const LinkButton = styled.a`
+export const LinkButton = styled(Link)`
 	display: inline-flex;
 	align-items: center;
 	gap: 8px;
@@ -97,7 +123,11 @@ export const LinkButton = styled.a`
 `;
 
 export const ViewMoreButton = styled.button`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: fit-content;
+
 	background-color: ${props => props.theme.COLOR.BLACK};
 	padding: 1rem 1.5rem;
 
@@ -108,6 +138,7 @@ export const ViewMoreButton = styled.button`
 
 	border: none;
 	cursor: pointer;
+	border-radius: 10px;
 	transition: all 0.3s;
 
 	&::after {
@@ -122,9 +153,13 @@ export const ViewMoreButton = styled.button`
 		color: ${props => props.theme.COLOR.WHITE};
 	}
 
-	@media (max-width: 850px) {
-		padding: 0.9rem 1.5rem;
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 0.8rem 1.4rem;
 		font-size: ${props => props.theme.FONT.SIZE.SM};
+
+		&::after {
+			margin-left: 4px;
+		}
 	}
 `;
 
