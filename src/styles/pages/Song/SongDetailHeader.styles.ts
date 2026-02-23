@@ -5,14 +5,21 @@
 import styled from '@emotion/styled';
 
 export * from '@/styles/components/Badge.style';
-export { MainTitle, SubTitle } from '@/styles/common/Layout.style';
+export { SubTitle } from '@/styles/common/Layout.style';
 
 import * as B from '@/styles/components/Badge.style';
+import * as L from '@/styles/common/Layout.style';
 
 export const BadgeGroup = styled(B.BadgeGroup)`
 	display: inline-flex;
 	margin-right: 0.3rem;
 	margin-bottom: 0;
+`;
+
+export const MainTitle = styled(L.MainTitle)`
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		margin-top: 0;
+	}
 `;
 
 export const HeaderSection = styled.section`
