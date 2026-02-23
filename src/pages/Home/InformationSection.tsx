@@ -7,7 +7,7 @@ import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import { FULL_CONCERTS } from '@/const/concert';
 import { GetLatestAlbum } from '@/utils/album';
 import { GetUpcomingSchedules } from '@/utils/date';
-import Placeholder from '@/components/Placeholder';
+import Placeholder from '@/components/placeholder';
 
 const InformationSection = () => {
 	const upcomingEvents = useMemo(() => GetUpcomingSchedules(FULL_CONCERTS), []);

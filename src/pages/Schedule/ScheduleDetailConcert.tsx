@@ -108,7 +108,7 @@ const ScheduleDetailConcert = ({ schedule, imageUrl, content }: ScheduleDetailCo
 					)}
 
 					{schedule.reservationLink && (
-						<S.PrimaryButton href={schedule.reservationLink} target="_blank" rel="noopener noreferrer">
+						<S.PrimaryButton to={schedule.reservationLink} target="_blank" rel="noopener noreferrer">
 							티켓 예매하러 가기
 						</S.PrimaryButton>
 					)}

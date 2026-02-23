@@ -90,7 +90,7 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 					</S.VideoWrapper>
 
 					<S.PrimaryButton
-						href={`${LINK_PLATFORM.YOUTUBE.BASE_URL}${track.mvLink}`}
+						to={`${LINK_PLATFORM.YOUTUBE.BASE_URL}${track.mvLink}`}
 						target="_blank"
 						rel="noopener noreferrer">
 						{MUSIC_PLATFORM.YOUTUBE}로 보러가기

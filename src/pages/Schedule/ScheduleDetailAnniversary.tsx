@@ -63,7 +63,7 @@ const ScheduleDetailAnniversary = ({ schedule }: AnniversaryProps) => {
 
 					{instagramUrl && (
 						<S.InfoGroup>
-							<S.PrimaryButton href={instagramUrl} target="_blank" rel="noopener noreferrer">
+							<S.PrimaryButton to={instagramUrl} target="_blank" rel="noopener noreferrer">
 								{schedule.content} 축하하러 가기
 							</S.PrimaryButton>
 						</S.InfoGroup>

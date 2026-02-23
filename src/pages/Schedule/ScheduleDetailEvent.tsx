@@ -60,7 +60,7 @@ const ScheduleDetailEvent = ({ schedule }: ScheduleEtcConcertProps) => {
 					{schedule.link && linkUrl && (
 						<S.InfoGroup>
 							<S.InfoTitle>WATCH / LISTEN</S.InfoTitle>
-							<S.PrimaryButton href={linkUrl} target="_blank" rel="noopener noreferrer">
+							<S.PrimaryButton to={linkUrl} target="_blank" rel="noopener noreferrer">
 								{schedule.platform ? schedule.platform : schedule.host}로 보러가기
 							</S.PrimaryButton>
 						</S.InfoGroup>

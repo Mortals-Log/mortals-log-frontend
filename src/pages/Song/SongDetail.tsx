@@ -50,9 +50,7 @@ const SongDetail = () => {
 			<BackButton />
 
 			<SongDetailHeader track={track} albumInfo={albumInfo} />
-
 			<SongDetailMeta track={track} albumInfo={albumInfo} />
-
 			<SongDetailContent track={track} />
 		</S.MainContainer>
 	);

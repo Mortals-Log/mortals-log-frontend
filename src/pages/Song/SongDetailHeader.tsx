@@ -6,20 +6,31 @@ import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { Track } from '@/types/track';
 import { Album } from '@/types/album';
+import { BADGE_LABEL } from '@/components/BadgeList';
 
 interface SongDetailHeaderProps {
 	track: Track;
 	albumInfo: Album | null | undefined;
 }
-
 const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 	const navigate = useNavigate();
+
+	const albumType = albumInfo?.type ? ALBUM_TYPE_LABEL[albumInfo.type as keyof typeof ALBUM_TYPE_LABEL] : '';
+	const isLP = albumInfo?.type === 'LP';
+
+	const handleAlbumClick = () => {
+		if (albumInfo?.title && albumInfo.title !== 'Unknown Album') {
+			navigate(`/album/${albumInfo.title}`);
+		}
+	};
 
 	return (
 		<S.HeaderSection>
 			<S.SubTitle>
-				{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
-				{track.ageLimit && <S.AdultBadge>🔞 미성년자 청취불가</S.AdultBadge>}
+				<S.BadgeGroup>
+					{track.isLead && <S.LeadBadge>{BADGE_LABEL.TITLE}</S.LeadBadge>}
+					{track.ageLimit && <S.AdultBadge>{BADGE_LABEL.ADULT}</S.AdultBadge>}
+				</S.BadgeGroup>
 				{track.enTitle}
 				{track.version && ` (${track.version})`}
 			</S.SubTitle>
@@ -29,17 +40,21 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 			</S.MainTitle>
 
 			<S.Description>
-				<span className="type">
-					{ALBUM_TYPE_LABEL[albumInfo?.type || '']} {albumInfo?.type == 'LP' && `${albumInfo?.volume}집`}
-				</span>
-				<span className="title" onClick={() => navigate(`/album/${albumInfo?.title}`)}>
+				{(albumType || isLP) && (
+					<span className="type">
+						{albumType}
+						{isLP && albumInfo?.volume && `${albumInfo.volume}집`}
+					</span>
+				)}
+
+				<span className="album" onClick={handleAlbumClick}>
 					{albumInfo?.title}
 				</span>
-				{track.originalTrackIds && (
+
+				{track.originalTrackIds && track.originalTrackIds.length > 0 && (
 					<S.OriginalLinkGroup>
 						{track.originalTrackIds.map(id => {
 							const originalTrack = MASTER_TRACKS[id as keyof typeof MASTER_TRACKS];
-
 							const displayTitle = originalTrack ? originalTrack.title : id;
 
 							return (
