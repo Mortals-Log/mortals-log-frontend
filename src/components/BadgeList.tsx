@@ -18,15 +18,16 @@ interface TrackBadgeListProps {
 }
 
 const TrackBadgeList = ({ track }: TrackBadgeListProps) => {
+	const badges = [
+		{ show: track.isLead, component: S.LeadBadge, label: BADGE_LABEL.TITLE },
+		{ show: track.mvLink, component: S.MVBadge, label: BADGE_LABEL.MV },
+		{ show: track.chordsList && track.chordsList.length > 0, component: S.ChordBadge, label: BADGE_LABEL.CHORDS },
+		{ show: track.ageLimit, component: S.AdultBadge, label: BADGE_LABEL.ADULT },
+	];
+
 	return (
 		<S.BadgeGroup>
-			{track.isLead && <S.LeadBadge>{BADGE_LABEL.TITLE}</S.LeadBadge>}
-
-			{track.mvLink && <S.MVBadge>{BADGE_LABEL.MV}</S.MVBadge>}
-
-			{track.chordsList && track.chordsList.length > 0 && <S.ChordBadge>{BADGE_LABEL.CHORDS}</S.ChordBadge>}
-
-			{track.ageLimit && <S.AdultBadge>{BADGE_LABEL.ADULT}</S.AdultBadge>}
+			{badges.map((badge, i) => badge.show && <badge.component key={i}>{badge.label}</badge.component>)}
 
 			{track.singing?.tj && (
 				<S.SingingBadge brand="TJ">
