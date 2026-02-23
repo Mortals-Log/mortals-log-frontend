@@ -1,6 +1,7 @@
 // @pages/Song/SongDetail
 
 import * as S from '@/styles/pages/Song/SongDetailContent.styles';
+
 import { useMemo, useState } from 'react';
 import { LINK_PLATFORM, MUSIC_PLATFORM } from '@/const/links';
 import Placeholder from '@/components/Placeholder';
@@ -47,17 +48,13 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 	return (
 		<S.ContentSection>
 			<S.ContentHeader>
-				{tabs.length > 1 ? (
-					<S.TabGroup>
-						{tabs.map(tab => (
-							<S.TabButton key={tab.id} isActive={activeTab === tab.id} onClick={() => setActiveTab(tab.id as any)}>
-								{tab.label}
-							</S.TabButton>
-						))}
-					</S.TabGroup>
-				) : (
-					<S.ContentTitle>{tabs[0].label}</S.ContentTitle>
-				)}
+				<S.TabGroup>
+					{tabs.map(tab => (
+						<S.TabButton key={tab.id} $isActive={activeTab === tab.id} onClick={() => setActiveTab(tab.id as any)}>
+							{tab.label}
+						</S.TabButton>
+					))}
+				</S.TabGroup>
 
 				{activeTab === 'chords' && currentChordVersion && (
 					<S.ChordSubHeader>
@@ -86,16 +83,16 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 			</S.ContentHeader>
 
 			{activeTab === 'lyrics' &&
-				(track.lyrics ? <S.Content isChord={false}>{track.lyrics}</S.Content> : <Placeholder contentName="가사" />)}
+				(track.lyrics ? <S.Content $isChord={false}>{track.lyrics}</S.Content> : <Placeholder contentName="가사" />)}
 
 			{activeTab === 'chords' && currentChordVersion && (
 				<>
 					{isSeparated && (
 						<S.StickyChordBar>
-							<S.ChordText>{currentChordVersion.chords}</S.ChordText>
+							<span className="chord">{currentChordVersion.chords}</span>
 						</S.StickyChordBar>
 					)}
-					<S.Content isChord={!isSeparated}>{isSeparated ? track.lyrics : currentChordVersion.chords}</S.Content>
+					<S.Content $isChord={!isSeparated}>{isSeparated ? track.lyrics : currentChordVersion.chords}</S.Content>
 				</>
 			)}
 
