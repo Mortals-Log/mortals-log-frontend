@@ -12,6 +12,7 @@ import * as B from '@/styles/components/Badge.style';
 export const BadgeGroup = styled(B.BadgeGroup)`
 	display: inline-flex;
 	margin-right: 0.3rem;
+	margin-bottom: 0;
 `;
 
 export const HeaderSection = styled.section`
