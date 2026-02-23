@@ -1,4 +1,4 @@
-// @styles/components/LeadBadge.style
+// @styles/components/Badge.style
 
 /* eslint-disable storybook/default-exports */
 
