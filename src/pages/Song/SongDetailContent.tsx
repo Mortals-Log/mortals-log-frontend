@@ -1,9 +1,9 @@
 // @pages/Song/SongDetail
 
-import * as S from '@styles/pages/Song/SongDetailContent.styles';
-import { useState } from 'react';
-import Placeholder from '@/components/Placeholder';
+import * as S from '@/styles/pages/Song/SongDetailContent.styles';
+import { useMemo, useState } from 'react';
 import { LINK_PLATFORM, MUSIC_PLATFORM } from '@/const/links';
+import Placeholder from '@/components/Placeholder';
 import { Track } from '@/types/track';
 
 interface SongDetailContentProps {
@@ -14,34 +14,49 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 	const [activeTab, setActiveTab] = useState<'lyrics' | 'chords' | 'mv'>('lyrics');
 	const [activeVersionIdx, setActiveVersionIdx] = useState(0);
 
-	const hasChords = track.chordsList && track.chordsList.length > 0;
-	const currentChordVersion = hasChords ? track.chordsList![activeVersionIdx] : null;
+	const hasChords = useMemo(() => !!(track.chordsList && track.chordsList.length > 0), [track.chordsList]);
 
-	const isSeparated = currentChordVersion?.chordModeType === 'separated' && track.lyrics;
+	const currentChordVersion = useMemo(
+		() => (hasChords ? track.chordsList![activeVersionIdx] : null),
+		[hasChords, track.chordsList, activeVersionIdx],
+	);
+
+	const isSeparated = useMemo(
+		() => !!(currentChordVersion?.chordModeType === 'separated' && track.lyrics),
+		[currentChordVersion, track.lyrics],
+	);
+
+	const tabs = useMemo(
+		() =>
+			[
+				{ id: 'lyrics', label: '가사', show: !!track.lyrics },
+				{ id: 'chords', label: '코드', show: hasChords },
+				{ id: 'mv', label: '뮤직비디오', show: !!track.mvLink },
+			].filter(tab => tab.show),
+		[track.lyrics, track.mvLink, hasChords],
+	);
+
+	const guideItems = useMemo(() => {
+		if (!currentChordVersion) return [];
+		return [
+			{ label: '튜닝', value: currentChordVersion.tuning || '정튜닝' },
+			{ label: '제공', value: currentChordVersion.provider ? `${currentChordVersion.provider}님` : null },
+		].filter(item => item.value);
+	}, [currentChordVersion]);
 
 	return (
 		<S.ContentSection>
 			<S.ContentHeader>
-				{track.lyrics && (hasChords || track.mvLink) ? (
+				{tabs.length > 1 ? (
 					<S.TabGroup>
-						<S.TabButton isActive={activeTab === 'lyrics'} onClick={() => setActiveTab('lyrics')}>
-							가사
-						</S.TabButton>
-
-						{hasChords && (
-							<S.TabButton isActive={activeTab === 'chords'} onClick={() => setActiveTab('chords')}>
-								코드
+						{tabs.map(tab => (
+							<S.TabButton key={tab.id} isActive={activeTab === tab.id} onClick={() => setActiveTab(tab.id as any)}>
+								{tab.label}
 							</S.TabButton>
-						)}
-
-						{track.mvLink && (
-							<S.TabButton isActive={activeTab === 'mv'} onClick={() => setActiveTab('mv')}>
-								뮤직비디오
-							</S.TabButton>
-						)}
+						))}
 					</S.TabGroup>
 				) : (
-					<S.ContentTitle>가사</S.ContentTitle>
+					<S.ContentTitle>{tabs[0].label}</S.ContentTitle>
 				)}
 
 				{activeTab === 'chords' && currentChordVersion && (
@@ -60,10 +75,11 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 						)}
 
 						<S.GuideWrapper>
-							<div className="guide-item">튜닝 | {currentChordVersion.tuning || '정튜닝'}</div>
-							{currentChordVersion.provider && (
-								<div className="guide-item">제공 | {currentChordVersion.provider}님</div>
-							)}
+							{guideItems.map(item => (
+								<div key={item.label} className="guide-item">
+									{item.label} | {item.value}
+								</div>
+							))}
 						</S.GuideWrapper>
 					</S.ChordSubHeader>
 				)}
@@ -86,9 +102,8 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 			{activeTab === 'mv' && track.mvLink && (
 				<>
 					<S.VideoWrapper>
-						<iframe src={`${LINK_PLATFORM.YOUTUBE.EMBED_URL}${track.mvLink}`} allowFullScreen />
+						<iframe src={`${LINK_PLATFORM.YOUTUBE.EMBED_URL}${track.mvLink}`} title="YouTube MV" allowFullScreen />
 					</S.VideoWrapper>
-
 					<S.PrimaryButton
 						to={`${LINK_PLATFORM.YOUTUBE.BASE_URL}${track.mvLink}`}
 						target="_blank"
