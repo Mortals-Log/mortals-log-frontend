@@ -62,7 +62,7 @@ export const Description = styled.div`
 	word-break: keep-all;
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		margin-bottom: -3rem;
+		margin-bottom: -2.5rem;
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;

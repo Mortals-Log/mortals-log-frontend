@@ -5,7 +5,6 @@
 import styled from '@emotion/styled';
 import { css, keyframes } from '@emotion/react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 const blink = keyframes`
   0%, 100% { opacity: 1; }
@@ -236,7 +235,7 @@ export const ViewMoreButton = styled.button`
 	}
 `;
 
-export const CardButton = styled(motion.a)`
+export const CardButton = styled(Link)`
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -257,6 +256,15 @@ export const CardButton = styled(motion.a)`
 
 	&:hover {
 		border-color: ${props => props.theme.COLOR.PRIMARY};
+	}
+
+	&:active {
+		border-color: ${props => props.theme.COLOR.PRIMARY};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 2rem 1.5rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;
 

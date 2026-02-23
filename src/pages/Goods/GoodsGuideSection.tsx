@@ -1,6 +1,7 @@
 // @src/pages/Goods/GoodsGuideSection
 
-import * as S from '@styles/pages/Goods/GoodsGuideSection.style';
+import * as S from '@/styles/pages/Goods/Goods.style';
+
 import { FAN_GOODS_GUIDE } from '@/const/goods';
 
 const GoodsGuideSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
@@ -14,28 +15,24 @@ const GoodsGuideSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN:
 			</S.SectionTitle>
 
 			<S.GuideSection>
-				<S.GuideTitle>{GOODS_MADE_TITLE}</S.GuideTitle>
-				<S.GuideList>
-					{GOODS_MADE_RULES.map((rule, index) => (
-						<S.GuideItem key={index}>{rule}</S.GuideItem>
-					))}
-				</S.GuideList>
+				<p className="title">{GOODS_MADE_TITLE}</p>
+				{GOODS_MADE_RULES.map((rule, index) => (
+					<S.GuideItem key={index}>{rule}</S.GuideItem>
+				))}
 			</S.GuideSection>
 
 			<S.GuideSection>
-				<S.GuideTitle>{CONTACT_TITLE}</S.GuideTitle>
-				<S.ButtonGroup>
-					{CONTACT_CHANNELS.map(channel => {
-						const Icon = channel.icon;
+				<p className="title">{CONTACT_TITLE}</p>
+				{CONTACT_CHANNELS.map(channel => {
+					const Icon = channel.icon;
 
-						return (
-							<S.LinkButton key={channel.label} to={channel.url} target="_blank" rel="noopener noreferrer">
-								{Icon && <Icon width={16} height={16} />}
-								{channel.label}
-							</S.LinkButton>
-						);
-					})}
-				</S.ButtonGroup>
+					return (
+						<S.LinkButton key={channel.label} to={channel.url} target="_blank" rel="noopener noreferrer">
+							{Icon && <Icon width={16} height={16} />}
+							{channel.label}
+						</S.LinkButton>
+					);
+				})}
 			</S.GuideSection>
 		</S.ContentSection>
 	);
