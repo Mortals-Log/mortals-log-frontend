@@ -93,7 +93,7 @@ const AlbumPromotionSection = () => {
 					)}
 				</S.TrackPreviewList>
 
-				<S.PromotionLinkButton to={detailUrl}>{isReleased ? 'VIEW TRACKS' : 'MOVE TO PAGE'}</S.PromotionLinkButton>
+				<S.ViewMoreButton to={detailUrl}>{isReleased ? 'VIEW TRACKS' : 'MOVE TO PAGE'}</S.ViewMoreButton>
 			</S.InfoArea>
 		</S.ContentWrapper>
 	);

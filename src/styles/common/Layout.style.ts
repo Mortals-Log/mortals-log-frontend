@@ -29,10 +29,11 @@ export const MainTitle = styled.div`
 	font-size: ${props => props.theme.FONT.SIZE.H2};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	color: ${props => props.theme.COLOR.BLACK};
-	margin-top: 0.5rem;
+	margin-top: 0.3rem;
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.H2};
+		margin-top: 0.2rem;
 	}
 `;
 
@@ -49,7 +50,7 @@ export const SubTitle = styled.span`
 `;
 
 export const Description = styled.div`
-	margin-top: 1rem;
+	margin-top: 0.8rem;
 	margin-bottom: -2rem;
 
 	font-family: ${props => props.theme.FONT.SANS};
@@ -62,6 +63,8 @@ export const Description = styled.div`
 	word-break: keep-all;
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		line-height: 1.2;
+		margin-top: 0.6rem;
 		margin-bottom: -2.5rem;
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
