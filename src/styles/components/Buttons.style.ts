@@ -13,12 +13,16 @@ const blink = keyframes`
 `;
 
 export const ExpandButton = styled.button<{ $isExpanded: boolean }>`
-	width: 100%;
 	display: flex;
+	position: relative;
+	width: 100%;
 	align-items: center;
 	justify-content: center;
+
+	z-index: 10;
+	padding: 1rem 1.5rem;
+	margin-top: ${({ $isExpanded }) => ($isExpanded ? '0rem' : '-1.1rem')};
 	gap: 8px;
-	padding: 14px;
 
 	background-color: transparent;
 	border: 1px solid ${props => props.theme.COLOR.PRIMARY};
@@ -33,13 +37,20 @@ export const ExpandButton = styled.button<{ $isExpanded: boolean }>`
 	transition: all 0.2s ease;
 
 	&:hover {
-		border: 1px solid ${props => props.theme.COLOR.PRIMARY};
 		background-color: ${props => props.theme.COLOR.PRIMARY};
+		border-color: ${props => props.theme.COLOR.PRIMARY};
 		color: ${props => props.theme.COLOR.WHITE};
 	}
-	margin-top: ${({ $isExpanded }) => ($isExpanded ? '0rem' : '-1.1rem')};
-	position: relative;
-	z-index: 10;
+
+	&:active {
+		background-color: ${props => props.theme.COLOR.PRIMARY};
+		transform: scale(0.98);
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 12px;
+		font-size: ${props => props.theme.FONT.SIZE.XS};
+	}
 `;
 
 export const MoreButton = styled(Link)`
@@ -50,7 +61,7 @@ export const MoreButton = styled(Link)`
 
 	gap: 8px;
 	margin-top: 1rem;
-	padding: 14px;
+	padding: 1rem 1.5rem;
 
 	text-decoration: none;
 	background-color: transparent;
@@ -67,7 +78,12 @@ export const MoreButton = styled(Link)`
 
 	&:hover {
 		background-color: ${props => props.theme.COLOR.PRIMARY};
+		border-color: ${props => props.theme.COLOR.PRIMARY};
 		color: ${props => props.theme.COLOR.WHITE};
+	}
+
+	&:active {
+		transform: scale(0.98);
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -105,6 +121,10 @@ export const LinkButton = styled(Link)`
 		border-color: ${props => props.theme.COLOR.PRIMARY};
 		color: ${props => props.theme.COLOR.WHITE};
 		transform: translateY(-1px);
+	}
+
+	&:active {
+		transform: scale(0.98);
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -151,6 +171,10 @@ export const ViewMoreButton = styled.button`
 	&:hover {
 		background-color: ${props => props.theme.COLOR.PRIMARY};
 		color: ${props => props.theme.COLOR.WHITE};
+	}
+
+	&:active {
+		transform: scale(0.98);
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
