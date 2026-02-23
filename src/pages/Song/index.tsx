@@ -1,12 +1,12 @@
 // @src/pages/Song/index
 
-import * as S from '@styles/pages/Song/Song.styles';
+import * as S from '@/styles/pages/Song/Song.styles';
 
 import { useMemo, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import TrackRow from '@/pages/Song/TrackRow';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { GetTrackToAlbumMap } from '@/utils/track';
-import TrackRow from './TrackRow';
 
 const trackToAlbumMap = GetTrackToAlbumMap();
 
