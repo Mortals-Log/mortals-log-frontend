@@ -103,12 +103,13 @@ export const MusicBadge = styled.a`
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		width: fit-content;
-		height: 2.8rem;
-		padding: 1rem;
+		padding: 1rem 0.8rem;
+		margin: 0.2rem 0.3rem 0 0;
 
 		span {
 			display: inline;
 			margin-left: 0.5rem;
+			font-size: ${props => props.theme.FONT.SIZE.XS};
 		}
 	}
 `;
