@@ -4,10 +4,7 @@
 
 import styled from '@emotion/styled';
 
-export const MainContainer = styled.main`
-	margin: 0 auto;
-	padding: 100px 20px;
-`;
+export { MainContainer } from '@/styles/common/Layout.style';
 
 export const ContentSection = styled.section`
 	width: 100%;

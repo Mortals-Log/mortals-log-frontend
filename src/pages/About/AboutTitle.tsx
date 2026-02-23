@@ -1,7 +1,7 @@
 // @src/pages/About/AboutTitle.tsx
 
-import * as S from '@styles/pages/About/AboutTitle.style';
-import { ABOUT_STORY } from '@const/about';
+import * as S from '@/styles/pages/About/AboutTitle.style';
+import { ABOUT_STORY } from '@/const/about';
 
 const AboutStory = () => {
 	const mainTitle = ABOUT_STORY.MAINTITLE.split('\n')[0];
@@ -12,7 +12,7 @@ const AboutStory = () => {
 		<S.ContentSection>
 			<S.Title>
 				{mainTitle}
-				<br />
+
 				<div className="bottom-row">
 					<span>{logTitle}</span>
 
@@ -31,7 +31,7 @@ const AboutStory = () => {
 							{part}
 						</span>
 					))}
-				</p>{' '}
+				</p>
 				<p className="sub-text">{ABOUT_STORY.DESCRIPTION.SUB}</p>
 			</S.DescriptionBox>
 		</S.ContentSection>

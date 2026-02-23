@@ -4,21 +4,7 @@
 
 import styled from '@emotion/styled';
 
-export const ContentSection = styled.section`
-	display: flex;
-	width: 100%;
-	flex-direction: column;
-	justify-content: start;
-	padding: 3rem 6rem;
-
-	@media (max-width: 1200px) {
-		padding: 3rem;
-	}
-
-	@media (max-width: 850px) {
-		padding: 1rem;
-	}
-`;
+export { ContentSection } from '@/styles/common/Layout.style';
 
 export const Title = styled.div`
 	font-family: ${props => props.theme.FONT.SERIF};
@@ -29,8 +15,13 @@ export const Title = styled.div`
 	line-height: 0.9;
 	letter-spacing: -0.05em;
 	text-align: left;
-	margin-bottom: 1.5rem;
 	text-transform: uppercase;
+	margin-bottom: 2.5rem;
+
+	span {
+		display: inline-block;
+		color: ${props => props.theme.COLOR.PRIMARY};
+	}
 
 	.bottom-row {
 		display: flex;
@@ -38,16 +29,11 @@ export const Title = styled.div`
 		gap: 20px;
 	}
 
-	span {
-		display: inline-block;
-		color: ${props => props.theme.COLOR.PRIMARY};
-	}
-
 	.subtitle-column {
 		display: flex;
 		flex-direction: column;
 		gap: 2px;
-		padding-bottom: 0.1em;
+		padding-bottom: 0.2em;
 	}
 
 	small {
@@ -61,6 +47,26 @@ export const Title = styled.div`
 		line-height: 1.2;
 		white-space: nowrap;
 	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.DISPLAY};
+		margin-bottom: 1.5rem;
+
+		.bottom-row {
+			align-items: flex-start;
+			flex-wrap: wrap;
+			gap: 12px;
+		}
+
+		.subtitle-column {
+			padding-bottom: 0;
+			margin-top: 12px;
+		}
+
+		small {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
+	}
 `;
 
 export const DescriptionBox = styled.div`
@@ -68,24 +74,43 @@ export const DescriptionBox = styled.div`
 
 	white-space: pre-line;
 	word-break: keep-all;
-	line-height: 1.5;
+	line-height: 1.6;
 
 	.main-text {
 		font-size: ${props => props.theme.FONT.SIZE.XL};
 		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-		color: ${props => props.theme.COLOR.GRAY800};
+		color: ${props => props.theme.COLOR.GRAY700};
+		margin-bottom: 1rem;
+	}
 
-		margin-bottom: 1.5rem;
-
-		.highlight {
-			font-size: ${props => props.theme.FONT.SIZE.MD};
-			color: ${props => props.theme.COLOR.PRIMARY};
-		}
+	.highlight {
+		font-family: ${props => props.theme.FONT.SERIF};
+		font-size: ${props => props.theme.FONT.SIZE.MD};
+		color: ${props => props.theme.COLOR.PRIMARY};
+		vertical-align: middle;
+		margin-left: 2px;
+		margin-right: 4px;
 	}
 
 	.sub-text {
 		font-size: ${props => props.theme.FONT.SIZE.MD};
 		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 		color: ${props => props.theme.COLOR.GRAY500};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		.main-text {
+			font-size: ${props => props.theme.FONT.SIZE.MD};
+			margin-bottom: 0.5rem;
+		}
+
+		.highlight {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
+
+		.sub-text {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+			line-height: 1.3;
+		}
 	}
 `;
