@@ -1,10 +1,10 @@
 // @src/pages/Album/AlbumTypeSection
 
-import * as S from '@styles/pages/Album/AlbumTypeSection.style';
+import * as S from '@/styles/pages/Album/AlbumTypeSection.style';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import Placeholder from '@/components/Placeholder';
 import useImageFallback from '@/hooks/useImageFallback';
-
 import {
 	ALBUM_TYPE_LABEL,
 	GET_FULL_ALBUMS,
@@ -16,13 +16,7 @@ import {
 } from '@const/albums';
 import { GetAlbumPaths } from '@/utils/album';
 
-const ALBUM_MAP: Record<string, any> = {
-	LP: GET_LP_ALBUMS,
-	EP: GET_EP_ALBUMS,
-	SP: GET_SP_ALBUMS,
-	LV: GET_LV_ALBUMS,
-	VN: GET_VN_ALBUMS,
-};
+const TABS = ['ALL', ...Object.keys(ALBUM_TYPE_LABEL)];
 
 const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const handleImgError = useImageFallback();
@@ -30,13 +24,23 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 	const [activeTab, setActiveTab] = useState('ALL');
 	const [isOpen, setIsOpen] = useState(true);
 
-	const tabs = ['ALL', ...Object.keys(ALBUM_TYPE_LABEL)];
-
-	const allAlbums = GET_FULL_ALBUMS().flatMap(group => group.items);
-	const filteredData = activeTab === 'ALL' ? allAlbums : ALBUM_MAP[activeTab];
-
 	const sectionRef = useRef<HTMLElement>(null);
 	const isFirstRender = useRef(true);
+
+	const albumDataMap = useMemo(() => {
+		return {
+			ALL: GET_FULL_ALBUMS().flatMap(group => group.items),
+			LP: GET_LP_ALBUMS,
+			EP: GET_EP_ALBUMS,
+			SP: GET_SP_ALBUMS,
+			LV: GET_LV_ALBUMS,
+			VN: GET_VN_ALBUMS,
+		};
+	}, []);
+
+	const filteredData = useMemo(() => {
+		return albumDataMap[activeTab as keyof typeof albumDataMap] || [];
+	}, [activeTab, albumDataMap]);
 
 	useEffect(() => {
 		if (isFirstRender.current) {
@@ -68,7 +72,7 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 
 			<S.TabList>
 				<S.TabGroup>
-					{tabs.map(tab => (
+					{TABS.map(tab => (
 						<S.TabItem key={tab} $isActive={activeTab === tab} onClick={() => handleTabClick(tab)}>
 							{tab === 'ALL' ? '전체' : ALBUM_TYPE_LABEL[tab]}
 						</S.TabItem>
@@ -80,7 +84,7 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 				</S.ToggleButton>
 			</S.TabList>
 
-			{isOpen && (
+			{isOpen ? (
 				<S.AlbumGrid>
 					{filteredData?.map((album: any) => {
 						const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
@@ -106,12 +110,8 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 						);
 					})}
 				</S.AlbumGrid>
-			)}
-
-			{!isOpen && (
-				<S.Placeholder>
-					<p>타입별 앨범 보기가 닫혀있습니다.</p>
-				</S.Placeholder>
+			) : (
+				<Placeholder message="타입별 앨범 보기가 닫혀있습니다." />
 			)}
 		</S.ContentSection>
 	);
