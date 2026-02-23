@@ -3,13 +3,25 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
-import { keyframes } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const blink = keyframes`
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+`;
+
+const disabledStyle = css`
+	opacity: 0.5;
+	cursor: not-allowed;
+	pointer-events: none;
+	filter: grayscale(1);
+
+	&:hover {
+		transform: none !important;
+		color: inherit !important;
+	}
 `;
 
 export const ExpandButton = styled.button<{ $isExpanded: boolean }>`
@@ -89,6 +101,43 @@ export const MoreButton = styled(Link)`
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 12px;
 		font-size: ${props => props.theme.FONT.SIZE.XS};
+	}
+`;
+
+export const SourceLink = styled(Link)<{ $disabled?: boolean }>`
+	display: inline-block;
+	width: 80%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.XS};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.GRAY400};
+
+	text-decoration: none;
+	transition: all 0.3s ease;
+
+	&::before {
+		content: 'REF. ';
+		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+		letter-spacing: 0.5px;
+	}
+
+	&:hover {
+		color: ${props => props.theme.COLOR.PRIMARY};
+		transform: translateX(3px);
+	}
+
+	.disabled {
+		${disabledStyle}
+	}
+
+	${({ $disabled }) => $disabled && disabledStyle}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		width: 100%;
 	}
 `;
 

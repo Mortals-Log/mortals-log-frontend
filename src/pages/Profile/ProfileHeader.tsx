@@ -7,6 +7,7 @@ import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
 
 export const ProfileHeader = () => {
 	const { content, platform, account, contentTitle, postId } = PROFILE.description;
+	const SnsUrl = GetSnsUrl(platform, postId);
 
 	return (
 		<S.ProfileHeader>
@@ -20,13 +21,14 @@ export const ProfileHeader = () => {
 
 				<S.Description>
 					{content}
-					<S.SourceLink
-						href={GetSnsUrl(platform, postId) ?? undefined}
-						$disabled={!GetSnsUrl(platform, postId)}
-						target="_blank"
-						rel="noreferrer">
-						{GetSnsLabel(platform, account, contentTitle)}
-					</S.SourceLink>
+
+					{SnsUrl ? (
+						<S.SourceLink to={SnsUrl} $disabled={!GetSnsUrl(platform, postId)} target="_blank" rel="noreferrer">
+							{GetSnsLabel(platform, account, contentTitle)}
+						</S.SourceLink>
+					) : (
+						<span className="disabled">{GetSnsLabel(platform, account, contentTitle)}</span>
+					)}
 				</S.Description>
 			</S.InfoSummary>
 		</S.ProfileHeader>

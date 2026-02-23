@@ -7,7 +7,7 @@ import { keyframes } from '@emotion/react';
 import * as L from '@/styles/common/Layout.style';
 
 export { ViewMoreButton } from '@/styles/components/Buttons.style';
-export { SourceLink } from '@/styles/components/SourceLink.style';
+export { SourceLink } from '@/styles/components/Buttons.style';
 
 const fadeInBlur = keyframes`
   from { opacity: 0; filter: blur(10px); transform: translateY(10px); }

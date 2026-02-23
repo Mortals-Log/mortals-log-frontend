@@ -62,9 +62,13 @@ const ProfileSection = () => {
 				<S.TextSection>
 					{currentItem && currentItemSnsInfo && (
 						<S.ModifierContainer onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
-							<S.SourceLink href={currentItemSnsInfo.url} target="_blank" rel="noreferrer">
-								{currentItemSnsInfo.label}
-							</S.SourceLink>
+							{currentItemSnsInfo.url ? (
+								<S.SourceLink to={currentItemSnsInfo.url} target="_blank" rel="noreferrer">
+									{currentItemSnsInfo.label}
+								</S.SourceLink>
+							) : (
+								<span className="disabled">{currentItemSnsInfo.label}</span>
+							)}
 							<S.ModifierText key={currentItem.quote}>{currentItem.quote}</S.ModifierText>
 						</S.ModifierContainer>
 					)}
@@ -76,13 +80,18 @@ const ProfileSection = () => {
 
 					<S.DescriptionContainer>
 						<S.ProfileDescription>{content}</S.ProfileDescription>
-						<S.SourceLink
-							href={descriptionSnsInfo.url}
-							$disabled={!descriptionSnsInfo.url}
-							target="_blank"
-							rel="noreferrer">
-							{descriptionSnsInfo.label}
-						</S.SourceLink>
+
+						{descriptionSnsInfo.url ? (
+							<S.SourceLink
+								to={descriptionSnsInfo.url || ''}
+								$disabled={!descriptionSnsInfo.url}
+								target="_blank"
+								rel="noreferrer">
+								{descriptionSnsInfo.label}
+							</S.SourceLink>
+						) : (
+							<span className="disabled">{descriptionSnsInfo.label}</span>
+						)}
 					</S.DescriptionContainer>
 
 					<S.ViewMoreButton onClick={() => navigate('/profile')}>READ PROFILE LOG</S.ViewMoreButton>

@@ -6,7 +6,6 @@ import styled from '@emotion/styled';
 export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
 
 export { Table } from '@/styles/components/Table.style';
-export { SourceLink } from '@/styles/components/SourceLink.style';
 
 export const DebutInfo = styled.span`
 	display: inline-flex;
