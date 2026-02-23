@@ -4,19 +4,8 @@
 
 import styled from '@emotion/styled';
 
-import { LeadBadge as BaseLeadBadge } from '@styles/components/LeadBadge.style';
-import { AdultBadge as BaseAdultBadge } from '@styles/components/AdultBadge.style';
-
+export * from '@styles/components/Badge.style';
 export { MainTitle } from '@styles/pages/Song/SongDetail.styles';
-export const LeadBadge = styled(BaseLeadBadge)`
-	margin-left: 0px;
-	margin-right: 5px;
-`;
-
-export const AdultBadge = styled(BaseAdultBadge)`
-	margin-left: 0px;
-	margin-right: 5px;
-`;
 
 export const HeaderSection = styled.section`
 	margin-top: 0.5rem;

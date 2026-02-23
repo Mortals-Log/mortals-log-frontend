@@ -1,58 +1,70 @@
 // @src/pages/Song/index
 
 import * as S from '@styles/pages/Song/Song.styles';
+
+import { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { FULL_ALBUMS } from '@/const/albums';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 type SortType = 'latest' | 'release' | 'alphabet';
+
+const trackToAlbumMap = new Map();
+const allMasterTrackIds = Object.keys(MASTER_TRACKS);
+
+FULL_ALBUMS.forEach(category => {
+	category.items.forEach(album => {
+		const { tracks: tracksData, title, releaseDate } = album;
+		const albumInfo = { albumTitle: title, releaseDate };
+
+		if (Array.isArray(tracksData)) {
+			tracksData.forEach(t => {
+				if (t.includes('*')) {
+					const pattern = t.replace('*', '');
+					allMasterTrackIds
+						.filter(id => id.startsWith(pattern))
+						.forEach(id => {
+							if (!trackToAlbumMap.has(id)) trackToAlbumMap.set(id, albumInfo);
+						});
+				} else {
+					if (!trackToAlbumMap.has(t)) trackToAlbumMap.set(t, albumInfo);
+				}
+			});
+		} else if (tracksData && typeof tracksData === 'object') {
+			const allVinylTracks = Object.values(tracksData).flat() as string[];
+			allVinylTracks.forEach(id => {
+				if (!trackToAlbumMap.has(id)) trackToAlbumMap.set(id, albumInfo);
+			});
+		}
+	});
+});
 
 const Song = () => {
 	const navigate = useNavigate();
 	const [sortType, setSortType] = useState<SortType>('latest');
 
-	const allTracks = Object.values(MASTER_TRACKS).map(track => {
-		let matchingAlbumTitle = '';
-		let releaseDate = '0000.00.00';
-
-		FULL_ALBUMS.forEach(category => {
-			category.items.forEach(album => {
-				const tracksData = album.tracks;
-				let isMatch = false;
-
-				if (Array.isArray(tracksData)) {
-					isMatch = tracksData.some(t => {
-						const pattern = t.replace('*', '');
-						return t.includes('*') ? track.id.startsWith(pattern) : t === track.id;
-					});
-				} else if (tracksData && typeof tracksData === 'object') {
-					const allVinylTracks = Object.values(tracksData).flat() as string[];
-					isMatch = allVinylTracks.some(t => t === track.id);
-				}
-
-				if (isMatch) {
-					matchingAlbumTitle = album.title;
-					releaseDate = album.releaseDate;
-				}
-			});
+	const sortedTracks = useMemo(() => {
+		const allTracks = Object.values(MASTER_TRACKS).map(track => {
+			const albumInfo = trackToAlbumMap.get(track.id) || {
+				albumTitle: 'Unknown Album',
+				releaseDate: '0000.00.00',
+			};
+			return { ...track, ...albumInfo };
 		});
 
-		return { ...track, albumTitle: matchingAlbumTitle, releaseDate };
-	});
-
-	const sortedTracks = [...allTracks].sort((a, b) => {
-		switch (sortType) {
-			case 'latest':
-				return b.releaseDate.localeCompare(a.releaseDate);
-			case 'release':
-				return a.releaseDate.localeCompare(b.releaseDate);
-			case 'alphabet':
-				return a.title.localeCompare(b.title, 'ko');
-			default:
-				return 0;
-		}
-	});
+		return allTracks.sort((a, b) => {
+			switch (sortType) {
+				case 'latest':
+					return b.releaseDate.localeCompare(a.releaseDate);
+				case 'release':
+					return a.releaseDate.localeCompare(b.releaseDate);
+				case 'alphabet':
+					return a.title.localeCompare(b.title, 'ko');
+				default:
+					return 0;
+			}
+		});
+	}, [sortType]);
 
 	return (
 		<>
@@ -74,18 +86,29 @@ const Song = () => {
 						<S.TrackNumber>{String(index + 1).padStart(2, '0')}</S.TrackNumber>
 						<S.TrackInfo>
 							<S.TrackTitle>
-								{track.title}
-								{track.version && ` ${track.version}`}
-								{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
-								{track.chordsList && track.chordsList.length > 0 && <S.GuitarBadge>CHORDS</S.GuitarBadge>}
-								{track.mvLink && <S.MVBadge>뮤직 비디오</S.MVBadge>}
-								{track.ageLimit && <S.AdultBadge>🔞 미성년자 청취불가</S.AdultBadge>}
-								{track.singing && (
-									<>
-										{track.singing.tj && <S.SingingBadge brand="TJ">TJ #{track.singing.tj}</S.SingingBadge>}
-										{track.singing.ky && <S.SingingBadge brand="KY">KY #{track.singing.ky}</S.SingingBadge>}
-									</>
-								)}
+								<span className="title-text">
+									{track.title}
+									{track.version && ` (${track.version})`}
+								</span>
+
+								<S.BadgeGroup>
+									{track.isLead && <S.LeadBadge>{S.BADGE_LABEL.TITLE}</S.LeadBadge>}
+									{track.mvLink && <S.MVBadge>{S.BADGE_LABEL.MV}</S.MVBadge>}
+									{track.chordsList && track.chordsList.length > 0 && (
+										<S.ChordBadge>{S.BADGE_LABEL.CHORDS}</S.ChordBadge>
+									)}
+									{track.ageLimit && <S.AdultBadge>{S.BADGE_LABEL.ADULT}</S.AdultBadge>}
+									{track.singing?.tj && (
+										<S.SingingBadge brand="TJ">
+											{S.BADGE_LABEL.TJ} {track.singing.tj}
+										</S.SingingBadge>
+									)}
+									{track.singing?.ky && (
+										<S.SingingBadge brand="KY">
+											{S.BADGE_LABEL.KY} {track.singing.ky}
+										</S.SingingBadge>
+									)}
+								</S.BadgeGroup>
 							</S.TrackTitle>
 
 							<S.AlbumName>{track.albumTitle}</S.AlbumName>

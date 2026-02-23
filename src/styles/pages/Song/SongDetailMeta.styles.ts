@@ -4,7 +4,7 @@
 
 import styled from '@emotion/styled';
 
-export * from '@styles/components/MusicBadge.style';
+export * from '@styles/components/Badge.style';
 
 export const MetaSection = styled.section`
 	display: flex;

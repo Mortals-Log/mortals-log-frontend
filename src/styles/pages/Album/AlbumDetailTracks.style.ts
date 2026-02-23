@@ -3,19 +3,9 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
-import { LeadBadge as BaseLeadBadge } from '@styles/components/LeadBadge.style';
-import { AdultBadge as BaseAdultBadge } from '@styles/components/AdultBadge.style';
 
 export * from '@styles/pages/Album/AlbumDetail.style';
-export * from '@styles/components/LeadBadge.style';
-
-export const LeadBadge = styled(BaseLeadBadge)`
-	margin-left: 5px;
-`;
-
-export const AdultBadge = styled(BaseAdultBadge)`
-	margin-left: 5px;
-`;
+export * from '@styles/components/Badge.style';
 
 export const SideGroup = styled.div`
 	padding-top: 1.5rem;
