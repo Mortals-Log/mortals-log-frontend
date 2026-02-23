@@ -2,7 +2,7 @@
 
 import * as S from '@styles/pages/Song/SongDetailContent.styles';
 import { useState } from 'react';
-import Placeholder from '@/components/placeholder';
+import Placeholder from '@/components/Placeholder';
 import { LINK_PLATFORM, MUSIC_PLATFORM } from '@/const/links';
 import { Track } from '@/types/track';
 

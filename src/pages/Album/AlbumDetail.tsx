@@ -9,7 +9,7 @@ import AlbumDetailMetaInfo from '@pages/Album//AlbumDetailMetaInfo';
 import AlbumDetailIntro from '@pages/Album/AlbumDetailIntro';
 import { IsAlbumMatch } from '@/utils/album';
 import BackButton from '@/components/BackButton';
-import Placeholder from '@/components/placeholder';
+import Placeholder from '@/components/Placeholder';
 
 const SECTION_TITLE = {
 	TRACKS: {

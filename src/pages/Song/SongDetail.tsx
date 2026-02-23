@@ -1,34 +1,38 @@
 // @pages/Song/SongDetail
 
 import * as S from '@styles/pages/Song/SongDetail.styles';
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { FULL_ALBUMS } from '@/const/albums';
 import { MASTER_TRACKS } from '@/const/tracks';
 import BackButton from '@/components/BackButton';
-import Placeholder from '@/components/placeholder';
-import SongDetailHeader from '@pages/Song/SongDetailHeader';
-import SongDetailMeta from '@pages/Song/SongDetailMeta';
-import SongDetailContent from '@pages/Song/SongDetailContent';
+import Placeholder from '@/components/Placeholder';
+import SongDetailHeader from '@/pages/Song/SongDetailHeader';
+import SongDetailMeta from '@/pages/Song/SongDetailMeta';
+import SongDetailContent from '@/pages/Song/SongDetailContent';
 
 const SongDetail = () => {
 	const { id } = useParams<{ id: string }>();
 
-	const track = id ? MASTER_TRACKS[id as keyof typeof MASTER_TRACKS] : null;
+	const { track, albumInfo } = useMemo(() => {
+		const currentTrack = id ? MASTER_TRACKS[id as keyof typeof MASTER_TRACKS] : null;
+		if (!currentTrack) return { track: null, albumInfo: null };
 
-	const albumInfo = track
-		? FULL_ALBUMS.flatMap(cat => cat.items).find(album => {
-				const tracksData = album.tracks;
-				if (Array.isArray(tracksData)) {
-					return tracksData.some(t => {
-						const pattern = t.replace('*', '');
-						return track.id.startsWith(pattern);
-					});
-				}
-				return Object.values(tracksData || {})
-					.flat()
-					.includes(track.id);
-			})
-		: null;
+		const foundAlbum = FULL_ALBUMS.flatMap(cat => cat.items).find(album => {
+			const tracksData = album.tracks;
+
+			const flatTracks = Array.isArray(tracksData) ? tracksData : Object.values(tracksData || {}).flat();
+
+			return (flatTracks as string[]).some(t => {
+				const pattern = t.replace('*', '');
+				return currentTrack.id.startsWith(pattern);
+			});
+		});
+
+		const albumMeta = foundAlbum;
+
+		return { track: currentTrack, albumInfo: albumMeta };
+	}, [id]);
 
 	if (!track) {
 		return (

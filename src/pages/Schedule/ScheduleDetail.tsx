@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useMemo } from 'react';
 import { ALL_SCHEDULE_LIST } from '@/utils/schedule';
 import BackButton from '@/components/BackButton';
-import Placeholder from '@/components/placeholder';
+import Placeholder from '@/components/Placeholder';
 import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
 import { FULL_CONCERTS } from '@/const/concert';
 import { FULL_ALBUMS } from '@/const/albums';

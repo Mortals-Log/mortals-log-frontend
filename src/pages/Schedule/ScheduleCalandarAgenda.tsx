@@ -2,7 +2,7 @@
 
 import * as S from '@styles/pages/Schedule/ScheduleCalandarAgenda.style';
 
-import Placeholder from '@/components/placeholder';
+import Placeholder from '@/components/Placeholder';
 import { FormatDate } from '@/utils/date';
 import { Schedule } from '@/types/schedule';
 import { format } from 'date-fns';

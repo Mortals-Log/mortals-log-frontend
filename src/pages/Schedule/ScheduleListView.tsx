@@ -4,7 +4,7 @@ import * as S from '@styles/pages/Schedule/ScheduleListView.style';
 import { Schedule } from '@/types/schedule';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay } from 'date-fns';
 import { FormatDate } from '@utils/date';
-import Placeholder from '@/components/placeholder';
+import Placeholder from '@/components/Placeholder';
 
 interface ScheduleListViewProps {
 	viewDate: Date;

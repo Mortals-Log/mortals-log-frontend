@@ -3,7 +3,7 @@
 import * as S from '@styles/pages/Album/AlbumDetailIntro.style';
 import { useState } from 'react';
 import { Album } from '@/types/album';
-import Placeholder from '@/components/placeholder';
+import Placeholder from '@/components/Placeholder';
 
 const AlbumDetailIntro = ({
 	TITLE_KR,

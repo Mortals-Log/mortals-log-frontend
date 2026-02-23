@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { Album } from '@/types/album';
 import { GetTracks } from '@/utils/track';
-import Placeholder from '@/components/placeholder';
+import Placeholder from '@/components/Placeholder';
 import { differenceInDays, parse, startOfDay } from 'date-fns';
 
 const AlbumDetailTracks = ({
