@@ -1,6 +1,7 @@
 // @components/Album/AlbumMetaInfo.tsx
 
 import * as S from '@styles/pages/AlbumDetail/AlbumDetailMetaInfo.style';
+
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { Album } from '@/types/album';
 import { LINK_SHOP } from '@/const/links';
@@ -8,26 +9,37 @@ import { ICON_CONFIG } from '@/const/icons';
 import { IconKey } from '@/types/icon';
 import useImageFallback from '@/hooks/useImageFallback';
 import { GetAlbumPaths } from '@/utils/album';
+import { useMemo } from 'react';
 
 const MetaRow = ({ label, value }: { label: string; value?: string }) => {
-	if (!value) value = '-';
+	const displayValue = value || '-';
+
 	return (
 		<>
 			<S.Term>{label}</S.Term>
-			<S.Description>{value}</S.Description>
+			<S.Description>{displayValue}</S.Description>
 		</>
 	);
 };
 
 const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 	const handleImgError = useImageFallback();
-	if (!album) return null;
-
 	const { imageSrc } = GetAlbumPaths(album);
 
-	const distributorName = album.distributor || '-';
-	const agencyName = album.agency || '-';
-	const distributorInfo = `${distributorName} / ${agencyName}`;
+	const metaData = useMemo(() => {
+		const distributorInfo = `${album.distributor || '-'} / ${album.agency || '-'}`;
+
+		return [
+			{ label: '유형', value: ALBUM_TYPE_LABEL[album.type] },
+			{ label: '장르', value: album.genre?.join(', ') },
+			{ label: '스타일', value: album.style?.join(', ') },
+			{ label: '발매일', value: album.releaseDate },
+			{ label: '재생시간', value: album.totalDuration },
+			{ label: '유통 / 기획', value: distributorInfo },
+		];
+	}, [album]);
+
+	if (!album) return null;
 
 	return (
 		<S.ContentSection>
@@ -37,18 +49,17 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 				{album.streaming && (
 					<S.BadgeGroup>
 						{Object.entries(album.streaming).map(([label, url]) => {
+							if (!url) return null;
 							const key = label.toLowerCase().replace(/\s+/g, '') as IconKey;
 							const config = ICON_CONFIG[key];
 							const Icon = config?.icon;
 
-							if (!Icon || !url) return null;
-
-							return (
+							return Icon ? (
 								<S.MusicBadge key={label} href={url} target="_blank" rel="noreferrer" title={config.label || label}>
 									<Icon />
 									<span>{label}</span>
 								</S.MusicBadge>
-							);
+							) : null;
 						})}
 					</S.BadgeGroup>
 				)}
@@ -61,12 +72,9 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 				<S.MainTitle>{album.title}</S.MainTitle>
 
 				<S.MetaList>
-					<MetaRow label="유형" value={ALBUM_TYPE_LABEL[album.type]} />
-					<MetaRow label="장르" value={album.genre?.join(', ')} />
-					<MetaRow label="스타일" value={album.style?.join(', ')} />
-					<MetaRow label="발매일" value={album.releaseDate} />
-					<MetaRow label="재생시간" value={album.totalDuration} />
-					<MetaRow label="유통 / 기획" value={distributorInfo} />
+					{metaData.map(item => (
+						<MetaRow key={item.label} label={item.label} value={item.value} />
+					))}
 				</S.MetaList>
 
 				{album.store && (
@@ -79,16 +87,9 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 						) : (
 							Object.entries(album.store).map(([key, url]) => {
 								const detail = LINK_SHOP[key];
-
 								return (
 									<S.MoreButton key={key} to={url} target="_blank" rel="noopener noreferrer">
-										{detail ? (
-											<>
-												{ALBUM_TYPE_LABEL[album.type]} 구매하기 - {detail.STORE}
-											</>
-										) : (
-											<>{key}</>
-										)}
+										{detail ? `${ALBUM_TYPE_LABEL[album.type]} 구매하기 - ${detail.STORE}` : key}
 									</S.MoreButton>
 								);
 							})
