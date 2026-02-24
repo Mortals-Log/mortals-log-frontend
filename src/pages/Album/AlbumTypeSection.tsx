@@ -69,18 +69,19 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 				{TITLE_KR}
 				<span>{TITLE_EN}</span>
 			</S.SectionTitle>
-			<S.TabList>
-				<S.MobileTabSelect>
-					<S.MobileSelectItem value={activeTab} onChange={e => handleTabClick(e.target.value)}>
-						{TABS.map(tab => (
-							<option key={tab} value={tab}>
-								{tab === 'ALL' ? '전체 보기' : ALBUM_TYPE_LABEL[tab]}
-							</option>
-						))}
-					</S.MobileSelectItem>
-				</S.MobileTabSelect>
 
-				<S.TabGroup className="tab-menu">
+			<S.MobileSelector>
+				<S.MobileSelectorItem value={activeTab} onChange={e => handleTabClick(e.target.value)}>
+					{TABS.map(tab => (
+						<option key={tab} value={tab}>
+							{tab === 'ALL' ? '전체 보기' : ALBUM_TYPE_LABEL[tab]}
+						</option>
+					))}
+				</S.MobileSelectorItem>
+			</S.MobileSelector>
+
+			<S.TabList>
+				<S.TabGroup>
 					{TABS.map(tab => (
 						<S.TabItem key={tab} $isActive={activeTab === tab} onClick={() => handleTabClick(tab)}>
 							{tab === 'ALL' ? '전체' : ALBUM_TYPE_LABEL[tab]}
@@ -92,6 +93,7 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 					{isOpen ? '앨범 목록 접기 ↑' : '앨범 목록 펼치기 ↓'}
 				</S.ToggleButton>
 			</S.TabList>
+
 			{isOpen ? (
 				<S.AlbumGrid>
 					{filteredData?.map((album: any) => {

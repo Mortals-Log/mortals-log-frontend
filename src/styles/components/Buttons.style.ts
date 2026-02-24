@@ -323,6 +323,10 @@ export const ToggleButton = styled.button`
 	&:active {
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		display: none;
+	}
 `;
 
 export const PrimaryButton = styled(Link)`

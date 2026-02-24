@@ -5,8 +5,18 @@
 import styled from '@emotion/styled';
 
 export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
-export * from '@/styles/components/AlbumCard.style';
 export { ToggleButton } from '@/styles/components/Buttons.style';
+export * from '@/styles/components/AlbumCard.style';
+export * from '@/styles/components/MobileSelector.style';
+
+export const AlbumMobileSection = styled.section`
+	display: none;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		display: block;
+		scroll-margin-top: 4rem;
+	}
+`;
 
 export const YearSection = styled.section<{ isOpen: boolean }>`
 	display: flex;
@@ -15,13 +25,11 @@ export const YearSection = styled.section<{ isOpen: boolean }>`
 	scroll-margin-top: 4rem;
 
 	&:first-of-type {
-		margin-top: 2rem;
+		margin-top: 1rem;
 	}
 
-	@media (max-width: 850px) {
-		flex-direction: column;
-		gap: 1rem;
-		margin: ${props => (props.isOpen ? '0.5rem  0' : '0')};
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		display: none;
 	}
 `;
 
@@ -38,19 +46,6 @@ export const YearWrapper = styled.div<{ isOpen: boolean }>`
 	align-items: center;
 	flex-direction: ${props => (props.isOpen ? 'column' : 'row')};
 	gap: ${props => (props.isOpen ? '1rem' : '')};
-
-	@media (max-width: 850px) {
-		top: 50px;
-		width: 100%;
-		z-index: 10;
-		padding: ${props => (props.isOpen ? '1.2rem;' : '1rem')};
-		flex-direction: row;
-
-		background-color: ${props => props.theme.COLOR.WHITE}cc;
-		backdrop-filter: blur(15px);
-		-webkit-backdrop-filter: blur(15px);
-		border-bottom: 1px solid ${props => props.theme.COLOR.GRAY100}44;
-	}
 `;
 
 export const YearTitle = styled.h2`

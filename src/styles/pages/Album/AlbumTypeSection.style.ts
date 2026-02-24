@@ -4,15 +4,10 @@
 
 import styled from '@emotion/styled';
 export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
+
+export { ToggleButton } from '@/styles/components/Buttons.style';
 export * from '@/styles/components/AlbumCard.style';
-
-import * as B from '@/styles/components/Buttons.style';
-
-export const ToggleButton = styled(B.ToggleButton)`
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		display: none;
-	}
-`;
+export * from '@/styles/components/MobileSelector.style';
 
 export const TabList = styled.nav`
 	display: flex;
@@ -30,7 +25,7 @@ export const TabList = styled.nav`
 	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY100}44;
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		padding: 0.8rem 0;
+		display: none;
 	}
 `;
 
@@ -58,59 +53,10 @@ export const TabGroup = styled.ul`
 		padding-right: 1.5rem;
 	}
 
-	&.tab-menu {
-		@media ${props => props.theme.WINDOW_SIZE.mobile} {
-			display: none;
-		}
-	}
-
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 1rem 1.2rem;
 		padding: 0 5px;
 	}
-`;
-
-export const MobileTabSelect = styled.div`
-	display: none;
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		display: block;
-		position: relative;
-		width: 130px;
-
-		&::after {
-			content: '▼';
-			position: absolute;
-			top: 50%;
-			right: 0.5rem;
-			transform: translateY(-50%);
-
-			font-family: ${props => props.theme.FONT.SANS};
-			font-size: ${props => props.theme.FONT.SIZE.TINY};
-			font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-			color: ${props => props.theme.COLOR.GRAY400};
-
-			pointer-events: none;
-		}
-	}
-`;
-
-export const MobileSelectItem = styled.select`
-	width: 100%;
-	padding: 0.6rem 1rem;
-
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
-	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-	color: ${props => props.theme.COLOR.GRAY700};
-
-	border: 1px solid ${props => props.theme.COLOR.GRAY200};
-	border-radius: 4px;
-	background-color: ${props => props.theme.COLOR.WHITE};
-
-	appearance: none;
-	outline: none;
-	cursor: pointer;
 `;
 
 export const TabItem = styled.li<{ $isActive: boolean }>`
