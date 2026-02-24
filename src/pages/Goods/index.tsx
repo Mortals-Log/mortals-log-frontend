@@ -4,7 +4,7 @@ import * as S from '@/styles/pages/Goods/Goods.style';
 
 import GoodsLinkSection from '@/pages/Goods/GoodsLinkSection';
 import GoodsGuideSection from '@/pages/Goods/GoodsGuideSection';
-import GoodsEtiquetteSection from '@/pages/Goods/GoddsEtiquetteSection';
+import GoodsEtiquetteSection from '@/pages/Goods/GoodsEtiquetteSection';
 import { FAN_GOODS_GUIDE } from '@/const/goods';
 
 const PAGE_TITLE = {
