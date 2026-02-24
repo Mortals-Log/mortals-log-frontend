@@ -5,7 +5,20 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
+export const AlbumGrid = styled.div`
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+	gap: 3rem 2rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem 1rem;
+		padding: 1rem 0;
+	}
+`;
+
 export const AlbumCard = styled(Link)`
+	display: block;
 	cursor: pointer;
 
 	&:hover .overlay {
@@ -30,7 +43,7 @@ export const CoverWrapper = styled.div`
 	}
 
 	&:hover img {
-		transform: scale(1.15);
+		transform: scale(1.1);
 	}
 `;
 
@@ -63,10 +76,24 @@ export const Overlay = styled.div`
 
 		transition: transform 0.3s ease;
 	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		display: none;
+	}
 `;
 
 export const AlbumInfo = styled.div`
 	margin-top: 1.2rem;
+
+	.title {
+		display: -webkit-box;
+		margin-bottom: 8px;
+
+		font-family: ${props => props.theme.FONT.SERIF};
+		font-size: ${props => props.theme.FONT.SIZE.LG};
+		font-weight: ${props => props.theme.FONT.WEIGHT.BOLD};
+		color: ${props => props.theme.COLOR.GRAY700};
+	}
 
 	.type-wrap {
 		display: flex;
@@ -83,19 +110,23 @@ export const AlbumInfo = styled.div`
 		}
 	}
 
-	.title {
-		margin-bottom: 8px;
-
-		font-family: ${props => props.theme.FONT.SERIF};
-		font-size: ${props => props.theme.FONT.SIZE.LG};
-		font-weight: ${props => props.theme.FONT.WEIGHT.BOLD};
-		color: ${props => props.theme.COLOR.GRAY700};
-	}
-
 	.date {
 		font-family: ${props => props.theme.FONT.SANS};
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 		color: ${props => props.theme.COLOR.GRAY400};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		margin-top: 0.8rem;
+
+		.title {
+			font-size: ${props => props.theme.FONT.SIZE.MD};
+		}
+
+		.type-wrap,
+		.date {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
 	}
 `;

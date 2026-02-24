@@ -93,14 +93,3 @@ export const TabItem = styled.li<{ $isActive: boolean }>`
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;
-
-export const AlbumGrid = styled.div`
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-	gap: 3.5rem 2rem;
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-		gap: 2rem 1rem;
-	}
-`;
