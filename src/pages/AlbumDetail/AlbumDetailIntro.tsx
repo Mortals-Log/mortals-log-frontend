@@ -1,6 +1,6 @@
 // @pages/Album/AlbumDetailInfo.tsx
 
-import * as S from '@styles/pages/Album/AlbumDetailIntro.style';
+import * as S from '@styles/pages/AlbumDetail/AlbumDetailIntro.style';
 import { useState } from 'react';
 import { Album } from '@/types/album';
 import Placeholder from '@/components/Placeholder';

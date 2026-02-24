@@ -4,8 +4,8 @@
 
 import styled from '@emotion/styled';
 
-export * from '@/styles/pages/Album/AlbumDetail.style';
 export * from '@/styles/components/Badge.style';
+export * from '@/styles/common/Layout.style';
 
 export const SideGroup = styled.div`
 	padding-top: 1.5rem;

@@ -6,7 +6,7 @@ import Home from '@pages/Home';
 import Profile from '@pages/Profile';
 import Music from '@pages/Music';
 import Album from '@pages/Album';
-import AlbumDetail from '@pages/Album/AlbumDetail';
+import AlbumDetail from '@pages/AlbumDetail';
 import Song from '@pages/Song';
 import SongDetail from '@pages/Song/SongDetail';
 import Schedule from '@pages/Schedule';

@@ -1,6 +1,6 @@
 // @components/Album/AlbumMetaInfo.tsx
 
-import * as S from '@styles/pages/Album/AlbumDetailMetaInfo.style';
+import * as S from '@styles/pages/AlbumDetail/AlbumDetailMetaInfo.style';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { Album } from '@/types/album';
 import { LINK_SHOP } from '@/const/links';

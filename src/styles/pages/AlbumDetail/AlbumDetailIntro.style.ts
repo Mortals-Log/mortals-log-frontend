@@ -4,8 +4,9 @@
 
 import styled from '@emotion/styled';
 
-export * from '@/styles/pages/Album/AlbumDetail.style';
 export * from '@/styles/common/ArrowIcon.style';
+export * from '@/styles/common/Layout.style';
+export { ExpandButton } from '@/styles/components/Buttons.style';
 
 export const IntroSection = styled.div``;
 

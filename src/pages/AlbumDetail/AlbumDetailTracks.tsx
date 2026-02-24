@@ -1,6 +1,6 @@
 // @pages/Album/AlbumDetailTracks.tsx
 
-import * as S from '@styles/pages/Album/AlbumDetailTracks.style';
+import * as S from '@styles/pages/AlbumDetail/AlbumDetailTracks.style';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MASTER_TRACKS } from '@/const/tracks';
