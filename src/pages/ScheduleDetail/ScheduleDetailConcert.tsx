@@ -1,8 +1,9 @@
 // @pages/Schedule/ScheduleDetailConcert.tsx
 
-import * as S from '@styles/pages/Schedule/ScheduleDetail.style';
-import { ConcertItem } from '@/types/concert';
+import * as S from '@/styles/pages/ScheduleDetail/ScheduleDetail.style';
+
 import { useMemo } from 'react';
+import { ConcertItem } from '@/types/concert';
 import useImageFallback from '@/hooks/useImageFallback';
 import { GetDay } from '@/utils/date';
 

@@ -1,15 +1,16 @@
 // @pages/Schedule/ScheduleCalendar
 
 import * as S from '@styles/pages/Schedule/ScheduleCalendar.style';
+
 import { useCallback, useMemo, useState } from 'react';
 import Calendar from 'react-calendar';
-import ScheduleCalandarAgenda from '@pages/Schedule/ScheduleCalandarAgenda';
-import ScheduleWeekView from '@pages/Schedule/ScheduleWeekView';
-import ScheduleListView from '@pages/Schedule/ScheduleListView';
-import ScheduleLabel from '@pages/Schedule/ScheduleLabel';
+import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
 import { CALENDAR_SCHEDULES } from '@utils/schedule';
 import { FormatDate } from '@/utils/date';
-import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
+import ScheduleCalandarAgenda from '@/pages/Schedule/ScheduleCalandarAgenda';
+import ScheduleWeekView from '@/pages/Schedule/ScheduleWeekView';
+import ScheduleListView from '@/pages/Schedule/ScheduleListView';
+import ScheduleLabel from '@/pages/Schedule/ScheduleLabel';
 
 const ALL_TYPES = Object.keys(SCHEDULE_TYPE_COLORS);
 

@@ -1,10 +1,11 @@
 // @pages/Schedule/ScheduleListView.tsx
 
-import * as S from '@styles/pages/Schedule/ScheduleListView.style';
-import { Schedule } from '@/types/schedule';
+import * as S from '@/styles/pages/Schedule/ScheduleListView.style';
+
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay } from 'date-fns';
-import { FormatDate } from '@utils/date';
 import Placeholder from '@/components/Placeholder';
+import { Schedule } from '@/types/schedule';
+import { FormatDate } from '@/utils/date';
 
 interface ScheduleListViewProps {
 	viewDate: Date;

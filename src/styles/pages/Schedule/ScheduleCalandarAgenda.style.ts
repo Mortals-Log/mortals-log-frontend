@@ -6,7 +6,6 @@ import styled from '@emotion/styled';
 import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
 import { Schedule } from '@/types/schedule';
 
-export * from '@styles/pages/Schedule/Schedule.style';
 export * from '@styles/components/Badge.style';
 
 export const AgendaSection = styled.div`

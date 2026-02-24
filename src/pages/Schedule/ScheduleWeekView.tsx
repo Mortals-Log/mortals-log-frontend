@@ -1,8 +1,9 @@
 // @components/Schedule/WeekScheduleView.tsx
 
-import * as S from '@styles/pages/Schedule/ScheduleWeekView.style';
-import { Schedule } from '@/types/schedule';
+import * as S from '@/styles/pages/Schedule/ScheduleWeekView.style';
+
 import { format, startOfWeek, addDays, isSameDay } from 'date-fns';
+import { Schedule } from '@/types/schedule';
 
 interface WeekScheduleViewProps {
 	viewDate: Date;

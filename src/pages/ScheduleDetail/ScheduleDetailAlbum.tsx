@@ -1,6 +1,7 @@
 // @pages/Schedule/ScheduleDetailConcert.tsx
 
-import * as S from '@styles/pages/Schedule/ScheduleDetail.style';
+import * as S from '@/styles/pages/ScheduleDetail/ScheduleDetail.style';
+
 import { Album } from '@/types/album';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { LINK_SHOP } from '@/const/links';

@@ -1,6 +1,7 @@
 // @pages/Schedule/ScheduleLabel
 
-import * as S from '@styles/pages/Schedule/ScheduleLabel.style';
+import * as S from '@/styles/pages/Schedule/ScheduleLabel.style';
+
 import { Schedule } from '@/types/schedule';
 import { SCHEDULE_LABEL_MAP, SCHEDULE_TYPE_COLORS } from '@/const/schedule';
 

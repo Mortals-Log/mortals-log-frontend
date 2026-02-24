@@ -1,6 +1,7 @@
 // @pages/Schedule/ScheduleDetailConcert.tsx
 
-import * as S from '@styles/pages/Schedule/ScheduleDetail.style';
+import * as S from '@/styles/pages/ScheduleDetail/ScheduleDetail.style';
+
 import { EventItem } from '@/types/event';
 import { LINK_PLATFORM } from '@/const/links';
 import { EVENT_TYPE_LABEL } from '@/const/event';

@@ -4,7 +4,8 @@
 
 import styled from '@emotion/styled';
 
-export * from '@styles/pages/Schedule/Schedule.style';
+export { MainContainer, SubTitle, Description, SectionTitle } from '@styles/common/Layout.style';
+
 export * from '@styles/components/Buttons.style';
 export * from '@styles/common/VideoWrapper.style';
 
@@ -30,7 +31,7 @@ export const MainTitle = styled.h2<{ ageLimit: boolean }>`
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.H2};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-	color: ${props => props.theme.COLOR.GRA700};
+	color: ${props => props.theme.COLOR.GRAY700};
 
 	line-height: 1.5;
 	white-space: pre-wrap;

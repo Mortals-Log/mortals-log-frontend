@@ -1,12 +1,12 @@
 // @pages/Schedule/ScheduleCalandarAgenda
 
-import * as S from '@styles/pages/Schedule/ScheduleCalandarAgenda.style';
+import * as S from '@/styles/pages/Schedule/ScheduleCalandarAgenda.style';
 
+import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
 import Placeholder from '@/components/Placeholder';
 import { FormatDate } from '@/utils/date';
 import { Schedule } from '@/types/schedule';
-import { format } from 'date-fns';
-import { useNavigate } from 'react-router-dom';
 
 interface AgendaProps {
 	selectedDate: Date;

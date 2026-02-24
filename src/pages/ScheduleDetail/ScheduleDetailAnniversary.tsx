@@ -1,6 +1,7 @@
 // @pages/Schedule/ScheduleDetailBirthday.tsx
 
-import * as S from '@styles/pages/Schedule/ScheduleDetail.style';
+import * as S from '@/styles/pages/ScheduleDetail/ScheduleDetail.style';
+
 import { GetDay } from '@/utils/date';
 import { Schedule } from '@/types/schedule';
 import handleCopy from '@/hooks/handlecopy';

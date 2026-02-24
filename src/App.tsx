@@ -10,7 +10,7 @@ import AlbumDetail from '@pages/AlbumDetail';
 import Song from '@pages/Song';
 import SongDetail from '@pages/Song/SongDetail';
 import Schedule from '@pages/Schedule';
-import ScheduleDetail from '@pages/Schedule/ScheduleDetail';
+import ScheduleDetail from '@/pages/ScheduleDetail';
 import Goods from '@pages/Goods';
 import About from '@pages/About';
 import ScrollToTop from '@const/ScrollToTop';
