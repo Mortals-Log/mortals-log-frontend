@@ -1,6 +1,6 @@
 // @components/Album/AlbumMetaInfo.tsx
 
-import * as S from '@styles/pages/AlbumDetail/AlbumDetailMetaInfo.style';
+import * as S from '@/styles/pages/AlbumDetail/AlbumDetailMetaInfo.style';
 
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { Album } from '@/types/album';
@@ -43,7 +43,7 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 
 	return (
 		<S.ContentSection>
-			<S.CoverImage hasStore={!!album.store} src={imageSrc} alt={album.title} onError={handleImgError} />
+			<S.CoverImage $hasStore={!!album.store} src={imageSrc} alt={album.title} onError={handleImgError} />
 
 			<S.InfoWrapper>
 				{album.streaming && (
@@ -65,11 +65,11 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 				)}
 
 				<S.TypeWrap>
-					<S.AlbumId>{ALBUM_TYPE_LABEL[album.type]}</S.AlbumId>
-					{album.volume && <S.VolText>정규 {album.volume}집</S.VolText>}
+					<span className="type">{ALBUM_TYPE_LABEL[album.type]}</span>
+					{album.volume && <span className="vol">정규 {album.volume}집</span>}
 				</S.TypeWrap>
 
-				<S.MainTitle>{album.title}</S.MainTitle>
+				<S.AlbumTitle>{album.title}</S.AlbumTitle>
 
 				<S.MetaList>
 					{metaData.map(item => (
