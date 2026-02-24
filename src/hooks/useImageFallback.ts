@@ -1,4 +1,4 @@
-// @hooks/useImageFallback.ts
+// @/hooks/useImageFallback.ts
 
 import { useCallback } from 'react';
 

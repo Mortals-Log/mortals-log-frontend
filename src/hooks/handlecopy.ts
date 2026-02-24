@@ -1,4 +1,4 @@
-// @hooks/handlecopy.ts
+// @/hooks/handlecopy.ts
 
 import toast from 'react-hot-toast';
 import * as S from '@styles/components/Toast.style';

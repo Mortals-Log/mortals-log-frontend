@@ -8,11 +8,9 @@ export const BadgeGroup = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.3rem;
-	margin-bottom: 1rem;
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 0.2rem;
-		margin-bottom: 1rem;
 	}
 `;
 

@@ -1,13 +1,15 @@
-// @pages/Album/AlbumDetailTracks.tsx
+// @/pages/Album/AlbumDetailTracks.tsx
 
 import * as S from '@styles/pages/AlbumDetail/AlbumDetailTracks.style';
+
 import { useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { differenceInDays, parse, startOfDay } from 'date-fns';
 import { MASTER_TRACKS } from '@/const/tracks';
+import Placeholder from '@/components/Placeholder';
+import TrackRow from '@/components/TrackRow';
 import { Album } from '@/types/album';
 import { GetTracks } from '@/utils/track';
-import Placeholder from '@/components/Placeholder';
-import { differenceInDays, parse, startOfDay } from 'date-fns';
+import UseTrackNavigation from '@/hooks/useTrackNavigation';
 
 const AlbumDetailTracks = ({
 	TITLE_KR,
@@ -18,7 +20,7 @@ const AlbumDetailTracks = ({
 	TITLE_EN: string;
 	albumData: Album | undefined;
 }) => {
-	const navigate = useNavigate();
+	const { handleItemClick, handleKeyDown } = UseTrackNavigation();
 
 	const rawTracks = albumData?.tracks || [];
 	const trackIds = GetTracks(rawTracks);
@@ -48,52 +50,46 @@ const AlbumDetailTracks = ({
 					{TITLE_EN} ({trackIds.length})
 				</span>
 			</S.SectionTitle>
+
 			{!isReleased ? (
 				<Placeholder message="트랙리스트는 발매일에 공개됩니다." />
 			) : hasTracks ? (
 				<>
 					{isVinyl
 						? Object.entries(rawTracks as Record<string, string[]>).map(([sideName, tracks]) => (
-								<S.SideGroup key={sideName}>
+								<>
 									<S.SideTitle>{sideName}</S.SideTitle>
 									{GetTracks(tracks).map(trackId => {
 										const track = MASTER_TRACKS[trackId];
 										if (!track) return null;
-										const trackIndex = trackIds.indexOf(trackId) + 1;
 
+										const trackIndex = trackIds.indexOf(trackId);
 										return (
-											<S.TrackWrapper key={trackId} onClick={() => navigate(`/song/${track.id}`)}>
-												<S.TrackNumber>{String(trackIndex).padStart(2, '0')}</S.TrackNumber>
-												<S.TrackTitle $isLead={track.isLead || false}>
-													{track.title} {track.version && track.version}
-													{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
-												</S.TrackTitle>
-											</S.TrackWrapper>
+											<TrackRow
+												key={trackId}
+												track={track}
+												index={trackIndex}
+												onClick={handleItemClick}
+												onKeyDown={handleKeyDown}
+												variant="album"
+											/>
 										);
 									})}
-								</S.SideGroup>
+								</>
 							))
 						: trackIds.map((trackId, index) => {
 								const track = MASTER_TRACKS[trackId];
 								if (!track) return null;
 
 								return (
-									<S.TrackWrapper key={trackId} onClick={() => navigate(`/song/${track.id}`)}>
-										<S.TrackNumber>{String(index + 1).padStart(2, '0')}</S.TrackNumber>
-										<S.TrackTitle $isLead={track.isLead || false}>
-											{track.title} {track.version && `(${track.version})`}
-											{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
-											{track.chordsList && track.chordsList.length > 0 && <S.ChordBadge>CHORDS</S.ChordBadge>}
-											{track.mvLink && <S.MVBadge>뮤직 비디오</S.MVBadge>}
-											{track.ageLimit && <S.AdultBadge>🔞 미성년자 청취불가</S.AdultBadge>}
-											{track.singing && (
-												<>
-													{track.singing.tj && <S.SingingBadge brand="TJ">TJ #{track.singing.tj}</S.SingingBadge>}
-													{track.singing.ky && <S.SingingBadge brand="KY">KY #{track.singing.ky}</S.SingingBadge>}
-												</>
-											)}
-										</S.TrackTitle>
-									</S.TrackWrapper>
+									<TrackRow
+										key={track.id}
+										track={track}
+										index={index}
+										onClick={handleItemClick}
+										onKeyDown={handleKeyDown}
+										variant="album"
+									/>
 								);
 							})}
 				</>

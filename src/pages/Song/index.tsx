@@ -1,12 +1,12 @@
-// @src/pages/Song/index
+// @/pages/Song/index
 
 import * as S from '@/styles/pages/Song/Song.styles';
 
-import { useMemo, useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import TrackRow from '@/pages/Song/TrackRow';
+import { useMemo, useState } from 'react';
+import TrackRow from '@/components/TrackRow';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { GetTrackToAlbumMap } from '@/utils/track';
+import UseTrackNavigation from '@/hooks/useTrackNavigation';
 
 const trackToAlbumMap = GetTrackToAlbumMap();
 
@@ -25,7 +25,7 @@ const SORT_STRATEGY = {
 };
 
 const Song = () => {
-	const navigate = useNavigate();
+	const { handleItemClick, handleKeyDown } = UseTrackNavigation();
 	const [sortType, setSortType] = useState<SortType>('latest');
 
 	const allTracksWithAlbum = useMemo(() => {
@@ -41,20 +41,6 @@ const Song = () => {
 	const sortedTracks = useMemo(() => {
 		return [...allTracksWithAlbum].sort(SORT_STRATEGY[sortType]);
 	}, [allTracksWithAlbum, sortType]);
-
-	const handleItemClick = useCallback(
-		(id: string) => {
-			navigate(`/song/${id}`);
-		},
-		[navigate],
-	);
-
-	const handleKeyDown = useCallback(
-		(e: React.KeyboardEvent, id: string) => {
-			if (e.key === 'Enter') navigate(`/song/${id}`);
-		},
-		[navigate],
-	);
 
 	return (
 		<>
@@ -72,11 +58,11 @@ const Song = () => {
 				))}
 			</S.SortTabGroup>
 
-			<S.TrackContainer>
+			<S.TrackSection>
 				{sortedTracks.map((track, index) => (
 					<TrackRow key={track.id} track={track} index={index} onClick={handleItemClick} onKeyDown={handleKeyDown} />
 				))}
-			</S.TrackContainer>
+			</S.TrackSection>
 		</>
 	);
 };
