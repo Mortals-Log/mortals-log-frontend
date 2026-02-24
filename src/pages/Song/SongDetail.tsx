@@ -1,10 +1,11 @@
 // @pages/Song/SongDetail
 
 import * as S from '@styles/pages/Song/SongDetail.styles';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { FULL_ALBUMS } from '@/const/albums';
 import { MASTER_TRACKS } from '@/const/tracks';
+import { METADATA } from '@/const/contents';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/Placeholder';
 import SongDetailHeader from '@/pages/Song/SongDetailHeader';
@@ -33,6 +34,15 @@ const SongDetail = () => {
 
 		return { track: currentTrack, albumInfo: albumMeta };
 	}, [id]);
+
+	useEffect(() => {
+		if (track?.title) {
+			document.title = `${track.title}`;
+		}
+		return () => {
+			document.title = METADATA.NAME;
+		};
+	}, [track]);
 
 	if (!track) {
 		return (
