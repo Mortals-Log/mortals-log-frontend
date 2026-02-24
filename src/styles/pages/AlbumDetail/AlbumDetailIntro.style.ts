@@ -3,12 +3,19 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
+import * as L from '@/styles/common/Layout.style';
 
 export * from '@/styles/common/ArrowIcon.style';
-export * from '@/styles/common/Layout.style';
+export { SectionTitle } from '@/styles/common/Layout.style';
 export { ExpandButton } from '@/styles/components/Buttons.style';
 
-export const IntroSection = styled.div``;
+export const ContentSection = styled(L.ContentSection)`
+	margin-top: 2rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		margin-top: 1.5rem;
+	}
+`;
 
 export const IntroContainer = styled.div<{ $isExpanded: boolean }>`
 	position: relative;
@@ -26,19 +33,24 @@ export const IntroContainer = styled.div<{ $isExpanded: boolean }>`
 		opacity: ${props => (props.$isExpanded ? 0 : 1)};
 		transition: opacity 0.5s ease;
 	}
-`;
 
-export const IntroText = styled.p<{ $isExpanded: boolean }>`
-	max-height: ${props => (props.$isExpanded ? '' : '300px')};
+	.text {
+		max-height: ${props => (props.$isExpanded ? '' : '300px')};
 
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.MD};
-	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-	color: ${props => props.theme.COLOR.GRAY600};
-	line-height: 1.8;
-	white-space: pre-wrap;
-	word-break: keep-all;
+		font-family: ${props => props.theme.FONT.SANS};
+		font-size: ${props => props.theme.FONT.SIZE.MD};
+		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+		color: ${props => props.theme.COLOR.GRAY600};
+		line-height: 1.8;
+		white-space: pre-wrap;
+		word-break: keep-all;
 
-	overflow: hidden;
-	transition: max-height 0.5s ease-in-out;
+		overflow: hidden;
+		transition: max-height 0.2s ease;
+
+		@media ${props => props.theme.WINDOW_SIZE.mobile} {
+			max-height: ${props => (props.$isExpanded ? '' : '230px')};
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
+	}
 `;
