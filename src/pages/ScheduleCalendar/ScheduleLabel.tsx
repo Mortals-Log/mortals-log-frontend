@@ -13,8 +13,9 @@ interface ScheduleLabelProps {
 	totalCount: number;
 }
 
+const LABEL_TYPES = Object.keys(SCHEDULE_TYPE_COLORS) as Schedule['type'][];
+
 const ScheduleLabel = ({ activeFilters, onToggleFilter, onToggleAllFilters, totalCount }: ScheduleLabelProps) => {
-	const labels = Object.keys(SCHEDULE_TYPE_COLORS) as Schedule['type'][];
 	const isAllActive = activeFilters.length === totalCount;
 
 	return (
@@ -25,7 +26,7 @@ const ScheduleLabel = ({ activeFilters, onToggleFilter, onToggleAllFilters, tota
 					ALL
 				</S.LabelItem>
 
-				{labels.map(eventType => (
+				{LABEL_TYPES.map(eventType => (
 					<S.LabelItem
 						key={eventType}
 						$eventType={eventType}
