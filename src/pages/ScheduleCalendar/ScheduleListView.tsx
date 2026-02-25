@@ -1,6 +1,6 @@
-// @pages/Schedule/ScheduleListView.tsx
+// @pages/ScheduleCalendar/ScheduleListView.tsx
 
-import * as S from '@/styles/pages/Schedule/ScheduleListView.style';
+import * as S from '@/styles/pages/ScheduleCalendar/ScheduleListView.style';
 
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay } from 'date-fns';
 import Placeholder from '@/components/Placeholder';

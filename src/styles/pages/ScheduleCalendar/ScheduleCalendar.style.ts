@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
 import { Schedule } from '@/types/schedule';
 
-export const ScheduleWrapper = styled.div`
+export const ScheduleWrapper = styled.div<{ $viewType: string }>`
 	display: block;
 	margin-top: 3.5rem;
 
@@ -101,6 +101,29 @@ export const ScheduleWrapper = styled.div`
 			}
 		}
 	}
+
+	${props =>
+		(props.$viewType === 'week' || props.$viewType === 'list') &&
+		`
+        .react-calendar__viewContainer,
+        .react-calendar__month-view__weekdays {
+            display: none;
+        }
+        
+        .react-calendar__navigation {
+            margin-bottom: 2rem;
+        }
+
+		.react-calendar__navigation__label {
+			pointer-events: none;
+			cursor: default;
+			
+			&:enabled:hover,
+			&:enabled:focus {
+				background-color: transparent !important;
+			}
+		}
+    `}
 `;
 
 export const ScheduleList = styled.div`

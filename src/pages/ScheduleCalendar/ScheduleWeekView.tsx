@@ -1,6 +1,6 @@
-// @components/Schedule/WeekScheduleView.tsx
+// @pages/ScheduleCalendar/WeekScheduleView.tsx
 
-import * as S from '@/styles/pages/Schedule/ScheduleWeekView.style';
+import * as S from '@/styles/pages/ScheduleCalendar/ScheduleWeekView.style';
 
 import { format, startOfWeek, addDays, isSameDay } from 'date-fns';
 import { Schedule } from '@/types/schedule';

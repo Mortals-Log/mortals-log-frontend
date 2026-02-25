@@ -1,5 +1,6 @@
-// @pages/Schedule/ScheduleCalendar.tsx
-import * as S from '@/styles/pages/Schedule/ScheduleCalendar.style';
+// @pages/ScheduleCalendar/ScheduleCalendar.tsx
+
+import * as S from '@/styles/pages/ScheduleCalendar/ScheduleCalendar.style';
 
 import { useCallback, useMemo, useState } from 'react';
 import Calendar from 'react-calendar';
@@ -9,8 +10,8 @@ import { FormatDate } from '@/utils/date';
 import { Schedule } from '@/types/schedule';
 
 import ScheduleCalandarAgenda from '@/pages/Schedule/ScheduleCalandarAgenda';
-import ScheduleWeekView from '@/pages/Schedule/ScheduleWeekView';
-import ScheduleListView from '@/pages/Schedule/ScheduleListView';
+import ScheduleWeekView from '@/pages/ScheduleCalendar/ScheduleWeekView';
+import ScheduleListView from '@/pages/ScheduleCalendar/ScheduleListView';
 import ScheduleLabel from '@/pages/Schedule/ScheduleLabel';
 
 const ALL_TYPES = Object.keys(SCHEDULE_TYPE_COLORS) as Schedule['type'][];
@@ -44,19 +45,6 @@ const ScheduleCalendar = () => {
 		setActiveFilters(prev => (prev.length === ALL_TYPES.length ? [] : ALL_TYPES));
 	}, []);
 
-	const handleMoveDate = useCallback(
-		(direction: 'prev' | 'next') => {
-			const offset = direction === 'next' ? 1 : -1;
-			setViewDate(prev => {
-				const next = new Date(prev);
-				if (viewType === 'week') next.setDate(prev.getDate() + offset * 7);
-				else next.setMonth(prev.getMonth() + offset);
-				return next;
-			});
-		},
-		[viewType],
-	);
-
 	const handleGoToday = useCallback(() => {
 		setSelectedDate(today);
 		setViewDate(today);
@@ -81,18 +69,8 @@ const ScheduleCalendar = () => {
 		[filteredSchedules],
 	);
 
-	const renderSubNav = () => (
-		<S.ScheduleNav>
-			<button onClick={() => handleMoveDate('prev')}>&lt;</button>
-			<span>
-				{viewDate.getFullYear()}년 {viewDate.getMonth() + 1}월
-			</span>
-			<button onClick={() => handleMoveDate('next')}>&gt;</button>
-		</S.ScheduleNav>
-	);
-
 	return (
-		<S.ScheduleWrapper>
+		<S.ScheduleWrapper $viewType={viewType}>
 			<S.ScheduleToolbar>
 				<S.ViewSwitcher>
 					{(['month', 'week', 'list'] as const).map(type => (
@@ -100,7 +78,7 @@ const ScheduleCalendar = () => {
 							{type.charAt(0).toUpperCase() + type.slice(1)}
 						</button>
 					))}
-				</S.ViewSwitcher>
+				</S.ViewSwitcher>{' '}
 				<S.TodayButton onClick={handleGoToday}>TODAY</S.TodayButton>
 			</S.ScheduleToolbar>
 
@@ -111,35 +89,32 @@ const ScheduleCalendar = () => {
 				totalCount={ALL_TYPES.length}
 			/>
 
-			{viewType === 'month' ? (
-				<Calendar
-					calendarType="gregory"
-					onChange={val => setSelectedDate(val as Date)}
-					value={selectedDate}
-					activeStartDate={viewDate}
-					onActiveStartDateChange={({ activeStartDate }) => setViewDate(activeStartDate as Date)}
-					formatDay={(_, date) => date.getDate().toString()}
-					tileContent={renderTileContent}
+			<Calendar
+				calendarType="gregory"
+				onChange={val => setSelectedDate(val as Date)}
+				value={selectedDate}
+				activeStartDate={viewDate}
+				onActiveStartDateChange={({ activeStartDate }) => setViewDate(activeStartDate as Date)}
+				formatDay={(_, date) => date.getDate().toString()}
+				tileContent={renderTileContent}
+			/>
+
+			{viewType === 'week' && (
+				<ScheduleWeekView
+					viewDate={viewDate}
+					selectedDate={selectedDate}
+					onSelectDate={setSelectedDate}
+					schedules={filteredSchedules}
 				/>
-			) : (
-				<>
-					{renderSubNav()}
-					{viewType === 'week' ? (
-						<ScheduleWeekView
-							viewDate={viewDate}
-							selectedDate={selectedDate}
-							onSelectDate={setSelectedDate}
-							schedules={filteredSchedules}
-						/>
-					) : (
-						<ScheduleListView
-							viewDate={viewDate}
-							selectedDate={selectedDate}
-							onSelectDate={setSelectedDate}
-							schedules={filteredSchedules}
-						/>
-					)}
-				</>
+			)}
+
+			{viewType === 'list' && (
+				<ScheduleListView
+					viewDate={viewDate}
+					selectedDate={selectedDate}
+					onSelectDate={setSelectedDate}
+					schedules={filteredSchedules}
+				/>
 			)}
 
 			<ScheduleCalandarAgenda selectedDate={selectedDate} schedules={filteredSchedules} />
