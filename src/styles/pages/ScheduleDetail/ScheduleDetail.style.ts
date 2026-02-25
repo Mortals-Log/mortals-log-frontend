@@ -7,32 +7,36 @@ import styled from '@emotion/styled';
 import * as L from '@styles/common/Layout.style';
 export { SubTitle, Description, SectionTitle } from '@styles/common/Layout.style';
 
-export * from '@styles/components/Buttons.style';
-export * from '@styles/common/VideoWrapper.style';
-
 export const MainContainer = styled(L.MainContainer)`
 	padding: 100px 20px;
 `;
 
 export const HeaderSection = styled.header`
-	margin-bottom: 48px;
 	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY200};
-	padding-bottom: 2rem;
+	padding-bottom: 1rem;
+	margin-bottom: 2rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding-bottom: 0.5rem;
+		margin-bottom: 1rem;
+	}
 `;
 
 export const CategoryBadge = styled.span`
 	display: inline-block;
-	margin-bottom: 0.5rem;
+	margin-bottom: 0.2rem;
 
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.SM};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	color: ${props => props.theme.COLOR.PRIMARY};
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.XS};
+	}
 `;
 
-export const MainTitle = styled.h2<{ ageLimit: boolean }>`
-	margin-bottom: 8px;
-
+export const MainTitle = styled.div<{ $ageLimit: boolean }>`
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.H2};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
@@ -43,177 +47,10 @@ export const MainTitle = styled.h2<{ ageLimit: boolean }>`
 	word-break: keep-all;
 
 	&::before {
-		content: ${props => (props.ageLimit ? '"🔞"' : '""')};
-	}
-`;
-
-export const MainSection = styled.div`
-	display: flex;
-	gap: 60px;
-	align-items: center;
-
-	@media (max-width: 850px) {
-		flex-direction: column;
-		align-items: center;
-		gap: 40px;
-	}
-`;
-
-export const ImageWrapper = styled.div`
-	flex: 0 0 400px;
-	overflow: hidden;
-	margin: 0 auto;
-	padding: 10px;
-	border-radius: 10px;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-
-	img {
-		width: 100%;
-		height: 100%;
-		object-fit: fit;
-		display: block;
+		content: ${props => (props.$ageLimit ? '"🔞"' : '""')};
 	}
 
-	@media (max-width: 850px) {
-		flex: 1;
-		max-width: 400px;
-	}
-`;
-
-export const ContentSection = styled.div`
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	padding: 0 1rem;
-	gap: 2.5rem;
-`;
-
-export const InfoGroup = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 0.8rem;
-	align-items: center;
-
-	span {
-		font-family: ${props => props.theme.FONT.SANS};
-		font-size: ${props => props.theme.FONT.SIZE.SM};
-		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-		color: ${props => props.theme.COLOR.GRAY500};
-	}
-`;
-
-export const InfoTitle = styled.div`
-	margin: 0;
-	letter-spacing: 0.1em;
-	text-transform: uppercase;
-
-	font-family: ${props => props.theme.FONT.SERIF};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
-	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-	color: ${props => props.theme.COLOR.PRIMARY};
-`;
-
-export const LineUpWrapper = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 0.5rem;
-`;
-
-export const LineUpItem = styled.div`
-	padding: 0.8rem 1rem;
-	border: 1px solid ${props => props.theme.COLOR.PRIMARY + '77'};
-	border-radius: 20px;
-
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
-	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-	color: ${props => props.theme.COLOR.GRAY700};
-`;
-
-export const InfoItem = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	gap: 12px;
-
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.MD};
-	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-	color: ${props => props.theme.COLOR.GRAY700};
-
-	.part {
-		font-family: ${props => props.theme.FONT.SERIF};
-		font-size: ${props => props.theme.FONT.SIZE.MD};
-		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-		color: ${props => props.theme.COLOR.PRIMARY};
-	}
-
-	.time {
-		display: flex;
-		align-items: center;
-
-		&::before {
-			content: '';
-			display: inline-block;
-			width: 1px;
-			height: ${props => props.theme.FONT.SIZE.MD};
-			background: ${props => props.theme.COLOR.GRAY400};
-			margin-right: 12px;
-		}
-	}
-`;
-
-export const MapSection = styled.section`
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	padding-top: 2rem;
-	margin-top: 4rem;
-	border-top: 1px solid ${props => props.theme.COLOR.GRAY200};
-	gap: 2rem;
-`;
-
-export const MapFrameWrapper = styled.div`
-	width: 100%;
-	height: 400px;
-	border-radius: 12px;
-	overflow: hidden;
-	filter: grayscale(0.2);
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-
-	iframe {
-		width: 100%;
-		height: 100%;
-		border: none;
-	}
-
-	@media (max-width: 850px) {
-		height: 300px;
-	}
-`;
-
-export const TagWrapper = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	gap: 4px;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-`;
-
-export const HashTag = styled.button`
-	font-family: ${props => props.theme.FONT.SERIF};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
-	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-	color: ${props => props.theme.COLOR.GRAY700};
-
-	padding: 0.5rem;
-	cursor: pointer;
-	transition: all 0.2s;
-
-	&:hover {
-		color: ${props => props.theme.COLOR.PRIMARY};
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.H3};
 	}
 `;

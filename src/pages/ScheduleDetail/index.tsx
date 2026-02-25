@@ -80,7 +80,7 @@ const ScheduleDetail = () => {
 					{SCHEDULE_LABEL_MAP[type]}
 				</S.CategoryBadge>
 
-				<S.MainTitle ageLimit={ageLimit || false}>
+				<S.MainTitle $ageLimit={ageLimit || false}>
 					{(isConcert(detailData) && detailData?.content) || content}
 				</S.MainTitle>
 			</S.HeaderSection>

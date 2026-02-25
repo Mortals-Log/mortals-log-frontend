@@ -1,6 +1,6 @@
 // @pages/Schedule/ScheduleDetailBody.tsx
 
-import * as S from '@/styles/pages/ScheduleDetail/ScheduleDetail.style';
+import * as S from '@/styles/pages/ScheduleDetail/ScheduleDetailBody.style';
 
 import { ConcertItem } from '@/types/concert';
 import { Album } from '@/types/album';
@@ -8,12 +8,12 @@ import { EventItem } from '@/types/event';
 import { Schedule } from '@/types/schedule';
 
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
+import { EVENT_TYPE_LABEL } from '@/const/event';
 import { LINK_LIST, LINK_PLATFORM, LINK_SHOP, SNS_PLATFORM } from '@/const/links';
 import useImageFallback from '@/hooks/useImageFallback';
 import handleCopy from '@/hooks/handlecopy';
 import { GetAlbumPaths } from '@/utils/album';
 import { GetDay } from '@/utils/date';
-import { EVENT_TYPE_LABEL } from '@/const/event';
 
 type DetailData = ConcertItem | Album | EventItem | Schedule;
 
