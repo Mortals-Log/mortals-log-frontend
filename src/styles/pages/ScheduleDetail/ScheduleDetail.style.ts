@@ -4,10 +4,15 @@
 
 import styled from '@emotion/styled';
 
-export { MainContainer, SubTitle, Description, SectionTitle } from '@styles/common/Layout.style';
+import * as L from '@styles/common/Layout.style';
+export { SubTitle, Description, SectionTitle } from '@styles/common/Layout.style';
 
 export * from '@styles/components/Buttons.style';
 export * from '@styles/common/VideoWrapper.style';
+
+export const MainContainer = styled(L.MainContainer)`
+	padding: 100px 20px;
+`;
 
 export const HeaderSection = styled.header`
 	margin-bottom: 48px;

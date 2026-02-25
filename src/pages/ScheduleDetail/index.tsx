@@ -4,17 +4,28 @@ import * as S from '@/styles/pages/ScheduleDetail/ScheduleDetail.style';
 
 import { useParams } from 'react-router-dom';
 import { useMemo } from 'react';
+
 import { ALL_SCHEDULE_LIST } from '@/utils/schedule';
-import BackButton from '@/components/BackButton';
-import Placeholder from '@/components/Placeholder';
+import { ConcertItem } from '@/types/concert';
+import { Album } from '@/types/album';
+import { EventItem } from '@/types/event';
+
 import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
 import { FULL_CONCERTS } from '@/const/concert';
 import { FULL_ALBUMS } from '@/const/albums';
 import { FULL_EVENTS } from '@/const/event';
+
+import BackButton from '@/components/BackButton';
+import Placeholder from '@/components/Placeholder';
 import ScheduleDetailConcert from '@/pages/ScheduleDetail/ScheduleDetailConcert';
 import ScheduleDetailAlbum from '@/pages/ScheduleDetail/ScheduleDetailAlbum';
 import ScheduleDetailEvent from '@/pages/ScheduleDetail/ScheduleDetailEvent';
 import ScheduleDetailAnniversary from '@/pages/ScheduleDetail/ScheduleDetailAnniversary';
+
+const isConcert = (data: any): data is ConcertItem =>
+	data && 'content' in data && 'type' in data && ['SOLO', 'JOIN', 'TOUR', 'LISTENING'].includes(data.type);
+const isAlbum = (data: any): data is Album => data && 'title' in data;
+const isEvent = (data: any): data is EventItem => data && !('title' in data) && 'content' in data;
 
 const ScheduleDetail = () => {
 	const { id } = useParams<{ id: string }>();
@@ -23,66 +34,69 @@ const ScheduleDetail = () => {
 		return ALL_SCHEDULE_LIST.find(item => String(item.id) === id);
 	}, [id]);
 
-	const concertData = useMemo(() => {
-		if (!scheduleBase || scheduleBase.type !== 'CONCERT') return null;
+	const detailData = useMemo(() => {
+		if (!scheduleBase) return null;
 
-		return FULL_CONCERTS.flatMap(g => g.items).find(i => scheduleBase.content.includes(i.content));
+		const { type, content } = scheduleBase;
+
+		switch (type) {
+			case 'CONCERT':
+				return FULL_CONCERTS.flatMap(g => g.items).find(i => content.includes(i.content));
+			case 'ALBUM':
+				return (
+					FULL_ALBUMS.flatMap(g => g.items).find(i => i.title === content) ||
+					FULL_ALBUMS.flatMap(g => g.items).find(i => content.includes(i.title))
+				);
+			case 'EVENT':
+				return FULL_EVENTS.flatMap(g => g.items).find(i => content.includes(i.content));
+			default:
+				return null;
+		}
 	}, [scheduleBase]);
 
-	const albumData = useMemo(() => {
-		if (!scheduleBase || scheduleBase.type !== 'ALBUM') return null;
-
-		return FULL_ALBUMS.flatMap(g => g.items).find(i => scheduleBase.content.includes(i.title));
-	}, [scheduleBase]);
-
-	const eventData = useMemo(() => {
-		if (!scheduleBase || scheduleBase.type !== 'EVENT') return null;
-
-		return FULL_EVENTS.flatMap(g => g.items).find(i => scheduleBase.content.includes(i.content));
-	}, [scheduleBase]);
-
-	if (!scheduleBase)
+	if (!scheduleBase) {
 		return (
 			<S.MainContainer>
 				<BackButton to="/schedule" />
 				<Placeholder message="일정을 찾을 수 없습니다." />
 			</S.MainContainer>
 		);
+	}
 
 	const year = scheduleBase.date.split('.')[0];
+	const { type, ageLimit, content, imageUrl } = scheduleBase;
 
 	return (
 		<S.MainContainer>
 			<BackButton />
+
 			<S.HeaderSection>
 				<S.CategoryBadge>
-					{scheduleBase.ageLimit ? '미성년자 관람 불가 | ' : ''}
-					{SCHEDULE_LABEL_MAP[scheduleBase.type]}
+					{ageLimit ? '미성년자 관람 불가 | ' : ''}
+					{SCHEDULE_LABEL_MAP[type]}
 				</S.CategoryBadge>
 
-				<S.MainTitle ageLimit={scheduleBase.ageLimit || false}>
-					{scheduleBase.type === 'CONCERT' && concertData ? concertData.content : scheduleBase.content}
+				<S.MainTitle ageLimit={ageLimit || false}>
+					{(isConcert(detailData) && detailData?.content) || content}
 				</S.MainTitle>
 			</S.HeaderSection>
 
-			{scheduleBase.type === 'CONCERT' && concertData && (
+			{isConcert(detailData) && (
 				<ScheduleDetailConcert
 					schedule={{
-						...concertData,
-						date: `${year}.${concertData.date}`,
-						times: concertData.times,
+						...detailData,
+						date: `${year}.${detailData.date}`,
 					}}
-					imageUrl={scheduleBase.imageUrl}
-					content={scheduleBase.content}
+					imageUrl={imageUrl}
+					content={content}
 				/>
 			)}
-			{scheduleBase.type === 'ALBUM' && albumData && <ScheduleDetailAlbum album={albumData} />}
 
-			{scheduleBase.type === 'EVENT' && eventData && (
-				<ScheduleDetailEvent schedule={{ ...eventData, date: `${year}.${eventData.date}` }} />
-			)}
+			{isAlbum(detailData) && <ScheduleDetailAlbum album={detailData} />}
 
-			{['BIRTHDAY', 'ANNIVERSARY'].includes(scheduleBase.type) && <ScheduleDetailAnniversary schedule={scheduleBase} />}
+			{isEvent(detailData) && <ScheduleDetailEvent schedule={{ ...detailData, date: `${year}.${detailData.date}` }} />}
+
+			{['BIRTHDAY', 'ANNIVERSARY'].includes(type) && <ScheduleDetailAnniversary schedule={scheduleBase} />}
 		</S.MainContainer>
 	);
 };
