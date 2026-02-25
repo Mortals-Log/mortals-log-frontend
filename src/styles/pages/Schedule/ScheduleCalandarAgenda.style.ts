@@ -21,6 +21,10 @@ export const AgendaHeader = styled.div`
 	font-size: ${props => props.theme.FONT.SIZE.LG};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.MD};
+	}
 `;
 
 export const AgendaList = styled.div`

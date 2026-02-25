@@ -3,32 +3,128 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
+
 import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
 import { Schedule } from '@/types/schedule';
 
+export const ScheduleToolbar = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	gap: 12px;
+	margin-bottom: 0.3rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		justify-content: space-between;
+		gap: 8px;
+	}
+`;
+
+export const ViewSwitcher = styled.div`
+	display: flex;
+	background-color: ${props => props.theme.COLOR.GRAY50};
+	border: 1px solid ${props => props.theme.COLOR.GRAY100};
+	border-radius: 10px;
+
+	button {
+		flex: 1;
+		padding: 0.5rem 1rem;
+
+		font-family: ${props => props.theme.FONT.SANS};
+		font-size: ${props => props.theme.FONT.SIZE.XS};
+		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+		color: ${props => props.theme.COLOR.GRAY700};
+		white-space: nowrap;
+		word-break: keep-all;
+
+		border: none;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: all 0.2s ease;
+
+		&.active {
+			background-color: ${props => props.theme.COLOR.PRIMARY};
+			color: ${props => props.theme.COLOR.WHITE};
+		}
+
+		&:hover:not(.active) {
+			color: ${props => props.theme.COLOR.PRIMARY};
+		}
+	}
+`;
+
+export const TodayButton = styled.button`
+	padding: 0.5rem 1rem;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.XS};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	color: ${props => props.theme.COLOR.PRIMARY};
+	white-space: pre-wrap;
+	word-break: keep-all;
+
+	border: 1px solid ${props => props.theme.COLOR.PRIMARY};
+	border-radius: 10px;
+
+	cursor: pointer;
+	transition: all 0.2s ease;
+
+	&:hover {
+		background-color: ${props => props.theme.COLOR.PRIMARY};
+		color: ${props => props.theme.COLOR.WHITE};
+	}
+
+	&:active {
+		transform: scale(0.95);
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 0.4rem 0.8rem;
+	}
+`;
+
 export const ScheduleWrapper = styled.div<{ $viewType: string }>`
 	display: block;
-	margin-top: 3.5rem;
+	margin-top: 3rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		margin-top: 4rem;
+	}
 
 	.react-calendar {
-		width: 100%;
 		border: none;
 		font-family: ${props => props.theme.FONT.SANS};
 		background: transparent;
 		line-height: 1.125em;
+		margin-top: 1rem;
+
+		@media ${props => props.theme.WINDOW_SIZE.mobile} {
+			width: 100vw;
+			position: relative;
+			left: 50%;
+			right: 50%;
+			margin-left: -50vw;
+			margin-right: -50vw;
+
+			max-width: 100vw;
+			overflow-x: hidden;
+		}
 	}
 
 	/* 1. 요일 글자 */
 	.react-calendar__month-view__weekdays {
 		text-align: center;
-		text-transform: uppercase;
 		padding: 0.5rem 0;
+
 		font-size: ${props => props.theme.FONT.SIZE.SM};
-		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 		color: ${props => props.theme.COLOR.GRAY700};
 
 		abbr {
 			text-decoration: none;
+		}
+
+		@media ${props => props.theme.WINDOW_SIZE.mobile} {
+			font-size: ${props => props.theme.FONT.SIZE.XS};
 		}
 	}
 
@@ -42,13 +138,14 @@ export const ScheduleWrapper = styled.div<{ $viewType: string }>`
 		height: auto;
 		min-height: 130px;
 		padding: 0.3rem;
+
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 		color: ${props => props.theme.COLOR.GRAY700};
 
 		/* 날짜 숫자 */
 		abbr {
-			margin-bottom: 0.3rem;
-			font-size: ${props => props.theme.FONT.SIZE.SM};
-			font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+			margin-bottom: 0.5rem;
 		}
 
 		/* 호버 시 배경색 */
@@ -61,9 +158,9 @@ export const ScheduleWrapper = styled.div<{ $viewType: string }>`
 
 	/* 3. 오늘 날짜 */
 	.react-calendar__tile--now {
-		border-radius: 8px;
 		background: ${props => props.theme.COLOR.GRAY50};
 		color: ${props => props.theme.COLOR.PRIMARY};
+		border-radius: 8px;
 	}
 
 	/* 4. 선택된 날짜 */
@@ -82,12 +179,17 @@ export const ScheduleWrapper = styled.div<{ $viewType: string }>`
 	.react-calendar__navigation {
 		margin-bottom: 1rem;
 
+		@media ${props => props.theme.WINDOW_SIZE.mobile} {
+			margin-left: 0.5rem;
+		}
+
 		button {
-			color: ${props => props.theme.COLOR.GRAY700};
-			min-width: 3rem;
+			min-width: 2rem;
+			padding: 0.5rem 1rem;
 			background: none;
-			font-size: ${props => props.theme.FONT.SIZE.LG};
+			font-size: ${props => props.theme.FONT.SIZE.MD};
 			font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+			color: ${props => props.theme.COLOR.GRAY700};
 
 			&:disabled {
 				background-color: none;
@@ -98,6 +200,11 @@ export const ScheduleWrapper = styled.div<{ $viewType: string }>`
 			&:enabled:focus {
 				background-color: ${props => props.theme.COLOR.GRAY100};
 				border-radius: 8px;
+			}
+
+			@media ${props => props.theme.WINDOW_SIZE.mobile} {
+				padding: 0.3rem 0.8rem;
+				font-size: ${props => props.theme.FONT.SIZE.SM};
 			}
 		}
 	}
@@ -110,10 +217,6 @@ export const ScheduleWrapper = styled.div<{ $viewType: string }>`
             display: none;
         }
         
-        .react-calendar__navigation {
-            margin-bottom: 2rem;
-        }
-
 		.react-calendar__navigation__label {
 			pointer-events: none;
 			cursor: default;
@@ -139,17 +242,19 @@ export const ScheduleItem = styled.div<{ $eventType: Schedule['type'] }>`
 	min-width: 0;
 
 	padding: 0.3rem 0.4rem;
-	border-radius: 4px;
 	margin-bottom: 2px;
 
-	background-color: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].bg};
-	color: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].text};
+	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.XS};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-
+	color: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].text};
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+
+	background-color: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].bg};
+
+	border-radius: 4px;
 
 	&::before {
 		content: '';
@@ -170,101 +275,23 @@ export const ScheduleItem = styled.div<{ $eventType: Schedule['type'] }>`
 		background-color: rgba(255, 255, 255, 0.2);
 		color: ${props => props.theme.COLOR.WHITE};
 	}
-`;
 
-export const ScheduleToolbar = styled.div`
-	display: flex;
-	justify-content: flex-end;
-	gap: 20px;
-	margin-bottom: 0.3rem;
-`;
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
 
-export const TodayButton = styled.button`
-	padding: 0.5rem 1rem;
+		font-size: ${props => props.theme.FONT.SIZE.TINY};
+		white-space: normal;
+		overflow: hidden;
+		text-overflow: clip;
 
-	font-size: ${props => props.theme.FONT.SIZE.XS};
-	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+		line-height: 1.25;
+		max-height: 3em;
+		padding: 0.2rem 0.3rem;
 
-	color: ${props => props.theme.COLOR.PRIMARY};
-	border: 1px solid ${props => props.theme.COLOR.PRIMARY};
-	border-radius: 10px;
-
-	cursor: pointer;
-	transition: all 0.2s;
-
-	&:hover {
-		background-color: ${props => props.theme.COLOR.PRIMARY};
-		border: 1px solid ${props => props.theme.COLOR.PRIMARY};
-		color: ${props => props.theme.COLOR.WHITE};
-	}
-
-	&:active {
-		transform: scale(0.95);
-	}
-`;
-
-export const ViewSwitcher = styled.div`
-	display: flex;
-	padding: 2px;
-	gap: 2px;
-	border: 1px solid ${props => props.theme.COLOR.GRAY100};
-	border-radius: 10px;
-
-	button {
-		padding: 4px 12px;
-		font-family: ${props => props.theme.FONT.SANS};
-		font-size: ${props => props.theme.FONT.SIZE.XS};
-		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-		color: ${props => props.theme.COLOR.GRAY700};
-		border-radius: 4px;
-		transition: all 0.2s;
-
-		&.active {
-			background-color: ${props => props.theme.COLOR.PRIMARY};
-			color: ${props => props.theme.COLOR.WHITE};
+		&::before {
+			display: none;
 		}
-
-		&:hover:not(.active) {
-			color: ${props => props.theme.COLOR.GRAY600};
-		}
-	}
-`;
-
-export const ScheduleNav = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	margin-right: auto;
-
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.LG};
-	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-
-	button {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		width: 28px;
-		height: 28px;
-		border-radius: 50%;
-
-		color: ${props => props.theme.COLOR.GRAY700};
-
-		transition: all 0.2s ease;
-
-		&:hover {
-			background-color: ${props => props.theme.COLOR.GRAY100};
-		}
-
-		&:active {
-			transform: scale(0.9);
-		}
-	}
-
-	span {
-		min-width: 85px;
-		text-align: center;
-		color: ${props => props.theme.COLOR.GRAY700};
 	}
 `;
