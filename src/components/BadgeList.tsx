@@ -8,7 +8,7 @@ export const BADGE_LABEL = {
 	TITLE: 'TITLE',
 	CHORDS: 'CRORDS',
 	MV: 'MV',
-	ADULT: '🔞 미성년자 청취불가',
+	ADULT: '🔞 미성년자 이용불가',
 	TJ: 'TJ',
 	KY: 'KY',
 } as const;

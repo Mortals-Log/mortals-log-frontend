@@ -2,6 +2,8 @@
 
 /* eslint-disable storybook/default-exports */
 
+import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
+import { Schedule } from '@/types/schedule';
 import styled from '@emotion/styled';
 
 export const BadgeGroup = styled.div`
@@ -56,6 +58,16 @@ export const SingingBadge = styled(LeadBadge)<{ brand: 'TJ' | 'KY' }>`
 export const MVBadge = styled(LeadBadge)`
 	background-color: ${props => props.theme.COLOR.YELLOW600};
 	color: ${props => props.theme.COLOR.GRAY700};
+`;
+
+export const TypeBadge = styled(LeadBadge)<{ $eventType: Schedule['type'] }>`
+	background: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].bg};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	color: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].text};
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.XS};
+	}
 `;
 
 export const MusicBadge = styled.a`
