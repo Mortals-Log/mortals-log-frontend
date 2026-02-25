@@ -107,6 +107,7 @@ export const ScheduleWrapper = styled.div<{ $viewType: string }>`
 
 			max-width: 100vw;
 			overflow-x: hidden;
+			padding: 0px 4px;
 		}
 	}
 
@@ -253,7 +254,6 @@ export const ScheduleItem = styled.div<{ $eventType: Schedule['type'] }>`
 	text-overflow: ellipsis;
 
 	background-color: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].bg};
-
 	border-radius: 4px;
 
 	&::before {
@@ -269,6 +269,10 @@ export const ScheduleItem = styled.div<{ $eventType: Schedule['type'] }>`
 		border-radius: 50%;
 		vertical-align: middle;
 		margin-top: -2px;
+
+		@media ${props => props.theme.WINDOW_SIZE.mobile} {
+			display: none;
+		}
 	}
 
 	.react-calendar__tile--active & {
@@ -286,8 +290,8 @@ export const ScheduleItem = styled.div<{ $eventType: Schedule['type'] }>`
 		overflow: hidden;
 		text-overflow: clip;
 
-		line-height: 1.25;
-		max-height: 3em;
+		line-height: 1.5;
+		max-height: 3rem;
 		padding: 0.2rem 0.3rem;
 
 		&::before {
