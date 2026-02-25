@@ -3,7 +3,7 @@
 /* eslint-disable storybook/default-exports */
 
 import { Album, AlbumList } from '@/types/album';
-import { GetSlug } from '@utils/urlSlug';
+import { GetSlug } from '@/utils/urlSlug';
 
 export const GetLatestAlbum = (fullAlbums: AlbumList): Album | undefined => {
 	if (!fullAlbums?.[0]?.items?.length) return undefined;

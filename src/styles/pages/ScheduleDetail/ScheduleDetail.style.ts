@@ -120,7 +120,7 @@ export const LineUpWrapper = styled.div`
 	gap: 0.5rem;
 `;
 
-export const ArtistTag = styled.span`
+export const LineUpItem = styled.div`
 	padding: 0.8rem 1rem;
 	border: 1px solid ${props => props.theme.COLOR.PRIMARY + '77'};
 	border-radius: 20px;
