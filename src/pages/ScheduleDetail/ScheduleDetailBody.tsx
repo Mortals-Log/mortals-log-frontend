@@ -2,6 +2,7 @@
 
 import * as S from '@/styles/pages/ScheduleDetail/ScheduleDetailBody.style';
 
+import { useMemo } from 'react';
 import { ConcertItem } from '@/types/concert';
 import { Album } from '@/types/album';
 import { EventItem } from '@/types/event';
@@ -23,6 +24,29 @@ interface ScheduleDetailBodyProps {
 	imageUrl?: string;
 	content?: string;
 }
+
+type InfoTitleLabel =
+	| 'TYPE'
+	| 'DATE'
+	| 'DATE & TIME'
+	| 'RELEASE DATE'
+	| 'ABOUT ALBUM'
+	| 'LINE UP'
+	| 'LOCATION'
+	| 'TICKET'
+	| 'HOST'
+	| 'PLATFORM'
+	| 'MESSAGE'
+	| 'HASHTAGS'
+	| (string & {});
+
+interface InfoTitleProps {
+	label: InfoTitleLabel;
+}
+
+const InfoTitle = ({ label }: InfoTitleProps) => {
+	return <S.InfoTitle>{label.toUpperCase()}</S.InfoTitle>;
+};
 
 const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) => {
 	const handleImgError = useImageFallback();
@@ -54,7 +78,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 			return (
 				<>
 					<S.InfoGroup>
-						<S.InfoTitle>Date & time</S.InfoTitle>
+						<InfoTitle label="DATE & TIME" />
 						{cleanDate.includes('~')
 							? cleanDate.split('~').map((date, idx) => (
 									<S.InfoItem key={`range-${idx}`}>
@@ -77,7 +101,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 
 					{concert.lineUp && (
 						<S.InfoGroup>
-							<S.InfoTitle>LINE UP</S.InfoTitle>
+							<InfoTitle label="LINE UP" />
 							<S.LineUpWrapper>
 								{concert.lineUp.map((artist, idx) => (
 									<S.LineUpItem key={idx}>{artist}</S.LineUpItem>
@@ -88,7 +112,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 
 					{concert.price && (
 						<S.InfoGroup>
-							<S.InfoTitle>TICKET</S.InfoTitle>
+							<InfoTitle label="TICKET" />
 							<S.InfoItem>일반: {concert.price.regular}원</S.InfoItem>
 							{Object.entries(concert.price).map(([key, value]) => {
 								if (key === 'regular' || !value) return null;
@@ -123,19 +147,19 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 			return (
 				<>
 					<S.InfoGroup>
-						<S.InfoTitle>TYPE</S.InfoTitle>
+						<InfoTitle label="TYPE" />
 						<S.InfoItem>{ALBUM_TYPE_LABEL[album.type]}</S.InfoItem>
 					</S.InfoGroup>
 
 					<S.InfoGroup>
-						<S.InfoTitle>Release Date</S.InfoTitle>
+						<InfoTitle label="RELEASE DATE" />
 						<S.InfoItem>
 							{album.releaseDate} ({GetDay(album.releaseDate)})
 						</S.InfoItem>
 					</S.InfoGroup>
 
 					<S.InfoGroup>
-						<S.InfoTitle>ABOUT ALBUM</S.InfoTitle>
+						<InfoTitle label="ABOUT ALBUM" />
 						<S.MoreButton to={detailUrl} target="_blank" rel="noopener noreferrer">
 							{ALBUM_TYPE_LABEL[album.type]} 정보 더보기
 						</S.MoreButton>
@@ -178,24 +202,24 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 			return (
 				<>
 					<S.InfoGroup>
-						<S.InfoTitle>DATE</S.InfoTitle>
+						<InfoTitle label="DATE" />
 						<S.InfoItem>
 							{event.date} ({GetDay(event.date)})
 						</S.InfoItem>
 					</S.InfoGroup>
 
 					<S.InfoGroup>
-						<S.InfoTitle>HOST</S.InfoTitle>
+						<InfoTitle label="HOST" />
 						<S.InfoItem>{event.host}</S.InfoItem>
 					</S.InfoGroup>
 
 					<S.InfoGroup>
-						<S.InfoTitle>PLATFORM</S.InfoTitle>
+						<InfoTitle label="PLATFORM" />
 						<S.InfoItem>{event.platform}</S.InfoItem>
 					</S.InfoGroup>
 
 					<S.InfoGroup>
-						<S.InfoTitle>TYPE</S.InfoTitle>
+						<InfoTitle label="TYPE" />
 						<S.InfoItem>{EVENT_TYPE_LABEL[event.type]}</S.InfoItem>
 					</S.InfoGroup>
 
@@ -217,21 +241,21 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 			return (
 				<>
 					<S.InfoGroup>
-						<S.InfoTitle>DATE</S.InfoTitle>
+						<InfoTitle label="DATE" />
 						<S.InfoItem>
 							{sche.date} ({GetDay(sche.date)})
 						</S.InfoItem>
 					</S.InfoGroup>
 					{sche.message && (
 						<S.InfoGroup>
-							<S.InfoTitle>MESSAGE</S.InfoTitle>
+							<InfoTitle label="MESSAGE" />
 							<S.InfoItem>{sche.message}</S.InfoItem>
 						</S.InfoGroup>
 					)}
 
 					{sche.hashtags && (
 						<S.InfoGroup>
-							<S.InfoTitle>HASHTAGS</S.InfoTitle>
+							<InfoTitle label="HASHTAGS" />
 							<S.TagWrapper>
 								{sche.hashtags.map(tag => (
 									<S.HashTag key={tag} onClick={() => handleCopy(tag)}>
@@ -278,8 +302,12 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 	};
 
 	const hasImage = type === 'CONCERT' || type === 'ALBUM';
-	const albumPaths = type === 'ALBUM' ? GetAlbumPaths(data as Album) : null;
-	const finalImgSrc = type === 'ALBUM' ? albumPaths?.imageSrc : imageUrl;
+	const finalImgSrc = useMemo(() => {
+		if (type === 'ALBUM' && 'title' in data) {
+			return GetAlbumPaths(data as Album).imageSrc;
+		}
+		return imageUrl;
+	}, [type, data, imageUrl]);
 
 	return (
 		<>
