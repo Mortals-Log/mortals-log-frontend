@@ -12,7 +12,8 @@ export const TOAST_OPTION = {
 		background: Theme.COLOR.GRAY700,
 		color: Theme.COLOR.WHITE,
 		fontSize: Theme.FONT.SIZE.SM,
-		padding: '1rem 1.5rem',
+		padding: '0.8rem 1rem',
+		marginBottom: '1.5rem',
 		boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
 	},
 } as const;
