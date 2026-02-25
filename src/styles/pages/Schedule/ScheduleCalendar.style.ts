@@ -110,7 +110,7 @@ export const ScheduleList = styled.div`
 	gap: 0.3rem;
 `;
 
-export const ScheduleItem = styled.div<{ eventType: Schedule['type'] }>`
+export const ScheduleItem = styled.div<{ $eventType: Schedule['type'] }>`
 	display: block;
 	width: 100%;
 	min-width: 0;
@@ -119,8 +119,8 @@ export const ScheduleItem = styled.div<{ eventType: Schedule['type'] }>`
 	border-radius: 4px;
 	margin-bottom: 2px;
 
-	background-color: ${props => SCHEDULE_TYPE_COLORS[props.eventType].bg};
-	color: ${props => SCHEDULE_TYPE_COLORS[props.eventType].text};
+	background-color: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].bg};
+	color: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].text};
 	font-size: ${props => props.theme.FONT.SIZE.XS};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 

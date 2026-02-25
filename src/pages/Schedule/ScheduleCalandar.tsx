@@ -1,66 +1,77 @@
-// @pages/Schedule/ScheduleCalendar
-
-import * as S from '@styles/pages/Schedule/ScheduleCalendar.style';
+// @pages/Schedule/ScheduleCalendar.tsx
+import * as S from '@/styles/pages/Schedule/ScheduleCalendar.style';
 
 import { useCallback, useMemo, useState } from 'react';
 import Calendar from 'react-calendar';
 import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
 import { CALENDAR_SCHEDULES } from '@utils/schedule';
 import { FormatDate } from '@/utils/date';
+import { Schedule } from '@/types/schedule';
+
 import ScheduleCalandarAgenda from '@/pages/Schedule/ScheduleCalandarAgenda';
 import ScheduleWeekView from '@/pages/Schedule/ScheduleWeekView';
 import ScheduleListView from '@/pages/Schedule/ScheduleListView';
 import ScheduleLabel from '@/pages/Schedule/ScheduleLabel';
 
-const ALL_TYPES = Object.keys(SCHEDULE_TYPE_COLORS);
+const ALL_TYPES = Object.keys(SCHEDULE_TYPE_COLORS) as Schedule['type'][];
 
 const ScheduleCalendar = () => {
-	const today = new Date();
+	const today = useMemo(() => new Date(), []);
 	const [selectedDate, setSelectedDate] = useState<Date>(today);
 	const [viewDate, setViewDate] = useState<Date>(today);
 	const [viewType, setViewType] = useState<'month' | 'week' | 'list'>('month');
-	const [activeFilters, setActiveFilters] = useState<string[]>(ALL_TYPES);
-
-	const handleToggleAllFilters = useCallback(() => {
-		setActiveFilters(prev => (prev.length === ALL_TYPES.length ? [] : [...ALL_TYPES]));
-	}, []);
-
-	const handleToggleFilter = useCallback((type: string) => {
-		setActiveFilters(prev => (prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]));
-	}, []);
+	const [activeFilters, setActiveFilters] = useState<Schedule['type'][]>(ALL_TYPES);
 
 	const filteredSchedules = useMemo(() => {
 		if (activeFilters.length === 0) return {};
+		if (activeFilters.length === ALL_TYPES.length) return CALENDAR_SCHEDULES;
 
-		const filtered: Record<string, any[]> = {};
-		Object.entries(CALENDAR_SCHEDULES).forEach(([date, events]) => {
-			const matchedEvents = events.filter(event => activeFilters.includes(event.type));
-			if (matchedEvents.length > 0) {
-				filtered[date] = matchedEvents;
-			}
-		});
-		return filtered;
+		return Object.entries(CALENDAR_SCHEDULES).reduce(
+			(acc, [date, events]) => {
+				const matched = events.filter(event => activeFilters.includes(event.type));
+				if (matched.length > 0) acc[date] = matched;
+				return acc;
+			},
+			{} as Record<string, Schedule[]>,
+		);
 	}, [activeFilters]);
 
-	const handleGoToday = useCallback(() => {
-		const now = new Date();
-		setSelectedDate(now);
-		setViewDate(now);
+	const handleToggleFilter = useCallback((type: Schedule['type']) => {
+		setActiveFilters(prev => (prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]));
 	}, []);
+
+	const handleToggleAllFilters = useCallback(() => {
+		setActiveFilters(prev => (prev.length === ALL_TYPES.length ? [] : ALL_TYPES));
+	}, []);
+
+	const handleMoveDate = useCallback(
+		(direction: 'prev' | 'next') => {
+			const offset = direction === 'next' ? 1 : -1;
+			setViewDate(prev => {
+				const next = new Date(prev);
+				if (viewType === 'week') next.setDate(prev.getDate() + offset * 7);
+				else next.setMonth(prev.getMonth() + offset);
+				return next;
+			});
+		},
+		[viewType],
+	);
+
+	const handleGoToday = useCallback(() => {
+		setSelectedDate(today);
+		setViewDate(today);
+	}, [today]);
 
 	const renderTileContent = useCallback(
 		({ date, view }: { date: Date; view: string }) => {
 			if (view !== 'month') return null;
-
-			const dateStr = FormatDate(date);
-			const dayEvents = filteredSchedules[dateStr];
-
-			if (!dayEvents) return null;
+			const events = filteredSchedules[FormatDate(date)];
+			if (!events) return null;
 
 			return (
 				<S.ScheduleList>
-					{dayEvents.map((event, i) => (
-						<S.ScheduleItem key={i} eventType={event.type}>
+					{events.map((event, i) => (
+						<S.ScheduleItem key={`${event.id}-${i}`} $eventType={event.type}>
 							{event.content}
 						</S.ScheduleItem>
 					))}
@@ -70,44 +81,25 @@ const ScheduleCalendar = () => {
 		[filteredSchedules],
 	);
 
-	const handleChangeViewType = useCallback(
-		(type: 'month' | 'week' | 'list') => {
-			setViewType(type);
-			if (type === 'week' || type === 'list') {
-				setViewDate(selectedDate);
-			}
-		},
-		[selectedDate],
-	);
-
-	const handleMoveDate = useCallback(
-		(direction: 'prev' | 'next') => {
-			setViewDate(prev => {
-				const nextDate = new Date(prev);
-				if (viewType === 'week') {
-					nextDate.setDate(prev.getDate() + (direction === 'next' ? 7 : -7));
-				} else {
-					nextDate.setMonth(prev.getMonth() + (direction === 'next' ? 1 : -1));
-				}
-				return nextDate;
-			});
-		},
-		[viewType],
+	const renderSubNav = () => (
+		<S.ScheduleNav>
+			<button onClick={() => handleMoveDate('prev')}>&lt;</button>
+			<span>
+				{viewDate.getFullYear()}년 {viewDate.getMonth() + 1}월
+			</span>
+			<button onClick={() => handleMoveDate('next')}>&gt;</button>
+		</S.ScheduleNav>
 	);
 
 	return (
 		<S.ScheduleWrapper>
 			<S.ScheduleToolbar>
 				<S.ViewSwitcher>
-					<button className={viewType === 'month' ? 'active' : ''} onClick={() => handleChangeViewType('month')}>
-						Month
-					</button>
-					<button className={viewType === 'week' ? 'active' : ''} onClick={() => handleChangeViewType('week')}>
-						Week
-					</button>
-					<button className={viewType === 'list' ? 'active' : ''} onClick={() => handleChangeViewType('list')}>
-						List
-					</button>
+					{(['month', 'week', 'list'] as const).map(type => (
+						<button key={type} className={viewType === type ? 'active' : ''} onClick={() => setViewType(type)}>
+							{type.charAt(0).toUpperCase() + type.slice(1)}
+						</button>
+					))}
 				</S.ViewSwitcher>
 				<S.TodayButton onClick={handleGoToday}>TODAY</S.TodayButton>
 			</S.ScheduleToolbar>
@@ -119,7 +111,7 @@ const ScheduleCalendar = () => {
 				totalCount={ALL_TYPES.length}
 			/>
 
-			{viewType === 'month' && (
+			{viewType === 'month' ? (
 				<Calendar
 					calendarType="gregory"
 					onChange={val => setSelectedDate(val as Date)}
@@ -129,43 +121,24 @@ const ScheduleCalendar = () => {
 					formatDay={(_, date) => date.getDate().toString()}
 					tileContent={renderTileContent}
 				/>
-			)}
-
-			{viewType === 'week' && (
+			) : (
 				<>
-					<S.ScheduleNav>
-						<button onClick={() => handleMoveDate('prev')}>&lt;</button>
-						<span>
-							{viewDate.getFullYear()}년 {viewDate.getMonth() + 1}월
-						</span>
-						<button onClick={() => handleMoveDate('next')}>&gt;</button>
-					</S.ScheduleNav>
-
-					<ScheduleWeekView
-						viewDate={viewDate}
-						selectedDate={selectedDate}
-						onSelectDate={setSelectedDate}
-						schedules={filteredSchedules}
-					/>
-				</>
-			)}
-
-			{viewType === 'list' && (
-				<>
-					<S.ScheduleNav>
-						<button onClick={() => handleMoveDate('prev')}>&lt;</button>
-						<span>
-							{viewDate.getFullYear()}년 {viewDate.getMonth() + 1}월
-						</span>
-						<button onClick={() => handleMoveDate('next')}>&gt;</button>
-					</S.ScheduleNav>
-
-					<ScheduleListView
-						viewDate={viewDate}
-						selectedDate={selectedDate}
-						onSelectDate={setSelectedDate}
-						schedules={filteredSchedules}
-					/>
+					{renderSubNav()}
+					{viewType === 'week' ? (
+						<ScheduleWeekView
+							viewDate={viewDate}
+							selectedDate={selectedDate}
+							onSelectDate={setSelectedDate}
+							schedules={filteredSchedules}
+						/>
+					) : (
+						<ScheduleListView
+							viewDate={viewDate}
+							selectedDate={selectedDate}
+							onSelectDate={setSelectedDate}
+							schedules={filteredSchedules}
+						/>
+					)}
 				</>
 			)}
 

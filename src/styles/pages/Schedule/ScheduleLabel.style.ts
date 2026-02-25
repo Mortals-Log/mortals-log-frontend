@@ -6,6 +6,11 @@ import styled from '@emotion/styled';
 import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
 import { Schedule } from '@/types/schedule';
 
+interface ItemProps {
+	$isActive: boolean;
+	$eventType?: Schedule['type'];
+}
+
 export const LabelContainer = styled.div`
 	display: flex;
 	width: fit-content;
@@ -29,24 +34,31 @@ export const LabelContainer = styled.div`
 	}
 `;
 
+export const FilterTitle = styled.span`
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.XS};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	color: ${props => props.theme.COLOR.GRAY600};
+`;
+
 export const LabelList = styled.ul`
 	display: flex;
 	align-items: center;
 	gap: 1rem;
 `;
 
-export const LabelItem = styled.li<{ eventType?: Schedule['type']; isActive: boolean }>`
+export const LabelItem = styled.li<ItemProps>`
 	display: flex;
 	align-items: center;
 	gap: 6px;
-	opacity: ${props => (props.isActive ? 1 : 0.3)};
-	filter: ${props => (props.isActive ? 'none' : 'grayscale(100%)')};
+	opacity: ${props => (props.$isActive ? 1 : 0.3)};
+	filter: ${props => (props.$isActive ? 'none' : 'grayscale(100%)')};
 	cursor: pointer;
 
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.XS};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-	color: ${props => (props.eventType ? SCHEDULE_TYPE_COLORS[props.eventType].text : props.theme.COLOR.PRIMARY)};
+	color: ${props => (props.$eventType ? SCHEDULE_TYPE_COLORS[props.$eventType].text : props.theme.COLOR.PRIMARY)};
 	white-space: nowrap;
 
 	&::before {
@@ -56,6 +68,6 @@ export const LabelItem = styled.li<{ eventType?: Schedule['type']; isActive: boo
 		border-radius: 2px;
 		flex-shrink: 0;
 		background-color: ${props =>
-			props.eventType ? SCHEDULE_TYPE_COLORS[props.eventType].bg : props.theme.COLOR.PRIMARY};
+			props.$eventType ? SCHEDULE_TYPE_COLORS[props.$eventType].bg : props.theme.COLOR.PRIMARY};
 	}
 `;
