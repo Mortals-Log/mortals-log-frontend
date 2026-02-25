@@ -11,13 +11,11 @@ export * from '@styles/common/VideoWrapper.style';
 
 export const MainSection = styled.div`
 	display: flex;
-	gap: 60px;
 	align-items: center;
+	gap: 3rem;
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		flex-direction: column;
-		align-items: center;
-		gap: 40px;
 	}
 `;
 
@@ -25,7 +23,7 @@ export const ImageWrapper = styled.div`
 	flex: 0 0 400px;
 	overflow: hidden;
 	margin: 0 auto;
-	padding: 10px;
+	padding: 0.5rem;
 	border-radius: 10px;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
@@ -36,7 +34,7 @@ export const ImageWrapper = styled.div`
 		display: block;
 	}
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		flex: 1;
 		max-width: 400px;
 	}
@@ -46,8 +44,11 @@ export const ContentSection = styled.div`
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	padding: 0 1rem;
 	gap: 2.5rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		gap: 2rem;
+	}
 `;
 
 export const InfoGroup = styled.div`
@@ -55,13 +56,6 @@ export const InfoGroup = styled.div`
 	flex-direction: column;
 	gap: 0.8rem;
 	align-items: center;
-
-	span {
-		font-family: ${props => props.theme.FONT.SANS};
-		font-size: ${props => props.theme.FONT.SIZE.SM};
-		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-		color: ${props => props.theme.COLOR.GRAY500};
-	}
 `;
 
 export const InfoTitle = styled.div`
@@ -73,24 +67,10 @@ export const InfoTitle = styled.div`
 	font-size: ${props => props.theme.FONT.SIZE.SM};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	color: ${props => props.theme.COLOR.PRIMARY};
-`;
 
-export const LineUpWrapper = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 0.5rem;
-`;
-
-export const LineUpItem = styled.div`
-	padding: 0.8rem 1rem;
-	border: 1px solid ${props => props.theme.COLOR.PRIMARY + '77'};
-	border-radius: 20px;
-
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
-	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-	color: ${props => props.theme.COLOR.GRAY700};
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.XS};
+	}
 `;
 
 export const InfoItem = styled.div`
@@ -117,13 +97,52 @@ export const InfoItem = styled.div`
 		align-items: center;
 
 		&::before {
-			content: '';
+			content: '|';
 			display: inline-block;
-			width: 1px;
-			height: ${props => props.theme.FONT.SIZE.MD};
-			background: ${props => props.theme.COLOR.GRAY400};
+			color: ${props => props.theme.COLOR.GRAY400};
 			margin-right: 12px;
 		}
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+		gap: 8px;
+
+		.part {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
+
+		.time {
+			&::before {
+				margin-right: 8px;
+			}
+		}
+	}
+`;
+
+export const LineUpWrapper = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.5rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		gap: 0.3rem;
+	}
+`;
+
+export const LineUpItem = styled.div`
+	padding: 0.8rem 1rem;
+	border: 1px solid ${props => props.theme.COLOR.PRIMARY + '77'};
+	border-radius: 20px;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.GRAY700};
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 0.5rem 0.8rem;
 	}
 `;
 
@@ -131,16 +150,21 @@ export const MapSection = styled.section`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	padding-top: 2rem;
 	margin-top: 4rem;
+	padding-top: 2rem;
+	gap: 1rem;
 	border-top: 1px solid ${props => props.theme.COLOR.GRAY200};
-	gap: 2rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		margin-top: 2rem;
+		padding-top: 1rem;
+	}
 `;
 
 export const MapFrameWrapper = styled.div`
 	width: 100%;
 	height: 400px;
-	border-radius: 12px;
+	border-radius: 10px;
 	overflow: hidden;
 	filter: grayscale(0.2);
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
@@ -151,15 +175,15 @@ export const MapFrameWrapper = styled.div`
 		border: none;
 	}
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		height: 300px;
+		border-radius: 4px;
 	}
 `;
 
-export const TagWrapper = styled.div`
+export const HashTagWrapper = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	gap: 4px;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
@@ -173,9 +197,24 @@ export const HashTag = styled.button`
 
 	padding: 0.5rem;
 	cursor: pointer;
-	transition: all 0.2s;
+	transition: all 0.2s ease;
 
 	&:hover {
 		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 0.3rem;
+	}
+`;
+
+export const CopyAnnotation = styled.div`
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	color: ${props => props.theme.COLOR.GRAY500};
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;

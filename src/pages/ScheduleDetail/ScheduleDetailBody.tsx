@@ -256,23 +256,21 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 					{sche.hashtags && (
 						<S.InfoGroup>
 							<InfoTitle label="HASHTAGS" />
-							<S.TagWrapper>
+							<S.HashTagWrapper>
 								{sche.hashtags.map(tag => (
 									<S.HashTag key={tag} onClick={() => handleCopy(tag)}>
 										{tag}
 									</S.HashTag>
 								))}
-							</S.TagWrapper>
-							<span>* 태그를 클릭하면 복사됩니다.</span>
+							</S.HashTagWrapper>
+							<S.CopyAnnotation>* 태그를 클릭하면 복사됩니다.</S.CopyAnnotation>
 						</S.InfoGroup>
 					)}
 
 					{instagramUrl && (
-						<S.InfoGroup>
-							<S.PrimaryButton to={instagramUrl} target="_blank" rel="noopener noreferrer">
-								{sche.content} 축하하러 가기
-							</S.PrimaryButton>
-						</S.InfoGroup>
+						<S.PrimaryButton to={instagramUrl} target="_blank" rel="noopener noreferrer">
+							{sche.content} 축하하러 가기
+						</S.PrimaryButton>
 					)}
 				</>
 			);
