@@ -1,6 +1,6 @@
-// @pages/Schedule/ScheduleLabel
+// @pages/ScheduleCalendar/ScheduleLabel
 
-import * as S from '@/styles/pages/Schedule/ScheduleLabel.style';
+import * as S from '@/styles/pages/ScheduleCalendar/ScheduleLabel.style';
 
 import { memo } from 'react';
 import { Schedule } from '@/types/schedule';

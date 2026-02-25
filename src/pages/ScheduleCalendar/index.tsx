@@ -12,7 +12,7 @@ import { Schedule } from '@/types/schedule';
 import ScheduleCalandarAgenda from '@/pages/Schedule/ScheduleCalandarAgenda';
 import ScheduleWeekView from '@/pages/ScheduleCalendar/ScheduleWeekView';
 import ScheduleListView from '@/pages/ScheduleCalendar/ScheduleListView';
-import ScheduleLabel from '@/pages/Schedule/ScheduleLabel';
+import ScheduleLabel from '@/pages/ScheduleCalendar/ScheduleLabel';
 
 const ALL_TYPES = Object.keys(SCHEDULE_TYPE_COLORS) as Schedule['type'][];
 
