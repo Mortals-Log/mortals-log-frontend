@@ -12,10 +12,6 @@ export const MetaSection = styled.section`
 	gap: 1rem;
 	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY200};
 	padding: 1rem 0rem;
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		padding-bottom: 0rem;
-	}
 `;
 
 export const CreditList = styled.div`
