@@ -11,7 +11,7 @@ export { PrimaryButton } from '@/styles/components/Buttons.style';
 export const ContentSection = styled(L.ContentSection)`
 	margin-top: 1rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-top: 0.5rem;
 	}
 `;
@@ -21,7 +21,7 @@ export const ContentHeader = styled.div`
 	flex-direction: column;
 	margin-bottom: 0.5rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-bottom: 0.3rem;
 	}
 `;
@@ -139,7 +139,7 @@ export const GuideWrapper = styled.div`
 		}
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		.guide-item {
 			font-size: ${props => props.theme.FONT.SIZE.XS};
 		}
@@ -182,7 +182,7 @@ export const StickyChordBar = styled.div`
 		word-break: break-all;
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		top: 60px;
 		margin: 1rem 0;
 

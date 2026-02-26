@@ -20,6 +20,10 @@ export const CreditList = styled.div`
 	flex-wrap: wrap;
 	gap: 1.5rem;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		gap: 1.3rem;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 1.2rem;
 	}
@@ -36,7 +40,7 @@ export const ItemLabel = styled.div`
 	color: ${props => props.theme.COLOR.GRAY500};
 	margin-bottom: 0.5rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;
@@ -48,7 +52,7 @@ export const CreditItem = styled.span`
 	color: ${props => props.theme.COLOR.GRAY700};
 	letter-spacing: 0.05rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;

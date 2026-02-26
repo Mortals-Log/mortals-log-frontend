@@ -38,6 +38,7 @@ export const MainTitle = styled.div`
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	color: ${props => props.theme.COLOR.BLACK};
 	margin-top: 0.3rem;
+	line-height: 1.3;
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		margin-top: 0.2rem;
