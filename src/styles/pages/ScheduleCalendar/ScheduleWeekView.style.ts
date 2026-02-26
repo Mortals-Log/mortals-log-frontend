@@ -103,8 +103,8 @@ export const ScheduleList = styled.div`
 `;
 
 export const ScheduleItem = styled.div<ItemProps>`
-	position: relative;
 	display: block;
+	position: relative;
 	width: 100%;
 	min-width: 0;
 
@@ -135,13 +135,13 @@ export const ScheduleItem = styled.div<ItemProps>`
 
 		width: 4px;
 		height: 4px;
-		margin-right: 4px;
 		flex-shrink: 0;
+		margin-top: -2px;
+		margin-right: 4px;
+		vertical-align: middle;
 
 		background-color: currentColor;
 		border-radius: 50%;
-		vertical-align: middle;
-		margin-top: -2px;
 
 		@media ${props => props.theme.WINDOW_SIZE.mobile} {
 			display: none;
