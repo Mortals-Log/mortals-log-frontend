@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 
 export { SectionTitle } from '@styles/common/Layout.style';
 
-export * from '@styles/components/Buttons.style';
+export { PrimaryButton, MoreButton } from '@styles/components/Buttons.style';
 export * from '@styles/common/VideoWrapper.style';
 
 export const MainSection = styled.div`
@@ -14,7 +14,7 @@ export const MainSection = styled.div`
 	align-items: center;
 	gap: 3rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		flex-direction: column;
 	}
 `;
@@ -34,7 +34,7 @@ export const ImageWrapper = styled.div`
 		display: block;
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		flex: 1;
 		max-width: 400px;
 	}
@@ -46,7 +46,7 @@ export const ContentSection = styled.div`
 	flex-direction: column;
 	gap: 2.5rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 2rem;
 	}
 `;
@@ -126,7 +126,7 @@ export const LineUpWrapper = styled.div`
 	justify-content: center;
 	gap: 0.5rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 0.3rem;
 	}
 `;
@@ -155,7 +155,7 @@ export const MapSection = styled.section`
 	gap: 1rem;
 	border-top: 1px solid ${props => props.theme.COLOR.GRAY200};
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	${props => props.theme.WINDOW_SIZE.tablet}, @media ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-top: 2rem;
 		padding-top: 1rem;
 	}
@@ -173,6 +173,11 @@ export const MapFrameWrapper = styled.div`
 		width: 100%;
 		height: 100%;
 		border: none;
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		height: 350px;
+		border-radius: 4px;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -203,7 +208,7 @@ export const HashTag = styled.button`
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 0.3rem;
 	}
 `;
@@ -214,7 +219,7 @@ export const CopyAnnotation = styled.div`
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	color: ${props => props.theme.COLOR.GRAY500};
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;
