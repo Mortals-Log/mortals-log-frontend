@@ -1,25 +1,62 @@
-// @pages/Song/SongDetail
+//@pages/Song/SongDetailHeader
 
-import * as S from '@styles/pages/Song/SongDetailHeader.styles';
+import * as S from '@/styles/pages/Song/SongDetailHeader.styles';
+
+import { useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { Track } from '@/types/track';
 import { Album } from '@/types/album';
+import { BADGE_LABEL } from '@/components/BadgeList';
 
 interface SongDetailHeaderProps {
 	track: Track;
-	albumInfo: Album | null | undefined;
+	albumInfo: Album | any;
 }
 
 const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 	const navigate = useNavigate();
 
+	const albumLabel = useMemo(() => {
+		if (!albumInfo?.type) return '';
+		const type = ALBUM_TYPE_LABEL[albumInfo.type as keyof typeof ALBUM_TYPE_LABEL] || '';
+		const volume = albumInfo.type === 'LP' && albumInfo.volume ? `${albumInfo.volume}집` : '';
+		return `${type}${volume}`;
+	}, [albumInfo?.type, albumInfo?.volume]);
+
+	const originalTracks = useMemo(() => {
+		if (!track.originalTrackIds || track.originalTrackIds.length === 0) return [];
+
+		return track.originalTrackIds.map(id => {
+			const originalTrack = MASTER_TRACKS[id as keyof typeof MASTER_TRACKS];
+			return {
+				id,
+				displayTitle: originalTrack ? originalTrack.title : id,
+			};
+		});
+	}, [track.originalTrackIds]);
+
+	const handleAlbumClick = useCallback(() => {
+		if (albumInfo?.title && albumInfo.title !== 'Unknown Album') {
+			navigate(`/album/${encodeURIComponent(albumInfo.title)}`);
+		}
+	}, [navigate, albumInfo]);
+
+	const handleSongClick = useCallback(
+		(id: string) => {
+			navigate(`/song/${id}`);
+		},
+		[navigate],
+	);
+
 	return (
 		<S.HeaderSection>
 			<S.SubTitle>
-				{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
-				{track.ageLimit && <S.AdultBadge>🔞 미성년자 청취불가</S.AdultBadge>}
+				<S.BadgeGroup>
+					{track.isLead && <S.LeadBadge>{BADGE_LABEL.TITLE}</S.LeadBadge>}
+					{track.ageLimit && <S.AdultBadge>{BADGE_LABEL.ADULT}</S.AdultBadge>}
+				</S.BadgeGroup>
 				{track.enTitle}
 				{track.version && ` (${track.version})`}
 			</S.SubTitle>
@@ -29,25 +66,19 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 			</S.MainTitle>
 
 			<S.Description>
-				<span className="type">
-					{ALBUM_TYPE_LABEL[albumInfo?.type || '']} {albumInfo?.type == 'LP' && `${albumInfo?.volume}집`}
+				{albumLabel && <span className="type">{albumLabel}</span>}
+
+				<span className="album" onClick={handleAlbumClick}>
+					{albumInfo?.title || 'Unknown Album'}
 				</span>
-				<span className="title" onClick={() => navigate(`/album/${albumInfo?.title}`)}>
-					{albumInfo?.title}
-				</span>
-				{track.originalTrackIds && (
+
+				{originalTracks.length > 0 && (
 					<S.OriginalLinkGroup>
-						{track.originalTrackIds.map(id => {
-							const originalTrack = MASTER_TRACKS[id as keyof typeof MASTER_TRACKS];
-
-							const displayTitle = originalTrack ? originalTrack.title : id;
-
-							return (
-								<S.OriginalLink key={id} onClick={() => navigate(`/song/${id}`)}>
-									원곡보기 #{displayTitle}
-								</S.OriginalLink>
-							);
-						})}
+						{originalTracks.map(({ id, displayTitle }) => (
+							<S.OriginalLink key={id} onClick={() => handleSongClick(id)}>
+								원곡보기 #{displayTitle}
+							</S.OriginalLink>
+						))}
 					</S.OriginalLinkGroup>
 				)}
 			</S.Description>

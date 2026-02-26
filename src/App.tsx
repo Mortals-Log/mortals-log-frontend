@@ -1,16 +1,16 @@
 import { ThemeProvider } from '@emotion/react';
-import { theme } from '@styles/themes';
+import { Theme } from '@styles/themes';
 import { Route, Routes } from 'react-router-dom';
 import GNB from '@components/GNB';
 import Home from '@pages/Home';
 import Profile from '@pages/Profile';
 import Music from '@pages/Music';
 import Album from '@pages/Album';
-import AlbumDetail from '@pages/Album/AlbumDetail';
+import AlbumDetail from '@pages/AlbumDetail';
 import Song from '@pages/Song';
 import SongDetail from '@pages/Song/SongDetail';
 import Schedule from '@pages/Schedule';
-import ScheduleDetail from '@pages/Schedule/ScheduleDetail';
+import ScheduleDetail from '@/pages/ScheduleDetail';
 import Goods from '@pages/Goods';
 import About from '@pages/About';
 import ScrollToTop from '@const/ScrollToTop';
@@ -23,7 +23,7 @@ import { Toaster } from 'react-hot-toast';
  */
 function App() {
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={Theme}>
 			<ScrollToTop />
 			<GNB />
 			<Toaster position="bottom-center" reverseOrder={false} />

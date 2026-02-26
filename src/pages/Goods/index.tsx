@@ -1,10 +1,11 @@
 // @src/pages/Goods/index
 
-import * as S from '@styles/pages/Goods/Goods.style';
-import GoodsLinkSection from '@pages/Goods/GoodsLinkSection';
-import GoodsGuideSection from '@pages/Goods/GoodsGuideSection';
-import GoodsEtiquetteSection from '@pages/Goods/GoddsEtiquetteSection';
-import { FAN_GOODS_GUIDE } from '@const/goods';
+import * as S from '@/styles/pages/Goods/Goods.style';
+
+import GoodsLinkSection from '@/pages/Goods/GoodsLinkSection';
+import GoodsGuideSection from '@/pages/Goods/GoodsGuideSection';
+import GoodsEtiquetteSection from '@/pages/Goods/GoodsEtiquetteSection';
+import { FAN_GOODS_GUIDE } from '@/const/goods';
 
 const PAGE_TITLE = {
 	MAIN: '굿즈 구매 및 제작 설명',

@@ -5,7 +5,7 @@
 import styled from '@emotion/styled';
 
 export const Placeholder = styled.div`
-	margin-top: 5rem;
+	padding: 5rem 0;
 	text-align: center;
 
 	font-family: ${props => props.theme.FONT.SANS};

@@ -1,18 +1,25 @@
 // @components/GNB
 
 import * as S from '@/styles/components/GNB.style';
+
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, Variants } from 'framer-motion';
 import { ACTIVE_NAV_ITEMS, METADATA } from '@/const/contents';
-import MenuIcon from '@assets/icons/MenuIcon';
-import CloseIcon from '@assets/icons/CloseIcon';
-import { GetDDay, GetUpcomingSchedules } from '@utils/date';
 import { FULL_CONCERTS } from '@/const/concert';
+import MenuIcon from '@/assets/icons/MenuIcon';
+import CloseIcon from '@/assets/icons/CloseIcon';
+import { GetDDay, GetUpcomingSchedules } from '@/utils/date';
 
 const GNB = () => {
+	const navigate = useNavigate();
 	const location = useLocation();
 	const currentPath = location.pathname;
+
+	const [isLogoHovered, setIsLogoHovered] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== 'undefined' ? window.innerWidth <= 1100 : false);
+	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
 	const checkActive = (path: string) => {
 		if (path === '/') return currentPath === '/';
@@ -23,15 +30,6 @@ const GNB = () => {
 
 		return currentPath.startsWith(path);
 	};
-
-	const upcomingEvents = GetUpcomingSchedules(FULL_CONCERTS);
-
-	const [isLogoHovered, setIsLogoHovered] = useState(false);
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== 'undefined' ? window.innerWidth <= 1100 : false);
-	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (isMenuOpen) {
@@ -70,6 +68,8 @@ const GNB = () => {
 			x: -10,
 		},
 	};
+
+	const upcomingEvents = useMemo(() => GetUpcomingSchedules(FULL_CONCERTS), []);
 
 	const nextEvent = useMemo(() => {
 		if (upcomingEvents.length === 0) return null;

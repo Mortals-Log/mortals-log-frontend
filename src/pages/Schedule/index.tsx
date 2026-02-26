@@ -1,9 +1,10 @@
 // @src/pages/Schedule/index
 
-import * as S from '@styles/pages/Schedule/Schedule.style';
+import * as S from '@/styles/pages/Schedule/Schedule.style';
+
 import { NAME } from '@/const/profile';
-import ScheduleUpcommingBacnner from '@pages/Schedule/ScheduleUpcommingBanner';
-import ScheduleCalendar from '@pages/Schedule/ScheduleCalandar';
+import ScheduleUpcommingBacnner from '@/pages/Schedule/ScheduleUpcommingBanner';
+import ScheduleCalendar from '@/pages/ScheduleCalendar';
 
 const PAGE_TITLE = {
 	MAIN: '일정',

@@ -3,43 +3,55 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
-export * from '@styles/common/SectionTitle.style';
-export * from '@styles/pages/About/About.style';
-
-export const PolicyList = styled.div`
-	width: 100%;
-`;
+export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
 
 export const PolicyItem = styled.div`
 	display: flex;
-	gap: 40px;
-	border-top: 1px solid ${props => props.theme.COLOR.GRAY200};
-	padding: 1rem 0;
 	justify-content: center;
 	align-items: center;
+	gap: 40px;
+	padding: 1rem 0;
+	border-top: 1px solid ${props => props.theme.COLOR.GRAY200};
+
+	white-space: pre-line;
+	word-break: keep-all;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+
+	&:first-of-type {
+		border-top: none;
+	}
 
 	.label {
-		min-width: 150px;
-		font-size: 0.9rem;
-		font-weight: 700;
+		min-width: auto;
+		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 		color: ${props => props.theme.COLOR.PRIMARY};
 		letter-spacing: 0.05em;
 		text-align: center;
+		text-transform: uppercase;
+		padding-top: 0.2rem;
 	}
 
 	.content {
-		font-size: 1rem;
 		line-height: 1.7;
+		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 		color: ${props => props.theme.COLOR.GRAY600};
-		word-break: keep-all;
 	}
 
-	@media (max-width: 768px) {
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		flex-direction: column;
-		gap: 12px;
+		gap: 8px;
+		padding: 0.8rem 0.3rem;
+
+		font-size: ${props => props.theme.FONT.SIZE.SM};
 
 		.label {
-			min-width: auto;
+			text-align: left;
+		}
+
+		.content {
+			line-height: 1.6;
 		}
 	}
 `;

@@ -1,48 +1,16 @@
-// @styles/pages/Album/Album.style
+// @styles/pages/Music/Music.style
 
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
+import * as L from '@/styles/common/Layout.style';
 
-export * from '@styles/common/SectionTitle.style';
+export { MainTitle, SubTitle, Description } from '@/styles/common/Layout.style';
 
-export const MainContainer = styled.main`
+export const MainContainer = styled(L.MainContainer)`
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 100px 20px;
-`;
-
-export const ContentSection = styled.section`
-	margin-top: 5rem;
-`;
-
-export const Description = styled.div`
-	margin-top: 1rem;
-	margin-bottom: -2rem;
-
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
-	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-	color: ${props => props.theme.COLOR.GRAY500};
-
-	line-height: 1.5;
-	white-space: pre-wrap;
-`;
-
-export const MainTitle = styled.h2`
-	font-family: ${props => props.theme.FONT.SERIF};
-	font-size: ${props => props.theme.FONT.SIZE.H2};
-	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-	color: ${props => props.theme.COLOR.BLACK};
-	margin-top: 0.5rem;
-`;
-
-export const SubTitle = styled.span`
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.MD};
-	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-	color: ${props => props.theme.COLOR.PRIMARY};
-	text-transform: uppercase;
 `;
 
 export const TabGroup = styled.ul`
@@ -54,12 +22,24 @@ export const TabGroup = styled.ul`
 	list-style: none;
 	overflow-x: auto;
 	white-space: nowrap;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		margin: 4rem 0 1.5rem 0;
+		padding-bottom: 4px;
+	}
 `;
 
 export const TabItem = styled.li<{ $isActive: boolean }>`
 	flex: 1;
 	display: flex;
 	position: releative;
+	min-width: fit-content;
 	justify-content: center;
 	align-items: center;
 	padding: 1rem;
@@ -80,5 +60,14 @@ export const TabItem = styled.li<{ $isActive: boolean }>`
 
 	&:hover {
 		text-decoration: underline;
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 0.8rem 1rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+
+		&:hover {
+			text-decoration: none;
+		}
 	}
 `;

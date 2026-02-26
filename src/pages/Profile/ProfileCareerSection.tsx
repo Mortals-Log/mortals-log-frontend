@@ -1,57 +1,50 @@
 // @src/pages/Profile/ProfileCareerSection.tsx
 
 import * as S from '@styles/pages/Profile/ProfileCareerSection.style';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { FULL_CAREER_HISTORY } from '@const/career';
 
 const ProfileCareerSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const [isExpanded, setIsExpanded] = useState(false);
 	const ITEM_LIMIT = 6;
 
-	const getVisibleHistory = () => {
+	const visibleHistory = useMemo(() => {
 		if (isExpanded) return FULL_CAREER_HISTORY;
 
-		let count = 0;
-		const filtered: typeof FULL_CAREER_HISTORY = [];
+		let totalCount = 0;
+		return FULL_CAREER_HISTORY.reduce(
+			(acc, group) => {
+				if (totalCount >= ITEM_LIMIT) return acc;
 
-		for (const group of FULL_CAREER_HISTORY) {
-			if (count >= ITEM_LIMIT) break;
+				const remainingSlots = ITEM_LIMIT - totalCount;
+				const slicedItems = group.items.slice(0, remainingSlots);
 
-			const remainingSlots = ITEM_LIMIT - count;
-			const itemsToInclude = group.items.slice(0, remainingSlots);
-
-			if (itemsToInclude.length > 0) {
-				filtered.push({
-					...group,
-					items: itemsToInclude,
-				});
-				count += itemsToInclude.length;
-			}
-		}
-		return filtered;
-	};
-
-	const visibleHistory = getVisibleHistory();
+				if (slicedItems.length > 0) {
+					acc.push({ ...group, items: slicedItems });
+					totalCount += slicedItems.length;
+				}
+				return acc;
+			},
+			[] as typeof FULL_CAREER_HISTORY,
+		);
+	}, [isExpanded]);
 
 	return (
 		<S.ContentSection>
 			<S.SectionTitle>
 				{TITLE_KR} <span>{TITLE_EN}</span>
 			</S.SectionTitle>
+
 			<S.TimelineContainer $isExpanded={isExpanded}>
 				{visibleHistory.map(group => (
 					<S.TimelineYearGroup key={group.year}>
-						<S.TimelineYearLabel>{group.year}</S.TimelineYearLabel>
+						<p className="year-label">{group.year}</p>
 
 						<S.TimelineItemList>
-							{group.items.map(item => (
-								<S.TimelineItem key={`${group.year}-${item.date}-${item.content}`}>
-									<S.TimelineMarker />
-
-									<S.TimelineContent>
-										<S.TimelineDate>{item.date}</S.TimelineDate>
-										<S.TimelineText>{item.content}</S.TimelineText>
-									</S.TimelineContent>
+							{group.items.map((item, idx) => (
+								<S.TimelineItem key={`${group.year}-${item.date}-${idx}`}>
+									<span className="date">{item.date}</span>
+									<span className="content">{item.content}</span>
 								</S.TimelineItem>
 							))}
 						</S.TimelineItemList>

@@ -1,12 +1,14 @@
-// @pages/Schedule/ScheduleCalandarAgenda
+// @pages/Schedule/ScheduleCalandarAgenda.tsx
 
-import * as S from '@styles/pages/Schedule/ScheduleCalandarAgenda.style';
+import * as S from '@/styles/pages/Schedule/ScheduleCalandarAgenda.style';
 
-import Placeholder from '@/components/placeholder';
-import { FormatDate } from '@/utils/date';
-import { Schedule } from '@/types/schedule';
-import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
+import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
+import Placeholder from '@/components/Placeholder';
+import { Schedule } from '@/types/schedule';
+import { FormatDate } from '@/utils/date';
+import { BADGE_LABEL } from '@/components/BadgeList';
 
 interface AgendaProps {
 	selectedDate: Date;
@@ -23,19 +25,32 @@ const ScheduleCalandarAgenda = ({ selectedDate, schedules }: AgendaProps) => {
 			navigate(`/schedule/${id}`);
 		}
 	};
+
 	return (
 		<S.AgendaSection>
 			<S.AgendaHeader>{format(selectedDate, 'yyyy년 MM월 d일')} 일정</S.AgendaHeader>
 
-			{dayEvents && dayEvents.length > 0 ? (
-				dayEvents.map(event => (
-					<S.AgendaItem key={event.id} eventType={event.type} onClick={() => handleItemClick(event.id)}>
-						{event.ageLimit && <S.AdultBadge>🔞 미성년자 관람불가</S.AdultBadge>}
-						{event.content}
-					</S.AgendaItem>
-				))
+			{dayEvents.length > 0 ? (
+				<S.AgendaList>
+					{dayEvents.map(event => (
+						<S.AgendaItem
+							key={event.id}
+							$eventType={event.type}
+							onClick={() => handleItemClick(event.id)}
+							role="button"
+							tabIndex={0}>
+							<S.ItemContentGroup>
+								<S.TypeBadge $eventType={event.type}>{SCHEDULE_LABEL_MAP[event.type]}</S.TypeBadge>
+								{event.ageLimit && <S.AdultBadge>{BADGE_LABEL.ADULT}</S.AdultBadge>}
+								<S.ContentText>{event.content}</S.ContentText>
+							</S.ItemContentGroup>
+
+							{event.time && <S.TimeTag>{event.time}</S.TimeTag>}
+						</S.AgendaItem>
+					))}
+				</S.AgendaList>
 			) : (
-				<Placeholder message={'일정이 없습니다.'} />
+				<Placeholder message="등록된 일정이 없습니다." />
 			)}
 		</S.AgendaSection>
 	);

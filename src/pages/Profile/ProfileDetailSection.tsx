@@ -1,10 +1,11 @@
 // @src/pages/Profile/ProfileDetailSection.tsx
 
-import * as S from '@styles/pages/Profile/ProfileDetailSection.style';
+import * as S from '@/styles/pages/Profile/ProfileDetailSection.style';
+
 import { JSX } from 'react';
 import { Table } from '@/components/Table';
-import { PROFILE } from '@const/profile';
-import { ParseDate, CalculateKorAge, CalculateIntAge, CalculateElapsedDays, CalculateElapsedYears } from '@utils/date';
+import { PROFILE } from '@/const/profile';
+import { ParseDate, CalculateKorAge, CalculateIntAge, CalculateElapsedDays, CalculateElapsedYears } from '@/utils/date';
 
 export const ProfileDetailSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const birthDate = ParseDate(PROFILE.birth[0]);
@@ -35,11 +36,13 @@ export const ProfileDetailSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string;
 			key: 'DEBUT',
 			values: [
 				`${PROFILE.debut[0]} (${PROFILE.debut[1]})`,
-				<span>
-					데뷔일로부터 <b>D+{debutDays}일</b>
-					<S.VerticalBar> | </S.VerticalBar>
+				<S.DebutInfo key="debut-days">
+					<span>
+						데뷔일로부터 <b>D+{debutDays}일</b>
+					</span>
+					<span className="divider" />
 					<b>{debutYears}주년</b>
-				</span>,
+				</S.DebutInfo>,
 			],
 		},
 		{ key: 'FANDOM', values: [PROFILE.fandom] },
@@ -58,7 +61,7 @@ export const ProfileDetailSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string;
 						<Table
 							key={key}
 							label={PROFILE_LABELS[key as keyof typeof PROFILE_LABELS]}
-							values={values as unknown as (string | number | JSX.Element)[]}
+							values={values as unknown as (string | JSX.Element)[]}
 						/>
 					))}
 				</tbody>

@@ -1,33 +1,57 @@
-/* eslint-disable react-refresh/only-export-components */
+// @utils/date.ts
+
 /* eslint-disable storybook/default-exports */
 
 import { Concert, ConcertItem } from '@/types/concert';
 
 const MS_PER_DAY = 1000 * 60 * 60 * 24;
 
+export const FormatDate = (date: Date) =>
+	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+export const ParseDate = (dateStr: string) => {
+	const [year, month, day] = dateStr.split('.').map(Number);
+	return new Date(year, month - 1, day);
+};
+
+export const GetDay = (date: string, year?: string) => {
+	const days = ['일', '월', '화', '수', '목', '금', '토'];
+
+	const parts = date.split('.').map(Number);
+
+	let y: number;
+	let m: number;
+	let d: number;
+
+	if (parts.length === 3) {
+		[y, m, d] = parts;
+	} else {
+		y = Number(year);
+		[m, d] = parts;
+	}
+
+	const dateObj = new Date(y, m - 1, d);
+
+	return days[dateObj.getDay()];
+};
+
 export const GetDDay = (targetDate: string): string | null => {
 	const now = new Date();
 	const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
 
-	const normalizedDate = targetDate.replace(/\. /g, '-').replace(/\./g, '-');
+	const normalizedDate = targetDate.replace(/\. /g, '/').replace(/\./g, '/');
 	const target = new Date(normalizedDate);
 
 	if (isNaN(target.getTime())) return null;
 
 	const targetTime = new Date(target.getFullYear(), target.getMonth(), target.getDate()).getTime();
+	const diffDays = Math.ceil((targetTime - today) / MS_PER_DAY);
 
-	const diff = targetTime - today;
-	const diffDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+	if (diffDays === 0) return 'D-DAY';
+	if (diffDays > 0) return `D-${String(diffDays).padStart(2, '0')}`;
 
-	if (diffDays === 0) {
-		return 'D-DAY';
-	} else if (diffDays > 0) {
-		return `D-${String(diffDays).padStart(2, '0')}`;
-	} else {
-		return null;
-	}
+	return null;
 };
-
 export const GetUpcomingSchedules = (fullConcerts: Concert[], limit?: number): (ConcertItem & { year: string })[] => {
 	const now = new Date();
 	const todayNum = Number(
@@ -37,21 +61,27 @@ export const GetUpcomingSchedules = (fullConcerts: Concert[], limit?: number): (
 	const upcoming = fullConcerts
 		.flatMap(group =>
 			group.items
-				.map(item => ({
-					...item,
-					year: group.year,
-					startDateNum: Number(`${group.year}${item.date.split('~')[0].replace(/[^0-9]/g, '')}`),
-				}))
+				.map(item => {
+					const startDatePart = item.date.split('~')[0].trim();
+					const [m, d] = startDatePart
+						.split('.')
+						.filter(v => v.trim() !== '')
+						.map(v => v.replace(/[^0-9]/g, ''));
+
+					const monthDayNum = `${m.padStart(2, '0')}${d.padStart(2, '0')}`;
+					const startDateNum = Number(`${group.year}${monthDayNum}`);
+
+					return {
+						...item,
+						year: group.year,
+						startDateNum,
+					};
+				})
 				.filter(item => item.startDateNum >= todayNum),
 		)
 		.sort((a, b) => a.startDateNum - b.startDateNum);
 
 	return limit ? upcoming.slice(0, limit) : upcoming;
-};
-
-export const ParseDate = (dateStr: string) => {
-	const [year, month, day] = dateStr.split('.').map(Number);
-	return new Date(year, month - 1, day);
 };
 
 export const CalculateKorAge = (birth: Date, targetYear?: number) => {
@@ -78,7 +108,17 @@ export const CalculateElapsedYears = (dateStr: string) => {
 	const startDate = ParseDate(dateStr);
 	const endDate = new Date();
 
-	return endDate.getFullYear() - startDate.getFullYear();
+	let years = endDate.getFullYear() - startDate.getFullYear();
+
+	const isBeforeAnniversary =
+		endDate.getMonth() < startDate.getMonth() ||
+		(endDate.getMonth() === startDate.getMonth() && endDate.getDate() < startDate.getDate());
+
+	if (isBeforeAnniversary) {
+		years--;
+	}
+
+	return years;
 };
 
 export const CalculateElapsedDays = (dateStr: string) => {
@@ -91,28 +131,4 @@ export const CalculateElapsedDays = (dateStr: string) => {
 	const diffTime = endDate.getTime() - startDate.getTime();
 
 	return Math.floor(diffTime / MS_PER_DAY) + 1;
-};
-
-export const FormatDate = (date: Date) =>
-	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-
-export const GetDay = (date: string, year?: string) => {
-	const days = ['일', '월', '화', '수', '목', '금', '토'];
-
-	const parts = date.split('.').map(Number);
-
-	let y: number;
-	let m: number;
-	let d: number;
-
-	if (parts.length === 3) {
-		[y, m, d] = parts;
-	} else {
-		y = Number(year);
-		[m, d] = parts;
-	}
-
-	const dateObj = new Date(y, m - 1, d);
-
-	return days[dateObj.getDay()];
 };

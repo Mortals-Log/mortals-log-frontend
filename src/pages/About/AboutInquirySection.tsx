@@ -1,7 +1,7 @@
 // @pages/About/AboutInquirySection
 
 import * as S from '@styles/pages/About/AboutInquirySection.style';
-import { ABOUT_INQUIRY, ABOUT_INQUIRY_SUFFIX } from '@const/about';
+import { ABOUT_INQUIRY, ABOUT_INQUIRY_SUFFIX } from '@/const/about';
 
 const AboutInquiry = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const suffix = ABOUT_INQUIRY_SUFFIX;
@@ -15,13 +15,13 @@ const AboutInquiry = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: stri
 
 			<S.ButtonGrid>
 				{Object.values(ABOUT_INQUIRY).map(item => (
-					<S.InquiryCard key={item.label} href={item.url} target="_blank" rel="noreferrer">
+					<S.InquiryButtn key={item.label} to={item.url} target="_blank" rel="noreferrer">
 						<strong>{item.label}</strong>
 						<span>
 							{item.label}
 							{suffix}
 						</span>
-					</S.InquiryCard>
+					</S.InquiryButtn>
 				))}
 			</S.ButtonGrid>
 		</S.ContentSection>

@@ -1,9 +1,10 @@
-// @src/pages/Album/AlbumTypeSection
+// @src/pages/Music/in
 
-import * as S from '@styles/pages/Music/Music.style';
+import * as S from '@/styles/pages/Music/Music.style';
+
 import { useState } from 'react';
-import Album from '@pages/Album';
-import Song from '@pages/Song';
+import Album from '@/pages/Album';
+import Song from '@/pages/Song';
 import { NAME } from '@/const/profile';
 
 const Music = () => {

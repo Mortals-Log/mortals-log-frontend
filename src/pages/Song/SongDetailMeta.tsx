@@ -1,9 +1,10 @@
 // @pages/Song/SongDetail
 
-import * as S from '@styles/pages/Song/SongDetailMeta.styles';
-import { IconKey } from '@/types/icon';
+import * as S from '@/styles/pages/Song/SongDetailMeta.styles';
+import { useCallback, useMemo } from 'react';
 import { NAME } from '@/const/profile';
 import { ICON_CONFIG } from '@/const/icons';
+import { IconKey } from '@/types/icon';
 import { Track } from '@/types/track';
 import { Album } from '@/types/album';
 
@@ -13,58 +14,60 @@ interface SongDetailMetaProps {
 }
 
 const SongDetailMeta = ({ track, albumInfo }: SongDetailMetaProps) => {
-	const formatDuration = (duration?: string) => {
-		if (!duration) return '-';
+	const formattedDuration = useMemo(() => {
+		if (!track.duration) return '-';
+		const [min, sec] = track.duration.split(':');
+		return `${min.padStart(2, '0')}:${sec}`;
+	}, [track.duration]);
 
-		const [min, sec] = duration.split(':');
-
-		const formattedMin = min.padStart(2, '0');
-
-		return `${formattedMin}:${sec}`;
-	};
-
-	const formatCredit = (externalParticipants?: string[]) => {
+	const getCredit = useCallback((participants?: string[]) => {
 		const artistName = NAME.KOREAN;
+		if (!participants || participants.length === 0) return artistName;
+		return [artistName, ...participants].join(', ');
+	}, []);
 
-		if (!externalParticipants) return artistName;
+	const creditItems = useMemo(
+		() => [
+			{ label: '재생시간', value: formattedDuration },
+			{ label: '작사', value: getCredit(track.lyricist) },
+			{ label: '작곡', value: getCredit(track.composer) },
+			{ label: '편곡', value: getCredit(track.arranger) },
+		],
+		[formattedDuration, getCredit, track],
+	);
 
-		const participants = externalParticipants.join(', ');
+	const singingList = useMemo(() => {
+		if (!track.singing) return [];
 
-		return `${artistName}, ${participants}`;
-	};
+		return Object.entries(track.singing)
+			.filter(([number]) => !!number)
+			.map(([brand, number]) => ({
+				brand: brand.toUpperCase(),
+				number,
+			}));
+	}, [track.singing]);
 
 	return (
 		<S.MetaSection>
 			<S.CreditList>
-				<S.CreditItem>
-					<S.ItemLabel>재생시간</S.ItemLabel> {formatDuration(track.duration)}
-				</S.CreditItem>
-				<S.CreditItem>
-					<S.ItemLabel>작사</S.ItemLabel> {formatCredit(track.lyricist)}
-				</S.CreditItem>
-				<S.CreditItem>
-					<S.ItemLabel>작곡</S.ItemLabel> {formatCredit(track.composer)}
-				</S.CreditItem>
-				<S.CreditItem>
-					<S.ItemLabel>편곡</S.ItemLabel> {formatCredit(track.arranger)}
-				</S.CreditItem>
+				{creditItems.map(item => (
+					<S.CreditItem key={item.label}>
+						<S.ItemLabel>{item.label}</S.ItemLabel>
+						<span>{item.value}</span>
+					</S.CreditItem>
+				))}
 
 				{track.singing && (
 					<S.CreditItem>
 						<S.ItemLabel>노래방</S.ItemLabel>
+
 						<S.SingingWrapper>
-							{track.singing.tj && (
-								<S.SingingBadge brand="TJ">
-									<span className="brand">TJ</span>
-									<span className="number">{track.singing.tj}</span>
+							{singingList.map(({ brand, number }) => (
+								<S.SingingBadge key={brand} brand={brand as 'TJ' | 'KY'}>
+									<span className="brand">{brand}</span>
+									<span className="number">{number}</span>
 								</S.SingingBadge>
-							)}
-							{track.singing.ky && (
-								<S.SingingBadge brand="KY">
-									<span className="brand">KY</span>
-									<span className="number">{track.singing.ky}</span>
-								</S.SingingBadge>
-							)}
+							))}
 						</S.SingingWrapper>
 					</S.CreditItem>
 				)}

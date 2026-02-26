@@ -3,10 +3,8 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
-export * from '@styles/common/SectionTitle.style';
-export * from '@styles/pages/About/About.style';
-export * from '@styles/components/Table.style';
-export * from '@styles/components/Buttons.style';
+import { Link } from 'react-router-dom';
+export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
 
 export const ButtonGrid = styled.div`
 	width: 100%;
@@ -15,12 +13,14 @@ export const ButtonGrid = styled.div`
 	margin-top: 2rem;
 	gap: 1rem;
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		grid-template-columns: 1fr;
+		gap: 1rem;
+		margin-top: 1.5rem;
 	}
 `;
 
-export const InquiryCard = styled.a`
+export const InquiryButtn = styled(Link)`
 	display: flex;
 	text-decoration: none;
 	padding: 2rem;
@@ -58,6 +58,18 @@ export const InquiryCard = styled.a`
 
 		span {
 			color: ${props => props.theme.COLOR.GRAY300};
+		}
+	}
+
+	&:active {
+		transform: scale(0.98);
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding: 1.5rem;
+
+		strong {
+			font-size: ${props => props.theme.FONT.SIZE.MD};
 		}
 	}
 `;

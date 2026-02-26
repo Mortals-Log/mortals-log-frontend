@@ -1,8 +1,9 @@
 // @pages/Profile/ProfileDiscographySection
 
-import * as S from '@styles/pages/Profile/ProfileDiscographySection.style';
+import * as S from '@/styles/pages/Profile/ProfileDiscographySection.style';
+
 import { useEffect, useRef, useState } from 'react';
-import { ALBUM_TYPE_LABEL, GET_LP_ALBUMS } from '@const/albums';
+import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import { GetAlbumPaths } from '@/utils/album';
 import useImageFallback from '@/hooks/useImageFallback';
 
@@ -12,30 +13,42 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 	const sliderRef = useRef<HTMLDivElement>(null);
 	const [isAtStart, setIsAtStart] = useState(true);
 	const [isAtEnd, setIsAtEnd] = useState(false);
+	const [isMobile, setIsMobile] = useState(false);
+
+	const allAlbumsFlat = FULL_ALBUMS.flatMap(group => group.items);
+	const displayAlbums = isMobile ? allAlbumsFlat.slice(0, 4) : allAlbumsFlat.slice(0, 8);
 
 	const checkScrollPosition = () => {
 		if (sliderRef.current) {
 			const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
 
-			setIsAtStart(scrollLeft <= 1);
+			if (scrollWidth <= clientWidth) {
+				setIsAtStart(true);
+				setIsAtEnd(true);
+				return;
+			}
 
+			setIsAtStart(scrollLeft <= 1);
 			setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 2);
 		}
 	};
 
 	useEffect(() => {
-		checkScrollPosition();
-		window.addEventListener('resize', checkScrollPosition);
-		return () => window.removeEventListener('resize', checkScrollPosition);
+		const handleResize = () => {
+			setIsMobile(window.innerWidth <= 800);
+			setTimeout(checkScrollPosition, 0);
+		};
+
+		handleResize();
+		window.addEventListener('resize', handleResize);
+
+		return () => window.removeEventListener('resize', handleResize);
 	}, []);
 
 	const handleScroll = (direction: 'left' | 'right') => {
 		if (sliderRef.current) {
 			const card = sliderRef.current.querySelector('div');
-			const cardWidth = card ? card.clientWidth : 300;
-			const gap = 20;
-
-			const moveDistance = cardWidth + gap;
+			const moveDistance = (card?.clientWidth || 220) + 20;
 
 			sliderRef.current.scrollBy({
 				left: direction === 'left' ? -moveDistance : moveDistance,
@@ -56,8 +69,9 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 						<span>‹</span>
 					</S.SliderNavButton>
 				)}
+
 				<S.Slider ref={sliderRef} onScroll={checkScrollPosition}>
-					{GET_LP_ALBUMS.map(album => {
+					{displayAlbums.map(album => {
 						const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 
 						return (
@@ -92,9 +106,8 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 				)}
 			</S.SliderContainer>
 
-			<S.MoreButton to="/album" target="_self" rel="noreferrer">
-				전체 앨범 보러가기
-				<S.ExternalIcon>↗</S.ExternalIcon>
+			<S.MoreButton to="/music" target="_self" rel="noreferrer">
+				전체 앨범 보러가기 ↗
 			</S.MoreButton>
 		</S.ContentSection>
 	);

@@ -41,6 +41,12 @@ export const LogoGroup = styled.div`
 			color: ${props => props.theme.COLOR.PRIMARY};
 		}
 	}
+
+	&:active {
+		.logo {
+			color: ${props => props.theme.COLOR.PRIMARY};
+		}
+	}
 `;
 
 export const Logo = styled.div`
@@ -48,7 +54,6 @@ export const Logo = styled.div`
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 	color: ${props => props.theme.COLOR.BLACK};
-
 	letter-spacing: -0.05em;
 	transition: opacity 0.2s ease;
 `;
@@ -79,21 +84,20 @@ export const Tagline = styled(motion.div)`
 `;
 
 export const NavGroup = styled.ul`
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-
 	display: flex;
-	gap: 3rem;
+	position: absolute;
 	list-style: none;
 	z-index: 5;
+	left: 50%;
+	top: 50%;
+	gap: 3rem;
+	transform: translate(-50%, -50%);
 
 	@media (max-width: 1200px) {
 		gap: 1.5rem;
 	}
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		display: none;
 	}
 `;
@@ -127,6 +131,10 @@ export const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
 	&:hover {
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
+
+	&:active {
+		color: ${props => props.theme.COLOR.PRIMARY};
+	}
 `;
 
 export const UtilGroup = styled.div`
@@ -140,11 +148,6 @@ export const DDayContent = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 0.8rem;
-
-	@media (max-width: 850px) {
-		display: none;
-	}
-
 	font-size: ${props => props.theme.FONT.SIZE.SM};
 
 	.label {
@@ -152,10 +155,15 @@ export const DDayContent = styled.div`
 		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 		color: ${props => props.theme.COLOR.GRAY500};
 	}
+
 	.count {
 		font-family: ${props => props.theme.FONT.SANS};
 		font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		display: none;
 	}
 `;
 
@@ -164,6 +172,10 @@ export const MobileNavList = styled.ul`
 	flex-direction: column;
 	gap: 2.5rem;
 	list-style: none;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		gap: 2rem;
+	}
 `;
 
 export const MobileOverlay = styled(motion.div)`
@@ -177,17 +189,17 @@ export const MobileOverlay = styled(motion.div)`
 `;
 
 export const MobileMenu = styled(motion.div)`
+	display: flex;
+	flex-direction: column;
 	position: fixed;
-	top: 0;
-	right: 0;
 	width: 70%;
 	max-width: 320px;
 	height: 100vh;
+	top: 0;
+	right: 0;
+	z-index: 2000;
 	background-color: ${props => props.theme.COLOR.WHITE};
 	padding: 100px 2.5rem;
-	z-index: 2000;
-	display: flex;
-	flex-direction: column;
 	gap: 2rem;
 `;
 
@@ -198,9 +210,8 @@ export const MobileNavItem = styled.li<{ $isActive?: boolean }>`
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
-
-	letter-spacing: 0.1em;
 	color: ${props => (props.$isActive ? props.theme.COLOR.PRIMARY : props.theme.COLOR.BLACK)};
+	letter-spacing: 0.1em;
 	cursor: pointer;
 
 	${props =>
@@ -223,25 +234,28 @@ export const MobileNavItem = styled.li<{ $isActive?: boolean }>`
 	&:active {
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	}
 `;
 
 export const MobileDDayFooter = styled.div`
-	font-family: ${props => props.theme.FONT.SERIF};
-	font-size: ${props => props.theme.FONT.SIZE.MD};
-	font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
-
-	margin-top: auto;
-	padding-top: 1rem;
-	border-top: 1px solid ${props => props.theme.COLOR.GRAY200};
 	display: flex;
 	flex-direction: column;
+	margin-top: auto;
+	padding-top: 1rem;
 	gap: 0.5rem;
+	border-top: 1px solid ${props => props.theme.COLOR.GRAY200};
+
+	font-family: ${props => props.theme.FONT.SERIF};
 
 	.label {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 		color: ${props => props.theme.COLOR.GRAY500};
 	}
+
 	.count {
 		font-size: ${props => props.theme.FONT.SIZE.XL};
 		font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
@@ -251,29 +265,29 @@ export const MobileDDayFooter = styled.div`
 
 export const MenuButton = styled.button`
 	display: none;
+	position: relative;
 	background: none;
 	border: none;
-	cursor: pointer;
 	padding: 10px;
-	position: relative;
+	cursor: pointer;
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		display: block;
 	}
 `;
 
 export const CloseButton = styled.button`
+	display: flex;
 	position: absolute;
-	top: 20px;
-	right: 2rem;
 	width: 32px;
 	height: 32px;
+	top: 20px;
+	right: 2rem;
+	align-items: center;
+	justify-content: center;
 	background: none;
 	border: none;
 	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 
 	transition: transform 0.2s ease;
 

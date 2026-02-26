@@ -1,9 +1,10 @@
 // @src/pages/About/index
 
-import * as S from '@styles/pages/About/About.style';
-import AboutTitle from '@pages/About/AboutTitle';
-import AboutPolicySection from '@pages/About/AboutPolicySection';
-import AboutInquirySection from '@pages/About/AboutInquirySection';
+import * as S from '@/styles/pages/About/About.style';
+
+import AboutTitle from '@/pages/About/AboutTitle';
+import AboutPolicySection from '@/pages/About/AboutPolicySection';
+import AboutInquirySection from '@/pages/About/AboutInquirySection';
 
 const SECTION_TITLE = {
 	POLICY: {

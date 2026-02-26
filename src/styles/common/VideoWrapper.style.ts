@@ -10,8 +10,10 @@ export const VideoWrapper = styled.div`
 	width: 100%;
 	max-width: 800px;
 	aspect-ratio: 16 / 9;
-	margin-bottom: 4rem;
+
+	margin: 1rem auto 3rem;
 	border-radius: 10px;
+	background-color: ${props => props.theme.COLOR.GRAY700};
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 
 	iframe {
@@ -21,9 +23,12 @@ export const VideoWrapper = styled.div`
 		width: 100%;
 		height: 100%;
 		border: 0;
+		background: transparent;
 	}
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-bottom: 2rem;
+		border-radius: 8px;
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 	}
 `;

@@ -16,11 +16,13 @@
 
 <!-- - 사진 용량문제로 분할하여 업로드합니다. -->
 
-### Desktop(1200px~)
+### Desktop(1025px~)
 
-### Tablet(~1200px)
+### Laptop(~1024px)
 
-### Mobile(~860px)
+### Tablet(~768px)
+
+### Mobile(~480px)
 
 ## Checklist
 

@@ -1,11 +1,12 @@
 // @src/pages/Profile/index
 
 import * as S from '@/styles/pages/Profile/Profile.style';
-import { ProfileHeader } from '@pages/Profile/ProfileHeader';
-import ProfileDetailSection from '@pages/Profile/ProfileDetailSection';
-import ProfileLinkSection from '@pages/Profile/ProfileLinkSection';
-import ProfileCareerSection from '@pages/Profile/ProfileCareerSection';
-import ProfileDiscographySection from '@pages/Profile/ProfileDiscographySection';
+
+import { ProfileHeader } from '@/pages/Profile/ProfileHeader';
+import ProfileDetailSection from '@/pages/Profile/ProfileDetailSection';
+import ProfileLinkSection from '@/pages/Profile/ProfileLinkSection';
+import ProfileCareerSection from '@/pages/Profile/ProfileCareerSection';
+import ProfileDiscographySection from '@/pages/Profile/ProfileDiscographySection';
 
 const SECTION_TITLE = {
 	PROFILE: {

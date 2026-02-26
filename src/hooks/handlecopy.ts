@@ -1,7 +1,7 @@
-// @hooks/handlecopy.ts
+// @/hooks/handlecopy.ts
 
+import * as S from '@/styles/components/Toast.style';
 import toast from 'react-hot-toast';
-import * as S from '@styles/components/Toast.style';
 
 const handleCopy = (tag: string) => {
 	navigator.clipboard.writeText(tag).then(() => {

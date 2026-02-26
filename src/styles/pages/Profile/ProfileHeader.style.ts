@@ -4,19 +4,18 @@
 
 import styled from '@emotion/styled';
 
-export * from '@/styles/components/SourceLink.style';
-export * from '@/styles/common/VerticalBar.style';
+export { SourceLink } from '@/styles/components/Buttons.style';
 
 export const ProfileHeader = styled.section`
 	display: flex;
 	gap: 40px;
 	align-items: flex-end;
-	margin-bottom: 60px;
 
-	@media (max-width: 800px) {
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
+		gap: 24px;
 	}
 `;
 
@@ -26,37 +25,74 @@ export const MainImage = styled.img`
 	aspect-ratio: 3/4;
 	object-fit: cover;
 	border-radius: 4px;
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		width: 100%;
+		max-width: 240px;
+	}
 `;
 
 export const InfoSummary = styled.div`
 	flex: 1;
+	width: 100%;
+`;
+
+export const NameGroup = styled.div`
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	margin-bottom: 1.5rem;
+
+	.name {
+		font-size: ${props => props.theme.FONT.SIZE.H1};
+		color: ${props => props.theme.COLOR.BLACK};
+		margin-bottom: 1.2rem;
+	}
+
+	.sub-name {
+		font-size: ${props => props.theme.FONT.SIZE.MD};
+		color: ${props => props.theme.COLOR.GRAY600};
+		letter-spacing: 0.05em;
+		align-items: center;
+
+		&:not(:last-child)::after {
+			content: '|';
+			font-weight: ${props => props.theme.FONT.WEIGHT.BOLD};
+			color: ${props => props.theme.COLOR.PRIMARY};
+			margin: 0 0.2rem;
+		}
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		.name {
+			font-size: ${props => props.theme.FONT.SIZE.H2};
+			margin-bottom: 0.8rem;
+		}
+
+		.sub-name {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
+	}
 `;
 
 export const Description = styled.blockquote`
+	padding-left: 1rem;
+	margin: 0.8rem 0;
+	border-left: 3px solid ${props => props.theme.COLOR.PRIMARY};
+
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.LG};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
 	line-height: 1.5;
 	white-space: pre-wrap;
+	word-break: keep-all;
 
-	border-left: 3px solid ${props => props.theme.COLOR.PRIMARY};
-	padding-left: 1rem;
-	margin: 0.8rem 0;
-`;
-
-export const NameGroup = styled.div`
-	font-family: ${props => props.theme.FONT.SERIF};
-	font-size: ${props => props.theme.FONT.SIZE.MD};
-	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-	color: ${props => props.theme.COLOR.GRAY600};
-	margin-bottom: 1.5rem;
-
-	h1 {
-		font-family: ${props => props.theme.FONT.SERIF};
-		font-size: ${props => props.theme.FONT.SIZE.H1};
-		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-		color: ${props => props.theme.COLOR.BLACK};
-		margin-bottom: 1.2rem;
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		border-left: none;
+		border-top: 1px solid ${props => props.theme.COLOR.GRAY200};
+		padding-left: 0;
+		padding-top: 1.5rem;
+		margin: 1.5rem auto 0;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;

@@ -1,33 +1,34 @@
 // @src/pages/Profile/components/ProfileHeader.tsx
 
-import * as S from '@styles/pages/Profile/ProfileHeader.style';
-import { PROFILE } from '@const/profile';
+import * as S from '@/styles/pages/Profile/ProfileHeader.style';
+
+import { PROFILE } from '@/const/profile';
 import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
 
 export const ProfileHeader = () => {
 	const { content, platform, account, contentTitle, postId } = PROFILE.description;
+	const SnsUrl = GetSnsUrl(platform, postId);
 
 	return (
 		<S.ProfileHeader>
 			<S.MainImage src={PROFILE.mainImage} alt={PROFILE.name} />
 			<S.InfoSummary>
 				<S.NameGroup>
-					<h1>{PROFILE.name}</h1>
-					{PROFILE.enName}
-					<S.VerticalBar> | </S.VerticalBar>
-					{PROFILE.hanjaName}
+					<p className="name ">{PROFILE.name}</p>
+					<span className="sub-name">{PROFILE.enName}</span>
+					<span className="sub-name">{PROFILE.hanjaName}</span>
 				</S.NameGroup>
 
 				<S.Description>
 					{content}
-					<br />
-					<S.SourceLink
-						href={GetSnsUrl(platform, postId) ?? undefined}
-						$disabled={!GetSnsUrl(platform, postId)}
-						target="_blank"
-						rel="noreferrer">
-						{GetSnsLabel(platform, account, contentTitle)}
-					</S.SourceLink>
+
+					{SnsUrl ? (
+						<S.SourceLink to={SnsUrl} $disabled={!GetSnsUrl(platform, postId)} target="_blank" rel="noreferrer">
+							{GetSnsLabel(platform, account, contentTitle)}
+						</S.SourceLink>
+					) : (
+						<span className="disabled">{GetSnsLabel(platform, account, contentTitle)}</span>
+					)}
 				</S.Description>
 			</S.InfoSummary>
 		</S.ProfileHeader>

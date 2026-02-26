@@ -1,10 +1,11 @@
-// @src/pages/home/index
+// @src/pages/Home/index
 
 import * as S from '@/styles/pages/Home/Home.style';
-import Information from '@pages/Home/InformationSection';
-import ProfileSection from '@pages/Home/ProfileSection';
-import { METADATA } from '@const/contents';
-import { NAME } from '@const/profile';
+
+import InformationSection from '@/pages/Home/InformationSection';
+import ProfileSection from '@/pages/Home/ProfileSection';
+import { METADATA } from '@/const/contents';
+import { NAME } from '@/const/profile';
 
 const Home = () => {
 	return (
@@ -20,20 +21,16 @@ const Home = () => {
 						transition={{ delay: 0.8, duration: 1.5, ease: 'easeInOut' }}>
 						<S.SubTitleWrapper>
 							<S.SubTitle>{NAME.ENGLISH}</S.SubTitle>
-							<S.VerticalBar>|</S.VerticalBar>
 							<S.SubTitle>{NAME.HANJA}</S.SubTitle>
-							<S.VerticalBar>|</S.VerticalBar>
 							<S.SubTitle>{NAME.SOCIALID}</S.SubTitle>
 						</S.SubTitleWrapper>
 					</S.SubTitleContainer>
 				</header>
 
-				<Information />
+				<InformationSection />
 			</S.HeroSection>
 
-			<S.SectionWrapper>
-				<ProfileSection />
-			</S.SectionWrapper>
+			<ProfileSection />
 		</S.MainContainer>
 	);
 };

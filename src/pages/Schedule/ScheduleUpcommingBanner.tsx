@@ -1,10 +1,11 @@
 // @components/Schedule/UpcomingBanner.tsx
 
-import * as S from '@styles/pages/Schedule/ScheduleUpcommingBanner.style';
+import * as S from '@/styles/pages/Schedule/ScheduleUpcommingBanner.style';
+
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addDays, differenceInDays, format, isWithinInterval, parseISO, startOfDay } from 'date-fns';
-import { CALENDAR_SCHEDULES } from '@utils/schedule';
+import { CALENDAR_SCHEDULES } from '@/utils/schedule';
 import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
 
 const ScheduleUpcommingBacnner = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {

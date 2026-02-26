@@ -1,18 +1,20 @@
 // @pages/Home/Information
 
 import * as S from '@/styles/pages/Home/InformationSection.style';
+
+import { useMemo } from 'react';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import { FULL_CONCERTS } from '@/const/concert';
-import { GetLatestAlbum } from '@utils/album';
+import { GetLatestAlbum } from '@/utils/album';
 import { GetUpcomingSchedules } from '@/utils/date';
-import Placeholder from '@/components/placeholder';
+import Placeholder from '@/components/Placeholder';
 
-const upcomingEvents = GetUpcomingSchedules(FULL_CONCERTS);
-const latestAlbum = GetLatestAlbum(FULL_ALBUMS);
+const InformationSection = () => {
+	const upcomingEvents = useMemo(() => GetUpcomingSchedules(FULL_CONCERTS), []);
+	const latestAlbum = useMemo(() => GetLatestAlbum(FULL_ALBUMS), []);
 
-const Information = () => {
 	return (
-		<S.InformationContainer
+		<S.InformationSection
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ delay: 1.5, duration: 0.8 }}>
@@ -25,31 +27,29 @@ const Information = () => {
 							upcomingEvents.map(event => (
 								<S.ContentCard key={event.content}>
 									<h3 className="title">{event.content}</h3>
-									<div className="details">
-										<p className="info-text">
-											{event.location} | {event.date}
-										</p>
+									<p className="info-text">
+										{event.location} | {event.date}
+									</p>
 
-										<S.TimeSlotWrapper>
-											{event.date.includes('~')
-												? event.date.split('~').map((date, idx) => (
-														<S.TimeTag key={`range-${date}-${idx}`}>
-															<span className="part">{idx + 1}일차</span>
-															{event.times?.map((time, tIdx) => (
-																<span key={tIdx} className="time">
-																	{time}
-																</span>
-															))}
-														</S.TimeTag>
-													))
-												: event.times?.map((time, idx) => (
-														<S.TimeTag key={`single-${time}-${idx}`}>
-															{event.times && event.times.length > 1 && <span className="part">{idx + 1}부.</span>}
-															<span className="time">{time}</span>
-														</S.TimeTag>
-													))}
-										</S.TimeSlotWrapper>
-									</div>
+									<S.TimeSlotWrapper>
+										{event.date.includes('~')
+											? event.date.split('~').map((date, idx) => (
+													<S.TimeTag key={`range-${date.trim()}-${idx}`}>
+														<span className="part">{idx + 1}일차</span>
+														{event.times?.map((time, tIdx) => (
+															<span key={tIdx} className="time">
+																{time}
+															</span>
+														))}
+													</S.TimeTag>
+												))
+											: event.times?.map((time, idx) => (
+													<S.TimeTag key={`single-${time}-${idx}`}>
+														{event.times && event.times.length > 1 && <span className="part">{idx + 1}부.</span>}
+														<span className="time">{time}</span>
+													</S.TimeTag>
+												))}
+									</S.TimeSlotWrapper>
 								</S.ContentCard>
 							))
 						) : (
@@ -63,21 +63,16 @@ const Information = () => {
 					{latestAlbum && (
 						<S.ContentCard key={latestAlbum.title}>
 							<h3 className="title">{latestAlbum.title}</h3>
-							<div className="details">
-								<p className="info-text">
-									{ALBUM_TYPE_LABEL[latestAlbum.type]} | {latestAlbum.releaseDate}
-								</p>
-								<div style={{ display: 'flex', gap: '0.5rem' }}>
-									<S.ActionButton whileHover={{ scale: 1.05 }}>앨범 구매</S.ActionButton>
-									<S.ActionButton whileHover={{ scale: 1.05 }}>뮤직 비디오</S.ActionButton>
-								</div>
-							</div>
+							<p className="info-text">
+								{ALBUM_TYPE_LABEL[latestAlbum.type]} | {latestAlbum.releaseDate}
+							</p>
+							<S.ActionLink to={`album/${latestAlbum.title}`}>앨범 더보기 →</S.ActionLink>
 						</S.ContentCard>
 					)}
 				</S.InfoSection>
 			</S.SectionWrapper>
-		</S.InformationContainer>
+		</S.InformationSection>
 	);
 };
 
-export default Information;
+export default InformationSection;

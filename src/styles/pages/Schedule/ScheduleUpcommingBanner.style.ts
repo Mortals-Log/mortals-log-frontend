@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { Schedule } from '@/types/schedule';
 import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
 
-export * from '@styles/pages/Schedule/Schedule.style';
+export { ContentSection, SectionTitle } from '@styles/common/Layout.style';
 
 export const SliderContainer = styled.div`
 	display: flex;

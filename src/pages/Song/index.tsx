@@ -1,98 +1,68 @@
-// @src/pages/Song/index
+// @/pages/Song/index
 
-import * as S from '@styles/pages/Song/Song.styles';
+import * as S from '@/styles/pages/Song/Song.styles';
+
+import { useMemo, useState } from 'react';
+import TrackRow from '@/components/TrackRow';
 import { MASTER_TRACKS } from '@/const/tracks';
-import { FULL_ALBUMS } from '@/const/albums';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { GetTrackToAlbumMap } from '@/utils/track';
+import UseTrackNavigation from '@/hooks/useTrackNavigation';
+
+const trackToAlbumMap = GetTrackToAlbumMap();
 
 type SortType = 'latest' | 'release' | 'alphabet';
 
+const SORT_OPTIONS: { type: SortType; label: string }[] = [
+	{ type: 'latest', label: '최신순' },
+	{ type: 'release', label: '발매순' },
+	{ type: 'alphabet', label: '가나다순' },
+];
+
+const SORT_STRATEGY = {
+	latest: (a: any, b: any) => (b.releaseDate > a.releaseDate ? 1 : -1),
+	release: (a: any, b: any) => (a.releaseDate > b.releaseDate ? 1 : -1),
+	alphabet: (a: any, b: any) => a.title.localeCompare(b.title, 'ko'),
+};
+
 const Song = () => {
-	const navigate = useNavigate();
+	const { handleItemClick, handleKeyDown } = UseTrackNavigation();
 	const [sortType, setSortType] = useState<SortType>('latest');
 
-	const allTracks = Object.values(MASTER_TRACKS).map(track => {
-		let matchingAlbumTitle = '';
-		let releaseDate = '0000.00.00';
+	const allTracksWithAlbum = useMemo(() => {
+		return Object.values(MASTER_TRACKS).map(track => ({
+			...track,
+			...(trackToAlbumMap.get(track.id) ?? {
+				albumTitle: 'Unknown Album',
+				releaseDate: '0000.00.00',
+			}),
+		}));
+	}, []);
 
-		FULL_ALBUMS.forEach(category => {
-			category.items.forEach(album => {
-				const tracksData = album.tracks;
-				let isMatch = false;
-
-				if (Array.isArray(tracksData)) {
-					isMatch = tracksData.some(t => {
-						const pattern = t.replace('*', '');
-						return t.includes('*') ? track.id.startsWith(pattern) : t === track.id;
-					});
-				} else if (tracksData && typeof tracksData === 'object') {
-					const allVinylTracks = Object.values(tracksData).flat() as string[];
-					isMatch = allVinylTracks.some(t => t === track.id);
-				}
-
-				if (isMatch) {
-					matchingAlbumTitle = album.title;
-					releaseDate = album.releaseDate;
-				}
-			});
-		});
-
-		return { ...track, albumTitle: matchingAlbumTitle, releaseDate };
-	});
-
-	const sortedTracks = [...allTracks].sort((a, b) => {
-		switch (sortType) {
-			case 'latest':
-				return b.releaseDate.localeCompare(a.releaseDate);
-			case 'release':
-				return a.releaseDate.localeCompare(b.releaseDate);
-			case 'alphabet':
-				return a.title.localeCompare(b.title, 'ko');
-			default:
-				return 0;
-		}
-	});
+	const sortedTracks = useMemo(() => {
+		return [...allTracksWithAlbum].sort(SORT_STRATEGY[sortType]);
+	}, [allTracksWithAlbum, sortType]);
 
 	return (
 		<>
-			<S.SortTabGroup>
-				<S.SortTabItem $isActive={sortType === 'latest'} onClick={() => setSortType('latest')}>
-					최신순
-				</S.SortTabItem>
-				<S.SortTabItem $isActive={sortType === 'release'} onClick={() => setSortType('release')}>
-					발매순
-				</S.SortTabItem>
-				<S.SortTabItem $isActive={sortType === 'alphabet'} onClick={() => setSortType('alphabet')}>
-					가나다순
-				</S.SortTabItem>
+			<S.SortTabGroup role="tablist">
+				{SORT_OPTIONS.map(({ type, label }) => (
+					<S.SortTabItem
+						key={type}
+						$isActive={sortType === type}
+						onClick={() => setSortType(type)}
+						role="tab"
+						aria-selected={sortType === type}
+						tabIndex={0}>
+						{label}
+					</S.SortTabItem>
+				))}
 			</S.SortTabGroup>
 
-			<S.TrackContainer>
+			<S.TrackSection>
 				{sortedTracks.map((track, index) => (
-					<S.TrackItem key={`${track.id}-${index}`} onClick={() => navigate(`/song/${track.id}`)}>
-						<S.TrackNumber>{String(index + 1).padStart(2, '0')}</S.TrackNumber>
-						<S.TrackInfo>
-							<S.TrackTitle>
-								{track.title}
-								{track.version && ` ${track.version}`}
-								{track.isLead && <S.LeadBadge>TITLE</S.LeadBadge>}
-								{track.chordsList && track.chordsList.length > 0 && <S.GuitarBadge>CHORDS</S.GuitarBadge>}
-								{track.mvLink && <S.MVBadge>뮤직 비디오</S.MVBadge>}
-								{track.ageLimit && <S.AdultBadge>🔞 미성년자 청취불가</S.AdultBadge>}
-								{track.singing && (
-									<>
-										{track.singing.tj && <S.SingingBadge brand="TJ">TJ #{track.singing.tj}</S.SingingBadge>}
-										{track.singing.ky && <S.SingingBadge brand="KY">KY #{track.singing.ky}</S.SingingBadge>}
-									</>
-								)}
-							</S.TrackTitle>
-
-							<S.AlbumName>{track.albumTitle}</S.AlbumName>
-						</S.TrackInfo>
-					</S.TrackItem>
+					<TrackRow key={track.id} track={track} index={index} onClick={handleItemClick} onKeyDown={handleKeyDown} />
 				))}
-			</S.TrackContainer>
+			</S.TrackSection>
 		</>
 	);
 };

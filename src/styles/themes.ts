@@ -1,4 +1,5 @@
-/* eslint-disable react-refresh/only-export-components */
+// @styles/themes
+
 /* eslint-disable storybook/default-exports */
 
 export const COLOR = {
@@ -83,10 +84,17 @@ export const FONT = {
 	},
 } as const;
 
-export const theme = {
+export const WINDOW_SIZE = {
+	mobile: `(max-width: 480px)`,
+	tablet: `(max-width: 768px)`,
+	laptop: `(max-width: 1024px)`,
+};
+export const Theme = {
 	COLOR,
 	FONT,
+	WINDOW_SIZE,
 } as const;
 
 export type ColorType = typeof COLOR;
 export type FontType = typeof FONT;
+export type WindowType = typeof WINDOW_SIZE;
