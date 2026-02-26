@@ -253,6 +253,15 @@ export const ViewMoreButton = styled.button`
 		transform: scale(0.98);
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding: 1rem 1.2rem;
+		font-size: ${props => props.theme.FONT.SIZE.MD};
+
+		&::after {
+			margin-left: 4px;
+		}
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 0.8rem 1.4rem;
 		font-size: ${props => props.theme.FONT.SIZE.SM};
@@ -350,6 +359,10 @@ export const ToggleButton = styled.button`
 
 	&:active {
 		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		display: none;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

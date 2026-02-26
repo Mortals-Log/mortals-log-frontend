@@ -17,6 +17,13 @@ export const ContentWrapper = styled.div`
 	padding: 2rem;
 	gap: 3rem;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		flex-direction: column;
+		text-align: center;
+		padding: 1rem;
+		gap: 1.5rem;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		flex-direction: column;
 		text-align: center;
@@ -29,6 +36,12 @@ export const ImageArea = styled.div`
 	flex: 1;
 	display: flex;
 	position: relative;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		justify-content: center;
+		width: 100%;
+		margin-bottom: 1rem;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		justify-content: center;
@@ -46,6 +59,11 @@ export const CoverImage = styled.img`
 	border-radius: 10px;
 	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		max-width: 380px;
+		box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 	}
@@ -60,6 +78,10 @@ export const InfoArea = styled.div`
 	font-family: ${props => props.theme.FONT.SANS};
 	color: ${props => props.theme.COLOR.PRIMARY};
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		align-items: center;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		align-items: center;
 	}
@@ -73,6 +95,10 @@ export const Tag = styled.div`
 	letter-spacing: 1px;
 	margin-bottom: 0.7rem;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-bottom: 0.4rem;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-bottom: 0.4rem;
 	}
@@ -85,6 +111,10 @@ export const Title = styled.div`
 	color: ${props => props.theme.COLOR.PRIMARY};
 	margin-bottom: 1rem;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-bottom: 0.5rem;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-bottom: 0.5rem;
 	}
@@ -96,6 +126,10 @@ export const Info = styled.div`
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY500};
 	margin-bottom: 1rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-bottom: 0.5rem;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
@@ -113,6 +147,11 @@ export const Description = styled.div`
 	white-space: pre-wrap;
 	word-break: keep-all;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		text-align: center;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		text-align: center;
 		font-size: ${props => props.theme.FONT.SIZE.XS};
@@ -126,6 +165,10 @@ export const TrackPreviewList = styled.ul`
 	gap: 0.8rem;
 	margin: 1.2rem 0 1.5rem 0;
 	padding: 0;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		gap: 0.5rem;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 0.5rem;
@@ -141,6 +184,7 @@ export const TrackItem = styled.li`
 	color: ${props => props.theme.COLOR.PRIMARY};
 
 	.number {
+		font-size: ${props => props.theme.FONT.SIZE.SM};
 		font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 	}
 
@@ -158,6 +202,11 @@ export const MoreText = styled.span`
 
 	margin-top: 4px;
 	padding-left: 1.6rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+		padding-left: 0;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
@@ -190,6 +239,12 @@ export const DDayBadge = styled.div`
 	font-size: ${props => props.theme.FONT.SIZE.SM};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	color: ${props => props.theme.COLOR.WHITE};
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		top: 0.1rem;
+		left: 0.1rem;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		top: 0.1rem;
