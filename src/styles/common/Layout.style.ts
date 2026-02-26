@@ -122,8 +122,9 @@ export const SectionTitle = styled.h3`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		padding-bottom: 0.6rem;
 		letter-spacing: 1px;
-
 		gap: 0.3rem;
+
+		font-size: ${props => props.theme.FONT.SIZE.LG};
 
 		span {
 			font-size: ${props => props.theme.FONT.SIZE.SM};

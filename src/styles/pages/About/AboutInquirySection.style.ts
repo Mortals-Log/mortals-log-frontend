@@ -13,6 +13,12 @@ export const ButtonGrid = styled.div`
 	margin-top: 2rem;
 	gap: 1rem;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		grid-template-columns: 1fr;
+		gap: 0.8rem;
+		margin-top: 1rem;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		grid-template-columns: 1fr;
 		gap: 1rem;
@@ -63,6 +69,14 @@ export const InquiryButtn = styled(Link)`
 
 	&:active {
 		transform: scale(0.98);
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding: 1.5rem;
+
+		strong {
+			font-size: ${props => props.theme.FONT.SIZE.MD};
+		}
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
