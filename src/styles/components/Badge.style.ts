@@ -11,7 +11,7 @@ export const BadgeGroup = styled.div`
 	flex-wrap: wrap;
 	gap: 0.3rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 0.2rem;
 	}
 `;
@@ -30,7 +30,7 @@ const BaseBadge = styled.span`
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	letter-spacing: 0.02em;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 2px 4px;
 	}
 `;
