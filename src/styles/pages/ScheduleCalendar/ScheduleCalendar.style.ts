@@ -13,6 +13,10 @@ export const ScheduleToolbar = styled.div`
 	gap: 12px;
 	margin-bottom: 0.3rem;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		gap: 8px;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		justify-content: space-between;
 		gap: 8px;
@@ -97,7 +101,7 @@ export const ScheduleWrapper = styled.div<{ $viewType: string }>`
 		line-height: 1.125em;
 		margin-top: 1rem;
 
-		@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 			width: 100vw;
 			position: relative;
 			left: 50%;
@@ -124,7 +128,7 @@ export const ScheduleWrapper = styled.div<{ $viewType: string }>`
 			text-decoration: none;
 		}
 
-		@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 			font-size: ${props => props.theme.FONT.SIZE.XS};
 		}
 	}
@@ -180,7 +184,7 @@ export const ScheduleWrapper = styled.div<{ $viewType: string }>`
 	.react-calendar__navigation {
 		margin-bottom: 1rem;
 
-		@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 			margin-left: 0.5rem;
 		}
 
@@ -201,6 +205,11 @@ export const ScheduleWrapper = styled.div<{ $viewType: string }>`
 			&:enabled:focus {
 				background-color: ${props => props.theme.COLOR.GRAY100};
 				border-radius: 8px;
+			}
+
+			@media ${props => props.theme.WINDOW_SIZE.tablet} {
+				padding: 0.5rem 0.8rem;
+				font-size: ${props => props.theme.FONT.SIZE.MD};
 			}
 
 			@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -278,6 +287,14 @@ export const ScheduleItem = styled.div<{ $eventType: Schedule['type'] }>`
 	.react-calendar__tile--active & {
 		background-color: rgba(255, 255, 255, 0.2);
 		color: ${props => props.theme.COLOR.WHITE};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		font-size: ${props => props.theme.FONT.SIZE.TINY};
+
+		line-height: 1.5;
+		max-height: 3rem;
+		padding: 0.2rem 0.3rem;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

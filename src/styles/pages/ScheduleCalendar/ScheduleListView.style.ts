@@ -23,7 +23,7 @@ export const ListWrapper = styled.div`
 	gap: 2px;
 	overflow: hidden;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		width: 100vw;
 		position: relative;
 		left: 50%;
@@ -52,7 +52,7 @@ export const DayContainer = styled.div<DayContainerProps>`
 		border-radius: 10px;
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 1rem 0.8rem;
 		gap: 0.5rem;
 	}
@@ -81,6 +81,18 @@ export const DayHeader = styled.div<DayContainerProps>`
 	.day_name {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 		color: ${props => props.theme.COLOR.GRAY400};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		min-width: 35px;
+
+		.day_number {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
+
+		.day_name {
+			font-size: ${props => props.theme.FONT.SIZE.XS};
+		}
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -136,6 +148,13 @@ export const ScheduleItem = styled.div<ItemProps>`
 		background-color: ${props =>
 			props.$isSelected ? props.theme.COLOR.WHITE : SCHEDULE_TYPE_COLORS[props.$eventType].text};
 		border-radius: 2px;
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		&::before {
+			height: 14px;
+			margin-right: 6px;
+		}
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
