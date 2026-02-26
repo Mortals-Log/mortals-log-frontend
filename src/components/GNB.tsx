@@ -42,9 +42,9 @@ const GNB = () => {
 	useEffect(() => {
 		const handleResize = () => {
 			const width = window.innerWidth;
-			setIsSmallScreen(width <= 1100);
+			setIsSmallScreen(width <= 1023);
 
-			if (width > 850 && isMenuOpen) {
+			if (width > 1023 && isMenuOpen) {
 				setIsMenuOpen(false);
 			}
 		};

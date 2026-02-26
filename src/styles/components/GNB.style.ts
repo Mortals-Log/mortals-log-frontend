@@ -97,6 +97,10 @@ export const NavGroup = styled.ul`
 		gap: 1.5rem;
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		display: none;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		display: none;
 	}
@@ -162,6 +166,10 @@ export const DDayContent = styled.div`
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		display: none;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		display: none;
 	}
@@ -172,6 +180,10 @@ export const MobileNavList = styled.ul`
 	flex-direction: column;
 	gap: 2.5rem;
 	list-style: none;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		gap: 2rem;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 2rem;
@@ -270,6 +282,10 @@ export const MenuButton = styled.button`
 	border: none;
 	padding: 10px;
 	cursor: pointer;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		display: block;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		display: block;
