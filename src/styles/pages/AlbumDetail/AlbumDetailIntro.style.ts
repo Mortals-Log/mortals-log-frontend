@@ -10,7 +10,11 @@ export { SectionTitle } from '@/styles/common/Layout.style';
 export { ExpandButton } from '@/styles/components/Buttons.style';
 
 export const ContentSection = styled(L.ContentSection)`
-	margin-top: 2rem;
+	margin-top: 3rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-top: 2.5rem;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-top: 1.5rem;
@@ -47,6 +51,11 @@ export const IntroContainer = styled.div<{ $isExpanded: boolean }>`
 
 		overflow: hidden;
 		transition: max-height 0.2s ease;
+
+		@media ${props => props.theme.WINDOW_SIZE.tablet} {
+			max-height: ${props => (props.$isExpanded ? '' : '250px')};
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
 
 		@media ${props => props.theme.WINDOW_SIZE.mobile} {
 			max-height: ${props => (props.$isExpanded ? '' : '230px')};

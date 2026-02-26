@@ -331,6 +331,11 @@ export const BackButton = styled.button`
 		transform: scale(0.98);
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-bottom: 1rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-bottom: 0.5rem;
 		font-size: ${props => props.theme.FONT.SIZE.XS};

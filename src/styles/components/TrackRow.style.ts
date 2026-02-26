@@ -111,7 +111,7 @@ export const AlbumItem = styled.div`
 		background-color: ${props => props.theme.COLOR.GRAY50};
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 1.2rem 1rem;
 	}
 `;
@@ -126,7 +126,7 @@ export const AlbumNumber = styled.span`
 	font-size: ${props => props.theme.FONT.SIZE.SM};
 	color: ${props => props.theme.COLOR.GRAY500};
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;
@@ -144,7 +144,7 @@ export const AlbumTitle = styled.div<{ $isLead?: boolean }>`
 
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;
