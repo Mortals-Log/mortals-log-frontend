@@ -3,7 +3,7 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
-export { ContentSection, SectionTitle } from '@styles/common/Layout.style';
+export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
 
 export { ExpandButton } from '@/styles/components/Buttons.style';
 export { ArrowIcon } from '@/styles/common/ArrowIcon.style';
@@ -23,6 +23,10 @@ export const TimelineContainer = styled.div<{ $isExpanded: boolean }>`
 		pointer-events: none;
 		opacity: ${props => (props.$isExpanded ? 0 : 1)};
 		transition: opacity 0.3s ease;
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding: 1.5rem 0.8rem 0rem 0.8rem;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -57,10 +61,21 @@ export const TimelineYearGroup = styled.div`
 			border-radius: 50%;
 			background: ${props => props.theme.COLOR.PRIMARY};
 
+			@media ${props => props.theme.WINDOW_SIZE.tablet} {
+				width: 8px;
+				height: 8px;
+			}
+
 			@media ${props => props.theme.WINDOW_SIZE.mobile} {
 				width: 8px;
 				height: 8px;
 			}
+		}
+
+		@media ${props => props.theme.WINDOW_SIZE.tablet} {
+			margin-bottom: 0;
+			gap: 0.8rem;
+			font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 		}
 
 		@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -110,6 +125,19 @@ export const TimelineItem = styled.div`
 
 	.content {
 		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		gap: 0.8rem;
+		padding: 0.5rem 1rem;
+
+		&::before {
+			margin-top: 0.5rem;
+		}
+
+		.date {
+			min-width: 42px;
+		}
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

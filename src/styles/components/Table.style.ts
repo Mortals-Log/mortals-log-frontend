@@ -26,6 +26,12 @@ export const Table = styled.table`
 		vertical-align: middle;
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		th {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		tr {
 			display: flex;
@@ -66,6 +72,10 @@ export const ValueItem = styled.div`
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 12px 16px;
 		font-size: ${props => props.theme.FONT.SIZE.MD};
@@ -76,7 +86,7 @@ export const RowSeparator = styled.hr`
 	width: calc(100% - 30px);
 	margin: 0 auto;
 	border: none;
-	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY100};
+	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY300};
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		width: 100%;
