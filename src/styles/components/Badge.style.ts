@@ -65,7 +65,7 @@ export const TypeBadge = styled(LeadBadge)<{ $eventType: Schedule['type'] }>`
 	font-size: ${props => props.theme.FONT.SIZE.SM};
 	color: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].text};
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;
