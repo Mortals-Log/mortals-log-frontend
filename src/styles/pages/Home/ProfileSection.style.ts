@@ -30,6 +30,16 @@ export const ProfileSection = styled(L.ContentSection)`
 	}
 `;
 
+export const ModifierLink = styled(B.SourceLink)`
+	width: auto;
+	opacity: 0;
+	margin-bottom: 8px;
+
+	white-space: normal;
+	overflow: visible;
+	text-overflow: clip;
+`;
+
 export const BackgroundText = styled.div`
 	position: absolute;
 	top: 50%;
@@ -149,7 +159,9 @@ export const HanjaBadge = styled.div`
 `;
 
 export const TextSection = styled.div`
+	display: flex;
 	flex-direction: column;
+	align-items: flex-start;
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		width: 100%;
@@ -183,16 +195,6 @@ export const ModifierContainer = styled.div`
 	}
 `;
 
-export const ModifierLink = styled(B.SourceLink)`
-	width: auto;
-	opacity: 0;
-	margin-bottom: 8px;
-
-	white-space: normal;
-	overflow: visible;
-	text-overflow: clip;
-`;
-
 export const ModifierText = styled.p`
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
@@ -216,13 +218,13 @@ export const ModifierText = styled.p`
 export const NameSection = styled.div`
 	display: flex;
 	align-items: baseline;
-	margin-bottom: 3rem;
+	margin-bottom: 1.5rem;
 	gap: 0.8rem;
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		align-items: flex-start;
 		flex-direction: column;
-		margin-bottom: 1rem;
+		margin-bottom: 0.5rem;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -267,23 +269,25 @@ export const JobBadge = styled.span`
 export const ProfileDescription = styled.div`
 	display: block;
 	align-items: flex-start;
-	margin-bottom: 4rem;
+	margin-bottom: 2rem;
 
 	font-family: ${props => props.theme.FONT.SERIF};
-	font-size: ${props => props.theme.FONT.SIZE.LG};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	color: ${props => props.theme.COLOR.GRAY600};
+
 	text-align: start;
 	white-space: pre-wrap;
+	word-break: keep-all;
 	line-height: 1.8;
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		font-size: ${props => props.theme.FONT.SIZE.MD};
+		font-size: ${props => props.theme.FONT.SIZE.SM};
 		margin-bottom: 1.5rem;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		font-size: ${props => props.theme.FONT.SIZE.SM};
+		font-size: ${props => props.theme.FONT.SIZE.XS};
 		text-align: center;
 		line-height: 1.6;
 
