@@ -19,23 +19,17 @@ const ProfileSection = () => {
 	const hasQuotes = interviewQuotes.length > 0;
 	const currentItem = hasQuotes ? interviewQuotes[currentIdx] : null;
 
-	const { content, platform, account, contentTitle, postId } = PROFILE.description;
-
-	const descriptionSnsInfo = useMemo(
-		() => ({
-			url: GetSnsUrl(platform, postId) ?? undefined,
-			label: GetSnsLabel(platform, account, contentTitle),
-		}),
-		[platform, postId, account, contentTitle],
-	);
-
 	const jobDisplay = useMemo(() => PROFILE.job.join(' & '), []);
 
 	const currentItemSnsInfo = useMemo(() => {
 		if (!currentItem) return null;
+
+		const isFullLink = currentItem.link?.startsWith('http');
+		const url = isFullLink ? currentItem.link : (GetSnsUrl(currentItem.platform ?? '', currentItem.link) ?? undefined);
+
 		return {
-			url: GetSnsUrl(currentItem.platform ?? '', currentItem.link) ?? undefined,
-			label: GetSnsLabel(currentItem.platform || '', currentItem.host, currentItem.content),
+			url,
+			label: GetSnsLabel(currentItem.platform, currentItem.host, currentItem.content),
 		};
 	}, [currentItem]);
 
@@ -63,11 +57,13 @@ const ProfileSection = () => {
 					{currentItem && currentItemSnsInfo && (
 						<S.ModifierContainer onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
 							{currentItemSnsInfo.url ? (
-								<S.SourceLink to={currentItemSnsInfo.url} target="_blank" rel="noreferrer">
+								<S.ModifierLink to={currentItemSnsInfo.url} target="_blank" rel="noreferrer">
 									{currentItemSnsInfo.label}
-								</S.SourceLink>
+								</S.ModifierLink>
 							) : (
-								<span className="disabled">{currentItemSnsInfo.label}</span>
+								<S.ModifierLink to="/" target="_blank" rel="noreferrer" $disabled={true}>
+									{currentItemSnsInfo.label}
+								</S.ModifierLink>
 							)}
 							<S.ModifierText key={currentItem.quote}>{currentItem.quote}</S.ModifierText>
 						</S.ModifierContainer>
@@ -78,21 +74,7 @@ const ProfileSection = () => {
 						<S.JobBadge>{jobDisplay}</S.JobBadge>
 					</S.NameSection>
 
-					<S.DescriptionContainer>
-						<S.ProfileDescription>{content}</S.ProfileDescription>
-
-						{descriptionSnsInfo.url ? (
-							<S.SourceLink
-								to={descriptionSnsInfo.url || ''}
-								$disabled={!descriptionSnsInfo.url}
-								target="_blank"
-								rel="noreferrer">
-								{descriptionSnsInfo.label}
-							</S.SourceLink>
-						) : (
-							<span className="disabled">{descriptionSnsInfo.label}</span>
-						)}
-					</S.DescriptionContainer>
+					<S.ProfileDescription>{PROFILE.description}</S.ProfileDescription>
 
 					<S.ViewMoreButton onClick={() => navigate('/profile')}>READ PROFILE LOG</S.ViewMoreButton>
 				</S.TextSection>
