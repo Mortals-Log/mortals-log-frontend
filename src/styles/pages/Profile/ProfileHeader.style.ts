@@ -11,6 +11,13 @@ export const ProfileHeader = styled.section`
 	gap: 40px;
 	align-items: flex-end;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 20px;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		flex-direction: column;
 		align-items: center;
@@ -25,6 +32,11 @@ export const MainImage = styled.img`
 	aspect-ratio: 3/4;
 	object-fit: cover;
 	border-radius: 4px;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		width: 100%;
+		max-width: 280px;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		width: 100%;
@@ -62,6 +74,17 @@ export const NameGroup = styled.div`
 		}
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		.name {
+			font-size: ${props => props.theme.FONT.SIZE.H1};
+			margin-bottom: 0.5rem;
+		}
+
+		.sub-name {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		.name {
 			font-size: ${props => props.theme.FONT.SIZE.H2};
@@ -86,6 +109,12 @@ export const Description = styled.blockquote`
 	line-height: 1.5;
 	white-space: pre-wrap;
 	word-break: keep-all;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		text-align: left;
+		margin: 1.5rem 0;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		border-left: none;

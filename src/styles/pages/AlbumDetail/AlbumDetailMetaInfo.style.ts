@@ -1,4 +1,4 @@
-// @styles/pages/Alubm/AlbumDetailMetaInfo
+// @styles/pages/Alubm/AlbumDetailMetaInfo.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -6,11 +6,17 @@ import styled from '@emotion/styled';
 
 export * from '@/styles/components/Table.style';
 export { MoreButton } from '@/styles/components/Buttons.style';
-export * from '@/styles/components/Badge.style';
+export { MusicBadge } from '@/styles/components/Badge.style';
 
 import * as B from '@/styles/components/Badge.style';
 
 export const BadgeGroup = styled(B.BadgeGroup)`
+	margin-bottom: 0.5rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-bottom: 0.8rem;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		order: 10;
 		margin-top: 1rem;
@@ -21,6 +27,13 @@ export const ContentSection = styled.section`
 	display: flex;
 	gap: 3rem;
 	padding: 2rem 0;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+		padding: 0.5rem;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		flex-direction: column;
@@ -45,6 +58,10 @@ export const CoverImage = styled.img<{ $hasStore: boolean }>`
 
 	border-radius: 10px;
 	box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
@@ -73,6 +90,17 @@ export const TypeWrap = styled.div`
 			content: '|';
 			margin-right: 8px;
 			color: ${props => props.theme.COLOR.GRAY300};
+		}
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+		gap: 4px;
+
+		.vol {
+			&::before {
+				margin-right: 4px;
+			}
 		}
 	}
 

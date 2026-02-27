@@ -20,7 +20,7 @@ export const WeekContainer = styled.div`
 	overflow: hidden;
 	background-color: transparent;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		width: 100vw;
 		position: relative;
 		left: 50%;
@@ -49,6 +49,11 @@ export const DayContainer = styled.div<DayContainerProps>`
 
 	&:hover {
 		background-color: ${props => !props.$isSelected && props.theme.COLOR.GRAY100};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		min-height: 260px;
+		border-radius: 4px;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -146,6 +151,18 @@ export const ScheduleItem = styled.div<ItemProps>`
 		@media ${props => props.theme.WINDOW_SIZE.mobile} {
 			display: none;
 		}
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		line-height: 1.5;
+		max-height: 3rem;
+		padding: 0.2rem 0.3rem;
+
+		font-size: ${props => props.theme.FONT.SIZE.XS};
+
+		white-space: normal;
+		overflow: hidden;
+		text-overflow: clip;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

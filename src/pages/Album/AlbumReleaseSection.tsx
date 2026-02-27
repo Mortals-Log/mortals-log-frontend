@@ -47,15 +47,15 @@ const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_E
 				<span>{TITLE_EN}</span>
 			</S.SectionTitle>
 
-			<S.MobileSelector>
-				<S.MobileSelectorItem value={selectedYear} onChange={e => handleYearChange(e.target.value)}>
+			<S.Selector>
+				<S.SelectorItem value={selectedYear} onChange={e => handleYearChange(e.target.value)}>
 					{FULL_ALBUMS.map(({ year }) => (
 						<option key={year} value={year}>
 							{year}년
 						</option>
 					))}
-				</S.MobileSelectorItem>
-			</S.MobileSelector>
+				</S.SelectorItem>
+			</S.Selector>
 
 			<S.AlbumMobileSection>
 				{filteredAlbums && (

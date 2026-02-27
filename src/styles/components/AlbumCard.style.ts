@@ -7,8 +7,14 @@ import { Link } from 'react-router-dom';
 
 export const AlbumGrid = styled.div`
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	gap: 3rem 2rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+		gap: 2rem;
+		padding: 1rem 0;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		grid-template-columns: 1fr 1fr;
@@ -77,6 +83,10 @@ export const Overlay = styled.div`
 		transition: transform 0.3s ease;
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		display: none;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		display: none;
 	}
@@ -115,6 +125,19 @@ export const AlbumInfo = styled.div`
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 		color: ${props => props.theme.COLOR.GRAY400};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-top: 0.8rem;
+
+		.title {
+			font-size: ${props => props.theme.FONT.SIZE.MD};
+		}
+
+		.type-wrap,
+		.date {
+			font-size: ${props => props.theme.FONT.SIZE.XS};
+		}
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

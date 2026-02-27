@@ -7,10 +7,15 @@ import styled from '@emotion/styled';
 export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
 export { ToggleButton } from '@/styles/components/Buttons.style';
 export * from '@/styles/components/AlbumCard.style';
-export * from '@/styles/components/MobileSelector.style';
+export * from '@/styles/components/Selector.style';
 
 export const AlbumMobileSection = styled.section`
 	display: none;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		display: block;
+		scroll-margin-top: 4rem;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		display: block;
@@ -26,6 +31,10 @@ export const YearSection = styled.section<{ isOpen: boolean }>`
 
 	&:first-of-type {
 		margin-top: 1rem;
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		display: none;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

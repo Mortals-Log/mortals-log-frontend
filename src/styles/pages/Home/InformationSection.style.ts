@@ -12,6 +12,10 @@ export const InformationSection = styled(motion.div)`
 	margin: 0 auto;
 	padding: 0 24px;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding: 0 16px;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 0 16px;
 	}
@@ -26,12 +30,13 @@ export const SectionWrapper = styled.div`
 		gap: 2rem;
 	}
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		grid-template-columns: 1fr;
-		gap: 3rem;
+		gap: 1rem;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		grid-template-columns: 1fr;
 		gap: 1rem;
 		padding: 0;
 	}
@@ -50,6 +55,11 @@ export const InfoSection = styled.div`
 		display: block;
 		margin-bottom: 1.5rem;
 
+		@media ${props => props.theme.WINDOW_SIZE.tablet} {
+			margin-bottom: 0.8rem;
+			letter-spacing: 0.15rem;
+		}
+
 		@media ${props => props.theme.WINDOW_SIZE.mobile} {
 			margin-bottom: 1rem;
 			letter-spacing: 0.15rem;
@@ -61,6 +71,11 @@ export const EventList = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 2.5rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		width: 100%;
+		gap: 1.5rem;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		width: 100%;
@@ -84,6 +99,10 @@ export const ContentCard = styled.div`
 		color: ${props => props.theme.COLOR.BLACK};
 		margin: 0 0 0.5rem 0;
 
+		@media ${props => props.theme.WINDOW_SIZE.tablet} {
+			font-size: ${props => props.theme.FONT.SIZE.MD};
+		}
+
 		@media ${props => props.theme.WINDOW_SIZE.mobile} {
 			font-size: ${props => props.theme.FONT.SIZE.MD};
 		}
@@ -98,6 +117,10 @@ export const ContentCard = styled.div`
 		opacity: 0.7;
 		margin: 0;
 
+		@media ${props => props.theme.WINDOW_SIZE.tablet} {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
+
 		@media ${props => props.theme.WINDOW_SIZE.mobile} {
 			font-size: ${props => props.theme.FONT.SIZE.SM};
 		}
@@ -110,6 +133,10 @@ export const TimeSlotWrapper = styled.div`
 	gap: 0.6rem;
 	margin-top: 1rem;
 	flex-wrap: wrap;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		gap: 0.4rem;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 0.4rem;
@@ -140,6 +167,10 @@ export const TimeTag = styled.div`
 		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 		color: ${props => props.theme.COLOR.GRAY600};
 
+		@media ${props => props.theme.WINDOW_SIZE.tablet} {
+			font-size: ${props => props.theme.FONT.SIZE.XS};
+		}
+
 		@media ${props => props.theme.WINDOW_SIZE.mobile} {
 			font-size: ${props => props.theme.FONT.SIZE.XS};
 		}
@@ -160,6 +191,11 @@ export const ActionLink = styled(Link)`
 
 	&:hover {
 		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-top: 0.8rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

@@ -26,6 +26,14 @@ export const HeaderSection = styled.section`
 	margin-top: 0.5rem;
 	padding-bottom: 1rem;
 	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY200};
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding-bottom: 0.8rem;
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		padding-bottom: 0.5rem;
+	}
 `;
 
 export const OriginalLinkGroup = styled.div`
@@ -35,8 +43,14 @@ export const OriginalLinkGroup = styled.div`
 	margin-top: 0.8rem;
 	margin-bottom: 0.4rem;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		gap: 0.3rem;
+		margin-top: 0.5rem;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 0.3rem;
+		margin-top: 0.5rem;
 	}
 `;
 
@@ -60,6 +74,11 @@ export const OriginalLink = styled.button`
 		background: ${props => props.theme.COLOR.PRIMARY};
 		border-color: ${props => props.theme.COLOR.PRIMARY};
 		color: ${props => props.theme.COLOR.WHITE};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding: 0.4rem 0.6rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -99,8 +118,19 @@ export const Description = styled.div`
 		}
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-top: 0.5rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+
+		.type::after {
+			margin: 0 0.2rem;
+		}
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		margin-top: 0.5rem;
 		font-size: ${props => props.theme.FONT.SIZE.XS};
+
 		.type::after {
 			margin: 0 0.2rem;
 		}

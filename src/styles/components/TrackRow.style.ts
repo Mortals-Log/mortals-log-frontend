@@ -4,6 +4,7 @@
 
 import styled from '@emotion/styled';
 
+// 공통
 export const TrackInfo = styled.div`
 	display: flex;
 	min-width: 0;
@@ -11,7 +12,7 @@ export const TrackInfo = styled.div`
 	flex-direction: column;
 	gap: 4px;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 1px;
 	}
 `;
@@ -25,11 +26,12 @@ export const AlbumName = styled.div`
 	white-space: pre-wrap;
 	word-break: keep-all;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;
 
+// 곡 목록
 export const SongItem = styled.div`
 	display: flex;
 	align-items: center;
@@ -39,10 +41,12 @@ export const SongItem = styled.div`
 	padding: 1rem 1.5rem;
 	border: 1px solid ${props => props.theme.COLOR.GRAY100};
 	border-radius: 10px;
+
 	&:hover {
 		border-color: ${props => props.theme.COLOR.PRIMARY};
 	}
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 0.8rem 1rem;
 	}
 `;
@@ -58,6 +62,11 @@ export const SongNumber = styled.span`
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 	color: ${props => props.theme.COLOR.PRIMARY};
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-right: 1.2rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-right: 1rem;
 		font-size: ${props => props.theme.FONT.SIZE.SM};
@@ -66,29 +75,24 @@ export const SongNumber = styled.span`
 
 export const SongTitle = styled.div<{ $isLead?: boolean }>`
 	display: flex;
-	flex-wrap: wrap;
-	word-break: keep-all;
 	gap: 0.5rem;
-	line-height: 1.4;
+	margin-bottom: 4px;
 
 	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => (props.$isLead ? props.theme.FONT.WEIGHT.MEDIUM : props.theme.FONT.WEIGHT.REGULAR)};
 	color: ${props => props.theme.COLOR.GRAY700};
-
-	font-size: ${props => props.theme.FONT.SIZE.MD};
-	margin-bottom: 4px;
+	flex-wrap: wrap;
+	word-break: keep-all;
+	line-height: 1.4;
 
 	.title-text {
 		white-space: pre-wrap;
 		word-break: keep-all;
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		gap: 0.3rem;
-		font-size: ${props => props.theme.FONT.SIZE.SM};
-	}
 `;
 
+// 앨범 트랙
 export const AlbumItem = styled.div`
 	display: flex;
 	align-items: center;
@@ -107,7 +111,7 @@ export const AlbumItem = styled.div`
 		background-color: ${props => props.theme.COLOR.GRAY50};
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 1.2rem 1rem;
 	}
 `;
@@ -122,7 +126,7 @@ export const AlbumNumber = styled.span`
 	font-size: ${props => props.theme.FONT.SIZE.SM};
 	color: ${props => props.theme.COLOR.GRAY500};
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;
@@ -140,7 +144,7 @@ export const AlbumTitle = styled.div<{ $isLead?: boolean }>`
 
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;

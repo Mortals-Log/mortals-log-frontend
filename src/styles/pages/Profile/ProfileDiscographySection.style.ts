@@ -27,6 +27,14 @@ export const Slider = styled.div`
 		display: none;
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		display: grid;
+		width: 100%;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1rem;
+		overflow-x: visible;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		display: grid;
 		width: 100%;
@@ -40,7 +48,7 @@ export const SliderNavButton = styled.button<{ $direction: 'left' | 'right' }>`
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	${({ $direction }) => ($direction === 'left' ? 'left: 0;' : 'right: 0;')}
+	${props => (props.$direction === 'left' ? 'left: 0;' : 'right: 0;')}
 
 	width: 50px;
 	height: 100%;
@@ -64,27 +72,31 @@ export const SliderNavButton = styled.button<{ $direction: 'left' | 'right' }>`
 		color: ${props => props.theme.COLOR.GRAY100};
 
 		transition: all 0.3s ease;
-		transform: ${({ $direction }) => ($direction === 'left' ? 'translateX(10px)' : 'translateX(-10px)')};
+		transform: ${props => (props.$direction === 'left' ? 'translateX(10px)' : 'translateX(-10px)')};
 	}
 
 	&:hover {
-		background: ${({ $direction, theme }) =>
-			$direction === 'left'
+		background: ${props =>
+			props.$direction === 'left'
 				? `linear-gradient(
 				to right,
-				${theme.COLOR.PRIMARY}C0 0%,
-				${theme.COLOR.PRIMARY}00 100%
+				${props.theme.COLOR.PRIMARY}C0 0%,
+				${props.theme.COLOR.PRIMARY}00 100%
 		  )`
 				: `linear-gradient(
 				to left,
-				${theme.COLOR.PRIMARY}C0 0%,
-				${theme.COLOR.PRIMARY}00 100%
+				${props.theme.COLOR.PRIMARY}C0 0%,
+				${props.theme.COLOR.PRIMARY}00 100%
 		  )`};
 
 		span {
 			opacity: 1;
 			transform: translateX(0);
 		}
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		display: none;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -166,6 +178,10 @@ export const Overlay = styled.div`
 		transition: transform 0.3s ease;
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		display: none;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		display: none;
 	}
@@ -192,6 +208,17 @@ export const AlbumInfo = styled.div`
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 		color: ${props => props.theme.COLOR.GRAY500};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-top: 8px;
+
+		.title {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
+		.info {
+			font-size: ${props => props.theme.FONT.SIZE.XS};
+		}
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

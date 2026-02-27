@@ -70,15 +70,15 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 				<span>{TITLE_EN}</span>
 			</S.SectionTitle>
 
-			<S.MobileSelector>
-				<S.MobileSelectorItem value={activeTab} onChange={e => handleTabClick(e.target.value)}>
+			<S.Selector>
+				<S.SelectorItem value={activeTab} onChange={e => handleTabClick(e.target.value)}>
 					{TABS.map(tab => (
 						<option key={tab} value={tab}>
 							{tab === 'ALL' ? '전체 보기' : ALBUM_TYPE_LABEL[tab]}
 						</option>
 					))}
-				</S.MobileSelectorItem>
-			</S.MobileSelector>
+				</S.SelectorItem>
+			</S.Selector>
 
 			<S.TabList>
 				<S.TabGroup>

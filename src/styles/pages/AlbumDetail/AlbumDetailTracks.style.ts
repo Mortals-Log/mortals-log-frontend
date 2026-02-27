@@ -4,8 +4,6 @@
 
 import styled from '@emotion/styled';
 import * as L from '@/styles/common/Layout.style';
-
-export * from '@/styles/components/Badge.style';
 export { SectionTitle } from '@/styles/common/Layout.style';
 
 export const ContentSection = styled(L.ContentSection)`
@@ -27,7 +25,7 @@ export const SideTitle = styled.div`
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;

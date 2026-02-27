@@ -1,13 +1,13 @@
-// @styles/componenets/MobileSelector.style
+// @styles/componenets/Selector.style
 
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
 
-export const MobileSelector = styled.nav`
+export const Selector = styled.nav`
 	display: none;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.mobile}, ${props => props.theme.WINDOW_SIZE.tablet} {
 		display: flex;
 		position: sticky;
 		z-index: 10;
@@ -22,10 +22,10 @@ export const MobileSelector = styled.nav`
 	}
 `;
 
-export const MobileSelectorItem = styled.select`
+export const SelectorItem = styled.select`
 	display: none;
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.mobile}, ${props => props.theme.WINDOW_SIZE.tablet} {
 		display: block;
 		padding: 6px 30px 6px 12px;
 

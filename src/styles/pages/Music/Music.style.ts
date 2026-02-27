@@ -29,6 +29,11 @@ export const TabGroup = styled.ul`
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin: 4rem 0 1.5rem 0;
+		padding-bottom: 4px;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin: 4rem 0 1.5rem 0;
 		padding-bottom: 4px;
@@ -60,6 +65,14 @@ export const TabItem = styled.li<{ $isActive: boolean }>`
 
 	&:hover {
 		text-decoration: underline;
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+
+		&:hover {
+			text-decoration: none;
+		}
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

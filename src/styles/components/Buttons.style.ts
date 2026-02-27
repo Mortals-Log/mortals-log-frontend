@@ -32,7 +32,7 @@ export const ExpandButton = styled.button<{ $isExpanded: boolean }>`
 
 	z-index: 10;
 	padding: 1rem 1.5rem;
-	margin-top: ${({ $isExpanded }) => ($isExpanded ? '0rem' : '-1.1rem')};
+	margin-top: ${props => (props.$isExpanded ? '0rem' : '-1.1rem')};
 	gap: 8px;
 
 	background-color: transparent;
@@ -56,6 +56,11 @@ export const ExpandButton = styled.button<{ $isExpanded: boolean }>`
 	&:active {
 		background-color: ${props => props.theme.COLOR.PRIMARY};
 		transform: scale(0.98);
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding: 1rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -97,6 +102,11 @@ export const MoreButton = styled(Link)`
 		transform: scale(0.98);
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding: 1rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 12px;
 		font-size: ${props => props.theme.FONT.SIZE.XS};
@@ -133,7 +143,11 @@ export const SourceLink = styled(Link)<{ $disabled?: boolean }>`
 		${disabledStyle}
 	}
 
-	${({ $disabled }) => $disabled && disabledStyle}
+	${props => props.$disabled && disabledStyle}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		width: 100%;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		width: 100%;
@@ -173,6 +187,20 @@ export const LinkButton = styled(Link)`
 
 	&:active {
 		transform: scale(0.98);
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding: 0.7rem 0.9rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+
+		&:hover {
+			transform: none;
+		}
+
+		svg {
+			width: 14px;
+			height: 14px;
+		}
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -223,6 +251,15 @@ export const ViewMoreButton = styled.button`
 
 	&:active {
 		transform: scale(0.98);
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding: 1rem 1.2rem;
+		font-size: ${props => props.theme.FONT.SIZE.MD};
+
+		&::after {
+			margin-left: 4px;
+		}
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -294,6 +331,11 @@ export const BackButton = styled.button`
 		transform: scale(0.98);
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-bottom: 1rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-bottom: 0.5rem;
 		font-size: ${props => props.theme.FONT.SIZE.XS};
@@ -322,6 +364,10 @@ export const ToggleButton = styled.button`
 
 	&:active {
 		color: ${props => props.theme.COLOR.PRIMARY};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		display: none;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

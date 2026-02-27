@@ -10,6 +10,10 @@ export const MainContainer = styled.main`
 	padding: 100px 60px;
 	min-height: 100vh;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding: 80px 1.8rem;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 80px 1.5rem;
 	}
@@ -18,6 +22,10 @@ export const MainContainer = styled.main`
 export const ContentSection = styled.section`
 	width: 100%;
 	margin-top: 5rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-top: 4rem;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-top: 4rem;
@@ -30,9 +38,13 @@ export const MainTitle = styled.div`
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	color: ${props => props.theme.COLOR.BLACK};
 	margin-top: 0.3rem;
+	line-height: 1.3;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-top: 0.2rem;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		font-size: ${props => props.theme.FONT.SIZE.H2};
 		margin-top: 0.2rem;
 	}
 `;
@@ -43,6 +55,10 @@ export const SubTitle = styled.span`
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.PRIMARY};
 	text-transform: uppercase;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
@@ -61,6 +77,13 @@ export const Description = styled.div`
 	line-height: 1.5;
 	white-space: pre-wrap;
 	word-break: keep-all;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		line-height: 1.2;
+		margin-top: 0.5rem;
+		margin-bottom: -2.5rem;
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		line-height: 1.2;
@@ -95,6 +118,19 @@ export const SectionTitle = styled.h3`
 
 		text-transform: uppercase;
 		letter-spacing: 1.5px;
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding-bottom: 0.6rem;
+		letter-spacing: 1px;
+		gap: 0.3rem;
+
+		font-size: ${props => props.theme.FONT.SIZE.LG};
+
+		span {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+			letter-spacing: 1px;
+		}
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

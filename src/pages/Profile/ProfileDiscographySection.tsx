@@ -10,13 +10,21 @@ import useImageFallback from '@/hooks/useImageFallback';
 const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const handleImgError = useImageFallback();
 
+	const getDisplayCount = () => {
+		const width = window.innerWidth;
+		if (width <= 480) return 4;
+		if (width <= 1100) return 6;
+		return 8;
+	};
+
 	const sliderRef = useRef<HTMLDivElement>(null);
+	const allAlbumsFlat = FULL_ALBUMS.flatMap(group => group.items);
+
 	const [isAtStart, setIsAtStart] = useState(true);
 	const [isAtEnd, setIsAtEnd] = useState(false);
-	const [isMobile, setIsMobile] = useState(false);
+	const [displayCount, setDisplayCount] = useState(getDisplayCount());
 
-	const allAlbumsFlat = FULL_ALBUMS.flatMap(group => group.items);
-	const displayAlbums = isMobile ? allAlbumsFlat.slice(0, 4) : allAlbumsFlat.slice(0, 8);
+	const displayAlbums = allAlbumsFlat.slice(0, displayCount);
 
 	const checkScrollPosition = () => {
 		if (sliderRef.current) {
@@ -35,7 +43,7 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 
 	useEffect(() => {
 		const handleResize = () => {
-			setIsMobile(window.innerWidth <= 800);
+			setDisplayCount(getDisplayCount());
 			setTimeout(checkScrollPosition, 0);
 		};
 

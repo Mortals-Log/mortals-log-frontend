@@ -14,6 +14,10 @@ export const MainContainer = styled(L.MainContainer)`
 	padding: 100px 60px 30px 60px;
 	margin: 0 auto;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding: 90px 50px 10px 50x;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 90px 16px 10px 16px;
 	}
@@ -33,22 +37,27 @@ export const HeroSection = styled(motion.section)`
 `;
 
 export const Description = styled.span`
-	font-family: ${props => props.theme.FONT.SERIF};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
-	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
-	color: ${props => props.theme.COLOR.PRIMARY};
-
-	letter-spacing: 0.4em;
-	text-transform: uppercase;
-	word-break: keep-all;
 	display: block;
 	margin-bottom: 1rem;
 
+	font-family: ${props => props.theme.FONT.SERIF};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
+	color: ${props => props.theme.COLOR.PRIMARY};
+	letter-spacing: 0.4rem;
+	word-break: keep-all;
+	text-align: center;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+		letter-spacing: 0.2rem;
+		margin-bottom: 0.8rem;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
-		letter-spacing: 0.2em;
+		letter-spacing: 0.2rem;
 		margin-bottom: 0.5rem;
-		text-align: center;
 	}
 `;
 
@@ -81,6 +90,10 @@ export const SubTitleWrapper = styled.div`
 	align-items: center;
 	gap: 0.8rem;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		gap: 0.5rem;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 0.5rem;
 	}
@@ -98,7 +111,19 @@ export const SubTitle = styled.span`
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		font-size: ${props => props.theme.FONT.SIZE.MD};
+
+		& + &::before {
+			margin-right: 0.5rem;
+		}
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
+
+		& + &::before {
+			margin-right: 0.5rem;
+		}
 	}
 `;

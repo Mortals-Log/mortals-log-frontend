@@ -48,8 +48,26 @@ export const Title = styled.div`
 		white-space: nowrap;
 	}
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		margin-bottom: 1.5rem;
+
+		.bottom-row {
+			align-items: flex-start;
+			flex-wrap: wrap;
+			gap: 12px;
+		}
+
+		.subtitle-column {
+			padding-bottom: 0;
+			margin-top: 12px;
+		}
+
+		small {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+		}
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		font-size: ${props => props.theme.FONT.SIZE.DISPLAY};
 		margin-bottom: 1.5rem;
 
 		.bottom-row {
@@ -96,6 +114,22 @@ export const DescriptionBox = styled.div`
 		font-size: ${props => props.theme.FONT.SIZE.MD};
 		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 		color: ${props => props.theme.COLOR.GRAY500};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		.main-text {
+			font-size: ${props => props.theme.FONT.SIZE.LG};
+			margin-bottom: 0.5rem;
+		}
+
+		.highlight {
+			font-size: ${props => props.theme.FONT.SIZE.MD};
+		}
+
+		.sub-text {
+			font-size: ${props => props.theme.FONT.SIZE.SM};
+			line-height: 1.3;
+		}
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {

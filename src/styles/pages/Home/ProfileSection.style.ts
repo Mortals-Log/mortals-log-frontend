@@ -21,6 +21,10 @@ export const ProfileSection = styled(L.ContentSection)`
 	justify-content: center;
 	margin: 0 auto;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		padding: 6rem 1rem;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 5rem 1rem;
 	}
@@ -45,6 +49,12 @@ export const BackgroundText = styled.div`
 	user-select: none;
 	pointer-events: none;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		font-size: 25vw;
+		top: 55%;
+		left: 30%;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: 30vw;
 		top: 55%;
@@ -67,7 +77,7 @@ export const SectionWrapper = styled.div`
 		gap: 3rem;
 	}
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		flex-direction: column;
 		gap: 2rem;
 	}
@@ -88,7 +98,7 @@ export const ImageSection = styled.div`
 		max-width: 290px;
 	}
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		width: 100%;
 		max-width: 280px;
 	}
@@ -120,6 +130,14 @@ export const HanjaBadge = styled.div`
 
 	writing-mode: vertical-rl;
 	letter-spacing: 0.7rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		top: -20px;
+		right: -10px;
+		padding: 15px 8px;
+		font-size: 1.5rem;
+		letter-spacing: 0.4rem;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		top: -10px;
@@ -167,7 +185,7 @@ export const ModifierContainer = styled.div`
 		}
 	}
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		display: none;
 	}
 
@@ -192,7 +210,7 @@ export const NameSection = styled.div`
 	margin-bottom: 3rem;
 	gap: 0.8rem;
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		align-items: flex-start;
 		flex-direction: column;
 		margin-bottom: 1rem;
@@ -206,11 +224,15 @@ export const NameSection = styled.div`
 	}
 `;
 
-export const ArtistName = styled.h2`
+export const ArtistName = styled.div`
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.H2};
 	font-weight: ${props => props.theme.FONT.WEIGHT.BOLD};
 	color: ${props => props.theme.COLOR.BLACK};
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		font-size: ${props => props.theme.FONT.SIZE.XL};
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.XL};
@@ -224,6 +246,10 @@ export const JobBadge = styled.span`
 	color: ${props => props.theme.COLOR.GRAY400};
 	letter-spacing: 0.1rem;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		font-size: ${props => props.theme.FONT.SIZE.MD};
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
@@ -236,7 +262,7 @@ export const DescriptionContainer = styled.div`
 	margin-bottom: 4rem;
 	gap: 0.8rem;
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		gap: 0.5rem;
 		margin-bottom: 1.5rem;
 	}
@@ -256,7 +282,7 @@ export const ProfileDescription = styled.p`
 	white-space: pre-wrap;
 	line-height: 1.8;
 
-	@media (max-width: 850px) {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		font-size: ${props => props.theme.FONT.SIZE.MD};
 	}
 

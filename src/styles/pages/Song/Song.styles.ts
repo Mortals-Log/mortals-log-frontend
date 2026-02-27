@@ -13,10 +13,14 @@ export const SortTabGroup = styled.ul`
 	margin-bottom: 1rem;
 	padding: 0 1.5rem;
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		gap: 1.2rem;
+		padding: 0 1.2rem;
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 1rem;
 		padding: 0 1rem;
-		margin-bottom: 1rem;
 	}
 `;
 
@@ -51,10 +55,6 @@ export const SortTabItem = styled.li<{ $isActive: boolean }>`
 		color: ${props => !props.$isActive && props.theme.COLOR.PRIMARY};
 		opacity: ${props => !props.$isActive && 0.8};
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		font-size: ${props => props.theme.FONT.SIZE.SM};
-	}
 `;
 
 export const TrackSection = styled.div`
@@ -62,6 +62,10 @@ export const TrackSection = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
+
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		gap: 0.4rem;
+	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 0.3rem;
