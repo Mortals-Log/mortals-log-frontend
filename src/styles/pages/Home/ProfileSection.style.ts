@@ -7,7 +7,7 @@ import { keyframes } from '@emotion/react';
 import * as L from '@/styles/common/Layout.style';
 
 export { ViewMoreButton } from '@/styles/components/Buttons.style';
-export { SourceLink } from '@/styles/components/Buttons.style';
+import * as B from '@/styles/components/Buttons.style';
 
 const fadeInBlur = keyframes`
   from { opacity: 0; filter: blur(10px); transform: translateY(10px); }
@@ -149,12 +149,7 @@ export const HanjaBadge = styled.div`
 `;
 
 export const TextSection = styled.div`
-	display: flex;
-	max-width: 550px;
-	flex: 1;
 	flex-direction: column;
-	justify-content: center;
-	align-items: flex-start;
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		width: 100%;
@@ -164,43 +159,57 @@ export const TextSection = styled.div`
 `;
 
 export const ModifierContainer = styled.div`
-	width: 100%;
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-end;
 	align-items: flex-start;
-	margin-bottom: 0.8rem;
-	gap: 0.5rem;
-	will-change: transform, opacity, filter;
 
-	a {
-		opacity: 0;
-	}
+	width: 400px;
+	min-height: 80px;
+
+	will-change: transform, opacity, filter;
 
 	&:hover {
 		a {
 			opacity: 1;
 		}
-		h3 {
+		p {
 			animation-play-state: paused;
 		}
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		display: none;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
 		display: none;
 	}
 `;
 
+export const ModifierLink = styled(B.SourceLink)`
+	width: auto;
+	opacity: 0;
+	margin-bottom: 8px;
+
+	white-space: normal;
+	overflow: visible;
+	text-overflow: clip;
+`;
+
 export const ModifierText = styled.p`
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+
+	line-height: 1.4;
+	margin: 0;
+
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.BOLD};
 	color: ${props => props.theme.COLOR.GRAY600};
 
-	line-height: 1.4;
+	text-align: left;
+	word-break: keep-all;
+
 	animation: ${fadeInBlur} 0.8s ease-out;
 `;
 
@@ -255,25 +264,11 @@ export const JobBadge = styled.span`
 	}
 `;
 
-export const DescriptionContainer = styled.div`
-	display: flex;
-	flex-direction: column;
+export const ProfileDescription = styled.div`
+	display: block;
 	align-items: flex-start;
 	margin-bottom: 4rem;
-	gap: 0.8rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		gap: 0.5rem;
-		margin-bottom: 1.5rem;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		align-items: center;
-		margin-bottom: 1.5rem;
-	}
-`;
-
-export const ProfileDescription = styled.p`
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.LG};
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
@@ -284,11 +279,14 @@ export const ProfileDescription = styled.p`
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		font-size: ${props => props.theme.FONT.SIZE.MD};
+		margin-bottom: 1.5rem;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 		text-align: center;
 		line-height: 1.6;
+
+		margin-bottom: 1.5rem;
 	}
 `;

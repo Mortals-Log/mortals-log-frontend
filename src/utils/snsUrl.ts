@@ -14,7 +14,11 @@ export const GetSnsUrl = (plat: string, id: string | undefined): string | null =
 	return config ? `${config.BASE_URL}${id}` : null;
 };
 
-export const GetSnsLabel = (plat: string, acc: string | undefined, title: string): string => {
+export const GetSnsLabel = (plat: string | undefined, acc: string | undefined, title: string): string => {
+	if (!plat) {
+		return acc ? `${acc} - ${title}` : title;
+	}
+
 	const platformName = plat.charAt(0).toUpperCase() + plat.slice(1).toLowerCase();
 	if (!acc) return `${platformName} - ${title}`;
 	return `${platformName}@${acc} - ${title}`;
