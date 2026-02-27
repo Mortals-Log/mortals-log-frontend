@@ -103,7 +103,7 @@ export const Description = styled.blockquote`
 	border-left: 3px solid ${props => props.theme.COLOR.PRIMARY};
 
 	font-family: ${props => props.theme.FONT.SERIF};
-	font-size: ${props => props.theme.FONT.SIZE.LG};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
 	line-height: 1.5;
@@ -113,7 +113,6 @@ export const Description = styled.blockquote`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		text-align: left;
 		margin: 1.5rem 0;
-		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -122,6 +121,5 @@ export const Description = styled.blockquote`
 		padding-left: 0;
 		padding-top: 1.5rem;
 		margin: 1.5rem auto 0;
-		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;
