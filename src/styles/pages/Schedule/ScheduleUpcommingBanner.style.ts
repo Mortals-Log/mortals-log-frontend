@@ -17,6 +17,7 @@ export const SliderContainer = styled.div`
 	scroll-snap-type: x mandatory;
 	scroll-behavior: smooth;
 	-webkit-overflow-scrolling: touch;
+
 	&::-webkit-scrollbar {
 		display: none;
 	}
@@ -40,11 +41,21 @@ export const BannerItem = styled.div<{ eventType: Schedule['type']; dDay: number
 
 	font-family: ${props => props.theme.FONT.SANS};
 
+	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+		width: 15rem;
+		min-height: 5rem;
+		padding: 1.4rem 0.8rem;
+	}
+
 	.info {
 		.dDay {
 			font-size: ${props => props.theme.FONT.SIZE.MD};
 			font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 			color: ${props => props.theme.COLOR.PRIMARY};
+
+			@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+				font-size: ${props => props.theme.FONT.SIZE.SM};
+			}
 		}
 		.date {
 			margin-left: 0.5rem;
