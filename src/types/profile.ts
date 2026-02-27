@@ -4,14 +4,6 @@
 
 import { Links } from './links';
 
-export interface Citation {
-	content: string;
-	platform: string;
-	account: string;
-	contentTitle: string;
-	postId: string;
-}
-
 export interface Profile {
 	id: string;
 	name: string;
@@ -19,7 +11,7 @@ export interface Profile {
 	hanjaName: string;
 
 	mainImage: string;
-	description: Citation;
+	description: string;
 
 	birth: [day: string, location: string];
 	nationality: string;
