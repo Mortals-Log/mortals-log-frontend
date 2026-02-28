@@ -1,4 +1,4 @@
-// @styles/components/Buttons.style
+// @/styles/components/Buttons.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -255,7 +255,6 @@ export const ViewMoreButton = styled.button`
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		padding: 1rem 1.2rem;
-		font-size: ${props => props.theme.FONT.SIZE.MD};
 
 		&::after {
 			margin-left: 4px;
@@ -265,10 +264,6 @@ export const ViewMoreButton = styled.button`
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 0.8rem 1.4rem;
 		font-size: ${props => props.theme.FONT.SIZE.SM};
-
-		&::after {
-			margin-left: 4px;
-		}
 	}
 `;
 

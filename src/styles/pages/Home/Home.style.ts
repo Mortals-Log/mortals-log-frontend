@@ -1,4 +1,4 @@
-//@styles/pages/Home/Home.style
+// @/styles/pages/Home/Home.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -48,7 +48,7 @@ export const Description = styled.span`
 	word-break: keep-all;
 	text-align: center;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+	@media ${props => props.theme.WINDOW_SIZE.laptop} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 		letter-spacing: 0.2rem;
 		margin-bottom: 0.8rem;
@@ -76,7 +76,7 @@ export const MainTitle = styled.h1`
 export const SubTitleContainer = styled(motion.div)`
 	overflow: hidden;
 	text-align: center;
-	white-space: nowrap;
+	white-space: pre-wrap;
 	margin: 1.5rem 0rem;
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
@@ -90,11 +90,7 @@ export const SubTitleWrapper = styled.div`
 	align-items: center;
 	gap: 0.8rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		gap: 0.5rem;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.laptop} {
 		gap: 0.5rem;
 	}
 `;
@@ -111,7 +107,7 @@ export const SubTitle = styled.span`
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+	@media ${props => props.theme.WINDOW_SIZE.laptop} {
 		font-size: ${props => props.theme.FONT.SIZE.MD};
 
 		& + &::before {
@@ -119,7 +115,7 @@ export const SubTitle = styled.span`
 		}
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 
 		& + &::before {

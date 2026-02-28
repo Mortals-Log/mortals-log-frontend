@@ -1,4 +1,4 @@
-// @styles/componenets/GNB.style
+// @/styles/componenets/GNB.style
 
 /* eslint-disable storybook/default-exports */
 
