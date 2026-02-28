@@ -4,12 +4,40 @@ import * as S from '@/styles/components/GNB.style';
 
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { startOfDay, parseISO, isAfter, isSameDay, differenceInDays } from 'date-fns';
 import { AnimatePresence, Variants } from 'framer-motion';
 import { ACTIVE_NAV_ITEMS, METADATA } from '@/const/contents';
-import { FULL_CONCERTS } from '@/const/concert';
 import MenuIcon from '@/assets/icons/MenuIcon';
 import CloseIcon from '@/assets/icons/CloseIcon';
-import { GetDDay, GetUpcomingSchedules } from '@/utils/date';
+import { CalendarSchedules } from '@/types/schedule';
+import { CALENDAR_SCHEDULES } from '@/utils/schedule';
+
+const getNextEvent = (schedules: CalendarSchedules) => {
+	const today = startOfDay(new Date());
+	const sortedDates = Object.keys(schedules).sort();
+
+	for (const dateStr of sortedDates) {
+		const eventDate = parseISO(dateStr);
+
+		if (isAfter(eventDate, today) || isSameDay(eventDate, today)) {
+			const diff = differenceInDays(eventDate, today);
+
+			if (diff <= 30) {
+				const firstEvent = schedules[dateStr][0];
+				if (firstEvent) {
+					return {
+						...firstEvent,
+						date: dateStr,
+						dDay: diff === 0 ? 'D-DAY' : `D-${diff}`,
+					};
+				}
+			} else {
+				break;
+			}
+		}
+	}
+	return null;
+};
 
 const GNB = () => {
 	const navigate = useNavigate();
@@ -20,6 +48,8 @@ const GNB = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== 'undefined' ? window.innerWidth <= 1100 : false);
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+	const nextEvent = useMemo(() => getNextEvent(CALENDAR_SCHEDULES), []);
 
 	const checkActive = (path: string) => {
 		if (path === '/') return currentPath === '/';
@@ -69,21 +99,6 @@ const GNB = () => {
 		},
 	};
 
-	const upcomingEvents = useMemo(() => GetUpcomingSchedules(FULL_CONCERTS), []);
-
-	const nextEvent = useMemo(() => {
-		if (upcomingEvents.length === 0) return null;
-		const nearestEvent = upcomingEvents[0];
-
-		const targetDate = nearestEvent.date.split('~')[0].trim();
-		const eventYear = nearestEvent.year;
-
-		return {
-			...nearestEvent,
-			dDay: GetDDay(`${eventYear}.${targetDate}`),
-		};
-	}, [upcomingEvents]);
-
 	const handleNavClick = (path: string) => {
 		if (path.startsWith('http')) {
 			window.open(path, '_blank', 'noopener,noreferrer');
@@ -119,16 +134,12 @@ const GNB = () => {
 				</S.NavGroup>
 
 				<S.UtilGroup>
-					<S.DDayContent className="pc-only">
-						{nextEvent ? (
-							<>
-								<span className="label">{nextEvent.content}</span>
-								<span className="count">{nextEvent.dDay}</span>
-							</>
-						) : (
-							<span className="label">공연을 기다리며</span>
-						)}
-					</S.DDayContent>
+					{nextEvent && (
+						<S.DDayContent to={`/schedule/${nextEvent.id}`} className="pc-only">
+							<span className="label">{nextEvent.content}</span>
+							<span className="count">{nextEvent.dDay}</span>
+						</S.DDayContent>
+					)}
 
 					<S.MenuButton onClick={toggleMenu}>
 						<MenuIcon isOpen={isMenuOpen} />
@@ -170,16 +181,12 @@ const GNB = () => {
 								))}
 							</S.MobileNavList>
 
-							<S.MobileDDayFooter>
-								{nextEvent ? (
-									<>
-										<span className="label">{nextEvent.content}</span>
-										<span className="count">{nextEvent.dDay}</span>
-									</>
-								) : (
-									<span className="label">공연을 기다리며</span>
-								)}
-							</S.MobileDDayFooter>
+							{nextEvent && (
+								<S.MobileDDayFooter to={`/schedule/${nextEvent.id}`}>
+									<span className="label">{nextEvent.content}</span>
+									<span className="count">{nextEvent.dDay}</span>
+								</S.MobileDDayFooter>
+							)}
 						</S.MobileMenu>
 					</>
 				)}

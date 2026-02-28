@@ -4,6 +4,7 @@
 
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export const GNBContainer = styled(motion.nav)`
 	position: fixed;
@@ -153,7 +154,7 @@ export const UtilGroup = styled.div`
 	z-index: 10;
 `;
 
-export const DDayContent = styled.div`
+export const DDayContent = styled(Link)`
 	display: flex;
 	min-width: 0;
 	align-items: center;
@@ -263,7 +264,7 @@ export const MobileNavItem = styled.li<{ $isActive?: boolean }>`
 	}
 `;
 
-export const MobileDDayFooter = styled.div`
+export const MobileDDayFooter = styled(Link)`
 	display: flex;
 	flex-direction: column;
 	margin-top: auto;
