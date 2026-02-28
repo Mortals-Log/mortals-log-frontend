@@ -1,4 +1,4 @@
-// @styles/components/AlbumCard.style
+// @/styles/components/AlbumCard.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -10,7 +10,7 @@ export const AlbumGrid = styled.div`
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	gap: 3rem 2rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+	@media ${props => props.theme.WINDOW_SIZE.laptop} {
 		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 		gap: 2rem;
 		padding: 1rem 0;
@@ -19,7 +19,6 @@ export const AlbumGrid = styled.div`
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		grid-template-columns: 1fr 1fr;
 		gap: 2rem 1rem;
-		padding: 1rem 0;
 	}
 `;
 
@@ -86,10 +85,6 @@ export const Overlay = styled.div`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		display: none;
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		display: none;
-	}
 `;
 
 export const AlbumInfo = styled.div`
@@ -141,12 +136,6 @@ export const AlbumInfo = styled.div`
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		margin-top: 0.8rem;
-
-		.title {
-			font-size: ${props => props.theme.FONT.SIZE.MD};
-		}
-
 		.type-wrap,
 		.date {
 			font-size: ${props => props.theme.FONT.SIZE.SM};

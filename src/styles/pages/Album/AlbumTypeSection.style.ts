@@ -1,4 +1,4 @@
-// @styles/pages/Album/AlbumTypeSection.style
+// @/styles/pages/Album/AlbumTypeSection.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -16,7 +16,7 @@ export const TabList = styled.nav`
 	top: 60px;
 	justify-content: space-between;
 	align-items: flex-start;
-	padding: 1.2rem 0;
+	padding: 1.2rem 0.5rem;
 	margin: 0;
 
 	background-color: ${props => props.theme.COLOR.WHITE}cc;
@@ -27,19 +27,14 @@ export const TabList = styled.nav`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		display: none;
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		display: none;
-	}
 `;
 
 export const TabGroup = styled.ul`
 	display: flex;
-	flex: 1;
 	flex-wrap: wrap;
-	gap: 0;
+	flex: 1;
+	padding: 0;
 	margin: 0;
-	padding: 0 3px;
 	gap: 1.5rem;
 
 	list-style: none;
@@ -58,11 +53,6 @@ export const TabGroup = styled.ul`
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		gap: 1rem 1.2rem;
-		padding: 0 5px;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 1rem 1.2rem;
 		padding: 0 5px;
 	}
@@ -97,13 +87,5 @@ export const TabItem = styled.li<{ $isActive: boolean }>`
 	&:hover {
 		color: ${props => !props.$isActive && props.theme.COLOR.PRIMARY};
 		opacity: ${props => !props.$isActive && 0.8};
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		font-size: ${props => props.theme.FONT.SIZE.SM};
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;

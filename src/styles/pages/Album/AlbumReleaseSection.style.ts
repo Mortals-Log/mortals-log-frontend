@@ -1,4 +1,4 @@
-// @styles/pages/Album/AlbumReleaseSection.style
+// @/styles/pages/Album/AlbumReleaseSection.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -16,11 +16,6 @@ export const AlbumMobileSection = styled.section`
 		display: block;
 		scroll-margin-top: 4rem;
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		display: block;
-		scroll-margin-top: 4rem;
-	}
 `;
 
 export const YearSection = styled.section<{ isOpen: boolean }>`
@@ -34,10 +29,6 @@ export const YearSection = styled.section<{ isOpen: boolean }>`
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		display: none;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		display: none;
 	}
 `;
