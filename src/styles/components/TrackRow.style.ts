@@ -1,4 +1,4 @@
-// @styles/components/TrackRow.style.ts
+// @/styles/components/TrackRow.style.ts
 
 /* eslint-disable storybook/default-exports */
 
@@ -10,11 +10,7 @@ export const TrackInfo = styled.div`
 	min-width: 0;
 	flex: 1;
 	flex-direction: column;
-	gap: 4px;
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
-		gap: 1px;
-	}
+	gap: 1px;
 `;
 
 export const AlbumName = styled.div`
@@ -26,7 +22,7 @@ export const AlbumName = styled.div`
 	white-space: pre-wrap;
 	word-break: keep-all;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;
@@ -59,17 +55,15 @@ export const SongNumber = styled.span`
 	width: 25px;
 	margin-right: 1.5rem;
 	font-family: ${props => props.theme.FONT.SERIF};
-	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
 	color: ${props => props.theme.COLOR.PRIMARY};
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		margin-right: 1.2rem;
-		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-right: 1rem;
-		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;
 
