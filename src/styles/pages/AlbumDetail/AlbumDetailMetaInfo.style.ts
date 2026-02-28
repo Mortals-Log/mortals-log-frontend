@@ -1,4 +1,4 @@
-// @styles/pages/Alubm/AlbumDetailMetaInfo.style
+// @/styles/pages/AlbumDetail/AlbumDetailMetaInfo.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -29,13 +29,6 @@ export const ContentSection = styled.section`
 	padding: 2rem 0;
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		flex-direction: column;
-		align-items: center;
-		gap: 2rem;
-		padding: 0.5rem;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		flex-direction: column;
 		align-items: center;
 		gap: 2rem;
@@ -90,17 +83,6 @@ export const TypeWrap = styled.div`
 			content: '|';
 			margin-right: 8px;
 			color: ${props => props.theme.COLOR.GRAY300};
-		}
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		font-size: ${props => props.theme.FONT.SIZE.SM};
-		gap: 4px;
-
-		.vol {
-			&::before {
-				margin-right: 4px;
-			}
 		}
 	}
 

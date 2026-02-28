@@ -1,5 +1,5 @@
-// @styles/components/AlbumDetail.style
+// @/styles/pages/AlbumDetail/AlbumDetail.style
 
 /* eslint-disable storybook/default-exports */
 
-export * from '@/styles/common/Layout.style';
+export { MainContainer, MainTitle } from '@/styles/common/Layout.style';

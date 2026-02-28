@@ -1,4 +1,4 @@
-// @/styles/pates/Album/AlbumDetailTracks.style
+// @/styles/pages/AlbumDetail/AlbumDetailTracks.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -25,7 +25,7 @@ export const SideTitle = styled.div`
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;

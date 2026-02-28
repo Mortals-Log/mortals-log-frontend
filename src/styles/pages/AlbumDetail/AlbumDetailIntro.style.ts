@@ -1,4 +1,4 @@
-// @styles/pages/Alubm/AlbumDetailIntro.style
+// @/styles/pages/AlbumDetail/AlbumDetailIntro.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -59,7 +59,6 @@ export const IntroContainer = styled.div<{ $isExpanded: boolean }>`
 
 		@media ${props => props.theme.WINDOW_SIZE.mobile} {
 			max-height: ${props => (props.$isExpanded ? '' : '230px')};
-			font-size: ${props => props.theme.FONT.SIZE.SM};
 		}
 	}
 `;
