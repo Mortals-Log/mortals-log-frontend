@@ -35,6 +35,10 @@ export const MainTitle = styled.div`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		margin-top: 0.2rem;
 	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.H3};
+	}
 `;
 
 export const SubTitle = styled.span`
@@ -46,6 +50,10 @@ export const SubTitle = styled.span`
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
+	}
+
+	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;
 
@@ -66,11 +74,10 @@ export const Description = styled.div`
 		line-height: 1.2;
 		margin-top: 0.5rem;
 		margin-bottom: -2.5rem;
-		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		margin-top: 0.6rem;
+		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;
 
