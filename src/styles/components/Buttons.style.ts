@@ -148,10 +148,6 @@ export const SourceLink = styled(Link)<{ $disabled?: boolean }>`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		width: 100%;
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		width: 100%;
-	}
 `;
 
 export const LinkButton = styled(Link)`
@@ -192,20 +188,6 @@ export const LinkButton = styled(Link)`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		padding: 0.7rem 0.9rem;
 		font-size: ${props => props.theme.FONT.SIZE.SM};
-
-		&:hover {
-			transform: none;
-		}
-
-		svg {
-			width: 14px;
-			height: 14px;
-		}
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		padding: 0.7rem 0.9rem;
-		font-size: ${props => props.theme.FONT.SIZE.XS};
 
 		&:hover {
 			transform: none;

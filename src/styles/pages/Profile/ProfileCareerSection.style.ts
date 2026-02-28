@@ -1,4 +1,4 @@
-// @styles/pages/Profile/ProfileCareerSection.style
+// @/styles/pages/Profile/ProfileCareerSection.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -79,9 +79,7 @@ export const TimelineYearGroup = styled.div`
 		}
 
 		@media ${props => props.theme.WINDOW_SIZE.mobile} {
-			margin-bottom: 0;
 			gap: 0.5rem;
-			font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 		}
 	}
 `;
@@ -96,8 +94,8 @@ export const TimelineItem = styled.div`
 	position: relative;
 	display: flex;
 	align-items: flex-start;
-	gap: 1rem;
-	padding: 0.8rem 1rem;
+	gap: 0.8rem;
+	padding: 0.7rem 1rem;
 
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.MD};
@@ -149,10 +147,6 @@ export const TimelineItem = styled.div`
 			width: 4px;
 			height: 4px;
 			margin-top: 0.5rem;
-		}
-
-		.date {
-			min-width: 42px;
 		}
 	}
 `;

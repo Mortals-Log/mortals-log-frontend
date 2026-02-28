@@ -1,4 +1,4 @@
-// @styles/pages/Profile/ProfileDiscographySection.style
+// @/styles/pages/Profile/ProfileDiscographySection.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -36,11 +36,8 @@ export const Slider = styled.div`
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		display: grid;
-		width: 100%;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 2rem;
-		overflow-x: visible;
 	}
 `;
 
@@ -96,10 +93,6 @@ export const SliderNavButton = styled.button<{ $direction: 'left' | 'right' }>`
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		display: none;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		display: none;
 	}
 `;
@@ -181,10 +174,6 @@ export const Overlay = styled.div`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		display: none;
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		display: none;
-	}
 `;
 
 export const AlbumInfo = styled.div`
@@ -211,17 +200,6 @@ export const AlbumInfo = styled.div`
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		margin-top: 8px;
-
-		.title {
-			font-size: ${props => props.theme.FONT.SIZE.SM};
-		}
-		.info {
-			font-size: ${props => props.theme.FONT.SIZE.XS};
-		}
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-top: 8px;
 
 		.title {

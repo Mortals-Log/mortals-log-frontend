@@ -1,4 +1,4 @@
-// @styles/pages/common/Layout.style
+// @/styles/pages/common/Layout.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -21,15 +21,7 @@ export const MainContainer = styled.main`
 
 export const ContentSection = styled.section`
 	width: 100%;
-	margin-top: 5rem;
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		margin-top: 4rem;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		margin-top: 4rem;
-	}
+	margin-top: 4rem;
 `;
 
 export const MainTitle = styled.div`
@@ -43,10 +35,6 @@ export const MainTitle = styled.div`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		margin-top: 0.2rem;
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		margin-top: 0.2rem;
-	}
 `;
 
 export const SubTitle = styled.span`
@@ -57,10 +45,6 @@ export const SubTitle = styled.span`
 	text-transform: uppercase;
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		font-size: ${props => props.theme.FONT.SIZE.SM};
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;
@@ -86,27 +70,24 @@ export const Description = styled.div`
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		line-height: 1.2;
 		margin-top: 0.6rem;
-		margin-bottom: -2.5rem;
-		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;
 
-export const SectionTitle = styled.h3`
+export const SectionTitle = styled.div`
 	display: flex;
 	width: 100%;
 	align-items: baseline;
-	gap: 0.5rem;
+	gap: 0.3rem;
 
 	font-family: ${props => props.theme.FONT.SERIF};
-	font-size: ${props => props.theme.FONT.SIZE.H3};
+	font-size: ${props => props.theme.FONT.SIZE.XL};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
 
 	border-bottom: 2px solid ${props => props.theme.COLOR.PRIMARY};
 	padding-bottom: 1rem;
-	letter-spacing: 2px;
+	letter-spacing: 1px;
 
 	flex-wrap: wrap;
 	word-break: keep-all;
@@ -117,31 +98,20 @@ export const SectionTitle = styled.h3`
 		color: ${props => props.theme.COLOR.GRAY500};
 
 		text-transform: uppercase;
-		letter-spacing: 1.5px;
+		letter-spacing: 1px;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		padding-bottom: 0.6rem;
-		letter-spacing: 1px;
-		gap: 0.3rem;
-
 		font-size: ${props => props.theme.FONT.SIZE.LG};
-
-		span {
-			font-size: ${props => props.theme.FONT.SIZE.SM};
-			letter-spacing: 1px;
-		}
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding-bottom: 0.7rem;
-		letter-spacing: 1px;
-
 		gap: 0.4rem;
 
 		span {
 			font-size: ${props => props.theme.FONT.SIZE.XS};
-			letter-spacing: 1px;
 		}
 	}
 `;
