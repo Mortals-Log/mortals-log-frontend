@@ -1,4 +1,4 @@
-// @styles/pages/About/AboutInquirySection.style
+// @/styles/pages/About/AboutInquirySection.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -10,19 +10,19 @@ export const ButtonGrid = styled.div`
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	margin-top: 2rem;
-	gap: 1rem;
+	margin-top: 1.5rem;
+	gap: 0.5rem;
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		grid-template-columns: 1fr;
-		gap: 0.8rem;
 		margin-top: 1rem;
+		gap: 0.8rem;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		grid-template-columns: 1fr;
-		gap: 1rem;
 		margin-top: 1.5rem;
+		gap: 1rem;
 	}
 `;
 
@@ -34,19 +34,16 @@ export const InquiryButtn = styled(Link)`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	gap: 0.5rem;
 
 	background-color: ${props => props.theme.COLOR.GRAY50};
 	border: 1px solid ${props => props.theme.COLOR.GRAY200};
 	border-radius: 10px;
 
 	font-family: ${props => props.theme.FONT.SANS};
-
-	strong {
-		font-size: ${props => props.theme.FONT.SIZE.LG};
-		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-		color: ${props => props.theme.COLOR.PRIMARY};
-		margin-bottom: 0.5rem;
-	}
+	font-size: ${props => props.theme.FONT.SIZE.LG};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	color: ${props => props.theme.COLOR.PRIMARY};
 
 	span {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
@@ -57,13 +54,10 @@ export const InquiryButtn = styled(Link)`
 	&:hover {
 		border-color: ${props => props.theme.COLOR.PRIMARY};
 		background-color: ${props => props.theme.COLOR.PRIMARY};
-
-		strong {
-			color: ${props => props.theme.COLOR.WHITE};
-		}
+		color: ${props => props.theme.COLOR.WHITE};
 
 		span {
-			color: ${props => props.theme.COLOR.GRAY300};
+			color: ${props => props.theme.COLOR.GRAY100};
 		}
 	}
 
@@ -73,17 +67,6 @@ export const InquiryButtn = styled(Link)`
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		padding: 1.5rem;
-
-		strong {
-			font-size: ${props => props.theme.FONT.SIZE.MD};
-		}
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		padding: 1.5rem;
-
-		strong {
-			font-size: ${props => props.theme.FONT.SIZE.MD};
-		}
+		font-size: ${props => props.theme.FONT.SIZE.MD};
 	}
 `;
