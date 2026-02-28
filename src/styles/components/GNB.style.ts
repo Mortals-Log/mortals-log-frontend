@@ -29,6 +29,7 @@ export const Inner = styled.div`
 
 export const LogoGroup = styled.div`
 	display: flex;
+	flex: 1;
 	align-items: center;
 	gap: 1rem;
 	z-index: 10;
@@ -70,7 +71,7 @@ export const Tagline = styled(motion.div)`
 	white-space: nowrap;
 	background-color: transparent;
 
-	@media (max-width: 1200px) {
+	@media ${props => props.theme.WINDOW_SIZE.laptop} {
 		position: absolute;
 		bottom: 100%;
 		left: 0;
@@ -85,16 +86,16 @@ export const Tagline = styled(motion.div)`
 
 export const NavGroup = styled.ul`
 	display: flex;
-	position: absolute;
+	flex: 2;
+	align-items: center;
+	justify-content: center;
 	list-style: none;
-	z-index: 5;
-	left: 50%;
-	top: 50%;
 	gap: 3rem;
-	transform: translate(-50%, -50%);
+	z-index: 5;
 
-	@media (max-width: 1200px) {
-		gap: 1.5rem;
+	@media ${props => props.theme.WINDOW_SIZE.laptop} {
+		gap: 1.8rem;
+		margin: 0 1rem;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
@@ -143,24 +144,34 @@ export const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
 
 export const UtilGroup = styled.div`
 	display: flex;
+	flex: 1;
 	align-items: center;
+	justify-content: flex-end;
+	flex-shrink: 0;
+	min-width: 0;
 	gap: 0.8rem;
 	z-index: 10;
 `;
 
 export const DDayContent = styled.div`
 	display: flex;
+	min-width: 0;
 	align-items: center;
-	gap: 0.8rem;
+	margin-left: 8px;
+	gap: 0.5rem;
 	font-size: ${props => props.theme.FONT.SIZE.SM};
+	white-space: nowrap;
 
 	.label {
 		font-family: ${props => props.theme.FONT.SERIF};
 		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 		color: ${props => props.theme.COLOR.GRAY500};
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.count {
+		flex-shrink: 0;
 		font-family: ${props => props.theme.FONT.SANS};
 		font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
 		color: ${props => props.theme.COLOR.PRIMARY};
