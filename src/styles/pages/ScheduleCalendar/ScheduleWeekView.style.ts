@@ -1,4 +1,7 @@
+// @/styles/pages/ScheduleCalendar/ScheduleWeekView.style.ts
+
 /* eslint-disable storybook/default-exports */
+
 import styled from '@emotion/styled';
 import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
 import { Schedule } from '@/types/schedule';
@@ -20,7 +23,7 @@ export const WeekContainer = styled.div`
 	overflow: hidden;
 	background-color: transparent;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		width: 100vw;
 		position: relative;
 		left: 50%;
@@ -58,7 +61,6 @@ export const DayContainer = styled.div<DayContainerProps>`
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		min-height: 180px;
-		border-radius: 4px;
 	}
 `;
 
@@ -166,14 +168,6 @@ export const ScheduleItem = styled.div<ItemProps>`
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		line-height: 1.5;
-		max-height: 3rem;
-		padding: 0.2rem 0.3rem;
-
 		font-size: ${props => props.theme.FONT.SIZE.TINY};
-
-		white-space: normal;
-		overflow: hidden;
-		text-overflow: clip;
 	}
 `;

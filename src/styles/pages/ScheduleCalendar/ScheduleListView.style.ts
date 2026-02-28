@@ -1,4 +1,4 @@
-// @styles/pages/Schedule/ScheduleListView.style.ts
+// @/styles/pages/ScheduleCalendar/ScheduleListView.style.ts
 
 /* eslint-disable storybook/default-exports */
 
@@ -23,7 +23,7 @@ export const ListWrapper = styled.div`
 	gap: 2px;
 	overflow: hidden;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		width: 100vw;
 		position: relative;
 		left: 50%;
@@ -52,7 +52,7 @@ export const DayContainer = styled.div<DayContainerProps>`
 		border-radius: 10px;
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		padding: 1rem 0.8rem;
 		gap: 0.5rem;
 	}
@@ -97,10 +97,6 @@ export const DayHeader = styled.div<DayContainerProps>`
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		min-width: 30px;
-
-		.day_number {
-			font-size: ${props => props.theme.FONT.SIZE.SM};
-		}
 
 		.day_name {
 			font-size: ${props => props.theme.FONT.SIZE.TINY};

@@ -1,4 +1,4 @@
-// @styles/pages/Schedule/ScheduleCalendar.style
+// @styles/pages/ScheduleCalendar/ScheduleCalendar.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -10,16 +10,11 @@ import { Schedule } from '@/types/schedule';
 export const ScheduleToolbar = styled.div`
 	display: flex;
 	justify-content: flex-end;
-	gap: 12px;
+	gap: 8px;
 	margin-bottom: 0.3rem;
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		gap: 8px;
-	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		justify-content: space-between;
-		gap: 8px;
 	}
 `;
 
@@ -101,7 +96,7 @@ export const ScheduleWrapper = styled.div<{ $viewType: string }>`
 		line-height: 1.125em;
 		margin-top: 1rem;
 
-		@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+		@media ${props => props.theme.WINDOW_SIZE.tablet} {
 			width: 100vw;
 			position: relative;
 			left: 50%;
