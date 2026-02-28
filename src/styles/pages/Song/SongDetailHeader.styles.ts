@@ -1,4 +1,4 @@
-// @styles/pages/Song/SongDetailHeader.style
+// @/styles/pages/Song/SongDetailHeader.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -24,12 +24,8 @@ export const MainTitle = styled(L.MainTitle)`
 
 export const HeaderSection = styled.section`
 	margin-top: 0.5rem;
-	padding-bottom: 1rem;
+	padding-bottom: 0.8rem;
 	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY200};
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		padding-bottom: 0.8rem;
-	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding-bottom: 0.5rem;
@@ -39,24 +35,13 @@ export const HeaderSection = styled.section`
 export const OriginalLinkGroup = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.5rem;
-	margin-top: 0.8rem;
-	margin-bottom: 0.4rem;
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		gap: 0.3rem;
-		margin-top: 0.5rem;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		gap: 0.3rem;
-		margin-top: 0.5rem;
-	}
+	gap: 0.3rem;
+	margin-top: 0.5rem;
 `;
 
 export const OriginalLink = styled.button`
 	display: inline;
-	padding: 0.4rem 0.8rem;
+	padding: 0.4rem 0.6rem;
 
 	background: ${props => props.theme.COLOR.GRAY50};
 	border: 1px solid ${props => props.theme.COLOR.GRAY300};
@@ -76,19 +61,13 @@ export const OriginalLink = styled.button`
 		color: ${props => props.theme.COLOR.WHITE};
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		padding: 0.4rem 0.6rem;
-		font-size: ${props => props.theme.FONT.SIZE.SM};
-	}
-
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		padding: 0.4rem 0.6rem;
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;
 
 export const Description = styled.div`
-	margin-top: 1rem;
+	margin-top: 0.5rem;
 
 	font-family: ${props => props.theme.FONT.SANS};
 	font-size: ${props => props.theme.FONT.SIZE.SM};
@@ -101,7 +80,7 @@ export const Description = styled.div`
 	.type {
 		&::after {
 			content: '|';
-			margin: 0 0.3rem;
+			margin: 0 0.2rem;
 			color: ${props => props.theme.COLOR.PRIMARY};
 			opacity: 0.6;
 		}
@@ -118,21 +97,7 @@ export const Description = styled.div`
 		}
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		margin-top: 0.5rem;
-		font-size: ${props => props.theme.FONT.SIZE.SM};
-
-		.type::after {
-			margin: 0 0.2rem;
-		}
-	}
-
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		margin-top: 0.5rem;
 		font-size: ${props => props.theme.FONT.SIZE.XS};
-
-		.type::after {
-			margin: 0 0.2rem;
-		}
 	}
 `;

@@ -1,4 +1,4 @@
-// @styles/pages/Song/SongDetail.style
+// @/styles/pages/Song/SongDetail.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -9,21 +9,13 @@ export * from '@/styles/common/VideoWrapper.style';
 export { PrimaryButton } from '@/styles/components/Buttons.style';
 
 export const ContentSection = styled(L.ContentSection)`
-	margin-top: 1rem;
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
-		margin-top: 0.5rem;
-	}
+	margin-top: 0.5rem;
 `;
 
 export const ContentHeader = styled.div`
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 0.5rem;
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
-		margin-bottom: 0.3rem;
-	}
+	margin-bottom: 0.3rem;
 `;
 
 export const TabGroup = styled.div`
@@ -139,7 +131,7 @@ export const GuideWrapper = styled.div`
 		}
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		.guide-item {
 			font-size: ${props => props.theme.FONT.SIZE.XS};
 		}
@@ -163,7 +155,7 @@ export const StickyChordBar = styled.div`
 	z-index: 10;
 
 	padding: 1rem 1.5rem;
-	margin: 2rem 0;
+	margin: 1rem 0;
 
 	background-color: ${props => props.theme.COLOR.WHITE}cc;
 	backdrop-filter: blur(15px);
@@ -182,9 +174,8 @@ export const StickyChordBar = styled.div`
 		word-break: break-all;
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		top: 60px;
-		margin: 1rem 0;
 
 		.chord {
 			font-size: ${props => props.theme.FONT.SIZE.SM};
