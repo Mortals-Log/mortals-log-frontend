@@ -1,4 +1,4 @@
-// @styles/pages/Schedule/ScheduleCalandarAgenda.style
+// @/styles/pages/Schedule/ScheduleCalandarAgenda.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -18,13 +18,9 @@ export const AgendaHeader = styled.div`
 	margin-bottom: 1rem;
 
 	font-family: ${props => props.theme.FONT.SERIF};
-	font-size: ${props => props.theme.FONT.SIZE.LG};
+	font-size: ${props => props.theme.FONT.SIZE.MD};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
-		font-size: ${props => props.theme.FONT.SIZE.MD};
-	}
 `;
 
 export const AgendaList = styled.div`
@@ -61,18 +57,13 @@ export const ItemContentGroup = styled.div`
 
 export const ContentText = styled.span`
 	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY700};
 
 	white-space: pre-wrap;
 	word-break: keep-all;
-	line-height: 1.6;
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
-		font-size: ${props => props.theme.FONT.SIZE.SM};
-		line-height: 1.4;
-	}
+	line-height: 1.4;
 `;
 
 export const TimeTag = styled.div`
@@ -81,7 +72,7 @@ export const TimeTag = styled.div`
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY600};
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;

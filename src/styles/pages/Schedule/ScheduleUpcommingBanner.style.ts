@@ -1,4 +1,4 @@
-// @styles/pages/Schedule/ScheduleUpcommingBanner.style.ts
+// @/styles/pages/Schedule/ScheduleUpcommingBanner.style.ts
 
 /* eslint-disable storybook/default-exports */
 
@@ -23,10 +23,10 @@ export const SliderContainer = styled.div`
 	}
 `;
 
-export const BannerItem = styled.div<{ eventType: Schedule['type']; dDay: number }>`
+export const BannerItem = styled.div<{ $eventType: Schedule['type']; $dDay: number }>`
 	display: flex;
 	position: relative;
-	width: 20rem;
+	width: 18rem;
 	min-height: 6rem;
 	padding: 1.5rem 1rem;
 
@@ -35,13 +35,13 @@ export const BannerItem = styled.div<{ eventType: Schedule['type']; dDay: number
 	flex-shrink: 0;
 
 	border-radius: 8px;
-	border: 1.3px solid ${props => (props.dDay == 0 ? props.theme.COLOR.PRIMARY : props.theme.COLOR.GRAY100)};
+	border: 1.3px solid ${props => (props.$dDay == 0 ? props.theme.COLOR.PRIMARY : props.theme.COLOR.GRAY100)};
 	transition: all 0.15s ease-in-out;
 	cursor: pointer;
 
 	font-family: ${props => props.theme.FONT.SANS};
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		width: 15rem;
 		min-height: 5rem;
 		padding: 1.4rem 0.8rem;
@@ -82,7 +82,7 @@ export const BannerItem = styled.div<{ eventType: Schedule['type']; dDay: number
 	}
 
 	&:hover {
-		border: 1.3px solid ${props => SCHEDULE_TYPE_COLORS[props.eventType].text + '33'};
-		background-color: ${props => SCHEDULE_TYPE_COLORS[props.eventType].bg + '66'};
+		border: 1.3px solid ${props => SCHEDULE_TYPE_COLORS[props.$eventType].text + '33'};
+		background-color: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].bg + '66'};
 	}
 `;

@@ -62,12 +62,8 @@ export const MVBadge = styled(LeadBadge)`
 
 export const TypeBadge = styled(LeadBadge)<{ $eventType: Schedule['type'] }>`
 	background: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].bg};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-size: ${props => props.theme.FONT.SIZE.XS};
 	color: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].text};
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		font-size: ${props => props.theme.FONT.SIZE.XS};
-	}
 `;
 
 export const MusicBadge = styled.a`
