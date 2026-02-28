@@ -1,4 +1,4 @@
-// @styles/pages/Schedule/ScheduleDetailBody.style.ts
+// @/styles/pages/Schedule/ScheduleDetailBody.style.ts
 
 /* eslint-disable storybook/default-exports */
 
@@ -14,7 +14,7 @@ export const MainSection = styled.div`
 	align-items: center;
 	gap: 3rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		flex-direction: column;
 	}
 `;
@@ -34,7 +34,7 @@ export const ImageWrapper = styled.div`
 		display: block;
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		flex: 1;
 		max-width: 400px;
 	}
@@ -46,7 +46,7 @@ export const ContentSection = styled.div`
 	flex-direction: column;
 	gap: 2.5rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		gap: 2rem;
 	}
 `;
@@ -182,7 +182,6 @@ export const MapFrameWrapper = styled.div`
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		height: 300px;
-		border-radius: 4px;
 	}
 `;
 
@@ -208,7 +207,7 @@ export const HashTag = styled.button`
 		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		padding: 0.3rem;
 	}
 `;
@@ -219,7 +218,7 @@ export const CopyAnnotation = styled.div`
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	color: ${props => props.theme.COLOR.GRAY500};
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
 `;
