@@ -175,21 +175,68 @@ export const ScheduleWrapper = styled.div<{ $viewType: string }>`
 		color: ${props => props.theme.COLOR.GRAY300};
 	}
 
-	/* 네비게이션 버튼 ( < 2026년 2월 > ) */
+	/* 6. 네비게이션 버튼 ( < 2026년 2월 > ) */
 	.react-calendar__navigation {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 4px;
 		margin-bottom: 1rem;
 
-		@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+		@media ${props => props.theme.WINDOW_SIZE.tablet} {
 			margin-left: 0.5rem;
 		}
 
-		button {
-			min-width: 2rem;
+		/* 1. 화살표 버튼 */
+		.react-calendar__navigation__arrow {
+			flex: 0 0 auto;
+			min-width: 2.5rem;
+			width: auto;
+		}
+
+		/* 2. 연/월 레이블 */
+		.react-calendar__navigation__label {
+			flex: 0 1 auto;
 			padding: 0.5rem 1rem;
-			background: none;
+			font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
+
+			min-width: fit-content;
+		}
+
+		/* 3. 공통 버튼 스타일 */
+		button {
+			display: flex;
+			flex: none !important;
+			align-items: center;
+			justify-content: center;
+
+			width: 2.5rem;
+			height: 2rem;
+
+			padding: 0.5rem 0.8rem;
+			background: transparent;
+			border: none;
+
 			font-size: ${props => props.theme.FONT.SIZE.MD};
 			font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 			color: ${props => props.theme.COLOR.GRAY700};
+
+			/* 안쪽 커스텀 버튼 */
+			& > button {
+				width: 100%;
+				height: 100%;
+				background: transparent;
+				border: none;
+				font-family: inherit;
+				font-size: inherit;
+				font-weight: inherit;
+				color: inherit;
+				cursor: inherit;
+				padding: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
 
 			&:disabled {
 				background-color: none;
