@@ -1,4 +1,4 @@
-// @types/event
+// @/types/event
 
 /* eslint-disable storybook/default-exports */
 

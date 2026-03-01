@@ -1,4 +1,4 @@
-//@/styles/pages/Goods/Goods.style
+//@/styles/pages/Goods/Goods
 
 /* eslint-disable storybook/default-exports */
 

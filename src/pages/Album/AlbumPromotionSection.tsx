@@ -1,4 +1,4 @@
-// @pages/Album/AlbumPromotionSection
+// @/pages/Album/AlbumPromotionSection
 
 import * as S from '@/styles/pages/Album/AlbumPromotionSection.style';
 

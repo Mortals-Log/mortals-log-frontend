@@ -1,4 +1,4 @@
-// @src/constants/links.ts
+// @/constants/links
 
 /* eslint-disable storybook/default-exports */
 

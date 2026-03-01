@@ -1,4 +1,4 @@
-// @const/about.ts
+// @/const/about
 
 /* eslint-disable storybook/default-exports */
 

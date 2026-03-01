@@ -1,4 +1,4 @@
-// @/styles/pages/Profile/ProfileDiscographySection.style
+// @/styles/pages/Profile/ProfileDiscographySection
 
 /* eslint-disable storybook/default-exports */
 

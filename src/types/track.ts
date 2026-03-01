@@ -1,4 +1,4 @@
-// @types/track
+// @/types/track
 
 /* eslint-disable storybook/default-exports */
 

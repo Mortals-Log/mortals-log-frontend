@@ -1,4 +1,4 @@
-// @/styles/pages/Music/Music.style
+// @/styles/pages/Music/Music
 
 /* eslint-disable storybook/default-exports */
 

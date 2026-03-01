@@ -1,4 +1,4 @@
-// @const/event.ts
+// @/const/event
 
 /* eslint-disable storybook/default-exports */
 

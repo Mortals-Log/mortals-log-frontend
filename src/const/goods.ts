@@ -1,4 +1,4 @@
-// @const/goods
+// @/const/goods
 
 /* eslint-disable storybook/default-exports */
 

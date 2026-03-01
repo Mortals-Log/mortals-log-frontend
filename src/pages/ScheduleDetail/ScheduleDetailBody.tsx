@@ -1,4 +1,4 @@
-// @pages/Schedule/ScheduleDetailBody.tsx
+// @/pages/Schedule/ScheduleDetailBody
 
 import * as S from '@/styles/pages/ScheduleDetail/ScheduleDetailBody.style';
 

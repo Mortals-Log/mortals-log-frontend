@@ -1,4 +1,4 @@
-// @pages/Schedule/ScheduleCalandarAgenda.tsx
+// @/pages/Schedule/ScheduleCalandarAgenda
 
 import * as S from '@/styles/pages/Schedule/ScheduleCalandarAgenda.style';
 

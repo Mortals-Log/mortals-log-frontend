@@ -1,4 +1,4 @@
-// @pages/ScheduleCalendar/ScheduleListView.tsx
+// @/pages/ScheduleCalendar/ScheduleListView
 
 import * as S from '@/styles/pages/ScheduleCalendar/ScheduleListView.style';
 

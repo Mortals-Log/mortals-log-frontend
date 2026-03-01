@@ -1,4 +1,4 @@
-// @/styles/pages/Profile/ProfileCareerSection.style
+// @/styles/pages/Profile/ProfileCareerSection
 
 /* eslint-disable storybook/default-exports */
 

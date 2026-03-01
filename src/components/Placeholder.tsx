@@ -1,4 +1,4 @@
-// @components/Placeholder.tsx
+// @/components/Placeholder
 
 import * as S from '@/styles/components/Placeholder.style';
 

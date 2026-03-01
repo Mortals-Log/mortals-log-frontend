@@ -1,4 +1,4 @@
-// @const/contents
+// @/const/profile
 
 /* eslint-disable storybook/default-exports */
 

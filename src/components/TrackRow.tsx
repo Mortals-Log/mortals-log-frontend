@@ -1,4 +1,4 @@
-// @pages/components/TrackRow.ts
+// @/components/TrackRow
 
 import * as S from '@styles/components/TrackRow.style';
 

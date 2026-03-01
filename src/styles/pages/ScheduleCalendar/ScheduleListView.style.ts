@@ -1,4 +1,4 @@
-// @/styles/pages/ScheduleCalendar/ScheduleListView.style.ts
+// @/styles/pages/ScheduleCalendar/ScheduleListView
 
 /* eslint-disable storybook/default-exports */
 

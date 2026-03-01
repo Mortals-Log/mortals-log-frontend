@@ -1,4 +1,4 @@
-// @/styles/pages/Profile/ProfileHeader.style
+// @/styles/pages/Profile/ProfileHeader
 
 /* eslint-disable storybook/default-exports */
 

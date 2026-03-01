@@ -1,4 +1,4 @@
-// @components/GNB
+// @/components/GNB
 
 import * as S from '@/styles/components/GNB.style';
 

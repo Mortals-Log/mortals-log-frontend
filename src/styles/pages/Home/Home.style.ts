@@ -1,4 +1,4 @@
-// @/styles/pages/Home/Home.style
+// @/styles/pages/Home/Home
 
 /* eslint-disable storybook/default-exports */
 

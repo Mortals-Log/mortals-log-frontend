@@ -1,4 +1,4 @@
-// @src/pages/Profile/components/ProfileLinkSection.tsx
+// @/pages/Profile/ProfileLinkSection
 
 import * as S from '@styles/pages/Profile/ProfileLinkSection.style';
 

@@ -1,4 +1,4 @@
-// @pages/Song/SongDetail
+// @/pages/Song/SongDetail
 
 import * as S from '@styles/pages/Song/SongDetail.styles';
 import { useEffect, useMemo } from 'react';

@@ -1,4 +1,4 @@
-// @components/Schedule/UpcomingBanner.tsx
+// @/pages/Schedule/ScheduleUpcomingBanner
 
 import * as S from '@/styles/pages/Schedule/ScheduleUpcommingBanner.style';
 

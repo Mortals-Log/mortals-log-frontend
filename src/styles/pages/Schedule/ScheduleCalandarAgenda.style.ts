@@ -1,4 +1,4 @@
-// @/styles/pages/Schedule/ScheduleCalandarAgenda.style
+// @/styles/pages/Schedule/ScheduleCalandarAgenda
 
 /* eslint-disable storybook/default-exports */
 

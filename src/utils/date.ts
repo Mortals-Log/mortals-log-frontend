@@ -1,4 +1,4 @@
-// @utils/date.ts
+// @/utils/date
 
 /* eslint-disable storybook/default-exports */
 

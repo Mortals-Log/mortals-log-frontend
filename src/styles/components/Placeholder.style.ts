@@ -1,4 +1,4 @@
-// @styles/components/AlbumCard.style
+// @/styles/components/AlbumCard.style
 
 /* eslint-disable storybook/default-exports */
 

@@ -1,4 +1,4 @@
-// @/styles/pages/AlbumDetail/AlbumDetailIntro.style
+// @/styles/pages/AlbumDetail/AlbumDetailIntro
 
 /* eslint-disable storybook/default-exports */
 

@@ -1,4 +1,4 @@
-// @/styles/pages/About/AboutTitle.style
+// @/styles/pages/About/AboutTitle
 
 /* eslint-disable storybook/default-exports */
 

@@ -1,4 +1,4 @@
-// @/styles/pages/Schedule/Schedule.style
+// @/styles/pages/Schedule/Schedule
 
 /* eslint-disable storybook/default-exports */
 

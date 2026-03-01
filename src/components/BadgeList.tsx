@@ -1,4 +1,4 @@
-// @src/components/Track/TrackBadgeList
+// @/components/BacdgeList
 
 import * as S from '@/styles/components/Badge.style';
 

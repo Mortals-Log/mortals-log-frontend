@@ -1,4 +1,4 @@
-// @src/pages/Album/AlbumDetail
+// @/pages/AlbumDetail
 
 import * as S from '@styles/pages/AlbumDetail/AlbumDetail.style';
 import { useParams } from 'react-router-dom';

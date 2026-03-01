@@ -1,4 +1,4 @@
-// @const/concert.ts
+// @/const/concert
 
 /* eslint-disable storybook/default-exports */
 

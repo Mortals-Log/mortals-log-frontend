@@ -1,4 +1,4 @@
-// @src/pages/Album/index
+// @/pages/Album
 
 import AlbumPromotionSection from '@/pages/Album/AlbumPromotionSection';
 import AlbumReleaseSection from '@/pages/Album/AlbumReleaseSection';

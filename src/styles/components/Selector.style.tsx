@@ -1,4 +1,4 @@
-// @styles/componenets/Selector.style
+// @/styles/componenets/Selector.style
 
 /* eslint-disable storybook/default-exports */
 

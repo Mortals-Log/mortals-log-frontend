@@ -1,4 +1,4 @@
-// @/types/icon.ts
+// @/types/icon
 
 /* eslint-disable storybook/default-exports */
 

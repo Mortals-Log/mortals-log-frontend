@@ -1,4 +1,4 @@
-// @pages/ScheduleCalendar/ScheduleLabel
+// @/pages/ScheduleCalendar/ScheduleLabel
 
 import * as S from '@/styles/pages/ScheduleCalendar/ScheduleLabel.style';
 
