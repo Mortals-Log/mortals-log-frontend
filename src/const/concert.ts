@@ -64,10 +64,10 @@ export const SOLO_CONCERT: ConcertList = [
 			{
 				type: 'SOLO',
 				date: '03.28 ~ 03.29',
-				content: '콘서트 (예정)',
+				content: '천진우 포크 공연',
 				location: '금천구 수상한창고',
-				times: ['17:00 (예정)'],
-				price: { regular: '(예정) 50,000' },
+				times: ['17:00'],
+				price: { regular: '50,000', onSpot: '60,000' },
 				lineUp: SOLO_LINEUP,
 			},
 			{
@@ -88,7 +88,6 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00', '19:00'],
 				price: { regular: '50,000', army: '40,000' },
 				lineUp: [...BULBADA_LINEUP, MEMBERS.BY],
-				fileName: 'SOLO_20260117',
 			},
 		],
 	},
