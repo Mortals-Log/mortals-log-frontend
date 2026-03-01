@@ -80,21 +80,29 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 				}
 			}
 
-			if (item.ticketing && item.ticketing.ticketingDate) {
-				const tDateKey = item.ticketing.ticketingDate.replace(/\./g, '-');
-				const displayContent = `[${SCHEDULE_LABEL_MAP.TICKETING}] ${item.content}`;
+			if (item.ticketing) {
+				const ticketingList = item.ticketing;
 
-				const ticketingSchedule: Schedule = {
-					type: 'TICKETING',
-					content: displayContent,
-					date: tDateKey.replace(/-/g, '.'),
-					time: item.ticketing.ticketingTime,
-					imageUrl: imageSrc,
-					id: GenerateScheduleId('CONCERT', concertIdDate, baseContent),
-				};
+				item.ticketing.forEach((t, idx) => {
+					if (!t.ticketingDate) return;
 
-				if (!schedules[tDateKey]) schedules[tDateKey] = [];
-				schedules[tDateKey].push(ticketingSchedule);
+					const tDateKey = t.ticketingDate.replace(/\./g, '-');
+					const partLabel = ticketingList.length > 1 ? ` - ${idx + 1}부` : '';
+					const displayContent = `[${SCHEDULE_LABEL_MAP.TICKETING}] ${item.content}${partLabel}`;
+
+					const ticketingSchedule: Schedule = {
+						type: 'TICKETING',
+						content: displayContent,
+						date: t.ticketingDate,
+						time: t.ticketingTime,
+						imageUrl: imageSrc,
+						id: GenerateScheduleId('CONCERT', concertIdDate, baseContent),
+					};
+
+					const dateKey = tDateKey.replace(/\s/g, '');
+					if (!schedules[dateKey]) schedules[dateKey] = [];
+					schedules[dateKey].push(ticketingSchedule);
+				});
 			}
 		}),
 	);

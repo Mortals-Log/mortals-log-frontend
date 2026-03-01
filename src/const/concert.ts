@@ -69,10 +69,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['17:00'],
 				price: { regular: '50,000', onSpot: '60,000' },
 				lineUp: SOLO_LINEUP,
-				ticketing: {
-					ticketingDate: '2026.03.08',
-					ticketingTime: '17:00',
-				},
+				ticketing: [
+					{
+						ticketingDate: '2026.03.08',
+						ticketingTime: '17:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -82,11 +84,13 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '55,000', onSpot: '66,000' },
 				lineUp: SOLO_LINEUP,
-				ticketing: {
-					ticketingDate: '2026.01.12',
-					ticketingTime: '20:00',
-					ticketingLink: 'https://ticket.melon.com/performance/index.htm?prodId=212599',
-				},
+				ticketing: [
+					{
+						ticketingDate: '2026.01.12',
+						ticketingTime: '20:00',
+						ticketingLink: 'https://ticket.melon.com/performance/index.htm?prodId=212599',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -96,10 +100,16 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00', '19:00'],
 				price: { regular: '50,000', army: '40,000' },
 				lineUp: [...BULBADA_LINEUP, MEMBERS.BY],
-				ticketing: {
-					ticketingDate: '2025.12.20',
-					ticketingTime: '13:00',
-				},
+				ticketing: [
+					{
+						ticketingDate: '2025.12.20',
+						ticketingTime: '13:00',
+					},
+					{
+						ticketingDate: '2025.12.27',
+						ticketingTime: '13:00',
+					},
+				],
 			},
 		],
 	},

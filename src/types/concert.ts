@@ -18,7 +18,7 @@ export interface ConcertItem {
 	lineUp?: string[];
 	price?: Price;
 	fileName?: string;
-	ticketing?: Ticketing;
+	ticketing?: Ticketing[];
 	ageLimit?: boolean;
 }
 
