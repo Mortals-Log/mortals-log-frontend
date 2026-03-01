@@ -132,9 +132,9 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 					)}
 
 					{concert.ticketing &&
-						(() => {
+						concert.ticketing.map((t, index) => {
 							const now = new Date();
-							const { ticketingDate, ticketingTime, ticketingLink } = concert.ticketing || {};
+							const { ticketingDate, ticketingTime, ticketingLink } = t;
 
 							const concertStart = cleanDate.split('~')[0].trim();
 							const [cMonth, cDay] = concertStart.split('.').map(Number);
@@ -153,10 +153,12 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 							const finalTicketingLink = ticketingLink || linktreeLink;
 
 							return (
-								<S.InfoGroup>
+								<S.InfoGroup key={`${ticketingDate}-${index}`}>
 									{ticketingDate && (
 										<>
-											<InfoTitle label="TICKETING" />
+											<InfoTitle
+												label={(concert.ticketing?.length ?? 0) > 1 ? `TICKETING ${index + 1}차` : 'TICKETING'}
+											/>
 											<S.InfoItem>
 												{ticketingDate} ({GetDay(ticketingDate)})
 												{ticketingTime && <span className="time"> {ticketingTime}</span>}
@@ -164,33 +166,33 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 										</>
 									)}
 
-									{!isBeforeConcert && (
+									{!isBeforeConcert ? (
 										<S.InfoItem>
-											<span className="info">예매가 마감되었습니다.</span>
+											<span className="info">공연이 종료되었습니다.</span>
 										</S.InfoItem>
-									)}
-
-									{isBeforeConcert && !isTicketingOpen && (
+									) : !isTicketingOpen ? (
 										<S.InfoItem>
 											<span className="info">티켓팅 오픈 전입니다.</span>
 										</S.InfoItem>
-									)}
-
-									{isBeforeConcert && isTicketingOpen && finalTicketingLink && (
-										<>
-											<S.PrimaryButton to={finalTicketingLink} target="_blank" rel="noopener noreferrer">
-												티켓 예매하러 가기
-											</S.PrimaryButton>
-											{!ticketingLink && finalTicketingLink === linktreeLink && (
-												<S.InfoItem>
-													<span className="info">링크의 구글폼 링크에서 예매하기</span>
-												</S.InfoItem>
-											)}
-										</>
+									) : (
+										finalTicketingLink && (
+											<>
+												<S.PrimaryButton to={finalTicketingLink} target="_blank" rel="noopener noreferrer">
+													{(concert.ticketing?.length ?? 0) > 1
+														? `${index + 1}차 티켓 예매하러 가기`
+														: '티켓 예매하러 가기'}
+												</S.PrimaryButton>
+												{!ticketingLink && finalTicketingLink === linktreeLink && (
+													<S.InfoItem>
+														<span className="info">링크트리의 구글폼에서 예매해주세요.</span>
+													</S.InfoItem>
+												)}
+											</>
+										)
 									)}
 								</S.InfoGroup>
 							);
-						})()}
+						})}
 				</>
 			);
 		}
