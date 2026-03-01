@@ -131,8 +131,8 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 						</S.InfoGroup>
 					)}
 
-					{concert.reservationLink && (
-						<S.PrimaryButton to={concert.reservationLink} target="_blank" rel="noopener noreferrer">
+					{concert.ticketing?.ticketingLink && (
+						<S.PrimaryButton to={concert.ticketing.ticketingLink} target="_blank" rel="noopener noreferrer">
 							티켓 예매하러 가기
 						</S.PrimaryButton>
 					)}

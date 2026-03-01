@@ -2,6 +2,12 @@
 
 /* eslint-disable storybook/default-exports */
 
+interface Ticketing {
+	ticketingDate?: string;
+	ticketingTime?: string;
+	ticketingLink?: string;
+}
+
 export interface ConcertItem {
 	id?: string;
 	type: 'SOLO' | 'JOIN' | 'TOUR' | 'LISTENING';
@@ -12,7 +18,7 @@ export interface ConcertItem {
 	lineUp?: string[];
 	price?: Price;
 	fileName?: string;
-	reservationLink?: string;
+	ticketing?: Ticketing;
 	ageLimit?: boolean;
 }
 
