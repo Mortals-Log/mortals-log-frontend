@@ -35,6 +35,8 @@ export interface Track {
 	mvLink?: string;
 
 	singing?: SingingInfo;
+
+	cdOnly?: boolean;
 }
 
 /*
