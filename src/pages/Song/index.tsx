@@ -60,7 +60,14 @@ const Song = () => {
 
 			<S.TrackSection>
 				{sortedTracks.map((track, index) => (
-					<TrackRow key={track.id} track={track} index={index} onClick={handleItemClick} onKeyDown={handleKeyDown} />
+					<TrackRow
+						key={track.id}
+						track={track}
+						album={track.albumTitle}
+						index={index}
+						onClick={handleItemClick}
+						onKeyDown={handleKeyDown}
+					/>
 				))}
 			</S.TrackSection>
 		</>

@@ -2346,6 +2346,12 @@ C          A     Dm          G
 휴식을 위해선 티켓이 필요해 내 스스로 납득 가능한
 어쩌다 한 번씩 감기에 걸려야 마음 편히 쉬어갈텐데`,
 	},
+	TRK_LP06_012: {
+		id: 'TRK_LP06_012',
+		title: '맺음말',
+		enTitle: '',
+		cdOnly: true,
+	},
 
 	// [EP 1집] 굴다리
 	TRK_EP01_001: {
@@ -2959,6 +2965,12 @@ C                     Am         Dm         G
 				chordModeType: 'separated',
 			},
 		],
+	},
+	TRK_EP02_005: {
+		id: 'TRK_EP02_005',
+		title: '히든트랙',
+		enTitle: '',
+		cdOnly: true,
 	},
 
 	// [EP 3집] 귀천
@@ -4586,8 +4598,14 @@ Em      Am
 슈디두밥바 슈비두밥바 슈비두밥바 슈비두밥바
 집에 가는 길은 너무 즐거우니까`,
 	},
+	TRK_LV03_013: {
+		id: 'TRK_LV03_013',
+		title: '히든트랙',
+		enTitle: '',
+		cdOnly: true,
+	},
 
-	// [LV 4집] 구토유발자들 (2025.04.18)
+	// [LV 4집] 부산불바다
 	TRK_LV04_001: {
 		id: 'TRK_LV04_001',
 		title: '그래 뭐가 됐든 결국 지나간다',

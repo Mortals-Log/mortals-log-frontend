@@ -11,6 +11,7 @@ export const BADGE_LABEL = {
 	ADULT: '🔞 미성년자 이용불가',
 	TJ: 'TJ',
 	KY: 'KY',
+	CD: 'CD 한정',
 } as const;
 
 interface TrackBadgeListProps {
@@ -23,6 +24,7 @@ const TrackBadgeList = ({ track }: TrackBadgeListProps) => {
 		{ show: track.mvLink, component: S.MVBadge, label: BADGE_LABEL.MV },
 		{ show: track.chordsList && track.chordsList.length > 0, component: S.ChordBadge, label: BADGE_LABEL.CHORDS },
 		{ show: track.ageLimit, component: S.AdultBadge, label: BADGE_LABEL.ADULT },
+		{ show: track.cdOnly, component: S.CDBadge, label: BADGE_LABEL.CD },
 	];
 
 	return (

@@ -28,7 +28,7 @@ export const AlbumName = styled.div`
 `;
 
 // 곡 목록
-export const SongItem = styled.div`
+export const SongItem = styled.div<{ $isCdOnly?: boolean }>`
 	display: flex;
 	align-items: center;
 	cursor: pointer;
@@ -37,6 +37,15 @@ export const SongItem = styled.div`
 	padding: 1rem 1.5rem;
 	border: 1px solid ${props => props.theme.COLOR.GRAY100};
 	border-radius: 10px;
+
+	${props =>
+		props.$isCdOnly &&
+		`
+        opacity: 0.6;
+        cursor: default;
+        pointer-events: none;
+        filter: grayscale(0.5); 
+    `}
 
 	&:hover {
 		border-color: ${props => props.theme.COLOR.PRIMARY};
@@ -87,7 +96,7 @@ export const SongTitle = styled.div<{ $isLead?: boolean }>`
 `;
 
 // 앨범 트랙
-export const AlbumItem = styled.div`
+export const AlbumItem = styled.div<{ $isCdOnly?: boolean }>`
 	display: flex;
 	align-items: center;
 	cursor: pointer;
@@ -96,6 +105,15 @@ export const AlbumItem = styled.div`
 	padding: 1.5rem 1rem;
 	align-items: baseline;
 	border-bottom: 1px solid ${props => props.theme.COLOR.GRAY100};
+
+	${props =>
+		props.$isCdOnly &&
+		`
+        opacity: 0.6;
+        cursor: default;
+        pointer-events: none;
+        filter: grayscale(0.5); 
+    `}
 
 	&:last-child {
 		border-bottom: none;

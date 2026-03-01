@@ -1,4 +1,4 @@
-// @assets/icons/index.ts
+// @/assets/icons/index.ts
 
 /* eslint-disable storybook/default-exports */
 
@@ -16,3 +16,4 @@ export { default as lp } from './lpIcon.svg?react';
 export { default as goods } from './goodsIcon.svg?react';
 export { default as linktree } from './linktreeIcon.svg?react';
 export { default as sing } from './singIcon.svg?react';
+export { default as lock } from './lockIcon.svg?react';

@@ -17,6 +17,7 @@ export const SUPPORTED_SERVICES = [
 	'goods',
 	'linktree',
 	'sing',
+	'lock',
 ] as const;
 
 export type IconKey = (typeof SUPPORTED_SERVICES)[number];

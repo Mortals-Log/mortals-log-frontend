@@ -20,4 +20,5 @@ export const ICON_CONFIG: Record<IconKey, { icon: React.FC<React.SVGProps<SVGSVG
 	goods: { icon: Icons.goods, label: '굿즈 구매하기' },
 	linktree: { icon: Icons.linktree, label: 'Linktree' },
 	sing: { icon: Icons.sing, label: '노래방 신청' },
+	lock: { icon: Icons.lock, label: 'CD 한정' },
 } as const;
