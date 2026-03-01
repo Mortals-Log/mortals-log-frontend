@@ -37,6 +37,18 @@ const ScheduleCalendar = () => {
 		);
 	}, [activeFilters]);
 
+	const handleNavigate = useCallback((direction: 'next' | 'prev', unit: 'week' | 'month') => {
+		setViewDate(prev => {
+			const nextDate = new Date(prev);
+			if (unit === 'week') {
+				nextDate.setDate(prev.getDate() + (direction === 'next' ? 7 : -7));
+			} else {
+				nextDate.setMonth(prev.getMonth() + (direction === 'next' ? 1 : -1));
+			}
+			return nextDate;
+		});
+	}, []);
+
 	const handleToggleFilter = useCallback((type: Schedule['type']) => {
 		setActiveFilters(prev => (prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]));
 	}, []);
@@ -97,6 +109,50 @@ const ScheduleCalendar = () => {
 				onActiveStartDateChange={({ activeStartDate }) => setViewDate(activeStartDate as Date)}
 				formatDay={(_, date) => date.getDate().toString()}
 				tileContent={renderTileContent}
+				prevLabel={
+					viewType === 'week' ? (
+						<button
+							onClick={e => {
+								e.stopPropagation();
+								handleNavigate('prev', 'week');
+							}}>
+							‹
+						</button>
+					) : undefined
+				}
+				nextLabel={
+					viewType === 'week' ? (
+						<button
+							onClick={e => {
+								e.stopPropagation();
+								handleNavigate('next', 'week');
+							}}>
+							›
+						</button>
+					) : undefined
+				}
+				prev2Label={
+					viewType === 'week' ? (
+						<button
+							onClick={e => {
+								e.stopPropagation();
+								handleNavigate('prev', 'month');
+							}}>
+							«
+						</button>
+					) : undefined
+				}
+				next2Label={
+					viewType === 'week' ? (
+						<button
+							onClick={e => {
+								e.stopPropagation();
+								handleNavigate('next', 'month');
+							}}>
+							»
+						</button>
+					) : undefined
+				}
 			/>
 
 			{viewType === 'week' && (
