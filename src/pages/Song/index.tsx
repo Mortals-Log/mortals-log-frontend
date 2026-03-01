@@ -63,7 +63,7 @@ const Song = () => {
 					<TrackRow
 						key={track.id}
 						track={track}
-						album={track.album}
+						album={track.albumTitle}
 						index={index}
 						onClick={handleItemClick}
 						onKeyDown={handleKeyDown}
