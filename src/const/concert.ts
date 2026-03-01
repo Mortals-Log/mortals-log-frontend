@@ -124,6 +124,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['20:00'],
 				price: { regular: '55,000', student: '45,000' },
 				lineUp: [...BAND_LINEUP.filter(m => m !== MEMBERS.LJD), MEMBERS.HANABI],
+				ticketing: [
+					{
+						ticketingDate: '2025.11.21',
+						ticketingTime: '20:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -133,6 +139,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['17:00'],
 				price: { regular: '55,000', onSpot: '66,000' },
 				lineUp: [...BAND_LINEUP.filter(m => m !== MEMBERS.LJD), MEMBERS.LDH],
+				ticketing: [
+					{
+						ticketingDate: '2025.07.22',
+						ticketingTime: '20:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -140,6 +152,7 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '천진우와의 가장 가까운 만남',
 				location: '대전 럭스라운지',
 				times: ['18:00'],
+				price: { regular: '30,000', student: '25,000' },
 				lineUp: [...BAND_LINEUP.filter(m => m !== MEMBERS.LJD), MEMBERS.LDH],
 			},
 			{
@@ -150,6 +163,20 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '45,000', student: '35,000' },
 				lineUp: [...BAND_LINEUP],
+				ticketing: [
+					{
+						ticketingDate: '2025.02.16',
+						ticketingTime: '12:00',
+					},
+				],
+			},
+			{
+				type: 'SOLO',
+				date: '02.08',
+				content: '랑만 버스킹',
+				location: '청주 랑만',
+				times: ['20:00'],
+				lineUp: [...SOLO_LINEUP],
 			},
 			{
 				type: 'SOLO',
@@ -159,6 +186,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '45,000', student: '35,000' },
 				lineUp: [...BAND_LINEUP],
+				ticketing: [
+					{
+						ticketingDate: '2025.01.12',
+						ticketingTime: '12:00',
+					},
+				],
 			},
 		],
 	},
@@ -173,6 +206,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['20:00'],
 				price: { regular: '33,000' },
 				lineUp: [...BAND_LINEUP],
+				ticketing: [
+					{
+						ticketingDate: '2024.12.09',
+						ticketingTime: '12:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -182,6 +221,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '35,000', student: '25,000' },
 				lineUp: [...DALDAL_TRIO],
+				ticketing: [
+					{
+						ticketingDate: '2024.11.24',
+						ticketingTime: '12:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -191,6 +236,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '40,000', student: '30,000' },
 				lineUp: [...DALDAL_TRIO],
+				ticketing: [
+					{
+						ticketingDate: '2024.11.10',
+						ticketingTime: '12:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -200,6 +251,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '35,000', student: '25,000' },
 				lineUp: [MEMBERS.CJW, MEMBERS.KJE, MEMBERS.KTH, MEMBERS.KHS],
+				ticketing: [
+					{
+						ticketingDate: '2024.09.09',
+						ticketingTime: '12:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -209,6 +266,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '35,000', student: '25,000' },
 				lineUp: [...BULBADA_LINEUP],
+				ticketing: [
+					{
+						ticketingDate: '2024.08.11',
+						ticketingTime: '12:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -218,6 +281,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '30,000', student: '20,000', alien: '100,000' },
 				lineUp: [...BULBADA_LINEUP],
+				ticketing: [
+					{
+						ticketingDate: '2024.07.18',
+						ticketingTime: '12:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -227,6 +296,13 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '35,000', student: '25,000', teacher: '25,000' },
 				lineUp: [MEMBERS.CJW, MEMBERS.KHS, MEMBERS.SKL, MEMBERS.OS],
+
+				ticketing: [
+					{
+						ticketingDate: '2024.04.28',
+						ticketingTime: '12:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -236,6 +312,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '35,000' },
 				lineUp: [...WITH_JS],
+				ticketing: [
+					{
+						ticketingDate: '2024.02.12',
+						ticketingTime: '14:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -245,6 +327,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '35,000' },
 				lineUp: [MEMBERS.CJW, MEMBERS.GT],
+				ticketing: [
+					{
+						ticketingDate: '2024.01.21',
+						ticketingTime: '17:00',
+					},
+				],
 			},
 		],
 	},
@@ -259,6 +347,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['13:00'],
 				price: { regular: '35,000' },
 				lineUp: [MEMBERS.CJW, MEMBERS.WD, MEMBERS.DB],
+				ticketing: [
+					{
+						ticketingDate: '2023.12.01',
+						ticketingTime: '13:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -268,6 +362,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '30,000' },
 				lineUp: [...SOLO_LINEUP],
+				ticketing: [
+					{
+						ticketingDate: '2023.06.24',
+						ticketingTime: '16:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -276,8 +376,13 @@ export const SOLO_CONCERT: ConcertList = [
 				location: '홍대 스페이스홍',
 				times: ['16:00'],
 				price: { regular: '30,000', student: '25,000' },
-
 				lineUp: [...SOLO_LINEUP],
+				ticketing: [
+					{
+						ticketingDate: '2023.04.14',
+						ticketingTime: '13:00',
+					},
+				],
 			},
 			{
 				type: 'SOLO',
@@ -287,6 +392,12 @@ export const SOLO_CONCERT: ConcertList = [
 				times: ['16:00'],
 				price: { regular: '30,000' },
 				lineUp: [MEMBERS.CJW, MEMBERS.G],
+				ticketing: [
+					{
+						ticketingDate: '2023.01.17',
+						ticketingTime: '12:00',
+					},
+				],
 			},
 		],
 	},
@@ -317,6 +428,12 @@ export const JOIN_CONCERT: ConcertList = [
 				location: '홍대 플렉스라운지',
 				times: ['21:00'],
 				lineUp: [...WITH_JS],
+				ticketing: [
+					{
+						ticketingDate: '2025.03.30',
+						ticketingTime: '12:00',
+					},
+				],
 			},
 		],
 	},
@@ -332,6 +449,12 @@ export const JOIN_CONCERT: ConcertList = [
 				price: { regular: '40,000' },
 				lineUp: [MEMBERS.CJW, MEMBERS.KIH, MEMBERS.PSG, MEMBERS.LJM, MEMBERS.OS],
 				ageLimit: true,
+				ticketing: [
+					{
+						ticketingDate: '2024.04.10',
+						ticketingTime: '13:00',
+					},
+				],
 			},
 			{
 				type: 'JOIN',
@@ -339,6 +462,12 @@ export const JOIN_CONCERT: ConcertList = [
 				content: '와따리가따리 시즌1',
 				location: '홍대 롤링홀',
 				lineUp: [...WITH_JS],
+				ticketing: [
+					{
+						ticketingDate: '2024.03.15',
+						ticketingTime: '20:00',
+					},
+				],
 			},
 		],
 	},
@@ -355,6 +484,12 @@ export const TOUR_CONCERT: ConcertList = [
 				location: '춘천 클럽투투',
 				price: { regular: '30,000' },
 				lineUp: [...SOLO_LINEUP],
+				ticketing: [
+					{
+						ticketingDate: '2023.07.22',
+						ticketingTime: '13:00',
+					},
+				],
 			},
 			{
 				type: 'TOUR',
@@ -364,6 +499,12 @@ export const TOUR_CONCERT: ConcertList = [
 				price: { regular: '30,000' },
 				lineUp: [...SOLO_LINEUP],
 				fileName: 'TOUR_20230729',
+				ticketing: [
+					{
+						ticketingDate: '2023.07.22',
+						ticketingTime: '13:00',
+					},
+				],
 			},
 			{
 				type: 'TOUR',
@@ -373,6 +514,12 @@ export const TOUR_CONCERT: ConcertList = [
 				price: { regular: '30,000' },
 				lineUp: [...SOLO_LINEUP],
 				fileName: 'TOUR_20230729',
+				ticketing: [
+					{
+						ticketingDate: '2023.07.22',
+						ticketingTime: '13:00',
+					},
+				],
 			},
 		],
 	},
@@ -389,6 +536,12 @@ export const LISTENING: ConcertList = [
 				location: '수상한 창고',
 				times: ['15:00'],
 				price: { regular: '25,000' },
+				ticketing: [
+					{
+						ticketingDate: '2025.06.01',
+						ticketingTime: '12:00',
+					},
+				],
 			},
 			{
 				type: 'LISTENING',
@@ -397,6 +550,12 @@ export const LISTENING: ConcertList = [
 				location: '수상한 창고',
 				times: ['13:00'],
 				price: { regular: '25,000' },
+				ticketing: [
+					{
+						ticketingDate: '2025.09.20',
+						ticketingTime: '13:00',
+					},
+				],
 			},
 		],
 	},
