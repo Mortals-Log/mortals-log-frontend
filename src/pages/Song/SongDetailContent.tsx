@@ -72,7 +72,7 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 			`제공 | ${currentChordVersion.provider || 'System'}\n\n` +
 			`------------------------------------------\n\n`;
 
-		const lyrics = isSeparated && `\n\n${track.lyrics}`;
+		const lyrics = isSeparated && track.lyrics ? `\n\n${track.lyrics}` : '';
 
 		const finalContent = header + content + lyrics;
 		const fileName = `${track.title}_${currentChordVersion.provider}ver.txt`;
