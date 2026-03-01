@@ -65,8 +65,8 @@ const Song = () => {
 						track={track}
 						album={track.albumTitle}
 						index={index}
-						onClick={handleItemClick}
-						onKeyDown={handleKeyDown}
+						onClick={() => handleItemClick(track)}
+						onKeyDown={e => handleKeyDown(e, track)}
 					/>
 				))}
 			</S.TrackSection>

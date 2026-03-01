@@ -69,8 +69,8 @@ const AlbumDetailTracks = ({
 												key={trackId}
 												track={track}
 												index={trackIndex}
-												onClick={handleItemClick}
-												onKeyDown={handleKeyDown}
+												onClick={() => handleItemClick(track)}
+												onKeyDown={e => handleKeyDown(e, track)}
 												variant="album"
 											/>
 										);
@@ -86,8 +86,8 @@ const AlbumDetailTracks = ({
 										key={track.id}
 										track={track}
 										index={index}
-										onClick={handleItemClick}
-										onKeyDown={handleKeyDown}
+										onClick={() => handleItemClick(track)}
+										onKeyDown={e => handleKeyDown(e, track)}
 										variant="album"
 									/>
 								);

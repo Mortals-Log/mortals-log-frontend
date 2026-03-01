@@ -4,6 +4,7 @@
 
 import { FULL_ALBUMS } from '@/const/albums';
 import { MASTER_TRACKS } from '@/const/tracks';
+import { Track } from '@/types/track';
 
 export const GetTracks = (tracks: string[] | Record<string, string[]>): string[] => {
 	if (!Array.isArray(tracks)) {
@@ -51,4 +52,29 @@ export const GetTrackToAlbumMap = () => {
 		});
 	});
 	return map;
+};
+
+export const IsTrackMatch = (track: Track, slugFromUrl: string) => {
+	const decodedSlug = decodeURIComponent(slugFromUrl).toLowerCase();
+	const normalize = (text: string) => text.toLowerCase().replace(/[\s\-_.]/g, '');
+
+	const normalizedSlug = normalize(decodedSlug);
+	const isTitleMatch = normalize(track.id) === normalizedSlug || normalize(track.title) === normalizedSlug;
+
+	if (decodedSlug.includes('_live') && track.id.startsWith('TRK_LV')) {
+		const titlePart = decodedSlug.split('_')[0];
+		return normalize(track.title) === normalize(titlePart);
+	}
+
+	if (decodedSlug.includes('_')) {
+		const [titlePart, versionPart] = decodedSlug.split('_');
+
+		const isBaseTitleMatch = normalize(track.title) === normalize(titlePart);
+
+		const isVersionMatch = track.version ? normalize(track.version).includes(normalize(versionPart)) : false;
+
+		return isBaseTitleMatch && isVersionMatch;
+	}
+
+	return isTitleMatch;
 };
