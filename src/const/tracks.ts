@@ -2029,7 +2029,8 @@ Bb              F              Bb      C     F
 		mvLink: 'em4fOINPvDY',
 		chordsList: [
 			{
-				chords: `C                                Em            Bb                  G
+				chords: `C Em Bb GF G C Am
+C                                Em            Bb                  G
    어쩌면 나는 쓸모 없는 그런 사람이 되어가는가 봐
    아니면 나는 도대체 왜 끊임이 없이 나를 미워할까
 
@@ -2043,7 +2044,7 @@ F             G
 C                              Em              Bb               G
 어쩌면 나는 필요없는 그런 사람이 이미 되었나 봐
 아니면 나는 도대체 왜 끊임이 없이 외로워야 하나`,
-				tuning: '1카포 C Em Bb GF G C Am | 다운튜닝시 3카포',
+				tuning: '정튜닝 1카포 | 다운튜닝 3카포',
 				provider: '권사장',
 				chordModeType: 'integrated',
 			},
@@ -3354,6 +3355,47 @@ Dm             G
 이도 저도 아니긴 한가 봐요
 외로운건 참으면 참아지죠`,
 		mvLink: 'lws9WpyKXus',
+		chordsList: [
+			{
+				chords: `5-5-2-3-4-2 아르페지오(G코드는 662342)
+C-F-C-F 
+C                     F
+ 시간이 지나면 그저
+        G                         Am
+ 막연하게 뭐가 돼도 됐겠지
+C                    F
+눈을 감았다가 뜨니
+        G                           C
+이젠 어린 내게 증명해야 돼
+C                     F
+시간을 조금 더 줘요
+        G                         Am
+이미 제법 많이 쓴 것 같지만
+C                     F
+거울 속의 내 모습은
+        G                          C
+어른이라 부르기엔 부족해
+F                      C
+  혹시 언제까진가요
+Am                  G
+  방황할 수 있는 나이
+F                      C
+  혹시 벌써 지났나요
+Am                          G
+  기웃거리기만 하는 사이
+
+C      F      G                Am
+세모 네모 동그라미도 있죠
+C      F      G                    C
+근데 우린 이 모양 이 꼴이죠
+이도 저도 아니긴 한가 봐요
+외로운건 참으면 참아지죠
+`,
+				tuning: '정튜닝',
+				provider: '권사장',
+				chordModeType: 'integrated',
+			},
+		],
 	},
 
 	// [SP 5집] 이별이 그대는 쉽나요

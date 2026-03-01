@@ -39,9 +39,20 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 
 	const guideItems = useMemo(() => {
 		if (!currentChordVersion) return [];
+
+		let displayTuning = currentChordVersion.tuning || '정튜닝';
+
+		displayTuning = displayTuning
+			.replace('정튜닝', '정튜닝(E-A-D-G-B-E)')
+			.replace('하프다운튜닝', '하프다운튜닝(Eb-Ab-Db-Gb-Bb-Eb)')
+			.replace('다운튜닝', '다운튜닝(D-G-C-F-A-D)');
+
 		return [
-			{ label: '튜닝', value: currentChordVersion.tuning || '정튜닝' },
-			{ label: '제공', value: currentChordVersion.provider ? `${currentChordVersion.provider}님` : null },
+			{ label: '튜닝', value: displayTuning },
+			{
+				label: '제공',
+				value: currentChordVersion.provider ? `${currentChordVersion.provider}님` : null,
+			},
 		].filter(item => item.value);
 	}, [currentChordVersion]);
 
