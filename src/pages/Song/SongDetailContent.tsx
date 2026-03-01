@@ -56,6 +56,11 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 		].filter(item => item.value);
 	}, [currentChordVersion]);
 
+	const handleDownloadPDF = () => {
+		if (!currentChordVersion) return;
+		window.print();
+	};
+
 	return (
 		<S.ContentSection>
 			<S.ContentHeader>
@@ -98,6 +103,9 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 
 			{activeTab === 'chords' && currentChordVersion && (
 				<>
+					<S.ButtonWrapper>
+						<S.DownloadButton onClick={handleDownloadPDF}>PDF 다운로드 💾</S.DownloadButton>
+					</S.ButtonWrapper>
 					{isSeparated && (
 						<S.StickyChordBar>
 							<span className="chord">{currentChordVersion.chords}</span>

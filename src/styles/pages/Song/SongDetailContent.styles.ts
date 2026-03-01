@@ -26,6 +26,10 @@ export const TabGroup = styled.div`
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 0.8rem;
 	}
+
+	@media print {
+		display: none !important;
+	}
 `;
 
 export const TabButton = styled.button<{ $isActive: boolean }>`
@@ -77,6 +81,10 @@ export const VersionSelector = styled.div`
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 1.2rem;
+	}
+
+	@media print {
+		display: none !important;
 	}
 `;
 
@@ -180,5 +188,31 @@ export const StickyChordBar = styled.div`
 		.chord {
 			font-size: ${props => props.theme.FONT.SIZE.SM};
 		}
+	}
+`;
+
+export const ButtonWrapper = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	margin: 1rem 0;
+
+	@media print {
+		display: none !important;
+	}
+`;
+
+export const DownloadButton = styled.span`
+	cursor: pointer;
+
+	font-family: ${props => props.theme.FONT.SANS};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
+	color: ${props => props.theme.COLOR.GRAY700};
+
+	transition: all 0.2s ease;
+
+	&:hover {
+		color: ${props => props.theme.COLOR.PRIMARY};
 	}
 `;
