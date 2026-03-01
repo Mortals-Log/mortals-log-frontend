@@ -18,14 +18,13 @@ export const GNBContainer = styled(motion.nav)`
 `;
 
 export const Inner = styled.div`
+	display: flex;
 	position: relative;
 	max-width: 1200px;
 	height: 100%;
 	margin: 0 auto;
-	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 2rem;
 `;
 
 export const LogoGroup = styled.div`
@@ -102,10 +101,6 @@ export const NavGroup = styled.ul`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		display: none;
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		display: none;
-	}
 `;
 
 export const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
@@ -146,6 +141,7 @@ export const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
 export const UtilGroup = styled.div`
 	display: flex;
 	flex: 1;
+	height: 100%;
 	align-items: center;
 	justify-content: flex-end;
 	flex-shrink: 0;
@@ -156,12 +152,14 @@ export const UtilGroup = styled.div`
 
 export const DDayContent = styled(Link)`
 	display: flex;
+	height: 100%;
 	min-width: 0;
 	align-items: center;
 	margin-left: 8px;
 	gap: 0.5rem;
 	font-size: ${props => props.theme.FONT.SIZE.SM};
 	white-space: nowrap;
+	line-height: 1.5;
 
 	.label {
 		font-family: ${props => props.theme.FONT.SERIF};
@@ -181,10 +179,6 @@ export const DDayContent = styled(Link)`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		display: none;
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		display: none;
-	}
 `;
 
 export const MobileNavList = styled.ul`
@@ -194,10 +188,6 @@ export const MobileNavList = styled.ul`
 	list-style: none;
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		gap: 2rem;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 2rem;
 	}
 `;
