@@ -5,7 +5,7 @@
 export interface Schedule {
 	id: string;
 	date: string;
-	type: 'ALBUM' | 'CONCERT' | 'EVENT' | 'ANNIVERSARY' | 'BIRTHDAY';
+	type: 'ALBUM' | 'CONCERT' | 'TICKETING' | 'EVENT' | 'ANNIVERSARY' | 'BIRTHDAY';
 	content: string;
 	imageUrl?: string;
 
