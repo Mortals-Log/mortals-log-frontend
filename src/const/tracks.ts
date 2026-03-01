@@ -2029,7 +2029,8 @@ Bb              F              Bb      C     F
 		mvLink: 'em4fOINPvDY',
 		chordsList: [
 			{
-				chords: `C                                Em            Bb                  G
+				chords: `C Em Bb GF G C Am
+C                                Em            Bb                  G
    어쩌면 나는 쓸모 없는 그런 사람이 되어가는가 봐
    아니면 나는 도대체 왜 끊임이 없이 나를 미워할까
 
@@ -2043,7 +2044,7 @@ F             G
 C                              Em              Bb               G
 어쩌면 나는 필요없는 그런 사람이 이미 되었나 봐
 아니면 나는 도대체 왜 끊임이 없이 외로워야 하나`,
-				tuning: '1카포 C Em Bb GF G C Am | 다운튜닝시 3카포',
+				tuning: '정튜닝 1카포 | 다운튜닝 3카포',
 				provider: '권사장',
 				chordModeType: 'integrated',
 			},
