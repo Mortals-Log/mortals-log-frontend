@@ -10,7 +10,7 @@ import { Schedule } from '@/types/schedule';
 
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { EVENT_TYPE_LABEL } from '@/const/event';
-import { LINK_LIST, LINK_PLATFORM, LINK_SHOP, SNS_PLATFORM } from '@/const/links';
+import { LINK_LIST, LINK_PLATFORM, ETC_PLATFORM, LINK_SHOP, SNS_PLATFORM } from '@/const/links';
 import useImageFallback from '@/hooks/useImageFallback';
 import handleCopy from '@/hooks/handlecopy';
 import { GetAlbumPaths } from '@/utils/album';
@@ -131,11 +131,68 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 						</S.InfoGroup>
 					)}
 
-					{concert.reservationLink && (
-						<S.PrimaryButton to={concert.reservationLink} target="_blank" rel="noopener noreferrer">
-							티켓 예매하러 가기
-						</S.PrimaryButton>
-					)}
+					{concert.ticketing &&
+						concert.ticketing.map((t, index) => {
+							const now = new Date();
+							const { ticketingDate, ticketingTime, ticketingLink } = t;
+
+							const concertStart = cleanDate.split('~')[0].trim();
+							const [cMonth, cDay] = concertStart.split('.').map(Number);
+							const concertDate = new Date(Number(year), cMonth - 1, cDay, 0, 0, 0);
+
+							const tParts = ticketingDate?.split('.').map(Number) || [];
+							const [tHour, tMin] = (ticketingTime || '00:00').split(':').map(Number);
+							const fullTicketingDate = new Date(tParts[0], tParts[1] - 1, tParts[2], tHour, tMin, 0);
+
+							const isBeforeConcert = now < concertDate;
+							const isTicketingOpen = now >= fullTicketingDate;
+
+							const linktreeLink = LINK_LIST.find(cat => cat.category === 'ETC')?.items.find(
+								item => item.label === ETC_PLATFORM.LINK_TREE,
+							)?.url;
+							const finalTicketingLink = ticketingLink || linktreeLink;
+
+							return (
+								<S.InfoGroup key={`${ticketingDate}-${index}`}>
+									{ticketingDate && (
+										<>
+											<InfoTitle
+												label={(concert.ticketing?.length ?? 0) > 1 ? `TICKETING ${index + 1}차` : 'TICKETING'}
+											/>
+											<S.InfoItem>
+												{ticketingDate} ({GetDay(ticketingDate)})
+												{ticketingTime && <span className="time"> {ticketingTime}</span>}
+											</S.InfoItem>
+										</>
+									)}
+
+									{!isBeforeConcert ? (
+										<S.InfoItem>
+											<span className="info">공연이 종료되었습니다.</span>
+										</S.InfoItem>
+									) : !isTicketingOpen ? (
+										<S.InfoItem>
+											<span className="info">티켓팅 오픈 전입니다.</span>
+										</S.InfoItem>
+									) : (
+										finalTicketingLink && (
+											<>
+												<S.PrimaryButton to={finalTicketingLink} target="_blank" rel="noopener noreferrer">
+													{(concert.ticketing?.length ?? 0) > 1
+														? `${index + 1}차 티켓 예매하러 가기`
+														: '티켓 예매하러 가기'}
+												</S.PrimaryButton>
+												{!ticketingLink && finalTicketingLink === linktreeLink && (
+													<S.InfoItem>
+														<span className="info">링크트리의 구글폼에서 예매해주세요.</span>
+													</S.InfoItem>
+												)}
+											</>
+										)
+									)}
+								</S.InfoGroup>
+							);
+						})}
 				</>
 			);
 		}

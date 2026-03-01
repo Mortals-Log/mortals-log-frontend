@@ -7,6 +7,7 @@ import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@const/albums';
 import { CONCERT_TYPE_LABEL, FULL_CONCERTS } from '@const/concert';
 import { EVENT_TYPE_LABEL, FULL_EVENTS } from '@const/event';
 import { PROFILE } from '@const/profile';
+import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
 import { GetAlbumPaths } from '@utils/album';
 import { GetConcertPaths } from '@utils/concert';
 import { GenerateScheduleId } from '@utils/id';
@@ -47,20 +48,19 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 	FULL_CONCERTS.forEach(group =>
 		group.items.forEach(item => {
 			const [startMD, endMD] = item.date.split('~').map(d => d.trim());
+			const { imageSrc } = GetConcertPaths(item, group.year);
+			const baseContent = `[${CONCERT_TYPE_LABEL[item.type]}] ${item.content}`;
 
 			const startDate = new Date(`${group.year}-${startMD.replace(/\./g, '-')}`);
 			const endDate = endMD ? new Date(`${group.year}-${endMD.replace(/\./g, '-')}`) : new Date(startDate);
+			const concertIdDate = FormatDate(startDate);
 
 			for (let curr = new Date(startDate); curr.getTime() <= endDate.getTime(); curr.setDate(curr.getDate() + 1)) {
 				const dateKey = FormatDate(curr);
-				const baseContent = `[${CONCERT_TYPE_LABEL[item.type]}] ${item.content}`;
-
-				const { imageSrc } = GetConcertPaths(item, group.year);
 
 				if (item.times && item.times.length > 1) {
 					item.times.forEach((time, index) => {
 						const displayContent = `${baseContent} - ${index + 1}부`;
-
 						addSchedule(dateKey, {
 							type: 'CONCERT',
 							content: displayContent,
@@ -78,6 +78,31 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 						ageLimit: item.ageLimit || false,
 					});
 				}
+			}
+
+			if (item.ticketing) {
+				const ticketingList = item.ticketing;
+
+				item.ticketing.forEach((t, idx) => {
+					if (!t.ticketingDate) return;
+
+					const tDateKey = t.ticketingDate.replace(/\./g, '-');
+					const partLabel = ticketingList.length > 1 ? ` - ${idx + 1}부` : '';
+					const displayContent = `[${SCHEDULE_LABEL_MAP.TICKETING}] ${item.content}${partLabel}`;
+
+					const ticketingSchedule: Schedule = {
+						type: 'TICKETING',
+						content: displayContent,
+						date: t.ticketingDate,
+						time: t.ticketingTime,
+						imageUrl: imageSrc,
+						id: GenerateScheduleId('CONCERT', concertIdDate, baseContent),
+					};
+
+					const dateKey = tDateKey.replace(/\s/g, '');
+					if (!schedules[dateKey]) schedules[dateKey] = [];
+					schedules[dateKey].push(ticketingSchedule);
+				});
 			}
 		}),
 	);
