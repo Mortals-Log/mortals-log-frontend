@@ -4,21 +4,24 @@ import * as S from '@styles/components/TrackRow.style';
 
 import React from 'react';
 import TrackBadgeList from '@/components/BadgeList';
+import { Track } from '@/types/track';
 
 interface TrackRowProps {
-	track: any;
+	track: Track;
+	album: string;
 	index: number;
 	onClick: (id: string) => void;
 	onKeyDown: (e: React.KeyboardEvent, id: string) => void;
 	variant?: 'song' | 'album';
 }
 
-const TrackRow = React.memo(({ track, index, onClick, onKeyDown, variant = 'song' }: TrackRowProps) => {
+const TrackRow = React.memo(({ track, album, index, onClick, onKeyDown, variant = 'song' }: TrackRowProps) => {
 	const SSet = S.STYLES[variant];
 	const trackIdx = String(index + 1).padStart(2, '0');
 
 	return (
 		<SSet.TrackItem
+			$isCdOnly={track.cdOnly}
 			onClick={() => onClick(track.id)}
 			onKeyDown={e => onKeyDown(e, track.id)}
 			role="button"
@@ -32,7 +35,7 @@ const TrackRow = React.memo(({ track, index, onClick, onKeyDown, variant = 'song
 					</span>
 					<TrackBadgeList track={track} />
 				</SSet.TrackTitle>
-				{variant === 'song' && <S.AlbumName>{track.albumTitle}</S.AlbumName>}
+				{variant === 'song' && <S.AlbumName>{album}</S.AlbumName>}
 			</S.TrackInfo>
 		</SSet.TrackItem>
 	);

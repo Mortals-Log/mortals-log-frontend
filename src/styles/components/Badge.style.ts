@@ -66,6 +66,11 @@ export const TypeBadge = styled(LeadBadge)<{ $eventType: Schedule['type'] }>`
 	color: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].text};
 `;
 
+export const CDBadge = styled(BaseBadge)`
+	background-color: ${props => props.theme.COLOR.PRIMARY};
+	color: ${props => props.theme.COLOR.WHITE};
+`;
+
 export const MusicBadge = styled.a`
 	display: flex;
 	align-items: center;
