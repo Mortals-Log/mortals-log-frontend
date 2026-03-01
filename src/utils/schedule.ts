@@ -47,15 +47,31 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 	FULL_CONCERTS.forEach(group =>
 		group.items.forEach(item => {
 			const [startMD, endMD] = item.date.split('~').map(d => d.trim());
+			const { imageSrc } = GetConcertPaths(item, group.year);
+			const baseContent = `[${CONCERT_TYPE_LABEL[item.type]}] ${item.content}`;
 
 			const startDate = new Date(`${group.year}-${startMD.replace(/\./g, '-')}`);
 			const endDate = endMD ? new Date(`${group.year}-${endMD.replace(/\./g, '-')}`) : new Date(startDate);
 
+			if (item.ticketing && item.ticketing.ticketingDate) {
+				const dateKey = item.ticketing.ticketingDate.replace(/\./g, '-');
+				const displayContent = `[티켓팅] ${item.content}`;
+
+				const ticketingSchedule: Schedule = {
+					type: 'CONCERT',
+					content: displayContent,
+					date: dateKey.replace(/-/g, '.'),
+					time: item.ticketing.ticketingTime,
+					imageUrl: imageSrc,
+					id: GenerateScheduleId('CONCERT', startDate.toString(), baseContent),
+				};
+
+				if (!schedules[dateKey]) schedules[dateKey] = [];
+				schedules[dateKey].push(ticketingSchedule);
+			}
+
 			for (let curr = new Date(startDate); curr.getTime() <= endDate.getTime(); curr.setDate(curr.getDate() + 1)) {
 				const dateKey = FormatDate(curr);
-				const baseContent = `[${CONCERT_TYPE_LABEL[item.type]}] ${item.content}`;
-
-				const { imageSrc } = GetConcertPaths(item, group.year);
 
 				if (item.times && item.times.length > 1) {
 					item.times.forEach((time, index) => {
