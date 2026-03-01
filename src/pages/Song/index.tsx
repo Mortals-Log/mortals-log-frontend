@@ -19,8 +19,20 @@ const SORT_OPTIONS: { type: SortType; label: string }[] = [
 ];
 
 const SORT_STRATEGY = {
-	latest: (a: any, b: any) => (b.releaseDate > a.releaseDate ? 1 : -1),
-	release: (a: any, b: any) => (a.releaseDate > b.releaseDate ? 1 : -1),
+	latest: (a: any, b: any) => {
+		if (b.releaseDate !== a.releaseDate) {
+			return b.releaseDate > a.releaseDate ? 1 : -1;
+		}
+		return a.id.localeCompare(b.id, undefined, { numeric: true });
+	},
+
+	release: (a: any, b: any) => {
+		if (a.releaseDate !== b.releaseDate) {
+			return a.releaseDate > b.releaseDate ? 1 : -1;
+		}
+		return a.id.localeCompare(b.id, undefined, { numeric: true });
+	},
+
 	alphabet: (a: any, b: any) => a.title.localeCompare(b.title, 'ko'),
 };
 
@@ -29,17 +41,22 @@ const Song = () => {
 	const [sortType, setSortType] = useState<SortType>('latest');
 
 	const allTracksWithAlbum = useMemo(() => {
-		return Object.values(MASTER_TRACKS).map(track => ({
-			...track,
-			...(trackToAlbumMap.get(track.id) ?? {
-				albumTitle: 'Unknown Album',
-				releaseDate: '0000.00.00',
-			}),
-		}));
+		return Object.values(MASTER_TRACKS).map(track => {
+			const albumInfo = trackToAlbumMap.get(track.id);
+
+			return {
+				...track,
+				albumTitle: albumInfo?.albumTitle ?? 'Unknown Album',
+				releaseDate: albumInfo?.releaseDate ?? '0000.00.00',
+			};
+		});
 	}, []);
 
 	const sortedTracks = useMemo(() => {
-		return [...allTracksWithAlbum].sort(SORT_STRATEGY[sortType]);
+		const uniqueMap = new Map();
+		allTracksWithAlbum.forEach(item => uniqueMap.set(item.id, item));
+
+		return Array.from(uniqueMap.values()).sort(SORT_STRATEGY[sortType]);
 	}, [allTracksWithAlbum, sortType]);
 
 	return (
@@ -61,7 +78,7 @@ const Song = () => {
 			<S.TrackSection>
 				{sortedTracks.map((track, index) => (
 					<TrackRow
-						key={track.id}
+						key={`${track.id}-${sortType}`}
 						track={track}
 						album={track.albumTitle}
 						index={index}
