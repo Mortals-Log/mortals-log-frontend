@@ -163,6 +163,10 @@ const globalStyles = css`
 			opacity: 0.6;
 			pointer-events: none;
 			z-index: 9999;
+
+			@media print {
+				background-image: none;
+			}
 		}
 	}
 

@@ -317,6 +317,10 @@ export const BackButton = styled.button`
 		margin-bottom: 0.5rem;
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 	}
+
+	@media print {
+		display: none !important;
+	}
 `;
 
 export const ToggleButton = styled.button`

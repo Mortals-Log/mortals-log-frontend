@@ -15,6 +15,10 @@ export const GNBContainer = styled(motion.nav)`
 	z-index: 9999;
 	background-color: transparent;
 	backdrop-filter: blur(30px);
+
+	@media print {
+		display: none !important;
+	}
 `;
 
 export const Inner = styled.div`
