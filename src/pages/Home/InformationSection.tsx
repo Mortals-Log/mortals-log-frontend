@@ -4,10 +4,11 @@ import * as S from '@/styles/pages/Home/InformationSection.style';
 
 import { useMemo } from 'react';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
-import { FULL_CONCERTS } from '@/const/concert';
+import { CONCERT_TYPE_LABEL, FULL_CONCERTS } from '@/const/concert';
 import { GetLatestAlbum } from '@/utils/album';
 import { GetUpcomingSchedules } from '@/utils/date';
 import Placeholder from '@/components/Placeholder';
+import { GenerateScheduleId } from '@/utils/id';
 
 const InformationSection = () => {
 	const upcomingEvents = useMemo(() => GetUpcomingSchedules(FULL_CONCERTS), []);
@@ -28,7 +29,7 @@ const InformationSection = () => {
 								<S.ContentCard key={event.content}>
 									<h3 className="title">{event.content}</h3>
 									<p className="info-text">
-										{event.location} | {event.date}
+										{event.location} | {event.year}.{event.date}
 									</p>
 
 									<S.TimeSlotWrapper>
@@ -50,6 +51,21 @@ const InformationSection = () => {
 													</S.TimeTag>
 												))}
 									</S.TimeSlotWrapper>
+
+									<S.ActionLink
+										to={`/schedule/${GenerateScheduleId(
+											'CONCERT',
+											(() => {
+												const firstDate = event.date.split('~')[0].trim();
+												const parts = firstDate.split('.').filter(Boolean);
+												const month = parts[parts.length - 2].padStart(2, '0');
+												const day = parts[parts.length - 1].padStart(2, '0');
+												return `${event.year}-${month}-${day}`;
+											})(),
+											`[${CONCERT_TYPE_LABEL[event.type]}] ${event.content}`,
+										)}`}>
+										일정 더보기 →
+									</S.ActionLink>
 								</S.ContentCard>
 							))
 						) : (
