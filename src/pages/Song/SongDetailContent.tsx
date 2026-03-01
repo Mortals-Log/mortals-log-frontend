@@ -61,6 +61,35 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 		window.print();
 	};
 
+	const handleDownloadTxt = () => {
+		if (!currentChordVersion) return;
+
+		const content = currentChordVersion.chords.replace(/ {3}/g, '\u3000');
+
+		const header =
+			`[${track.title}]\n` +
+			`튜닝 | ${currentChordVersion.tuning || '정튜닝'}\n` +
+			`제공 | ${currentChordVersion.provider || 'System'}\n\n` +
+			`------------------------------------------\n\n`;
+
+		const lyrics = isSeparated && `\n\n${track.lyrics}`;
+
+		const finalContent = header + content + lyrics;
+		const fileName = `${track.title}_${currentChordVersion.provider}ver.txt`;
+
+		const blob = new Blob([finalContent], { type: 'text/plain;charset=utf-8' });
+		const url = URL.createObjectURL(blob);
+		const link = document.createElement('a');
+
+		link.href = url;
+		link.download = fileName;
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+
+		URL.revokeObjectURL(url);
+	};
+
 	return (
 		<S.ContentSection>
 			<S.ContentHeader>
@@ -105,6 +134,7 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 				<>
 					<S.ButtonWrapper>
 						<S.DownloadButton onClick={handleDownloadPDF}>PDF 다운로드 💾</S.DownloadButton>
+						<S.DownloadButton onClick={handleDownloadTxt}>텍스트 저장 📝</S.DownloadButton>
 					</S.ButtonWrapper>
 					{isSeparated && (
 						<S.StickyChordBar>

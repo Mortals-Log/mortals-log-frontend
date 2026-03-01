@@ -193,8 +193,10 @@ export const StickyChordBar = styled.div`
 
 export const ButtonWrapper = styled.div`
 	display: flex;
-	justify-content: flex-end;
 	width: 100%;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 0.8rem;
 	margin: 1rem 0;
 
 	@media print {
@@ -203,6 +205,8 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const DownloadButton = styled.span`
+	display: flex;
+	align-items: center;
 	cursor: pointer;
 
 	font-family: ${props => props.theme.FONT.SANS};
