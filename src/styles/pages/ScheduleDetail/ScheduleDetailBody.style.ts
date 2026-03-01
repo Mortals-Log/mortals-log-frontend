@@ -104,6 +104,17 @@ export const InfoItem = styled.div`
 		}
 	}
 
+	.info {
+		font-family: ${props => props.theme.FONT.SERIF};
+		font-size: ${props => props.theme.FONT.SIZE.XS};
+
+		&::before {
+			content: '*';
+			color: ${props => props.theme.COLOR.PRIMARY};
+			margin-right: 4px;
+		}
+	}
+
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 		gap: 8px;

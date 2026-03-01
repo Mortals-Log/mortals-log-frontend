@@ -10,7 +10,7 @@ import { Schedule } from '@/types/schedule';
 
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { EVENT_TYPE_LABEL } from '@/const/event';
-import { LINK_LIST, LINK_PLATFORM, LINK_SHOP, SNS_PLATFORM } from '@/const/links';
+import { LINK_LIST, LINK_PLATFORM, ETC_PLATFORM, LINK_SHOP, SNS_PLATFORM } from '@/const/links';
 import useImageFallback from '@/hooks/useImageFallback';
 import handleCopy from '@/hooks/handlecopy';
 import { GetAlbumPaths } from '@/utils/album';
@@ -131,11 +131,42 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 						</S.InfoGroup>
 					)}
 
-					{concert.ticketing?.ticketingLink && (
-						<S.PrimaryButton to={concert.ticketing.ticketingLink} target="_blank" rel="noopener noreferrer">
-							티켓 예매하러 가기
-						</S.PrimaryButton>
-					)}
+					{concert.ticketing &&
+						(() => {
+							const { ticketingDate, ticketingTime, ticketingLink } = concert.ticketing || {};
+
+							const linktreeLink = LINK_LIST.find(cat => cat.category === 'ETC')?.items.find(
+								item => item.label === ETC_PLATFORM.LINK_TREE,
+							)?.url;
+
+							const finalTicketingLink = ticketingLink || linktreeLink;
+
+							return (
+								<S.InfoGroup>
+									{ticketingDate && (
+										<>
+											<InfoTitle label="TICKETING" />
+											<S.InfoItem>
+												{ticketingDate} ({GetDay(ticketingDate)})
+												{ticketingTime && <span className="time"> {ticketingTime}</span>}
+											</S.InfoItem>
+										</>
+									)}
+
+									{finalTicketingLink && (
+										<S.PrimaryButton to={finalTicketingLink} target="_blank" rel="noopener noreferrer">
+											티켓 예매하러 가기
+										</S.PrimaryButton>
+									)}
+
+									{!ticketingLink && finalTicketingLink === linktreeLink && (
+										<S.InfoItem>
+											<span className="info">링크의 구글폼 링크에서 예매하기</span>
+										</S.InfoItem>
+									)}
+								</S.InfoGroup>
+							);
+						})()}
 				</>
 			);
 		}
