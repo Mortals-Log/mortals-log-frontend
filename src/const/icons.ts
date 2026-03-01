@@ -1,4 +1,4 @@
-// @const/sns_icon.ts
+// @/const/icons
 
 /* eslint-disable storybook/default-exports */
 

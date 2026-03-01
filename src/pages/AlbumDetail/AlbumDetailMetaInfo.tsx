@@ -1,4 +1,4 @@
-// @components/Album/AlbumMetaInfo.tsx
+// @/pages/AlbumDetail/AlbumDetailMEtaInfo
 
 import * as S from '@/styles/pages/AlbumDetail/AlbumDetailMetaInfo.style';
 

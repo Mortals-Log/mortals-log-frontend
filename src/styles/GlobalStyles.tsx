@@ -1,4 +1,4 @@
-// GlobalStyles.tsx
+// @/styles/GlobalStyles
 
 import { Global, css } from '@emotion/react';
 

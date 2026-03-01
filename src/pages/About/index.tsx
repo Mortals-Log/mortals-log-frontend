@@ -1,4 +1,4 @@
-// @src/pages/About/index
+// @/pages/About
 
 import * as S from '@/styles/pages/About/About.style';
 

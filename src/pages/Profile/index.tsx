@@ -1,4 +1,4 @@
-// @src/pages/Profile/index
+// @/pages/Profile
 
 import * as S from '@/styles/pages/Profile/Profile.style';
 

@@ -1,4 +1,4 @@
-// @/pages/Album/AlbumDetailTracks.tsx
+// @/pages/AlbumDetail/AlbumDetailTracks.tsx
 
 import * as S from '@styles/pages/AlbumDetail/AlbumDetailTracks.style';
 

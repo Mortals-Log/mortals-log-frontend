@@ -1,4 +1,4 @@
-// @styles/pages/About/AboutTitle.style
+// @/styles/pages/About/AboutTitle
 
 /* eslint-disable storybook/default-exports */
 
@@ -66,25 +66,6 @@ export const Title = styled.div`
 			font-size: ${props => props.theme.FONT.SIZE.SM};
 		}
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		margin-bottom: 1.5rem;
-
-		.bottom-row {
-			align-items: flex-start;
-			flex-wrap: wrap;
-			gap: 12px;
-		}
-
-		.subtitle-column {
-			padding-bottom: 0;
-			margin-top: 12px;
-		}
-
-		small {
-			font-size: ${props => props.theme.FONT.SIZE.SM};
-		}
-	}
 `;
 
 export const DescriptionBox = styled.div`
@@ -98,7 +79,7 @@ export const DescriptionBox = styled.div`
 		font-size: ${props => props.theme.FONT.SIZE.XL};
 		font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 		color: ${props => props.theme.COLOR.GRAY700};
-		margin-bottom: 1rem;
+		margin-bottom: 0.8rem;
 	}
 
 	.highlight {
@@ -140,11 +121,6 @@ export const DescriptionBox = styled.div`
 
 		.highlight {
 			font-size: ${props => props.theme.FONT.SIZE.SM};
-		}
-
-		.sub-text {
-			font-size: ${props => props.theme.FONT.SIZE.SM};
-			line-height: 1.3;
 		}
 	}
 `;

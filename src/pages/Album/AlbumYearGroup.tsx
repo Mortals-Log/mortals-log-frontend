@@ -1,4 +1,4 @@
-// @src/pages/Album/AlbumYearGroup
+// @/pages/Album/AlbumYearGroup
 
 import * as S from '@styles/pages/Album/AlbumReleaseSection.style';
 

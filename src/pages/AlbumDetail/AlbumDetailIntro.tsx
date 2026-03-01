@@ -1,4 +1,4 @@
-// @pages/Album/AlbumDetailInfo.tsx
+// @/pages/Album/AlbumDetailInfo.tsx
 
 import * as S from '@styles/pages/AlbumDetail/AlbumDetailIntro.style';
 import { useMemo, useState } from 'react';

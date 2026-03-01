@@ -1,4 +1,4 @@
-// @types/profile
+// @/types/profile
 
 /* eslint-disable storybook/default-exports */
 

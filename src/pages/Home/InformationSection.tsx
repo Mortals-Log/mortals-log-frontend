@@ -1,4 +1,4 @@
-// @pages/Home/Information
+// @/pages/Home/Information
 
 import * as S from '@/styles/pages/Home/InformationSection.style';
 

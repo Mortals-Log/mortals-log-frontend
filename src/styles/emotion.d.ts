@@ -1,3 +1,5 @@
+// @/styles/emotion
+
 /* eslint-disable storybook/default-exports */
 
 import '@emotion/react';

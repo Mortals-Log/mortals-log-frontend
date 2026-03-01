@@ -1,4 +1,4 @@
-// @src/pages/Music/in
+// @/pages/Music
 
 import * as S from '@/styles/pages/Music/Music.style';
 

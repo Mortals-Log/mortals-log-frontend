@@ -1,4 +1,4 @@
-// @utils/id.ts
+// @/utils/id
 
 /* eslint-disable storybook/default-exports */
 

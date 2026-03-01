@@ -1,4 +1,4 @@
-// @styles/components/Badge.style
+// @/styles/components/Badge.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -11,7 +11,7 @@ export const BadgeGroup = styled.div`
 	flex-wrap: wrap;
 	gap: 0.3rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		gap: 0.2rem;
 	}
 `;
@@ -30,7 +30,7 @@ const BaseBadge = styled.span`
 	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
 	letter-spacing: 0.02em;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		padding: 2px 4px;
 	}
 `;
@@ -62,12 +62,8 @@ export const MVBadge = styled(LeadBadge)`
 
 export const TypeBadge = styled(LeadBadge)<{ $eventType: Schedule['type'] }>`
 	background: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].bg};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
+	font-size: ${props => props.theme.FONT.SIZE.XS};
 	color: ${props => SCHEDULE_TYPE_COLORS[props.$eventType].text};
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
-		font-size: ${props => props.theme.FONT.SIZE.XS};
-	}
 `;
 
 export const MusicBadge = styled.a`

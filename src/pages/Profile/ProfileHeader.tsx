@@ -1,4 +1,4 @@
-// @src/pages/Profile/components/ProfileHeader.tsx
+// @/pages/Profile/components/ProfileHeader
 
 import * as S from '@/styles/pages/Profile/ProfileHeader.style';
 

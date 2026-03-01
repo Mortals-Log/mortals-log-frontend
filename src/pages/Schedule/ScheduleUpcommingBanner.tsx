@@ -1,4 +1,4 @@
-// @components/Schedule/UpcomingBanner.tsx
+// @/pages/Schedule/ScheduleUpcomingBanner
 
 import * as S from '@/styles/pages/Schedule/ScheduleUpcommingBanner.style';
 
@@ -47,7 +47,7 @@ const ScheduleUpcommingBacnner = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TI
 
 			<S.SliderContainer>
 				{upcomingEvents.map((event, idx) => (
-					<S.BannerItem key={idx} eventType={event.type} dDay={event.diff} onClick={() => handleItemClick(event.id)}>
+					<S.BannerItem key={idx} $eventType={event.type} $dDay={event.diff} onClick={() => handleItemClick(event.id)}>
 						<div className="info">
 							<span className="dDay">{event.dDayLabel}</span>
 							<span className="date">{format(parseISO(event.date), 'MM.dd')}</span>

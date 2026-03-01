@@ -1,4 +1,4 @@
-// @src/pages/Profile/ProfileCareerSection.tsx
+// @/pages/Profile/ProfileCareerSection
 
 import * as S from '@styles/pages/Profile/ProfileCareerSection.style';
 import { useMemo, useState } from 'react';

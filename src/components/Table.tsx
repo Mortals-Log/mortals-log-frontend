@@ -1,4 +1,4 @@
-// @component/Table
+// @/component/Table
 
 /* eslint-disable storybook/default-exports */
 

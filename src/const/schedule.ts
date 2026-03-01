@@ -1,4 +1,4 @@
-// @const/schedule.ts
+// @/const/schedule
 
 /* eslint-disable storybook/default-exports */
 

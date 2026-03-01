@@ -1,4 +1,4 @@
-// @styles/pages/Schedule/ScheduleLabel.style
+// @/styles/pages/ScheduleCalendar/ScheduleLabel
 
 /* eslint-disable storybook/default-exports */
 
@@ -25,7 +25,7 @@ export const LabelContainer = styled.div`
 	border: 1px solid ${props => props.theme.COLOR.GRAY100};
 	border-radius: 10px;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet}, ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		width: 100%;
 		flex-wrap: wrap;
 		justify-content: flex-start;

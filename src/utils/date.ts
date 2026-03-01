@@ -1,4 +1,4 @@
-// @utils/date.ts
+// @/utils/date
 
 /* eslint-disable storybook/default-exports */
 
@@ -35,23 +35,6 @@ export const GetDay = (date: string, year?: string) => {
 	return days[dateObj.getDay()];
 };
 
-export const GetDDay = (targetDate: string): string | null => {
-	const now = new Date();
-	const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-
-	const normalizedDate = targetDate.replace(/\. /g, '/').replace(/\./g, '/');
-	const target = new Date(normalizedDate);
-
-	if (isNaN(target.getTime())) return null;
-
-	const targetTime = new Date(target.getFullYear(), target.getMonth(), target.getDate()).getTime();
-	const diffDays = Math.ceil((targetTime - today) / MS_PER_DAY);
-
-	if (diffDays === 0) return 'D-DAY';
-	if (diffDays > 0) return `D-${String(diffDays).padStart(2, '0')}`;
-
-	return null;
-};
 export const GetUpcomingSchedules = (fullConcerts: Concert[], limit?: number): (ConcertItem & { year: string })[] => {
 	const now = new Date();
 	const todayNum = Number(

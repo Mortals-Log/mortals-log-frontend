@@ -1,4 +1,4 @@
-// @styles/themes
+// @/styles/themes
 
 /* eslint-disable storybook/default-exports */
 

@@ -1,4 +1,4 @@
-// @pages/Home/ProfileSection
+// @/pages/Home/ProfileSection
 
 import * as S from '@/styles/pages/Home/ProfileSection.style';
 

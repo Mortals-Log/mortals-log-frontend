@@ -1,4 +1,4 @@
-// @utils/schedule
+// @/utils/schedule
 
 /* eslint-disable storybook/default-exports */
 

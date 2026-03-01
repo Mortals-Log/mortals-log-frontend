@@ -1,4 +1,4 @@
-// @pages/Profile/ProfileDiscographySection
+// @/pages/Profile/ProfileDiscographySection
 
 import * as S from '@/styles/pages/Profile/ProfileDiscographySection.style';
 

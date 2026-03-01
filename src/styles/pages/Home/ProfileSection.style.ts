@@ -1,4 +1,4 @@
-//@styles/pages/Home/ProfileSection.style
+// @/styles/pages/Home/ProfileSection
 
 /* eslint-disable storybook/default-exports */
 
@@ -17,16 +17,12 @@ const fadeInBlur = keyframes`
 export const ProfileSection = styled(L.ContentSection)`
 	display: flex;
 	position: relative;
-	padding: 100px 60px;
 	justify-content: center;
 	margin: 0 auto;
+	margin-top: 6rem;
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		padding: 6rem 1rem;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		padding: 5rem 1rem;
+		margin-top: 5rem;
 	}
 `;
 
@@ -38,6 +34,10 @@ export const ModifierLink = styled(B.SourceLink)`
 	white-space: normal;
 	overflow: visible;
 	text-overflow: clip;
+
+	@media ${props => props.theme.WINDOW_SIZE.laptop} {
+		margin-bottom: 4px;
+	}
 `;
 
 export const BackgroundText = styled.div`
@@ -76,14 +76,13 @@ export const SectionWrapper = styled.div`
 	display: flex;
 	position: relative;
 	width: 100%;
-	max-width: 1000px;
 	margin: 0 auto;
 
 	align-items: center;
 	justify-content: center;
-	gap: 5rem;
+	gap: 4rem;
 
-	@media (max-width: 1200px) {
+	@media ${props => props.theme.WINDOW_SIZE.laptop} {
 		gap: 3rem;
 	}
 
@@ -100,21 +99,19 @@ export const SectionWrapper = styled.div`
 
 export const ImageSection = styled.div`
 	position: relative;
-	flex: 0 0 380px;
+	flex: 0 0 340px;
 	width: 100%;
 
-	@media (max-width: 1200px) {
-		width: 100%;
-		max-width: 290px;
+	@media ${props => props.theme.WINDOW_SIZE.laptop} {
+		flex: 0 0 290px;
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		width: 100%;
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+		flex: none;
 		max-width: 280px;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		flex: none;
 		max-width: 250px;
 	}
 `;
@@ -141,18 +138,16 @@ export const HanjaBadge = styled.div`
 	writing-mode: vertical-rl;
 	letter-spacing: 0.7rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
+	@media ${props => props.theme.WINDOW_SIZE.laptop} {
 		top: -20px;
-		right: -10px;
 		padding: 15px 8px;
 		font-size: 1.5rem;
 		letter-spacing: 0.4rem;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		top: -10px;
+		top: -15px;
 		right: -10px;
-		padding: 13px 8px;
 		font-size: 1.4rem;
 		letter-spacing: 0.4rem;
 	}
@@ -178,6 +173,7 @@ export const ModifierContainer = styled.div`
 
 	width: 400px;
 	min-height: 80px;
+	margin-bottom: 4px;
 
 	will-change: transform, opacity, filter;
 
@@ -213,13 +209,18 @@ export const ModifierText = styled.p`
 	word-break: keep-all;
 
 	animation: ${fadeInBlur} 0.8s ease-out;
+
+	@media ${props => props.theme.WINDOW_SIZE.laptop} {
+		font-size: ${props => props.theme.FONT.SIZE.SM};
+		font-weight: ${props => props.theme.FONT.WEIGHT.SEMIBOLD};
+	}
 `;
 
 export const NameSection = styled.div`
 	display: flex;
 	align-items: baseline;
-	margin-bottom: 1.5rem;
-	gap: 0.8rem;
+	margin-bottom: 1.2rem;
+	gap: 0.6rem;
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		align-items: flex-start;
@@ -228,7 +229,6 @@ export const NameSection = styled.div`
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		flex-direction: column;
 		align-items: center;
 		margin-bottom: 1.5rem;
 		gap: 0.4rem;
@@ -244,10 +244,6 @@ export const ArtistName = styled.div`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		font-size: ${props => props.theme.FONT.SIZE.XL};
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		font-size: ${props => props.theme.FONT.SIZE.XL};
-	}
 `;
 
 export const JobBadge = styled.span`
@@ -256,10 +252,6 @@ export const JobBadge = styled.span`
 	font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 	color: ${props => props.theme.COLOR.GRAY400};
 	letter-spacing: 0.1rem;
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		font-size: ${props => props.theme.FONT.SIZE.MD};
-	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
@@ -290,7 +282,5 @@ export const ProfileDescription = styled.div`
 		font-size: ${props => props.theme.FONT.SIZE.XS};
 		text-align: center;
 		line-height: 1.6;
-
-		margin-bottom: 1.5rem;
 	}
 `;

@@ -1,4 +1,4 @@
-// @const/tracks.ts
+// @/const/tracks
 
 /* eslint-disable storybook/default-exports */
 

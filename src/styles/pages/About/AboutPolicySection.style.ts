@@ -1,4 +1,4 @@
-// @styles/pages/About/AboutPolicySection.style
+// @/styles/pages/About/AboutPolicySection
 
 /* eslint-disable storybook/default-exports */
 
@@ -17,7 +17,7 @@ export const PolicyItem = styled.div`
 	word-break: keep-all;
 
 	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
 
 	&:first-of-type {
 		border-top: none;
@@ -41,32 +41,19 @@ export const PolicyItem = styled.div`
 
 		@media ${props => props.theme.WINDOW_SIZE.mobile} {
 			text-align: left;
+			flex: none;
 		}
 	}
 
 	.content {
-		line-height: 1.7;
+		line-height: 1.6;
 		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 		color: ${props => props.theme.COLOR.GRAY600};
-
-		@media ${props => props.theme.WINDOW_SIZE.tablet} {
-			line-height: 1.6;
-		}
-
-		@media ${props => props.theme.WINDOW_SIZE.mobile} {
-			line-height: 1.6;
-		}
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		flex-direction: column;
 		gap: 8px;
 		padding: 0.8rem 0.3rem;
-
-		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;

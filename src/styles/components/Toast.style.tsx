@@ -1,4 +1,4 @@
-// @styles/components/Toast.style
+// @/styles/components/Toast.style
 
 /* eslint-disable storybook/default-exports */
 

@@ -1,4 +1,4 @@
-// @const/career.ts
+// @/const/career
 
 /* eslint-disable storybook/default-exports */
 

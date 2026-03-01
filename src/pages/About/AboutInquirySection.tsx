@@ -1,4 +1,4 @@
-// @pages/About/AboutInquirySection
+// @/pages/About/AboutInquirySection
 
 import * as S from '@styles/pages/About/AboutInquirySection.style';
 import { ABOUT_INQUIRY, ABOUT_INQUIRY_SUFFIX } from '@/const/about';
@@ -16,7 +16,7 @@ const AboutInquiry = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: stri
 			<S.ButtonGrid>
 				{Object.values(ABOUT_INQUIRY).map(item => (
 					<S.InquiryButtn key={item.label} to={item.url} target="_blank" rel="noreferrer">
-						<strong>{item.label}</strong>
+						{item.label}
 						<span>
 							{item.label}
 							{suffix}

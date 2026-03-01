@@ -1,4 +1,4 @@
-// @utils/snsUrl.ts
+// @/utils/snsUrl
 
 /* eslint-disable storybook/default-exports */
 

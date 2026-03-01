@@ -1,4 +1,4 @@
-// @utils/urlSlug
+// @/utils/urlSlug
 
 /* eslint-disable storybook/default-exports */
 

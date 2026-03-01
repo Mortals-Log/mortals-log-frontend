@@ -1,4 +1,4 @@
-// @styles/pages/Album/AlbumPromotionSection.style
+// @/styles/pages/Album/AlbumPromotionSection
 
 /* eslint-disable storybook/default-exports */
 
@@ -19,15 +19,11 @@ export const ContentWrapper = styled.div`
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		flex-direction: column;
-		text-align: center;
 		padding: 1rem;
 		gap: 1.5rem;
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		flex-direction: column;
-		text-align: center;
-		padding: 1rem;
 		gap: 1.2rem;
 	}
 `;
@@ -42,12 +38,6 @@ export const ImageArea = styled.div`
 		width: 100%;
 		margin-bottom: 1rem;
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		justify-content: center;
-		width: 100%;
-		margin-bottom: 1rem;
-	}
 `;
 
 export const CoverImage = styled.img`
@@ -57,15 +47,10 @@ export const CoverImage = styled.img`
 	object-fit: cover;
 
 	border-radius: 10px;
-	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		max-width: 380px;
-		box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 	}
 `;
 
@@ -81,10 +66,6 @@ export const InfoArea = styled.div`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		align-items: center;
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		align-items: center;
-	}
 `;
 
 export const Tag = styled.div`
@@ -98,10 +79,6 @@ export const Tag = styled.div`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		margin-bottom: 0.4rem;
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		margin-bottom: 0.4rem;
-	}
 `;
 
 export const Title = styled.div`
@@ -112,10 +89,6 @@ export const Title = styled.div`
 	margin-bottom: 1rem;
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		margin-bottom: 0.5rem;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		margin-bottom: 0.5rem;
 	}
 `;
@@ -133,7 +106,6 @@ export const Info = styled.div`
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
-		margin-bottom: 0.5rem;
 	}
 `;
 
@@ -151,11 +123,6 @@ export const Description = styled.div`
 		text-align: center;
 		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		text-align: center;
-		font-size: ${props => props.theme.FONT.SIZE.XS};
-	}
 `;
 
 export const TrackPreviewList = styled.ul`
@@ -167,10 +134,6 @@ export const TrackPreviewList = styled.ul`
 	padding: 0;
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		gap: 0.5rem;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		gap: 0.5rem;
 	}
 `;
@@ -210,7 +173,6 @@ export const MoreText = styled.span`
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		font-size: ${props => props.theme.FONT.SIZE.XS};
-		padding-left: 0;
 	}
 `;
 
@@ -232,7 +194,7 @@ export const DDayBadge = styled.div`
 	left: 1rem;
 	padding: 0.8rem;
 	border-radius: 10px;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 	background: ${props => props.theme.COLOR.PRIMARY};
 
 	font-family: ${props => props.theme.FONT.SANS};
@@ -243,12 +205,6 @@ export const DDayBadge = styled.div`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		top: 0.1rem;
 		left: 0.1rem;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		top: 0.1rem;
-		left: 0.1rem;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 	}
 `;

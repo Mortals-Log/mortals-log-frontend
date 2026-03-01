@@ -1,4 +1,4 @@
-// @const/albums.ts
+// @/const/albums
 
 /* eslint-disable storybook/default-exports */
 

@@ -1,4 +1,4 @@
-// @styles/common/ArrowIcon.style
+// @/styles/common/ArrowIcon.style
 
 /* eslint-disable storybook/default-exports */
 

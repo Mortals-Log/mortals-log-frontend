@@ -1,4 +1,4 @@
-//@pages/Song/SongDetailHeader
+// @/pages/Song/SongDetailHeader
 
 import * as S from '@/styles/pages/Song/SongDetailHeader.styles';
 

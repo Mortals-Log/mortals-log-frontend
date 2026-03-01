@@ -1,4 +1,4 @@
-// @src/pages/Goods/GoodsGuideSection
+// @/pages/Goods/GoodsGuideSection
 
 import * as S from '@/styles/pages/Goods/Goods.style';
 

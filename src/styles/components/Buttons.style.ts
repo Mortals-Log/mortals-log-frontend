@@ -1,4 +1,4 @@
-// @styles/components/Buttons.style
+// @/styles/components/Buttons.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -148,10 +148,6 @@ export const SourceLink = styled(Link)<{ $disabled?: boolean }>`
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		width: 100%;
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		width: 100%;
-	}
 `;
 
 export const LinkButton = styled(Link)`
@@ -202,20 +198,6 @@ export const LinkButton = styled(Link)`
 			height: 14px;
 		}
 	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		padding: 0.7rem 0.9rem;
-		font-size: ${props => props.theme.FONT.SIZE.XS};
-
-		&:hover {
-			transform: none;
-		}
-
-		svg {
-			width: 14px;
-			height: 14px;
-		}
-	}
 `;
 
 export const ViewMoreButton = styled.button`
@@ -255,7 +237,6 @@ export const ViewMoreButton = styled.button`
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		padding: 1rem 1.2rem;
-		font-size: ${props => props.theme.FONT.SIZE.MD};
 
 		&::after {
 			margin-left: 4px;
@@ -265,10 +246,6 @@ export const ViewMoreButton = styled.button`
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 0.8rem 1.4rem;
 		font-size: ${props => props.theme.FONT.SIZE.SM};
-
-		&::after {
-			margin-left: 4px;
-		}
 	}
 `;
 

@@ -1,4 +1,4 @@
-// @pages/About/AboutPolicySection
+// @/pages/About/AboutPolicySection
 
 import * as S from '@/styles/pages/About/AboutPolicySection.style';
 

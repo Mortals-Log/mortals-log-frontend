@@ -1,4 +1,4 @@
-//@styles/pages/Home/InformationSection.style
+// @/styles/pages/Home/InformationSection
 
 /* eslint-disable storybook/default-exports */
 
@@ -8,15 +8,10 @@ import { Link } from 'react-router-dom';
 
 export const InformationSection = styled(motion.div)`
 	width: 100%;
-	max-width: 1000px;
 	margin: 0 auto;
 	padding: 0 24px;
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		padding: 0 16px;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
 		padding: 0 16px;
 	}
 `;
@@ -24,21 +19,10 @@ export const InformationSection = styled(motion.div)`
 export const SectionWrapper = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 5rem;
-
-	@media (max-width: 1200px) {
-		gap: 2rem;
-	}
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		grid-template-columns: 1fr;
 		gap: 1rem;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		grid-template-columns: 1fr;
-		gap: 1rem;
-		padding: 0;
 	}
 `;
 
@@ -62,7 +46,6 @@ export const InfoSection = styled.div`
 
 		@media ${props => props.theme.WINDOW_SIZE.mobile} {
 			margin-bottom: 1rem;
-			letter-spacing: 0.15rem;
 		}
 	}
 `;
@@ -72,12 +55,11 @@ export const EventList = styled.div`
 	flex-direction: column;
 	gap: 2.5rem;
 
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		width: 100%;
-		gap: 1.5rem;
+	@media ${props => props.theme.WINDOW_SIZE.laptop} {
+		gap: 2rem;
 	}
 
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
+	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		width: 100%;
 		gap: 1.5rem;
 	}
@@ -94,18 +76,10 @@ export const ContentCard = styled.div`
 
 	.title {
 		font-family: ${props => props.theme.FONT.SERIF};
-		font-size: ${props => props.theme.FONT.SIZE.LG};
+		font-size: ${props => props.theme.FONT.SIZE.MD};
 		font-weight: ${props => props.theme.FONT.WEIGHT.REGULAR};
 		color: ${props => props.theme.COLOR.BLACK};
 		margin: 0 0 0.5rem 0;
-
-		@media ${props => props.theme.WINDOW_SIZE.tablet} {
-			font-size: ${props => props.theme.FONT.SIZE.MD};
-		}
-
-		@media ${props => props.theme.WINDOW_SIZE.mobile} {
-			font-size: ${props => props.theme.FONT.SIZE.MD};
-		}
 	}
 
 	.info-text {
@@ -116,31 +90,15 @@ export const ContentCard = styled.div`
 
 		opacity: 0.7;
 		margin: 0;
-
-		@media ${props => props.theme.WINDOW_SIZE.tablet} {
-			font-size: ${props => props.theme.FONT.SIZE.SM};
-		}
-
-		@media ${props => props.theme.WINDOW_SIZE.mobile} {
-			font-size: ${props => props.theme.FONT.SIZE.SM};
-		}
 	}
 `;
 
 export const TimeSlotWrapper = styled.div`
 	display: flex;
 	justify-content: flex-start;
-	gap: 0.6rem;
+	gap: 0.4rem;
 	margin-top: 1rem;
 	flex-wrap: wrap;
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		gap: 0.4rem;
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		gap: 0.4rem;
-	}
 `;
 
 export const TimeTag = styled.div`
@@ -170,10 +128,6 @@ export const TimeTag = styled.div`
 		@media ${props => props.theme.WINDOW_SIZE.tablet} {
 			font-size: ${props => props.theme.FONT.SIZE.XS};
 		}
-
-		@media ${props => props.theme.WINDOW_SIZE.mobile} {
-			font-size: ${props => props.theme.FONT.SIZE.XS};
-		}
 	}
 `;
 
@@ -184,7 +138,7 @@ export const ActionLink = styled(Link)`
 	cursor: pointer;
 
 	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.MD};
+	font-size: ${props => props.theme.FONT.SIZE.SM};
 	font-weight: ${props => props.theme.FONT.WEIGHT.LIGHT};
 	color: ${props => props.theme.COLOR.GRAY700};
 	text-decoration: none;
@@ -195,11 +149,5 @@ export const ActionLink = styled(Link)`
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		margin-top: 0.8rem;
-		font-size: ${props => props.theme.FONT.SIZE.SM};
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		margin-top: 0.8rem;
-		font-size: ${props => props.theme.FONT.SIZE.SM};
 	}
 `;

@@ -1,4 +1,4 @@
-// @styles/common/VideoWrapper.style
+// @/styles/common/VideoWrapper.style
 
 /* eslint-disable storybook/default-exports */
 

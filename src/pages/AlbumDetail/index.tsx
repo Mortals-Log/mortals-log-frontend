@@ -1,4 +1,4 @@
-// @src/pages/Album/AlbumDetail
+// @/pages/AlbumDetail
 
 import * as S from '@styles/pages/AlbumDetail/AlbumDetail.style';
 import { useParams } from 'react-router-dom';
@@ -7,10 +7,10 @@ import { ALBUM_TYPE_LABEL, GET_FULL_ALBUMS } from '@const/albums';
 import AlbumDetailTracks from '@/pages/AlbumDetail/AlbumDetailTracks';
 import AlbumDetailMetaInfo from '@/pages/AlbumDetail/AlbumDetailMetaInfo';
 import AlbumDetailIntro from '@/pages/AlbumDetail/AlbumDetailIntro';
-import { IsAlbumMatch } from '@/utils/album';
+import { METADATA } from '@/const/contents';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/Placeholder';
-import { METADATA } from '@/const/contents';
+import { IsAlbumMatch } from '@/utils/album';
 
 const SECTION_TITLE = {
 	TRACKS: {

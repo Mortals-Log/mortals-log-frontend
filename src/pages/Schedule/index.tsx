@@ -1,4 +1,4 @@
-// @src/pages/Schedule/index
+// @/pages/Schedule
 
 import * as S from '@/styles/pages/Schedule/Schedule.style';
 

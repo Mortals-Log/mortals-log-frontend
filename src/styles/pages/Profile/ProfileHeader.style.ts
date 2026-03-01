@@ -1,10 +1,8 @@
-// @styles/pages/Profile/ProfileHeader.style
+// @/styles/pages/Profile/ProfileHeader
 
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
-
-export { SourceLink } from '@/styles/components/Buttons.style';
 
 export const ProfileHeader = styled.section`
 	display: flex;
@@ -19,9 +17,6 @@ export const ProfileHeader = styled.section`
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
 		gap: 24px;
 	}
 `;
@@ -39,7 +34,6 @@ export const MainImage = styled.img`
 	}
 
 	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		width: 100%;
 		max-width: 240px;
 	}
 `;
@@ -90,17 +84,13 @@ export const NameGroup = styled.div`
 			font-size: ${props => props.theme.FONT.SIZE.H2};
 			margin-bottom: 0.8rem;
 		}
-
-		.sub-name {
-			font-size: ${props => props.theme.FONT.SIZE.SM};
-		}
 	}
 `;
 
 export const Description = styled.blockquote`
 	padding-left: 1rem;
 	margin: 0.8rem 0;
-	border-left: 3px solid ${props => props.theme.COLOR.PRIMARY};
+	border-left: 2.5px solid ${props => props.theme.COLOR.PRIMARY};
 
 	font-family: ${props => props.theme.FONT.SERIF};
 	font-size: ${props => props.theme.FONT.SIZE.SM};

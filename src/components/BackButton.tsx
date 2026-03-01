@@ -1,4 +1,4 @@
-// @components/BackButton.tsx
+// @/components/BackButton
 
 import * as S from '@/styles/components/Buttons.style';
 

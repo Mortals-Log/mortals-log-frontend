@@ -1,4 +1,4 @@
-// @styles/components/Table.style
+// @/styles/components/Table.style
 
 /* eslint-disable storybook/default-exports */
 
@@ -74,11 +74,6 @@ export const ValueItem = styled.div`
 
 	@media ${props => props.theme.WINDOW_SIZE.tablet} {
 		font-size: ${props => props.theme.FONT.SIZE.SM};
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		padding: 12px 16px;
-		font-size: ${props => props.theme.FONT.SIZE.MD};
 	}
 `;
 
