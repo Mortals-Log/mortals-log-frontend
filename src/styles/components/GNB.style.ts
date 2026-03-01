@@ -22,6 +22,7 @@ export const Inner = styled.div`
 	position: relative;
 	max-width: 1200px;
 	height: 100%;
+	padding: 0 2rem;
 	margin: 0 auto;
 	align-items: center;
 	justify-content: space-between;
