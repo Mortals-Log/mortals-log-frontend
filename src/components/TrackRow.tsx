@@ -9,7 +9,7 @@ import { ICON_CONFIG } from '@/const/icons';
 
 interface TrackRowProps {
 	track: Track;
-	album: string;
+	album?: string;
 	index: number;
 	onClick: (id: string) => void;
 	onKeyDown: (e: React.KeyboardEvent, id: string) => void;
