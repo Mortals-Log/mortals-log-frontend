@@ -2,10 +2,13 @@
 
 import * as S from '@/styles/pages/Goods/Goods.style';
 
+import { useEffect } from 'react';
 import GoodsLinkSection from '@/pages/Goods/GoodsLinkSection';
 import GoodsGuideSection from '@/pages/Goods/GoodsGuideSection';
 import GoodsEtiquetteSection from '@/pages/Goods/GoodsEtiquetteSection';
 import { FAN_GOODS_GUIDE } from '@/const/goods';
+import { METADATA } from '@/const/contents';
+import { UpdateMetaTags } from '@/utils/meta';
 
 const PAGE_TITLE = {
 	MAIN: '굿즈 구매 및 제작 설명',
@@ -30,6 +33,17 @@ const SECTION_TITLE = {
 const { DESCRIPTION } = FAN_GOODS_GUIDE;
 
 const Goods = () => {
+	useEffect(() => {
+		const pageTitle = `${METADATA.NAME} | Goods`;
+		const description = DESCRIPTION;
+
+		UpdateMetaTags(pageTitle, description, undefined, 'website');
+
+		return () => {
+			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, undefined, 'website');
+		};
+	});
+
 	return (
 		<S.MainContainer>
 			<S.SubTitle>{PAGE_TITLE.SUB}</S.SubTitle>

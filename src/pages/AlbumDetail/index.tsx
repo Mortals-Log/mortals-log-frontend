@@ -3,14 +3,15 @@
 import * as S from '@styles/pages/AlbumDetail/AlbumDetail.style';
 import { useParams } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
-import { ALBUM_TYPE_LABEL, GET_FULL_ALBUMS } from '@const/albums';
+import { GET_FULL_ALBUMS } from '@const/albums';
 import AlbumDetailTracks from '@/pages/AlbumDetail/AlbumDetailTracks';
 import AlbumDetailMetaInfo from '@/pages/AlbumDetail/AlbumDetailMetaInfo';
 import AlbumDetailIntro from '@/pages/AlbumDetail/AlbumDetailIntro';
 import { METADATA } from '@/const/contents';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/Placeholder';
-import { IsAlbumMatch } from '@/utils/album';
+import { GetAlbumPaths, IsAlbumMatch } from '@/utils/album';
+import { UpdateMetaTags } from '@/utils/meta';
 
 const SECTION_TITLE = {
 	TRACKS: {
@@ -35,11 +36,19 @@ const AlbumDetail = () => {
 	}, [id]);
 
 	useEffect(() => {
-		if (albumData?.title) {
-			document.title = `${ALBUM_TYPE_LABEL[albumData.type]} | ${albumData.title}`;
+		if (!albumData) {
+			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, undefined, 'website');
+			return;
 		}
+
+		const { imageSrc } = GetAlbumPaths(albumData);
+		const pageTitle = `${METADATA.NAME} | ${albumData.title}`;
+		const description = `${albumData.title} 앨범의 수록곡과 소개 정보를 확인하세요.`;
+
+		UpdateMetaTags(pageTitle, description, imageSrc, 'music.album');
+
 		return () => {
-			document.title = METADATA.NAME;
+			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, undefined, 'website');
 		};
 	}, [albumData]);
 
