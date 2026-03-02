@@ -160,7 +160,7 @@ const globalStyles = css`
 			width: 100%;
 			height: 100%;
 			background-image: url('/assets/noise.svg');
-			opacity: 0.6;
+			opacity: 0.4;
 			pointer-events: none;
 			z-index: 9999;
 
