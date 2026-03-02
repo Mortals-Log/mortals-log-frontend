@@ -20,10 +20,13 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 		const key = dateKey.replace(/\s/g, '');
 		if (!schedules[key]) schedules[key] = [];
 
+		const baseId = GenerateScheduleId(data.type, dateKey, data.content);
+		const uniqueId = `${baseId}-${schedules[key].length}`;
+
 		const schedule: Schedule = {
 			...data,
 			date: dateKey.replace(/-/g, '.'),
-			id: GenerateScheduleId(data.type, dateKey, data.content),
+			id: uniqueId,
 		};
 
 		schedules[key].push(schedule);
@@ -169,7 +172,6 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 	dayMilestones.forEach(days => {
 		const milestoneDate = new Date(debutDate);
 		milestoneDate.setDate(debutDate.getDate() + (days - 1));
-
 		const dateKey = FormatDate(milestoneDate);
 
 		addSchedule(dateKey, {
@@ -178,6 +180,23 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 			message: `천진우의 데뷔 ${days}일을 축하합니다!`,
 			hashtags: ['#천진우_데뷔', `#굴다리`, `#데뷔_${days}일`],
 		});
+
+		if (days === 1000) {
+			addSchedule(dateKey, {
+				type: 'ANNIVERSARY',
+				content: `🎊 1000일제: 데뷔 1000일 기념`,
+				message: `천진우의 데뷔 ${days}일을 축하합니다!`,
+				hashtags: ['#천진우_데뷔', `#1000일제`, `천일제`, `#데뷔_${days}일`],
+				specialLink: {
+					label: '1000일제 팬곡 듣기',
+					url: 'https://youtu.be/FAYOQTpzTtA',
+				},
+				fileUrl: {
+					label: '1000일제 기념 책자 다운로드',
+					url: '/files/1000th_anniversary.pdf',
+				},
+			});
+		}
 	});
 
 	return schedules;

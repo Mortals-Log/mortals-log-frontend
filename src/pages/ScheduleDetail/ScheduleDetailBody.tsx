@@ -55,7 +55,17 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 		let videoUrl = '';
 
 		if (type === 'BIRTHDAY') videoUrl = 'https://www.youtube.com/embed/wHe8ntDlOco';
-		if (type === 'ANNIVERSARY') videoUrl = 'https://www.youtube.com/embed/K9aIiynSPU4';
+		if (type === 'ANNIVERSARY') {
+			videoUrl = 'https://www.youtube.com/embed/K9aIiynSPU4';
+
+			const sche = data as Schedule;
+			if (sche.specialLink?.url.includes('youtu.be') || sche.specialLink?.url.includes('youtube.com')) {
+				const videoId = sche.specialLink.url.split('/').pop()?.replace('watch?v=', '');
+				if (videoId) {
+					videoUrl = `https://www.youtube.com/embed/${videoId}`;
+				}
+			}
+		}
 		if (type === 'EVENT' && 'platform' in data) {
 			const platformInfo = Object.values(LINK_PLATFORM).find(p => p.NAME === data.platform);
 			videoUrl = platformInfo?.EMBED_URL && data.link ? `${platformInfo.EMBED_URL}${data.link}` : '';
@@ -324,9 +334,15 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 						</S.InfoGroup>
 					)}
 
-					{instagramUrl && (
+					{instagramUrl && !sche.specialLink && (
 						<S.PrimaryButton to={instagramUrl} target="_blank" rel="noopener noreferrer">
-							{sche.content} 축하하러 가기
+							{sche.content}
+						</S.PrimaryButton>
+					)}
+
+					{sche.fileUrl && (
+						<S.PrimaryButton to={sche.fileUrl.url} target="_blank" download>
+							{sche.fileUrl.label}
 						</S.PrimaryButton>
 					)}
 				</>
