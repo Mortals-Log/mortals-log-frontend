@@ -2754,7 +2754,7 @@ Am  Dm  G        C-G/B < 코드 바뀔때마다 5,6번줄 한번 튕긴 다음 �
 많이 속상한가 봐요`,
 		chordsList: [
 			{
-				chords: 'G - C - D',
+				chords: 'G - Cadd9 - Dsus4',
 				tuning: '표준튜닝 | 다운튜닝 + 2카포',
 				provider: '돗새',
 				chordModeType: 'separated',
