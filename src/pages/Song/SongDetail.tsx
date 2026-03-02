@@ -12,6 +12,8 @@ import SongDetailHeader from '@/pages/Song/SongDetailHeader';
 import SongDetailMeta from '@/pages/Song/SongDetailMeta';
 import SongDetailContent from '@/pages/Song/SongDetailContent';
 import { IsTrackMatch } from '@/utils/track';
+import { UpdateMetaTags } from '@/utils/meta';
+import { GetAlbumPaths } from '@/utils/album';
 
 const SongDetail = () => {
 	const { id } = useParams<{ id: string }>();
@@ -36,13 +38,20 @@ const SongDetail = () => {
 	}, [id]);
 
 	useEffect(() => {
-		if (track?.title) {
-			document.title = `${track.title}`;
+		const defaultImg = '/images/default.webp';
+
+		if (track && albumInfo) {
+			const { imageSrc } = GetAlbumPaths(albumInfo) || defaultImg;
+			const pageTitle = `${METADATA.NAME} | ${track.title}`;
+			const description = `${track.title} 곡의 정보를 확인하세요.`;
+
+			UpdateMetaTags(pageTitle, description, imageSrc, 'music.song');
 		}
+
 		return () => {
-			document.title = METADATA.NAME;
+			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, defaultImg, 'music.song');
 		};
-	}, [track]);
+	}, [track, albumInfo]);
 
 	if (!track) {
 		return (
