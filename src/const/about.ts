@@ -37,10 +37,9 @@ export const ABOUT_POLICY = {
 	],
 } as const;
 
-// todo: 실제 링크는 나중에
 export const ABOUT_INQUIRY = {
 	KAKAO: { label: '카카오톡 오픈채팅', url: 'https://open.kakao.com/me/mortalsLog' },
-	GOOGLE: { label: '구글 폼', url: 'https://google.com/' },
+	GOOGLE: { label: '구글 폼', url: 'https://forms.gle/KxC4H35ecY3eizZs6' },
 } as const;
 
 export const ABOUT_INQUIRY_SUFFIX = '으로 문의하기 →' as const;
