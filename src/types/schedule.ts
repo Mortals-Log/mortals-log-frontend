@@ -16,6 +16,10 @@ export interface Schedule {
 	// birthday
 	message?: string;
 	hashtags?: string[];
+
+	// anniversary
+	specialLink?: { label: string; url: string };
+	fileUrl?: { label: string; url: string };
 }
 
 export type CalendarSchedules = Record<string, Schedule[]>;
