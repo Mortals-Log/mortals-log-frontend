@@ -72,7 +72,7 @@ export const SOLO_CONCERT: ConcertList = [
 				ticketing: [
 					{
 						ticketingDate: '2026.03.08',
-						ticketingTime: '17:00',
+						ticketingTime: '12:00',
 					},
 				],
 			},
