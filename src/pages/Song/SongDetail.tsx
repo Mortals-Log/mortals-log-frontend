@@ -38,10 +38,8 @@ const SongDetail = () => {
 	}, [id]);
 
 	useEffect(() => {
-		const defaultImg = '/images/default.webp';
-
 		if (track && albumInfo) {
-			const { imageSrc } = GetAlbumPaths(albumInfo) || defaultImg;
+			const { imageSrc } = GetAlbumPaths(albumInfo);
 			const pageTitle = `${METADATA.NAME} | ${track.title}`;
 			const description = `${track.title} 곡의 정보를 확인하세요.`;
 
@@ -49,7 +47,7 @@ const SongDetail = () => {
 		}
 
 		return () => {
-			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, defaultImg, 'music.song');
+			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, undefined, 'website');
 		};
 	}, [track, albumInfo]);
 

@@ -36,23 +36,19 @@ const AlbumDetail = () => {
 	}, [id]);
 
 	useEffect(() => {
-		const defaultImg = '/images/default.webp';
-
 		if (!albumData) {
-			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, defaultImg, 'music.album');
+			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, undefined, 'website');
 			return;
 		}
 
 		const { imageSrc } = GetAlbumPaths(albumData);
-
 		const pageTitle = `${METADATA.NAME} | ${albumData.title}`;
 		const description = `${albumData.title} 앨범의 수록곡과 소개 정보를 확인하세요.`;
-		const albumImage = imageSrc || defaultImg;
 
-		UpdateMetaTags(pageTitle, description, albumImage, 'music.album');
+		UpdateMetaTags(pageTitle, description, imageSrc, 'music.album');
 
 		return () => {
-			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, defaultImg, 'music.album');
+			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, undefined, 'website');
 		};
 	}, [albumData]);
 
