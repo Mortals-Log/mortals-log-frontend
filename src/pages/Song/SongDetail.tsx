@@ -11,17 +11,19 @@ import Placeholder from '@/components/Placeholder';
 import SongDetailHeader from '@/pages/Song/SongDetailHeader';
 import SongDetailMeta from '@/pages/Song/SongDetailMeta';
 import SongDetailContent from '@/pages/Song/SongDetailContent';
+import { IsTrackMatch } from '@/utils/track';
 
 const SongDetail = () => {
 	const { id } = useParams<{ id: string }>();
 
 	const { track, albumInfo } = useMemo(() => {
-		const currentTrack = id ? MASTER_TRACKS[id as keyof typeof MASTER_TRACKS] : null;
+		if (!id) return { track: null, albumInfo: null };
+
+		const currentTrack = Object.values(MASTER_TRACKS).find(t => IsTrackMatch(t, id));
 		if (!currentTrack) return { track: null, albumInfo: null };
 
 		const foundAlbum = FULL_ALBUMS.flatMap(cat => cat.items).find(album => {
 			const tracksData = album.tracks;
-
 			const flatTracks = Array.isArray(tracksData) ? tracksData : Object.values(tracksData || {}).flat();
 
 			return (flatTracks as string[]).some(t => {
@@ -30,9 +32,7 @@ const SongDetail = () => {
 			});
 		});
 
-		const albumMeta = foundAlbum;
-
-		return { track: currentTrack, albumInfo: albumMeta };
+		return { track: currentTrack, albumInfo: foundAlbum || null };
 	}, [id]);
 
 	useEffect(() => {
