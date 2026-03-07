@@ -120,6 +120,13 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 						</S.InfoGroup>
 					)}
 
+					{concert.location && (
+						<S.InfoGroup>
+							<InfoTitle label="LOCATION" />
+							<S.InfoItem>{concert.location}</S.InfoItem>
+						</S.InfoGroup>
+					)}
+
 					{concert.price && (
 						<S.InfoGroup>
 							<InfoTitle label="TICKET" />
