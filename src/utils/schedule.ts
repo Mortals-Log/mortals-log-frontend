@@ -57,9 +57,11 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 			const endDate = endMD ? new Date(`${group.year}-${endMD.replace(/\./g, '-')}`) : new Date(startDate);
 			const concertIdDate = FormatDate(startDate);
 
+			// 일정
 			for (let curr = new Date(startDate); curr.getTime() <= endDate.getTime(); curr.setDate(curr.getDate() + 1)) {
 				const dateKey = FormatDate(curr);
 
+				// 시간
 				if (item.times && item.times.length > 1) {
 					item.times.forEach((time, index) => {
 						const displayContent = `${baseContent} - ${index + 1}부`;
@@ -72,6 +74,7 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 						});
 					});
 				} else {
+					// 단독
 					addSchedule(dateKey, {
 						type: 'CONCERT',
 						content: baseContent,
@@ -82,6 +85,7 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 				}
 			}
 
+			// 티켓팅
 			if (item.ticketing) {
 				const ticketingList = item.ticketing;
 
@@ -180,18 +184,26 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 			hashtags: ['#천진우_데뷔', `#굴다리`, `#데뷔_${days}일`],
 		});
 
+		// 천일제
 		if (days === 1000) {
-			addSchedule(dateKey, {
+			const key = dateKey.replace(/\s/g, '');
+			if (!schedules[key]) schedules[key] = [];
+
+			const festivalId = GenerateScheduleId('ANNIVERSARY', dateKey, '천일제-1000일-기념');
+
+			schedules[key].push({
+				id: festivalId,
+				date: dateKey.replace(/-/g, '.'),
 				type: 'ANNIVERSARY',
-				content: `🎊 1000일제: 데뷔 1000일 기념`,
-				message: `천진우의 데뷔 ${days}일을 축하합니다!`,
-				hashtags: ['#천진우_데뷔', `#1000일제`, `천일제`, `#데뷔_${days}일`],
+				content: `🎊 천일제: 데뷔 1000일 기념`,
+				message: `천진우의 데뷔 ${days}일을 기념하는 특별한 천일제!`,
+				hashtags: ['#천진우_데뷔', `#1000일제`, `#천일제`, `#데뷔_${days}일`],
 				specialLink: {
-					label: '1000일제 팬곡 듣기',
+					label: '천일제 팬곡 듣기',
 					url: 'https://youtu.be/FAYOQTpzTtA',
 				},
 				fileUrl: {
-					label: '1000일제 기념 책자 다운로드',
+					label: '천일제 기념 책자 다운로드',
 					url: '/files/1000th_anniversary.pdf',
 				},
 			});
