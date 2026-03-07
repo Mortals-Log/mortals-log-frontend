@@ -21,12 +21,11 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 		if (!schedules[key]) schedules[key] = [];
 
 		const baseId = GenerateScheduleId(data.type, dateKey, data.content);
-		const uniqueId = `${baseId}-${schedules[key].length}`;
 
 		const schedule: Schedule = {
 			...data,
 			date: dateKey.replace(/-/g, '.'),
-			id: uniqueId,
+			id: baseId,
 		};
 
 		schedules[key].push(schedule);
