@@ -73,6 +73,14 @@ export const SOLO_CONCERT: ConcertList = [
 					{
 						ticketingDate: '2026.03.08',
 						ticketingTime: '12:00',
+						ticketingLink:
+							'https://docs.google.com/forms/d/e/1FAIpQLSdU61HJVon7iyEqp8WqUYTZxHbF3oLEb7qXNGwcFacn0FAdrQ/viewform',
+					},
+					{
+						ticketingDate: '2026.03.08',
+						ticketingTime: '12:00',
+						ticketingLink:
+							'https://docs.google.com/forms/d/e/1FAIpQLSdLle2YuPhFF5Cm8IWnbArF-L1n52WQ7GGUDunq2esMtQgwlQ/viewform',
 					},
 				],
 			},
