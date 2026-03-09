@@ -130,7 +130,10 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 					{concert.price && (
 						<S.InfoGroup>
 							<InfoTitle label="TICKET" />
-							<S.InfoItem>일반: {concert.price.regular}원</S.InfoItem>
+							<S.InfoItem>
+								일반: {concert.price.regular}
+								{concert.price.regular.includes('원') ? '' : '원'}
+							</S.InfoItem>
 							{Object.entries(concert.price).map(([key, value]) => {
 								if (key === 'regular' || !value) return null;
 								const labels: Record<string, string> = {
@@ -142,7 +145,8 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 								};
 								return (
 									<S.InfoItem key={key}>
-										{labels[key] || key}: {value}원
+										{labels[key] || key}: {value}
+										{value.includes('원') ? '' : '원'}
 									</S.InfoItem>
 								);
 							})}
