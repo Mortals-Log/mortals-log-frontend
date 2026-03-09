@@ -588,6 +588,14 @@ export const FESTIVAL: ConcertList = [
 					},
 				],
 			},
+
+			{
+				type: 'FESTIVAL',
+				date: '04.12',
+				content: '와우산록페스티벌',
+				location: '와우산로의 라이브 클럽',
+				lineUp: SOLO_LINEUP,
+			},
 		],
 	},
 ];
