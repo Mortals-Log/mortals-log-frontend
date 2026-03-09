@@ -10,7 +10,7 @@ interface Ticketing {
 
 export interface ConcertItem {
 	id?: string;
-	type: 'SOLO' | 'JOIN' | 'TOUR' | 'LISTENING';
+	type: 'SOLO' | 'JOIN' | 'TOUR' | 'LISTENING' | 'FESTIVAL';
 	date: string;
 	content: string;
 	location?: string;

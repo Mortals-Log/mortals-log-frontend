@@ -9,6 +9,7 @@ export const CONCERT_TYPE_LABEL: Record<string, string> = {
 	JOIN: '합동 콘서트',
 	TOUR: '전국 투어',
 	LISTENING: '음악감상회',
+	FESTIVAL: '페스티벌',
 };
 
 export const MEMBERS = {
@@ -569,10 +570,25 @@ export const LISTENING: ConcertList = [
 	},
 ];
 
+export const FESTIVAL: ConcertList = [
+	{
+		year: '2026',
+		items: [
+			{
+				type: 'FESTIVAL',
+				date: '09.05 ~ 09.06',
+				content: '사운드 플래닛 페스티벌 2026',
+				location: '인천광역시 영종구 파라다이스시티',
+				lineUp: SOLO_LINEUP,
+			},
+		],
+	},
+];
+
 export const GET_FULL_CONCERTS = () => {
 	const combinedMap: Record<string, ConcertItem[]> = {};
 
-	[...SOLO_CONCERT, ...JOIN_CONCERT, ...TOUR_CONCERT, ...LISTENING].forEach(group => {
+	[...SOLO_CONCERT, ...JOIN_CONCERT, ...TOUR_CONCERT, ...LISTENING, ...FESTIVAL].forEach(group => {
 		if (!combinedMap[group.year]) {
 			combinedMap[group.year] = [];
 		}
