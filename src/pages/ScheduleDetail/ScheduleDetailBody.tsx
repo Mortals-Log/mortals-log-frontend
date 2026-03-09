@@ -138,6 +138,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 									army: '군인 할인',
 									student: '학생 할인',
 									alien: '외계인 할인',
+									early: '얼리버드',
 								};
 								return (
 									<S.InfoItem key={key}>

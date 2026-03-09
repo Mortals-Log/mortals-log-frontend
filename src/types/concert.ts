@@ -34,6 +34,7 @@ export interface Price {
 	onSpot?: string;
 	alien?: string;
 	teacher?: string;
+	early?: string;
 }
 
 export type ConcertList = Concert[];

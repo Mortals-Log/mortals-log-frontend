@@ -580,6 +580,13 @@ export const FESTIVAL: ConcertList = [
 				content: '사운드 플래닛 페스티벌 2026',
 				location: '인천광역시 영종구 파라다이스시티',
 				lineUp: SOLO_LINEUP,
+				price: { regular: '1일권 132,000원 / 2일권 198,000원', early: '1일권 118,800원 / 2일권 158,000원' },
+				ticketing: [
+					{
+						ticketingDate: '2026.03.17',
+						ticketingTime: '14:00',
+					},
+				],
 			},
 		],
 	},
