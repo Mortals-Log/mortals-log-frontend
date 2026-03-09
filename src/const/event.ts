@@ -13,6 +13,19 @@ export const EVENT_TYPE_LABEL: Record<string, string> = {
 
 export const EVENT_RADIO: EventList = [
 	{
+		year: '2026',
+		items: [
+			{
+				type: 'RADIO',
+				date: '03.09',
+				host: '뜨거운삼각형',
+				content: "강현석이 대한민국에서 제일 좋아하는 뜨거운 가수! '천진우 초대석' | 뜨거운삼각형 ep.43",
+				platform: LINK_PLATFORM.YOUTUBE.NAME,
+				link: 'B0OH4ooIzAM',
+			},
+		],
+	},
+	{
 		year: '2024',
 		items: [
 			{
@@ -20,7 +33,7 @@ export const EVENT_RADIO: EventList = [
 				date: '11.28',
 				host: '노래하는덕이형',
 				content:
-					"어둠의 김광석 '천진우' 노래 모음 l 인간쓰레기, 일어나, 헐크호건 존시나가 같이 삽니다, 중독자, 좋은친구들, 생일축하해, 멸망",
+					"어둠의 김광석 '천진우' 노래 모음 | 인간쓰레기, 일어나, 헐크호건 존시나가 같이 삽니다, 중독자, 좋은친구들, 생일축하해, 멸망",
 				platform: LINK_PLATFORM.YOUTUBE.NAME,
 				link: 'DddqM_Zb4PQ',
 			},
