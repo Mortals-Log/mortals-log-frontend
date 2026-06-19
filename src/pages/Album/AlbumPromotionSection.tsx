@@ -1,9 +1,11 @@
 // @/pages/Album/AlbumPromotionSection
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import * as S from '@/styles/pages/Album/AlbumPromotionSection.style';
 
-import { useMemo } from 'react';
-import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
+import { useMemo, useSyncExternalStore } from 'react';
+import { ALBUM_TYPE_LABEL, Album_Store } from '@/const/albums';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { GetAlbumPaths, GetLatestAlbum } from '@/utils/album';
 import { GetTracks } from '@/utils/track';
@@ -13,14 +15,25 @@ import { differenceInDays, format, parse, startOfDay } from 'date-fns';
 const AlbumPromotionSection = () => {
 	const handleImgError = useImageFallback();
 
+	const albumsSnapshot = useSyncExternalStore(Album_Store.subscribe, Album_Store.getSnapshot);
+
 	const promotionData = useMemo(() => {
-		const album = GetLatestAlbum(FULL_ALBUMS);
+		const album = GetLatestAlbum(albumsSnapshot);
 		if (!album) return null;
 
 		const today = startOfDay(new Date());
 		const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 
-		const parseDate = parse(album.releaseDate, 'yyyy.MM.dd', new Date());
+		const normalizedDate = album.releaseDate ? String(album.releaseDate).replace(/-/g, '.') : '';
+
+		let parseDate: Date;
+		try {
+			parseDate = parse(normalizedDate, 'yyyy.MM.dd', new Date());
+			if (isNaN(parseDate.getTime())) parseDate = today;
+		} catch (e) {
+			parseDate = today;
+		}
+
 		const releaseDateStr = format(parseDate, 'yyyy.MM.dd');
 		const diff = differenceInDays(parseDate, today);
 		const isReleased = diff <= 0;
@@ -46,7 +59,7 @@ const AlbumPromotionSection = () => {
 			previewTracks,
 			totalTrackCount: allTrackIds.length,
 		};
-	}, []);
+	}, [albumsSnapshot]);
 
 	if (!promotionData) return null;
 
@@ -70,7 +83,7 @@ const AlbumPromotionSection = () => {
 
 				<S.Description>
 					{isReleased
-						? `새로운 이야기가 담긴 ${album.title}을 지금 만나보세요.`
+						? `새로운 이야기가 담긴 ${album.title} 지금 만나보세요.`
 						: `${album.title}의 새로운 시작을 준비하세요.`}
 				</S.Description>
 
