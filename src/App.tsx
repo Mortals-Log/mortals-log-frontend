@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { INIT_ALBUM_DATA } from '@/const/albums';
+
 import { ThemeProvider } from '@emotion/react';
 import { Theme } from '@styles/themes';
 import { Route, Routes } from 'react-router-dom';
@@ -22,6 +25,10 @@ import { Toaster } from 'react-hot-toast';
  * @returns The root JSX element that wraps the app in a ThemeProvider, renders the global navigation bar (GNB), and configures routes for Home, Profile, Album, Schedule, and About.
  */
 function App() {
+	useEffect(() => {
+		INIT_ALBUM_DATA();
+	}, []);
+
 	return (
 		<ThemeProvider theme={Theme}>
 			<ScrollToTop />
