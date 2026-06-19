@@ -11,10 +11,11 @@ export const GetLatestAlbum = (fullAlbums: AlbumList): Album | undefined => {
 };
 
 const GetAlbumImageKey = (album: Album) => {
-	const year = album.releaseDate.split('.')[0].trim();
-	const safeFileName = album.fileName?.trim() || 'default';
+	// todo: dummy에서는 .으로 db에서는 -으로 분리하고 있어 나중에 수정 필요
+	const year = album.releaseDate.split(/[.-]/)[0].trim();
+	const safeCoverImage = album.coverImage?.trim() || 'default';
 
-	return `${album.type}_${year}_${safeFileName}`;
+	return `${album.type}_${year}_${safeCoverImage}`;
 };
 
 export const GetAlbumPaths = (album: Album) => {
@@ -23,17 +24,23 @@ export const GetAlbumPaths = (album: Album) => {
 
 	return {
 		key,
-		imageSrc: album.fileName ? `/images/albums/${key}.webp` : '/images/default.webp',
+		imageSrc: album.coverImage ? `/images/albums/${key}.webp` : '/images/default.webp',
 		detailUrl: `/album/${slug}`,
 	};
 };
 
-export const IsAlbumMatch = (album: Album, slugFromUrl: string) => {
-	if (!slugFromUrl) return false;
+export const IsAlbumMatch = (album: any, slugFromUrl: string) => {
+	if (!slugFromUrl || !album) return false;
+
+	// todo: 현재 더미 데이터에서의 필드명(title)과 DB에서의 필드명(albumTitle)이 차이 발생 / 나중에 수정 필요
+	const rawTitle = album.title || album.albumTitle;
+	if (!rawTitle) return false;
 
 	const decodedSlug = decodeURIComponent(slugFromUrl).toLowerCase();
-	const targetTitle = album.title.toLowerCase().replace(/[\s-]/g, '');
-	const urlSlug = decodedSlug.replace(/[\s-]/g, '');
+	const targetTitle = String(rawTitle)
+		.toLowerCase()
+		.replace(/[\s-_.]/g, '');
+	const urlSlug = decodedSlug.replace(/[\s-_.]/g, '');
 
 	return targetTitle === urlSlug;
 };
