@@ -2,11 +2,12 @@
 
 import * as S from '@styles/pages/Album/AlbumReleaseSection.style';
 
-import { useState, useRef, useCallback } from 'react';
-import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
+import { useState, useRef, useCallback, useSyncExternalStore } from 'react';
+import { ALBUM_TYPE_LABEL, FULL_ALBUMS, Album_Store } from '@/const/albums';
 import AlbumYearGroup from '@pages/Album/AlbumYearGroup';
 import useImageFallback from '@/hooks/useImageFallback';
 import { GetAlbumPaths } from '@/utils/album';
+import { Album } from '@/types/album';
 
 const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const handleImgError = useImageFallback();
@@ -14,11 +15,15 @@ const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_E
 	const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
 	const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
-	const [selectedYear, setSelectedYear] = useState<string>(FULL_ALBUMS[0].year);
+	useSyncExternalStore(Album_Store.subscribe, Album_Store.getSnapshot);
+	const [activeSelectedYear, setActiveSelectedYear] = useState<string | null>(null);
+
+	const selectedYear = activeSelectedYear || FULL_ALBUMS[0]?.year || '';
+
 	const filteredAlbums = FULL_ALBUMS.find(item => item.year === selectedYear);
 
 	const handleYearChange = useCallback((year: string) => {
-		setSelectedYear(year);
+		setActiveSelectedYear(year);
 	}, []);
 
 	const toggleSection = useCallback((year: string) => {
@@ -49,7 +54,7 @@ const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_E
 
 			<S.Selector>
 				<S.SelectorItem value={selectedYear} onChange={e => handleYearChange(e.target.value)}>
-					{FULL_ALBUMS.map(({ year }) => (
+					{(FULL_ALBUMS || []).map(({ year }) => (
 						<option key={year} value={year}>
 							{year}년
 						</option>
@@ -60,7 +65,7 @@ const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_E
 			<S.AlbumMobileSection>
 				{filteredAlbums && (
 					<S.AlbumGrid>
-						{filteredAlbums.items.map(album => {
+						{filteredAlbums.items.map((album: Album) => {
 							const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 							return (
 								<S.AlbumCard key={key} to={detailUrl}>
@@ -77,7 +82,7 @@ const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_E
 											{album.volume && <span className="vol">정규 {album.volume}집</span>}
 										</div>
 										<h3 className="title">{album.title}</h3>
-										<span className="date">{album.releaseDate}</span>
+										<span className="date">{album.releaseDate.replace(/-/g, '.')}</span>
 									</S.AlbumInfo>
 								</S.AlbumCard>
 							);
@@ -86,7 +91,7 @@ const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_E
 				)}
 			</S.AlbumMobileSection>
 
-			{FULL_ALBUMS.map(({ year, items }) => (
+			{(FULL_ALBUMS || []).map(({ year, items }) => (
 				<AlbumYearGroup
 					key={year}
 					year={year}
