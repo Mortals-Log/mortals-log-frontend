@@ -28,7 +28,7 @@ const AlbumDetailTracks = ({
 
 	const isReleased = useMemo(() => {
 		if (!albumData?.releaseDate) return true;
-		const releaseDate = parse(albumData.releaseDate, 'yyyy.MM.dd', new Date());
+		const releaseDate = parse(albumData.releaseDate, 'yyyy-MM-dd', new Date());
 		return differenceInDays(releaseDate, startOfDay(new Date())) <= 0;
 	}, [albumData]);
 
