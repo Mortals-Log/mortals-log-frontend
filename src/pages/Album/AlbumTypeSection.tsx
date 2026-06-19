@@ -1,8 +1,10 @@
 // @/pages/Album/AlbumTypeSection
 
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import * as S from '@/styles/pages/Album/AlbumTypeSection.style';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import Placeholder from '@/components/Placeholder';
 import useImageFallback from '@/hooks/useImageFallback';
 import {
@@ -13,6 +15,7 @@ import {
 	GET_SP_ALBUMS,
 	GET_LV_ALBUMS,
 	GET_VN_ALBUMS,
+	Album_Store,
 } from '@const/albums';
 import { GetAlbumPaths } from '@/utils/album';
 
@@ -27,16 +30,16 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 	const sectionRef = useRef<HTMLElement>(null);
 	const isFirstRender = useRef(true);
 
-	const albumDataMap = useMemo(() => {
-		return {
-			ALL: GET_FULL_ALBUMS().flatMap(group => group.items),
-			LP: GET_LP_ALBUMS,
-			EP: GET_EP_ALBUMS,
-			SP: GET_SP_ALBUMS,
-			LV: GET_LV_ALBUMS,
-			VN: GET_VN_ALBUMS,
-		};
-	}, []);
+	useSyncExternalStore(Album_Store.subscribe, Album_Store.getSnapshot);
+
+	const albumDataMap = {
+		ALL: (GET_FULL_ALBUMS() || []).flatMap(group => group?.items || []),
+		LP: GET_LP_ALBUMS || [],
+		EP: GET_EP_ALBUMS || [],
+		SP: GET_SP_ALBUMS || [],
+		LV: GET_LV_ALBUMS || [],
+		VN: GET_VN_ALBUMS || [],
+	};
 
 	const filteredData = useMemo(() => {
 		return albumDataMap[activeTab as keyof typeof albumDataMap] || [];
@@ -114,7 +117,7 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 										{album.volume && <span className="vol">정규 {album.volume}집</span>}
 									</div>
 									<h3 className="title">{album.title}</h3>
-									<span className="date">{album.releaseDate}</span>
+									<span className="date">{album.releaseDate.replace(/-/g, '.')}</span>
 								</S.AlbumInfo>
 							</S.AlbumCard>
 						);
