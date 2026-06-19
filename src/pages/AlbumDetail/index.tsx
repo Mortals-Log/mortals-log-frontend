@@ -2,8 +2,8 @@
 
 import * as S from '@styles/pages/AlbumDetail/AlbumDetail.style';
 import { useParams } from 'react-router-dom';
-import { useEffect, useMemo } from 'react';
-import { GET_FULL_ALBUMS } from '@const/albums';
+import { useEffect, useMemo, useSyncExternalStore } from 'react';
+import { Album_Store } from '@const/albums';
 import AlbumDetailTracks from '@/pages/AlbumDetail/AlbumDetailTracks';
 import AlbumDetailMetaInfo from '@/pages/AlbumDetail/AlbumDetailMetaInfo';
 import AlbumDetailIntro from '@/pages/AlbumDetail/AlbumDetailIntro';
@@ -18,22 +18,24 @@ const SECTION_TITLE = {
 		TITLE_KR: '수록곡',
 		TITLE_EN: 'Tracks',
 	},
-
 	INTRO: {
 		TITLE_KR: '앨범 소개',
 		TITLE_EN: 'Album Introduction ',
 	},
 } as const;
 
-export const ALL_ALBUMS_FLAT = GET_FULL_ALBUMS().flatMap(group => group.items);
-
 const AlbumDetail = () => {
 	const { id } = useParams<{ id: string }>();
 
+	const albumsSnapshot = useSyncExternalStore(Album_Store.subscribe, Album_Store.getSnapshot);
+
 	const albumData = useMemo(() => {
-		if (!id) return null;
-		return ALL_ALBUMS_FLAT.find(album => IsAlbumMatch(album, id));
-	}, [id]);
+		if (!id || !albumsSnapshot) return null;
+
+		const allAlbumsFlat = albumsSnapshot.flatMap(group => group.items);
+
+		return allAlbumsFlat.find(album => IsAlbumMatch(album, id));
+	}, [id, albumsSnapshot]);
 
 	useEffect(() => {
 		if (!albumData) {
@@ -57,7 +59,6 @@ const AlbumDetail = () => {
 			<S.MainContainer>
 				<BackButton to="/music" />
 				<S.MainTitle>Album Not Found</S.MainTitle>
-
 				<Placeholder message="앨범을 찾을 수 없습니다." />
 			</S.MainContainer>
 		);
@@ -66,9 +67,7 @@ const AlbumDetail = () => {
 	return (
 		<S.MainContainer>
 			<BackButton />
-
 			<AlbumDetailMetaInfo album={albumData} />
-
 			<AlbumDetailTracks {...SECTION_TITLE.TRACKS} albumData={albumData} />
 			<AlbumDetailIntro {...SECTION_TITLE.INTRO} albumData={albumData} />
 		</S.MainContainer>
