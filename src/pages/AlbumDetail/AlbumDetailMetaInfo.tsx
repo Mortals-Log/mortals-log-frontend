@@ -27,13 +27,25 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 	const { imageSrc } = GetAlbumPaths(album);
 
 	const metaData = useMemo(() => {
-		const distributorInfo = `${album.distributor || '-'} / ${album.agency || '-'}`;
+		// todo: 현재 더미 데이터에서의 필드명 구조와 DB에서의 구조에서 차이 발생 / 나중에 수정 필요
+		const distributorInfo = `${album.distributor?.distributorName || album.distributor || '-'} / ${album.agency?.agencyName || album.agency || '-'}`;
+
+		// [장르] todo: 더미 데이터의 album.genre 제거 필요
+		let genreValue = '-';
+		if (album.genreMappings && album.genreMappings.length > 0) {
+			genreValue = album.genreMappings
+				.map(mapping => mapping.genre?.genreName)
+				.filter(Boolean)
+				.join(', ');
+		} else if (album.genre && album.genre.length > 0) {
+			genreValue = album.genre.join(', ');
+		}
 
 		return [
 			{ label: '유형', value: ALBUM_TYPE_LABEL[album.type] },
-			{ label: '장르', value: album.genre?.join(', ') },
+			{ label: '장르', value: genreValue },
 			{ label: '스타일', value: album.style?.join(', ') },
-			{ label: '발매일', value: album.releaseDate },
+			{ label: '발매일', value: album.releaseDate.replace(/-/g, '.') },
 			{ label: '재생시간', value: album.totalDuration },
 			{ label: '유통 / 기획', value: distributorInfo },
 		];
