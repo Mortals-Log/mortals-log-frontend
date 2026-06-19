@@ -43,7 +43,7 @@ const AlbumYearGroup = memo(({ year, items, isOpen, onToggle, handleImgError, re
 										{album.volume && <span className="vol">정규 {album.volume}집</span>}
 									</div>
 									<h3 className="title">{album.title}</h3>
-									<span className="date">{album.releaseDate}</span>
+									<span className="date">{album.releaseDate.replace(/-/g, '.')}</span>
 								</S.AlbumInfo>
 							</S.AlbumCard>
 						);
