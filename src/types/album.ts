@@ -2,20 +2,39 @@
 
 /* eslint-disable storybook/default-exports */
 
+interface Agency {
+	agencyId: number;
+	agencyName: string;
+}
+
+interface Distributor {
+	distributorId: number;
+	distributorName: string;
+}
+
 export interface Album {
 	type: 'LP' | 'EP' | 'SP' | 'LV' | 'VN';
 	title: string;
 	volume?: number;
-	fileName?: string;
+	coverImage?: string;
 	releaseDate: string;
 	tracks?: string[] | { [section: string]: string[] };
 
 	genre?: string[];
 	style?: string[];
-	distributor?: string;
 	totalDuration?: string;
-	agency?: string;
 	intro?: string;
+
+	genreMappings?: Array<{
+		id: number;
+		genre: {
+			genreId: number;
+			genreName: string;
+		};
+	}>;
+
+	agency?: Agency;
+	distributor?: Distributor;
 
 	store?: string | Record<string, string>;
 	streaming?: Record<string, string>;
