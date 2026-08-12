@@ -22,7 +22,7 @@ const GoodsLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 					if (!labelInfo) return null;
 
 					return (
-						<S.CardButton key={item.url} to={item.url} target="_blank" rel="noopener noreferrer">
+						<S.CardButton key={item.url} href={item.url} target="_blank" rel="noopener noreferrer">
 							<span className="category">
 								{item.label} - {labelInfo.CATEGORY_KR || 'CATEGORY'}
 							</span>

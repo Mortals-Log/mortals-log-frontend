@@ -4,7 +4,7 @@
 
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export const InformationSection = styled(motion.div)`
 	width: 100%;

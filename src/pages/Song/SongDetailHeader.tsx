@@ -1,9 +1,11 @@
+'use client';
+
 // @/pages/Song/SongDetailHeader
 
 import * as S from '@/styles/pages/Song/SongDetailHeader.styles';
 
 import { useMemo, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { Track } from '@/types/track';
@@ -16,7 +18,7 @@ interface SongDetailHeaderProps {
 }
 
 const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
-	const navigate = useNavigate();
+	const router = useRouter();
 
 	const albumLabel = useMemo(() => {
 		if (!albumInfo?.type) return '';
@@ -39,15 +41,15 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 
 	const handleAlbumClick = useCallback(() => {
 		if (albumInfo?.title && albumInfo.title !== 'Unknown Album') {
-			navigate(`/album/${encodeURIComponent(albumInfo.title)}`);
+			router.push(`/album/${encodeURIComponent(albumInfo.title)}`);
 		}
-	}, [navigate, albumInfo]);
+	}, [router, albumInfo]);
 
 	const handleSongClick = useCallback(
 		(id: string) => {
-			navigate(`/song/${id}`);
+			router.push(`/song/${id}`);
 		},
-		[navigate],
+		[router],
 	);
 
 	return (

@@ -83,7 +83,7 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 						const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 
 						return (
-							<S.AlbumCard key={key} to={detailUrl}>
+							<S.AlbumCard key={key} href={detailUrl}>
 								<S.CoverWrapper>
 									<img src={imageSrc} alt={album.title} onError={handleImgError} />
 
@@ -114,7 +114,7 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 				)}
 			</S.SliderContainer>
 
-			<S.MoreButton to="/music" target="_self" rel="noreferrer">
+			<S.MoreButton href="/music" target="_self" rel="noreferrer">
 				전체 앨범 보러가기 ↗
 			</S.MoreButton>
 		</S.ContentSection>

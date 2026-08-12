@@ -5,7 +5,7 @@
 import styled from '@emotion/styled';
 export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
 
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import * as B from '@/styles/components/Buttons.style';
 
 export const ContentWrapper = styled.div`

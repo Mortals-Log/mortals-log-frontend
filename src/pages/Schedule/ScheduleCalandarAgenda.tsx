@@ -1,8 +1,10 @@
+'use client';
+
 // @/pages/Schedule/ScheduleCalandarAgenda
 
 import * as S from '@/styles/pages/Schedule/ScheduleCalandarAgenda.style';
 
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { format } from 'date-fns';
 import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
 import Placeholder from '@/components/Placeholder';
@@ -16,13 +18,13 @@ interface AgendaProps {
 }
 
 const ScheduleCalandarAgenda = ({ selectedDate, schedules }: AgendaProps) => {
-	const navigate = useNavigate();
+	const router = useRouter();
 	const dateStr = FormatDate(selectedDate);
 	const dayEvents = schedules[dateStr] || [];
 
 	const handleItemClick = (id?: string) => {
 		if (id) {
-			navigate(`/schedule/${id}`);
+			router.push(`/schedule/${id}`);
 		}
 	};
 

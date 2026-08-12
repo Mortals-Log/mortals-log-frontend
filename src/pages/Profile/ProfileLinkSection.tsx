@@ -28,7 +28,7 @@ export const ProfileLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; T
 									const Icon = config?.icon;
 
 									return (
-										<S.LinkButton key={item.label} to={item.url} target="_blank" rel="noreferrer">
+										<S.LinkButton key={item.label} href={item.url} target="_blank" rel="noreferrer">
 											{Icon && <Icon width={16} height={16} />}
 											{config?.label ?? item.label}
 										</S.LinkButton>

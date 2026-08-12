@@ -1,21 +1,23 @@
+'use client';
+
 // @/pages/Schedule/ScheduleUpcomingBanner
 
 import * as S from '@/styles/pages/Schedule/ScheduleUpcommingBanner.style';
 
 import { useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { addDays, differenceInDays, format, isWithinInterval, parseISO, startOfDay } from 'date-fns';
 import { CALENDAR_SCHEDULES } from '@/utils/schedule';
 import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
 
 const ScheduleUpcommingBacnner = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
-	const navigate = useNavigate();
+	const router = useRouter();
 	const today = startOfDay(new Date());
 	const limitDay = addDays(today, 7);
 
 	const handleItemClick = (id?: string) => {
 		if (id) {
-			navigate(`/schedule/${id}`);
+			router.push(`/schedule/${id}`);
 		}
 	};
 

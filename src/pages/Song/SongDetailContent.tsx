@@ -151,7 +151,7 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 						<iframe src={`${LINK_PLATFORM.YOUTUBE.EMBED_URL}${track.mvLink}`} title="YouTube MV" allowFullScreen />
 					</S.VideoWrapper>
 					<S.PrimaryButton
-						to={`${LINK_PLATFORM.YOUTUBE.BASE_URL}${track.mvLink}`}
+						href={`${LINK_PLATFORM.YOUTUBE.BASE_URL}${track.mvLink}`}
 						target="_blank"
 						rel="noopener noreferrer">
 						{MUSIC_PLATFORM.YOUTUBE}로 보러가기

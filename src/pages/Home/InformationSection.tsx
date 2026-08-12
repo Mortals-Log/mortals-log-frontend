@@ -53,7 +53,7 @@ const InformationSection = () => {
 									</S.TimeSlotWrapper>
 
 									<S.ActionLink
-										to={`/schedule/${GenerateScheduleId(
+										href={`/schedule/${GenerateScheduleId(
 											'CONCERT',
 											(() => {
 												const firstDate = event.date.split('~')[0].trim();
@@ -82,7 +82,7 @@ const InformationSection = () => {
 							<p className="info-text">
 								{ALBUM_TYPE_LABEL[latestAlbum.type]} | {latestAlbum.releaseDate}
 							</p>
-							<S.ActionLink to={`album/${latestAlbum.title}`}>앨범 더보기 →</S.ActionLink>
+							<S.ActionLink href={`album/${latestAlbum.title}`}>앨범 더보기 →</S.ActionLink>
 						</S.ContentCard>
 					)}
 				</S.InfoSection>

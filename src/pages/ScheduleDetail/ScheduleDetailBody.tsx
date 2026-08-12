@@ -199,7 +199,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 									) : (
 										finalTicketingLink && (
 											<>
-												<S.PrimaryButton to={finalTicketingLink} target="_blank" rel="noopener noreferrer">
+												<S.PrimaryButton href={finalTicketingLink} target="_blank" rel="noopener noreferrer">
 													{(concert.ticketing?.length ?? 0) > 1
 														? `${index + 1}차 티켓 예매하러 가기`
 														: '티켓 예매하러 가기'}
@@ -239,7 +239,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 
 					<S.InfoGroup>
 						<InfoTitle label="ABOUT ALBUM" />
-						<S.MoreButton to={detailUrl} target="_blank" rel="noopener noreferrer">
+						<S.MoreButton href={detailUrl} target="_blank" rel="noopener noreferrer">
 							{ALBUM_TYPE_LABEL[album.type]} 정보 더보기
 						</S.MoreButton>
 					</S.InfoGroup>
@@ -247,7 +247,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 					{album.store && (
 						<>
 							{typeof album.store === 'string' ? (
-								<S.PrimaryButton to={album.store} target="_blank" rel="noopener noreferrer">
+								<S.PrimaryButton href={album.store} target="_blank" rel="noopener noreferrer">
 									{ALBUM_TYPE_LABEL[album.type]}구매하기
 								</S.PrimaryButton>
 							) : (
@@ -255,7 +255,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 									const detail = LINK_SHOP[key];
 
 									return (
-										<S.PrimaryButton key={key} to={url} target="_blank" rel="noopener noreferrer">
+										<S.PrimaryButton key={key} href={url} target="_blank" rel="noopener noreferrer">
 											{detail ? (
 												<>
 													{ALBUM_TYPE_LABEL[album.type]} 구매하기 - {detail.STORE}
@@ -303,7 +303,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 					</S.InfoGroup>
 
 					{linkUrl && (
-						<S.PrimaryButton to={linkUrl} target="_blank" rel="noopener noreferrer">
+						<S.PrimaryButton href={linkUrl} target="_blank" rel="noopener noreferrer">
 							{event.platform ? event.platform : event.host}로 보러가기
 						</S.PrimaryButton>
 					)}
@@ -347,13 +347,13 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 					)}
 
 					{instagramUrl && !sche.specialLink && (
-						<S.PrimaryButton to={instagramUrl} target="_blank" rel="noopener noreferrer">
+						<S.PrimaryButton href={instagramUrl} target="_blank" rel="noopener noreferrer">
 							{sche.content}
 						</S.PrimaryButton>
 					)}
 
 					{sche.fileUrl && (
-						<S.PrimaryButton to={sche.fileUrl.url} target="_blank" download>
+						<S.PrimaryButton href={sche.fileUrl.url} target="_blank" download>
 							{sche.fileUrl.label}
 						</S.PrimaryButton>
 					)}

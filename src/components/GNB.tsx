@@ -136,7 +136,7 @@ const GNB = () => {
 
 				<S.UtilGroup>
 					{nextEvent && (
-						<S.DDayContent to={`/schedule/${nextEvent.id}`} className="pc-only">
+						<S.DDayContent href={`/schedule/${nextEvent.id}`} className="pc-only">
 							<span className="label">{nextEvent.content}</span>
 							<span className="count">{nextEvent.dDay}</span>
 						</S.DDayContent>
@@ -183,7 +183,7 @@ const GNB = () => {
 							</S.MobileNavList>
 
 							{nextEvent && (
-								<S.MobileDDayFooter to={`/schedule/${nextEvent.id}`}>
+								<S.MobileDDayFooter href={`/schedule/${nextEvent.id}`}>
 									<span className="label">{nextEvent.content}</span>
 									<span className="count">{nextEvent.dDay}</span>
 								</S.MobileDDayFooter>

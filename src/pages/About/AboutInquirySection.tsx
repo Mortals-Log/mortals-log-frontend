@@ -15,7 +15,7 @@ const AboutInquiry = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: stri
 
 			<S.ButtonGrid>
 				{Object.values(ABOUT_INQUIRY).map(item => (
-					<S.InquiryButtn key={item.label} to={item.url} target="_blank" rel="noreferrer">
+					<S.InquiryButtn key={item.label} href={item.url} target="_blank" rel="noreferrer">
 						{item.label}
 						<span>
 							{item.label}

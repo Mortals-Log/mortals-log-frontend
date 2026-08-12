@@ -3,7 +3,7 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 export { ContentSection, SectionTitle } from '@/styles/common/Layout.style';
 
 export { MoreButton } from '@/styles/components/Buttons.style';

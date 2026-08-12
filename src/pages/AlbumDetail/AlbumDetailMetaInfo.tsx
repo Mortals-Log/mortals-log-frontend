@@ -80,7 +80,7 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 				{album.store && (
 					<>
 						{typeof album.store === 'string' ? (
-							<S.MoreButton to={album.store} target="_blank" rel="noopener noreferrer">
+							<S.MoreButton href={album.store} target="_blank" rel="noopener noreferrer">
 								<span className="category">{ALBUM_TYPE_LABEL[album.type]}</span>
 								<span className="store">구매하기</span>
 							</S.MoreButton>
@@ -88,7 +88,7 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 							Object.entries(album.store).map(([key, url]) => {
 								const detail = LINK_SHOP[key];
 								return (
-									<S.MoreButton key={key} to={url} target="_blank" rel="noopener noreferrer">
+									<S.MoreButton key={key} href={url} target="_blank" rel="noopener noreferrer">
 										{detail ? `${ALBUM_TYPE_LABEL[album.type]} 구매하기 - ${detail.STORE}` : key}
 									</S.MoreButton>
 								);

@@ -100,7 +100,7 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 						const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 
 						return (
-							<S.AlbumCard key={key} to={detailUrl}>
+							<S.AlbumCard key={key} href={detailUrl}>
 								<S.CoverWrapper>
 									<img src={imageSrc} alt={album.title} onError={handleImgError} />
 									<S.Overlay className="overlay">

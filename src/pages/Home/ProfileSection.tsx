@@ -1,15 +1,17 @@
+'use client';
+
 // @/pages/Home/ProfileSection
 
 import * as S from '@/styles/pages/Home/ProfileSection.style';
 
 import { useState, useEffect, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { PROFILE } from '@/const/profile';
 import { EVENT_INTERVIEW } from '@/const/event';
 import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
 
 const ProfileSection = () => {
-	const navigate = useNavigate();
+	const router = useRouter();
 	const [currentIdx, setCurrentIdx] = useState(0);
 	const [isPaused, setIsPaused] = useState(false);
 
@@ -57,11 +59,11 @@ const ProfileSection = () => {
 					{currentItem && currentItemSnsInfo && (
 						<S.ModifierContainer onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
 							{currentItemSnsInfo.url ? (
-								<S.ModifierLink to={currentItemSnsInfo.url} target="_blank" rel="noreferrer">
+								<S.ModifierLink href={currentItemSnsInfo.url} target="_blank" rel="noreferrer">
 									{currentItemSnsInfo.label}
 								</S.ModifierLink>
 							) : (
-								<S.ModifierLink to="/" target="_blank" rel="noreferrer" $disabled={true}>
+								<S.ModifierLink href="/" target="_blank" rel="noreferrer" $disabled={true}>
 									{currentItemSnsInfo.label}
 								</S.ModifierLink>
 							)}
@@ -76,7 +78,7 @@ const ProfileSection = () => {
 
 					<S.ProfileDescription>{PROFILE.description}</S.ProfileDescription>
 
-					<S.ViewMoreButton onClick={() => navigate('/profile')}>READ PROFILE LOG</S.ViewMoreButton>
+					<S.ViewMoreButton onClick={() => router.push('/profile')}>READ PROFILE LOG</S.ViewMoreButton>
 				</S.TextSection>
 			</S.SectionWrapper>
 		</S.ProfileSection>

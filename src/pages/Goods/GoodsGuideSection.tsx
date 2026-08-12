@@ -27,7 +27,7 @@ const GoodsGuideSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN:
 					const Icon = channel.icon;
 
 					return (
-						<S.LinkButton key={channel.label} to={channel.url} target="_blank" rel="noopener noreferrer">
+						<S.LinkButton key={channel.label} href={channel.url} target="_blank" rel="noopener noreferrer">
 							{Icon && <Icon width={16} height={16} />}
 							{channel.label}
 						</S.LinkButton>

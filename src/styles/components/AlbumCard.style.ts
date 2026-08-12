@@ -3,7 +3,7 @@
 /* eslint-disable storybook/default-exports */
 
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export const AlbumGrid = styled.div`
 	display: grid;

@@ -63,7 +63,7 @@ const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_E
 						{filteredAlbums.items.map(album => {
 							const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 							return (
-								<S.AlbumCard key={key} to={detailUrl}>
+								<S.AlbumCard key={key} href={detailUrl}>
 									<S.CoverWrapper>
 										<img src={imageSrc} alt={album.title} loading="lazy" onError={handleImgError} />
 										<S.Overlay className="overlay">

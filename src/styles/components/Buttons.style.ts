@@ -4,7 +4,7 @@
 
 import styled from '@emotion/styled';
 import { css, keyframes } from '@emotion/react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const blink = keyframes`
   0%, 100% { opacity: 1; }
