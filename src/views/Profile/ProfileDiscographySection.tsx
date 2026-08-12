@@ -23,7 +23,7 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 
 	const [isAtStart, setIsAtStart] = useState(true);
 	const [isAtEnd, setIsAtEnd] = useState(false);
-	const [displayCount, setDisplayCount] = useState(getDisplayCount());
+	const [displayCount, setDisplayCount] = useState(8);
 
 	const displayAlbums = allAlbumsFlat.slice(0, displayCount);
 
