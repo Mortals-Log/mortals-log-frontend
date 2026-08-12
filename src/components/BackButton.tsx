@@ -1,8 +1,10 @@
+'use client';
+
 // @/components/BackButton
 
 import * as S from '@/styles/components/Buttons.style';
 
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
 
 interface BackButtonProps {
@@ -10,21 +12,20 @@ interface BackButtonProps {
 }
 
 const BackButton = ({ to }: BackButtonProps) => {
-	const navigate = useNavigate();
-	const location = useLocation();
+	const router = useRouter();
 
 	const handleBack = useCallback(() => {
 		if (to) {
-			navigate(to);
+			router.push(to);
 			return;
 		}
 
-		if (window.history.length <= 1 || location.key === 'default') {
-			navigate('/');
+		if (window.history.length <= 1) {
+			router.push('/');
 		} else {
-			navigate(-1);
+			router.back();
 		}
-	}, [to, navigate, location.key]);
+	}, [to, router]);
 
 	const buttonLabel = useMemo(() => {
 		if (to) {

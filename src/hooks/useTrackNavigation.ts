@@ -1,10 +1,12 @@
+'use client';
+
 // @/hooks/useTrackNavigation.ts
 
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { Track } from '@/types/track';
 
 export const UseTrackNavigation = () => {
-	const navigate = useNavigate();
+	const router = useRouter();
 
 	const handleItemClick = (track: Track) => {
 		if (!track) return;
@@ -23,7 +25,7 @@ export const UseTrackNavigation = () => {
 			slug = `${track.title}_${track.version}`;
 		}
 
-		navigate(`/song/${encodeURIComponent(slug)}`);
+		router.push(`/song/${encodeURIComponent(slug)}`);
 	};
 
 	const handleKeyDown = (e: React.KeyboardEvent, track: Track) => {

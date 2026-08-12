@@ -1,9 +1,11 @@
+'use client';
+
 // @/components/GNB
 
 import * as S from '@/styles/components/GNB.style';
 
 import { useEffect, useMemo, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { usePathname, useRouter } from 'next/navigation';
 import { startOfDay, parseISO, isAfter, isSameDay, differenceInDays } from 'date-fns';
 import { AnimatePresence, Variants } from 'framer-motion';
 import { ACTIVE_NAV_ITEMS, METADATA } from '@/const/contents';
@@ -40,9 +42,8 @@ const getNextEvent = (schedules: CalendarSchedules) => {
 };
 
 const GNB = () => {
-	const navigate = useNavigate();
-	const location = useLocation();
-	const currentPath = location.pathname;
+	const router = useRouter();
+	const currentPath = usePathname();
 
 	const [isLogoHovered, setIsLogoHovered] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -103,7 +104,7 @@ const GNB = () => {
 		if (path.startsWith('http')) {
 			window.open(path, '_blank', 'noopener,noreferrer');
 		} else {
-			navigate(path);
+			router.push(path);
 		}
 
 		if (isMenuOpen) setIsMenuOpen(false);
