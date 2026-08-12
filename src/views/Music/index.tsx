@@ -1,5 +1,6 @@
-// @/views/Music
 'use client';
+
+// @/views/Music
 
 import * as S from '@/styles/pages/Music/Music.style';
 

@@ -1,5 +1,6 @@
-// @/views/Album
 'use client';
+
+// @/views/Album
 
 import AlbumPromotionSection from '@/views/Album/AlbumPromotionSection';
 import AlbumReleaseSection from '@/views/Album/AlbumReleaseSection';

@@ -1,5 +1,6 @@
-// @/views/Schedule
 'use client';
+
+// @/views/Schedule
 
 import * as S from '@/styles/pages/Schedule/Schedule.style';
 

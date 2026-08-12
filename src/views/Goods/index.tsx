@@ -1,5 +1,6 @@
-// @/views/Goods
 'use client';
+
+// @/views/Goods
 
 import * as S from '@/styles/pages/Goods/Goods.style';
 
