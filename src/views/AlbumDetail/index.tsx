@@ -1,17 +1,17 @@
+'use client';
+
 // @/views/AlbumDetail
 
 import * as S from '@styles/pages/AlbumDetail/AlbumDetail.style';
-import { useParams } from 'react-router-dom';
-import { useEffect, useMemo } from 'react';
+import { useParams } from 'next/navigation';
+import { useMemo } from 'react';
 import { GET_FULL_ALBUMS } from '@const/albums';
 import AlbumDetailTracks from '@/views/AlbumDetail/AlbumDetailTracks';
 import AlbumDetailMetaInfo from '@/views/AlbumDetail/AlbumDetailMetaInfo';
 import AlbumDetailIntro from '@/views/AlbumDetail/AlbumDetailIntro';
-import { METADATA } from '@/const/contents';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/Placeholder';
-import { GetAlbumPaths, IsAlbumMatch } from '@/utils/album';
-import { UpdateMetaTags } from '@/utils/meta';
+import { IsAlbumMatch } from '@/utils/album';
 
 const SECTION_TITLE = {
 	TRACKS: {
@@ -34,23 +34,6 @@ const AlbumDetail = () => {
 		if (!id) return null;
 		return ALL_ALBUMS_FLAT.find(album => IsAlbumMatch(album, id));
 	}, [id]);
-
-	useEffect(() => {
-		if (!albumData) {
-			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, undefined, 'website');
-			return;
-		}
-
-		const { imageSrc } = GetAlbumPaths(albumData);
-		const pageTitle = `${METADATA.NAME} | ${albumData.title}`;
-		const description = `${albumData.title} 앨범의 수록곡과 소개 정보를 확인하세요.`;
-
-		UpdateMetaTags(pageTitle, description, imageSrc, 'music.album');
-
-		return () => {
-			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, undefined, 'website');
-		};
-	}, [albumData]);
 
 	if (!albumData) {
 		return (
