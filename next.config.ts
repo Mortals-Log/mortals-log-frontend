@@ -1,22 +1,28 @@
+import path from 'path';
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+	outputFileTracingRoot: path.join(__dirname),
 	webpack(config) {
 		const fileLoaderRule = config.module.rules.find(
 			(rule: any) => rule.test?.test?.('.svg'),
 		);
 
+		// webpack disallows a rule from having both `loader` and `use` — drop
+		// `loader`/`options` from the spread before adding `use: [svgr]`.
+		const { loader: _loader, options: _options, ...restFileLoaderRule } = fileLoaderRule;
+
 		config.module.rules.push(
 			{
-				...fileLoaderRule,
+				...restFileLoaderRule,
 				test: /\.svg$/i,
 				resourceQuery: /react/,
 				use: ['@svgr/webpack'],
 			},
 			{
-				...fileLoaderRule,
+				...restFileLoaderRule,
 				test: /\.svg$/i,
-				resourceQuery: { not: [...(fileLoaderRule.resourceQuery?.not || []), /react/] },
+				resourceQuery: { not: [...(restFileLoaderRule.resourceQuery?.not || []), /react/] },
 			},
 		);
 

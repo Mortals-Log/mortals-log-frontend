@@ -11,6 +11,7 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 	const handleImgError = useImageFallback();
 
 	const getDisplayCount = () => {
+		if (typeof window === 'undefined') return 8;
 		const width = window.innerWidth;
 		if (width <= 480) return 4;
 		if (width <= 1100) return 6;
