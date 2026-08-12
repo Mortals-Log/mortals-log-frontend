@@ -1,9 +1,11 @@
+'use client';
+
 // @/views/Schedule/ScheduleDetail
 
 import * as S from '@/styles/pages/ScheduleDetail/ScheduleDetail.style';
 
-import { useParams } from 'react-router-dom';
-import { useEffect, useMemo } from 'react';
+import { useParams } from 'next/navigation';
+import { useMemo } from 'react';
 
 import { ALL_SCHEDULE_LIST } from '@/utils/schedule';
 import { ConcertItem } from '@/types/concert';
@@ -16,8 +18,6 @@ import { FULL_EVENTS } from '@/const/event';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/Placeholder';
 import ScheduleDetailBody from '@/views/ScheduleDetail/ScheduleDetailBody';
-import { UpdateMetaTags } from '@/utils/meta';
-import { METADATA } from '@/const/contents';
 
 const isConcert = (data: any): data is ConcertItem =>
 	data && 'content' in data && 'type' in data && ['SOLO', 'JOIN', 'TOUR', 'LISTENING'].includes(data.type);
@@ -60,25 +60,6 @@ const ScheduleDetail = () => {
 			date: rawDate && !rawDate.includes(year) ? `${year}.${rawDate}` : rawDate,
 		};
 	}, [scheduleBase]);
-
-	useEffect(() => {
-		if (!scheduleBase) {
-			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, undefined, 'website');
-			return;
-		}
-
-		const displayTitle = (isConcert(detailData) && detailData?.content) || scheduleBase.content;
-		const categoryLabel = SCHEDULE_LABEL_MAP[scheduleBase.type];
-
-		const pageTitle = `${METADATA.NAME} | [${categoryLabel}] ${displayTitle}`;
-		const description = `${scheduleBase.date} - ${displayTitle} 일정을 확인하세요.`;
-
-		UpdateMetaTags(pageTitle, description, scheduleBase.imageUrl, 'website');
-
-		return () => {
-			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, undefined, 'website');
-		};
-	}, [scheduleBase, detailData]);
 
 	if (!scheduleBase) {
 		return (
