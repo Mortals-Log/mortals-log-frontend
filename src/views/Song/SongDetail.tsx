@@ -1,19 +1,18 @@
+'use client';
+
 // @/views/Song/SongDetail
 
 import * as S from '@styles/pages/Song/SongDetail.styles';
-import { useEffect, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useParams } from 'next/navigation';
 import { FULL_ALBUMS } from '@/const/albums';
 import { MASTER_TRACKS } from '@/const/tracks';
-import { METADATA } from '@/const/contents';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/Placeholder';
 import SongDetailHeader from '@/views/Song/SongDetailHeader';
 import SongDetailMeta from '@/views/Song/SongDetailMeta';
 import SongDetailContent from '@/views/Song/SongDetailContent';
 import { IsTrackMatch } from '@/utils/track';
-import { UpdateMetaTags } from '@/utils/meta';
-import { GetAlbumPaths } from '@/utils/album';
 
 const SongDetail = () => {
 	const { id } = useParams<{ id: string }>();
@@ -36,20 +35,6 @@ const SongDetail = () => {
 
 		return { track: currentTrack, albumInfo: foundAlbum || null };
 	}, [id]);
-
-	useEffect(() => {
-		if (track && albumInfo) {
-			const { imageSrc } = GetAlbumPaths(albumInfo);
-			const pageTitle = `${METADATA.NAME} | ${track.title}`;
-			const description = `${track.title} 곡의 정보를 확인하세요.`;
-
-			UpdateMetaTags(pageTitle, description, imageSrc, 'music.song');
-		}
-
-		return () => {
-			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, undefined, 'website');
-		};
-	}, [track, albumInfo]);
 
 	if (!track) {
 		return (
