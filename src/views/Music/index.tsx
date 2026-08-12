@@ -1,13 +1,12 @@
 // @/views/Music
+'use client';
 
 import * as S from '@/styles/pages/Music/Music.style';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Album from '@/views/Album';
 import Song from '@/views/Song';
 import { NAME } from '@/const/profile';
-import { METADATA } from '@/const/contents';
-import { UpdateMetaTags } from '@/utils/meta';
 
 const Music = () => {
 	const PAGE_TITLE = {
@@ -23,17 +22,6 @@ const Music = () => {
 	const handleTabClick = (tab: (typeof tabs)[number]) => {
 		setActiveTab(tab);
 	};
-
-	useEffect(() => {
-		const pageTitle = `${METADATA.NAME} | Music`;
-		const description = PAGE_TITLE.DESCRIPTION;
-
-		UpdateMetaTags(pageTitle, description, undefined, 'website');
-
-		return () => {
-			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, undefined, 'website');
-		};
-	});
 
 	return (
 		<S.MainContainer>

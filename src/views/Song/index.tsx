@@ -1,4 +1,5 @@
 // @/pages/Song
+'use client';
 
 import * as S from '@/styles/pages/Song/Song.styles';
 

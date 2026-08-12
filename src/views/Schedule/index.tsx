@@ -1,13 +1,11 @@
 // @/views/Schedule
+'use client';
 
 import * as S from '@/styles/pages/Schedule/Schedule.style';
 
-import { useEffect } from 'react';
 import { NAME } from '@/const/profile';
 import ScheduleUpcommingBacnner from '@/views/Schedule/ScheduleUpcommingBanner';
 import ScheduleCalendar from '@/views/ScheduleCalendar';
-import { METADATA } from '@/const/contents';
-import { UpdateMetaTags } from '@/utils/meta';
 
 const PAGE_TITLE = {
 	MAIN: '일정',
@@ -23,17 +21,6 @@ const SECTION_TITLE = {
 } as const;
 
 const Schedule = () => {
-	useEffect(() => {
-		const pageTitle = `${METADATA.NAME} | Schedule`;
-		const description = PAGE_TITLE.DESCRIPTION;
-
-		UpdateMetaTags(pageTitle, description, undefined, 'website');
-
-		return () => {
-			UpdateMetaTags(METADATA.NAME, METADATA.DESCRIPTION, undefined, 'website');
-		};
-	});
-
 	return (
 		<S.MainContainer>
 			<S.SubTitle>{PAGE_TITLE.SUB}</S.SubTitle>
