@@ -4,6 +4,7 @@
 
 import { useRouter } from 'next/navigation';
 import { Track } from '@/types/track';
+import { GetTrackSlug } from '@/utils/track';
 
 export const UseTrackNavigation = () => {
 	const router = useRouter();
@@ -11,21 +12,7 @@ export const UseTrackNavigation = () => {
 	const handleItemClick = (track: Track) => {
 		if (!track) return;
 
-		let slug = track.title;
-
-		if (track.id.startsWith('TRK_LV')) {
-			const hasLiveTag = track.version?.toLowerCase().includes('live');
-
-			if (!hasLiveTag) {
-				slug = `${track.title}_Live`;
-			} else if (track.version) {
-				slug = `${track.title}_${track.version}`;
-			}
-		} else if (track.version) {
-			slug = `${track.title}_${track.version}`;
-		}
-
-		router.push(`/song/${encodeURIComponent(slug)}`);
+		router.push(`/song/${encodeURIComponent(GetTrackSlug(track))}`);
 	};
 
 	const handleKeyDown = (e: React.KeyboardEvent, track: Track) => {
