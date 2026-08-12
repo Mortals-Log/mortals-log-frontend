@@ -1,11 +1,11 @@
-// @/pages/Goods
+// @/views/Goods
 
 import * as S from '@/styles/pages/Goods/Goods.style';
 
 import { useEffect } from 'react';
-import GoodsLinkSection from '@/pages/Goods/GoodsLinkSection';
-import GoodsGuideSection from '@/pages/Goods/GoodsGuideSection';
-import GoodsEtiquetteSection from '@/pages/Goods/GoodsEtiquetteSection';
+import GoodsLinkSection from '@/views/Goods/GoodsLinkSection';
+import GoodsGuideSection from '@/views/Goods/GoodsGuideSection';
+import GoodsEtiquetteSection from '@/views/Goods/GoodsEtiquetteSection';
 import { FAN_GOODS_GUIDE } from '@/const/goods';
 import { METADATA } from '@/const/contents';
 import { UpdateMetaTags } from '@/utils/meta';

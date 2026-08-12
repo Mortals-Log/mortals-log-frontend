@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { METADATA } from '@/const/contents';
-import About from '@/pages/About';
+import About from '@/views/About';
 
 export const metadata: Metadata = {
 	title: `${METADATA.NAME} | About`,

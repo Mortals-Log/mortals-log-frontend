@@ -1,10 +1,10 @@
-// @/pages/Music
+// @/views/Music
 
 import * as S from '@/styles/pages/Music/Music.style';
 
 import { useState, useEffect } from 'react';
-import Album from '@/pages/Album';
-import Song from '@/pages/Song';
+import Album from '@/views/Album';
+import Song from '@/views/Song';
 import { NAME } from '@/const/profile';
 import { METADATA } from '@/const/contents';
 import { UpdateMetaTags } from '@/utils/meta';

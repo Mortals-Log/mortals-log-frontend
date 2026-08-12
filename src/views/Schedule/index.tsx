@@ -1,11 +1,11 @@
-// @/pages/Schedule
+// @/views/Schedule
 
 import * as S from '@/styles/pages/Schedule/Schedule.style';
 
 import { useEffect } from 'react';
 import { NAME } from '@/const/profile';
-import ScheduleUpcommingBacnner from '@/pages/Schedule/ScheduleUpcommingBanner';
-import ScheduleCalendar from '@/pages/ScheduleCalendar';
+import ScheduleUpcommingBacnner from '@/views/Schedule/ScheduleUpcommingBanner';
+import ScheduleCalendar from '@/views/ScheduleCalendar';
 import { METADATA } from '@/const/contents';
 import { UpdateMetaTags } from '@/utils/meta';
 

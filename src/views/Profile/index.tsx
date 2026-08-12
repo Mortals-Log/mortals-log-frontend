@@ -1,14 +1,14 @@
 'use client';
 
-// @/pages/Profile
+// @/views/Profile
 
 import * as S from '@/styles/pages/Profile/Profile.style';
 
-import { ProfileHeader } from '@/pages/Profile/ProfileHeader';
-import ProfileDetailSection from '@/pages/Profile/ProfileDetailSection';
-import ProfileLinkSection from '@/pages/Profile/ProfileLinkSection';
-import ProfileCareerSection from '@/pages/Profile/ProfileCareerSection';
-import ProfileDiscographySection from '@/pages/Profile/ProfileDiscographySection';
+import { ProfileHeader } from '@/views/Profile/ProfileHeader';
+import ProfileDetailSection from '@/views/Profile/ProfileDetailSection';
+import ProfileLinkSection from '@/views/Profile/ProfileLinkSection';
+import ProfileCareerSection from '@/views/Profile/ProfileCareerSection';
+import ProfileDiscographySection from '@/views/Profile/ProfileDiscographySection';
 
 const SECTION_TITLE = {
 	PROFILE: {

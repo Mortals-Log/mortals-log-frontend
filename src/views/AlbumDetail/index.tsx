@@ -1,12 +1,12 @@
-// @/pages/AlbumDetail
+// @/views/AlbumDetail
 
 import * as S from '@styles/pages/AlbumDetail/AlbumDetail.style';
 import { useParams } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
 import { GET_FULL_ALBUMS } from '@const/albums';
-import AlbumDetailTracks from '@/pages/AlbumDetail/AlbumDetailTracks';
-import AlbumDetailMetaInfo from '@/pages/AlbumDetail/AlbumDetailMetaInfo';
-import AlbumDetailIntro from '@/pages/AlbumDetail/AlbumDetailIntro';
+import AlbumDetailTracks from '@/views/AlbumDetail/AlbumDetailTracks';
+import AlbumDetailMetaInfo from '@/views/AlbumDetail/AlbumDetailMetaInfo';
+import AlbumDetailIntro from '@/views/AlbumDetail/AlbumDetailIntro';
 import { METADATA } from '@/const/contents';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/Placeholder';

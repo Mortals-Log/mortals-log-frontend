@@ -1,4 +1,4 @@
-// @/pages/Song/SongDetail
+// @/views/Song/SongDetail
 
 import * as S from '@styles/pages/Song/SongDetail.styles';
 import { useEffect, useMemo } from 'react';
@@ -8,9 +8,9 @@ import { MASTER_TRACKS } from '@/const/tracks';
 import { METADATA } from '@/const/contents';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/Placeholder';
-import SongDetailHeader from '@/pages/Song/SongDetailHeader';
-import SongDetailMeta from '@/pages/Song/SongDetailMeta';
-import SongDetailContent from '@/pages/Song/SongDetailContent';
+import SongDetailHeader from '@/views/Song/SongDetailHeader';
+import SongDetailMeta from '@/views/Song/SongDetailMeta';
+import SongDetailContent from '@/views/Song/SongDetailContent';
 import { IsTrackMatch } from '@/utils/track';
 import { UpdateMetaTags } from '@/utils/meta';
 import { GetAlbumPaths } from '@/utils/album';

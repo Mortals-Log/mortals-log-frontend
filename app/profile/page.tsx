@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { METADATA } from '@/const/contents';
 import { NAME } from '@/const/profile';
-import Profile from '@/pages/Profile';
+import Profile from '@/views/Profile';
 
 export const metadata: Metadata = {
 	title: `${METADATA.NAME} | Profile`,

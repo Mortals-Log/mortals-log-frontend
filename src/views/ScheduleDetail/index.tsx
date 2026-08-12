@@ -1,4 +1,4 @@
-// @/pages/Schedule/ScheduleDetail
+// @/views/Schedule/ScheduleDetail
 
 import * as S from '@/styles/pages/ScheduleDetail/ScheduleDetail.style';
 
@@ -15,7 +15,7 @@ import { FULL_EVENTS } from '@/const/event';
 
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/Placeholder';
-import ScheduleDetailBody from '@/pages/ScheduleDetail/ScheduleDetailBody';
+import ScheduleDetailBody from '@/views/ScheduleDetail/ScheduleDetailBody';
 import { UpdateMetaTags } from '@/utils/meta';
 import { METADATA } from '@/const/contents';
 

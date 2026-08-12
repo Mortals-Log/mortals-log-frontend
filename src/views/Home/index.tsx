@@ -1,11 +1,11 @@
 'use client';
 
-// @/pages/Home
+// @/views/Home
 
 import * as S from '@/styles/pages/Home/Home.style';
 
-import InformationSection from '@/pages/Home/InformationSection';
-import ProfileSection from '@/pages/Home/ProfileSection';
+import InformationSection from '@/views/Home/InformationSection';
+import ProfileSection from '@/views/Home/ProfileSection';
 import { METADATA } from '@/const/contents';
 import { NAME } from '@/const/profile';
 
