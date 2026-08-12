@@ -8,7 +8,7 @@ import AlbumDetail from '@pages/AlbumDetail';
 const ALL_ALBUMS_FLAT = GET_FULL_ALBUMS().flatMap(group => group.items);
 
 export const generateStaticParams = () => {
-	return ALL_ALBUMS_FLAT.map(album => ({ id: GetSlug(album.title) }));
+	return ALL_ALBUMS_FLAT.map(album => ({ id: decodeURIComponent(GetSlug(album.title)) }));
 };
 
 export const generateMetadata = async ({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> => {

@@ -8,7 +8,7 @@ import SongDetail from '@pages/Song/SongDetail';
 
 export const generateStaticParams = () => {
 	return Object.values(MASTER_TRACKS).map(track => ({
-		id: encodeURIComponent(GetTrackSlug(track)),
+		id: GetTrackSlug(track),
 	}));
 };
 
