@@ -28,3 +28,4 @@ storybook-static
 yarn.lock
 /receipts
 /review-receipts
+.worktrees
