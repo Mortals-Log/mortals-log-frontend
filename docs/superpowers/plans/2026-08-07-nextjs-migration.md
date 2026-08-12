@@ -492,6 +492,69 @@ git commit -m "refactor: GNB/BackButton/useTrackNavigation/ScrollToTop을 next/n
 
 ---
 
+### Task 4b: 나머지 react-router-dom 잔여 사용처 일괄 마이그레이션
+
+> Task 4 리뷰 중 발견된 계획 누락분을 메우는 태스크. Task 4는 공용 훅 4개만 다뤘지만, 실제로는 `Link`를 감싼 styled-components 11개와 `useNavigate`를 직접 쓰는 페이지 컴포넌트 4개가 더 있었다. `next/link`의 `Link`는 목적지 prop이 `to`가 아니라 `href`이므로, import 교체만으로는 부족하고 각 소비처(JSX)의 `to=` prop도 `href=`로 바꿔야 한다.
+
+**Files:**
+- Modify (import만 `react-router-dom` → `next/link`, `Link` → default import): `src/styles/components/GNB.style.ts:7`, `src/styles/components/Buttons.style.ts:7`, `src/styles/components/AlbumCard.style.ts:6`, `src/styles/pages/Home/InformationSection.style.ts:7`, `src/styles/pages/Profile/ProfileDiscographySection.style.ts:6`, `src/styles/pages/About/AboutInquirySection.style.ts:6`, `src/styles/pages/Album/AlbumPromotionSection.style.ts:8`
+- Modify (`useNavigate` → `useRouter`, 패턴은 Task 4의 GNB.tsx/BackButton.tsx와 동일): `src/pages/Home/ProfileSection.tsx:6`, `src/pages/Song/SongDetailHeader.tsx:6`, `src/pages/Schedule/ScheduleUpcommingBanner.tsx:6`, `src/pages/Schedule/ScheduleCalandarAgenda.tsx:5`
+- Modify (`to=` → `href=` prop rename, 소비처): `src/components/GNB.tsx:139,186`, `src/pages/Profile/ProfileDiscographySection.tsx:86,117`, `src/pages/Album/AlbumReleaseSection.tsx:66`, `src/pages/Album/AlbumTypeSection.tsx:103`, `src/pages/Album/AlbumYearGroup.tsx:32`, `src/pages/Home/InformationSection.tsx:85`, `src/pages/ScheduleDetail/ScheduleDetailBody.tsx:202,242,250,258,306,350,356`, `src/pages/AlbumDetail/AlbumDetailMetaInfo.tsx:83,91`, `src/pages/Profile/ProfileLinkSection.tsx:31`, `src/pages/Goods/GoodsGuideSection.tsx:30`, `src/pages/Goods/GoodsLinkSection.tsx:25`, `src/pages/Song/SongDetailContent.tsx:153`, `src/pages/About/AboutInquirySection.tsx:18`, `src/pages/Album/AlbumPromotionSection.tsx:95`
+
+**Interfaces:**
+- Consumes: 없음 (leaf-level import/prop 교체)
+- Produces: 이 태스크 이후 `grep -rn "react-router-dom" src app`의 결과는 Task 8/9/10이 아직 처리하지 않은 `AlbumDetail/index.tsx`, `Song/SongDetail.tsx`, `ScheduleDetail/index.tsx` 3개 파일만 남아야 함 (Task 11의 전제 조건).
+
+- [ ] **Step 1: 11개 style 파일의 import 교체**
+
+각 파일에서:
+```diff
+-import { Link } from 'react-router-dom';
++import Link from 'next/link';
+```
+
+- [ ] **Step 2: 4개 페이지 컴포넌트의 useNavigate → useRouter 교체**
+
+`ProfileSection.tsx`, `SongDetailHeader.tsx`, `ScheduleUpcommingBanner.tsx`, `ScheduleCalandarAgenda.tsx` 각각에 대해 Task 4의 `GNB.tsx`/`BackButton.tsx`와 동일한 패턴 적용:
+```diff
++'use client';
++
+-import { useNavigate } from 'react-router-dom';
++import { useRouter } from 'next/navigation';
+```
+```diff
+-	const navigate = useNavigate();
++	const router = useRouter();
+```
+그리고 해당 파일 내 `navigate(...)` 호출을 모두 `router.push(...)`로 교체 (파일별로 정확한 호출부는 다르므로, 각 파일에서 `navigate(` 문자열을 검색해 나오는 모든 호출부를 동일하게 바꾼다).
+
+- [ ] **Step 3: to= prop을 href=로 일괄 교체**
+
+위 Files 목록의 "to= → href= prop rename" 항목에 나열된 모든 줄에서, JSX 속성 `to={...}` 또는 `to="..."`를 `href={...}` / `href="..."`로 이름만 바꾼다 (값은 그대로 유지). 예:
+```diff
+-<S.DDayContent to={`/schedule/${nextEvent.id}`} className="pc-only">
++<S.DDayContent href={`/schedule/${nextEvent.id}`} className="pc-only">
+```
+
+- [ ] **Step 4: 잔여 사용처 확인**
+
+Run: `grep -rn "react-router-dom" src app`
+Expected: `src/pages/AlbumDetail/index.tsx`, `src/pages/Song/SongDetail.tsx`, `src/pages/ScheduleDetail/index.tsx` 3개 파일만 남음 (Task 8/9/10에서 처리 예정).
+
+- [ ] **Step 5: 타입 체크**
+
+Run: `pnpm exec tsc --noEmit`
+Expected: 에러 없음.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add src/styles/components/GNB.style.ts src/styles/components/Buttons.style.ts src/styles/components/AlbumCard.style.ts src/styles/pages/Home/InformationSection.style.ts src/styles/pages/Profile/ProfileDiscographySection.style.ts src/styles/pages/About/AboutInquirySection.style.ts src/styles/pages/Album/AlbumPromotionSection.style.ts src/pages/Home/ProfileSection.tsx src/pages/Song/SongDetailHeader.tsx src/pages/Schedule/ScheduleUpcommingBanner.tsx src/pages/Schedule/ScheduleCalandarAgenda.tsx src/components/GNB.tsx src/pages/Profile/ProfileDiscographySection.tsx src/pages/Album/AlbumReleaseSection.tsx src/pages/Album/AlbumTypeSection.tsx src/pages/Album/AlbumYearGroup.tsx src/pages/Home/InformationSection.tsx src/pages/ScheduleDetail/ScheduleDetailBody.tsx src/pages/AlbumDetail/AlbumDetailMetaInfo.tsx src/pages/Profile/ProfileLinkSection.tsx src/pages/Goods/GoodsGuideSection.tsx src/pages/Goods/GoodsLinkSection.tsx src/pages/Song/SongDetailContent.tsx src/pages/About/AboutInquirySection.tsx src/pages/Album/AlbumPromotionSection.tsx
+git commit -m "refactor: 나머지 react-router-dom Link/useNavigate 사용처를 next/link, next/navigation으로 전환"
+```
+
+---
+
 ### Task 5: 정적 페이지 라우트 추가 — Home, Profile, About
 
 **Files:**
