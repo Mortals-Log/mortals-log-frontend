@@ -11,11 +11,7 @@ export const generateStaticParams = () => {
 	return ALL_ALBUMS_FLAT.map(album => ({ id: GetSlug(album.title) }));
 };
 
-export const generateMetadata = async ({
-	params,
-}: {
-	params: Promise<{ id: string }>;
-}): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> => {
 	const { id } = await params;
 	const album = ALL_ALBUMS_FLAT.find(item => IsAlbumMatch(item, id));
 
@@ -28,7 +24,7 @@ export const generateMetadata = async ({
 	return {
 		title: `${METADATA.NAME} | ${album.title}`,
 		description: `${album.title} 앨범의 수록곡과 소개 정보를 확인하세요.`,
-		openGraph: { images: [imageSrc], type: 'music.song' },
+		openGraph: { images: [imageSrc], type: 'music.album' },
 	};
 };
 
