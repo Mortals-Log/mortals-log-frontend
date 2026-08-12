@@ -1,3 +1,5 @@
+'use client';
+
 // @/pages/Home
 
 import * as S from '@/styles/pages/Home/Home.style';
