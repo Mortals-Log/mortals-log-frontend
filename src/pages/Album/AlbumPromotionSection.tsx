@@ -2,7 +2,6 @@
 
 import * as S from '@/styles/pages/Album/AlbumPromotionSection.style';
 
-import { useMemo } from 'react';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { GetAlbumPaths, GetLatestAlbum } from '@/utils/album';
@@ -13,7 +12,7 @@ import { differenceInDays, format, parse, startOfDay } from 'date-fns';
 const AlbumPromotionSection = () => {
 	const handleImgError = useImageFallback();
 
-	const promotionData = useMemo(() => {
+	const promotionData = (() => {
 		const album = GetLatestAlbum(FULL_ALBUMS);
 		if (!album) return null;
 
@@ -46,7 +45,7 @@ const AlbumPromotionSection = () => {
 			previewTracks,
 			totalTrackCount: allTrackIds.length,
 		};
-	}, []);
+	})();
 
 	if (!promotionData) return null;
 
