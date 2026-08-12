@@ -14,7 +14,7 @@
 - `output: 'export'`는 사용하지 않는다 — 기본 Vercel Node 런타임 유지.
 - `styled-components` 관련 코드/타입 의존성은 미사용이므로 제거 대상이다 (`@types/styled-components`).
 - `engines.node`는 `>=24`로 유지한다.
-- 기존 `src/pages/*`의 UI 컴포넌트 트리 구조와 파일 위치는 옮기지 않는다 — `app/` 아래에는 라우팅 wrapper만 새로 만든다 (최소 diff 원칙).
+- ~~기존 `src/pages/*`의 UI 컴포넌트 트리 구조와 파일 위치는 옮기지 않는다~~ **(Task 5 검증 중 수정됨: `src/pages`는 Next.js가 레거시 Pages Router로 자동 인식하는 예약 디렉터리명이라 충돌한다. `src/views`로 이름을 바꾸고 `@pages` alias만 재지정했다 — 그 외 파일 트리 구조/분리는 옮기지 않는다는 최소 diff 원칙은 유지.)**
 - CI 워크플로 경로는 오탈자가 있는 기존 디렉터리명 `.github/wrokflows/`를 그대로 사용한다 (이번 마이그레이션 범위에서 이름을 고치지 않는다 — 별도 이슈로 남긴다).
 
 ---
@@ -672,11 +672,11 @@ git commit -m "feat: Home/Profile/About 라우트를 App Router로 이전"
 
 **Files:**
 - Create: `app/schedule/page.tsx`, `app/goods/page.tsx`, `app/music/page.tsx`, `app/album/page.tsx`, `app/song/page.tsx`
-- Modify: `src/pages/Schedule/index.tsx:1,26-35`
-- Modify: `src/pages/Goods/index.tsx:1,36-45`
-- Modify: `src/pages/Music/index.tsx:1,27-36`
-- Modify: `src/pages/Album/index.tsx:1`
-- Modify: `src/pages/Song/index.tsx:1`
+- Modify: `src/views/Schedule/index.tsx:1,26-35`
+- Modify: `src/views/Goods/index.tsx:1,36-45`
+- Modify: `src/views/Music/index.tsx:1,27-36`
+- Modify: `src/views/Album/index.tsx:1`
+- Modify: `src/views/Song/index.tsx:1`
 
 **Interfaces:**
 - Consumes: 기존 `Schedule`, `Goods`, `Music`, `Album`, `Song` 컴포넌트의 default export (props 없음)
@@ -684,7 +684,7 @@ git commit -m "feat: Home/Profile/About 라우트를 App Router로 이전"
 
 - [ ] **Step 1: Schedule — 'use client' 추가, UpdateMetaTags effect 제거**
 
-`src/pages/Schedule/index.tsx` 최상단에 `'use client';` 추가. 26~35번째 줄의 `useEffect(() => { ... UpdateMetaTags ... })` 블록 삭제, 미사용 import 정리.
+`src/views/Schedule/index.tsx` 최상단에 `'use client';` 추가. 26~35번째 줄의 `useEffect(() => { ... UpdateMetaTags ... })` 블록 삭제, 미사용 import 정리.
 
 - [ ] **Step 2: app/schedule/page.tsx 작성**
 
@@ -707,7 +707,7 @@ export default Page;
 
 - [ ] **Step 3: Goods — 'use client' 추가, UpdateMetaTags effect 제거**
 
-`src/pages/Goods/index.tsx` 최상단에 `'use client';` 추가. 36~45번째 줄 블록 삭제, 미사용 import 정리. `DESCRIPTION`은 `FAN_GOODS_GUIDE`에서 가져오므로 page.tsx에서도 동일하게 import한다.
+`src/views/Goods/index.tsx` 최상단에 `'use client';` 추가. 36~45번째 줄 블록 삭제, 미사용 import 정리. `DESCRIPTION`은 `FAN_GOODS_GUIDE`에서 가져오므로 page.tsx에서도 동일하게 import한다.
 
 - [ ] **Step 4: app/goods/page.tsx 작성**
 
@@ -730,7 +730,7 @@ export default Page;
 
 - [ ] **Step 5: Music — 'use client' 추가 (useState로 탭 전환), UpdateMetaTags effect 제거**
 
-`src/pages/Music/index.tsx` 최상단에 `'use client';` 추가. 27~36번째 줄 블록 삭제, 미사용 import 정리.
+`src/views/Music/index.tsx` 최상단에 `'use client';` 추가. 27~36번째 줄 블록 삭제, 미사용 import 정리.
 
 - [ ] **Step 6: app/music/page.tsx 작성**
 
@@ -753,7 +753,7 @@ export default Page;
 
 - [ ] **Step 7: Album 목록 페이지 — 'use client' 추가 (하위 섹션이 훅을 사용하는지 확인 후 필요시)**
 
-`src/pages/Album/index.tsx`는 자체 상태는 없지만 `AlbumPromotionSection`/`AlbumReleaseSection`/`AlbumTypeSection`이 훅을 쓸 수 있으므로 최상단에 `'use client';`를 추가한다 (하위 컴포넌트가 client 컴포넌트를 포함하면 부모도 client 경계 안에 있어야 함).
+`src/views/Album/index.tsx`는 자체 상태는 없지만 `AlbumPromotionSection`/`AlbumReleaseSection`/`AlbumTypeSection`이 훅을 쓸 수 있으므로 최상단에 `'use client';`를 추가한다 (하위 컴포넌트가 client 컴포넌트를 포함하면 부모도 client 경계 안에 있어야 함).
 
 - [ ] **Step 8: app/album/page.tsx 작성 (metadata는 Music과 동일 문구 재사용)**
 
@@ -776,7 +776,7 @@ export default Page;
 
 - [ ] **Step 9: Song 목록 페이지 — 'use client' 추가 (useState로 정렬 상태 관리)**
 
-`src/pages/Song/index.tsx` 최상단에 `'use client';` 추가.
+`src/views/Song/index.tsx` 최상단에 `'use client';` 추가.
 
 - [ ] **Step 10: app/song/page.tsx 작성**
 
@@ -805,7 +805,7 @@ Expected: `/schedule`, `/goods`, `/music`, `/album`, `/song` 다섯 페이지 �
 - [ ] **Step 12: Commit**
 
 ```bash
-git add app/schedule/page.tsx app/goods/page.tsx app/music/page.tsx app/album/page.tsx app/song/page.tsx src/pages/Schedule/index.tsx src/pages/Goods/index.tsx src/pages/Music/index.tsx src/pages/Album/index.tsx src/pages/Song/index.tsx
+git add app/schedule/page.tsx app/goods/page.tsx app/music/page.tsx app/album/page.tsx app/song/page.tsx src/views/Schedule/index.tsx src/views/Goods/index.tsx src/views/Music/index.tsx src/views/Album/index.tsx src/views/Song/index.tsx
 git commit -m "feat: Schedule/Goods/Music/Album/Song 목록 라우트를 App Router로 이전"
 ```
 
@@ -901,7 +901,7 @@ git commit -m "refactor: 트랙 URL 슬러그 계산 로직을 GetTrackSlug로 �
 
 **Files:**
 - Create: `app/album/[id]/page.tsx`
-- Modify: `src/pages/AlbumDetail/index.tsx:1,4,38-53`
+- Modify: `src/views/AlbumDetail/index.tsx:1,4,38-53`
 
 **Interfaces:**
 - Consumes: `ALL_ALBUMS_FLAT`(`@pages/AlbumDetail`), `IsAlbumMatch`/`GetAlbumPaths`(`@utils/album`)
@@ -1008,7 +1008,7 @@ Expected: 모든 앨범 슬러그에 대해 정적 페이지가 생성됨 (`✓ 
 - [ ] **Step 4: Commit**
 
 ```bash
-git add app/album/[id]/page.tsx src/pages/AlbumDetail/index.tsx
+git add app/album/[id]/page.tsx src/views/AlbumDetail/index.tsx
 git commit -m "feat: 앨범 상세 동적 라우트와 앨범별 메타데이터 추가"
 ```
 
@@ -1018,7 +1018,7 @@ git commit -m "feat: 앨범 상세 동적 라우트와 앨범별 메타데이터
 
 **Files:**
 - Create: `app/song/[id]/page.tsx`
-- Modify: `src/pages/Song/SongDetail.tsx:1,5,18-52`
+- Modify: `src/views/Song/SongDetail.tsx:1,5,18-52`
 
 **Interfaces:**
 - Consumes: `MASTER_TRACKS`(`@const/tracks`), `IsTrackMatch`/`GetTrackSlug`(`@utils/track`), `FULL_ALBUMS`(`@const/albums`), `GetAlbumPaths`(`@utils/album`)
@@ -1137,7 +1137,7 @@ Expected: `MASTER_TRACKS`의 트랙 수만큼 정적 경로 생성. `pnpm run st
 - [ ] **Step 4: Commit**
 
 ```bash
-git add app/song/[id]/page.tsx src/pages/Song/SongDetail.tsx
+git add app/song/[id]/page.tsx src/views/Song/SongDetail.tsx
 git commit -m "feat: 곡 상세 동적 라우트와 곡별 메타데이터 추가"
 ```
 
@@ -1147,7 +1147,7 @@ git commit -m "feat: 곡 상세 동적 라우트와 곡별 메타데이터 추�
 
 **Files:**
 - Create: `app/schedule/[id]/page.tsx`
-- Modify: `src/pages/ScheduleDetail/index.tsx:1,5,25-81`
+- Modify: `src/views/ScheduleDetail/index.tsx:1,5,25-81`
 
 **Interfaces:**
 - Consumes: `ALL_SCHEDULE_LIST`(`@utils/schedule`), `SCHEDULE_LABEL_MAP`(`@const/schedule`)
@@ -1257,7 +1257,7 @@ Expected: `ALL_SCHEDULE_LIST` 항목 수만큼 정적 경로 생성 (수천 개 
 - [ ] **Step 4: Commit**
 
 ```bash
-git add app/schedule/[id]/page.tsx src/pages/ScheduleDetail/index.tsx
+git add app/schedule/[id]/page.tsx src/views/ScheduleDetail/index.tsx
 git commit -m "feat: 일정 상세 동적 라우트와 일정별 메타데이터 추가"
 ```
 
