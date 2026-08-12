@@ -3,6 +3,7 @@ import { METADATA } from '@/const/contents';
 import Providers from './Providers';
 
 export const metadata: Metadata = {
+	metadataBase: new URL('https://mortals-log.vercel.app'),
 	title: METADATA.NAME,
 	description: METADATA.DESCRIPTION,
 	appleWebApp: { title: 'Mortals Log' },
