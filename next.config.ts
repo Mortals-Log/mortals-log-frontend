@@ -10,7 +10,9 @@ const nextConfig: NextConfig = {
 
 		// webpack disallows a rule from having both `loader` and `use` — drop
 		// `loader`/`options` from the spread before adding `use: [svgr]`.
-		const { loader: _loader, options: _options, ...restFileLoaderRule } = fileLoaderRule;
+		const restFileLoaderRule = { ...fileLoaderRule };
+		delete restFileLoaderRule.loader;
+		delete restFileLoaderRule.options;
 
 		config.module.rules.push(
 			{
