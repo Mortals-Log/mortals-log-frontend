@@ -1,0 +1,435 @@
+@import 'tailwindcss';
+
+/* ── 디자인 토큰: src/styles/themes.ts 값을 1:1로 이관 ── */
+@theme {
+	/* COLOR */
+	--color-primary: #780606;
+
+	--color-gray-700: #303239;
+	--color-gray-600: #50525f;
+	--color-gray-500: #7f8295;
+	--color-gray-400: #aeb2c6;
+	--color-gray-300: #d0d3e1;
+	--color-gray-200: #e4e5ed;
+	--color-gray-100: #f1f2f6;
+	--color-gray-50: #f8f9fb;
+
+	--color-white: #ffffff;
+	--color-black: #000000;
+
+	--color-green-600: #3cd080;
+	--color-green-500: #65d196;
+	--color-green-400: #83ddac;
+	--color-green-300: #a7efc8;
+	--color-green-200: #cbf6df;
+	--color-green-100: #e7fef2;
+
+	--color-blue-600: #2c7be5;
+	--color-blue-500: #509cf7;
+	--color-blue-400: #79b4f9;
+	--color-blue-300: #aed1fb;
+	--color-blue-200: #cee7f7;
+	--color-blue-100: #e6f4fe;
+
+	--color-pink-600: #fd5b73;
+	--color-pink-500: #ff8093;
+	--color-pink-400: #ff95a5;
+	--color-pink-300: #ffb6c1;
+	--color-pink-200: #ffe7ea;
+	--color-pink-100: #fff7f8;
+
+	--color-yellow-600: #e5a500;
+	--color-yellow-500: #fdba12;
+	--color-yellow-400: #ffd358;
+	--color-yellow-300: #ffe494;
+	--color-yellow-200: #fff1c2;
+	--color-yellow-100: #fff9e5;
+
+	--color-purple-600: #7e3af2;
+	--color-purple-500: #8b5cf6;
+	--color-purple-400: #a78bfa;
+	--color-purple-300: #c4b5fd;
+	--color-purple-200: #ddd6fe;
+	--color-purple-100: #ede9fe;
+
+	--color-orchid-600: #b85cb5;
+	--color-orchid-500: #da70d6;
+	--color-orchid-400: #e67dff;
+	--color-orchid-300: #f0b3ff;
+	--color-orchid-200: #f9dfff;
+	--color-orchid-100: #fdf2ff;
+
+	--color-filter: rgba(127, 130, 149, 0.3);
+	--color-toast: rgba(0, 0, 0, 0.8);
+
+	--color-tj: #00afec;
+	--color-ky: #8270db;
+
+	/* FONT.SIZE */
+	--text-display: clamp(3.5rem, 12vw, 9rem);
+	--text-h1: clamp(1.75rem, 4vw, 3rem);
+	--text-h2: clamp(1.375rem, 3vw, 2rem);
+	--text-h3: clamp(1.125rem, 2vw, 1.5rem);
+	--text-xl: 1.25rem;
+	--text-lg: 1.125rem;
+	--text-md: 1rem;
+	--text-sm: 0.875rem;
+	--text-xs: 0.75rem;
+	--text-tiny: 0.65rem;
+
+	/* FONT.WEIGHT */
+	--font-weight-light: 300;
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-semibold: 600;
+	--font-weight-bold: 700;
+
+	/* FONT family */
+	--font-serif: 'Noto Serif KR', serif;
+	--font-sans: 'Pretendard', sans-serif;
+
+	/* WINDOW_SIZE (max-width breakpoints) */
+	--breakpoint-mobile: 480px;
+	--breakpoint-tablet: 768px;
+	--breakpoint-laptop: 1024px;
+}
+
+/* Tailwind v4가 커스텀 브레이크포인트의 max-* variant를 자동 생성하지 않는 경우 대비 */
+@custom-variant max-mobile (@media (max-width: 480px));
+@custom-variant max-tablet (@media (max-width: 768px));
+@custom-variant max-laptop (@media (max-width: 1024px));
+
+/* ── @font-face: src/styles/GlobalStyles.tsx에서 1:1 이관 ── */
+/* Light - Pretendard */
+@font-face {
+	font-family: 'Pretendard';
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src:
+		url(/fonts/Pretendard-Light.woff2) format('woff2'),
+		url(/fonts/Pretendard-Light.woff) format('woff'),
+		url(/fonts/Pretendard-Light.ttf) format('truetype'),
+		url(/fonts/Pretendard-Light.otf) format('opentype');
+}
+
+/* Regular - Pretendard */
+@font-face {
+	font-family: 'Pretendard';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src:
+		url('/fonts/Pretendard-Regular.woff2') format('woff2'),
+		url('/fonts/Pretendard-Regular.woff') format('woff'),
+		url('/fonts/Pretendard-Regular.ttf') format('truetype'),
+		url('/fonts/Pretendard-Regular.otf') format('opentype');
+}
+
+/* Medium - Pretendard */
+@font-face {
+	font-family: 'Pretendard';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src:
+		url('/fonts/Pretendard-Medium.woff2') format('woff2'),
+		url('/fonts/Pretendard-Medium.woff') format('woff'),
+		url('/fonts/Pretendard-Medium.ttf') format('truetype'),
+		url('/fonts/Pretendard-Medium.otf') format('opentype');
+}
+
+/* Semibold - Pretendard */
+@font-face {
+	font-family: 'Pretendard';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src:
+		url('/fonts/Pretendard-SemiBold.woff2') format('woff2'),
+		url('/fonts/Pretendard-SemiBold.woff') format('woff'),
+		url('/fonts/Pretendard-SemiBold.ttf') format('truetype'),
+		url('/fonts/Pretendard-SemiBold.otf') format('opentype');
+}
+
+/* Light - Noto Serif KR */
+@font-face {
+	font-family: 'Noto Serif KR';
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src:
+		url('/fonts/NotoSerifKR-Light.woff') format('woff'),
+		url('/fonts/NotoSerifKR-Light.ttf') format('truetype');
+}
+
+/* Regular - Noto Serif KR */
+@font-face {
+	font-family: 'Noto Serif KR';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src:
+		url('/fonts/NotoSerifKR-Regular.woff') format('woff'),
+		url('/fonts/NotoSerifKR-Regular.ttf') format('truetype');
+}
+
+/* Medium - Noto Serif KR */
+@font-face {
+	font-family: 'Noto Serif KR';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src:
+		url('/fonts/NotoSerifKR-Medium.woff') format('woff'),
+		url('/fonts/NotoSerifKR-Medium.ttf') format('truetype');
+}
+
+/* SemiBold - Noto Serif KR */
+@font-face {
+	font-family: 'Noto Serif KR';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src:
+		url('/fonts/NotoSerifKR-SemiBold.woff') format('woff'),
+		url('/fonts/NotoSerifKR-SemiBold.ttf') format('truetype');
+}
+
+/* ── 전역 스타일: src/styles/reset.ts + GlobalStyles.tsx에서 1:1 이관 ── */
+@layer base {
+	html,
+	body,
+	div,
+	span,
+	applet,
+	object,
+	iframe,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p,
+	blockquote,
+	pre,
+	a,
+	abbr,
+	acronym,
+	address,
+	big,
+	cite,
+	code,
+	del,
+	dfn,
+	em,
+	img,
+	ins,
+	kbd,
+	q,
+	s,
+	samp,
+	small,
+	strike,
+	strong,
+	sub,
+	sup,
+	tt,
+	var,
+	b,
+	u,
+	i,
+	center,
+	dl,
+	dt,
+	dd,
+	ol,
+	ul,
+	li,
+	fieldset,
+	form,
+	label,
+	legend,
+	table,
+	caption,
+	tbody,
+	tfoot,
+	thead,
+	tr,
+	th,
+	td,
+	article,
+	aside,
+	canvas,
+	details,
+	embed,
+	figure,
+	figcaption,
+	footer,
+	header,
+	hgroup,
+	menu,
+	nav,
+	output,
+	ruby,
+	section,
+	summary,
+	time,
+	mark,
+	audio,
+	video {
+		margin: 0;
+		padding: 0;
+
+		font: inherit;
+		font-size: 100%;
+		vertical-align: baseline;
+
+		border: 0;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	article,
+	aside,
+	details,
+	figcaption,
+	figure,
+	footer,
+	header,
+	hgroup,
+	menu,
+	nav,
+	section {
+		display: block;
+	}
+
+	body {
+		line-height: 1;
+	}
+
+	ol,
+	ul,
+	li {
+		list-style: none;
+	}
+
+	blockquote,
+	q {
+		quotes: none;
+	}
+
+	blockquote::before,
+	blockquote::after,
+	q::before,
+	q::after {
+		content: '';
+		content: none;
+	}
+
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	img {
+		display: block;
+		max-width: 100%;
+		height: auto;
+	}
+
+	button {
+		padding: 0;
+
+		background: none;
+		cursor: pointer;
+		border: none;
+	}
+
+	input,
+	textarea {
+		color: inherit;
+		font: inherit;
+
+		outline: none;
+		border: none;
+	}
+
+	html {
+		scroll-behavior: smooth;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizelegibility;
+	}
+
+	h1,
+	h2,
+	h3,
+	header {
+		font-family: 'Noto Serif KR', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	}
+
+	body,
+	button,
+	input,
+	select,
+	table,
+	textarea {
+		font-family: 'Pretendard', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	}
+
+	button:focus:not(:focus-visible) {
+		outline: none;
+	}
+
+	body {
+		font-family: 'Pretendard';
+		overflow-x: hidden;
+
+		width: 100%;
+		min-height: 100vh;
+		margin: 0;
+		padding: 0;
+		color: #303239;
+		background-color: #ffffff;
+
+		font-synthesis: none;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	@supports (-webkit-touch-callout: none) {
+		body {
+			min-height: -webkit-fill-available;
+		}
+	}
+
+	body::before {
+		content: '';
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url('/assets/noise.svg');
+		opacity: 0.4;
+		pointer-events: none;
+		z-index: 9999;
+	}
+
+	@media print {
+		body::before {
+			background-image: none;
+		}
+	}
+
+	#root {
+		width: 100%;
+		min-width: 100vw;
+		min-height: 100vh;
+	}
+}
