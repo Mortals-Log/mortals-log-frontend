@@ -17,28 +17,35 @@ export const ProfileLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; T
 			</div>
 
 			<table className={TABLE_WRAPPER}>
-				{LINK_LIST.map((group: LinkGroup) => (
-					<Table
-						key={group.category}
-						label={group.category}
-						values={[
-							<div className="flex flex-wrap gap-2" key={group.category}>
-								{group.items.map(item => {
-									const key = item.label.toLowerCase().replace(/\s+/g, '') as IconKey;
-									const config = ICON_CONFIG[key];
-									const Icon = config?.icon;
+				<tbody>
+					{LINK_LIST.map((group: LinkGroup) => (
+						<Table
+							key={group.category}
+							label={group.category}
+							values={[
+								<div className="flex flex-wrap gap-2" key={group.category}>
+									{group.items.map(item => {
+										const key = item.label.toLowerCase().replace(/\s+/g, '') as IconKey;
+										const config = ICON_CONFIG[key];
+										const Icon = config?.icon;
 
-									return (
-										<Link key={item.label} href={item.url} target="_blank" rel="noreferrer" className={LINK_BUTTON}>
-											{Icon && <Icon width={16} height={16} />}
-											{config?.label ?? item.label}
-										</Link>
-									);
-								})}
-							</div>,
-						]}
-					/>
-				))}
+										return (
+											<Link
+												key={item.label}
+												href={item.url}
+												target="_blank"
+												rel="noreferrer"
+												className={LINK_BUTTON}>
+												{Icon && <Icon width={16} height={16} />}
+												{config?.label ?? item.label}
+											</Link>
+										);
+									})}
+								</div>,
+							]}
+						/>
+					))}
+				</tbody>
 			</table>
 		</section>
 	);
