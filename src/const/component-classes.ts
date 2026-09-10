@@ -48,6 +48,10 @@ export const VIEW_MORE_BUTTON =
 export const CARD_BUTTON =
 	'relative flex flex-col py-10 px-6 bg-white border border-gray-200 rounded-[10px] font-sans text-md font-semibold text-white no-underline overflow-hidden cursor-pointer hover:border-primary active:border-primary max-mobile:py-8 max-mobile:px-6';
 
+/** common/VideoWrapper.style.ts VideoWrapper — 16:9 iframe 래퍼 */
+export const VIDEO_WRAPPER =
+	'relative overflow-hidden w-full max-w-[800px] aspect-video mt-4 mb-12 mx-auto rounded-[10px] bg-gray-700 shadow-[0_10px_30px_rgba(0,0,0,0.2)] [&_iframe]:absolute [&_iframe]:top-0 [&_iframe]:left-0 [&_iframe]:w-full [&_iframe]:h-full [&_iframe]:border-0 [&_iframe]:bg-transparent max-mobile:mb-8 max-mobile:rounded-lg max-mobile:shadow-[0_8px_20px_rgba(0,0,0,0.2)]';
+
 /** Buttons.style.ts ToggleButton — styled.button */
 export const TOGGLE_BUTTON =
 	'whitespace-nowrap ml-4 text-xs text-gray-400 font-medium cursor-pointer [&_.text-desktop]:inline [&_.text-desktop]:mr-1 hover:text-primary active:text-primary max-tablet:hidden max-mobile:hidden';

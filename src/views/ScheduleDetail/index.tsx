@@ -2,8 +2,6 @@
 
 // @/views/Schedule/ScheduleDetail
 
-import * as S from '@/styles/pages/ScheduleDetail/ScheduleDetail.style';
-
 import { useParams } from 'next/navigation';
 import { useMemo } from 'react';
 
@@ -18,6 +16,7 @@ import { FULL_EVENTS } from '@/const/event';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/Placeholder';
 import ScheduleDetailBody from '@/views/ScheduleDetail/ScheduleDetailBody';
+import { SD_MAIN, SD_HEADER_SECTION, SD_CATEGORY_BADGE, sdMainTitle } from './detail-classes';
 
 const isConcert = (data: any): data is ConcertItem =>
 	data && 'content' in data && 'type' in data && ['SOLO', 'JOIN', 'TOUR', 'LISTENING'].includes(data.type);
@@ -63,36 +62,36 @@ const ScheduleDetail = () => {
 
 	if (!scheduleBase) {
 		return (
-			<S.MainContainer>
+			<main className={SD_MAIN}>
 				<BackButton to="/schedule" />
 				<Placeholder message="일정을 찾을 수 없습니다." />
-			</S.MainContainer>
+			</main>
 		);
 	}
 
 	const { type, ageLimit, content, imageUrl } = scheduleBase;
 
 	return (
-		<S.MainContainer>
+		<main className={SD_MAIN}>
 			<BackButton />
 
-			<S.HeaderSection>
-				<S.CategoryBadge>
+			<header className={SD_HEADER_SECTION}>
+				<span className={SD_CATEGORY_BADGE}>
 					{ageLimit ? '미성년자 관람 불가 | ' : ''}
 					{SCHEDULE_LABEL_MAP[type]}
-				</S.CategoryBadge>
+				</span>
 
-				<S.MainTitle $ageLimit={ageLimit || false}>
+				<div className={sdMainTitle(ageLimit || false)}>
 					{(isConcert(detailData) && detailData?.content) || content}
-				</S.MainTitle>
-			</S.HeaderSection>
+				</div>
+			</header>
 
 			{detailData ? (
 				<ScheduleDetailBody type={type} data={detailData} imageUrl={imageUrl} />
 			) : (
 				<ScheduleDetailBody type={type} data={scheduleBase} />
 			)}
-		</S.MainContainer>
+		</main>
 	);
 };
 

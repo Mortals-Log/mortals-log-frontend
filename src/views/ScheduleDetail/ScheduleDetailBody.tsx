@@ -1,8 +1,7 @@
 // @/pages/Schedule/ScheduleDetailBody
 
-import * as S from '@/styles/pages/ScheduleDetail/ScheduleDetailBody.style';
-
 import { useMemo } from 'react';
+import Link from 'next/link';
 import { ConcertItem } from '@/types/concert';
 import { Album } from '@/types/album';
 import { EventItem } from '@/types/event';
@@ -15,6 +14,23 @@ import useImageFallback from '@/hooks/useImageFallback';
 import handleCopy from '@/hooks/handlecopy';
 import { GetAlbumPaths } from '@/utils/album';
 import { GetDay } from '@/utils/date';
+import { LAYOUT_SECTION_TITLE } from '@/const/layout-classes';
+import { PRIMARY_BUTTON, MORE_BUTTON, VIDEO_WRAPPER } from '@/const/component-classes';
+import {
+	SDB_MAIN_SECTION,
+	SDB_IMAGE_WRAPPER,
+	SDB_CONTENT_SECTION,
+	SDB_INFO_GROUP,
+	SDB_INFO_TITLE,
+	SDB_INFO_ITEM,
+	SDB_LINEUP_WRAPPER,
+	SDB_LINEUP_ITEM,
+	SDB_MAP_SECTION,
+	SDB_MAP_FRAME_WRAPPER,
+	SDB_HASHTAG_WRAPPER,
+	SDB_HASHTAG,
+	SDB_COPY_ANNOTATION,
+} from './detail-classes';
 
 type DetailData = ConcertItem | Album | EventItem | Schedule;
 
@@ -45,7 +61,7 @@ interface InfoTitleProps {
 }
 
 const InfoTitle = ({ label }: InfoTitleProps) => {
-	return <S.InfoTitle>{label.toUpperCase()}</S.InfoTitle>;
+	return <div className={SDB_INFO_TITLE}>{label.toUpperCase()}</div>;
 };
 
 const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) => {
@@ -73,9 +89,9 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 
 		if (!videoUrl) return null;
 		return (
-			<S.VideoWrapper>
+			<div className={VIDEO_WRAPPER}>
 				<iframe src={videoUrl} allowFullScreen />
-			</S.VideoWrapper>
+			</div>
 		);
 	};
 
@@ -87,11 +103,11 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 
 			return (
 				<>
-					<S.InfoGroup>
+					<div className={SDB_INFO_GROUP}>
 						<InfoTitle label="DATE & TIME" />
 						{cleanDate.includes('~')
 							? cleanDate.split('~').map((date, idx) => (
-									<S.InfoItem key={`range-${idx}`}>
+									<div className={SDB_INFO_ITEM} key={`range-${idx}`}>
 										<span className="part">{idx + 1}일차.</span>
 										{year}.{date.trim()} ({GetDay(date, year)})
 										{concert.times?.map((time, tIdx) => (
@@ -99,41 +115,45 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 												{time}
 											</span>
 										))}
-									</S.InfoItem>
+									</div>
 								))
 							: concert.times?.map((time, idx) => (
-									<S.InfoItem key={`single-${idx}`}>
-										{concert.times && concert.times.length > 1 && <span className="part">{idx + 1}부.</span>}
+									<div className={SDB_INFO_ITEM} key={`single-${idx}`}>
+										{concert.times && concert.times.length > 1 && (
+											<span className="part">{idx + 1}부.</span>
+										)}
 										{year}.{cleanDate} ({GetDay(cleanDate, year)})<span className="time">{time}</span>
-									</S.InfoItem>
+									</div>
 								))}
-					</S.InfoGroup>
+					</div>
 
 					{concert.lineUp && (
-						<S.InfoGroup>
+						<div className={SDB_INFO_GROUP}>
 							<InfoTitle label="LINE UP" />
-							<S.LineUpWrapper>
+							<div className={SDB_LINEUP_WRAPPER}>
 								{concert.lineUp.map((artist, idx) => (
-									<S.LineUpItem key={idx}>{artist}</S.LineUpItem>
+									<div className={SDB_LINEUP_ITEM} key={idx}>
+										{artist}
+									</div>
 								))}
-							</S.LineUpWrapper>
-						</S.InfoGroup>
+							</div>
+						</div>
 					)}
 
 					{concert.location && (
-						<S.InfoGroup>
+						<div className={SDB_INFO_GROUP}>
 							<InfoTitle label="LOCATION" />
-							<S.InfoItem>{concert.location}</S.InfoItem>
-						</S.InfoGroup>
+							<div className={SDB_INFO_ITEM}>{concert.location}</div>
+						</div>
 					)}
 
 					{concert.price && (
-						<S.InfoGroup>
+						<div className={SDB_INFO_GROUP}>
 							<InfoTitle label="TICKET" />
-							<S.InfoItem>
+							<div className={SDB_INFO_ITEM}>
 								일반: {concert.price.regular}
 								{concert.price.regular.includes('원') ? '' : '원'}
-							</S.InfoItem>
+							</div>
 							{Object.entries(concert.price).map(([key, value]) => {
 								if (key === 'regular' || !value) return null;
 								const labels: Record<string, string> = {
@@ -144,13 +164,13 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 									early: '얼리버드',
 								};
 								return (
-									<S.InfoItem key={key}>
+									<div className={SDB_INFO_ITEM} key={key}>
 										{labels[key] || key}: {value}
 										{value.includes('원') ? '' : '원'}
-									</S.InfoItem>
+									</div>
 								);
 							})}
-						</S.InfoGroup>
+						</div>
 					)}
 
 					{concert.ticketing &&
@@ -175,44 +195,50 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 							const finalTicketingLink = ticketingLink || linktreeLink;
 
 							return (
-								<S.InfoGroup key={`${ticketingDate}-${index}`}>
+								<div className={SDB_INFO_GROUP} key={`${ticketingDate}-${index}`}>
 									{ticketingDate && (
 										<>
 											<InfoTitle
-												label={(concert.ticketing?.length ?? 0) > 1 ? `TICKETING ${index + 1}차` : 'TICKETING'}
+												label={
+													(concert.ticketing?.length ?? 0) > 1 ? `TICKETING ${index + 1}차` : 'TICKETING'
+												}
 											/>
-											<S.InfoItem>
+											<div className={SDB_INFO_ITEM}>
 												{ticketingDate} ({GetDay(ticketingDate)})
 												{ticketingTime && <span className="time"> {ticketingTime}</span>}
-											</S.InfoItem>
+											</div>
 										</>
 									)}
 
 									{!isBeforeConcert ? (
-										<S.InfoItem>
+										<div className={SDB_INFO_ITEM}>
 											<span className="info">공연이 종료되었습니다.</span>
-										</S.InfoItem>
+										</div>
 									) : !isTicketingOpen ? (
-										<S.InfoItem>
+										<div className={SDB_INFO_ITEM}>
 											<span className="info">티켓팅 오픈 전입니다.</span>
-										</S.InfoItem>
+										</div>
 									) : (
 										finalTicketingLink && (
 											<>
-												<S.PrimaryButton href={finalTicketingLink} target="_blank" rel="noopener noreferrer">
+												<Link
+													href={finalTicketingLink}
+													target="_blank"
+													rel="noopener noreferrer"
+													className={PRIMARY_BUTTON}>
 													{(concert.ticketing?.length ?? 0) > 1
 														? `${index + 1}차 티켓 예매하러 가기`
 														: '티켓 예매하러 가기'}
-												</S.PrimaryButton>
+												</Link>
 												{!ticketingLink && finalTicketingLink === linktreeLink && (
-													<S.InfoItem>
+													<div className={SDB_INFO_ITEM}>
 														<span className="info">링크트리의 구글폼에서 예매해주세요.</span>
-													</S.InfoItem>
+													</div>
 												)}
 											</>
 										)
 									)}
-								</S.InfoGroup>
+								</div>
 							);
 						})}
 				</>
@@ -225,37 +251,46 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 
 			return (
 				<>
-					<S.InfoGroup>
+					<div className={SDB_INFO_GROUP}>
 						<InfoTitle label="TYPE" />
-						<S.InfoItem>{ALBUM_TYPE_LABEL[album.type]}</S.InfoItem>
-					</S.InfoGroup>
+						<div className={SDB_INFO_ITEM}>{ALBUM_TYPE_LABEL[album.type]}</div>
+					</div>
 
-					<S.InfoGroup>
+					<div className={SDB_INFO_GROUP}>
 						<InfoTitle label="RELEASE DATE" />
-						<S.InfoItem>
+						<div className={SDB_INFO_ITEM}>
 							{album.releaseDate} ({GetDay(album.releaseDate)})
-						</S.InfoItem>
-					</S.InfoGroup>
+						</div>
+					</div>
 
-					<S.InfoGroup>
+					<div className={SDB_INFO_GROUP}>
 						<InfoTitle label="ABOUT ALBUM" />
-						<S.MoreButton href={detailUrl} target="_blank" rel="noopener noreferrer">
+						<Link href={detailUrl} target="_blank" rel="noopener noreferrer" className={MORE_BUTTON}>
 							{ALBUM_TYPE_LABEL[album.type]} 정보 더보기
-						</S.MoreButton>
-					</S.InfoGroup>
+						</Link>
+					</div>
 
 					{album.store && (
 						<>
 							{typeof album.store === 'string' ? (
-								<S.PrimaryButton href={album.store} target="_blank" rel="noopener noreferrer">
+								<Link
+									href={album.store}
+									target="_blank"
+									rel="noopener noreferrer"
+									className={PRIMARY_BUTTON}>
 									{ALBUM_TYPE_LABEL[album.type]}구매하기
-								</S.PrimaryButton>
+								</Link>
 							) : (
 								Object.entries(album.store).map(([key, url]) => {
 									const detail = LINK_SHOP[key];
 
 									return (
-										<S.PrimaryButton key={key} href={url} target="_blank" rel="noopener noreferrer">
+										<Link
+											key={key}
+											href={url}
+											target="_blank"
+											rel="noopener noreferrer"
+											className={PRIMARY_BUTTON}>
 											{detail ? (
 												<>
 													{ALBUM_TYPE_LABEL[album.type]} 구매하기 - {detail.STORE}
@@ -263,7 +298,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 											) : (
 												<>{key}</>
 											)}
-										</S.PrimaryButton>
+										</Link>
 									);
 								})
 							)}
@@ -280,32 +315,32 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 
 			return (
 				<>
-					<S.InfoGroup>
+					<div className={SDB_INFO_GROUP}>
 						<InfoTitle label="DATE" />
-						<S.InfoItem>
+						<div className={SDB_INFO_ITEM}>
 							{event.date} ({GetDay(event.date)})
-						</S.InfoItem>
-					</S.InfoGroup>
+						</div>
+					</div>
 
-					<S.InfoGroup>
+					<div className={SDB_INFO_GROUP}>
 						<InfoTitle label="HOST" />
-						<S.InfoItem>{event.host}</S.InfoItem>
-					</S.InfoGroup>
+						<div className={SDB_INFO_ITEM}>{event.host}</div>
+					</div>
 
-					<S.InfoGroup>
+					<div className={SDB_INFO_GROUP}>
 						<InfoTitle label="PLATFORM" />
-						<S.InfoItem>{event.platform}</S.InfoItem>
-					</S.InfoGroup>
+						<div className={SDB_INFO_ITEM}>{event.platform}</div>
+					</div>
 
-					<S.InfoGroup>
+					<div className={SDB_INFO_GROUP}>
 						<InfoTitle label="TYPE" />
-						<S.InfoItem>{EVENT_TYPE_LABEL[event.type]}</S.InfoItem>
-					</S.InfoGroup>
+						<div className={SDB_INFO_ITEM}>{EVENT_TYPE_LABEL[event.type]}</div>
+					</div>
 
 					{linkUrl && (
-						<S.PrimaryButton href={linkUrl} target="_blank" rel="noopener noreferrer">
+						<Link href={linkUrl} target="_blank" rel="noopener noreferrer" className={PRIMARY_BUTTON}>
 							{event.platform ? event.platform : event.host}로 보러가기
-						</S.PrimaryButton>
+						</Link>
 					)}
 				</>
 			);
@@ -319,43 +354,43 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 
 			return (
 				<>
-					<S.InfoGroup>
+					<div className={SDB_INFO_GROUP}>
 						<InfoTitle label="DATE" />
-						<S.InfoItem>
+						<div className={SDB_INFO_ITEM}>
 							{sche.date} ({GetDay(sche.date)})
-						</S.InfoItem>
-					</S.InfoGroup>
+						</div>
+					</div>
 					{sche.message && (
-						<S.InfoGroup>
+						<div className={SDB_INFO_GROUP}>
 							<InfoTitle label="MESSAGE" />
-							<S.InfoItem>{sche.message}</S.InfoItem>
-						</S.InfoGroup>
+							<div className={SDB_INFO_ITEM}>{sche.message}</div>
+						</div>
 					)}
 
 					{sche.hashtags && (
-						<S.InfoGroup>
+						<div className={SDB_INFO_GROUP}>
 							<InfoTitle label="HASHTAGS" />
-							<S.HashTagWrapper>
+							<div className={SDB_HASHTAG_WRAPPER}>
 								{sche.hashtags.map(tag => (
-									<S.HashTag key={tag} onClick={() => handleCopy(tag)}>
+									<button className={SDB_HASHTAG} key={tag} onClick={() => handleCopy(tag)}>
 										{tag}
-									</S.HashTag>
+									</button>
 								))}
-							</S.HashTagWrapper>
-							<S.CopyAnnotation>* 태그를 클릭하면 복사됩니다.</S.CopyAnnotation>
-						</S.InfoGroup>
+							</div>
+							<div className={SDB_COPY_ANNOTATION}>* 태그를 클릭하면 복사됩니다.</div>
+						</div>
 					)}
 
 					{instagramUrl && !sche.specialLink && (
-						<S.PrimaryButton href={instagramUrl} target="_blank" rel="noopener noreferrer">
+						<Link href={instagramUrl} target="_blank" rel="noopener noreferrer" className={PRIMARY_BUTTON}>
 							{sche.content}
-						</S.PrimaryButton>
+						</Link>
 					)}
 
 					{sche.fileUrl && (
-						<S.PrimaryButton href={sche.fileUrl.url} target="_blank" download>
+						<Link href={sche.fileUrl.url} target="_blank" download className={PRIMARY_BUTTON}>
 							{sche.fileUrl.label}
-						</S.PrimaryButton>
+						</Link>
 					)}
 				</>
 			);
@@ -373,14 +408,14 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 		const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(location)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
 		return (
-			<S.MapSection>
-				<S.SectionTitle>
+			<section className={SDB_MAP_SECTION}>
+				<div className={LAYOUT_SECTION_TITLE}>
 					공연장 오시는 길<span>Directions to the concert hall</span>
-				</S.SectionTitle>
-				<S.MapFrameWrapper>
+				</div>
+				<div className={SDB_MAP_FRAME_WRAPPER}>
 					<iframe title="공연장 지도" src={mapUrl} loading="lazy" />
-				</S.MapFrameWrapper>
-			</S.MapSection>
+				</div>
+			</section>
 		);
 	};
 
@@ -396,15 +431,15 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 		<>
 			{renderTopMedia()}
 
-			<S.MainSection>
+			<div className={SDB_MAIN_SECTION}>
 				{hasImage && finalImgSrc && (
-					<S.ImageWrapper>
+					<div className={SDB_IMAGE_WRAPPER}>
 						<img src={finalImgSrc} onError={handleImgError} />
-					</S.ImageWrapper>
+					</div>
 				)}
 
-				<S.ContentSection>{renderInfoGroups()}</S.ContentSection>
-			</S.MainSection>
+				<div className={SDB_CONTENT_SECTION}>{renderInfoGroups()}</div>
+			</div>
 
 			{renderBottomMap()}
 		</>
