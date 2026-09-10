@@ -1,9 +1,10 @@
 // @/pages/Profile/ProfileDetailSection
 
-import * as S from '@/styles/pages/Profile/ProfileDetailSection.style';
-
 import { JSX } from 'react';
 import { Table } from '@/components/Table';
+import { LAYOUT_CONTENT_SECTION, LAYOUT_SECTION_TITLE } from '@/const/layout-classes';
+import { TABLE_WRAPPER } from '@/const/component-classes';
+import { PD_DEBUT_INFO } from './profile-classes';
 import { PROFILE } from '@/const/profile';
 import { ParseDate, CalculateKorAge, CalculateIntAge, CalculateElapsedDays, CalculateElapsedYears } from '@/utils/date';
 
@@ -36,26 +37,26 @@ export const ProfileDetailSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string;
 			key: 'DEBUT',
 			values: [
 				`${PROFILE.debut[0]} (${PROFILE.debut[1]})`,
-				<S.DebutInfo key="debut-days">
+				<span className={PD_DEBUT_INFO} key="debut-days">
 					<span>
 						데뷔일로부터 <b>D+{debutDays}일</b>
 					</span>
 					<span className="divider" />
 					<b>{debutYears}주년</b>
-				</S.DebutInfo>,
+				</span>,
 			],
 		},
 		{ key: 'FANDOM', values: [PROFILE.fandom] },
 	] as const;
 
 	return (
-		<S.ContentSection>
-			<S.SectionTitle>
+		<section className={LAYOUT_CONTENT_SECTION}>
+			<div className={LAYOUT_SECTION_TITLE}>
 				{TITLE_KR}
 				<span>{TITLE_EN}</span>
-			</S.SectionTitle>
+			</div>
 
-			<S.Table>
+			<table className={TABLE_WRAPPER}>
 				<tbody>
 					{profileData.map(({ key, values }) => (
 						<Table
@@ -65,8 +66,8 @@ export const ProfileDetailSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string;
 						/>
 					))}
 				</tbody>
-			</S.Table>
-		</S.ContentSection>
+			</table>
+		</section>
 	);
 };
 

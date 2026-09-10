@@ -1,8 +1,9 @@
 // @/pages/Profile/ProfileLinkSection
 
-import * as S from '@styles/pages/Profile/ProfileLinkSection.style';
-
+import Link from 'next/link';
 import { Table } from '@/components/Table';
+import { LAYOUT_CONTENT_SECTION, LAYOUT_SECTION_TITLE } from '@/const/layout-classes';
+import { TABLE_WRAPPER, LINK_BUTTON } from '@/const/component-classes';
 import { LINK_LIST } from '@/const/links';
 import { ICON_CONFIG } from '@/const/icons';
 import { LinkGroup } from '@/types/links';
@@ -10,36 +11,41 @@ import { IconKey } from '@/types/icon';
 
 export const ProfileLinkSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	return (
-		<S.ContentSection>
-			<S.SectionTitle>
+		<section className={LAYOUT_CONTENT_SECTION}>
+			<div className={LAYOUT_SECTION_TITLE}>
 				{TITLE_KR} <span>{TITLE_EN}</span>
-			</S.SectionTitle>
+			</div>
 
-			<S.Table>
+			<table className={TABLE_WRAPPER}>
 				{LINK_LIST.map((group: LinkGroup) => (
 					<Table
 						key={group.category}
 						label={group.category}
 						values={[
-							<S.LinkWrapper key={group.category}>
+							<div className="flex flex-wrap gap-2" key={group.category}>
 								{group.items.map(item => {
 									const key = item.label.toLowerCase().replace(/\s+/g, '') as IconKey;
 									const config = ICON_CONFIG[key];
 									const Icon = config?.icon;
 
 									return (
-										<S.LinkButton key={item.label} href={item.url} target="_blank" rel="noreferrer">
+										<Link
+											key={item.label}
+											href={item.url}
+											target="_blank"
+											rel="noreferrer"
+											className={LINK_BUTTON}>
 											{Icon && <Icon width={16} height={16} />}
 											{config?.label ?? item.label}
-										</S.LinkButton>
+										</Link>
 									);
 								})}
-							</S.LinkWrapper>,
+							</div>,
 						]}
 					/>
 				))}
-			</S.Table>
-		</S.ContentSection>
+			</table>
+		</section>
 	);
 };
 

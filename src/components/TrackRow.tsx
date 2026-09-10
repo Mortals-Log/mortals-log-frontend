@@ -20,13 +20,15 @@ const VARIANT = {
 		item: 'flex items-center cursor-pointer transition-all duration-200 py-4 px-6 border border-gray-100 rounded-[10px] hover:border-primary max-tablet:py-[0.8rem] max-tablet:px-4 max-mobile:py-[0.8rem] max-mobile:px-4',
 		number:
 			'flex-shrink-0 text-center font-normal w-[25px] mr-6 font-serif text-sm text-primary max-tablet:mr-[1.2rem] max-mobile:mr-4',
-		title: 'flex gap-2 mb-1 font-sans text-md font-normal text-gray-700 flex-wrap [word-break:keep-all] leading-[1.4] [&_.title-text]:whitespace-pre-wrap [&_.title-text]:[word-break:keep-all]',
+		title:
+			'flex gap-2 mb-1 font-sans text-md font-normal text-gray-700 flex-wrap [word-break:keep-all] leading-[1.4] [&_.title-text]:whitespace-pre-wrap [&_.title-text]:[word-break:keep-all]',
 	},
 	album: {
 		item: 'flex items-baseline cursor-pointer transition-all duration-200 py-6 px-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 max-tablet:py-[1.2rem] max-tablet:px-4 max-mobile:py-[1.2rem] max-mobile:px-4',
 		number:
 			'flex-shrink-0 text-center font-normal w-[30px] font-sans text-sm text-gray-500 max-tablet:text-xs max-mobile:text-xs',
-		title: 'flex flex-wrap [word-break:keep-all] gap-2 leading-[1.4] font-sans font-normal text-gray-700 text-md max-tablet:text-sm max-mobile:text-sm',
+		title:
+			'flex flex-wrap [word-break:keep-all] gap-2 leading-[1.4] font-sans font-normal text-gray-700 text-md max-tablet:text-sm max-mobile:text-sm',
 	},
 } as const;
 

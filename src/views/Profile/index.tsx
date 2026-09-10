@@ -2,7 +2,7 @@
 
 // @/views/Profile
 
-import * as S from '@/styles/pages/Profile/Profile.style';
+import { LAYOUT_MAIN } from '@/const/layout-classes';
 
 import { ProfileHeader } from '@/views/Profile/ProfileHeader';
 import ProfileDetailSection from '@/views/Profile/ProfileDetailSection';
@@ -32,7 +32,7 @@ const SECTION_TITLE = {
 
 const Profile = () => {
 	return (
-		<S.MainContainer>
+		<main className={LAYOUT_MAIN}>
 			<ProfileHeader />
 
 			<ProfileDetailSection {...SECTION_TITLE.PROFILE} />
@@ -42,7 +42,7 @@ const Profile = () => {
 			<ProfileLinkSection {...SECTION_TITLE.LINK} />
 
 			<ProfileCareerSection {...SECTION_TITLE.CAREER} />
-	</S.MainContainer>
+		</main>
 	);
 };
 

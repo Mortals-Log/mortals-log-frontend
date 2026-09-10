@@ -3,8 +3,7 @@
 
 /* eslint-disable storybook/default-exports */
 
-export const GOODS_GRID =
-	'grid grid-cols-3 pt-6 gap-4 max-laptop:grid-cols-2 max-laptop:gap-2 max-mobile:grid-cols-1';
+export const GOODS_GRID = 'grid grid-cols-3 pt-6 gap-4 max-laptop:grid-cols-2 max-laptop:gap-2 max-mobile:grid-cols-1';
 
 export const GOODS_CARD_BUTTON =
 	'relative flex flex-col py-10 px-6 bg-white border border-gray-200 rounded-[10px] font-sans text-md font-semibold text-white no-underline overflow-hidden cursor-pointer hover:border-primary active:border-primary max-mobile:py-8 max-mobile:px-6 [&_.category]:block [&_.category]:mb-2 [&_.category]:font-sans [&_.category]:text-tiny [&_.category]:font-medium [&_.category]:text-gray-500 [&_.category]:tracking-[0.1em] max-tablet:[&_.category]:mb-1 [&_.item]:font-sans [&_.item]:text-md [&_.item]:font-bold [&_.item]:text-black max-tablet:[&_.item]:text-sm';

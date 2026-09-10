@@ -1,8 +1,18 @@
 // @/pages/Profile/ProfileDiscographySection
 
-import * as S from '@/styles/pages/Profile/ProfileDiscographySection.style';
-
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { LAYOUT_CONTENT_SECTION, LAYOUT_SECTION_TITLE } from '@/const/layout-classes';
+import { MORE_BUTTON } from '@/const/component-classes';
+import {
+	PDG_SLIDER_CONTAINER,
+	PDG_SLIDER,
+	PDG_ALBUM_CARD,
+	PDG_COVER_WRAPPER,
+	PDG_OVERLAY,
+	PDG_ALBUM_INFO,
+	pdgNavButton,
+} from './profile-classes';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import { GetAlbumPaths } from '@/utils/album';
 import useImageFallback from '@/hooks/useImageFallback';
@@ -67,33 +77,33 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 	};
 
 	return (
-		<S.ContentSection>
-			<S.SectionTitle>
+		<section className={LAYOUT_CONTENT_SECTION}>
+			<div className={LAYOUT_SECTION_TITLE}>
 				{TITLE_KR} <span>{TITLE_EN}</span>
-			</S.SectionTitle>
+			</div>
 
-			<S.SliderContainer>
+			<div className={PDG_SLIDER_CONTAINER}>
 				{!isAtStart && (
-					<S.SliderNavButton $direction="left" onClick={() => handleScroll('left')}>
+					<button className={pdgNavButton('left')} onClick={() => handleScroll('left')}>
 						<span>‹</span>
-					</S.SliderNavButton>
+					</button>
 				)}
 
-				<S.Slider ref={sliderRef} onScroll={checkScrollPosition}>
+				<div className={PDG_SLIDER} ref={sliderRef} onScroll={checkScrollPosition}>
 					{displayAlbums.map(album => {
 						const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 
 						return (
-							<S.AlbumCard key={key} href={detailUrl}>
-								<S.CoverWrapper>
+							<Link key={key} href={detailUrl} className={PDG_ALBUM_CARD}>
+								<div className={PDG_COVER_WRAPPER}>
 									<img src={imageSrc} alt={album.title} onError={handleImgError} />
 
-									<S.Overlay className="overlay">
+									<div className={`overlay ${PDG_OVERLAY}`}>
 										<span>VIEW TRACKS →</span>
-									</S.Overlay>
-								</S.CoverWrapper>
+									</div>
+								</div>
 
-								<S.AlbumInfo>
+								<div className={PDG_ALBUM_INFO}>
 									<span className="title">{album.title}</span>
 									<span className="info">
 										{album.type === 'LP'
@@ -102,23 +112,23 @@ const DiscographySection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN
 										{' | '}
 										{album.releaseDate.split('.')[0]}년
 									</span>
-								</S.AlbumInfo>
-							</S.AlbumCard>
+								</div>
+							</Link>
 						);
 					})}
-				</S.Slider>
+				</div>
 
 				{!isAtEnd && (
-					<S.SliderNavButton $direction="right" onClick={() => handleScroll('right')}>
+					<button className={pdgNavButton('right')} onClick={() => handleScroll('right')}>
 						<span>›</span>
-					</S.SliderNavButton>
+					</button>
 				)}
-			</S.SliderContainer>
+			</div>
 
-			<S.MoreButton href="/music" target="_self" rel="noreferrer">
+			<Link href="/music" target="_self" rel="noreferrer" className={MORE_BUTTON}>
 				전체 앨범 보러가기 ↗
-			</S.MoreButton>
-		</S.ContentSection>
+			</Link>
+		</section>
 	);
 };
 
