@@ -1,11 +1,19 @@
 // @/pages/Album/AlbumYearGroup
 
-import * as S from '@styles/pages/Album/AlbumReleaseSection.style';
-
-import { GetAlbumPaths } from '@/utils/album';
 import { memo } from 'react';
+import Link from 'next/link';
+import { GetAlbumPaths } from '@/utils/album';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { Album } from '@/types/album';
+import {
+	ALBUM_GRID,
+	ALBUM_CARD,
+	ALBUM_COVER_WRAPPER,
+	ALBUM_OVERLAY,
+	ALBUM_INFO,
+	TOGGLE_BUTTON,
+} from '@/const/component-classes';
+import { arYearSection, arYearWrapper, AR_YEAR_TITLE } from './album-classes';
 
 interface AlbumYearGroupProps {
 	year: string;
@@ -18,39 +26,41 @@ interface AlbumYearGroupProps {
 
 const AlbumYearGroup = memo(({ year, items, isOpen, onToggle, handleImgError, registerRef }: AlbumYearGroupProps) => {
 	return (
-		<S.YearSection isOpen={isOpen} ref={registerRef}>
-			<S.YearWrapper isOpen={isOpen}>
-				<S.YearTitle>{year}</S.YearTitle>
-				<S.ToggleButton onClick={() => onToggle(year)}>{isOpen ? '접기 ↑' : '펼치기 ↓'}</S.ToggleButton>
-			</S.YearWrapper>
+		<section className={arYearSection(isOpen)} ref={registerRef}>
+			<div className={arYearWrapper(isOpen)}>
+				<h2 className={AR_YEAR_TITLE}>{year}</h2>
+				<button className={TOGGLE_BUTTON} onClick={() => onToggle(year)}>
+					{isOpen ? '접기 ↑' : '펼치기 ↓'}
+				</button>
+			</div>
 
 			{isOpen && (
-				<S.AlbumGrid>
+				<div className={ALBUM_GRID}>
 					{items.map(album => {
 						const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 						return (
-							<S.AlbumCard key={key} href={detailUrl}>
-								<S.CoverWrapper>
+							<Link key={key} href={detailUrl} className={ALBUM_CARD}>
+								<div className={ALBUM_COVER_WRAPPER}>
 									<img src={imageSrc} alt={album.title} loading="lazy" onError={handleImgError} />
-									<S.Overlay className="overlay">
+									<div className={`overlay ${ALBUM_OVERLAY}`}>
 										<span>VIEW TRACKS →</span>
-									</S.Overlay>
-								</S.CoverWrapper>
+									</div>
+								</div>
 
-								<S.AlbumInfo>
+								<div className={ALBUM_INFO}>
 									<div className="type-wrap">
 										<span className="type">{ALBUM_TYPE_LABEL[album.type]}</span>
 										{album.volume && <span className="vol">정규 {album.volume}집</span>}
 									</div>
 									<h3 className="title">{album.title}</h3>
 									<span className="date">{album.releaseDate}</span>
-								</S.AlbumInfo>
-							</S.AlbumCard>
+								</div>
+							</Link>
 						);
 					})}
-				</S.AlbumGrid>
+				</div>
 			)}
-		</S.YearSection>
+		</section>
 	);
 });
 

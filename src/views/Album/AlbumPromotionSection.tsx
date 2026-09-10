@@ -1,13 +1,27 @@
 // @/pages/Album/AlbumPromotionSection
 
-import * as S from '@/styles/pages/Album/AlbumPromotionSection.style';
-
+import Link from 'next/link';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { GetAlbumPaths, GetLatestAlbum } from '@/utils/album';
 import { GetTracks } from '@/utils/track';
 import useImageFallback from '@/hooks/useImageFallback';
 import { differenceInDays, format, parse, startOfDay } from 'date-fns';
+import {
+	AP_CONTENT_WRAPPER,
+	AP_IMAGE_AREA,
+	AP_COVER_IMAGE,
+	AP_INFO_AREA,
+	AP_TAG,
+	AP_TITLE,
+	AP_INFO,
+	AP_DESCRIPTION,
+	AP_TRACK_PREVIEW_LIST,
+	AP_TRACK_ITEM,
+	AP_MORE_TEXT,
+	AP_VIEW_MORE_LINK,
+	AP_DDAY_BADGE,
+} from './album-classes';
 
 const AlbumPromotionSection = () => {
 	const handleImgError = useImageFallback();
@@ -53,48 +67,52 @@ const AlbumPromotionSection = () => {
 		promotionData;
 
 	return (
-		<S.ContentWrapper>
-			{dDayText && <S.DDayBadge>{dDayText}</S.DDayBadge>}
+		<div className={AP_CONTENT_WRAPPER}>
+			{dDayText && <div className={AP_DDAY_BADGE}>{dDayText}</div>}
 
-			<S.ImageArea>
-				<S.CoverImage src={imageSrc} alt={album.title} onError={handleImgError} />
-			</S.ImageArea>
+			<div className={AP_IMAGE_AREA}>
+				<img className={AP_COVER_IMAGE} src={imageSrc} alt={album.title} onError={handleImgError} />
+			</div>
 
-			<S.InfoArea>
-				<S.Tag>{isReleased ? '⊹ LATEST RELEASE ⊹' : '⊹ UPCOMING RELEASE ⊹'}</S.Tag>
-				<S.Title>{album.title}</S.Title>
-				<S.Info>
+			<div className={AP_INFO_AREA}>
+				<div className={AP_TAG}>{isReleased ? '⊹ LATEST RELEASE ⊹' : '⊹ UPCOMING RELEASE ⊹'}</div>
+				<div className={AP_TITLE}>{album.title}</div>
+				<div className={AP_INFO}>
 					{ALBUM_TYPE_LABEL[album.type as keyof typeof ALBUM_TYPE_LABEL]} • {releaseDateStr}
-				</S.Info>
+				</div>
 
-				<S.Description>
+				<div className={AP_DESCRIPTION}>
 					{isReleased
 						? `새로운 이야기가 담긴 ${album.title}을 지금 만나보세요.`
 						: `${album.title}의 새로운 시작을 준비하세요.`}
-				</S.Description>
+				</div>
 
-				<S.TrackPreviewList>
+				<ul className={AP_TRACK_PREVIEW_LIST}>
 					{!isReleased ? (
-						<S.TrackItem>Coming Soon ...</S.TrackItem>
+						<li className={AP_TRACK_ITEM}>Coming Soon ...</li>
 					) : previewTracks.length > 0 ? (
 						<>
 							{previewTracks.map((track, index) => (
-								<S.TrackItem key={track.id}>
+								<li className={AP_TRACK_ITEM} key={track.id}>
 									<span className="number">{String(index + 1).padStart(2, '0')}</span>
 									<span className="name">{track.title}</span>
-								</S.TrackItem>
+								</li>
 							))}
 
-							{totalTrackCount > 3 && <S.MoreText>외 {totalTrackCount - 3}곡을 더 만나보세요.</S.MoreText>}
+							{totalTrackCount > 3 && (
+								<span className={AP_MORE_TEXT}>외 {totalTrackCount - 3}곡을 더 만나보세요.</span>
+							)}
 						</>
 					) : (
-						<S.TrackItem>트랙 정보가 없습니다.</S.TrackItem>
+						<li className={AP_TRACK_ITEM}>트랙 정보가 없습니다.</li>
 					)}
-				</S.TrackPreviewList>
+				</ul>
 
-				<S.ViewMoreButton href={detailUrl}>{isReleased ? 'VIEW TRACKS' : 'MOVE TO PAGE'}</S.ViewMoreButton>
-			</S.InfoArea>
-		</S.ContentWrapper>
+				<Link href={detailUrl} className={AP_VIEW_MORE_LINK}>
+					{isReleased ? 'VIEW TRACKS' : 'MOVE TO PAGE'}
+				</Link>
+			</div>
+		</div>
 	);
 };
 

@@ -2,12 +2,12 @@
 
 // @/views/Music
 
-import * as S from '@/styles/pages/Music/Music.style';
-
 import { useState } from 'react';
 import Album from '@/views/Album';
 import Song from '@/views/Song';
 import { NAME } from '@/const/profile';
+import { LAYOUT_MAIN_TITLE, LAYOUT_SUB_TITLE, LAYOUT_DESCRIPTION } from '@/const/layout-classes';
+import { MUSIC_MAIN, MUSIC_TAB_GROUP, musicTab } from './music-classes';
 
 const Music = () => {
 	const PAGE_TITLE = {
@@ -25,22 +25,22 @@ const Music = () => {
 	};
 
 	return (
-		<S.MainContainer>
-			<S.SubTitle>{PAGE_TITLE.SUB}</S.SubTitle>
-			<S.MainTitle>{PAGE_TITLE.MAIN}</S.MainTitle>
+		<main className={MUSIC_MAIN}>
+			<span className={LAYOUT_SUB_TITLE}>{PAGE_TITLE.SUB}</span>
+			<div className={LAYOUT_MAIN_TITLE}>{PAGE_TITLE.MAIN}</div>
 
-			<S.Description>{PAGE_TITLE.DESCRIPTION}</S.Description>
+			<div className={LAYOUT_DESCRIPTION}>{PAGE_TITLE.DESCRIPTION}</div>
 
-			<S.TabGroup>
+			<ul className={MUSIC_TAB_GROUP}>
 				{tabs.map(tab => (
-					<S.TabItem key={tab} $isActive={activeTab === tab} onClick={() => handleTabClick(tab)}>
+					<li key={tab} className={musicTab(activeTab === tab)} onClick={() => handleTabClick(tab)}>
 						{tab}
-					</S.TabItem>
+					</li>
 				))}
-			</S.TabGroup>
+			</ul>
 
 			{activeTab === '앨범' ? <Album /> : <Song />}
-		</S.MainContainer>
+		</main>
 	);
 };
 

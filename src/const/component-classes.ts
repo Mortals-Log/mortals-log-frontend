@@ -45,3 +45,14 @@ export const SOURCE_LINK =
 
 export const SOURCE_LINK_DISABLED =
 	'opacity-50 cursor-not-allowed pointer-events-none grayscale hover:transform-none! hover:text-inherit!';
+
+// ── components/AlbumCard.style.ts 이관 ──
+export const ALBUM_GRID =
+	'grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-x-8 gap-y-12 max-laptop:grid-cols-[repeat(auto-fill,minmax(180px,1fr))] max-laptop:gap-8 max-laptop:py-4 max-mobile:grid-cols-2 max-mobile:gap-x-4 max-mobile:gap-y-8';
+export const ALBUM_CARD = 'block cursor-pointer hover:[&_.overlay]:opacity-100';
+export const ALBUM_COVER_WRAPPER =
+	'relative aspect-square overflow-hidden bg-white rounded-[2px] shadow-[0_10px_30px_rgba(0,0,0,0.05)] [&_img]:w-full [&_img]:h-full [&_img]:object-cover [&_img]:transition-transform [&_img]:duration-500 hover:[&_img]:scale-110';
+export const ALBUM_OVERLAY =
+	'flex items-center justify-center absolute top-0 left-0 w-full h-full opacity-0 bg-black/40 backdrop-blur-[4px] transition-opacity duration-300 [&_span]:border-[1.2px] [&_span]:border-solid [&_span]:border-white/40 [&_span]:py-[0.8rem] [&_span]:px-[1.2rem] [&_span]:rounded-[2px] [&_span]:font-serif [&_span]:text-sm [&_span]:font-medium [&_span]:text-white [&_span]:tracking-[0.1rem] [&_span]:transition-transform [&_span]:duration-300 max-tablet:hidden';
+export const ALBUM_INFO =
+	'mt-[1.2rem] [&_.title]:[display:-webkit-box] [&_.title]:mb-2 [&_.title]:font-serif [&_.title]:text-lg [&_.title]:font-bold [&_.title]:text-gray-700 [&_.type-wrap]:flex [&_.type-wrap]:gap-2 [&_.type-wrap]:mb-1.5 [&_.type-wrap]:font-sans [&_.type-wrap]:text-sm [&_.type-wrap]:font-normal [&_.type-wrap]:text-primary [&_.type-wrap_.vol]:text-gray-400 [&_.date]:font-sans [&_.date]:text-sm [&_.date]:font-normal [&_.date]:text-gray-400 max-tablet:mt-[0.8rem] max-tablet:[&_.title]:text-md max-tablet:[&_.type-wrap]:text-xs max-tablet:[&_.date]:text-xs max-mobile:[&_.type-wrap]:text-sm max-mobile:[&_.date]:text-sm';

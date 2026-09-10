@@ -1,8 +1,7 @@
 // @/pages/Album/AlbumTypeSection
 
-import * as S from '@/styles/pages/Album/AlbumTypeSection.style';
-
 import { useEffect, useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
 import Placeholder from '@/components/Placeholder';
 import useImageFallback from '@/hooks/useImageFallback';
 import {
@@ -15,6 +14,16 @@ import {
 	GET_VN_ALBUMS,
 } from '@const/albums';
 import { GetAlbumPaths } from '@/utils/album';
+import { LAYOUT_CONTENT_SECTION, LAYOUT_SECTION_TITLE } from '@/const/layout-classes';
+import {
+	ALBUM_GRID,
+	ALBUM_CARD,
+	ALBUM_COVER_WRAPPER,
+	ALBUM_OVERLAY,
+	ALBUM_INFO,
+	TOGGLE_BUTTON,
+} from '@/const/component-classes';
+import { AT_TAB_LIST, AT_TAB_GROUP, atTabItem } from './album-classes';
 
 const TABS = ['ALL', ...Object.keys(ALBUM_TYPE_LABEL)];
 
@@ -64,66 +73,66 @@ const AlbumTypeSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: 
 	};
 
 	return (
-		<S.ContentSection ref={sectionRef}>
-			<S.SectionTitle>
+		<section className={LAYOUT_CONTENT_SECTION} ref={sectionRef}>
+			<div className={LAYOUT_SECTION_TITLE}>
 				{TITLE_KR}
 				<span>{TITLE_EN}</span>
-			</S.SectionTitle>
+			</div>
 
-			<S.Selector>
-				<S.SelectorItem value={activeTab} onChange={e => handleTabClick(e.target.value)}>
+			<nav className="selector-nav">
+				<select className="selector-item" value={activeTab} onChange={e => handleTabClick(e.target.value)}>
 					{TABS.map(tab => (
 						<option key={tab} value={tab}>
 							{tab === 'ALL' ? '전체 보기' : ALBUM_TYPE_LABEL[tab]}
 						</option>
 					))}
-				</S.SelectorItem>
-			</S.Selector>
+				</select>
+			</nav>
 
-			<S.TabList>
-				<S.TabGroup>
+			<nav className={AT_TAB_LIST}>
+				<ul className={AT_TAB_GROUP}>
 					{TABS.map(tab => (
-						<S.TabItem key={tab} $isActive={activeTab === tab} onClick={() => handleTabClick(tab)}>
+						<li key={tab} className={atTabItem(activeTab === tab)} onClick={() => handleTabClick(tab)}>
 							{tab === 'ALL' ? '전체' : ALBUM_TYPE_LABEL[tab]}
-						</S.TabItem>
+						</li>
 					))}
-				</S.TabGroup>
+				</ul>
 
-				<S.ToggleButton onClick={() => setIsOpen(!isOpen)}>
+				<button className={TOGGLE_BUTTON} onClick={() => setIsOpen(!isOpen)}>
 					{isOpen ? '앨범 목록 접기 ↑' : '앨범 목록 펼치기 ↓'}
-				</S.ToggleButton>
-			</S.TabList>
+				</button>
+			</nav>
 
 			{isOpen ? (
-				<S.AlbumGrid>
+				<div className={ALBUM_GRID}>
 					{filteredData?.map((album: any) => {
 						const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 
 						return (
-							<S.AlbumCard key={key} href={detailUrl}>
-								<S.CoverWrapper>
+							<Link key={key} href={detailUrl} className={ALBUM_CARD}>
+								<div className={ALBUM_COVER_WRAPPER}>
 									<img src={imageSrc} alt={album.title} onError={handleImgError} />
-									<S.Overlay className="overlay">
+									<div className={`overlay ${ALBUM_OVERLAY}`}>
 										<span>VIEW TRACKS →</span>
-									</S.Overlay>
-								</S.CoverWrapper>
+									</div>
+								</div>
 
-								<S.AlbumInfo>
+								<div className={ALBUM_INFO}>
 									<div className="type-wrap">
 										<span className="type">{ALBUM_TYPE_LABEL[album.type]}</span>
 										{album.volume && <span className="vol">정규 {album.volume}집</span>}
 									</div>
 									<h3 className="title">{album.title}</h3>
 									<span className="date">{album.releaseDate}</span>
-								</S.AlbumInfo>
-							</S.AlbumCard>
+								</div>
+							</Link>
 						);
 					})}
-				</S.AlbumGrid>
+				</div>
 			) : (
 				<Placeholder message="타입별 앨범 보기가 닫혀있습니다." />
 			)}
-		</S.ContentSection>
+		</section>
 	);
 };
 

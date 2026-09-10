@@ -1,12 +1,14 @@
 // @/pages/Album/AlbumReleaseSection
 
-import * as S from '@styles/pages/Album/AlbumReleaseSection.style';
-
 import { useState, useRef, useCallback } from 'react';
+import Link from 'next/link';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import AlbumYearGroup from '@pages/Album/AlbumYearGroup';
 import useImageFallback from '@/hooks/useImageFallback';
 import { GetAlbumPaths } from '@/utils/album';
+import { LAYOUT_CONTENT_SECTION, LAYOUT_SECTION_TITLE } from '@/const/layout-classes';
+import { ALBUM_GRID, ALBUM_CARD, ALBUM_COVER_WRAPPER, ALBUM_OVERLAY, ALBUM_INFO } from '@/const/component-classes';
+import { AR_MOBILE_SECTION } from './album-classes';
 
 const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const handleImgError = useImageFallback();
@@ -41,50 +43,50 @@ const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_E
 	}, []);
 
 	return (
-		<S.ContentSection>
-			<S.SectionTitle>
+		<section className={LAYOUT_CONTENT_SECTION}>
+			<div className={LAYOUT_SECTION_TITLE}>
 				{TITLE_KR}
 				<span>{TITLE_EN}</span>
-			</S.SectionTitle>
+			</div>
 
-			<S.Selector>
-				<S.SelectorItem value={selectedYear} onChange={e => handleYearChange(e.target.value)}>
+			<nav className="selector-nav">
+				<select className="selector-item" value={selectedYear} onChange={e => handleYearChange(e.target.value)}>
 					{FULL_ALBUMS.map(({ year }) => (
 						<option key={year} value={year}>
 							{year}년
 						</option>
 					))}
-				</S.SelectorItem>
-			</S.Selector>
+				</select>
+			</nav>
 
-			<S.AlbumMobileSection>
+			<section className={AR_MOBILE_SECTION}>
 				{filteredAlbums && (
-					<S.AlbumGrid>
+					<div className={ALBUM_GRID}>
 						{filteredAlbums.items.map(album => {
 							const { key, imageSrc, detailUrl } = GetAlbumPaths(album);
 							return (
-								<S.AlbumCard key={key} href={detailUrl}>
-									<S.CoverWrapper>
+								<Link key={key} href={detailUrl} className={ALBUM_CARD}>
+									<div className={ALBUM_COVER_WRAPPER}>
 										<img src={imageSrc} alt={album.title} loading="lazy" onError={handleImgError} />
-										<S.Overlay className="overlay">
+										<div className={`overlay ${ALBUM_OVERLAY}`}>
 											<span>VIEW TRACKS →</span>
-										</S.Overlay>
-									</S.CoverWrapper>
+										</div>
+									</div>
 
-									<S.AlbumInfo>
+									<div className={ALBUM_INFO}>
 										<div className="type-wrap">
 											<span className="type">{ALBUM_TYPE_LABEL[album.type]}</span>
 											{album.volume && <span className="vol">정규 {album.volume}집</span>}
 										</div>
 										<h3 className="title">{album.title}</h3>
 										<span className="date">{album.releaseDate}</span>
-									</S.AlbumInfo>
-								</S.AlbumCard>
+									</div>
+								</Link>
 							);
 						})}
-					</S.AlbumGrid>
+					</div>
 				)}
-			</S.AlbumMobileSection>
+			</section>
 
 			{FULL_ALBUMS.map(({ year, items }) => (
 				<AlbumYearGroup
@@ -97,7 +99,7 @@ const AlbumReleaseSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_E
 					registerRef={el => (sectionRefs.current[year] = el)}
 				/>
 			))}
-		</S.ContentSection>
+		</section>
 	);
 };
 

@@ -2,13 +2,12 @@
 
 // @/pages/Song
 
-import * as S from '@/styles/pages/Song/Song.styles';
-
 import { useMemo, useState } from 'react';
 import TrackRow from '@/components/TrackRow';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { GetTrackToAlbumMap } from '@/utils/track';
 import UseTrackNavigation from '@/hooks/useTrackNavigation';
+import { SONG_SORT_TAB_GROUP, songSortTab, SONG_TRACK_SECTION } from './song-classes';
 
 const trackToAlbumMap = GetTrackToAlbumMap();
 
@@ -63,21 +62,21 @@ const Song = () => {
 
 	return (
 		<>
-			<S.SortTabGroup role="tablist">
+			<ul className={SONG_SORT_TAB_GROUP} role="tablist">
 				{SORT_OPTIONS.map(({ type, label }) => (
-					<S.SortTabItem
+					<li
 						key={type}
-						$isActive={sortType === type}
+						className={songSortTab(sortType === type)}
 						onClick={() => setSortType(type)}
 						role="tab"
 						aria-selected={sortType === type}
 						tabIndex={0}>
 						{label}
-					</S.SortTabItem>
+					</li>
 				))}
-			</S.SortTabGroup>
+			</ul>
 
-			<S.TrackSection>
+			<div className={SONG_TRACK_SECTION}>
 				{sortedTracks.map((track, index) => (
 					<TrackRow
 						key={`${track.id}-${sortType}`}
@@ -88,7 +87,7 @@ const Song = () => {
 						onKeyDown={e => handleKeyDown(e, track)}
 					/>
 				))}
-			</S.TrackSection>
+			</div>
 		</>
 	);
 };
