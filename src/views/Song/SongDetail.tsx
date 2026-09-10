@@ -2,7 +2,6 @@
 
 // @/views/Song/SongDetail
 
-import * as S from '@styles/pages/Song/SongDetail.styles';
 import { useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import { FULL_ALBUMS } from '@/const/albums';
@@ -13,6 +12,7 @@ import SongDetailHeader from '@/views/Song/SongDetailHeader';
 import SongDetailMeta from '@/views/Song/SongDetailMeta';
 import SongDetailContent from '@/views/Song/SongDetailContent';
 import { IsTrackMatch } from '@/utils/track';
+import { LAYOUT_MAIN, LAYOUT_MAIN_TITLE } from '@/const/layout-classes';
 
 const SongDetail = () => {
 	const { id } = useParams<{ id: string }>();
@@ -38,23 +38,23 @@ const SongDetail = () => {
 
 	if (!track) {
 		return (
-			<S.MainContainer>
+			<main className={LAYOUT_MAIN}>
 				<BackButton to="/music" />
-				<S.MainTitle>Song Not Found</S.MainTitle>
+				<div className={LAYOUT_MAIN_TITLE}>Song Not Found</div>
 
 				<Placeholder message="곡을 찾을 수 없습니다." />
-			</S.MainContainer>
+			</main>
 		);
 	}
 
 	return (
-		<S.MainContainer>
+		<main className={LAYOUT_MAIN}>
 			<BackButton />
 
 			<SongDetailHeader track={track} albumInfo={albumInfo} />
 			<SongDetailMeta track={track} albumInfo={albumInfo} />
 			<SongDetailContent track={track} />
-		</S.MainContainer>
+		</main>
 	);
 };
 

@@ -1,11 +1,25 @@
 // @/pages/Song/SongDetail
 
-import * as S from '@/styles/pages/Song/SongDetailContent.styles';
-
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
 import { LINK_PLATFORM, MUSIC_PLATFORM } from '@/const/links';
 import Placeholder from '@/components/Placeholder';
 import { Track } from '@/types/track';
+import { LAYOUT_CONTENT_SECTION } from '@/const/layout-classes';
+import { VIDEO_WRAPPER, PRIMARY_BUTTON } from '@/const/component-classes';
+import {
+	SDC_CONTENT_HEADER,
+	SDC_TAB_GROUP,
+	sdcTabButton,
+	SDC_CHORD_SUB_HEADER,
+	SDC_VERSION_SELECTOR,
+	sdcVersionChip,
+	SDC_GUIDE_WRAPPER,
+	sdcContent,
+	SDC_STICKY_CHORD_BAR,
+	SDC_BUTTON_WRAPPER,
+	SDC_DOWNLOAD_BUTTON,
+} from './song-detail-classes';
 
 interface SongDetailContentProps {
 	track: Track;
@@ -64,7 +78,7 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 	const handleDownloadTxt = () => {
 		if (!currentChordVersion) return;
 
-		const content = currentChordVersion.chords.replace(/ {3}/g, '\u3000');
+		const content = currentChordVersion.chords.replace(/ {3}/g, '　');
 
 		const header =
 			`[${track.title}]\n` +
@@ -91,74 +105,92 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 	};
 
 	return (
-		<S.ContentSection>
-			<S.ContentHeader>
-				<S.TabGroup>
+		<section className={LAYOUT_CONTENT_SECTION}>
+			<div className={SDC_CONTENT_HEADER}>
+				<div className={SDC_TAB_GROUP}>
 					{tabs.map(tab => (
-						<S.TabButton key={tab.id} $isActive={activeTab === tab.id} onClick={() => setActiveTab(tab.id as any)}>
+						<button
+							key={tab.id}
+							className={sdcTabButton(activeTab === tab.id)}
+							onClick={() => setActiveTab(tab.id as any)}>
 							{tab.label}
-						</S.TabButton>
+						</button>
 					))}
-				</S.TabGroup>
+				</div>
 
 				{activeTab === 'chords' && currentChordVersion && (
-					<S.ChordSubHeader>
+					<div className={SDC_CHORD_SUB_HEADER}>
 						{track.chordsList!.length > 1 && (
-							<S.VersionSelector>
+							<div className={SDC_VERSION_SELECTOR}>
 								{track.chordsList!.map((_, idx) => (
-									<S.VersionChip
+									<button
 										key={idx}
-										$isActive={activeVersionIdx === idx}
+										className={sdcVersionChip(activeVersionIdx === idx)}
 										onClick={() => setActiveVersionIdx(idx)}>
 										Ver.{idx + 1}
-									</S.VersionChip>
+									</button>
 								))}
-							</S.VersionSelector>
+							</div>
 						)}
 
-						<S.GuideWrapper>
+						<div className={SDC_GUIDE_WRAPPER}>
 							{guideItems.map(item => (
 								<div key={item.label} className="guide-item">
 									{item.label} | {item.value}
 								</div>
 							))}
-						</S.GuideWrapper>
-					</S.ChordSubHeader>
+						</div>
+					</div>
 				)}
-			</S.ContentHeader>
+			</div>
 
 			{activeTab === 'lyrics' &&
-				(track.lyrics ? <S.Content $isChord={false}>{track.lyrics}</S.Content> : <Placeholder contentName="가사" />)}
+				(track.lyrics ? (
+					<div className={sdcContent(false)}>{track.lyrics}</div>
+				) : (
+					<Placeholder contentName="가사" />
+				))}
 
 			{activeTab === 'chords' && currentChordVersion && (
 				<>
-					<S.ButtonWrapper>
-						<S.DownloadButton onClick={handleDownloadPDF}>PDF 다운로드 💾</S.DownloadButton>
-						<S.DownloadButton onClick={handleDownloadTxt}>텍스트 저장 📝</S.DownloadButton>
-					</S.ButtonWrapper>
+					<div className={SDC_BUTTON_WRAPPER}>
+						<span className={SDC_DOWNLOAD_BUTTON} onClick={handleDownloadPDF}>
+							PDF 다운로드 💾
+						</span>
+						<span className={SDC_DOWNLOAD_BUTTON} onClick={handleDownloadTxt}>
+							텍스트 저장 📝
+						</span>
+					</div>
 					{isSeparated && (
-						<S.StickyChordBar>
+						<div className={SDC_STICKY_CHORD_BAR}>
 							<span className="chord">{currentChordVersion.chords}</span>
-						</S.StickyChordBar>
+						</div>
 					)}
-					<S.Content $isChord={!isSeparated}>{isSeparated ? track.lyrics : currentChordVersion.chords}</S.Content>
+					<div className={sdcContent(!isSeparated)}>
+						{isSeparated ? track.lyrics : currentChordVersion.chords}
+					</div>
 				</>
 			)}
 
 			{activeTab === 'mv' && track.mvLink && (
 				<>
-					<S.VideoWrapper>
-						<iframe src={`${LINK_PLATFORM.YOUTUBE.EMBED_URL}${track.mvLink}`} title="YouTube MV" allowFullScreen />
-					</S.VideoWrapper>
-					<S.PrimaryButton
+					<div className={VIDEO_WRAPPER}>
+						<iframe
+							src={`${LINK_PLATFORM.YOUTUBE.EMBED_URL}${track.mvLink}`}
+							title="YouTube MV"
+							allowFullScreen
+						/>
+					</div>
+					<Link
 						href={`${LINK_PLATFORM.YOUTUBE.BASE_URL}${track.mvLink}`}
 						target="_blank"
-						rel="noopener noreferrer">
+						rel="noopener noreferrer"
+						className={PRIMARY_BUTTON}>
 						{MUSIC_PLATFORM.YOUTUBE}로 보러가기
-					</S.PrimaryButton>
+					</Link>
 				</>
 			)}
-		</S.ContentSection>
+		</section>
 	);
 };
 

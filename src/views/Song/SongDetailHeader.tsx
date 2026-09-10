@@ -2,8 +2,6 @@
 
 // @/pages/Song/SongDetailHeader
 
-import * as S from '@/styles/pages/Song/SongDetailHeader.styles';
-
 import { useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
@@ -11,6 +9,16 @@ import { MASTER_TRACKS } from '@/const/tracks';
 import { Track } from '@/types/track';
 import { Album } from '@/types/album';
 import { BADGE_LABEL } from '@/components/BadgeList';
+import { LAYOUT_SUB_TITLE } from '@/const/layout-classes';
+import { LEAD_BADGE, ADULT_BADGE } from '@/const/component-classes';
+import {
+	SDH_BADGE_GROUP,
+	SDH_MAIN_TITLE,
+	SDH_HEADER_SECTION,
+	SDH_ORIGINAL_LINK_GROUP,
+	SDH_ORIGINAL_LINK,
+	SDH_DESCRIPTION,
+} from './song-detail-classes';
 
 interface SongDetailHeaderProps {
 	track: Track;
@@ -53,21 +61,21 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 	);
 
 	return (
-		<S.HeaderSection>
-			<S.SubTitle>
-				<S.BadgeGroup>
-					{track.isLead && <S.LeadBadge>{BADGE_LABEL.TITLE}</S.LeadBadge>}
-					{track.ageLimit && <S.AdultBadge>{BADGE_LABEL.ADULT}</S.AdultBadge>}
-				</S.BadgeGroup>
+		<section className={SDH_HEADER_SECTION}>
+			<span className={LAYOUT_SUB_TITLE}>
+				<span className={SDH_BADGE_GROUP}>
+					{track.isLead && <span className={LEAD_BADGE}>{BADGE_LABEL.TITLE}</span>}
+					{track.ageLimit && <span className={ADULT_BADGE}>{BADGE_LABEL.ADULT}</span>}
+				</span>
 				{track.enTitle}
 				{track.version && ` (${track.version})`}
-			</S.SubTitle>
+			</span>
 
-			<S.MainTitle>
+			<div className={SDH_MAIN_TITLE}>
 				{track.title} {track.version && `(${track.version})`}
-			</S.MainTitle>
+			</div>
 
-			<S.Description>
+			<div className={SDH_DESCRIPTION}>
 				{albumLabel && <span className="type">{albumLabel}</span>}
 
 				<span className="album" onClick={handleAlbumClick}>
@@ -75,16 +83,16 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 				</span>
 
 				{originalTracks.length > 0 && (
-					<S.OriginalLinkGroup>
+					<div className={SDH_ORIGINAL_LINK_GROUP}>
 						{originalTracks.map(({ id, displayTitle }) => (
-							<S.OriginalLink key={id} onClick={() => handleSongClick(id)}>
+							<button key={id} className={SDH_ORIGINAL_LINK} onClick={() => handleSongClick(id)}>
 								원곡보기 #{displayTitle}
-							</S.OriginalLink>
+							</button>
 						))}
-					</S.OriginalLinkGroup>
+					</div>
 				)}
-			</S.Description>
-		</S.HeaderSection>
+			</div>
+		</section>
 	);
 };
 

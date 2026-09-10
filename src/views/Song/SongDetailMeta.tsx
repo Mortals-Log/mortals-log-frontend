@@ -1,12 +1,21 @@
 // @/pages/Song/SongDetail
 
-import * as S from '@/styles/pages/Song/SongDetailMeta.styles';
 import { useCallback, useMemo } from 'react';
 import { NAME } from '@/const/profile';
 import { ICON_CONFIG } from '@/const/icons';
 import { IconKey } from '@/types/icon';
 import { Track } from '@/types/track';
 import { Album } from '@/types/album';
+import { MUSIC_BADGE, BADGE_GROUP } from '@/const/component-classes';
+import {
+	SDM_META_SECTION,
+	SDM_CREDIT_LIST,
+	SDM_ITEM_LABEL,
+	SDM_CREDIT_ITEM,
+	SDM_STREAMING_SECTION,
+	SDM_SINGING_WRAPPER,
+	sdmSingingBadge,
+} from './song-detail-classes';
 
 interface SongDetailMetaProps {
 	track: Track;
@@ -48,36 +57,36 @@ const SongDetailMeta = ({ track, albumInfo }: SongDetailMetaProps) => {
 	}, [track.singing]);
 
 	return (
-		<S.MetaSection>
-			<S.CreditList>
+		<section className={SDM_META_SECTION}>
+			<div className={SDM_CREDIT_LIST}>
 				{creditItems.map(item => (
-					<S.CreditItem key={item.label}>
-						<S.ItemLabel>{item.label}</S.ItemLabel>
+					<span className={SDM_CREDIT_ITEM} key={item.label}>
+						<div className={SDM_ITEM_LABEL}>{item.label}</div>
 						<span>{item.value}</span>
-					</S.CreditItem>
+					</span>
 				))}
 
 				{track.singing && (
-					<S.CreditItem>
-						<S.ItemLabel>노래방</S.ItemLabel>
+					<span className={SDM_CREDIT_ITEM}>
+						<div className={SDM_ITEM_LABEL}>노래방</div>
 
-						<S.SingingWrapper>
+						<div className={SDM_SINGING_WRAPPER}>
 							{singingList.map(({ brand, number }) => (
-								<S.SingingBadge key={brand} brand={brand as 'TJ' | 'KY'}>
+								<div key={brand} className={sdmSingingBadge(brand as 'TJ' | 'KY')}>
 									<span className="brand">{brand}</span>
 									<span className="number">{number}</span>
-								</S.SingingBadge>
+								</div>
 							))}
-						</S.SingingWrapper>
-					</S.CreditItem>
+						</div>
+					</span>
 				)}
-			</S.CreditList>
+			</div>
 
 			{/* 앨범 streaming으로 임시 사용 */}
 			{albumInfo?.streaming && (
-				<S.StreamingSection>
-					<S.ItemLabel>스트리밍</S.ItemLabel>
-					<S.BadgeGroup>
+				<div className={SDM_STREAMING_SECTION}>
+					<div className={SDM_ITEM_LABEL}>스트리밍</div>
+					<div className={BADGE_GROUP}>
 						{Object.entries(albumInfo.streaming).map(([label, url]) => {
 							const key = label.toLowerCase().replace(/\s+/g, '') as IconKey;
 							const config = ICON_CONFIG[key];
@@ -86,16 +95,22 @@ const SongDetailMeta = ({ track, albumInfo }: SongDetailMetaProps) => {
 							if (!Icon || !url) return null;
 
 							return (
-								<S.MusicBadge key={label} href={url} target="_blank" rel="noreferrer" title={config.label || label}>
+								<a
+									key={label}
+									href={url}
+									target="_blank"
+									rel="noreferrer"
+									title={config.label || label}
+									className={MUSIC_BADGE}>
 									<Icon />
 									<span>{label}</span>
-								</S.MusicBadge>
+								</a>
 							);
 						})}
-					</S.BadgeGroup>
-				</S.StreamingSection>
+					</div>
+				</div>
 			)}
-		</S.MetaSection>
+		</section>
 	);
 };
 
