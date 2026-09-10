@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { useTheme } from '@emotion/react';
 
 interface MenuIconProps {
 	isOpen: boolean;
@@ -7,8 +6,7 @@ interface MenuIconProps {
 }
 
 const MenuIcon = ({ isOpen, color }: MenuIconProps) => {
-	const theme = useTheme();
-	const iconColor = color || theme.COLOR.BLACK;
+	const iconColor = color || '#000000';
 
 	const variant = {
 		top: {
