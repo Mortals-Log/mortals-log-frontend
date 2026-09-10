@@ -20,6 +20,10 @@ export const typeBadge = (type: Schedule['type']) =>
 		SCHEDULE_TYPE_CLASS[type].text,
 	);
 
+/** Badge.style.ts MusicBadge — styled.a (스트리밍 아이콘 버튼) */
+export const MUSIC_BADGE =
+	'flex items-center justify-center w-9 h-9 text-gray-700 bg-white border border-solid border-gray-200 rounded-lg transition-all duration-300 [&_svg]:w-[18px] [&_svg]:h-[18px] [&_svg]:flex-shrink-0 [&_span]:hidden [&_span]:font-sans [&_span]:text-sm [&_span]:font-medium [&_span]:text-current hover:bg-primary hover:border-primary hover:text-white active:bg-primary active:border-primary max-mobile:w-fit max-mobile:py-4 max-mobile:px-[0.8rem] max-mobile:mt-[0.2rem] max-mobile:mr-[0.3rem] max-mobile:[&_span]:inline max-mobile:[&_span]:ml-2 max-mobile:[&_span]:text-xs';
+
 /** Badge.style.ts AdultBadge */
 export const ADULT_BADGE =
 	'inline-flex items-center justify-center py-1 px-1.5 rounded flex-shrink-0 whitespace-nowrap font-sans text-xs font-medium tracking-[0.02em] border border-solid border-primary bg-primary/20 text-primary max-tablet:py-0.5 max-tablet:px-1';

@@ -1,9 +1,12 @@
 // @/pages/Album/AlbumDetailInfo.tsx
 
-import * as S from '@styles/pages/AlbumDetail/AlbumDetailIntro.style';
 import { useMemo, useState } from 'react';
 import { Album } from '@/types/album';
 import Placeholder from '@/components/Placeholder';
+import { LAYOUT_SECTION_TITLE } from '@/const/layout-classes';
+import { EXPAND_BUTTON, ARROW_ICON } from '@/const/component-classes';
+import { cn } from '@/utils/cn';
+import { ADI_CONTENT_SECTION, adiIntroContainer } from './album-detail-classes';
 
 interface AlbumDetailIntroProps {
 	TITLE_KR: string;
@@ -20,33 +23,35 @@ const AlbumDetailIntro = ({ TITLE_KR, TITLE_EN, albumData }: AlbumDetailIntroPro
 
 	if (!albumIntro) {
 		return (
-			<S.ContentSection>
-				<S.SectionTitle>
+			<section className={ADI_CONTENT_SECTION}>
+				<div className={LAYOUT_SECTION_TITLE}>
 					{TITLE_KR}
 					<span>{TITLE_EN}</span>
-				</S.SectionTitle>
+				</div>
 
 				<Placeholder contentName={TITLE_KR} />
-			</S.ContentSection>
+			</section>
 		);
 	}
 
 	return (
-		<S.ContentSection>
-			<S.SectionTitle>
+		<section className={ADI_CONTENT_SECTION}>
+			<div className={LAYOUT_SECTION_TITLE}>
 				{TITLE_KR}
 				<span>{TITLE_EN}</span>
-			</S.SectionTitle>
+			</div>
 
-			<S.IntroContainer $isExpanded={isExpanded}>
+			<div className={adiIntroContainer(isExpanded)}>
 				<div className="text">{albumIntro}</div>
-			</S.IntroContainer>
+			</div>
 
-			<S.ExpandButton $isExpanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
+			<button
+				className={cn(EXPAND_BUTTON, isExpanded ? 'mt-0' : 'mt-[-1.1rem]')}
+				onClick={() => setIsExpanded(!isExpanded)}>
 				{isExpanded ? '접기' : '상세 정보 펼쳐보기'}
-				<S.ArrowIcon $isExpanded={isExpanded}>▼</S.ArrowIcon>
-			</S.ExpandButton>
-		</S.ContentSection>
+				<span className={cn(ARROW_ICON, isExpanded ? 'rotate-180' : 'rotate-0')}>▼</span>
+			</button>
+		</section>
 	);
 };
 

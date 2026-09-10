@@ -1,7 +1,7 @@
 // @/pages/AlbumDetail/AlbumDetailMEtaInfo
 
-import * as S from '@/styles/pages/AlbumDetail/AlbumDetailMetaInfo.style';
-
+import { useMemo } from 'react';
+import Link from 'next/link';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { Album } from '@/types/album';
 import { LINK_SHOP } from '@/const/links';
@@ -9,15 +9,26 @@ import { ICON_CONFIG } from '@/const/icons';
 import { IconKey } from '@/types/icon';
 import useImageFallback from '@/hooks/useImageFallback';
 import { GetAlbumPaths } from '@/utils/album';
-import { useMemo } from 'react';
+import { MORE_BUTTON, MUSIC_BADGE } from '@/const/component-classes';
+import {
+	ADM_CONTENT_SECTION,
+	ADM_INFO_WRAPPER,
+	admCoverImage,
+	ADM_BADGE_GROUP,
+	ADM_TYPE_WRAP,
+	ADM_ALBUM_TITLE,
+	ADM_META_LIST,
+	ADM_TERM,
+	ADM_DESCRIPTION,
+} from './album-detail-classes';
 
 const MetaRow = ({ label, value }: { label: string; value?: string }) => {
 	const displayValue = value || '-';
 
 	return (
 		<>
-			<S.Term>{label}</S.Term>
-			<S.Description>{displayValue}</S.Description>
+			<dt className={ADM_TERM}>{label}</dt>
+			<dd className={ADM_DESCRIPTION}>{displayValue}</dd>
 		</>
 	);
 };
@@ -42,12 +53,12 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 	if (!album) return null;
 
 	return (
-		<S.ContentSection>
-			<S.CoverImage $hasStore={!!album.store} src={imageSrc} alt={album.title} onError={handleImgError} />
+		<section className={ADM_CONTENT_SECTION}>
+			<img className={admCoverImage(!!album.store)} src={imageSrc} alt={album.title} onError={handleImgError} />
 
-			<S.InfoWrapper>
+			<div className={ADM_INFO_WRAPPER}>
 				{album.streaming && (
-					<S.BadgeGroup>
+					<div className={ADM_BADGE_GROUP}>
 						{Object.entries(album.streaming).map(([label, url]) => {
 							if (!url) return null;
 							const key = label.toLowerCase().replace(/\s+/g, '') as IconKey;
@@ -55,49 +66,60 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 							const Icon = config?.icon;
 
 							return Icon ? (
-								<S.MusicBadge key={label} href={url} target="_blank" rel="noreferrer" title={config.label || label}>
+								<a
+									key={label}
+									href={url}
+									target="_blank"
+									rel="noreferrer"
+									title={config.label || label}
+									className={MUSIC_BADGE}>
 									<Icon />
 									<span>{label}</span>
-								</S.MusicBadge>
+								</a>
 							) : null;
 						})}
-					</S.BadgeGroup>
+					</div>
 				)}
 
-				<S.TypeWrap>
+				<div className={ADM_TYPE_WRAP}>
 					<span className="type">{ALBUM_TYPE_LABEL[album.type]}</span>
 					{album.volume && <span className="vol">정규 {album.volume}집</span>}
-				</S.TypeWrap>
+				</div>
 
-				<S.AlbumTitle>{album.title}</S.AlbumTitle>
+				<div className={ADM_ALBUM_TITLE}>{album.title}</div>
 
-				<S.MetaList>
+				<dl className={ADM_META_LIST}>
 					{metaData.map(item => (
 						<MetaRow key={item.label} label={item.label} value={item.value} />
 					))}
-				</S.MetaList>
+				</dl>
 
 				{album.store && (
 					<>
 						{typeof album.store === 'string' ? (
-							<S.MoreButton href={album.store} target="_blank" rel="noopener noreferrer">
+							<Link href={album.store} target="_blank" rel="noopener noreferrer" className={MORE_BUTTON}>
 								<span className="category">{ALBUM_TYPE_LABEL[album.type]}</span>
 								<span className="store">구매하기</span>
-							</S.MoreButton>
+							</Link>
 						) : (
 							Object.entries(album.store).map(([key, url]) => {
 								const detail = LINK_SHOP[key];
 								return (
-									<S.MoreButton key={key} href={url} target="_blank" rel="noopener noreferrer">
+									<Link
+										key={key}
+										href={url}
+										target="_blank"
+										rel="noopener noreferrer"
+										className={MORE_BUTTON}>
 										{detail ? `${ALBUM_TYPE_LABEL[album.type]} 구매하기 - ${detail.STORE}` : key}
-									</S.MoreButton>
+									</Link>
 								);
 							})
 						)}
 					</>
 				)}
-			</S.InfoWrapper>
-		</S.ContentSection>
+			</div>
+		</section>
 	);
 };
 

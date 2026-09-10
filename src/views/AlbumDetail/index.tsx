@@ -2,7 +2,6 @@
 
 // @/views/AlbumDetail
 
-import * as S from '@styles/pages/AlbumDetail/AlbumDetail.style';
 import { useParams } from 'next/navigation';
 import { useMemo } from 'react';
 import { GET_FULL_ALBUMS } from '@const/albums';
@@ -12,6 +11,7 @@ import AlbumDetailIntro from '@/views/AlbumDetail/AlbumDetailIntro';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/Placeholder';
 import { IsAlbumMatch } from '@/utils/album';
+import { LAYOUT_MAIN, LAYOUT_MAIN_TITLE } from '@/const/layout-classes';
 
 const SECTION_TITLE = {
 	TRACKS: {
@@ -37,24 +37,24 @@ const AlbumDetail = () => {
 
 	if (!albumData) {
 		return (
-			<S.MainContainer>
+			<main className={LAYOUT_MAIN}>
 				<BackButton to="/music" />
-				<S.MainTitle>Album Not Found</S.MainTitle>
+				<div className={LAYOUT_MAIN_TITLE}>Album Not Found</div>
 
 				<Placeholder message="앨범을 찾을 수 없습니다." />
-			</S.MainContainer>
+			</main>
 		);
 	}
 
 	return (
-		<S.MainContainer>
+		<main className={LAYOUT_MAIN}>
 			<BackButton />
 
 			<AlbumDetailMetaInfo album={albumData} />
 
 			<AlbumDetailTracks {...SECTION_TITLE.TRACKS} albumData={albumData} />
 			<AlbumDetailIntro {...SECTION_TITLE.INTRO} albumData={albumData} />
-		</S.MainContainer>
+		</main>
 	);
 };
 

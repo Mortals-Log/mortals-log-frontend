@@ -1,7 +1,5 @@
 // @/pages/AlbumDetail/AlbumDetailTracks.tsx
 
-import * as S from '@styles/pages/AlbumDetail/AlbumDetailTracks.style';
-
 import { useMemo } from 'react';
 import { differenceInDays, parse, startOfDay } from 'date-fns';
 import { MASTER_TRACKS } from '@/const/tracks';
@@ -10,6 +8,8 @@ import TrackRow from '@/components/TrackRow';
 import { Album } from '@/types/album';
 import { GetTracks } from '@/utils/track';
 import UseTrackNavigation from '@/hooks/useTrackNavigation';
+import { LAYOUT_SECTION_TITLE } from '@/const/layout-classes';
+import { ADT_CONTENT_SECTION, ADT_SIDE_TITLE } from './album-detail-classes';
 
 const AlbumDetailTracks = ({
 	TITLE_KR,
@@ -43,13 +43,13 @@ const AlbumDetailTracks = ({
 	}, [albumData]);
 
 	return (
-		<S.ContentSection>
-			<S.SectionTitle>
+		<section className={ADT_CONTENT_SECTION}>
+			<div className={LAYOUT_SECTION_TITLE}>
 				{TITLE_KR}
 				<span>
 					{TITLE_EN} ({trackIds.length})
 				</span>
-			</S.SectionTitle>
+			</div>
 
 			{!isReleased ? (
 				<Placeholder message="트랙리스트는 발매일에 공개됩니다." />
@@ -58,7 +58,7 @@ const AlbumDetailTracks = ({
 					{isVinyl
 						? Object.entries(rawTracks as Record<string, string[]>).map(([sideName, tracks]) => (
 								<>
-									<S.SideTitle>{sideName}</S.SideTitle>
+									<div className={ADT_SIDE_TITLE}>{sideName}</div>
 									{GetTracks(tracks).map(trackId => {
 										const track = MASTER_TRACKS[trackId];
 										if (!track) return null;
@@ -96,7 +96,7 @@ const AlbumDetailTracks = ({
 			) : (
 				<Placeholder contentName={TITLE_KR} />
 			)}
-		</S.ContentSection>
+		</section>
 	);
 };
 
