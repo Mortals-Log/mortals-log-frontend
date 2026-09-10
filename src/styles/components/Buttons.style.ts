@@ -282,47 +282,6 @@ export const CardButton = styled(Link)`
 	}
 `;
 
-export const BackButton = styled.button`
-	background: none;
-	border: none;
-	cursor: pointer;
-	padding: 4px 0;
-	margin-bottom: 1.2rem;
-
-	font-family: ${props => props.theme.FONT.SANS};
-	font-size: ${props => props.theme.FONT.SIZE.SM};
-	font-weight: ${props => props.theme.FONT.WEIGHT.MEDIUM};
-	color: ${props => props.theme.COLOR.GRAY400};
-
-	transition: color 0.2s ease;
-	&::before {
-		content: '←';
-		margin-right: 6px;
-	}
-
-	&:hover {
-		color: ${props => props.theme.COLOR.PRIMARY};
-	}
-
-	&:active {
-		transform: scale(0.98);
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.tablet} {
-		margin-bottom: 1rem;
-		font-size: ${props => props.theme.FONT.SIZE.SM};
-	}
-
-	@media ${props => props.theme.WINDOW_SIZE.mobile} {
-		margin-bottom: 0.5rem;
-		font-size: ${props => props.theme.FONT.SIZE.XS};
-	}
-
-	@media print {
-		display: none !important;
-	}
-`;
-
 export const ToggleButton = styled.button`
 	background: none;
 	border: none;
