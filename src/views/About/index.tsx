@@ -2,7 +2,7 @@
 
 // @/views/About
 
-import * as S from '@/styles/pages/About/About.style';
+import { LAYOUT_MAIN } from '@/const/layout-classes';
 
 import AboutTitle from '@/views/About/AboutTitle';
 import AboutPolicySection from '@/views/About/AboutPolicySection';
@@ -21,11 +21,11 @@ const SECTION_TITLE = {
 
 const About = () => {
 	return (
-		<S.MainContainer>
+		<main className={LAYOUT_MAIN}>
 			<AboutTitle />
 			<AboutPolicySection {...SECTION_TITLE.POLICY} />
 			<AboutInquirySection {...SECTION_TITLE.INQUIRY} />
-	</S.MainContainer>
+		</main>
 	);
 };
 export default About;
