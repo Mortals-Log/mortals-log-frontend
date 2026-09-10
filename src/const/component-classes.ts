@@ -4,6 +4,26 @@
 
 /* eslint-disable storybook/default-exports */
 
+import { cn } from '@/utils/cn';
+import { SCHEDULE_TYPE_CLASS } from '@/const/schedule';
+import { Schedule } from '@/types/schedule';
+
+// ── components/Badge.style.ts 이관 (BadgeList 외 소비처: Schedule / ScheduleCalendar / SongDetail) ──
+export const BASE_BADGE =
+	'inline-flex items-center justify-center py-1 px-1.5 rounded flex-shrink-0 whitespace-nowrap font-sans text-tiny font-medium tracking-[0.02em] max-tablet:py-0.5 max-tablet:px-1';
+
+/** Badge.style.ts TypeBadge — 일정 타입별 bg/text */
+export const typeBadge = (type: Schedule['type']) =>
+	cn(
+		'inline-flex items-center justify-center py-1 px-1.5 rounded flex-shrink-0 whitespace-nowrap font-sans text-xs font-medium tracking-[0.02em] max-tablet:py-0.5 max-tablet:px-1',
+		SCHEDULE_TYPE_CLASS[type].bg,
+		SCHEDULE_TYPE_CLASS[type].text,
+	);
+
+/** Badge.style.ts AdultBadge */
+export const ADULT_BADGE =
+	'inline-flex items-center justify-center py-1 px-1.5 rounded flex-shrink-0 whitespace-nowrap font-sans text-xs font-medium tracking-[0.02em] border border-solid border-primary bg-primary/20 text-primary max-tablet:py-0.5 max-tablet:px-1';
+
 /** Buttons.style.ts MoreButton — styled(Link) */
 export const MORE_BUTTON =
 	'flex w-full items-center justify-center gap-2 mt-4 py-4 px-6 no-underline bg-transparent border border-primary rounded-[10px] font-sans text-sm font-medium text-gray-700 cursor-pointer transition-all duration-200 hover:bg-primary hover:border-primary hover:text-white active:scale-[0.98] max-tablet:p-4 max-mobile:p-3 max-mobile:text-xs';

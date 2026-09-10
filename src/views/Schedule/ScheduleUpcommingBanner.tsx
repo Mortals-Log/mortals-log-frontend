@@ -2,13 +2,13 @@
 
 // @/pages/Schedule/ScheduleUpcomingBanner
 
-import * as S from '@/styles/pages/Schedule/ScheduleUpcommingBanner.style';
-
 import { useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { addDays, differenceInDays, format, isWithinInterval, parseISO, startOfDay } from 'date-fns';
 import { CALENDAR_SCHEDULES } from '@/utils/schedule';
 import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
+import { LAYOUT_CONTENT_SECTION, LAYOUT_SECTION_TITLE } from '@/const/layout-classes';
+import { SUB_SLIDER_CONTAINER, subBannerItem } from './schedule-classes';
 
 const ScheduleUpcommingBacnner = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
 	const router = useRouter();
@@ -42,24 +42,27 @@ const ScheduleUpcommingBacnner = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TI
 	if (upcomingEvents.length === 0) return null;
 
 	return (
-		<S.ContentSection>
-			<S.SectionTitle>
+		<section className={LAYOUT_CONTENT_SECTION}>
+			<div className={LAYOUT_SECTION_TITLE}>
 				{TITLE_KR} <span>{TITLE_EN}</span>
-			</S.SectionTitle>
+			</div>
 
-			<S.SliderContainer>
+			<div className={SUB_SLIDER_CONTAINER}>
 				{upcomingEvents.map((event, idx) => (
-					<S.BannerItem key={idx} $eventType={event.type} $dDay={event.diff} onClick={() => handleItemClick(event.id)}>
+					<div
+						key={idx}
+						className={subBannerItem(event.type, event.diff)}
+						onClick={() => handleItemClick(event.id)}>
 						<div className="info">
 							<span className="dDay">{event.dDayLabel}</span>
 							<span className="date">{format(parseISO(event.date), 'MM.dd')}</span>
 							<span className="type">{SCHEDULE_LABEL_MAP[event.type]}</span>
 							<p className="content">{event.content}</p>
 						</div>
-					</S.BannerItem>
+					</div>
 				))}
-			</S.SliderContainer>
-		</S.ContentSection>
+			</div>
+		</section>
 	);
 };
 

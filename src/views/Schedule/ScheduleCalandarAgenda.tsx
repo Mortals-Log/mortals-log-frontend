@@ -2,8 +2,6 @@
 
 // @/pages/Schedule/ScheduleCalandarAgenda
 
-import * as S from '@/styles/pages/Schedule/ScheduleCalandarAgenda.style';
-
 import { useRouter } from 'next/navigation';
 import { format } from 'date-fns';
 import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
@@ -11,6 +9,16 @@ import Placeholder from '@/components/Placeholder';
 import { Schedule } from '@/types/schedule';
 import { FormatDate } from '@/utils/date';
 import { BADGE_LABEL } from '@/components/BadgeList';
+import { typeBadge, ADULT_BADGE } from '@/const/component-classes';
+import {
+	SCA_AGENDA_SECTION,
+	SCA_AGENDA_HEADER,
+	SCA_AGENDA_LIST,
+	scaAgendaItem,
+	SCA_ITEM_CONTENT_GROUP,
+	SCA_CONTENT_TEXT,
+	SCA_TIME_TAG,
+} from './schedule-classes';
 
 interface AgendaProps {
 	selectedDate: Date;
@@ -29,32 +37,32 @@ const ScheduleCalandarAgenda = ({ selectedDate, schedules }: AgendaProps) => {
 	};
 
 	return (
-		<S.AgendaSection>
-			<S.AgendaHeader>{format(selectedDate, 'yyyy년 MM월 d일')} 일정</S.AgendaHeader>
+		<div className={SCA_AGENDA_SECTION}>
+			<div className={SCA_AGENDA_HEADER}>{format(selectedDate, 'yyyy년 MM월 d일')} 일정</div>
 
 			{dayEvents.length > 0 ? (
-				<S.AgendaList>
+				<div className={SCA_AGENDA_LIST}>
 					{dayEvents.map(event => (
-						<S.AgendaItem
+						<div
 							key={event.id}
-							$eventType={event.type}
+							className={scaAgendaItem(event.type)}
 							onClick={() => handleItemClick(event.id)}
 							role="button"
 							tabIndex={0}>
-							<S.ItemContentGroup>
-								<S.TypeBadge $eventType={event.type}>{SCHEDULE_LABEL_MAP[event.type]}</S.TypeBadge>
-								{event.ageLimit && <S.AdultBadge>{BADGE_LABEL.ADULT}</S.AdultBadge>}
-								<S.ContentText>{event.content}</S.ContentText>
-							</S.ItemContentGroup>
+							<div className={SCA_ITEM_CONTENT_GROUP}>
+								<span className={typeBadge(event.type)}>{SCHEDULE_LABEL_MAP[event.type]}</span>
+								{event.ageLimit && <span className={ADULT_BADGE}>{BADGE_LABEL.ADULT}</span>}
+								<span className={SCA_CONTENT_TEXT}>{event.content}</span>
+							</div>
 
-							{event.time && <S.TimeTag>{event.time}</S.TimeTag>}
-						</S.AgendaItem>
+							{event.time && <div className={SCA_TIME_TAG}>{event.time}</div>}
+						</div>
 					))}
-				</S.AgendaList>
+				</div>
 			) : (
 				<Placeholder message="등록된 일정이 없습니다." />
 			)}
-		</S.AgendaSection>
+		</div>
 	);
 };
 

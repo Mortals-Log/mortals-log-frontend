@@ -2,11 +2,10 @@
 
 // @/views/Schedule
 
-import * as S from '@/styles/pages/Schedule/Schedule.style';
-
 import { NAME } from '@/const/profile';
 import ScheduleUpcommingBacnner from '@/views/Schedule/ScheduleUpcommingBanner';
 import ScheduleCalendar from '@/views/ScheduleCalendar';
+import { LAYOUT_MAIN, LAYOUT_MAIN_TITLE, LAYOUT_SUB_TITLE, LAYOUT_DESCRIPTION } from '@/const/layout-classes';
 
 const PAGE_TITLE = {
 	MAIN: '일정',
@@ -23,16 +22,16 @@ const SECTION_TITLE = {
 
 const Schedule = () => {
 	return (
-		<S.MainContainer>
-			<S.SubTitle>{PAGE_TITLE.SUB}</S.SubTitle>
-			<S.MainTitle>{PAGE_TITLE.MAIN}</S.MainTitle>
+		<main className={LAYOUT_MAIN}>
+			<span className={LAYOUT_SUB_TITLE}>{PAGE_TITLE.SUB}</span>
+			<div className={LAYOUT_MAIN_TITLE}>{PAGE_TITLE.MAIN}</div>
 
-			<S.Description>{PAGE_TITLE.DESCRIPTION}</S.Description>
+			<div className={LAYOUT_DESCRIPTION}>{PAGE_TITLE.DESCRIPTION}</div>
 
 			<ScheduleUpcommingBacnner {...SECTION_TITLE.UPCOMMING} />
 
 			<ScheduleCalendar />
-		</S.MainContainer>
+		</main>
 	);
 };
 export default Schedule;
