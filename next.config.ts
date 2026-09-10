@@ -4,9 +4,7 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
 	outputFileTracingRoot: path.join(__dirname),
 	webpack(config) {
-		const fileLoaderRule = config.module.rules.find(
-			(rule: any) => rule.test?.test?.('.svg'),
-		);
+		const fileLoaderRule = config.module.rules.find((rule: any) => rule.test?.test?.('.svg'));
 
 		// webpack disallows a rule from having both `loader` and `use` — drop
 		// `loader`/`options` from the spread before adding `use: [svgr]`.
