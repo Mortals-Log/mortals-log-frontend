@@ -1,7 +1,5 @@
 // @/views/ScheduleCalendar
 
-import * as S from '@/styles/pages/ScheduleCalendar/ScheduleCalendar.style';
-
 import { useCallback, useMemo, useState } from 'react';
 import Calendar from 'react-calendar';
 import { SCHEDULE_TYPE_COLORS } from '@/const/schedule';
@@ -13,6 +11,14 @@ import ScheduleCalandarAgenda from '@/views/Schedule/ScheduleCalandarAgenda';
 import ScheduleWeekView from '@/views/ScheduleCalendar/ScheduleWeekView';
 import ScheduleListView from '@/views/ScheduleCalendar/ScheduleListView';
 import ScheduleLabel from '@/views/ScheduleCalendar/ScheduleLabel';
+import {
+	SC_TOOLBAR,
+	SC_VIEW_SWITCHER,
+	SC_TODAY_BUTTON,
+	scWrapper,
+	SC_SCHEDULE_LIST,
+	scTileItem,
+} from './calendar-classes';
 
 const ALL_TYPES = Object.keys(SCHEDULE_TYPE_COLORS) as Schedule['type'][];
 
@@ -69,30 +75,32 @@ const ScheduleCalendar = () => {
 			if (!events) return null;
 
 			return (
-				<S.ScheduleList>
+				<div className={SC_SCHEDULE_LIST}>
 					{events.map((event, i) => (
-						<S.ScheduleItem key={`${event.id}-${i}`} $eventType={event.type}>
+						<div key={`${event.id}-${i}`} className={scTileItem(event.type)}>
 							{event.content}
-						</S.ScheduleItem>
+						</div>
 					))}
-				</S.ScheduleList>
+				</div>
 			);
 		},
 		[filteredSchedules],
 	);
 
 	return (
-		<S.ScheduleWrapper $viewType={viewType}>
-			<S.ScheduleToolbar>
-				<S.ViewSwitcher>
+		<div className={scWrapper(viewType === 'week' || viewType === 'list')}>
+			<div className={SC_TOOLBAR}>
+				<div className={SC_VIEW_SWITCHER}>
 					{(['month', 'week', 'list'] as const).map(type => (
 						<button key={type} className={viewType === type ? 'active' : ''} onClick={() => setViewType(type)}>
 							{type.charAt(0).toUpperCase() + type.slice(1)}
 						</button>
 					))}
-				</S.ViewSwitcher>{' '}
-				<S.TodayButton onClick={handleGoToday}>TODAY</S.TodayButton>
-			</S.ScheduleToolbar>
+				</div>{' '}
+				<button className={SC_TODAY_BUTTON} onClick={handleGoToday}>
+					TODAY
+				</button>
+			</div>
 
 			<ScheduleLabel
 				activeFilters={activeFilters}
@@ -174,7 +182,7 @@ const ScheduleCalendar = () => {
 			)}
 
 			<ScheduleCalandarAgenda selectedDate={selectedDate} schedules={filteredSchedules} />
-		</S.ScheduleWrapper>
+		</div>
 	);
 };
 

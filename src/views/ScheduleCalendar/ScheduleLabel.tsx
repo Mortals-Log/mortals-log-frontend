@@ -1,10 +1,9 @@
 // @/pages/ScheduleCalendar/ScheduleLabel
 
-import * as S from '@/styles/pages/ScheduleCalendar/ScheduleLabel.style';
-
 import { memo } from 'react';
 import { Schedule } from '@/types/schedule';
 import { SCHEDULE_LABEL_MAP, SCHEDULE_TYPE_COLORS } from '@/const/schedule';
+import { SL_LABEL_CONTAINER, SL_FILTER_TITLE, SL_LABEL_LIST, slLabelItem } from './calendar-classes';
 
 interface ScheduleLabelProps {
 	activeFilters: Schedule['type'][];
@@ -19,24 +18,23 @@ const ScheduleLabel = ({ activeFilters, onToggleFilter, onToggleAllFilters, tota
 	const isAllActive = activeFilters.length === totalCount;
 
 	return (
-		<S.LabelContainer>
-			<S.FilterTitle>필터</S.FilterTitle>
-			<S.LabelList>
-				<S.LabelItem $isActive={isAllActive} onClick={onToggleAllFilters}>
+		<div className={SL_LABEL_CONTAINER}>
+			<span className={SL_FILTER_TITLE}>필터</span>
+			<ul className={SL_LABEL_LIST}>
+				<li className={slLabelItem(isAllActive)} onClick={onToggleAllFilters}>
 					ALL
-				</S.LabelItem>
+				</li>
 
 				{LABEL_TYPES.map(eventType => (
-					<S.LabelItem
+					<li
 						key={eventType}
-						$eventType={eventType}
-						$isActive={activeFilters.includes(eventType)}
+						className={slLabelItem(activeFilters.includes(eventType), eventType)}
 						onClick={() => onToggleFilter(eventType)}>
 						{SCHEDULE_LABEL_MAP[eventType]}
-					</S.LabelItem>
+					</li>
 				))}
-			</S.LabelList>
-		</S.LabelContainer>
+			</ul>
+		</div>
 	);
 };
 

@@ -1,10 +1,10 @@
 // @/pages/ScheduleCalendar/WeekScheduleView
 
-import * as S from '@/styles/pages/ScheduleCalendar/ScheduleWeekView.style';
 import { useMemo, memo } from 'react';
 import { format, startOfWeek, addDays, isSameDay } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { Schedule } from '@/types/schedule';
+import { SWV_WEEK_CONTAINER, swvDayContainer, swvDayHeader, SWV_SCHEDULE_LIST, swvScheduleItem } from './calendar-classes';
 
 interface WeekScheduleViewProps {
 	viewDate: Date;
@@ -22,7 +22,7 @@ const ScheduleWeekView = ({ viewDate, selectedDate, onSelectDate, schedules }: W
 	const today = new Date();
 
 	return (
-		<S.WeekContainer>
+		<div className={SWV_WEEK_CONTAINER}>
 			{weekDays.map(day => {
 				const dateKey = format(day, 'yyyy-MM-dd');
 				const daySchedules = schedules[dateKey] || [];
@@ -30,27 +30,26 @@ const ScheduleWeekView = ({ viewDate, selectedDate, onSelectDate, schedules }: W
 				const isSelected = isSameDay(day, selectedDate);
 
 				return (
-					<S.DayContainer key={dateKey} $isToday={isToday} $isSelected={isSelected} onClick={() => onSelectDate(day)}>
-						<S.DayHeader $isToday={isToday} $isSelected={isSelected}>
+					<div key={dateKey} className={swvDayContainer(isToday, isSelected)} onClick={() => onSelectDate(day)}>
+						<div className={swvDayHeader(isToday, isSelected)}>
 							<span className="day_name">{format(day, 'EEE', { locale: ko })}</span>
 							<span className="day_number">{format(day, 'd')}</span>
-						</S.DayHeader>
+						</div>
 
-						<S.ScheduleList>
+						<div className={SWV_SCHEDULE_LIST}>
 							{daySchedules.map(sch => (
-								<S.ScheduleItem
+								<div
 									key={sch.id || `${dateKey}-${sch.content}`}
-									$eventType={sch.type}
-									$isSelected={isSelected}
+									className={swvScheduleItem(sch.type, isSelected)}
 									title={sch.content}>
 									<span className="content">{sch.content}</span>
-								</S.ScheduleItem>
+								</div>
 							))}
-						</S.ScheduleList>
-					</S.DayContainer>
+						</div>
+					</div>
 				);
 			})}
-		</S.WeekContainer>
+		</div>
 	);
 };
 

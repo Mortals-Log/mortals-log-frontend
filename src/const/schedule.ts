@@ -27,7 +27,16 @@ export const SCHEDULE_TYPE_COLORS: Record<Schedule['type'], { bg: string; text: 
 // Tailwind 스캐너가 인식하도록 모든 클래스는 정적 문자열 리터럴로 나열.
 export const SCHEDULE_TYPE_CLASS: Record<
 	Schedule['type'],
-	{ text: string; bg: string; border: string; borderL: string; hoverBg: string; bannerHover: string }
+	{
+		text: string;
+		bg: string;
+		border: string;
+		borderL: string;
+		hoverBg: string;
+		bannerHover: string;
+		beforeBg: string;
+		beforeBgLight: string;
+	}
 > = {
 	ALBUM: {
 		text: 'text-blue-600',
@@ -36,6 +45,8 @@ export const SCHEDULE_TYPE_CLASS: Record<
 		borderL: 'border-l-blue-600',
 		hoverBg: 'hover:bg-blue-100',
 		bannerHover: 'hover:border-[#2C7BE533] hover:bg-[#E6F4FE66]',
+		beforeBg: 'before:bg-blue-600',
+		beforeBgLight: 'before:bg-blue-100',
 	},
 	CONCERT: {
 		text: 'text-purple-600',
@@ -44,6 +55,8 @@ export const SCHEDULE_TYPE_CLASS: Record<
 		borderL: 'border-l-purple-600',
 		hoverBg: 'hover:bg-purple-100',
 		bannerHover: 'hover:border-[#7E3AF233] hover:bg-[#EDE9FE66]',
+		beforeBg: 'before:bg-purple-600',
+		beforeBgLight: 'before:bg-purple-100',
 	},
 	TICKETING: {
 		text: 'text-orchid-600',
@@ -52,6 +65,8 @@ export const SCHEDULE_TYPE_CLASS: Record<
 		borderL: 'border-l-orchid-600',
 		hoverBg: 'hover:bg-orchid-100',
 		bannerHover: 'hover:border-[#B85CB533] hover:bg-[#FDF2FF66]',
+		beforeBg: 'before:bg-orchid-600',
+		beforeBgLight: 'before:bg-orchid-100',
 	},
 	ANNIVERSARY: {
 		text: 'text-pink-600',
@@ -60,6 +75,8 @@ export const SCHEDULE_TYPE_CLASS: Record<
 		borderL: 'border-l-pink-600',
 		hoverBg: 'hover:bg-pink-100',
 		bannerHover: 'hover:border-[#FD5B7333] hover:bg-[#FFF7F866]',
+		beforeBg: 'before:bg-pink-600',
+		beforeBgLight: 'before:bg-pink-100',
 	},
 	BIRTHDAY: {
 		text: 'text-yellow-600',
@@ -68,6 +85,8 @@ export const SCHEDULE_TYPE_CLASS: Record<
 		borderL: 'border-l-yellow-600',
 		hoverBg: 'hover:bg-yellow-100',
 		bannerHover: 'hover:border-[#E5A50033] hover:bg-[#FFF9E566]',
+		beforeBg: 'before:bg-yellow-600',
+		beforeBgLight: 'before:bg-yellow-100',
 	},
 	EVENT: {
 		text: 'text-green-600',
@@ -76,5 +95,7 @@ export const SCHEDULE_TYPE_CLASS: Record<
 		borderL: 'border-l-green-600',
 		hoverBg: 'hover:bg-green-100',
 		bannerHover: 'hover:border-[#3CD08033] hover:bg-[#E7FEF266]',
+		beforeBg: 'before:bg-green-600',
+		beforeBgLight: 'before:bg-green-100',
 	},
 };

@@ -1,13 +1,12 @@
 // @/pages/ScheduleCalendar/ScheduleListView
 
-import * as S from '@/styles/pages/ScheduleCalendar/ScheduleListView.style';
-
 import { useMemo, memo } from 'react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import Placeholder from '@/components/Placeholder';
 import { Schedule } from '@/types/schedule';
 import { FormatDate } from '@/utils/date';
+import { SLV_LIST_WRAPPER, slvDayContainer, slvDayHeader, SLV_SCHEDULE_LIST, slvScheduleItem } from './calendar-classes';
 
 interface ScheduleListViewProps {
 	viewDate: Date;
@@ -32,7 +31,7 @@ const ScheduleListView = ({ viewDate, selectedDate, onSelectDate, schedules }: S
 	const message = `${format(viewDate, 'yyyy년 M월')}의 일정이 없습니다.`;
 
 	return (
-		<S.ListWrapper>
+		<div className={SLV_LIST_WRAPPER}>
 			{daysWithEvents.length === 0 ? (
 				<Placeholder message={message} />
 			) : (
@@ -43,24 +42,26 @@ const ScheduleListView = ({ viewDate, selectedDate, onSelectDate, schedules }: S
 					const isSelected = isSameDay(day, selectedDate);
 
 					return (
-						<S.DayContainer key={dateStr} $isToday={isToday} $isSelected={isSelected} onClick={() => onSelectDate(day)}>
-							<S.DayHeader $isToday={isToday} $isSelected={isSelected}>
+						<div key={dateStr} className={slvDayContainer(isToday, isSelected)} onClick={() => onSelectDate(day)}>
+							<div className={slvDayHeader(isToday, isSelected)}>
 								<span className="day_number">{format(day, 'd')}</span>
 								<span className="day_name">{format(day, 'EEE', { locale: ko })}</span>
-							</S.DayHeader>
+							</div>
 
-							<S.ScheduleList>
+							<div className={SLV_SCHEDULE_LIST}>
 								{dayEvents.map((event, i) => (
-									<S.ScheduleItem key={event.id || `${dateStr}-${i}`} $eventType={event.type} $isSelected={isSelected}>
+									<div
+										key={event.id || `${dateStr}-${i}`}
+										className={slvScheduleItem(event.type, isSelected)}>
 										{event.content}
-									</S.ScheduleItem>
+									</div>
 								))}
-							</S.ScheduleList>
-						</S.DayContainer>
+							</div>
+						</div>
 					);
 				})
 			)}
-		</S.ListWrapper>
+		</div>
 	);
 };
 
