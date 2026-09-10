@@ -42,9 +42,9 @@ const ScheduleCalandarAgenda = ({ selectedDate, schedules }: AgendaProps) => {
 
 			{dayEvents.length > 0 ? (
 				<div className={SCA_AGENDA_LIST}>
-					{dayEvents.map(event => (
+					{dayEvents.map((event, index) => (
 						<div
-							key={event.id}
+							key={`${event.id}-${index}`}
 							className={scaAgendaItem(event.type)}
 							onClick={() => handleItemClick(event.id)}
 							role="button"
