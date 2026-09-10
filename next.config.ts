@@ -19,7 +19,18 @@ const nextConfig: NextConfig = {
 				...restFileLoaderRule,
 				test: /\.svg$/i,
 				resourceQuery: /react/,
-				use: ['@svgr/webpack'],
+				use: [
+					{
+						loader: '@svgr/webpack',
+						options: {
+							// viewBox 가 width/height 와 중복되면 SVGO 가 제거해 버려서
+							// (Lucide 아이콘 등) CSS 로 축소할 때 스케일되지 않고 잘린다. viewBox 유지.
+							svgoConfig: {
+								plugins: [{ name: 'preset-default', params: { overrides: { removeViewBox: false } } }],
+							},
+						},
+					},
+				],
 			},
 			{
 				...restFileLoaderRule,
