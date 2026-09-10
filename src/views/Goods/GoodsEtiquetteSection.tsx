@@ -1,7 +1,7 @@
 // @/pages/Goods/GoodsEttiquetteSection
 
-import * as S from '@/styles/pages/Goods/Goods.style';
-
+import { LAYOUT_CONTENT_SECTION, LAYOUT_SECTION_TITLE } from '@/const/layout-classes';
+import { GOODS_GUIDE_SECTION, GOODS_GUIDE_ITEM, GOODS_GUIDE_SLOGAN } from './goods-classes';
 import { FAN_GOODS_GUIDE } from '@/const/goods';
 
 const GoodsEttiquetteSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {
@@ -14,28 +14,32 @@ const GoodsEttiquetteSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITL
 	} = FAN_GOODS_GUIDE;
 
 	return (
-		<S.ContentSection>
-			<S.SectionTitle>
+		<section className={LAYOUT_CONTENT_SECTION}>
+			<div className={LAYOUT_SECTION_TITLE}>
 				{TITLE_KR}
 				<span>{TITLE_EN}</span>
-			</S.SectionTitle>
+			</div>
 
-			<S.GuideSlogan>{GOODS_ETIQUETTE_SLOGAN}</S.GuideSlogan>
+			<div className={GOODS_GUIDE_SLOGAN}>{GOODS_ETIQUETTE_SLOGAN}</div>
 
-			<S.GuideSection>
+			<section className={GOODS_GUIDE_SECTION}>
 				<p className="title">{GOODS_CAUTION_TITLE}</p>
 				{GOODS_CAUTION_RULES.map((rule, index) => (
-					<S.GuideItem key={index}>{rule}</S.GuideItem>
+					<li key={index} className={GOODS_GUIDE_ITEM}>
+						{rule}
+					</li>
 				))}
-			</S.GuideSection>
+			</section>
 
-			<S.GuideSection>
+			<section className={GOODS_GUIDE_SECTION}>
 				<p className="title">{GOODS_ETIQUETTE_TITLE}</p>
 				{GOODS_ETIQUETTE_RULES.map((rule, index) => (
-					<S.GuideItem key={index}>{rule}</S.GuideItem>
+					<li key={index} className={GOODS_GUIDE_ITEM}>
+						{rule}
+					</li>
 				))}
-			</S.GuideSection>
-		</S.ContentSection>
+			</section>
+		</section>
 	);
 };
 

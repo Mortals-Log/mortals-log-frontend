@@ -2,7 +2,7 @@
 
 // @/views/Goods
 
-import * as S from '@/styles/pages/Goods/Goods.style';
+import { LAYOUT_MAIN, LAYOUT_MAIN_TITLE, LAYOUT_SUB_TITLE, LAYOUT_DESCRIPTION } from '@/const/layout-classes';
 
 import GoodsLinkSection from '@/views/Goods/GoodsLinkSection';
 import GoodsGuideSection from '@/views/Goods/GoodsGuideSection';
@@ -33,16 +33,16 @@ const { DESCRIPTION } = FAN_GOODS_GUIDE;
 
 const Goods = () => {
 	return (
-		<S.MainContainer>
-			<S.SubTitle>{PAGE_TITLE.SUB}</S.SubTitle>
-			<S.MainTitle>{PAGE_TITLE.MAIN}</S.MainTitle>
+		<main className={LAYOUT_MAIN}>
+			<span className={LAYOUT_SUB_TITLE}>{PAGE_TITLE.SUB}</span>
+			<div className={LAYOUT_MAIN_TITLE}>{PAGE_TITLE.MAIN}</div>
 
-			<S.Description>{DESCRIPTION}</S.Description>
+			<div className={LAYOUT_DESCRIPTION}>{DESCRIPTION}</div>
 
 			<GoodsLinkSection {...SECTION_TITLE.LINK} />
 			<GoodsGuideSection {...SECTION_TITLE.GUIDE} />
 			<GoodsEtiquetteSection {...SECTION_TITLE.ETIQUETTE} />
-		</S.MainContainer>
+		</main>
 	);
 };
 
