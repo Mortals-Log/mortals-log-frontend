@@ -6,7 +6,13 @@ import { ko } from 'date-fns/locale';
 import Placeholder from '@/components/Placeholder';
 import { Schedule } from '@/types/schedule';
 import { FormatDate } from '@/utils/date';
-import { SLV_LIST_WRAPPER, slvDayContainer, slvDayHeader, SLV_SCHEDULE_LIST, slvScheduleItem } from './calendar-classes';
+import {
+	SLV_LIST_WRAPPER,
+	slvDayContainer,
+	slvDayHeader,
+	SLV_SCHEDULE_LIST,
+	slvScheduleItem,
+} from './calendar-classes';
 
 interface ScheduleListViewProps {
 	viewDate: Date;
@@ -50,9 +56,7 @@ const ScheduleListView = ({ viewDate, selectedDate, onSelectDate, schedules }: S
 
 							<div className={SLV_SCHEDULE_LIST}>
 								{dayEvents.map((event, i) => (
-									<div
-										key={event.id || `${dateStr}-${i}`}
-										className={slvScheduleItem(event.type, isSelected)}>
+									<div key={event.id || `${dateStr}-${i}`} className={slvScheduleItem(event.type, isSelected)}>
 										{event.content}
 									</div>
 								))}

@@ -99,9 +99,7 @@ const AlbumPromotionSection = () => {
 								</li>
 							))}
 
-							{totalTrackCount > 3 && (
-								<span className={AP_MORE_TEXT}>외 {totalTrackCount - 3}곡을 더 만나보세요.</span>
-							)}
+							{totalTrackCount > 3 && <span className={AP_MORE_TEXT}>외 {totalTrackCount - 3}곡을 더 만나보세요.</span>}
 						</>
 					) : (
 						<li className={AP_TRACK_ITEM}>트랙 정보가 없습니다.</li>

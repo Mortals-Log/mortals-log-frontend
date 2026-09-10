@@ -29,11 +29,7 @@ const findTrackAndAlbum = (id: string) => {
 	return { track, albumInfo: albumInfo || null };
 };
 
-export const generateMetadata = async ({
-	params,
-}: {
-	params: Promise<{ id: string }>;
-}): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> => {
 	const { id } = await params;
 	const { track, albumInfo } = findTrackAndAlbum(id);
 

@@ -49,10 +49,7 @@ const ScheduleUpcommingBacnner = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TI
 
 			<div className={SUB_SLIDER_CONTAINER}>
 				{upcomingEvents.map((event, idx) => (
-					<div
-						key={idx}
-						className={subBannerItem(event.type, event.diff)}
-						onClick={() => handleItemClick(event.id)}>
+					<div key={idx} className={subBannerItem(event.type, event.diff)} onClick={() => handleItemClick(event.id)}>
 						<div className="info">
 							<span className="dDay">{event.dDayLabel}</span>
 							<span className="date">{format(parseISO(event.date), 'MM.dd')}</span>

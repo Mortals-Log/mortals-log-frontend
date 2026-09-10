@@ -105,12 +105,7 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 							Object.entries(album.store).map(([key, url]) => {
 								const detail = LINK_SHOP[key];
 								return (
-									<Link
-										key={key}
-										href={url}
-										target="_blank"
-										rel="noopener noreferrer"
-										className={MORE_BUTTON}>
+									<Link key={key} href={url} target="_blank" rel="noopener noreferrer" className={MORE_BUTTON}>
 										{detail ? `${ALBUM_TYPE_LABEL[album.type]} 구매하기 - ${detail.STORE}` : key}
 									</Link>
 								);

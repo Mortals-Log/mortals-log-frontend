@@ -4,7 +4,12 @@ import { useMemo, useState } from 'react';
 import { LAYOUT_CONTENT_SECTION, LAYOUT_SECTION_TITLE } from '@/const/layout-classes';
 import { EXPAND_BUTTON, ARROW_ICON } from '@/const/component-classes';
 import { cn } from '@/utils/cn';
-import { PC_TIMELINE_CONTAINER, PC_TIMELINE_YEAR_GROUP, PC_TIMELINE_ITEM_LIST, PC_TIMELINE_ITEM } from './profile-classes';
+import {
+	PC_TIMELINE_CONTAINER,
+	PC_TIMELINE_YEAR_GROUP,
+	PC_TIMELINE_ITEM_LIST,
+	PC_TIMELINE_ITEM,
+} from './profile-classes';
 import { FULL_CAREER_HISTORY } from '@const/career';
 
 const ProfileCareerSection = ({ TITLE_KR, TITLE_EN }: { TITLE_KR: string; TITLE_EN: string }) => {

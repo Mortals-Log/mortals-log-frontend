@@ -57,9 +57,7 @@ const InformationSection = () => {
 												))
 											: event.times?.map((time, idx) => (
 													<div className={IS_TIME_TAG} key={`single-${time}-${idx}`}>
-														{event.times && event.times.length > 1 && (
-															<span className="part">{idx + 1}부.</span>
-														)}
+														{event.times && event.times.length > 1 && <span className="part">{idx + 1}부.</span>}
 														<span className="time">{time}</span>
 													</div>
 												))}

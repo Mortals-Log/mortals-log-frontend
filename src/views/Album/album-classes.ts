@@ -40,7 +40,8 @@ export const AP_DESCRIPTION =
 export const AP_TRACK_PREVIEW_LIST = 'flex flex-col list-none gap-[0.8rem] mt-[1.2rem] mb-6 mx-0 p-0 max-tablet:gap-2';
 export const AP_TRACK_ITEM =
 	'flex items-center gap-2 font-serif text-sm text-primary [&_.number]:text-sm [&_.number]:font-semibold [&_.name]:tracking-[0.05rem] [&_.name]:font-medium';
-export const AP_MORE_TEXT = 'font-serif text-sm font-normal text-gray-500 mt-1 pl-[1.6rem] max-tablet:pl-0 max-mobile:text-xs';
+export const AP_MORE_TEXT =
+	'font-serif text-sm font-normal text-gray-500 mt-1 pl-[1.6rem] max-tablet:pl-0 max-mobile:text-xs';
 export const AP_VIEW_MORE_LINK =
 	"inline-block w-fit bg-black py-4 px-6 font-sans text-md font-semibold text-white rounded-[10px] no-underline transition-all duration-300 cursor-pointer after:content-['→'] after:ml-0.5 after:text-white hover:bg-primary hover:text-white active:scale-[0.98] max-tablet:py-4 max-tablet:px-[1.2rem] max-mobile:py-[0.8rem] max-mobile:px-[1.4rem] max-mobile:text-sm";
 export const AP_DDAY_BADGE =

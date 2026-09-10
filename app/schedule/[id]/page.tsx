@@ -9,11 +9,7 @@ export const generateStaticParams = () => {
 	return ALL_SCHEDULE_LIST.map(item => ({ id: String(item.id) }));
 };
 
-export const generateMetadata = async ({
-	params,
-}: {
-	params: Promise<{ id: string }>;
-}): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> => {
 	const { id } = await params;
 	const scheduleBase = ALL_SCHEDULE_LIST.find(item => String(item.id) === id);
 

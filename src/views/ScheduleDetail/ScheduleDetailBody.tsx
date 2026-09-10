@@ -119,9 +119,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 								))
 							: concert.times?.map((time, idx) => (
 									<div className={SDB_INFO_ITEM} key={`single-${idx}`}>
-										{concert.times && concert.times.length > 1 && (
-											<span className="part">{idx + 1}부.</span>
-										)}
+										{concert.times && concert.times.length > 1 && <span className="part">{idx + 1}부.</span>}
 										{year}.{cleanDate} ({GetDay(cleanDate, year)})<span className="time">{time}</span>
 									</div>
 								))}
@@ -199,9 +197,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 									{ticketingDate && (
 										<>
 											<InfoTitle
-												label={
-													(concert.ticketing?.length ?? 0) > 1 ? `TICKETING ${index + 1}차` : 'TICKETING'
-												}
+												label={(concert.ticketing?.length ?? 0) > 1 ? `TICKETING ${index + 1}차` : 'TICKETING'}
 											/>
 											<div className={SDB_INFO_ITEM}>
 												{ticketingDate} ({GetDay(ticketingDate)})
@@ -273,11 +269,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 					{album.store && (
 						<>
 							{typeof album.store === 'string' ? (
-								<Link
-									href={album.store}
-									target="_blank"
-									rel="noopener noreferrer"
-									className={PRIMARY_BUTTON}>
+								<Link href={album.store} target="_blank" rel="noopener noreferrer" className={PRIMARY_BUTTON}>
 									{ALBUM_TYPE_LABEL[album.type]}구매하기
 								</Link>
 							) : (
@@ -285,12 +277,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 									const detail = LINK_SHOP[key];
 
 									return (
-										<Link
-											key={key}
-											href={url}
-											target="_blank"
-											rel="noopener noreferrer"
-											className={PRIMARY_BUTTON}>
+										<Link key={key} href={url} target="_blank" rel="noopener noreferrer" className={PRIMARY_BUTTON}>
 											{detail ? (
 												<>
 													{ALBUM_TYPE_LABEL[album.type]} 구매하기 - {detail.STORE}

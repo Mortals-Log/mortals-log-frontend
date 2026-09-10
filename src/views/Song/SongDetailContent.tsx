@@ -145,11 +145,7 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 			</div>
 
 			{activeTab === 'lyrics' &&
-				(track.lyrics ? (
-					<div className={sdcContent(false)}>{track.lyrics}</div>
-				) : (
-					<Placeholder contentName="가사" />
-				))}
+				(track.lyrics ? <div className={sdcContent(false)}>{track.lyrics}</div> : <Placeholder contentName="가사" />)}
 
 			{activeTab === 'chords' && currentChordVersion && (
 				<>
@@ -166,20 +162,14 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 							<span className="chord">{currentChordVersion.chords}</span>
 						</div>
 					)}
-					<div className={sdcContent(!isSeparated)}>
-						{isSeparated ? track.lyrics : currentChordVersion.chords}
-					</div>
+					<div className={sdcContent(!isSeparated)}>{isSeparated ? track.lyrics : currentChordVersion.chords}</div>
 				</>
 			)}
 
 			{activeTab === 'mv' && track.mvLink && (
 				<>
 					<div className={VIDEO_WRAPPER}>
-						<iframe
-							src={`${LINK_PLATFORM.YOUTUBE.EMBED_URL}${track.mvLink}`}
-							title="YouTube MV"
-							allowFullScreen
-						/>
+						<iframe src={`${LINK_PLATFORM.YOUTUBE.EMBED_URL}${track.mvLink}`} title="YouTube MV" allowFullScreen />
 					</div>
 					<Link
 						href={`${LINK_PLATFORM.YOUTUBE.BASE_URL}${track.mvLink}`}

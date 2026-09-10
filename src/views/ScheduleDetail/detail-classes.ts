@@ -8,7 +8,8 @@ import { cn } from '@/utils/cn';
 export const SD_MAIN =
 	'max-w-[800px] mx-auto min-h-screen py-[100px] px-5 max-tablet:py-20 max-tablet:px-[1.8rem] max-mobile:py-20 max-mobile:px-6';
 export const SD_HEADER_SECTION = 'border-b border-solid border-gray-200 pb-4 mb-8 max-mobile:pb-2 max-mobile:mb-4';
-export const SD_CATEGORY_BADGE = 'inline-block mb-[0.2rem] font-sans text-sm font-medium text-primary max-mobile:text-xs';
+export const SD_CATEGORY_BADGE =
+	'inline-block mb-[0.2rem] font-sans text-sm font-medium text-primary max-mobile:text-xs';
 export const sdMainTitle = (ageLimit: boolean) =>
 	cn(
 		'font-serif text-h2 font-medium text-gray-700 leading-[1.5] whitespace-pre-wrap [word-break:keep-all] max-mobile:text-h3',

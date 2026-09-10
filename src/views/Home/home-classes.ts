@@ -29,10 +29,12 @@ export const PS_IMAGE_SECTION =
 export const PS_MAIN_IMAGE = 'w-full aspect-[3/4] object-cover transition-[filter] duration-500';
 export const PS_HANJA_BADGE =
 	'absolute top-[-20px] right-[-20px] bg-black py-[18px] px-2.5 [font-family:serif] text-[1.7rem] font-normal text-white [writing-mode:vertical-rl] tracking-[0.7rem] max-laptop:py-[15px] max-laptop:px-2 max-laptop:text-[1.5rem] max-laptop:tracking-[0.4rem] max-mobile:top-[-15px] max-mobile:right-[-10px] max-mobile:text-[1.4rem] max-mobile:tracking-[0.4rem]';
-export const PS_TEXT_SECTION = 'flex flex-col items-start max-mobile:w-full max-mobile:items-center max-mobile:text-center';
+export const PS_TEXT_SECTION =
+	'flex flex-col items-start max-mobile:w-full max-mobile:items-center max-mobile:text-center';
 export const PS_MODIFIER_CONTAINER =
 	'flex flex-col justify-end items-start w-[400px] min-h-[80px] mb-1 [will-change:transform,opacity,filter] hover:[&_a]:opacity-100 hover:[&_p]:[animation-play-state:paused] max-tablet:hidden max-mobile:hidden';
-export const PS_MODIFIER_LINK_EXTRA = 'w-auto opacity-0 mb-2 whitespace-normal overflow-visible text-clip max-laptop:mb-1';
+export const PS_MODIFIER_LINK_EXTRA =
+	'w-auto opacity-0 mb-2 whitespace-normal overflow-visible text-clip max-laptop:mb-1';
 export const PS_MODIFIER_TEXT =
 	'line-clamp-2 leading-[1.4] m-0 font-serif text-md font-bold text-gray-600 text-left [word-break:keep-all] animate-[fadeInBlur_0.8s_ease-out] max-laptop:text-sm max-laptop:font-semibold';
 export const PS_NAME_SECTION =
