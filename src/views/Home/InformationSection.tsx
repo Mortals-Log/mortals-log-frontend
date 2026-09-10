@@ -1,58 +1,72 @@
 // @/pages/Home/Information
 
-import * as S from '@/styles/pages/Home/InformationSection.style';
-
 import { useMemo } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { ALBUM_TYPE_LABEL, FULL_ALBUMS } from '@/const/albums';
 import { CONCERT_TYPE_LABEL, FULL_CONCERTS } from '@/const/concert';
 import { GetLatestAlbum } from '@/utils/album';
 import { GetUpcomingSchedules } from '@/utils/date';
 import Placeholder from '@/components/Placeholder';
 import { GenerateScheduleId } from '@/utils/id';
+import {
+	IS_INFORMATION_SECTION,
+	IS_SECTION_WRAPPER,
+	IS_INFO_SECTION,
+	IS_EVENT_LIST,
+	IS_CONTENT_CARD,
+	IS_TIME_SLOT_WRAPPER,
+	IS_TIME_TAG,
+	IS_ACTION_LINK,
+} from './home-classes';
 
 const InformationSection = () => {
 	const upcomingEvents = useMemo(() => GetUpcomingSchedules(FULL_CONCERTS), []);
 	const latestAlbum = useMemo(() => GetLatestAlbum(FULL_ALBUMS), []);
 
 	return (
-		<S.InformationSection
+		<motion.div
+			className={IS_INFORMATION_SECTION}
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ delay: 1.5, duration: 0.8 }}>
-			<S.SectionWrapper>
-				<S.InfoSection>
+			<div className={IS_SECTION_WRAPPER}>
+				<div className={IS_INFO_SECTION}>
 					<span className="section-label">공연 예정</span>
 
-					<S.EventList>
+					<div className={IS_EVENT_LIST}>
 						{upcomingEvents.length > 0 ? (
 							upcomingEvents.map(event => (
-								<S.ContentCard key={event.content}>
+								<div className={IS_CONTENT_CARD} key={event.content}>
 									<h3 className="title">{event.content}</h3>
 									<p className="info-text">
 										{event.location} | {event.year}.{event.date}
 									</p>
 
-									<S.TimeSlotWrapper>
+									<div className={IS_TIME_SLOT_WRAPPER}>
 										{event.date.includes('~')
 											? event.date.split('~').map((date, idx) => (
-													<S.TimeTag key={`range-${date.trim()}-${idx}`}>
+													<div className={IS_TIME_TAG} key={`range-${date.trim()}-${idx}`}>
 														<span className="part">{idx + 1}일차</span>
 														{event.times?.map((time, tIdx) => (
 															<span key={tIdx} className="time">
 																{time}
 															</span>
 														))}
-													</S.TimeTag>
+													</div>
 												))
 											: event.times?.map((time, idx) => (
-													<S.TimeTag key={`single-${time}-${idx}`}>
-														{event.times && event.times.length > 1 && <span className="part">{idx + 1}부.</span>}
+													<div className={IS_TIME_TAG} key={`single-${time}-${idx}`}>
+														{event.times && event.times.length > 1 && (
+															<span className="part">{idx + 1}부.</span>
+														)}
 														<span className="time">{time}</span>
-													</S.TimeTag>
+													</div>
 												))}
-									</S.TimeSlotWrapper>
+									</div>
 
-									<S.ActionLink
+									<Link
+										className={IS_ACTION_LINK}
 										href={`/schedule/${GenerateScheduleId(
 											'CONCERT',
 											(() => {
@@ -65,29 +79,31 @@ const InformationSection = () => {
 											`[${CONCERT_TYPE_LABEL[event.type]}] ${event.content}`,
 										)}`}>
 										일정 더보기 →
-									</S.ActionLink>
-								</S.ContentCard>
+									</Link>
+								</div>
 							))
 						) : (
 							<Placeholder message="현재 예정된 공연이 없습니다." />
 						)}
-					</S.EventList>
-				</S.InfoSection>
+					</div>
+				</div>
 
-				<S.InfoSection>
+				<div className={IS_INFO_SECTION}>
 					<span className="section-label">최근 발매 앨범</span>
 					{latestAlbum && (
-						<S.ContentCard key={latestAlbum.title}>
+						<div className={IS_CONTENT_CARD} key={latestAlbum.title}>
 							<h3 className="title">{latestAlbum.title}</h3>
 							<p className="info-text">
 								{ALBUM_TYPE_LABEL[latestAlbum.type]} | {latestAlbum.releaseDate}
 							</p>
-							<S.ActionLink href={`album/${latestAlbum.title}`}>앨범 더보기 →</S.ActionLink>
-						</S.ContentCard>
+							<Link className={IS_ACTION_LINK} href={`album/${latestAlbum.title}`}>
+								앨범 더보기 →
+							</Link>
+						</div>
 					)}
-				</S.InfoSection>
-			</S.SectionWrapper>
-		</S.InformationSection>
+				</div>
+			</div>
+		</motion.div>
 	);
 };
 

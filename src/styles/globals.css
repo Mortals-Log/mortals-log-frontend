@@ -435,3 +435,29 @@
 		min-height: 100vh;
 	}
 }
+
+/* ── keyframes: Emotion @emotion/react keyframes 이관 ── */
+@layer utilities {
+	@keyframes blink {
+		0%,
+		100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes fadeInBlur {
+		from {
+			opacity: 0;
+			filter: blur(10px);
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			filter: blur(0);
+			transform: translateY(0);
+		}
+	}
+}

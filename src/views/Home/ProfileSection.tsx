@@ -2,10 +2,27 @@
 
 // @/pages/Home/ProfileSection
 
-import * as S from '@/styles/pages/Home/ProfileSection.style';
-
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { cn } from '@/utils/cn';
+import { VIEW_MORE_BUTTON, SOURCE_LINK, SOURCE_LINK_DISABLED } from '@/const/component-classes';
+import {
+	PS_SECTION,
+	PS_BACKGROUND_TEXT,
+	PS_SECTION_WRAPPER,
+	PS_IMAGE_SECTION,
+	PS_MAIN_IMAGE,
+	PS_HANJA_BADGE,
+	PS_TEXT_SECTION,
+	PS_MODIFIER_CONTAINER,
+	PS_MODIFIER_LINK_EXTRA,
+	PS_MODIFIER_TEXT,
+	PS_NAME_SECTION,
+	PS_ARTIST_NAME,
+	PS_JOB_BADGE,
+	PS_PROFILE_DESCRIPTION,
+} from './home-classes';
 import { PROFILE } from '@/const/profile';
 import { EVENT_INTERVIEW } from '@/const/event';
 import { GetSnsLabel, GetSnsUrl } from '@/utils/snsUrl';
@@ -46,42 +63,57 @@ const ProfileSection = () => {
 	}, [isPaused, hasQuotes, interviewQuotes.length]);
 
 	return (
-		<S.ProfileSection>
-			<S.BackgroundText>{PROFILE.enName}</S.BackgroundText>
+		<section className={PS_SECTION}>
+			<div className={PS_BACKGROUND_TEXT}>{PROFILE.enName}</div>
 
-			<S.SectionWrapper>
-				<S.ImageSection>
-					<S.MainImage src={PROFILE.mainImage} alt={PROFILE.name} />
-					<S.HanjaBadge>{PROFILE.hanjaName}</S.HanjaBadge>
-				</S.ImageSection>
+			<div className={PS_SECTION_WRAPPER}>
+				<div className={PS_IMAGE_SECTION}>
+					<img className={PS_MAIN_IMAGE} src={PROFILE.mainImage} alt={PROFILE.name} />
+					<div className={PS_HANJA_BADGE}>{PROFILE.hanjaName}</div>
+				</div>
 
-				<S.TextSection>
+				<div className={PS_TEXT_SECTION}>
 					{currentItem && currentItemSnsInfo && (
-						<S.ModifierContainer onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
+						<div
+							className={PS_MODIFIER_CONTAINER}
+							onMouseEnter={() => setIsPaused(true)}
+							onMouseLeave={() => setIsPaused(false)}>
 							{currentItemSnsInfo.url ? (
-								<S.ModifierLink href={currentItemSnsInfo.url} target="_blank" rel="noreferrer">
+								<Link
+									href={currentItemSnsInfo.url}
+									target="_blank"
+									rel="noreferrer"
+									className={cn(SOURCE_LINK, PS_MODIFIER_LINK_EXTRA)}>
 									{currentItemSnsInfo.label}
-								</S.ModifierLink>
+								</Link>
 							) : (
-								<S.ModifierLink href="/" target="_blank" rel="noreferrer" $disabled={true}>
+								<Link
+									href="/"
+									target="_blank"
+									rel="noreferrer"
+									className={cn(SOURCE_LINK, PS_MODIFIER_LINK_EXTRA, SOURCE_LINK_DISABLED)}>
 									{currentItemSnsInfo.label}
-								</S.ModifierLink>
+								</Link>
 							)}
-							<S.ModifierText key={currentItem.quote}>{currentItem.quote}</S.ModifierText>
-						</S.ModifierContainer>
+							<p className={PS_MODIFIER_TEXT} key={currentItem.quote}>
+								{currentItem.quote}
+							</p>
+						</div>
 					)}
 
-					<S.NameSection>
-						<S.ArtistName>{PROFILE.name}</S.ArtistName>
-						<S.JobBadge>{jobDisplay}</S.JobBadge>
-					</S.NameSection>
+					<div className={PS_NAME_SECTION}>
+						<div className={PS_ARTIST_NAME}>{PROFILE.name}</div>
+						<span className={PS_JOB_BADGE}>{jobDisplay}</span>
+					</div>
 
-					<S.ProfileDescription>{PROFILE.description}</S.ProfileDescription>
+					<div className={PS_PROFILE_DESCRIPTION}>{PROFILE.description}</div>
 
-					<S.ViewMoreButton onClick={() => router.push('/profile')}>READ PROFILE LOG</S.ViewMoreButton>
-				</S.TextSection>
-			</S.SectionWrapper>
-		</S.ProfileSection>
+					<button className={VIEW_MORE_BUTTON} onClick={() => router.push('/profile')}>
+						READ PROFILE LOG
+					</button>
+				</div>
+			</div>
+		</section>
 	);
 };
 

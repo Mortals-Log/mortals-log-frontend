@@ -38,3 +38,10 @@ export const TABLE_WRAPPER =
 
 /** common/ArrowIcon.style.ts ArrowIcon — styled.span, $isExpanded 로 rotate */
 export const ARROW_ICON = 'inline-block transition-transform duration-300 text-xs';
+
+/** Buttons.style.ts SourceLink 베이스 — styled(Link), $disabled 는 SOURCE_LINK_DISABLED 로 */
+export const SOURCE_LINK =
+	"inline-block w-4/5 whitespace-nowrap overflow-hidden text-ellipsis font-sans text-xs font-normal text-gray-400 no-underline transition-all duration-300 before:content-['REF._'] before:font-medium before:tracking-[0.5px] hover:text-primary hover:translate-x-[3px] max-tablet:w-full";
+
+export const SOURCE_LINK_DISABLED =
+	'opacity-50 cursor-not-allowed pointer-events-none grayscale hover:transform-none! hover:text-inherit!';
