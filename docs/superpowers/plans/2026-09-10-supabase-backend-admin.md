@@ -129,9 +129,11 @@ create policy "write for auth" on albums for all
 ## 단계별 플랜 (1인, 약 6~7 person-day)
 
 ### Phase 0 — 셋업 (0.5일)
-- Supabase 프로젝트 생성, `supabase` CLI 설치 → `supabase link`
+- 기존 실험용 Supabase 프로젝트 재사용: ref `qkxzzpghhlwsjxloajql`
+  (일시정지 시 Restore, 실험 테이블은 우리 테이블명과 충돌 시에만 `drop`)
+- `supabase` CLI 설치 → `pnpm supabase login` → `pnpm supabase link --project-ref qkxzzpghhlwsjxloajql`
 - 패키지: `pnpm add @supabase/supabase-js @supabase/ssr` / `pnpm add -D tsx supabase`
-- env: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`(시드 전용, 서버에서만)
+- env(`.env.local`, 대시보드 Settings → API): `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`(시드 전용, 서버에서만)
 
 ### Phase 1 — 스키마 + RLS (0.5일)
 - 마이그레이션 `0001`, `0002` 작성 → `supabase db push`
