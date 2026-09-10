@@ -286,7 +286,9 @@
 		font-size: 100%;
 		vertical-align: baseline;
 
-		border: 0;
+		/* Tailwind v4 Preflight 규약(`border: 0 solid`)과 정렬 —
+		   원본 reset 은 `border: 0` 이었으나 그 경우 `border` 유틸이 style:none 이라 보이지 않음 */
+		border: 0 solid;
 	}
 
 	* {
