@@ -19,7 +19,7 @@ export const Table = ({ label, values }: TableProps) => (
 						{v}
 					</div>
 					{idx < values.length - 1 && (
-						<hr className="w-[calc(100%-30px)] mx-auto border-b border-solid border-gray-300 max-mobile:w-full" />
+						<hr className="w-[calc(100%-30px)] mx-auto border-0 border-b border-solid border-gray-300 max-mobile:w-full" />
 					)}
 				</div>
 			))}
