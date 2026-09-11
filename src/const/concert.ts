@@ -35,28 +35,14 @@ export const MEMBERS = {
 	SKL: '설규리',
 	LJM: '이정민',
 	GSB: '정새벽',
+	HW: '한우',
+	LES: '이은서',
+	SR: '산사람 밴드',
 
 	OS: '오쉽 밴드',
 	DB: '대방중 뉴진스',
 	HANABI: '금옥중 하나비 밴드',
 } as const;
-
-// --- 자주 쓰이는 라인업 ---
-
-/** 1. 천진우 솔로 (기본) */
-export const SOLO_LINEUP = [MEMBERS.CJW];
-
-/** 2. 무법자들/풀밴드 (천진우, 강주은, 김한수, 리장단, 법영이) */
-export const BAND_LINEUP = [MEMBERS.CJW, MEMBERS.KJE, MEMBERS.KHS, MEMBERS.LJD, MEMBERS.BY];
-
-/** 3. 불바다 조합 (천진우, 기토, 양동훈, 리장단) */
-export const BULBADA_LINEUP = [MEMBERS.CJW, MEMBERS.GT, MEMBERS.YDH, MEMBERS.LJD];
-
-/** 4. 달달이 조합 (천진우, 김태현, 리장단) */
-export const DALDAL_TRIO = [MEMBERS.CJW, MEMBERS.KTH, MEMBERS.LJD];
-
-/** 5. 중식이 콜라보 (천진우, 중식이) */
-export const WITH_JS = [MEMBERS.CJW, MEMBERS.JS];
 
 export const SOLO_CONCERT: ConcertList = [
 	{
@@ -68,16 +54,18 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '천진우 포크 공연',
 				location: '금천구 수상한창고',
 				times: ['17:00'],
-				price: { regular: '50,000', onSpot: '60,000' },
-				lineUp: SOLO_LINEUP,
+				price: { regular: 50000, onSpot: 60000 },
+				lineUp: [MEMBERS.CJW],
 				ticketing: [
 					{
+						label: '1일차',
 						ticketingDate: '2026.03.08',
 						ticketingTime: '12:00',
 						ticketingLink:
 							'https://docs.google.com/forms/d/e/1FAIpQLSdU61HJVon7iyEqp8WqUYTZxHbF3oLEb7qXNGwcFacn0FAdrQ/viewform',
 					},
 					{
+						label: '2일차',
 						ticketingDate: '2026.03.08',
 						ticketingTime: '12:00',
 						ticketingLink:
@@ -91,8 +79,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '고독의 포크 전사 주정뱅이 딴따라',
 				location: '홍대 롤링홀',
 				times: ['16:00'],
-				price: { regular: '55,000', onSpot: '66,000' },
-				lineUp: SOLO_LINEUP,
+				price: { regular: 55000, onSpot: 66000 },
+				lineUp: [MEMBERS.CJW],
 				ticketing: [
 					{
 						ticketingDate: '2026.01.12',
@@ -107,8 +95,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '부산불바다2',
 				location: '부산 리얼라이즈',
 				times: ['16:00', '19:00'],
-				price: { regular: '50,000', army: '40,000' },
-				lineUp: [...BULBADA_LINEUP, MEMBERS.BY],
+				price: { regular: 50000, army: 40000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.GT, MEMBERS.YDH, MEMBERS.LJD, MEMBERS.BY],
 				ticketing: [
 					{
 						ticketingDate: '2025.12.20',
@@ -116,6 +104,52 @@ export const SOLO_CONCERT: ConcertList = [
 					},
 					{
 						ticketingDate: '2025.12.27',
+						ticketingTime: '13:00',
+					},
+				],
+			},
+			{
+				type: 'SOLO',
+				date: '05.24',
+				content: '고통을 믿지마, 인생은 가짜야',
+				location: '얼라이브홀',
+				times: ['16:00'],
+				price: { regular: 60000, student: 50000, monk: 0 },
+				lineUp: [MEMBERS.CJW, MEMBERS.GT, MEMBERS.HW, MEMBERS.BY, MEMBERS.LES],
+				ticketing: [
+					{
+						ticketingDate: '2026.05.03',
+						ticketingTime: '12:00',
+					},
+				],
+			},
+			{
+				type: 'SOLO',
+				date: '07.20',
+				content: '[먼데이프로젝트 시즌9] 천진우 단독 포크 콘서트 ‘월요일은 개 같은 날이라서 월요일일까’',
+				location: '연남스페이스',
+				times: ['20:00'],
+				price: { regular: 55000 },
+				lineUp: [MEMBERS.CJW],
+				ticketing: [
+					{
+						ticketingDate: '2026.07.03',
+						ticketingTime: '18:00',
+					},
+				],
+			},
+
+			{
+				type: 'SOLO',
+				date: '09.27',
+				content: '초가을 천진우 포크공연',
+				location: '금천구 수상한 창고',
+				times: ['17:00'],
+				price: { regular: 60000, student: 50000 },
+				lineUp: [MEMBERS.CJW],
+				ticketing: [
+					{
+						ticketingDate: '2026.09.12',
 						ticketingTime: '13:00',
 					},
 				],
@@ -131,8 +165,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '천진우의 연말시상식',
 				location: '홍대 롤링홀',
 				times: ['20:00'],
-				price: { regular: '55,000', student: '45,000' },
-				lineUp: [...BAND_LINEUP.filter(m => m !== MEMBERS.LJD), MEMBERS.HANABI],
+				price: { regular: 55000, student: 45000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.KJE, MEMBERS.KHS, MEMBERS.BY, MEMBERS.HANABI],
 				ticketing: [
 					{
 						ticketingDate: '2025.11.21',
@@ -146,8 +180,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '오싹오싹 공포의 인간쓰레기',
 				location: '홍대 롤링홀',
 				times: ['17:00'],
-				price: { regular: '55,000', onSpot: '66,000' },
-				lineUp: [...BAND_LINEUP.filter(m => m !== MEMBERS.LJD), MEMBERS.LDH],
+				price: { regular: 55000, onSpot: 66000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.KJE, MEMBERS.KHS, MEMBERS.BY, MEMBERS.LDH],
 				ticketing: [
 					{
 						ticketingDate: '2025.07.22',
@@ -161,8 +195,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '천진우와의 가장 가까운 만남',
 				location: '대전 럭스라운지',
 				times: ['18:00'],
-				price: { regular: '30,000', student: '25,000' },
-				lineUp: [...BAND_LINEUP.filter(m => m !== MEMBERS.LJD), MEMBERS.LDH],
+				price: { regular: 30000, student: 25000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.KJE, MEMBERS.KHS, MEMBERS.BY, MEMBERS.LDH],
 			},
 			{
 				type: 'SOLO',
@@ -170,8 +204,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '구토유발자들',
 				location: '홍대 얼라이브홀',
 				times: ['16:00'],
-				price: { regular: '45,000', student: '35,000' },
-				lineUp: [...BAND_LINEUP],
+				price: { regular: 45000, student: 35000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.KJE, MEMBERS.KHS, MEMBERS.LJD, MEMBERS.BY],
 				ticketing: [
 					{
 						ticketingDate: '2025.02.16',
@@ -185,7 +219,7 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '랑만 버스킹',
 				location: '청주 랑만',
 				times: ['20:00'],
-				lineUp: [...SOLO_LINEUP],
+				lineUp: [MEMBERS.CJW],
 			},
 			{
 				type: 'SOLO',
@@ -193,8 +227,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '천진우와 무법자들',
 				location: '홍대 청춘예찬',
 				times: ['16:00'],
-				price: { regular: '45,000', student: '35,000' },
-				lineUp: [...BAND_LINEUP],
+				price: { regular: 45000, student: 35000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.KJE, MEMBERS.KHS, MEMBERS.LJD, MEMBERS.BY],
 				ticketing: [
 					{
 						ticketingDate: '2025.01.12',
@@ -213,8 +247,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '대가리총 빵야빵야',
 				location: '스페이스 한강',
 				times: ['20:00'],
-				price: { regular: '33,000' },
-				lineUp: [...BAND_LINEUP],
+				price: { regular: 33000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.KJE, MEMBERS.KHS, MEMBERS.LJD, MEMBERS.BY],
 				ticketing: [
 					{
 						ticketingDate: '2024.12.09',
@@ -228,8 +262,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '대뽀까지마라',
 				location: '부산 리얼라이즈',
 				times: ['16:00'],
-				price: { regular: '35,000', student: '25,000' },
-				lineUp: [...DALDAL_TRIO],
+				price: { regular: 35000, student: 25000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.KTH, MEMBERS.LJD],
 				ticketing: [
 					{
 						ticketingDate: '2024.11.24',
@@ -243,8 +277,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '달달이 공연 제5호',
 				location: '수상한 창고',
 				times: ['16:00'],
-				price: { regular: '40,000', student: '30,000' },
-				lineUp: [...DALDAL_TRIO],
+				price: { regular: 40000, student: 30000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.KTH, MEMBERS.LJD],
 				ticketing: [
 					{
 						ticketingDate: '2024.11.10',
@@ -258,7 +292,7 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '달달이 공연 제4호',
 				location: '홍대 플렉스라운지',
 				times: ['16:00'],
-				price: { regular: '35,000', student: '25,000' },
+				price: { regular: 35000, student: 25000 },
 				lineUp: [MEMBERS.CJW, MEMBERS.KJE, MEMBERS.KTH, MEMBERS.KHS],
 				ticketing: [
 					{
@@ -273,8 +307,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '홍대불바다',
 				location: '홍대 청춘예찬',
 				times: ['16:00'],
-				price: { regular: '35,000', student: '25,000' },
-				lineUp: [...BULBADA_LINEUP],
+				price: { regular: 35000, student: 25000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.GT, MEMBERS.YDH, MEMBERS.LJD],
 				ticketing: [
 					{
 						ticketingDate: '2024.08.11',
@@ -288,8 +322,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '부산불바다',
 				location: '부산 오방가르드',
 				times: ['16:00'],
-				price: { regular: '30,000', student: '20,000', alien: '100,000' },
-				lineUp: [...BULBADA_LINEUP],
+				price: { regular: 30000, student: 20000, alien: 100000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.GT, MEMBERS.YDH, MEMBERS.LJD],
 				ticketing: [
 					{
 						ticketingDate: '2024.07.18',
@@ -303,7 +337,7 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '달달이 공연 제3호',
 				location: '홍대 플렉스라운지',
 				times: ['16:00'],
-				price: { regular: '35,000', student: '25,000', teacher: '25,000' },
+				price: { regular: 35000, student: 25000, teacher: 25000 },
 				lineUp: [MEMBERS.CJW, MEMBERS.KHS, MEMBERS.SKL, MEMBERS.OS],
 
 				ticketing: [
@@ -319,8 +353,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '달달이 공연 제2호',
 				location: '수상한 창고',
 				times: ['16:00'],
-				price: { regular: '35,000' },
-				lineUp: [...WITH_JS],
+				price: { regular: 35000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.JS],
 				ticketing: [
 					{
 						ticketingDate: '2024.02.12',
@@ -334,7 +368,7 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '달달이 공연 제1호',
 				location: '수상한 창고',
 				times: ['16:00'],
-				price: { regular: '35,000' },
+				price: { regular: 35000 },
 				lineUp: [MEMBERS.CJW, MEMBERS.GT],
 				ticketing: [
 					{
@@ -354,7 +388,7 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '앗-! 겁나게 뜨거 여러분의 사랑',
 				location: '홍대 스페이스홍',
 				times: ['13:00'],
-				price: { regular: '35,000' },
+				price: { regular: 35000 },
 				lineUp: [MEMBERS.CJW, MEMBERS.WD, MEMBERS.DB],
 				ticketing: [
 					{
@@ -369,8 +403,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '아기다리 고기다리던 가라오케 업로드',
 				location: '중식이 스튜디오',
 				times: ['16:00'],
-				price: { regular: '30,000' },
-				lineUp: [...SOLO_LINEUP],
+				price: { regular: 30000 },
+				lineUp: [MEMBERS.CJW],
 				ticketing: [
 					{
 						ticketingDate: '2023.06.24',
@@ -384,8 +418,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '어른이날',
 				location: '홍대 스페이스홍',
 				times: ['16:00'],
-				price: { regular: '30,000', student: '25,000' },
-				lineUp: [...SOLO_LINEUP],
+				price: { regular: 30000, student: 25000 },
+				lineUp: [MEMBERS.CJW],
 				ticketing: [
 					{
 						ticketingDate: '2023.04.14',
@@ -399,7 +433,7 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '내일을 위한 오늘은 없다 대신에 여기 당신을 위한 공연이 왔다',
 				location: '중식이 스튜디오',
 				times: ['16:00'],
-				price: { regular: '30,000' },
+				price: { regular: 30000 },
 				lineUp: [MEMBERS.CJW, MEMBERS.G],
 				ticketing: [
 					{
@@ -419,8 +453,8 @@ export const SOLO_CONCERT: ConcertList = [
 				content: '굴다리에서 명상좀비',
 				location: '중식이 스튜디오',
 				times: ['16:00'],
-				price: { regular: '10,000', student: '7,000' },
-				lineUp: [...WITH_JS, MEMBERS.GSB],
+				price: { regular: 10000, student: 7000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.JS, MEMBERS.GSB],
 			},
 		],
 	},
@@ -432,9 +466,18 @@ export const JOIN_CONCERT: ConcertList = [
 		items: [
 			{
 				type: 'JOIN',
-				date: '07.20',
-				content: '먼데이프로젝트 시즌9',
-				location: '연남스페이스',
+				date: '06.26',
+				content: '개과천선▫산사람(과나) X 천진우 합동공연',
+				location: '홍대 듈스튜디오',
+				times: ['20:00'],
+				price: { regular: 65000, student: 55000 },
+				lineUp: [MEMBERS.CJW, MEMBERS.SR, MEMBERS.GT, MEMBERS.HW, MEMBERS.BY, MEMBERS.LES],
+				ticketing: [
+					{
+						ticketingDate: '2026.06.06',
+						ticketingTime: '13:00',
+					},
+				],
 			},
 		],
 	},
@@ -445,9 +488,9 @@ export const JOIN_CONCERT: ConcertList = [
 				type: 'JOIN',
 				date: '04.18',
 				content: '와따리가따리 시즌2',
-				location: '홍대 플렉스라운지',
+				location: '홍대 롤링홀',
 				times: ['21:00'],
-				lineUp: [...WITH_JS],
+				lineUp: [MEMBERS.CJW, MEMBERS.JS],
 				ticketing: [
 					{
 						ticketingDate: '2025.03.30',
@@ -466,7 +509,7 @@ export const JOIN_CONCERT: ConcertList = [
 				content: '19금 스탠드업 코미디 콜라보 딸딸이 공연',
 				location: '수상한 창고',
 				times: ['20:00'],
-				price: { regular: '40,000' },
+				price: { regular: 40000 },
 				lineUp: [MEMBERS.CJW, MEMBERS.KIH, MEMBERS.PSG, MEMBERS.LJM, MEMBERS.OS],
 				ageLimit: true,
 				ticketing: [
@@ -480,8 +523,9 @@ export const JOIN_CONCERT: ConcertList = [
 				type: 'JOIN',
 				date: '04.06',
 				content: '와따리가따리 시즌1',
-				location: '홍대 롤링홀',
-				lineUp: [...WITH_JS],
+				// 시즌2(2025.04.18)와 장소가 뒤바뀌어 있던 것을 namu.wiki 대조로 확인 후 수정.
+				location: '홍대 플렉스라운지',
+				lineUp: [MEMBERS.CJW, MEMBERS.JS],
 				ticketing: [
 					{
 						ticketingDate: '2024.03.15',
@@ -502,8 +546,8 @@ export const TOUR_CONCERT: ConcertList = [
 				date: '07.29',
 				content: '여름좀비 - 춘천',
 				location: '춘천 클럽투투',
-				price: { regular: '30,000' },
-				lineUp: [...SOLO_LINEUP],
+				price: { regular: 30000 },
+				lineUp: [MEMBERS.CJW],
 				ticketing: [
 					{
 						ticketingDate: '2023.07.22',
@@ -516,8 +560,8 @@ export const TOUR_CONCERT: ConcertList = [
 				date: '08.04',
 				content: '여름좀비 - 부산',
 				location: '부산 오방가르드',
-				price: { regular: '30,000' },
-				lineUp: [...SOLO_LINEUP],
+				price: { regular: 30000 },
+				lineUp: [MEMBERS.CJW],
 				fileName: 'TOUR_20230729',
 				ticketing: [
 					{
@@ -531,8 +575,8 @@ export const TOUR_CONCERT: ConcertList = [
 				date: '08.06',
 				content: '여름좀비 - 서울',
 				location: '홍대 언플러그드',
-				price: { regular: '30,000' },
-				lineUp: [...SOLO_LINEUP],
+				price: { regular: 30000 },
+				lineUp: [MEMBERS.CJW],
 				fileName: 'TOUR_20230729',
 				ticketing: [
 					{
@@ -566,7 +610,7 @@ export const LISTENING: ConcertList = [
 				content: '제1회 음악감상회',
 				location: '수상한 창고',
 				times: ['15:00'],
-				price: { regular: '25,000' },
+				price: { regular: 25000 },
 				ticketing: [
 					{
 						ticketingDate: '2025.06.01',
@@ -580,7 +624,7 @@ export const LISTENING: ConcertList = [
 				content: '제2회 음악감상회',
 				location: '수상한 창고',
 				times: ['13:00'],
-				price: { regular: '25,000' },
+				price: { regular: 25000 },
 				ticketing: [
 					{
 						ticketingDate: '2025.09.20',
@@ -599,14 +643,33 @@ export const FESTIVAL: ConcertList = [
 			{
 				type: 'FESTIVAL',
 				date: '09.05 ~ 09.06',
+				performanceDates: ['09.06'],
+				times: ['10:40 ~ 11:20'],
+				ageLimit: true,
 				content: '사운드 플래닛 페스티벌 2026',
 				location: '인천광역시 영종구 파라다이스시티',
-				lineUp: SOLO_LINEUP,
-				price: { regular: '1일권 132,000원 / 2일권 198,000원', early: '1일권 118,800원 / 2일권 158,000원' },
+				performanceLocation: '크로마 스테이지',
+				lineUp: [MEMBERS.CJW, MEMBERS.GT, MEMBERS.BY, MEMBERS.LJD, MEMBERS.YDH],
+				price: {
+					regular: [
+						{ label: '1일권', amount: 132000 },
+						{ label: '2일권', amount: 198000 },
+					],
+					early: [
+						{ label: '1일권', amount: 118800 },
+						{ label: '2일권', amount: 158000 },
+					],
+				},
 				ticketing: [
 					{
+						label: '얼리버드',
 						ticketingDate: '2026.03.17',
 						ticketingTime: '14:00',
+					},
+					{
+						label: '일반',
+						ticketingDate: '2026.07.03',
+						ticketingTime: '12:00',
 					},
 				],
 			},
@@ -616,7 +679,7 @@ export const FESTIVAL: ConcertList = [
 				date: '04.12',
 				content: '와우산록페스티벌',
 				location: '와우산로의 라이브 클럽',
-				lineUp: SOLO_LINEUP,
+				lineUp: [MEMBERS.CJW],
 			},
 		],
 	},

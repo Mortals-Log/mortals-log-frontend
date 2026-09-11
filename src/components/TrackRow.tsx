@@ -21,14 +21,14 @@ const VARIANT = {
 		number:
 			'flex-shrink-0 text-center font-normal w-[25px] mr-6 font-serif text-sm text-primary max-tablet:mr-[1.2rem] max-mobile:mr-4',
 		title:
-			'flex gap-2 mb-1 font-sans text-md font-normal text-gray-700 flex-wrap [word-break:keep-all] leading-[1.4] [&_.title-text]:whitespace-pre-wrap [&_.title-text]:[word-break:keep-all]',
+			'flex items-center gap-2 mb-1 font-sans text-md font-normal text-gray-700 flex-wrap [word-break:keep-all] leading-[1.4] [&_.title-text]:whitespace-pre-wrap [&_.title-text]:[word-break:keep-all]',
 	},
 	album: {
 		item: 'flex items-baseline cursor-pointer transition-all duration-200 py-6 px-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 max-tablet:py-[1.2rem] max-tablet:px-4 max-mobile:py-[1.2rem] max-mobile:px-4',
 		number:
 			'flex-shrink-0 text-center font-normal w-[30px] font-sans text-sm text-gray-500 max-tablet:text-xs max-mobile:text-xs',
 		title:
-			'flex flex-wrap [word-break:keep-all] gap-2 leading-[1.4] font-sans font-normal text-gray-700 text-md max-tablet:text-sm max-mobile:text-sm',
+			'flex items-center flex-wrap [word-break:keep-all] gap-2 leading-[1.4] font-sans font-normal text-gray-700 text-md max-tablet:text-sm max-mobile:text-sm',
 	},
 } as const;
 
@@ -52,7 +52,7 @@ const TrackRow = React.memo(({ track, album, index, onClick, onKeyDown, variant 
 			<div className="flex min-w-0 flex-1 flex-col gap-px">
 				<div className={styles.title}>
 					<span className="title-text">
-						{track.cdOnly && Icon && <Icon width={16} height={16} />}
+						{track.cdOnly && Icon && <Icon width={16} height={16} className="inline-block align-middle" />}
 						{track.title}
 						{track.version && <span className="version"> ({track.version})</span>}
 					</span>

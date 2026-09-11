@@ -72,27 +72,45 @@ export const GetTrackToAlbumMap = () => {
 	return map;
 };
 
-export const IsTrackMatch = (track: Track, slugFromUrl: string) => {
-	const decodedSlug = decodeURIComponent(slugFromUrl).toLowerCase();
-	const normalize = (text: string) => text.toLowerCase().replace(/[\s\-_.]/g, '');
+const NormalizeSlug = (text: string): string => text.toLowerCase().replace(/[\s\-_.]/g, '');
 
-	const normalizedSlug = normalize(decodedSlug);
-	const isTitleMatch = normalize(track.id) === normalizedSlug || normalize(track.title) === normalizedSlug;
+const BuildSlugToTrackIdMap = (): Map<string, string> => {
+	const map = new Map<string, string>();
 
-	if (decodedSlug.includes('_live') && track.id.startsWith('TRK_LV')) {
-		const titlePart = decodedSlug.split('_')[0];
-		return normalize(track.title) === normalize(titlePart);
-	}
+	Object.values(MASTER_TRACKS).forEach(track => {
+		[GetTrackSlug(track), track.id].forEach(candidate => {
+			const key = NormalizeSlug(candidate);
+			const existingId = map.get(key);
 
-	if (decodedSlug.includes('_')) {
-		const [titlePart, versionPart] = decodedSlug.split('_');
+			if (existingId && existingId !== track.id) {
+				throw new Error(`Duplicate track slug "${key}" for ${existingId} and ${track.id}`);
+			}
 
-		const isBaseTitleMatch = normalize(track.title) === normalize(titlePart);
+			map.set(key, track.id);
+		});
+	});
 
-		const isVersionMatch = track.version ? normalize(track.version).includes(normalize(versionPart)) : false;
+	return map;
+};
 
-		return isBaseTitleMatch && isVersionMatch;
-	}
+const SLUG_TO_TRACK_ID = BuildSlugToTrackIdMap();
 
-	return isTitleMatch;
+export const GetTrackByUrlSlug = (slugFromUrl: string): Track | undefined => {
+	const trackId = SLUG_TO_TRACK_ID.get(NormalizeSlug(decodeURIComponent(slugFromUrl)));
+	return trackId ? MASTER_TRACKS[trackId] : undefined;
+};
+
+export interface OriginalTrackRef {
+	id: string;
+	slug: string;
+	title: string;
+}
+
+export const GetOriginalTracks = (track: Track): OriginalTrackRef[] => {
+	if (!track.originalTrackIds?.length) return [];
+
+	return track.originalTrackIds
+		.map(id => MASTER_TRACKS[id])
+		.filter((t): t is Track => !!t)
+		.map(t => ({ id: t.id, slug: GetTrackSlug(t), title: t.title }));
 };

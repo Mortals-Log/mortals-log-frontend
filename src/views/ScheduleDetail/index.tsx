@@ -19,7 +19,7 @@ import ScheduleDetailBody from '@/views/ScheduleDetail/ScheduleDetailBody';
 import { SD_MAIN, SD_HEADER_SECTION, SD_CATEGORY_BADGE, sdMainTitle } from './detail-classes';
 
 const isConcert = (data: any): data is ConcertItem =>
-	data && 'content' in data && 'type' in data && ['SOLO', 'JOIN', 'TOUR', 'LISTENING'].includes(data.type);
+	data && 'content' in data && 'type' in data && ['SOLO', 'JOIN', 'TOUR', 'LISTENING', 'FESTIVAL'].includes(data.type);
 
 const ScheduleDetail = () => {
 	const { id } = useParams<{ id: string }>();
@@ -38,6 +38,8 @@ const ScheduleDetail = () => {
 
 		switch (type) {
 			case 'CONCERT':
+			case 'TICKETING':
+				// 티켓팅 일정도 연관된 콘서트 상세 정보를 그대로 보여준다.
 				found = FULL_CONCERTS.flatMap(g => g.items).find(i => content.includes(i.content));
 				break;
 			case 'ALBUM':
@@ -70,6 +72,7 @@ const ScheduleDetail = () => {
 	}
 
 	const { type, ageLimit, content, imageUrl } = scheduleBase;
+	const displayType = type === 'TICKETING' && isConcert(detailData) ? 'CONCERT' : type;
 
 	return (
 		<main className={SD_MAIN}>
@@ -78,7 +81,7 @@ const ScheduleDetail = () => {
 			<header className={SD_HEADER_SECTION}>
 				<span className={SD_CATEGORY_BADGE}>
 					{ageLimit ? '미성년자 관람 불가 | ' : ''}
-					{SCHEDULE_LABEL_MAP[type]}
+					{SCHEDULE_LABEL_MAP[displayType]}
 				</span>
 
 				<div className={sdMainTitle(ageLimit || false)}>
@@ -87,9 +90,9 @@ const ScheduleDetail = () => {
 			</header>
 
 			{detailData ? (
-				<ScheduleDetailBody type={type} data={detailData} imageUrl={imageUrl} />
+				<ScheduleDetailBody type={displayType} data={detailData} imageUrl={imageUrl} />
 			) : (
-				<ScheduleDetailBody type={type} data={scheduleBase} />
+				<ScheduleDetailBody type={displayType} data={scheduleBase} />
 			)}
 		</main>
 	);

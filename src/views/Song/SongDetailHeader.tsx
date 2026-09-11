@@ -5,7 +5,7 @@
 import { useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
-import { MASTER_TRACKS } from '@/const/tracks';
+import { GetOriginalTracks } from '@/utils/track';
 import { Track } from '@/types/track';
 import { Album } from '@/types/album';
 import { BADGE_LABEL } from '@/components/BadgeList';
@@ -35,17 +35,7 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 		return `${type}${volume}`;
 	}, [albumInfo?.type, albumInfo?.volume]);
 
-	const originalTracks = useMemo(() => {
-		if (!track.originalTrackIds || track.originalTrackIds.length === 0) return [];
-
-		return track.originalTrackIds.map(id => {
-			const originalTrack = MASTER_TRACKS[id as keyof typeof MASTER_TRACKS];
-			return {
-				id,
-				displayTitle: originalTrack ? originalTrack.title : id,
-			};
-		});
-	}, [track.originalTrackIds]);
+	const originalTracks = useMemo(() => GetOriginalTracks(track), [track]);
 
 	const handleAlbumClick = useCallback(() => {
 		if (albumInfo?.title && albumInfo.title !== 'Unknown Album') {
@@ -54,8 +44,8 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 	}, [router, albumInfo]);
 
 	const handleSongClick = useCallback(
-		(id: string) => {
-			router.push(`/song/${id}`);
+		(slug: string) => {
+			router.push(`/song/${encodeURIComponent(slug)}`);
 		},
 		[router],
 	);
@@ -84,9 +74,9 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 
 				{originalTracks.length > 0 && (
 					<div className={SDH_ORIGINAL_LINK_GROUP}>
-						{originalTracks.map(({ id, displayTitle }) => (
-							<button key={id} className={SDH_ORIGINAL_LINK} onClick={() => handleSongClick(id)}>
-								원곡보기 #{displayTitle}
+						{originalTracks.map(({ id, slug, title }) => (
+							<button key={id} className={SDH_ORIGINAL_LINK} onClick={() => handleSongClick(slug)}>
+								원곡보기 #{title}
 							</button>
 						))}
 					</div>
