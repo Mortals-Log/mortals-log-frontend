@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 import Link from 'next/link';
-import { ConcertItem } from '@/types/concert';
+import { ConcertItem, PriceValue } from '@/types/concert';
 import { Album } from '@/types/album';
 import { EventItem } from '@/types/event';
 import { Schedule } from '@/types/schedule';
@@ -63,6 +63,18 @@ interface InfoTitleProps {
 const InfoTitle = ({ label }: InfoTitleProps) => {
 	return <div className={SDB_INFO_TITLE}>{label.toUpperCase()}</div>;
 };
+
+const formatWon = (amount: number) => `${amount.toLocaleString('ko-KR')}원`;
+
+const renderPriceValue = (value: PriceValue) =>
+	typeof value === 'number'
+		? formatWon(value)
+		: value.map((tier, idx) => (
+				<span key={tier.label}>
+					{idx > 0 && ' / '}
+					{tier.label} {formatWon(tier.amount)}
+				</span>
+			));
 
 const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) => {
 	const handleImgError = useImageFallback();
@@ -199,23 +211,21 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 					{concert.price && (
 						<div className={SDB_INFO_GROUP}>
 							<InfoTitle label="TICKET" />
-							<div className={SDB_INFO_ITEM}>
-								일반: {concert.price.regular}
-								{concert.price.regular.includes('원') ? '' : '원'}
-							</div>
+							<div className={SDB_INFO_ITEM}>일반: {renderPriceValue(concert.price.regular)}</div>
 							{Object.entries(concert.price).map(([key, value]) => {
-								if (key === 'regular' || !value) return null;
+								if (key === 'regular' || value === undefined) return null;
 								const labels: Record<string, string> = {
 									onSpot: '현장 판매',
-									army: '군인 할인',
-									student: '학생 할인',
-									alien: '외계인 할인',
+									army: '군인',
+									student: '학생',
+									alien: '외계인',
 									early: '얼리버드',
+									teacher: '교사',
+									monk: '스님',
 								};
 								return (
 									<div className={SDB_INFO_ITEM} key={key}>
-										{labels[key] || key}: {value}
-										{value.includes('원') ? '' : '원'}
+										{labels[key] || key}: {renderPriceValue(value)}
 									</div>
 								);
 							})}
@@ -278,14 +288,14 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 								</div>
 							);
 						})
-					) : (
+					) : now < concertDate ? (
 						<div className={SDB_INFO_GROUP}>
 							<InfoTitle label="TICKETING" />
 							<div className={SDB_INFO_ITEM}>
 								<span className="info">아직 티켓팅 일정이 공지되지 않았습니다.</span>
 							</div>
 						</div>
-					)}
+					) : null}
 				</>
 			);
 		}
