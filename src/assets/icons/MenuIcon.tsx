@@ -29,6 +29,7 @@ const MenuIcon = ({ isOpen, color }: MenuIconProps) => {
 				stroke={iconColor}
 				strokeWidth="2"
 				strokeLinecap="round"
+				initial={false}
 				animate={isOpen ? variant.top.opened : variant.top.closed}
 			/>
 			<motion.path
@@ -42,6 +43,7 @@ const MenuIcon = ({ isOpen, color }: MenuIconProps) => {
 				stroke={iconColor}
 				strokeWidth="2"
 				strokeLinecap="round"
+				initial={false}
 				animate={isOpen ? variant.bottom.opened : variant.bottom.closed}
 			/>
 		</svg>
