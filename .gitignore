@@ -10,11 +10,14 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+.next
+tsconfig.tsbuildinfo
 *.local
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+.claude/launch.json
 .idea
 .DS_Store
 *.suo
@@ -26,3 +29,15 @@ dist-ssr
 *storybook.log
 storybook-static
 yarn.lock
+/receipts
+/review-receipts
+.worktrees
+
+# GateGuard / signed-audit receipts (tooling artifacts, not app data)
+receipts/
+review-receipts/
+**/receipts/
+**/review-receipts/
+
+# superpowers 설계/계획 문서 (로컬 작업 산출물)
+docs/superpowers/

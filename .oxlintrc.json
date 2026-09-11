@@ -1,0 +1,17 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"plugins": ["react", "typescript", "import"],
+	"categories": {
+		"correctness": "error",
+		"perf": "warn",
+		"suspicious": "warn"
+	},
+	"rules": {
+		"typescript/no-explicit-any": "off",
+		"typescript/triple-slash-reference": "off",
+		"react/react-in-jsx-scope": "off",
+		"import/no-unassigned-import": "off",
+		"import/no-named-as-default-member": "off"
+	},
+	"ignorePatterns": ["node_modules", ".next", "dist", "storybook-static", "next-env.d.ts", "src/stories"]
+}

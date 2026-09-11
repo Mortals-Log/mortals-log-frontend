@@ -1,0 +1,682 @@
+@import 'tailwindcss';
+
+/* ── 디자인 토큰: src/styles/themes.ts 값을 1:1로 이관 ── */
+@theme {
+	/* COLOR */
+	--color-primary: #780606;
+
+	--color-gray-700: #303239;
+	--color-gray-600: #50525f;
+	--color-gray-500: #7f8295;
+	--color-gray-400: #aeb2c6;
+	--color-gray-300: #d0d3e1;
+	--color-gray-200: #e4e5ed;
+	--color-gray-100: #f1f2f6;
+	--color-gray-50: #f8f9fb;
+
+	--color-white: #ffffff;
+	--color-black: #000000;
+
+	--color-green-600: #3cd080;
+	--color-green-500: #65d196;
+	--color-green-400: #83ddac;
+	--color-green-300: #a7efc8;
+	--color-green-200: #cbf6df;
+	--color-green-100: #e7fef2;
+
+	--color-blue-600: #2c7be5;
+	--color-blue-500: #509cf7;
+	--color-blue-400: #79b4f9;
+	--color-blue-300: #aed1fb;
+	--color-blue-200: #cee7f7;
+	--color-blue-100: #e6f4fe;
+
+	--color-pink-600: #fd5b73;
+	--color-pink-500: #ff8093;
+	--color-pink-400: #ff95a5;
+	--color-pink-300: #ffb6c1;
+	--color-pink-200: #ffe7ea;
+	--color-pink-100: #fff7f8;
+
+	--color-yellow-600: #e5a500;
+	--color-yellow-500: #fdba12;
+	--color-yellow-400: #ffd358;
+	--color-yellow-300: #ffe494;
+	--color-yellow-200: #fff1c2;
+	--color-yellow-100: #fff9e5;
+
+	--color-purple-600: #7e3af2;
+	--color-purple-500: #8b5cf6;
+	--color-purple-400: #a78bfa;
+	--color-purple-300: #c4b5fd;
+	--color-purple-200: #ddd6fe;
+	--color-purple-100: #ede9fe;
+
+	--color-orchid-600: #b85cb5;
+	--color-orchid-500: #da70d6;
+	--color-orchid-400: #e67dff;
+	--color-orchid-300: #f0b3ff;
+	--color-orchid-200: #f9dfff;
+	--color-orchid-100: #fdf2ff;
+
+	--color-filter: rgba(127, 130, 149, 0.3);
+	--color-toast: rgba(0, 0, 0, 0.8);
+
+	--color-tj: #00afec;
+	--color-ky: #8270db;
+
+	/* FONT.SIZE */
+	--text-display: clamp(3.5rem, 12vw, 9rem);
+	--text-h1: clamp(1.75rem, 4vw, 3rem);
+	--text-h2: clamp(1.375rem, 3vw, 2rem);
+	--text-h3: clamp(1.125rem, 2vw, 1.5rem);
+	--text-xl: 1.25rem;
+	--text-lg: 1.125rem;
+	--text-md: 1rem;
+	--text-sm: 0.875rem;
+	--text-xs: 0.75rem;
+	--text-tiny: 0.65rem;
+
+	/* FONT.WEIGHT */
+	--font-weight-light: 300;
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-semibold: 600;
+	--font-weight-bold: 700;
+
+	/* FONT family */
+	--font-serif: 'Noto Serif KR', serif;
+	--font-sans: 'Pretendard', sans-serif;
+
+	/* WINDOW_SIZE (max-width breakpoints) */
+	--breakpoint-mobile: 480px;
+	--breakpoint-tablet: 768px;
+	--breakpoint-laptop: 1024px;
+}
+
+/* Tailwind v4가 커스텀 브레이크포인트의 max-* variant를 자동 생성하지 않는 경우 대비 */
+@custom-variant max-mobile (@media (max-width: 480px));
+@custom-variant max-tablet (@media (max-width: 768px));
+@custom-variant max-laptop (@media (max-width: 1024px));
+
+/* ── @font-face: src/styles/GlobalStyles.tsx에서 1:1 이관 ── */
+/* Light - Pretendard */
+@font-face {
+	font-family: 'Pretendard';
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src:
+		url(/fonts/Pretendard-Light.woff2) format('woff2'),
+		url(/fonts/Pretendard-Light.woff) format('woff'),
+		url(/fonts/Pretendard-Light.ttf) format('truetype'),
+		url(/fonts/Pretendard-Light.otf) format('opentype');
+}
+
+/* Regular - Pretendard */
+@font-face {
+	font-family: 'Pretendard';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src:
+		url('/fonts/Pretendard-Regular.woff2') format('woff2'),
+		url('/fonts/Pretendard-Regular.woff') format('woff'),
+		url('/fonts/Pretendard-Regular.ttf') format('truetype'),
+		url('/fonts/Pretendard-Regular.otf') format('opentype');
+}
+
+/* Medium - Pretendard */
+@font-face {
+	font-family: 'Pretendard';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src:
+		url('/fonts/Pretendard-Medium.woff2') format('woff2'),
+		url('/fonts/Pretendard-Medium.woff') format('woff'),
+		url('/fonts/Pretendard-Medium.ttf') format('truetype'),
+		url('/fonts/Pretendard-Medium.otf') format('opentype');
+}
+
+/* Semibold - Pretendard */
+@font-face {
+	font-family: 'Pretendard';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src:
+		url('/fonts/Pretendard-SemiBold.woff2') format('woff2'),
+		url('/fonts/Pretendard-SemiBold.woff') format('woff'),
+		url('/fonts/Pretendard-SemiBold.ttf') format('truetype'),
+		url('/fonts/Pretendard-SemiBold.otf') format('opentype');
+}
+
+/* Light - Noto Serif KR */
+@font-face {
+	font-family: 'Noto Serif KR';
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src:
+		url('/fonts/NotoSerifKR-Light.woff') format('woff'),
+		url('/fonts/NotoSerifKR-Light.ttf') format('truetype');
+}
+
+/* Regular - Noto Serif KR */
+@font-face {
+	font-family: 'Noto Serif KR';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src:
+		url('/fonts/NotoSerifKR-Regular.woff') format('woff'),
+		url('/fonts/NotoSerifKR-Regular.ttf') format('truetype');
+}
+
+/* Medium - Noto Serif KR */
+@font-face {
+	font-family: 'Noto Serif KR';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	/* NotoSerifKR-Medium.woff 파일이 public/fonts 에 없어(다른 굵기는 woff+ttf 모두 존재)
+	   404 를 유발했다. 존재하는 ttf 만 참조한다. */
+	src: url('/fonts/NotoSerifKR-Medium.ttf') format('truetype');
+}
+
+/* SemiBold - Noto Serif KR */
+@font-face {
+	font-family: 'Noto Serif KR';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src:
+		url('/fonts/NotoSerifKR-SemiBold.woff') format('woff'),
+		url('/fonts/NotoSerifKR-SemiBold.ttf') format('truetype');
+}
+
+/* ── 전역 스타일: src/styles/reset.ts + GlobalStyles.tsx에서 1:1 이관 ── */
+@layer base {
+	html,
+	body,
+	div,
+	span,
+	applet,
+	object,
+	iframe,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p,
+	blockquote,
+	pre,
+	a,
+	abbr,
+	acronym,
+	address,
+	big,
+	cite,
+	code,
+	del,
+	dfn,
+	em,
+	img,
+	ins,
+	kbd,
+	q,
+	s,
+	samp,
+	small,
+	strike,
+	strong,
+	sub,
+	sup,
+	tt,
+	var,
+	b,
+	u,
+	i,
+	center,
+	dl,
+	dt,
+	dd,
+	ol,
+	ul,
+	li,
+	fieldset,
+	form,
+	label,
+	legend,
+	table,
+	caption,
+	tbody,
+	tfoot,
+	thead,
+	tr,
+	th,
+	td,
+	article,
+	aside,
+	canvas,
+	details,
+	embed,
+	figure,
+	figcaption,
+	footer,
+	header,
+	hgroup,
+	menu,
+	nav,
+	output,
+	ruby,
+	section,
+	summary,
+	time,
+	mark,
+	audio,
+	video {
+		margin: 0;
+		padding: 0;
+
+		font: inherit;
+		font-size: 100%;
+		vertical-align: baseline;
+
+		/* Tailwind v4 Preflight 규약(`border: 0 solid`)과 정렬 —
+		   원본 reset 은 `border: 0` 이었으나 그 경우 `border` 유틸이 style:none 이라 보이지 않음 */
+		border: 0 solid;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	article,
+	aside,
+	details,
+	figcaption,
+	figure,
+	footer,
+	header,
+	hgroup,
+	menu,
+	nav,
+	section {
+		display: block;
+	}
+
+	body {
+		line-height: 1;
+	}
+
+	ol,
+	ul,
+	li {
+		list-style: none;
+	}
+
+	blockquote,
+	q {
+		quotes: none;
+	}
+
+	blockquote::before,
+	blockquote::after,
+	q::before,
+	q::after {
+		content: '';
+		content: none;
+	}
+
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	img {
+		display: block;
+		max-width: 100%;
+		height: auto;
+	}
+
+	button {
+		padding: 0;
+
+		background: none;
+		cursor: pointer;
+		border: none;
+	}
+
+	input,
+	textarea {
+		color: inherit;
+		font: inherit;
+
+		outline: none;
+		border: none;
+	}
+
+	html {
+		scroll-behavior: smooth;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizelegibility;
+	}
+
+	h1,
+	h2,
+	h3,
+	header {
+		font-family: 'Noto Serif KR', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	}
+
+	body,
+	button,
+	input,
+	select,
+	table,
+	textarea {
+		font-family: 'Pretendard', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	}
+
+	button:focus:not(:focus-visible) {
+		outline: none;
+	}
+
+	body {
+		font-family: 'Pretendard';
+		overflow-x: hidden;
+
+		width: 100%;
+		min-height: 100vh;
+		margin: 0;
+		padding: 0;
+		color: #303239;
+		background-color: #ffffff;
+
+		font-synthesis: none;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	@supports (-webkit-touch-callout: none) {
+		body {
+			min-height: -webkit-fill-available;
+		}
+	}
+
+	body::before {
+		content: '';
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url('/assets/noise.svg');
+		opacity: 0.4;
+		pointer-events: none;
+		z-index: 9999;
+	}
+
+	@media print {
+		body::before {
+			background-image: none;
+		}
+	}
+
+	#root {
+		width: 100%;
+		min-width: 100vw;
+		min-height: 100vh;
+	}
+}
+
+/* ── keyframes: Emotion @emotion/react keyframes 이관 ── */
+@layer utilities {
+	@keyframes blink {
+		0%,
+		100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes fadeInBlur {
+		from {
+			opacity: 0;
+			filter: blur(10px);
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			filter: blur(0);
+			transform: translateY(0);
+		}
+	}
+}
+
+/* ── components/Selector.style.tsx 이관 (arbitrary value 로 담기 어려운 SVG data URI 포함) ── */
+@layer components {
+	.selector-nav {
+		display: none;
+	}
+	.selector-item {
+		display: none;
+	}
+
+	@media (max-width: 768px) {
+		.selector-nav {
+			display: flex;
+			position: sticky;
+			z-index: 10;
+			top: 60px;
+			padding: 0.8rem 0;
+			margin: 0;
+			background-color: rgba(255, 255, 255, 0.8);
+			backdrop-filter: blur(15px);
+			-webkit-backdrop-filter: blur(15px);
+			border-bottom: 1px solid rgba(241, 242, 246, 0.27);
+		}
+
+		.selector-item {
+			display: block;
+			padding: 6px 30px 6px 12px;
+			font-size: 0.875rem;
+			font-family: 'Pretendard', sans-serif;
+			font-weight: 500;
+			color: #780606;
+			border: 1px solid rgba(120, 6, 6, 0.2);
+			border-radius: 10px;
+			background-color: transparent;
+			appearance: none;
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23780606' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+			background-repeat: no-repeat;
+			background-position: right 10px center;
+			background-size: 0.875rem;
+		}
+	}
+}
+
+/* ── ScheduleCalendar.style.ts 의 react-calendar 라이브러리 오버라이드 이관 (arbitrary variant 로 라이브러리 내부 클래스 타겟 불가) ── */
+@layer components {
+	.schedule-calendar {
+		display: block;
+		margin-top: 3rem;
+	}
+	@media (max-width: 480px) {
+		.schedule-calendar {
+			margin-top: 4rem;
+		}
+	}
+
+	.schedule-calendar .react-calendar {
+		border: none;
+		font-family: var(--font-sans);
+		background: transparent;
+		line-height: 1.125em;
+		margin-top: 1rem;
+	}
+	@media (max-width: 768px) {
+		.schedule-calendar .react-calendar {
+			width: 100vw;
+			position: relative;
+			left: 50%;
+			right: 50%;
+			margin-left: -50vw;
+			margin-right: -50vw;
+			max-width: 100vw;
+			overflow-x: hidden;
+			padding: 0px 4px;
+		}
+	}
+
+	.schedule-calendar .react-calendar__month-view__weekdays {
+		text-align: center;
+		padding: 0.5rem 0;
+		font-size: var(--text-sm);
+		font-weight: 400;
+		color: var(--color-gray-700);
+	}
+	.schedule-calendar .react-calendar__month-view__weekdays abbr {
+		text-decoration: none;
+	}
+	@media (max-width: 768px) {
+		.schedule-calendar .react-calendar__month-view__weekdays {
+			font-size: var(--text-xs);
+		}
+	}
+
+	.schedule-calendar .react-calendar__tile {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		height: auto;
+		min-height: 130px;
+		padding: 0.3rem;
+		font-size: var(--text-sm);
+		font-weight: 400;
+		color: var(--color-gray-700);
+	}
+	.schedule-calendar .react-calendar__tile abbr {
+		margin-bottom: 0.5rem;
+	}
+	.schedule-calendar .react-calendar__tile:enabled:hover,
+	.schedule-calendar .react-calendar__tile:enabled:focus {
+		background-color: var(--color-gray-100);
+		border-radius: 8px;
+	}
+	.schedule-calendar .react-calendar__tile--now {
+		background: var(--color-gray-50);
+		color: var(--color-primary);
+		border-radius: 8px;
+	}
+	.schedule-calendar .react-calendar__tile--active {
+		background: var(--color-primary) !important;
+		color: var(--color-white) !important;
+		border-radius: 8px;
+	}
+	.schedule-calendar .react-calendar__month-view__days__day--neighboringMonth {
+		color: var(--color-gray-300);
+	}
+
+	.schedule-calendar .react-calendar__navigation {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 4px;
+		margin-bottom: 1rem;
+	}
+	@media (max-width: 768px) {
+		.schedule-calendar .react-calendar__navigation {
+			margin-left: 0.5rem;
+		}
+	}
+	.schedule-calendar .react-calendar__navigation .react-calendar__navigation__arrow {
+		flex: 0 0 auto;
+		min-width: 2.5rem;
+		width: auto;
+	}
+	.schedule-calendar .react-calendar__navigation .react-calendar__navigation__label {
+		flex: 0 1 auto;
+		padding: 0.5rem 1rem;
+		font-weight: 600;
+		min-width: fit-content;
+	}
+	.schedule-calendar .react-calendar__navigation button {
+		display: flex;
+		flex: none !important;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2rem;
+		padding: 0.5rem 0.8rem;
+		background: transparent;
+		border: none;
+		font-size: var(--text-md);
+		font-weight: 500;
+		color: var(--color-gray-700);
+	}
+	.schedule-calendar .react-calendar__navigation button > button {
+		width: 100%;
+		height: 100%;
+		background: transparent;
+		border: none;
+		font-family: inherit;
+		font-size: inherit;
+		font-weight: inherit;
+		color: inherit;
+		cursor: inherit;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.schedule-calendar .react-calendar__navigation button:disabled {
+		background-color: none;
+		color: var(--color-gray-300);
+	}
+	.schedule-calendar .react-calendar__navigation button:enabled:hover,
+	.schedule-calendar .react-calendar__navigation button:enabled:focus {
+		background-color: var(--color-gray-100);
+		border-radius: 8px;
+	}
+	@media (max-width: 768px) {
+		.schedule-calendar .react-calendar__navigation button {
+			padding: 0.5rem 0.8rem;
+			font-size: var(--text-md);
+		}
+	}
+	@media (max-width: 480px) {
+		.schedule-calendar .react-calendar__navigation button {
+			padding: 0.3rem 0.8rem;
+			font-size: var(--text-sm);
+		}
+	}
+
+	.schedule-calendar--compact .react-calendar__viewContainer,
+	.schedule-calendar--compact .react-calendar__month-view__weekdays {
+		display: none;
+	}
+	.schedule-calendar--compact .react-calendar__navigation__label {
+		pointer-events: none;
+		cursor: default;
+	}
+	.schedule-calendar--compact .react-calendar__navigation__label:enabled:hover,
+	.schedule-calendar--compact .react-calendar__navigation__label:enabled:focus {
+		background-color: transparent !important;
+	}
+
+	/* month tile 내부 ScheduleItem: 선택된 타일 안에서 색 반전 */
+	.schedule-calendar .react-calendar__tile--active .sc-tile-item {
+		background-color: rgba(255, 255, 255, 0.2) !important;
+		color: var(--color-white) !important;
+	}
+}

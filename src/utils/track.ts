@@ -6,6 +6,24 @@ import { FULL_ALBUMS } from '@/const/albums';
 import { MASTER_TRACKS } from '@/const/tracks';
 import { Track } from '@/types/track';
 
+export const GetTrackSlug = (track: Track): string => {
+	let slug = track.title;
+
+	if (track.id.startsWith('TRK_LV')) {
+		const hasLiveTag = track.version?.toLowerCase().includes('live');
+
+		if (!hasLiveTag) {
+			slug = `${track.title}_Live`;
+		} else if (track.version) {
+			slug = `${track.title}_${track.version}`;
+		}
+	} else if (track.version) {
+		slug = `${track.title}_${track.version}`;
+	}
+
+	return slug;
+};
+
 export const GetTracks = (tracks: string[] | Record<string, string[]>): string[] => {
 	if (!Array.isArray(tracks)) {
 		const allIds = Object.values(tracks).flat();

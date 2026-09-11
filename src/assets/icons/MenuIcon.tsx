@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { useTheme } from '@emotion/react';
 
 interface MenuIconProps {
 	isOpen: boolean;
@@ -7,8 +6,7 @@ interface MenuIconProps {
 }
 
 const MenuIcon = ({ isOpen, color }: MenuIconProps) => {
-	const theme = useTheme();
-	const iconColor = color || theme.COLOR.BLACK;
+	const iconColor = color || '#000000';
 
 	const variant = {
 		top: {
@@ -31,6 +29,7 @@ const MenuIcon = ({ isOpen, color }: MenuIconProps) => {
 				stroke={iconColor}
 				strokeWidth="2"
 				strokeLinecap="round"
+				initial={false}
 				animate={isOpen ? variant.top.opened : variant.top.closed}
 			/>
 			<motion.path
@@ -44,6 +43,7 @@ const MenuIcon = ({ isOpen, color }: MenuIconProps) => {
 				stroke={iconColor}
 				strokeWidth="2"
 				strokeLinecap="round"
+				initial={false}
 				animate={isOpen ? variant.bottom.opened : variant.bottom.closed}
 			/>
 		</svg>

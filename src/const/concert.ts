@@ -428,6 +428,17 @@ export const SOLO_CONCERT: ConcertList = [
 
 export const JOIN_CONCERT: ConcertList = [
 	{
+		year: '2026',
+		items: [
+			{
+				type: 'JOIN',
+				date: '07.20',
+				content: '먼데이프로젝트 시즌9',
+				location: '연남스페이스',
+			},
+		],
+	},
+	{
 		year: '2025',
 		items: [
 			{
@@ -535,6 +546,17 @@ export const TOUR_CONCERT: ConcertList = [
 ];
 
 export const LISTENING: ConcertList = [
+	{
+		year: '2026',
+		items: [
+			{
+				type: 'LISTENING',
+				date: '04.23',
+				content: '제3회 음악감상회',
+				location: '금천구 수상한 창고',
+			},
+		],
+	},
 	{
 		year: '2025',
 		items: [

@@ -443,6 +443,28 @@ Special Thanks to 안성훈(ASH)`,
 			[MUSIC_PLATFORM.SOUNDCLOUD]: '',
 		},
 	},
+	{
+		type: 'LP',
+		volume: 7,
+		title: '패배주의',
+		releaseDate: '2026.06.13',
+		intro: `저의 20대는 반지하에서의 투쟁이었습니다. 제 열등감, 패배감, 분노에는 목적이 없었습니다. 스스로가 쓸모 없게 느껴졌고 사회엔 제 자리가 없는 것처럼 보였습니다.`,
+		tracks: ['TRK_LP07_*'],
+		genre: ['포크/어쿠스틱', '인디'],
+		style: ['포크 팝'],
+		distributor: '아토엔터테인먼트',
+		totalDuration: '18:09',
+		agency: '천진우',
+		streaming: {
+			[MUSIC_PLATFORM.YOUTUBE]: '',
+			[MUSIC_PLATFORM.MELON]: '',
+			[MUSIC_PLATFORM.SPOTIFY]: 'https://open.spotify.com/album/7cmtoMA5BZnKuGa8dWtkxS',
+			[MUSIC_PLATFORM.APPLE_MUSIC]: 'https://music.apple.com/kr/album/패배주의/6775756335',
+			[MUSIC_PLATFORM.BUGS]: 'https://music.bugs.co.kr/album/20817436',
+			[MUSIC_PLATFORM.GENIE]: '',
+			[MUSIC_PLATFORM.SOUNDCLOUD]: '',
+		},
+	},
 ];
 
 const EP_ALBUMS: Album[] = [

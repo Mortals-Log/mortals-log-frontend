@@ -1,29 +1,18 @@
+'use client';
+
 // @/hooks/useTrackNavigation.ts
 
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { Track } from '@/types/track';
+import { GetTrackSlug } from '@/utils/track';
 
 export const UseTrackNavigation = () => {
-	const navigate = useNavigate();
+	const router = useRouter();
 
 	const handleItemClick = (track: Track) => {
 		if (!track) return;
 
-		let slug = track.title;
-
-		if (track.id.startsWith('TRK_LV')) {
-			const hasLiveTag = track.version?.toLowerCase().includes('live');
-
-			if (!hasLiveTag) {
-				slug = `${track.title}_Live`;
-			} else if (track.version) {
-				slug = `${track.title}_${track.version}`;
-			}
-		} else if (track.version) {
-			slug = `${track.title}_${track.version}`;
-		}
-
-		navigate(`/song/${encodeURIComponent(slug)}`);
+		router.push(`/song/${encodeURIComponent(GetTrackSlug(track))}`);
 	};
 
 	const handleKeyDown = (e: React.KeyboardEvent, track: Track) => {
