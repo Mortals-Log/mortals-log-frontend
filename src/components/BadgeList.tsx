@@ -38,7 +38,7 @@ const TrackBadgeList = ({ track }: TrackBadgeListProps) => {
 	];
 
 	return (
-		<div className="flex flex-wrap gap-[0.3rem] max-tablet:gap-[0.2rem]">
+		<div className="flex flex-wrap items-center gap-[0.3rem] max-tablet:gap-[0.2rem]">
 			{badges.map(
 				(badge, i) =>
 					badge.show && (

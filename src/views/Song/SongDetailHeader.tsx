@@ -6,6 +6,7 @@ import { useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
 import { MASTER_TRACKS } from '@/const/tracks';
+import { GetTrackSlug } from '@/utils/track';
 import { Track } from '@/types/track';
 import { Album } from '@/types/album';
 import { BADGE_LABEL } from '@/components/BadgeList';
@@ -42,6 +43,8 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 			const originalTrack = MASTER_TRACKS[id as keyof typeof MASTER_TRACKS];
 			return {
 				id,
+				// /song/[id] 는 트랙 내부 id 가 아니라 GetTrackSlug 기반 슬러그로만 생성되어 있다.
+				slug: originalTrack ? GetTrackSlug(originalTrack) : id,
 				displayTitle: originalTrack ? originalTrack.title : id,
 			};
 		});
@@ -54,8 +57,8 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 	}, [router, albumInfo]);
 
 	const handleSongClick = useCallback(
-		(id: string) => {
-			router.push(`/song/${id}`);
+		(slug: string) => {
+			router.push(`/song/${encodeURIComponent(slug)}`);
 		},
 		[router],
 	);
@@ -84,8 +87,8 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 
 				{originalTracks.length > 0 && (
 					<div className={SDH_ORIGINAL_LINK_GROUP}>
-						{originalTracks.map(({ id, displayTitle }) => (
-							<button key={id} className={SDH_ORIGINAL_LINK} onClick={() => handleSongClick(id)}>
+						{originalTracks.map(({ id, slug, displayTitle }) => (
+							<button key={id} className={SDH_ORIGINAL_LINK} onClick={() => handleSongClick(slug)}>
 								원곡보기 #{displayTitle}
 							</button>
 						))}

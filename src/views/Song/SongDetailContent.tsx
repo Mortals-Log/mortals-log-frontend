@@ -44,11 +44,11 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 	const tabs = useMemo(
 		() =>
 			[
-				{ id: 'lyrics', label: '가사', show: !!track.lyrics },
+				{ id: 'lyrics', label: '가사', show: true },
 				{ id: 'chords', label: '코드', show: hasChords },
 				{ id: 'mv', label: '뮤직비디오', show: !!track.mvLink },
 			].filter(tab => tab.show),
-		[track.lyrics, track.mvLink, hasChords],
+		[track.mvLink, hasChords],
 	);
 
 	const guideItems = useMemo(() => {
@@ -105,7 +105,7 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 	};
 
 	return (
-		<section className={LAYOUT_CONTENT_SECTION}>
+		<section>
 			<div className={SDC_CONTENT_HEADER}>
 				<div className={SDC_TAB_GROUP}>
 					{tabs.map(tab => (
