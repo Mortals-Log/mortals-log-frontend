@@ -196,10 +196,13 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 						</div>
 					)}
 
-					{concert.ticketing &&
+					{concert.ticketing && concert.ticketing.length > 0 ? (
 						concert.ticketing.map((t, index) => {
 							const now = new Date();
-							const { ticketingDate, ticketingTime, ticketingLink } = t;
+							const { ticketingDate, ticketingTime, ticketingLink, label, soldOut } = t;
+							const roundCount = concert.ticketing?.length ?? 0;
+							// 회차 구분용 라벨: label(예: 얼리버드/일반)이 있으면 그걸, 없으면 순서대로 n차.
+							const roundLabel = label || (roundCount > 1 ? `${index + 1}차` : '');
 
 							const concertStart = cleanDate.split('~')[0].trim();
 							const [cMonth, cDay] = concertStart.split('.').map(Number);
@@ -207,6 +210,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 
 							const tParts = ticketingDate?.split('.').map(Number) || [];
 							const [tHour, tMin] = (ticketingTime || '00:00').split(':').map(Number);
+							// 회차별 오픈 여부는 각자의 시작 시각만 기준으로 판단한다(종료 시각 없음).
 							const fullTicketingDate = new Date(tParts[0], tParts[1] - 1, tParts[2], tHour, tMin, 0);
 
 							const isBeforeConcert = now < concertDate;
@@ -215,15 +219,12 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 							const linktreeLink = LINK_LIST.find(cat => cat.category === 'ETC')?.items.find(
 								item => item.label === ETC_PLATFORM.LINK_TREE,
 							)?.url;
-							const finalTicketingLink = ticketingLink || linktreeLink;
 
 							return (
 								<div className={SDB_INFO_GROUP} key={`${ticketingDate}-${index}`}>
 									{ticketingDate && (
 										<>
-											<InfoTitle
-												label={(concert.ticketing?.length ?? 0) > 1 ? `TICKETING ${index + 1}차` : 'TICKETING'}
-											/>
+											<InfoTitle label={label ? `TICKETING - ${label}` : roundLabel ? `TICKETING ${roundLabel}` : 'TICKETING'} />
 											<div className={SDB_INFO_ITEM}>
 												{ticketingDate} ({GetDay(ticketingDate)})
 												{ticketingTime && <span className="time"> {ticketingTime}</span>}
@@ -235,33 +236,41 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 										<div className={SDB_INFO_ITEM}>
 											<span className="info">공연이 종료되었습니다.</span>
 										</div>
+									) : soldOut ? (
+										<div className={SDB_INFO_ITEM}>
+											<span className="info">매진되었습니다.</span>
+										</div>
 									) : !isTicketingOpen ? (
 										<div className={SDB_INFO_ITEM}>
 											<span className="info">티켓팅 오픈 전입니다.</span>
 										</div>
+									) : ticketingLink ? (
+										<Link href={ticketingLink} target="_blank" rel="noopener noreferrer" className={PRIMARY_BUTTON}>
+											{roundLabel ? `${roundLabel} ` : ''}티켓 예매하러 가기
+										</Link>
 									) : (
-										finalTicketingLink && (
-											<>
-												<Link
-													href={finalTicketingLink}
-													target="_blank"
-													rel="noopener noreferrer"
-													className={PRIMARY_BUTTON}>
-													{(concert.ticketing?.length ?? 0) > 1
-														? `${index + 1}차 티켓 예매하러 가기`
-														: '티켓 예매하러 가기'}
+										<>
+											<div className={SDB_INFO_ITEM}>
+												<span className="info">티켓팅 사이트가 아직 등록되지 않았습니다.</span>
+											</div>
+											{linktreeLink && (
+												<Link href={linktreeLink} target="_blank" rel="noopener noreferrer" className={MORE_BUTTON}>
+													링크트리에서 확인하기
 												</Link>
-												{!ticketingLink && finalTicketingLink === linktreeLink && (
-													<div className={SDB_INFO_ITEM}>
-														<span className="info">링크트리의 구글폼에서 예매해주세요.</span>
-													</div>
-												)}
-											</>
-										)
+											)}
+										</>
 									)}
 								</div>
 							);
-						})}
+						})
+					) : (
+						<div className={SDB_INFO_GROUP}>
+							<InfoTitle label="TICKETING" />
+							<div className={SDB_INFO_ITEM}>
+								<span className="info">아직 티켓팅 일정이 공지되지 않았습니다.</span>
+							</div>
+						</div>
+					)}
 				</>
 			);
 		}

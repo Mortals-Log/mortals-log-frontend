@@ -608,8 +608,14 @@ export const FESTIVAL: ConcertList = [
 				price: { regular: '1일권 132,000원 / 2일권 198,000원', early: '1일권 118,800원 / 2일권 158,000원' },
 				ticketing: [
 					{
+						label: '얼리버드',
 						ticketingDate: '2026.03.17',
 						ticketingTime: '14:00',
+					},
+					{
+						label: '일반',
+						ticketingDate: '2026.07.03',
+						ticketingTime: '12:00',
 					},
 				],
 			},

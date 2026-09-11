@@ -6,6 +6,10 @@ interface Ticketing {
 	ticketingDate?: string;
 	ticketingTime?: string;
 	ticketingLink?: string;
+	/** 회차 구분 라벨(예: "얼리버드", "일반"). 없으면 등록 순서대로 "1차/2차" 로 표기한다. */
+	label?: string;
+	/** 매진 여부 — true 면 오픈 상태와 무관하게 매진 안내를 보여준다. */
+	soldOut?: boolean;
 }
 
 export interface ConcertItem {
