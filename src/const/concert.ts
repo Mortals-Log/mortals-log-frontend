@@ -603,7 +603,8 @@ export const FESTIVAL: ConcertList = [
 				performanceDates: ['09.06'],
 				times: ['10:40 ~ 11:20'],
 				content: '사운드 플래닛 페스티벌 2026',
-				location: '인천광역시 영종구 파라다이스시티 크로마 스테이지',
+				location: '인천광역시 영종구 파라다이스시티',
+				performanceLocation: '크로마 스테이지',
 				lineUp: SOLO_LINEUP,
 				price: { regular: '1일권 132,000원 / 2일권 198,000원', early: '1일권 118,800원 / 2일권 158,000원' },
 				ticketing: [

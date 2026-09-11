@@ -101,6 +101,25 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 			const year = concert.date.split('.')[0];
 			const cleanDate = concert.date.replace(`${year}.`, '').trim();
 
+			const now = new Date();
+			const concertStart = cleanDate.split('~')[0].trim();
+			const [concertMonth, concertDay] = concertStart.split('.').map(Number);
+			const concertDate = new Date(Number(year), concertMonth - 1, concertDay, 0, 0, 0);
+
+			const getFullTicketingDate = (t: NonNullable<ConcertItem['ticketing']>[number]) => {
+				if (!t.ticketingDate) return null;
+				const [ty, tm, td] = t.ticketingDate.split('.').map(Number);
+				const [th, tmin] = (t.ticketingTime || '00:00').split(':').map(Number);
+				return new Date(ty, tm - 1, td, th, tmin, 0);
+			};
+
+			// 공연 날짜가 지났거나, 다음 회차가 이미 시작해 이 회차의 기간이 끝난 티켓팅은 숨긴다.
+			const visibleTicketing = (concert.ticketing ?? []).filter((t, index, arr) => {
+				if (now >= concertDate) return false;
+				const nextRoundStart = arr[index + 1] ? getFullTicketingDate(arr[index + 1]) : null;
+				return !(nextRoundStart && now >= nextRoundStart);
+			});
+
 			return (
 				<>
 					{concert.performanceDates?.length ? (
@@ -170,6 +189,13 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 						</div>
 					)}
 
+					{concert.performanceLocation && (
+						<div className={SDB_INFO_GROUP}>
+							<InfoTitle label="STAGE" />
+							<div className={SDB_INFO_ITEM}>{concert.performanceLocation}</div>
+						</div>
+					)}
+
 					{concert.price && (
 						<div className={SDB_INFO_GROUP}>
 							<InfoTitle label="TICKET" />
@@ -197,24 +223,15 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 					)}
 
 					{concert.ticketing && concert.ticketing.length > 0 ? (
-						concert.ticketing.map((t, index) => {
-							const now = new Date();
+						visibleTicketing.map(t => {
+							const index = concert.ticketing?.indexOf(t) ?? 0;
 							const { ticketingDate, ticketingTime, ticketingLink, label, soldOut } = t;
 							const roundCount = concert.ticketing?.length ?? 0;
 							// 회차 구분용 라벨: label(예: 얼리버드/일반)이 있으면 그걸, 없으면 순서대로 n차.
 							const roundLabel = label || (roundCount > 1 ? `${index + 1}차` : '');
 
-							const concertStart = cleanDate.split('~')[0].trim();
-							const [cMonth, cDay] = concertStart.split('.').map(Number);
-							const concertDate = new Date(Number(year), cMonth - 1, cDay, 0, 0, 0);
-
-							const tParts = ticketingDate?.split('.').map(Number) || [];
-							const [tHour, tMin] = (ticketingTime || '00:00').split(':').map(Number);
-							// 회차별 오픈 여부는 각자의 시작 시각만 기준으로 판단한다(종료 시각 없음).
-							const fullTicketingDate = new Date(tParts[0], tParts[1] - 1, tParts[2], tHour, tMin, 0);
-
-							const isBeforeConcert = now < concertDate;
-							const isTicketingOpen = now >= fullTicketingDate;
+							// 이 시점의 항목은 공연 종료·다음 회차 시작으로 이미 걸러진 상태다(visibleTicketing).
+							const isTicketingOpen = now >= (getFullTicketingDate(t) ?? new Date(NaN));
 
 							const linktreeLink = LINK_LIST.find(cat => cat.category === 'ETC')?.items.find(
 								item => item.label === ETC_PLATFORM.LINK_TREE,
@@ -224,7 +241,9 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 								<div className={SDB_INFO_GROUP} key={`${ticketingDate}-${index}`}>
 									{ticketingDate && (
 										<>
-											<InfoTitle label={label ? `TICKETING - ${label}` : roundLabel ? `TICKETING ${roundLabel}` : 'TICKETING'} />
+											<InfoTitle
+												label={label ? `TICKETING - ${label}` : roundLabel ? `TICKETING ${roundLabel}` : 'TICKETING'}
+											/>
 											<div className={SDB_INFO_ITEM}>
 												{ticketingDate} ({GetDay(ticketingDate)})
 												{ticketingTime && <span className="time"> {ticketingTime}</span>}
@@ -232,11 +251,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 										</>
 									)}
 
-									{!isBeforeConcert ? (
-										<div className={SDB_INFO_ITEM}>
-											<span className="info">공연이 종료되었습니다.</span>
-										</div>
-									) : soldOut ? (
+									{soldOut ? (
 										<div className={SDB_INFO_ITEM}>
 											<span className="info">매진되었습니다.</span>
 										</div>
@@ -423,10 +438,13 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 	const renderBottomMap = () => {
 		if (type !== 'CONCERT' || !data) return null;
 
-		const location = (data as ConcertItem).location;
+		const concertData = data as ConcertItem;
+		const location = concertData.location;
 		if (!location || location === '미정') return null;
 
-		const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(location)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+		// 스테이지(공연 장소)가 따로 있으면 검색어에 함께 넣어 더 정확한 위치를 보여준다.
+		const mapQuery = concertData.performanceLocation ? `${location} ${concertData.performanceLocation}` : location;
+		const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
 		return (
 			<section className={SDB_MAP_SECTION}>
