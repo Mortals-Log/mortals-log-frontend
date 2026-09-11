@@ -180,9 +180,9 @@
 	font-style: normal;
 	font-weight: 500;
 	font-display: swap;
-	src:
-		url('/fonts/NotoSerifKR-Medium.woff') format('woff'),
-		url('/fonts/NotoSerifKR-Medium.ttf') format('truetype');
+	/* NotoSerifKR-Medium.woff 파일이 public/fonts 에 없어(다른 굵기는 woff+ttf 모두 존재)
+	   404 를 유발했다. 존재하는 ttf 만 참조한다. */
+	src: url('/fonts/NotoSerifKR-Medium.ttf') format('truetype');
 }
 
 /* SemiBold - Noto Serif KR */
