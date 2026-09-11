@@ -61,7 +61,10 @@ const GNB = () => {
 
 	const [isLogoHovered, setIsLogoHovered] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== 'undefined' ? window.innerWidth <= 1100 : false);
+	// SSR 시엔 window 가 없어 항상 false 로 렌더된다. 클라이언트 첫 렌더에서
+	// 곧바로 실제 폭을 읽으면 서버 결과와 달라져 하이드레이션이 깨지므로,
+	// 마운트 시 useEffect(handleResize) 가 보정할 때까지 false 로 고정한다.
+	const [isSmallScreen, setIsSmallScreen] = useState(false);
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
 	const nextEvent = useMemo(() => getNextEvent(CALENDAR_SCHEDULES), []);
