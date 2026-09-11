@@ -57,9 +57,33 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 			const endDate = endMD ? new Date(`${group.year}-${endMD.replace(/\./g, '-')}`) : new Date(startDate);
 			const concertIdDate = FormatDate(startDate);
 
-			// 일정
+			// date 범위(예: "09.05 ~ 09.06")의 모든 날짜에 캘린더 일정을 만든다
+			// (페스티벌처럼 기간 중 하루만 공연해도 기간 전체가 캘린더에 노출되어야 함).
+			const rangeDates: Date[] = [];
 			for (let curr = new Date(startDate); curr.getTime() <= endDate.getTime(); curr.setDate(curr.getDate() + 1)) {
+				rangeDates.push(new Date(curr));
+			}
+
+			// performanceDates 가 있으면(예: 금~일 페스티벌 중 하루만 공연) 실제 공연일·시간을
+			// 요약 문구로 만들어, 기간 중 어느 날짜를 보더라도 언제 공연하는지 알 수 있게 한다.
+			const performanceSummary = item.performanceDates?.length
+				? item.performanceDates.map(md => `${md}${item.times?.length ? ` ${item.times.join(' ~ ')}` : ''}`).join(', ')
+				: null;
+
+			// 일정
+			rangeDates.forEach(curr => {
 				const dateKey = FormatDate(curr);
+
+				if (performanceSummary) {
+					addSchedule(dateKey, {
+						type: 'CONCERT',
+						content: baseContent,
+						time: performanceSummary,
+						imageUrl: imageSrc,
+						ageLimit: item.ageLimit || false,
+					});
+					return;
+				}
 
 				// 시간
 				if (item.times && item.times.length > 1) {
@@ -83,7 +107,7 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 						ageLimit: item.ageLimit || false,
 					});
 				}
-			}
+			});
 
 			// 티켓팅
 			if (item.ticketing) {
@@ -93,7 +117,8 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 					if (!t.ticketingDate) return;
 
 					const tDateKey = t.ticketingDate.replace(/\./g, '-');
-					const partLabel = ticketingList.length > 1 ? ` - ${idx + 1}부` : '';
+					// 얼리버드/일반처럼 회차별 label 이 있으면 그걸 쓰고, 없을 때만 순서대로 N부.
+					const partLabel = t.label ? ` - ${t.label}` : ticketingList.length > 1 ? ` - ${idx + 1}부` : '';
 					const displayContent = `[${SCHEDULE_LABEL_MAP.TICKETING}] ${item.content}${partLabel}`;
 
 					const ticketingSchedule: Schedule = {
@@ -102,7 +127,10 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 						date: t.ticketingDate,
 						time: t.ticketingTime,
 						imageUrl: imageSrc,
-						id: GenerateScheduleId('CONCERT', concertIdDate, baseContent),
+						// baseContent 만 넣으면 같은 날짜에 여는 여러 회차 티켓팅(예: 이틀 공연의
+						// 1일차/2일차 티켓팅이 같은 날 오픈하는 경우)이 동일 id 로 충돌한다.
+						// partLabel 을 포함해 회차별로 구분한다.
+						id: GenerateScheduleId('CONCERT', concertIdDate, `${baseContent}${partLabel}`),
 					};
 
 					const dateKey = tDateKey.replace(/\s/g, '');
@@ -209,6 +237,27 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 			});
 		}
 	});
+
+	// GenerateScheduleId 는 base64 를 25자로 잘라, 날짜·내용 앞부분이 같은 일정
+	// (콘서트 1부/2부, 같은 날 여러 회차 티켓팅 등)이 동일 ID 로 충돌할 수 있다.
+	// 충돌한 항목에만 접미사를 붙여 React key 와 /schedule/[id] 라우트가
+	// 유일성을 갖도록 최종 보정한다.
+	const seenIds = new Set<string>();
+
+	Object.values(schedules).forEach(list =>
+		list.forEach(schedule => {
+			let uniqueId = schedule.id;
+			let suffix = 1;
+
+			while (seenIds.has(uniqueId)) {
+				uniqueId = `${schedule.id}-${suffix}`;
+				suffix += 1;
+			}
+
+			seenIds.add(uniqueId);
+			schedule.id = uniqueId;
+		}),
+	);
 
 	return schedules;
 };

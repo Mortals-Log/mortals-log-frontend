@@ -10,7 +10,6 @@ export { default as spotify } from './spotifyIcon.svg?react';
 export { default as applemusic } from './applemusicIcon.svg?react';
 export { default as bugs } from './bugsIcon.svg?react';
 export { default as genie } from './genieIcon.svg?react';
-export { default as soundcloud } from './soundcloudIcon.svg?react';
 export { default as cd } from './cdIcon.svg?react';
 export { default as lp } from './lpIcon.svg?react';
 export { default as goods } from './goodsIcon.svg?react';
