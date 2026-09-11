@@ -39,14 +39,24 @@ export interface Concert {
 	items: ConcertItem[];
 }
 
+/** 1일권/2일권처럼 하나의 항목에 여러 단가가 붙는 경우를 표현한다. */
+export interface PriceTier {
+	label: string;
+	amount: number;
+}
+
+/** 숫자면 그대로 표시 시 천 단위 콤마+'원'을 자동으로 붙인다. */
+export type PriceValue = number | PriceTier[];
+
 export interface Price {
-	regular: string;
-	student?: string;
-	army?: string;
-	onSpot?: string;
-	alien?: string;
-	teacher?: string;
-	early?: string;
+	regular: PriceValue;
+	student?: PriceValue;
+	army?: PriceValue;
+	onSpot?: PriceValue;
+	alien?: PriceValue;
+	teacher?: PriceValue;
+	early?: PriceValue;
+	monk?: PriceValue;
 }
 
 export type ConcertList = Concert[];
