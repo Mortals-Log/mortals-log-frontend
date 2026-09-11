@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { LINK_PLATFORM, MUSIC_PLATFORM } from '@/const/links';
 import Placeholder from '@/components/Placeholder';
 import { Track } from '@/types/track';
-import { LAYOUT_CONTENT_SECTION } from '@/const/layout-classes';
+import { GetChordsByTrackId } from '@/utils/chord';
 import { VIDEO_WRAPPER, PRIMARY_BUTTON } from '@/const/component-classes';
 import {
 	SDC_CONTENT_HEADER,
@@ -29,11 +29,13 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 	const [activeTab, setActiveTab] = useState<'lyrics' | 'chords' | 'mv'>('lyrics');
 	const [activeVersionIdx, setActiveVersionIdx] = useState(0);
 
-	const hasChords = useMemo(() => !!(track.chordsList && track.chordsList.length > 0), [track.chordsList]);
+	const chordsList = useMemo(() => GetChordsByTrackId(track.id), [track.id]);
+
+	const hasChords = useMemo(() => chordsList.length > 0, [chordsList]);
 
 	const currentChordVersion = useMemo(
-		() => (hasChords ? track.chordsList![activeVersionIdx] : null),
-		[hasChords, track.chordsList, activeVersionIdx],
+		() => (hasChords ? chordsList[activeVersionIdx] : null),
+		[hasChords, chordsList, activeVersionIdx],
 	);
 
 	const isSeparated = useMemo(
@@ -120,9 +122,9 @@ const SongDetailContent = ({ track }: SongDetailContentProps) => {
 
 				{activeTab === 'chords' && currentChordVersion && (
 					<div className={SDC_CHORD_SUB_HEADER}>
-						{track.chordsList!.length > 1 && (
+						{chordsList.length > 1 && (
 							<div className={SDC_VERSION_SELECTOR}>
-								{track.chordsList!.map((_, idx) => (
+								{chordsList.map((_, idx) => (
 									<button
 										key={idx}
 										className={sdcVersionChip(activeVersionIdx === idx)}

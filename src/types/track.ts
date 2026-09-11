@@ -7,13 +7,6 @@ interface SingingInfo {
 	ky?: string;
 }
 
-interface Chords {
-	chords: string;
-	tuning?: string;
-	provider?: string;
-	chordModeType: 'integrated' | 'separated';
-}
-
 export interface Track {
 	id: string;
 	originalTrackIds?: string[];
@@ -29,8 +22,6 @@ export interface Track {
 	lyricist?: string[];
 	composer?: string[];
 	arranger?: string[];
-
-	chordsList?: Chords[];
 
 	mvLink?: string;
 

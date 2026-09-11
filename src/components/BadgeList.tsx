@@ -2,6 +2,7 @@
 
 import { Track } from '@/types/track';
 import { cn } from '@/utils/cn';
+import { GetChordsByTrackId } from '@/utils/chord';
 
 export const BADGE_LABEL = {
 	TITLE: 'TITLE',
@@ -25,7 +26,7 @@ const TrackBadgeList = ({ track }: TrackBadgeListProps) => {
 		{ show: track.isLead, className: cn(BASE_BADGE, 'bg-primary text-white'), label: BADGE_LABEL.TITLE },
 		{ show: track.mvLink, className: cn(BASE_BADGE, 'bg-yellow-600 text-gray-700'), label: BADGE_LABEL.MV },
 		{
-			show: track.chordsList && track.chordsList.length > 0,
+			show: GetChordsByTrackId(track.id).length > 0,
 			className: cn(BASE_BADGE, 'bg-gray-700 text-white'),
 			label: BADGE_LABEL.CHORDS,
 		},
