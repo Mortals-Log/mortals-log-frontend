@@ -111,6 +111,7 @@ const ScheduleCalendar = () => {
 
 			<Calendar
 				calendarType="gregory"
+				locale="ko-KR"
 				onChange={val => setSelectedDate(val as Date)}
 				value={selectedDate}
 				activeStartDate={viewDate}
