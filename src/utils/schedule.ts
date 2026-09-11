@@ -57,21 +57,33 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 			const endDate = endMD ? new Date(`${group.year}-${endMD.replace(/\./g, '-')}`) : new Date(startDate);
 			const concertIdDate = FormatDate(startDate);
 
-			// date 범위(예: "09.05 ~ 09.06")의 모든 날짜를 기본 공연일로 삼되,
-			// performanceDates 가 있으면 그 날짜(들)로만 좁힌다.
-			// → 금~일 페스티벌인데 하루만 공연하는 경우를 표현할 수 있다.
+			// date 범위(예: "09.05 ~ 09.06")의 모든 날짜에 캘린더 일정을 만든다
+			// (페스티벌처럼 기간 중 하루만 공연해도 기간 전체가 캘린더에 노출되어야 함).
 			const rangeDates: Date[] = [];
 			for (let curr = new Date(startDate); curr.getTime() <= endDate.getTime(); curr.setDate(curr.getDate() + 1)) {
 				rangeDates.push(new Date(curr));
 			}
 
-			const performanceDates = item.performanceDates?.length
-				? item.performanceDates.map(md => new Date(`${group.year}-${md.replace(/\./g, '-')}`))
-				: rangeDates;
+			// performanceDates 가 있으면(예: 금~일 페스티벌 중 하루만 공연) 실제 공연일·시간을
+			// 요약 문구로 만들어, 기간 중 어느 날짜를 보더라도 언제 공연하는지 알 수 있게 한다.
+			const performanceSummary = item.performanceDates?.length
+				? item.performanceDates.map(md => `${md}${item.times?.length ? ` ${item.times.join(' ~ ')}` : ''}`).join(', ')
+				: null;
 
 			// 일정
-			performanceDates.forEach(curr => {
+			rangeDates.forEach(curr => {
 				const dateKey = FormatDate(curr);
+
+				if (performanceSummary) {
+					addSchedule(dateKey, {
+						type: 'CONCERT',
+						content: baseContent,
+						time: performanceSummary,
+						imageUrl: imageSrc,
+						ageLimit: item.ageLimit || false,
+					});
+					return;
+				}
 
 				// 시간
 				if (item.times && item.times.length > 1) {

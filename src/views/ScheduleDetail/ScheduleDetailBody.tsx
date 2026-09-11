@@ -103,27 +103,52 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 
 			return (
 				<>
-					<div className={SDB_INFO_GROUP}>
-						<InfoTitle label="DATE & TIME" />
-						{cleanDate.includes('~')
-							? cleanDate.split('~').map((date, idx) => (
-									<div className={SDB_INFO_ITEM} key={`range-${idx}`}>
-										<span className="part">{idx + 1}일차.</span>
-										{year}.{date.trim()} ({GetDay(date, year)})
+					{concert.performanceDates?.length ? (
+						<>
+							<div className={SDB_INFO_GROUP}>
+								<InfoTitle label="PERIOD" />
+								<div className={SDB_INFO_ITEM}>
+									{year}.{cleanDate.replace('~', ' ~ ')}
+								</div>
+							</div>
+
+							<div className={SDB_INFO_GROUP}>
+								<InfoTitle label="DATE & TIME" />
+								{concert.performanceDates.map((date, idx) => (
+									<div className={SDB_INFO_ITEM} key={`perf-${idx}`}>
+										{year}.{date} ({GetDay(date, year)})
 										{concert.times?.map((time, tIdx) => (
 											<span key={tIdx} className="time">
 												{time}
 											</span>
 										))}
 									</div>
-								))
-							: concert.times?.map((time, idx) => (
-									<div className={SDB_INFO_ITEM} key={`single-${idx}`}>
-										{concert.times && concert.times.length > 1 && <span className="part">{idx + 1}부.</span>}
-										{year}.{cleanDate} ({GetDay(cleanDate, year)})<span className="time">{time}</span>
-									</div>
 								))}
-					</div>
+							</div>
+						</>
+					) : (
+						<div className={SDB_INFO_GROUP}>
+							<InfoTitle label="DATE & TIME" />
+							{cleanDate.includes('~')
+								? cleanDate.split('~').map((date, idx) => (
+										<div className={SDB_INFO_ITEM} key={`range-${idx}`}>
+											<span className="part">{idx + 1}일차.</span>
+											{year}.{date.trim()} ({GetDay(date, year)})
+											{concert.times?.map((time, tIdx) => (
+												<span key={tIdx} className="time">
+													{time}
+												</span>
+											))}
+										</div>
+									))
+								: concert.times?.map((time, idx) => (
+										<div className={SDB_INFO_ITEM} key={`single-${idx}`}>
+											{concert.times && concert.times.length > 1 && <span className="part">{idx + 1}부.</span>}
+											{year}.{cleanDate} ({GetDay(cleanDate, year)})<span className="time">{time}</span>
+										</div>
+									))}
+						</div>
+					)}
 
 					{concert.lineUp && (
 						<div className={SDB_INFO_GROUP}>
