@@ -138,6 +138,22 @@ export const SOLO_CONCERT: ConcertList = [
 					},
 				],
 			},
+
+			{
+				type: 'SOLO',
+				date: '09.27',
+				content: '초가을 천진우 포크공연',
+				location: '금천구 수상한 창고',
+				times: ['17:00'],
+				price: { regular: 60000, student: 50000 },
+				lineUp: [MEMBERS.CJW],
+				ticketing: [
+					{
+						ticketingDate: '2026.09.12',
+						ticketingTime: '13:00',
+					},
+				],
+			},
 		],
 	},
 	{
@@ -629,6 +645,7 @@ export const FESTIVAL: ConcertList = [
 				date: '09.05 ~ 09.06',
 				performanceDates: ['09.06'],
 				times: ['10:40 ~ 11:20'],
+				ageLimit: true,
 				content: '사운드 플래닛 페스티벌 2026',
 				location: '인천광역시 영종구 파라다이스시티',
 				performanceLocation: '크로마 스테이지',
