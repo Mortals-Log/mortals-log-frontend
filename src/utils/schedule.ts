@@ -57,8 +57,20 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 			const endDate = endMD ? new Date(`${group.year}-${endMD.replace(/\./g, '-')}`) : new Date(startDate);
 			const concertIdDate = FormatDate(startDate);
 
-			// 일정
+			// date 범위(예: "09.05 ~ 09.06")의 모든 날짜를 기본 공연일로 삼되,
+			// performanceDates 가 있으면 그 날짜(들)로만 좁힌다.
+			// → 금~일 페스티벌인데 하루만 공연하는 경우를 표현할 수 있다.
+			const rangeDates: Date[] = [];
 			for (let curr = new Date(startDate); curr.getTime() <= endDate.getTime(); curr.setDate(curr.getDate() + 1)) {
+				rangeDates.push(new Date(curr));
+			}
+
+			const performanceDates = item.performanceDates?.length
+				? item.performanceDates.map(md => new Date(`${group.year}-${md.replace(/\./g, '-')}`))
+				: rangeDates;
+
+			// 일정
+			performanceDates.forEach(curr => {
 				const dateKey = FormatDate(curr);
 
 				// 시간
@@ -83,7 +95,7 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 						ageLimit: item.ageLimit || false,
 					});
 				}
-			}
+			});
 
 			// 티켓팅
 			if (item.ticketing) {
@@ -102,7 +114,10 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 						date: t.ticketingDate,
 						time: t.ticketingTime,
 						imageUrl: imageSrc,
-						id: GenerateScheduleId('CONCERT', concertIdDate, baseContent),
+						// baseContent 만 넣으면 같은 날짜에 여는 여러 회차 티켓팅(예: 이틀 공연의
+						// 1일차/2일차 티켓팅이 같은 날 오픈하는 경우)이 동일 id 로 충돌한다.
+						// partLabel 을 포함해 회차별로 구분한다.
+						id: GenerateScheduleId('CONCERT', concertIdDate, `${baseContent}${partLabel}`),
 					};
 
 					const dateKey = tDateKey.replace(/\s/g, '');
@@ -209,6 +224,27 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 			});
 		}
 	});
+
+	// GenerateScheduleId 는 base64 를 25자로 잘라, 날짜·내용 앞부분이 같은 일정
+	// (콘서트 1부/2부, 같은 날 여러 회차 티켓팅 등)이 동일 ID 로 충돌할 수 있다.
+	// 충돌한 항목에만 접미사를 붙여 React key 와 /schedule/[id] 라우트가
+	// 유일성을 갖도록 최종 보정한다.
+	const seenIds = new Set<string>();
+
+	Object.values(schedules).forEach(list =>
+		list.forEach(schedule => {
+			let uniqueId = schedule.id;
+			let suffix = 1;
+
+			while (seenIds.has(uniqueId)) {
+				uniqueId = `${schedule.id}-${suffix}`;
+				suffix += 1;
+			}
+
+			seenIds.add(uniqueId);
+			schedule.id = uniqueId;
+		}),
+	);
 
 	return schedules;
 };
