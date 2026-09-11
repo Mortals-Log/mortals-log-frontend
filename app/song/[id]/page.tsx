@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { FULL_ALBUMS } from '@const/albums';
 import { MASTER_TRACKS } from '@const/tracks';
 import { GetAlbumPaths } from '@utils/album';
-import { IsTrackMatch, GetTrackSlug } from '@utils/track';
+import { GetTrackByUrlSlug, GetTrackSlug } from '@utils/track';
 import { METADATA } from '@const/contents';
 import SongDetail from '@pages/Song/SongDetail';
 
@@ -13,7 +13,7 @@ export const generateStaticParams = () => {
 };
 
 const findTrackAndAlbum = (id: string) => {
-	const track = Object.values(MASTER_TRACKS).find(t => IsTrackMatch(t, id));
+	const track = GetTrackByUrlSlug(id);
 	if (!track) return { track: null, albumInfo: null };
 
 	const albumInfo = FULL_ALBUMS.flatMap(cat => cat.items).find(album => {

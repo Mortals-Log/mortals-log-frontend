@@ -5,13 +5,12 @@
 import { useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import { FULL_ALBUMS } from '@/const/albums';
-import { MASTER_TRACKS } from '@/const/tracks';
 import BackButton from '@/components/BackButton';
 import Placeholder from '@/components/Placeholder';
 import SongDetailHeader from '@/views/Song/SongDetailHeader';
 import SongDetailMeta from '@/views/Song/SongDetailMeta';
 import SongDetailContent from '@/views/Song/SongDetailContent';
-import { IsTrackMatch } from '@/utils/track';
+import { GetTrackByUrlSlug } from '@/utils/track';
 import { LAYOUT_MAIN, LAYOUT_MAIN_TITLE } from '@/const/layout-classes';
 
 const SongDetail = () => {
@@ -20,7 +19,7 @@ const SongDetail = () => {
 	const { track, albumInfo } = useMemo(() => {
 		if (!id) return { track: null, albumInfo: null };
 
-		const currentTrack = Object.values(MASTER_TRACKS).find(t => IsTrackMatch(t, id));
+		const currentTrack = GetTrackByUrlSlug(id);
 		if (!currentTrack) return { track: null, albumInfo: null };
 
 		const foundAlbum = FULL_ALBUMS.flatMap(cat => cat.items).find(album => {
