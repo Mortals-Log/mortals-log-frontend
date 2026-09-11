@@ -5,8 +5,7 @@
 import { useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { ALBUM_TYPE_LABEL } from '@/const/albums';
-import { MASTER_TRACKS } from '@/const/tracks';
-import { GetTrackSlug } from '@/utils/track';
+import { GetOriginalTracks } from '@/utils/track';
 import { Track } from '@/types/track';
 import { Album } from '@/types/album';
 import { BADGE_LABEL } from '@/components/BadgeList';
@@ -36,19 +35,7 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 		return `${type}${volume}`;
 	}, [albumInfo?.type, albumInfo?.volume]);
 
-	const originalTracks = useMemo(() => {
-		if (!track.originalTrackIds || track.originalTrackIds.length === 0) return [];
-
-		return track.originalTrackIds.map(id => {
-			const originalTrack = MASTER_TRACKS[id as keyof typeof MASTER_TRACKS];
-			return {
-				id,
-				// /song/[id] 는 트랙 내부 id 가 아니라 GetTrackSlug 기반 슬러그로만 생성되어 있다.
-				slug: originalTrack ? GetTrackSlug(originalTrack) : id,
-				displayTitle: originalTrack ? originalTrack.title : id,
-			};
-		});
-	}, [track.originalTrackIds]);
+	const originalTracks = useMemo(() => GetOriginalTracks(track), [track]);
 
 	const handleAlbumClick = useCallback(() => {
 		if (albumInfo?.title && albumInfo.title !== 'Unknown Album') {
@@ -87,9 +74,9 @@ const SongDetailHeader = ({ track, albumInfo }: SongDetailHeaderProps) => {
 
 				{originalTracks.length > 0 && (
 					<div className={SDH_ORIGINAL_LINK_GROUP}>
-						{originalTracks.map(({ id, slug, displayTitle }) => (
+						{originalTracks.map(({ id, slug, title }) => (
 							<button key={id} className={SDH_ORIGINAL_LINK} onClick={() => handleSongClick(slug)}>
-								원곡보기 #{displayTitle}
+								원곡보기 #{title}
 							</button>
 						))}
 					</div>
