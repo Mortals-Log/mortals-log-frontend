@@ -117,7 +117,8 @@ export const GET_CALENDAR_SCHEDULES = (): CalendarSchedules => {
 					if (!t.ticketingDate) return;
 
 					const tDateKey = t.ticketingDate.replace(/\./g, '-');
-					const partLabel = ticketingList.length > 1 ? ` - ${idx + 1}부` : '';
+					// 얼리버드/일반처럼 회차별 label 이 있으면 그걸 쓰고, 없을 때만 순서대로 N부.
+					const partLabel = t.label ? ` - ${t.label}` : ticketingList.length > 1 ? ` - ${idx + 1}부` : '';
 					const displayContent = `[${SCHEDULE_LABEL_MAP.TICKETING}] ${item.content}${partLabel}`;
 
 					const ticketingSchedule: Schedule = {
