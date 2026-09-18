@@ -14,7 +14,6 @@ export const ICON_CONFIG: Record<IconKey, { icon: React.FC<React.SVGProps<SVGSVG
 	applemusic: { icon: Icons.applemusic, label: 'Apple Music' },
 	bugs: { icon: Icons.bugs, label: 'BUGS!' },
 	genie: { icon: Icons.genie, label: 'genie' },
-	soundcloud: { icon: Icons.soundcloud, label: 'Sound Cloud' },
 	cd: { icon: Icons.cd, label: 'CD 구매하기' },
 	lp: { icon: Icons.lp, label: 'LP 바이닐 구매하기' },
 	goods: { icon: Icons.goods, label: '굿즈 구매하기' },

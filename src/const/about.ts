@@ -31,8 +31,7 @@ export const ABOUT_POLICY = {
 		},
 		{
 			label: 'CONTACT',
-			content:
-				'오류 제보, 콘텐츠 삭제 요청 및 기타 문의는 하단 SNS 채팅 혹은 이메일을 통해 전달해 주시기 바랍니다. : 현재 미개설 상태',
+			content: '오류 제보, 콘텐츠 삭제 요청 및 기타 문의는 하단 SNS 채팅 혹은 이메일을 통해 전달해 주시기 바랍니다.',
 		},
 	],
 } as const;

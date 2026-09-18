@@ -3,7 +3,6 @@
 /* eslint-disable storybook/default-exports */
 
 import { JSX } from 'react';
-import * as S from '@/styles/components/Table.style';
 
 interface TableProps {
 	label: string;
@@ -16,8 +15,12 @@ export const Table = ({ label, values }: TableProps) => (
 		<td>
 			{values.map((v, idx) => (
 				<div key={idx}>
-					<S.ValueItem>{v}</S.ValueItem>
-					{idx < values.length - 1 && <S.RowSeparator />}
+					<div className="py-4 px-5 font-sans font-normal text-md text-gray-700 [&_b]:font-semibold [&_b]:text-primary max-tablet:text-sm">
+						{v}
+					</div>
+					{idx < values.length - 1 && (
+						<hr className="w-[calc(100%-30px)] mx-auto border-0 border-b border-solid border-gray-300 max-mobile:w-full" />
+					)}
 				</div>
 			))}
 		</td>

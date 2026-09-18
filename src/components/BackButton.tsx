@@ -1,8 +1,8 @@
+'use client';
+
 // @/components/BackButton
 
-import * as S from '@/styles/components/Buttons.style';
-
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
 
 interface BackButtonProps {
@@ -10,21 +10,20 @@ interface BackButtonProps {
 }
 
 const BackButton = ({ to }: BackButtonProps) => {
-	const navigate = useNavigate();
-	const location = useLocation();
+	const router = useRouter();
 
 	const handleBack = useCallback(() => {
 		if (to) {
-			navigate(to);
+			router.push(to);
 			return;
 		}
 
-		if (window.history.length <= 1 || location.key === 'default') {
-			navigate('/');
+		if (window.history.length <= 1) {
+			router.push('/');
 		} else {
-			navigate(-1);
+			router.back();
 		}
-	}, [to, navigate, location.key]);
+	}, [to, router]);
 
 	const buttonLabel = useMemo(() => {
 		if (to) {
@@ -35,9 +34,12 @@ const BackButton = ({ to }: BackButtonProps) => {
 	}, [to]);
 
 	return (
-		<S.BackButton onClick={handleBack} aria-label={buttonLabel}>
+		<button
+			onClick={handleBack}
+			aria-label={buttonLabel}
+			className="py-1 mb-[1.2rem] font-sans text-sm font-medium text-gray-400 cursor-pointer transition-colors duration-200 before:content-['←'] before:mr-1.5 hover:text-primary active:scale-[0.98] max-tablet:mb-4 max-tablet:text-sm max-mobile:mb-2 max-mobile:text-xs print:hidden">
 			{buttonLabel}
-		</S.BackButton>
+		</button>
 	);
 };
 

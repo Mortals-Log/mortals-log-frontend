@@ -11,7 +11,6 @@ export const SUPPORTED_SERVICES = [
 	'applemusic',
 	'bugs',
 	'genie',
-	'soundcloud',
 	'cd',
 	'lp',
 	'goods',

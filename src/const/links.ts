@@ -11,7 +11,6 @@ export const MUSIC_PLATFORM = {
 	APPLE_MUSIC: 'Apple Music',
 	BUGS: 'BUGS',
 	GENIE: 'genie',
-	SOUNDCLOUD: 'Sound Cloud',
 } as const;
 
 export const SNS_PLATFORM = {
@@ -79,7 +78,6 @@ export const LINK_LIST: Links = [
 			},
 			{ label: MUSIC_PLATFORM.BUGS, url: 'https://music.bugs.co.kr/artist/20166429?wl_ref=S_ab_01_02' },
 			{ label: MUSIC_PLATFORM.GENIE, url: 'https://www.genie.co.kr/detail/artistInfo?xxnm=80740157' },
-			{ label: MUSIC_PLATFORM.SOUNDCLOUD, url: 'https://soundcloud.com/1000_jinwoo' },
 		],
 	},
 	{

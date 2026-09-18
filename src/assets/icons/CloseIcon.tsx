@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { useTheme } from '@emotion/react';
 
 interface CloseIconProps {
 	color?: string;
@@ -7,8 +6,7 @@ interface CloseIconProps {
 }
 
 const CloseIcon = ({ color, size = 24 }: CloseIconProps) => {
-	const theme = useTheme();
-	const iconColor = color || theme.COLOR.BLACK;
+	const iconColor = color || '#000000';
 
 	return (
 		<motion.svg
