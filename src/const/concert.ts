@@ -483,6 +483,13 @@ export const JOIN_CONCERT: ConcertList = [
 					},
 				],
 			},
+			{
+				type: 'JOIN',
+				date: '11.14',
+				content: '와따리가따리 with 천진우',
+				location: '벨르 (구 벨로주 홍대)',
+				lineUp: [MEMBERS.CJW, MEMBERS.JS],
+			},
 		],
 	},
 	{
