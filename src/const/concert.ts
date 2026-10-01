@@ -707,7 +707,14 @@ export const BAND: ConcertList = [
 				location: 'KT&G 상상마당 홍대 라이브홀',
 				seatType: '스탠딩',
 				times: ['18:00'],
-				price: { regular: 66000, student: 55000 },
+				price: {
+					regular: 66000,
+					student: 55000,
+					onSpot: [
+						{ label: '일반', amount: 70000 },
+						{ label: '청소년', amount: 60000 },
+					],
+				},
 				lineUp: BAND_MEMBERS,
 				ticketing: [
 					{
@@ -724,7 +731,14 @@ export const BAND: ConcertList = [
 				location: 'KT&G 상상마당 부산 라이브홀',
 				seatType: '좌석',
 				times: ['18:00'],
-				price: { regular: 66000, student: 55000 },
+				price: {
+					regular: 66000,
+					student: 55000,
+					onSpot: [
+						{ label: '일반', amount: 70000 },
+						{ label: '청소년', amount: 60000 },
+					],
+				},
 				lineUp: BAND_MEMBERS,
 				ticketing: [
 					{
