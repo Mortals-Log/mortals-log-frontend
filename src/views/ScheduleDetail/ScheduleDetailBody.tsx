@@ -208,6 +208,13 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 						</div>
 					)}
 
+					{concert.seatType && (
+						<div className={SDB_INFO_GROUP}>
+							<InfoTitle label="SEAT TYPE" />
+							<div className={SDB_INFO_ITEM}>{concert.seatType}</div>
+						</div>
+					)}
+
 					{concert.price && (
 						<div className={SDB_INFO_GROUP}>
 							<InfoTitle label="TICKET" />
@@ -265,23 +272,39 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 										<div className={SDB_INFO_ITEM}>
 											<span className="info">매진되었습니다.</span>
 										</div>
-									) : !isTicketingOpen ? (
-										<div className={SDB_INFO_ITEM}>
-											<span className="info">티켓팅 오픈 전입니다.</span>
-										</div>
-									) : ticketingLink ? (
-										<Link href={ticketingLink} target="_blank" rel="noopener noreferrer" className={PRIMARY_BUTTON}>
-											{roundLabel ? `${roundLabel} ` : ''}티켓 예매하러 가기
-										</Link>
 									) : (
 										<>
-											<div className={SDB_INFO_ITEM}>
-												<span className="info">티켓팅 사이트가 아직 등록되지 않았습니다.</span>
-											</div>
-											{linktreeLink && (
-												<Link href={linktreeLink} target="_blank" rel="noopener noreferrer" className={MORE_BUTTON}>
-													링크트리에서 확인하기
+											{/* 오픈 전이어도 링크가 이미 있으면 미리 접근할 수 있게 버튼은 그대로 보여주고, 안내만 덧붙인다. */}
+											{!isTicketingOpen && (
+												<div className={SDB_INFO_ITEM}>
+													<span className="info">티켓팅 오픈 전입니다.</span>
+												</div>
+											)}
+											{ticketingLink ? (
+												<Link
+													href={ticketingLink}
+													target="_blank"
+													rel="noopener noreferrer"
+													className={PRIMARY_BUTTON}>
+													{roundLabel ? `${roundLabel} ` : ''}티켓 예매하러 가기
 												</Link>
+											) : (
+												isTicketingOpen && (
+													<>
+														<div className={SDB_INFO_ITEM}>
+															<span className="info">티켓팅 사이트가 아직 등록되지 않았습니다.</span>
+														</div>
+														{linktreeLink && (
+															<Link
+																href={linktreeLink}
+																target="_blank"
+																rel="noopener noreferrer"
+																className={MORE_BUTTON}>
+																링크트리에서 확인하기
+															</Link>
+														)}
+													</>
+												)
 											)}
 										</>
 									)}
