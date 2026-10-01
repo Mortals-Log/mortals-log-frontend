@@ -281,11 +281,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 												</div>
 											)}
 											{ticketingLink ? (
-												<Link
-													href={ticketingLink}
-													target="_blank"
-													rel="noopener noreferrer"
-													className={PRIMARY_BUTTON}>
+												<Link href={ticketingLink} target="_blank" rel="noopener noreferrer" className={PRIMARY_BUTTON}>
 													{roundLabel ? `${roundLabel} ` : ''}티켓 예매하러 가기
 												</Link>
 											) : (
