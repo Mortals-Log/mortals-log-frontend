@@ -14,12 +14,14 @@ interface Ticketing {
 
 export interface ConcertItem {
 	id?: string;
-	type: 'SOLO' | 'JOIN' | 'TOUR' | 'LISTENING' | 'FESTIVAL';
+	type: 'SOLO' | 'JOIN' | 'TOUR' | 'LISTENING' | 'FESTIVAL' | 'BAND' | 'BAND_TOUR';
 	date: string;
 	content: string;
 	location?: string;
 	/** 페스티벌처럼 전체 행사장(location)과 천진우가 실제로 공연하는 장소(스테이지)가 다를 때 지정한다. */
 	performanceLocation?: string;
+	/** 스탠딩/좌석 구분이 필요한 공연에서 지정한다. */
+	seatType?: '스탠딩' | '좌석';
 	times?: string[];
 	/**
 	 * date 가 기간(예: "09.05 ~ 09.06")일 때, 실제로 공연하는 날짜만 골라서 지정한다.

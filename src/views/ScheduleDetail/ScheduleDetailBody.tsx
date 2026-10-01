@@ -208,6 +208,13 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 						</div>
 					)}
 
+					{concert.seatType && (
+						<div className={SDB_INFO_GROUP}>
+							<InfoTitle label="SEAT TYPE" />
+							<div className={SDB_INFO_ITEM}>{concert.seatType}</div>
+						</div>
+					)}
+
 					{concert.price && (
 						<div className={SDB_INFO_GROUP}>
 							<InfoTitle label="TICKET" />

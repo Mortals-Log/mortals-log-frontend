@@ -9,7 +9,7 @@ import { ALL_SCHEDULE_LIST } from '@/utils/schedule';
 import { ConcertItem } from '@/types/concert';
 
 import { SCHEDULE_LABEL_MAP } from '@/const/schedule';
-import { FULL_CONCERTS } from '@/const/concert';
+import { FULL_CONCERTS, CONCERT_TYPE_LABEL } from '@/const/concert';
 import { FULL_ALBUMS } from '@/const/albums';
 import { FULL_EVENTS } from '@/const/event';
 
@@ -19,7 +19,7 @@ import ScheduleDetailBody from '@/views/ScheduleDetail/ScheduleDetailBody';
 import { SD_MAIN, SD_HEADER_SECTION, SD_CATEGORY_BADGE, sdMainTitle } from './detail-classes';
 
 const isConcert = (data: any): data is ConcertItem =>
-	data && 'content' in data && 'type' in data && ['SOLO', 'JOIN', 'TOUR', 'LISTENING', 'FESTIVAL'].includes(data.type);
+	data && 'content' in data && 'type' in data && Object.keys(CONCERT_TYPE_LABEL).includes(data.type);
 
 const ScheduleDetail = () => {
 	const { id } = useParams<{ id: string }>();

@@ -4,14 +4,6 @@
 
 import { ConcertItem, ConcertList } from '@/types/concert';
 
-export const CONCERT_TYPE_LABEL: Record<string, string> = {
-	SOLO: '단독 콘서트',
-	JOIN: '합동 콘서트',
-	TOUR: '전국 투어',
-	LISTENING: '음악감상회',
-	FESTIVAL: '페스티벌',
-};
-
 export const MEMBERS = {
 	// 코어 멤버
 	CJW: '천진우',
@@ -43,6 +35,19 @@ export const MEMBERS = {
 	DB: '대방중 뉴진스',
 	HANABI: '금옥중 하나비 밴드',
 } as const;
+
+const BAND_MEMBERS = [MEMBERS.CJW, MEMBERS.GT, MEMBERS.YDH, MEMBERS.LJD, MEMBERS.BY];
+const BAND_LABEL = `구토유발자들(${BAND_MEMBERS.join(', ')})`;
+
+export const CONCERT_TYPE_LABEL: Record<string, string> = {
+	SOLO: '단독 콘서트',
+	JOIN: '합동 콘서트',
+	TOUR: '전국 투어',
+	LISTENING: '음악감상회',
+	FESTIVAL: '페스티벌',
+	BAND: BAND_LABEL,
+	BAND_TOUR: `${BAND_LABEL} · 전국 투어`,
+};
 
 export const SOLO_CONCERT: ConcertList = [
 	{
@@ -138,7 +143,6 @@ export const SOLO_CONCERT: ConcertList = [
 					},
 				],
 			},
-
 			{
 				type: 'SOLO',
 				date: '09.27',
@@ -523,7 +527,6 @@ export const JOIN_CONCERT: ConcertList = [
 				type: 'JOIN',
 				date: '04.06',
 				content: '와따리가따리 시즌1',
-				// 시즌2(2025.04.18)와 장소가 뒤바뀌어 있던 것을 namu.wiki 대조로 확인 후 수정.
 				location: '홍대 플렉스라운지',
 				lineUp: [MEMBERS.CJW, MEMBERS.JS],
 				ticketing: [
@@ -680,6 +683,49 @@ export const FESTIVAL: ConcertList = [
 				content: '와우산록페스티벌',
 				location: '와우산로의 라이브 클럽',
 				lineUp: [MEMBERS.CJW],
+				times: ['07:20 ~ 07:50'],
+			},
+		],
+	},
+];
+
+export const BAND: ConcertList = [
+	{
+		year: '2026',
+		items: [
+			{
+				type: 'BAND_TOUR',
+				date: '10.24',
+				content: '천진우와 구토유발자들이 온다 : 서울에서 부산까지 - 서울',
+				location: 'KT&G 상상마당 홍대 라이브홀',
+				seatType: '스탠딩',
+				times: ['18:00'],
+				price: { regular: 66000, student: 55000 },
+				lineUp: BAND_MEMBERS,
+				ticketing: [
+					{
+						ticketingDate: '2026.10.01',
+						ticketingTime: '19:00',
+						ticketingLink: 'https://ticket.melon.com/performance/index.htm?prodId=213955',
+					},
+				],
+			},
+			{
+				type: 'BAND_TOUR',
+				date: '10.31',
+				content: '천진우와 구토유발자들이 온다 : 서울에서 부산까지 - 부산',
+				location: 'KT&G 상상마당 부산 라이브홀',
+				seatType: '좌석',
+				times: ['18:00'],
+				price: { regular: 66000, student: 55000 },
+				lineUp: BAND_MEMBERS,
+				ticketing: [
+					{
+						ticketingDate: '2026.10.01',
+						ticketingTime: '20:00',
+						ticketingLink: 'https://ticket.melon.com/performance/index.htm?prodId=213960',
+					},
+				],
 			},
 		],
 	},
@@ -688,7 +734,7 @@ export const FESTIVAL: ConcertList = [
 export const GET_FULL_CONCERTS = () => {
 	const combinedMap: Record<string, ConcertItem[]> = {};
 
-	[...SOLO_CONCERT, ...JOIN_CONCERT, ...TOUR_CONCERT, ...LISTENING, ...FESTIVAL].forEach(group => {
+	[...SOLO_CONCERT, ...JOIN_CONCERT, ...TOUR_CONCERT, ...LISTENING, ...FESTIVAL, ...BAND].forEach(group => {
 		if (!combinedMap[group.year]) {
 			combinedMap[group.year] = [];
 		}
