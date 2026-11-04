@@ -3,8 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "next dev -p 3000",
-    "build": "next build",
+    "dev": "tsx scripts/pull-content.ts; next dev -p 3000",
+    "pull:content": "tsx scripts/pull-content.ts",
+    "build": "tsx scripts/pull-content.ts && next build",
     "start": "next start",
     "lint": "oxlint",
     "format": "oxfmt src app",
@@ -17,15 +18,16 @@
   },
   "packageManager": "pnpm@9.15.0",
   "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^13.1.0",
     "next": "15",
+    "pretendard": "^1.3.9",
     "react": "^19.2.3",
     "react-calendar": "^6.0.0",
     "react-dom": "^19.2.3",
     "react-hot-toast": "^2.6.0",
-    "storyboard": "^3.3.2",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
@@ -47,7 +49,9 @@
     "playwright": "^1.57.0",
     "prettier": "^3.7.4",
     "storybook": "^10.1.11",
+    "supabase": "^2.122.0",
     "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
     "typescript": "~5.9.3",
     "vitest": "^4.0.16"
   }

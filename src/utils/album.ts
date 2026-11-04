@@ -23,7 +23,7 @@ export const GetAlbumPaths = (album: Album) => {
 
 	return {
 		key,
-		imageSrc: album.fileName ? `/images/albums/${key}.webp` : '/images/default.webp',
+		imageSrc: album.imageUrl ?? (album.fileName ? `/images/albums/${key}.webp` : '/images/default.webp'),
 		detailUrl: `/album/${slug}`,
 	};
 };

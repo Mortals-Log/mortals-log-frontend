@@ -71,7 +71,14 @@ const AlbumPromotionSection = () => {
 			{dDayText && <div className={AP_DDAY_BADGE}>{dDayText}</div>}
 
 			<div className={AP_IMAGE_AREA}>
-				<img className={AP_COVER_IMAGE} src={imageSrc} alt={album.title} onError={handleImgError} />
+				<img
+					className={AP_COVER_IMAGE}
+					src={imageSrc}
+					alt={album.title}
+					fetchPriority="high"
+					decoding="async"
+					onError={handleImgError}
+				/>
 			</div>
 
 			<div className={AP_INFO_AREA}>

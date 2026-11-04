@@ -68,7 +68,13 @@ const ProfileSection = () => {
 
 			<div className={PS_SECTION_WRAPPER}>
 				<div className={PS_IMAGE_SECTION}>
-					<img className={PS_MAIN_IMAGE} src={PROFILE.mainImage} alt={PROFILE.name} />
+					<img
+						className={PS_MAIN_IMAGE}
+						src={PROFILE.mainImage}
+						alt={PROFILE.name}
+						fetchPriority="high"
+						decoding="async"
+					/>
 					<div className={PS_HANJA_BADGE}>{PROFILE.hanjaName}</div>
 				</div>
 

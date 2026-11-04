@@ -6,7 +6,7 @@ import { PROFILE } from '@/const/profile';
 export const ProfileHeader = () => {
 	return (
 		<section className={PH_HEADER}>
-			<img className={PH_MAIN_IMAGE} src={PROFILE.mainImage} alt={PROFILE.name} />
+			<img className={PH_MAIN_IMAGE} src={PROFILE.mainImage} alt={PROFILE.name} fetchPriority="high" decoding="async" />
 			<div className={PH_INFO_SUMMARY}>
 				<div className={PH_NAME_GROUP}>
 					<p className="name ">{PROFILE.name}</p>

@@ -7,6 +7,8 @@ export interface Album {
 	title: string;
 	volume?: number;
 	fileName?: string;
+	/** 백엔드(Supabase Storage)에 올린 커버 이미지의 공개 URL. 있으면 fileName 규칙보다 우선한다. */
+	imageUrl?: string;
 	releaseDate: string;
 	tracks?: string[] | { [section: string]: string[] };
 

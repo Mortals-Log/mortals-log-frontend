@@ -55,10 +55,6 @@ export const PRIMARY_BUTTON =
 export const VIEW_MORE_BUTTON =
 	"flex items-center justify-center w-fit bg-black py-4 px-6 font-sans text-md font-semibold text-white rounded-[10px] transition-all duration-300 cursor-pointer after:content-['|'] after:ml-0.5 after:text-white after:animate-[blink_1s_step-end_infinite] hover:bg-primary hover:text-white active:scale-[0.98] max-tablet:py-4 max-tablet:px-[1.2rem] max-tablet:after:ml-1 max-mobile:py-[0.8rem] max-mobile:px-[1.4rem] max-mobile:text-sm";
 
-/** Buttons.style.ts CardButton 베이스 — styled Link 이었던 */
-export const CARD_BUTTON =
-	'relative flex flex-col py-10 px-6 bg-white border border-gray-200 rounded-[10px] font-sans text-md font-semibold text-white no-underline overflow-hidden cursor-pointer hover:border-primary active:border-primary max-mobile:py-8 max-mobile:px-6';
-
 /** common/VideoWrapper.style.ts VideoWrapper — 16:9 iframe 래퍼 */
 export const VIDEO_WRAPPER =
 	'relative overflow-hidden w-full max-w-[800px] aspect-video mt-4 mb-12 mx-auto rounded-[10px] bg-gray-700 shadow-[0_10px_30px_rgba(0,0,0,0.2)] [&_iframe]:absolute [&_iframe]:top-0 [&_iframe]:left-0 [&_iframe]:w-full [&_iframe]:h-full [&_iframe]:border-0 [&_iframe]:bg-transparent max-mobile:mb-8 max-mobile:rounded-lg max-mobile:shadow-[0_8px_20px_rgba(0,0,0,0.2)]';
