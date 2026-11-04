@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
+import { Noto_Serif_KR } from 'next/font/google';
 import { METADATA } from '@/const/contents';
 import Providers from './Providers';
 
@@ -29,6 +30,13 @@ export const metadata: Metadata = {
 	},
 };
 
+const notoSerifKR = Noto_Serif_KR({
+	weight: 'variable',
+	display: 'swap',
+	preload: false,
+	variable: '--font-noto-serif-kr',
+});
+
 export const viewport = {
 	width: 'device-width',
 	initialScale: 1,
@@ -36,7 +44,7 @@ export const viewport = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<html lang="kr">
+		<html lang="kr" className={notoSerifKR.variable}>
 			<body>
 				<Providers>{children}</Providers>
 			</body>

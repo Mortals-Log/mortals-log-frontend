@@ -23,11 +23,11 @@
     "date-fns": "^4.1.0",
     "framer-motion": "^13.1.0",
     "next": "15",
+    "pretendard": "^1.3.9",
     "react": "^19.2.3",
     "react-calendar": "^6.0.0",
     "react-dom": "^19.2.3",
     "react-hot-toast": "^2.6.0",
-    "storyboard": "^3.3.2",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {

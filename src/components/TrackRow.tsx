@@ -43,7 +43,7 @@ const TrackRow = React.memo(({ track, album, index, onClick, onKeyDown, variant 
 
 	return (
 		<div
-			className={cn(styles.item, track.cdOnly && CD_ONLY_CLASS)}
+			className={cn(styles.item, 'render-lazy [--render-lazy-size:4rem]', track.cdOnly && CD_ONLY_CLASS)}
 			onClick={() => onClick(track.id)}
 			onKeyDown={e => onKeyDown(e, track.id)}
 			role="button"

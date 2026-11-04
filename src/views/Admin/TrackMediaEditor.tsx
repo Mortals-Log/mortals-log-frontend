@@ -165,7 +165,7 @@ const TrackMediaEditor = ({ kind }: { kind: TrackMediaKind }) => {
 								<li
 									key={row.id}
 									className={cn(
-										'flex flex-col gap-3 rounded-md border bg-white p-4',
+										'render-lazy flex flex-col gap-3 rounded-md border bg-white p-4 [--render-lazy-size:12rem]',
 										changedIds.includes(row.id) ? 'border-primary' : 'border-gray-200',
 									)}>
 									<div className="flex items-start justify-between gap-3">

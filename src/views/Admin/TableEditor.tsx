@@ -12,6 +12,7 @@ import { deleteDraft, type AdminDraft } from '@/apis/admin/drafts';
 import { removeImages, uploadFieldImages } from '@/apis/admin/images';
 import { deleteTableRow, insertTableRow, updateTableRow } from '@/apis/admin/table-rows';
 import { useTableRows } from '@/hooks/admin/useTableRows';
+import { useDebouncedValue } from '@/hooks/common/useDebouncedValue';
 import { cn } from '@/utils/cn';
 import {
 	BADGE_CLASS,
@@ -276,6 +277,7 @@ const TableEditor = ({ config, renderForm }: TableEditorProps) => {
 	// undefined: 목록 / 그 외: 폼을 열어 둔 상태
 	const [openedEditing, setEditing] = useState<EditingState | undefined>(undefined);
 	const [search, setSearch] = useState('');
+	const searchKeyword = useDebouncedValue(search.trim().toLowerCase());
 	const [sortKey, setSortKey] = useState(config.sorts?.[0]?.key ?? '');
 	const [filterValues, setFilterValues] = useState<Record<string, string>>({});
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -295,17 +297,16 @@ const TableEditor = ({ config, renderForm }: TableEditorProps) => {
 	);
 
 	const visibleItems = useMemo(() => {
-		const keyword = search.trim().toLowerCase();
 		const filtered = items.filter(
 			item =>
-				(!keyword || item.searchText.includes(keyword)) &&
+				(!searchKeyword || item.searchText.includes(searchKeyword)) &&
 				(config.filters ?? []).every(
 					filter => !filterValues[filter.key] || filter.matches(item.row, filterValues[filter.key], lookups),
 				),
 		);
 		const sort = config.sorts?.find(candidate => candidate.key === sortKey);
 		return sort ? [...filtered].sort((a, b) => sort.compare(a.row, b.row, lookups)) : filtered;
-	}, [items, search, filterValues, sortKey, config, lookups]);
+	}, [items, searchKeyword, filterValues, sortKey, config, lookups]);
 
 	// 다른 탭에서 "이 항목 열어 줘"라고 요청한 경우, 목록을 불러오면 그 항목의 수정 화면을 연다.
 	const pendingRow =
@@ -446,7 +447,7 @@ const TableEditor = ({ config, renderForm }: TableEditorProps) => {
 					<li
 						key={getRowKey(config, row)}
 						className={cn(
-							'flex flex-col gap-3 rounded-md border border-gray-200 bg-white p-4',
+							'render-lazy flex flex-col gap-3 rounded-md border border-gray-200 bg-white p-4 [--render-lazy-size:10rem]',
 							row.is_published === false && 'bg-gray-50',
 						)}>
 						<div className="flex items-start justify-between gap-3">
