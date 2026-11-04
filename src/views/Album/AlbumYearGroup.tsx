@@ -41,7 +41,7 @@ const AlbumYearGroup = memo(({ year, items, isOpen, onToggle, handleImgError, re
 						return (
 							<Link key={key} href={detailUrl} className={ALBUM_CARD}>
 								<div className={ALBUM_COVER_WRAPPER}>
-									<img src={imageSrc} alt={album.title} loading="lazy" onError={handleImgError} />
+									<img src={imageSrc} alt={album.title} loading="lazy" decoding="async" onError={handleImgError} />
 									<div className={`overlay ${ALBUM_OVERLAY}`}>
 										<span>VIEW TRACKS →</span>
 									</div>

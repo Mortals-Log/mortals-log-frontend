@@ -54,7 +54,14 @@ const AlbumDetailMetaInfo = ({ album }: { album: Album }) => {
 
 	return (
 		<section className={ADM_CONTENT_SECTION}>
-			<img className={admCoverImage(!!album.store)} src={imageSrc} alt={album.title} onError={handleImgError} />
+			<img
+				className={admCoverImage(!!album.store)}
+				src={imageSrc}
+				alt={album.title}
+				fetchPriority="high"
+				decoding="async"
+				onError={handleImgError}
+			/>
 
 			<div className={ADM_INFO_WRAPPER}>
 				{album.streaming && (

@@ -502,7 +502,7 @@ const ScheduleDetailBody = ({ type, data, imageUrl }: ScheduleDetailBodyProps) =
 			<div className={SDB_MAIN_SECTION}>
 				{hasImage && finalImgSrc && (
 					<div className={SDB_IMAGE_WRAPPER}>
-						<img src={finalImgSrc} onError={handleImgError} />
+						<img src={finalImgSrc} alt="" decoding="async" onError={handleImgError} />
 					</div>
 				)}
 

@@ -7,9 +7,9 @@ import { getSupabaseBrowserClient } from '@/lib/supabase-browser';
 import type { TableConfig } from '@/views/Admin/admin-tables';
 import type { TableRow } from '@/views/Admin/form-codec';
 
-const MAX_LONG_SIDE = 2000; // 이보다 큰 사진은 줄여서 올린다 (버킷 제한 5MB 안에 들도록)
-const WEBP_QUALITY = 0.9;
-const CACHE_SECONDS = '3600'; // 같은 경로를 다시 올릴 수 있으므로 오래 캐시하지 않는다.
+const MAX_LONG_SIDE = 1200; // 카드·포스터는 이보다 크게 보이지 않으므로 이보다 큰 사진은 줄여서 올린다
+const WEBP_QUALITY = 0.8;
+const CACHE_SECONDS = '86400'; // 같은 경로를 다시 올릴 수 있으므로 하루만 저장해 둔다.
 
 const toWebp = async (file: File): Promise<Blob> => {
 	const bitmap = await createImageBitmap(file);

@@ -1,8 +1,18 @@
 import path from 'path';
 import type { NextConfig } from 'next';
 
+// 이름이 바뀌지 않는 정적 파일: 일주일은 다시 묻지 않고, 그 뒤 한 달은 저장본을 먼저 보여준 뒤 뒤에서 새로 확인한다.
+const STATIC_FILE_CACHE_CONTROL = 'public, max-age=604800, stale-while-revalidate=2592000';
+
 const nextConfig: NextConfig = {
 	outputFileTracingRoot: path.join(__dirname),
+	poweredByHeader: false,
+	async headers() {
+		return [
+			{ source: '/images/:path*', headers: [{ key: 'Cache-Control', value: STATIC_FILE_CACHE_CONTROL }] },
+			{ source: '/files/:path*', headers: [{ key: 'Cache-Control', value: STATIC_FILE_CACHE_CONTROL }] },
+		];
+	},
 	webpack(config) {
 		const fileLoaderRule = config.module.rules.find((rule: any) => rule.test?.test?.('.svg'));
 
