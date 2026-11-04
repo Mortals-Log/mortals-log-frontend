@@ -19,7 +19,7 @@ export const GetConcertPaths = (concert: ConcertItem, year: string) => {
 
 	return {
 		key,
-		imageSrc: `/images/concerts/${fileName}.webp`,
+		imageSrc: concert.imageUrl ?? `/images/concerts/${fileName}.webp`,
 		detailUrl: `/concert/${slug}`,
 	};
 };

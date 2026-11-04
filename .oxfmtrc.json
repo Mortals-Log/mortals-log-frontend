@@ -10,5 +10,5 @@
 	"useTabs": true,
 	"printWidth": 120,
 	"sortPackageJson": false,
-	"ignorePatterns": []
+	"ignorePatterns": ["src/generated/**"]
 }
