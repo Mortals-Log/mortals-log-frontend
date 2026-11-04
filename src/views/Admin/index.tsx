@@ -33,6 +33,9 @@ const getSetupError = (): { setupError: string | null } => {
 	}
 };
 
+// 사이트 전역 규칙이 h1~h3 를 세리프로 지정하므로, 관리자 화면 안의 제목도 본문과 같은 Pretendard 로 되돌린다.
+const ADMIN_FONT_CLASS = 'font-sans [&_h1]:font-sans [&_h2]:font-sans [&_h3]:font-sans';
+
 const ACCOUNTS_TAB = 'accounts';
 // 곡의 노래방 번호·뮤직비디오를 각각 고치는 탭 (테이블 하나에 대응하지 않아 ADMIN_TABLES 에 없다)
 const KARAOKE_TAB = 'track-karaoke';
@@ -181,7 +184,7 @@ const Admin = () => {
 	const isFirstLogin = session ? mustChangePassword(session.user) : false;
 
 	return (
-		<main className={cn(LAYOUT_MAIN, 'font-sans', isAdmin && 'max-w-5xl')}>
+		<main className={cn(LAYOUT_MAIN, ADMIN_FONT_CLASS, isAdmin && 'max-w-5xl')}>
 			<span className={LAYOUT_SUB_TITLE}>ADMIN</span>
 			<div className={cn(LAYOUT_MAIN_TITLE, 'font-sans')}>관리자</div>
 
