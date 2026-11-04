@@ -29,7 +29,6 @@ export const sdmSingingBadge = (brand: 'TJ' | 'KY') =>
 	);
 
 // ── SongDetailContent.styles.ts
-export const SDC_CONTENT_SECTION = 'w-full mt-2';
 export const SDC_CONTENT_HEADER = 'flex flex-col mb-[0.3rem]';
 export const SDC_TAB_GROUP = 'flex gap-4 my-4 max-mobile:gap-[0.8rem] print:hidden';
 export const sdcTabButton = (isActive: boolean) =>
