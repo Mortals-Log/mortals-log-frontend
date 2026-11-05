@@ -208,7 +208,7 @@ const AlbumBundleFormBody = ({
 					type="button"
 					onClick={onCancel}
 					disabled={isSaving}
-					className="shrink-0 text-sm text-gray-500 underline">
+					className="min-h-11 shrink-0 text-sm text-gray-500 underline">
 					← 목록으로
 				</button>
 				<h2 className="min-w-0 flex-1 truncate font-sans text-lg font-semibold text-gray-700">
@@ -386,7 +386,7 @@ const AlbumBundleFormBody = ({
 										['연령 제한', 'isAgeRestricted'],
 									] as const
 								).map(([label, field]) => (
-									<label key={field} className="flex items-center gap-3 text-base text-gray-700">
+									<label key={field} className="flex min-h-11 items-center gap-3 text-base text-gray-700">
 										<input
 											type="checkbox"
 											checked={Boolean(track[field])}

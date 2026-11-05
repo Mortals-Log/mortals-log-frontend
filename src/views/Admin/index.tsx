@@ -109,7 +109,7 @@ const AdminConsole = ({ session, onLogout }: { session: Session; onLogout: () =>
 			<AdminDraftsProvider>
 				<div className="mt-12 flex flex-col gap-6">
 					<div className="flex flex-wrap items-center justify-between gap-3">
-						<p className={cn(LAYOUT_DESCRIPTION, 'm-0 break-all')}>{session.user.email} 로 로그인됨</p>
+						<p className={cn(LAYOUT_DESCRIPTION, 'm-0 max-tablet:m-0 break-all')}>{session.user.email} 로 로그인됨</p>
 						<div className="flex flex-wrap gap-2">
 							<HeaderDraftButton />
 							<DeployDialog accessToken={session.access_token} />

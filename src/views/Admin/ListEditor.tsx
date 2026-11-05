@@ -181,7 +181,7 @@ const ListEditor = <Item,>({
 									type="button"
 									aria-expanded={!isItemCollapsed}
 									onClick={() => handleToggle(item, index)}
-									className="flex min-w-0 flex-1 items-center gap-2 text-left font-sans">
+									className="flex min-h-11 min-w-0 flex-1 items-center gap-2 text-left font-sans">
 									<span aria-hidden className="text-gray-500">
 										{isItemCollapsed ? '▸' : '▾'}
 									</span>

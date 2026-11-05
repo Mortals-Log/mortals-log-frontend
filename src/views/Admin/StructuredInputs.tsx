@@ -187,7 +187,7 @@ export const TicketingInput = ({ value, isDisabled, onChange }: InputProps<Ticke
 						className={INPUT_CLASS}
 					/>
 				</label>
-				<label className="flex items-center gap-3 text-base text-gray-700">
+				<label className="flex min-h-11 items-center gap-3 text-base text-gray-700">
 					<input
 						type="checkbox"
 						checked={item.soldOut}
