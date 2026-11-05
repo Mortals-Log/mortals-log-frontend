@@ -217,7 +217,7 @@ const TrackMediaEditor = ({ kind }: { kind: TrackMediaKind }) => {
 													href={`https://www.youtube.com/watch?v=${videoId}`}
 													target="_blank"
 													rel="noopener noreferrer"
-													className="self-start text-sm text-gray-500 underline">
+													className="flex min-h-11 items-center self-start text-sm text-gray-500 underline">
 													영상 확인 ({videoId})
 												</a>
 											)}

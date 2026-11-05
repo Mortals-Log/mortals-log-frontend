@@ -129,7 +129,7 @@ const FormFields = ({ config, form, row, isDisabled, files, onFormChange, onFile
 								<p className="break-words text-base text-gray-700">{getLockedText(field, form[field.name], lookups)}</p>
 							</>
 						) : field.kind === 'boolean' ? (
-							<label className="flex items-center gap-3 text-base font-medium text-gray-700">
+							<label className="flex min-h-11 items-center gap-3 text-base font-medium text-gray-700">
 								<FieldInput
 									field={field}
 									value={form[field.name]}

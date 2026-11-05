@@ -145,7 +145,11 @@ const RowForm = ({ config, row, draft: initialDraft, onCancel, onSaved }: RowFor
 	return (
 		<form onSubmit={handleSubmit} className="flex max-w-2xl flex-col gap-6">
 			<div className="flex flex-col items-start gap-2">
-				<button type="button" onClick={onCancel} disabled={isSaving} className="text-sm text-gray-500 underline">
+				<button
+					type="button"
+					onClick={onCancel}
+					disabled={isSaving}
+					className="min-h-11 text-sm text-gray-500 underline">
 					← 목록으로
 				</button>
 				<h2 className="font-sans text-xl font-semibold text-gray-700">
@@ -378,7 +382,7 @@ const TableEditor = ({ config, renderForm }: TableEditorProps) => {
 					onChange={event => setSearch(event.target.value)}
 					placeholder={`${config.label} 검색`}
 					aria-label={`${config.label} 검색`}
-					className={cn(INPUT_CLASS, 'min-w-0 flex-1 sm:max-w-xs')}
+					className={cn(INPUT_CLASS, 'min-w-0 basis-full sm:basis-0 sm:flex-1 sm:max-w-xs')}
 				/>
 				{config.filters && (
 					<button
