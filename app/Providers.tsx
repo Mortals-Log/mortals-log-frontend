@@ -1,6 +1,6 @@
 'use client';
 
-import { Toaster } from 'react-hot-toast';
+import AppToaster from '@/components/AppToaster';
 import GNB from '@/components/GNB';
 import ScrollToTop from '@/const/ScrollToTop';
 
@@ -9,7 +9,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
 		<>
 			<ScrollToTop />
 			<GNB />
-			<Toaster position="bottom-center" reverseOrder={false} />
+			<AppToaster />
 			{children}
 		</>
 	);
