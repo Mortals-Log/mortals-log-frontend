@@ -197,8 +197,7 @@ const AdminAccountsSection = ({ currentUserId }: { currentUserId: string }) => {
 				/>
 				<p className="text-sm text-gray-500">
 					추가하면 모든 새 관리자에게 같은 초기 비밀번호가 설정되고, 입력한 이메일로 안내 메일이 발송됩니다. 새 관리자는
-					메일의 링크로 이메일을 확인한 뒤 처음 로그인할 때 반드시 비밀번호를 바꿔야 하며, 바꾸기 전에는 콘텐츠를 수정할
-					수 없습니다.
+					처음 로그인할 때 반드시 비밀번호를 바꿔야 하며, 바꾸기 전에는 콘텐츠를 수정할 수 없습니다.
 				</p>
 				<button type="submit" disabled={isCreating} className={cn(PRIMARY_BUTTON_CLASS, 'self-start')}>
 					{isCreating ? '추가 중...' : '관리자 계정 추가'}
@@ -210,8 +209,8 @@ const AdminAccountsSection = ({ currentUserId }: { currentUserId: string }) => {
 						{created.initialPassword ? (
 							<>
 								<p className="text-sm text-gray-600">
-									초기 비밀번호를 {created.email} 로 발송했습니다. 새 관리자는 메일의 링크로 이메일을 확인한 뒤 로그인할
-									수 있습니다.
+									초기 비밀번호 안내 메일을 보냈습니다. 새 관리자는 이메일과 초기 비밀번호로 바로 로그인할 수 있고, 처음
+									로그인할 때 비밀번호를 바꾸게 됩니다.
 								</p>
 								<p className="text-sm text-gray-500">
 									메일이 도착하지 않으면 스팸함을 확인하고, 그래도 없으면 아래 초기 비밀번호를 직접 전달하십시오. 이
