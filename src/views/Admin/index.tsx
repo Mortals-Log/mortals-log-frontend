@@ -7,7 +7,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import toast from 'react-hot-toast';
 import type { Session } from '@supabase/supabase-js';
 import { LAYOUT_MAIN, LAYOUT_MAIN_TITLE, LAYOUT_SUB_TITLE, LAYOUT_DESCRIPTION } from '@/const/layout-classes';
-import { sendPasswordResetEmail } from '@/apis/admin/accounts';
+import { getLoginErrorMessage, sendPasswordResetEmail } from '@/apis/admin/accounts';
 import { isAdminUser, isSuperAdminUser, mustChangePassword } from '@/lib/admin';
 import { getSupabaseBrowserClient } from '@/lib/supabase-browser';
 import { cn } from '@/utils/cn';
@@ -35,6 +35,21 @@ const getSetupError = (): { setupError: string | null } => {
 
 // 사이트 전역 규칙이 h1~h3 를 세리프로 지정하므로, 관리자 화면 안의 제목도 본문과 같은 Pretendard 로 되돌린다.
 const ADMIN_FONT_CLASS = 'font-sans [&_h1]:font-sans [&_h2]:font-sans [&_h3]:font-sans';
+
+/**
+ * 인증 메일 링크가 실패해서 돌아온 경우(주소 뒤 #error_code=...)의 안내. 메일 앱이 링크를 미리 열어 보면
+ * 한 번만 쓸 수 있는 링크가 먼저 소모되어 otp_expired 로 돌아오기도 한다.
+ */
+const getAuthLinkError = (): string | null => {
+	if (typeof window === 'undefined') return null;
+	const params = new URLSearchParams(window.location.hash.slice(1));
+	const errorCode = params.get('error_code');
+	if (!errorCode) return null;
+	if (errorCode === 'otp_expired') {
+		return '메일의 링크가 만료되었거나 이미 사용되었습니다. "비밀번호 찾기"로 새 링크를 받아 바로 눌러 주십시오.';
+	}
+	return `메일의 링크로 로그인하지 못했습니다. (${params.get('error_description') ?? errorCode})`;
+};
 
 const ACCOUNTS_TAB = 'accounts';
 // 곡의 노래방 번호·뮤직비디오를 각각 고치는 탭 (테이블 하나에 대응하지 않아 ADMIN_TABLES 에 없다)
@@ -109,7 +124,7 @@ const AdminConsole = ({ session, onLogout }: { session: Session; onLogout: () =>
 			<AdminDraftsProvider>
 				<div className="mt-12 flex flex-col gap-6">
 					<div className="flex flex-wrap items-center justify-between gap-3">
-						<p className={cn(LAYOUT_DESCRIPTION, 'm-0 max-tablet:m-0 break-all')}>{session.user.email} 로 로그인됨</p>
+						<p className={cn(LAYOUT_DESCRIPTION, 'm-0 max-tablet:m-0 break-all')}>로그인 계정: {session.user.email}</p>
 						<div className="flex flex-wrap gap-2">
 							<HeaderDraftButton />
 							<DeployDialog accessToken={session.access_token} />
@@ -137,6 +152,7 @@ const Admin = () => {
 	const [isRecovering, setIsRecovering] = useState(
 		() => typeof window !== 'undefined' && window.location.hash.includes('type=recovery'),
 	);
+	const [authLinkError] = useState(getAuthLinkError);
 	const [{ setupError }] = useState(getSetupError);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -157,7 +173,7 @@ const Admin = () => {
 		setIsSubmitting(true);
 		const { error } = await getSupabaseBrowserClient().auth.signInWithPassword({ email, password });
 		setIsSubmitting(false);
-		if (error) toast.error('이메일 또는 비밀번호가 올바르지 않습니다.');
+		if (error) toast.error(getLoginErrorMessage(error));
 		setPassword('');
 	};
 
@@ -191,6 +207,8 @@ const Admin = () => {
 			{setupError && <p className="mt-16 text-base text-pink-600">{setupError}</p>}
 
 			{session === undefined && !setupError && <p className="mt-16 text-base text-gray-500">확인 중...</p>}
+
+			{session === null && authLinkError && <p className="mt-16 text-base text-pink-600">{authLinkError}</p>}
 
 			{session === null && !isForgotMode && (
 				<form onSubmit={handleLogin} className="mt-16 flex max-w-sm flex-col gap-3">

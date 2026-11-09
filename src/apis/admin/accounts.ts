@@ -3,6 +3,7 @@
 //   - 본인 계정: 비밀번호 변경, 탈퇴 (로그인한 누구나, 본인 것만)
 //   - 관리자 계정 목록·추가·삭제: 최종 관리자만. DB 함수가 호출자를 다시 확인하므로 화면에서 막는 것은 편의일 뿐이다.
 
+import type { AuthError } from '@supabase/supabase-js';
 import { createIsolatedSupabaseClient, getSupabaseBrowserClient } from '@/lib/supabase-browser';
 
 export interface AdminAccount {
@@ -39,6 +40,21 @@ const toAccountError = (error: { code?: string; message: string }): Error => {
 	}
 	if (error.code === '42501') return new Error('사용할 수 없는 기능이거나 로그인이 필요합니다.');
 	return new Error(error.message);
+};
+
+/** 인증 메일의 링크가 돌아올 주소. Supabase 대시보드의 Redirect URLs 에 등록되어 있어야 한다. */
+const getAdminPageUrl = () => `${window.location.origin}/admin`;
+
+const isEmailRateLimited = (error: AuthError) =>
+	error.status === 429 || error.code === 'over_email_send_rate_limit' || error.code === 'over_request_rate_limit';
+
+/** 로그인 실패를 화면 문장으로 바꾼다. 이메일 확인 전·횟수 제한은 비밀번호 오류와 구분해서 알린다. */
+export const getLoginErrorMessage = (error: AuthError): string => {
+	if (error.code === 'email_not_confirmed') {
+		return '이메일 확인이 끝나지 않은 계정입니다. 받은 메일의 링크를 누르거나, 최종 관리자에게 계정을 다시 추가해 달라고 요청하십시오.';
+	}
+	if (isEmailRateLimited(error)) return '로그인 시도가 너무 많습니다. 잠시 후 다시 시도하십시오.';
+	return '이메일 또는 비밀번호가 올바르지 않습니다.';
 };
 
 const assertPasswordLength = (password: string) => {
@@ -79,7 +95,7 @@ export const createAdminAccount = async (email: string): Promise<CreateAdminResu
 	const { data, error } = await createIsolatedSupabaseClient().auth.signUp({
 		email,
 		password: initialPassword as string,
-		options: { data: { initial_password: initialPassword as string } },
+		options: { emailRedirectTo: getAdminPageUrl(), data: { initial_password: initialPassword as string } },
 	});
 	if (error) {
 		if (/signups? not allowed|signup.*disabled/i.test(error.message)) {
@@ -89,6 +105,8 @@ export const createAdminAccount = async (email: string): Promise<CreateAdminResu
 		}
 		throw new Error(error.message);
 	}
+	// 관리자로 지정하면서 이메일 확인도 함께 끝내므로 메일이 도착하지 않아도 초기 비밀번호로 로그인할 수 있다
+	// (20261109090000_admin_confirm_email.sql).
 	// 이미 가입된 이메일은 오류 대신 identities 가 빈 사용자로 응답한다 (계정 존재 여부를 숨기는 Supabase 동작).
 	const isExistingAccount = !data.user || (data.user.identities?.length ?? 0) === 0;
 
@@ -120,7 +138,11 @@ export const deleteOwnAccount = async (currentPassword: string): Promise<void> =
 /** 로그인 화면의 "비밀번호 찾기": 재설정 링크를 메일로 보낸다. 가입 여부는 알리지 않는다. */
 export const sendPasswordResetEmail = async (email: string): Promise<void> => {
 	const { error } = await getSupabaseBrowserClient().auth.resetPasswordForEmail(email, {
-		redirectTo: `${window.location.origin}/admin`,
+		redirectTo: getAdminPageUrl(),
 	});
-	if (error) throw new Error('재설정 메일을 보내지 못했습니다. 잠시 후 다시 시도하십시오.');
+	if (!error) return;
+	if (isEmailRateLimited(error)) {
+		throw new Error('메일을 너무 자주 요청했습니다. 잠시(최대 1시간) 후 다시 시도하십시오.');
+	}
+	throw new Error(`재설정 메일을 보내지 못했습니다. 잠시 후 다시 시도하십시오. (${error.message})`);
 };
