@@ -384,18 +384,18 @@ on conflict (key) do update set value = excluded.value;
 ```
 
 4. 로그아웃했다가 다시 로그인하면 "계정 관리" 탭이 나타납니다.
-5. **초기 비밀번호 메일.** 계정을 추가하면 Supabase가 보내는 "가입 확인" 메일에 초기 비밀번호를 넣어 새 관리자에게 보냅니다. Supabase 대시보드 → Authentication → Emails → **Confirm signup** 템플릿 본문에 아래 문단을 넣으십시오 (제목과 나머지는 그대로 둡니다).
+5. **초기 비밀번호 메일.** 계정을 추가하면 Supabase가 보내는 "가입 확인" 메일에 초기 비밀번호를 넣어 새 관리자에게 보냅니다. Supabase 대시보드 → Authentication → Emails → **Confirm signup** 템플릿의 본문을 아래로 **바꾸십시오**. 관리자로 지정할 때 이메일 확인이 함께 처리되므로(`20261109090000`) 메일에 확인 링크(`{{ .ConfirmationURL }}`)를 넣지 않습니다. 링크를 넣으면 이미 확인된 계정이라 "링크가 만료되었습니다"(otp_expired) 오류로 돌아오고, Site URL이 잘못되어 있으면 localhost로 열립니다.
 
 ```html
 <p>Mortals Log 관리자 계정이 만들어졌습니다.</p>
-<p>아래 링크로 이메일을 확인하십시오.</p>
-<p><a href="{{ .ConfirmationURL }}">이메일 확인하기</a></p>
+<p>아래 관리자 페이지에서 이 이메일과 초기 비밀번호로 로그인하십시오.</p>
+<p><a href="https://mortals-log.vercel.app/admin">관리자 페이지로 가기</a></p>
 <p>초기 비밀번호: <strong>{{ .Data.initial_password }}</strong></p>
-<p>처음 로그인하면 비밀번호를 본인만 아는 값으로 바꾸게 됩니다.</p>
+<p>처음 로그인하면 비밀번호를 본인만 아는 값으로 바꾸게 됩니다. 바꾸기 전에는 콘텐츠를 수정할 수 없습니다.</p>
 ```
 
-   `{{ .Data.initial_password }}`는 계정을 추가할 때 가입 요청에 실어 보낸 값이며, 새 관리자가 비밀번호를 바꾸면 계정에서 지워집니다. 기본 메일 발송(Supabase 내장)은 팀 구성원 주소로만 보낼 수 있으니, 새 관리자에게 보내려면 **Authentication → SMTP Settings에서 SMTP를 연결**해야 합니다. 관리자로 지정할 때 이메일 확인도 함께 처리되므로, 템플릿을 고치지 않았거나 메일이 안 가도 화면에 표시되는 초기 비밀번호를 직접 전달하면 바로 로그인할 수 있습니다.
-6. 비밀번호 찾기를 쓰려면 Supabase 대시보드 → Authentication → URL Configuration의 **Site URL**을 실제 사이트 주소로 두고, **Redirect URLs**에 `<사이트 주소>/admin`을 추가합니다. 재설정 메일도 SMTP를 연결하지 않으면 팀 구성원 주소로만 발송됩니다. 링크가 사이트 첫 화면으로 돌아와도 관리자 페이지로 옮겨 처리하고, 만료된 링크는 로그인 화면에 이유를 표시합니다. 기본 메일 발송은 시간당 횟수 제한이 있으니, 자주 쓰게 되면 SMTP를 연결하십시오.
+   `{{ .Data.initial_password }}`는 계정을 추가할 때 가입 요청에 실어 보낸 값이며, 새 관리자가 비밀번호를 바꾸면 계정에서 지워집니다. 기본 메일 발송(Supabase 내장)은 팀 구성원 주소로만 보낼 수 있으니, 새 관리자에게 보내려면 **Authentication → SMTP Settings에서 SMTP를 연결**해야 합니다. 메일이 안 가도 화면에 표시되는 초기 비밀번호를 직접 전달하면 바로 로그인할 수 있습니다.
+6. Supabase 대시보드 → Authentication → URL Configuration의 **Site URL**을 실제 사이트 주소(`https://mortals-log.vercel.app`)로 바꿉니다. 기본값(`http://localhost:3000`)으로 두면 메일의 링크가 모두 localhost로 열립니다. 비밀번호 찾기를 쓰려면 **Redirect URLs**에 `<사이트 주소>/admin`을 추가합니다. 재설정 메일도 SMTP를 연결하지 않으면 팀 구성원 주소로만 발송됩니다. 링크가 사이트 첫 화면으로 돌아와도 관리자 페이지로 옮겨 처리하고, 만료된 링크는 로그인 화면에 이유를 표시합니다. 기본 메일 발송은 시간당 횟수 제한이 있으니, 자주 쓰게 되면 SMTP를 연결하십시오.
 
 **동작과 한계**
 
