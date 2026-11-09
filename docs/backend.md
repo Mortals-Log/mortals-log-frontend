@@ -395,7 +395,20 @@ on conflict (key) do update set value = excluded.value;
 ```
 
    `{{ .Data.initial_password }}`는 계정을 추가할 때 가입 요청에 실어 보낸 값이며, 새 관리자가 비밀번호를 바꾸면 계정에서 지워집니다. 기본 메일 발송(Supabase 내장)은 팀 구성원 주소로만 보낼 수 있으니, 새 관리자에게 보내려면 **Authentication → SMTP Settings에서 SMTP를 연결**해야 합니다. 메일이 안 가도 화면에 표시되는 초기 비밀번호를 직접 전달하면 바로 로그인할 수 있습니다.
-6. Supabase 대시보드 → Authentication → URL Configuration의 **Site URL**을 실제 사이트 주소(`https://mortals-log.vercel.app`)로 바꿉니다. 기본값(`http://localhost:3000`)으로 두면 메일의 링크가 모두 localhost로 열립니다. 비밀번호 찾기를 쓰려면 **Redirect URLs**에 `<사이트 주소>/admin`을 추가합니다. 재설정 메일도 SMTP를 연결하지 않으면 팀 구성원 주소로만 발송됩니다. 링크가 사이트 첫 화면으로 돌아와도 관리자 페이지로 옮겨 처리하고, 만료된 링크는 로그인 화면에 이유를 표시합니다. 기본 메일 발송은 시간당 횟수 제한이 있으니, 자주 쓰게 되면 SMTP를 연결하십시오.
+6. **URL 설정.** Supabase 대시보드 → Authentication → URL Configuration에서 아래처럼 맞춥니다.
+   - **Site URL**: `https://mortals-log.vercel.app`. 기본값(`http://localhost:3000`)으로 두면 요청한 주소가 아래 Redirect URLs에 없거나 주소를 지정하지 않은 메일의 링크가 모두 localhost로 열립니다.
+   - **Redirect URLs**: `https://mortals-log.vercel.app/admin`(비밀번호 재설정·가입 확인 링크가 돌아오는 곳)과 개발용 `http://localhost:3000/admin`.
+   - 확인 방법: 서비스 키로 메일 없이 복구 링크만 만들어 보면 링크가 돌아갈 주소(`redirect_to`)를 알 수 있습니다. 요청한 주소가 허용 목록에 없으면 Site URL로 바뀌어 나옵니다.
+7. **비밀번호 재설정 메일.** 같은 화면 아래 Authentication → Emails → **Reset password** 템플릿 본문을 아래로 바꾸십시오. 제목은 `[Mortals Log] 비밀번호 재설정`으로 합니다. 링크는 한 번만 쓸 수 있고, 메일 앱이 링크를 미리 열면 먼저 소모되어 "만료" 오류가 날 수 있습니다.
+
+```html
+<p>Mortals Log 관리자 비밀번호 재설정을 요청하셨습니다.</p>
+<p>아래 링크를 눌러 새 비밀번호를 정하십시오. 링크는 한 번만 사용할 수 있습니다.</p>
+<p><a href="{{ .ConfirmationURL }}">비밀번호 재설정하기</a></p>
+<p>요청하지 않으셨다면 이 메일을 무시하십시오. 비밀번호는 바뀌지 않습니다.</p>
+```
+
+   가입 확인 메일의 제목은 `[Mortals Log] 관리자 계정이 만들어졌습니다`로 합니다. 재설정 메일도 SMTP를 연결하지 않으면 팀 구성원 주소로만 발송되고, 기본 메일 발송은 시간당 횟수 제한이 있으니 자주 쓰게 되면 SMTP를 연결하십시오. 링크가 사이트 첫 화면으로 돌아와도 관리자 페이지로 옮겨 처리하고, 만료된 링크는 로그인 화면에 이유를 표시합니다.
 
 **동작과 한계**
 
